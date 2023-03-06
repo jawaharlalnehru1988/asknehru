@@ -1,0 +1,25 @@
+@media screen and (max-width: 767px) {
+    .col-1:first-child,
+    .col-1:last-child {
+      display: none;
+    }
+  }
+  .button-container {
+    display: flex; /* Make sure parent div is a flex container */
+    align-items: stretch; /* Stretch the child items to fill the height */
+    background-color: #6f0c6f;
+  }
+  
+  .button-container button {
+    flex-grow: 1; /* Allow the button to grow to fill the width */
+    margin: 0 5px; /* Optional: add some spacing between the buttons */
+  }
+  .topic{
+    flex-grow: 1;
+    color: brown;
+    font-size: 16px;
+    font-weight: 800;
+  }
+  .firstcol{
+    background-color: #dbd8d8;
+  }

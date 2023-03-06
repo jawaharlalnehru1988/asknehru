@@ -11,11 +11,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import { HomeComponent } from './home/home.component'; 
 import {MatCardModule} from '@angular/material/card'; 
 import { HttpClientModule } from '@angular/common/http';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    HomeComponent
+    HomeComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
