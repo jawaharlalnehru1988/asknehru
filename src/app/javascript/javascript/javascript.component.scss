@@ -9,10 +9,13 @@
     align-items: stretch; /* Stretch the child items to fill the height */
     background-color: #6f0c6f;
   }
-  
   .button-container button {
     flex-grow: 1; /* Allow the button to grow to fill the width */
     margin: 0 5px; /* Optional: add some spacing between the buttons */
+  }
+  .textDecor{
+    font-size: 18px;
+    line-height: 26px;
   }
   .topic{
     flex-grow: 1;
