@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { MatButtonModule } from '@angular/material/button';
 import { HighlightOptions } from 'highlight.js';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HighlightOptions } from 'highlight.js';
     CommonModule,
     JavascriptRoutingModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   exports: [JavascriptComponent]
 })

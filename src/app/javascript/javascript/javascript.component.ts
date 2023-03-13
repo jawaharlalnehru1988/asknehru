@@ -9,6 +9,8 @@ import hljs from 'highlight.js';
 export class JavascriptComponent implements OnInit, AfterViewInit {
   topics: any;
   title: boolean = true;
+  stringTopics: any;
+  charAt: any;
 
   constructor(private jscript: JscriptService) { }
 
@@ -23,7 +25,9 @@ getCourse(){
     next:(res)=>{
       console.log(res);
       this.topics = res[0].Topics;
-      console.log(this.topics);
+      this.stringTopics = res[1].listOfTopics;
+      this.charAt = res[2].explanation;
+      console.log(this.charAt);
     }, error:()=>{
       alert('some issues happening in the backend')
     }

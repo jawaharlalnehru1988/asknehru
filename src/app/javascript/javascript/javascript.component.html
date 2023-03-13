@@ -77,6 +77,21 @@ const name = &quot;John&quot;;
   <p>Object: A collection of key-value pairs, where the values can be of any data type, including other objects. Objects can be created using object literals "{{ '({})' }}", constructor functions (new Object()), or object classes (class syntax).</p>
   <p>Symbol: A unique and immutable data type that is used as an identifier for object properties. Symbols are created using the Symbol() function.</p>
 </div>
+<div *ngSwitchCase="'Strings'">
+  <mat-accordion *ngFor="let string of stringTopics">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{string}}
+        </mat-panel-title>
+        <mat-panel-description>
+          This is a summary of the content
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p [innerHTML]="charAt"></p>
+    </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 <div *ngSwitchDefault>
 
   <p>JavaScript is a programming language that is commonly used to create dynamic web content and interactive web applications. It is a high-level language that is interpreted, meaning that it is executed on the client-side, within a web browser, as opposed to being compiled into machine code.</p>
