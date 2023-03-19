@@ -11,7 +11,7 @@
       <mat-card-title>{{info.title}}</mat-card-title>
       <mat-card-subtitle>asknehru.com</mat-card-subtitle>
     </mat-card-header>
-    <div class="image-container">
+    <div class="image-container" [routerLink]="info.routerName">
         <img mat-card-image class="image" [src]="['https://drive.google.com/uc?export=view&id='+info.imageLink]" alt="Photo of a Shiba Inu">
     </div>
     <mat-card-content>
