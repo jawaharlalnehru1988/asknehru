@@ -18,6 +18,5 @@
     </mat-toolbar>
   </p>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Item 1</button>
-    <button mat-menu-item>Item 2</button>
+    <button mat-menu-item *ngFor="let course of courseName" [routerLink]="course.routerName" >{{course.title}}</button>
   </mat-menu>

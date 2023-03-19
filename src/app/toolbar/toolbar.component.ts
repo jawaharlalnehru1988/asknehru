@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
   showFiller = false;
-  constructor() { }
+  courseName: any;
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+this.api.getCourses().subscribe({
+  next:(res)=>{
+    this.courseName = res;
+    
+  }
+})
   }
 
 }

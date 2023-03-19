@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   }
 getCourse(){
   this.isContentLoading = true;
-  this.api.gitCourses().subscribe({
+  this.api.getCourses().subscribe({
     next: (res)=>{
       this.isContentLoading = false;
       console.log(res);

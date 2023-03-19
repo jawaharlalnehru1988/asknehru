@@ -6,7 +6,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "javascript", loadChildren: ()=>import('./javascript/javascript.module').then(m => m.JavascriptModule)},
-  {path: "angular", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) }
+  {path: "angular", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
+  {path: "dsa", loadChildren: ()=>import('./dsa/dsa.module').then(m => m.DsaModule) }
 ];
 
 @NgModule({
