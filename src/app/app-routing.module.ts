@@ -11,7 +11,11 @@ const routes: Routes = [
   {path: 'html', loadChildren: ()=>import('./html/html.module').then(m=>m.HtmlModule)},
   {path: 'css', loadChildren: ()=>import('./css/css.module').then(m=> m.CssModule)},
   {path: 'bootstrap', loadChildren: ()=> import('./bootstrap/bootstrap.module').then(m=> m.BootstrapModule)},
-  {path: 'typescript', loadChildren: ()=> import('./typescript/typescript.module').then(m => m.TypescriptModule)}
+  {path: 'typescript', loadChildren: ()=> import('./typescript/typescript.module').then(m => m.TypescriptModule)},
+  {path: 'materialAngular', loadChildren: ()=> import('./material/material.module').then(m => m.MaterialModule)},
+  {path: 'nodejs', loadChildren: ()=> import('./nodejs/nodejs.module').then(m => m.NodejsModule)},
+  {path: 'fxlayout', loadChildren: ()=> import('./fxlayout/fxlayout.module').then(m => m.FxlayoutModule)},
+  {path: 'aggrid', loadChildren: ()=> import('./aggrid/aggrid.module').then(m=>m.AggridModule)}
 ];
 
 @NgModule({
