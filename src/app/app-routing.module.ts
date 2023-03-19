@@ -15,7 +15,11 @@ const routes: Routes = [
   {path: 'materialAngular', loadChildren: ()=> import('./material/material.module').then(m => m.MaterialModule)},
   {path: 'nodejs', loadChildren: ()=> import('./nodejs/nodejs.module').then(m => m.NodejsModule)},
   {path: 'fxlayout', loadChildren: ()=> import('./fxlayout/fxlayout.module').then(m => m.FxlayoutModule)},
-  {path: 'aggrid', loadChildren: ()=> import('./aggrid/aggrid.module').then(m=>m.AggridModule)}
+  {path: 'aggrid', loadChildren: ()=> import('./aggrid/aggrid.module').then(m=>m.AggridModule)},
+  {path: 'rxjs', loadChildren: ()=> import('./rxjs/rxjs.module').then(m => m.RxjsModule)},
+  {path: 'restapi', loadChildren: ()=>import('./restapi/restapi/restapi.module').then(m => m.RestapiModule)},
+  {path: 'git', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
+  {path: 'github', loadChildren: ()=> import('./github/github/github.module').then(m => m.GithubModule)}
 ];
 
 @NgModule({
