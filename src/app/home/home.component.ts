@@ -8,6 +8,7 @@ import { ApiService } from '../api.service';
 })
 export class HomeComponent implements OnInit {
   courseDetails: any;
+  isContentLoading: boolean = false;
   
   constructor(private api: ApiService) { }
 
@@ -15,8 +16,10 @@ export class HomeComponent implements OnInit {
     this.getCourse();
   }
 getCourse(){
+  this.isContentLoading = true;
   this.api.gitCourses().subscribe({
     next: (res)=>{
+      this.isContentLoading = false;
       console.log(res);
       this.courseDetails = res;  
     },

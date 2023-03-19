@@ -1,3 +1,7 @@
+<div *ngIf="isContentLoading" class="spinner-container">
+  <mat-spinner color="accent" diameter="132" class="spinner"></mat-spinner>
+  <span class="spinner-text">Loading Lessons...</span>
+</div>
 <div class="card-grid">
 
 <div class="container mt-5 parentCard" *ngFor="let info of courseDetails">
@@ -12,7 +16,7 @@
     </div>
     <mat-card-content>
       
-        {{info.details.slice(0, 150)}}... <a routerLink="/javascript">More Info</a>
+        {{info.details.slice(0, 150)}}... <a [routerLink]="info.routerName">More Info</a>
       
     </mat-card-content>
     <mat-card-actions>
