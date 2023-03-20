@@ -1,28 +1,33 @@
-@media screen and (max-width: 767px) {
-    .col-1:first-child,
-    .col-1:last-child {
-      display: none;
-    }
+.example-card {
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* default 3 columns for desktop */
+  grid-gap: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* for medium devices */
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .button-container {
-    display: flex; /* Make sure parent div is a flex container */
-    align-items: stretch; /* Stretch the child items to fill the height */
-    background-color: #6f0c6f;
+}
+
+@media only screen and (max-width: 576px) {
+  /* for small devices */
+  .card-container {
+    grid-template-columns: 1fr;
   }
-  .button-container button {
-    flex-grow: 1; /* Allow the button to grow to fill the width */
-    margin: 0 5px; /* Optional: add some spacing between the buttons */
-  }
-  .textDecor{
-    font-size: 18px;
-    line-height: 26px;
-  }
-  .topic{
-    flex-grow: 1;
-    color: brown;
-    font-size: 16px;
-    font-weight: 800;
-  }
-  .firstcol{
-    background-color: #dbd8d8;
-  }
+}
+
+.card {
+  background-color: #eace8b;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+.card:hover{
+  background-color: azure;
+}

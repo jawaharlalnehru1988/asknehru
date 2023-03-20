@@ -1,109 +1,14 @@
-<div class=" text-justify">
-    <div class="row">
-      <div class="col-2 firstcol">
-        <span class="topic"> JavaScript Topics</span>
-        <div class="button-container" *ngFor="let topic of topics">
-            <button color="primary" (click)="openDetails(topic)" class="text-white" mat-button>{{topic}}</button>
-        </div>
-      </div>
-      <div class="col">
-        <h1>Topics Details</h1>
-      <div>
-  <div [ngSwitch]="title">
-
-  <div *ngSwitchCase="'variables'">
-    <div>
-        <div>
-            <div>
-                <div>
-                    <div>
-                        <div>
-                            <div>
-                                <div>
-                                    <div>
-                                        <p>In JavaScript, variables are used to store data values. To create a variable in JavaScript, you can use the <code>var</code>, <code>let</code>, or <code>const</code> keyword.</p>
-                                        <p><code>var</code> keyword:</p>
-                                        <ul>
-                                            <li><code>var</code> was the original way of declaring variables in JavaScript.</li>
-                                            <li>A <code>var</code> declaration can be used anywhere in the scope of its containing function, even if the declaration is not at the beginning of the function.</li>
-                                            <li>A <code>var</code> variable can be reassigned to a new value at any time.</li>
-                                        </ul>
-                                        <p>Example:</p>
-                                        <pre class="hljs a11y-dark"><div><div><code>var age = 30;
-var name = &quot;John&quot;;
-</code></div></div></pre>
-                                        <p><code>let</code> keyword:</p>
-                                        <ul>
-                                            <li><code>let</code> was introduced in ES6 (ECMAScript 2015) as a way to declare block-scoped variables.</li>
-                                            <li>A <code>let</code> declaration is only visible within its containing block (e.g. inside a function or a loop).</li>
-                                            <li>A <code>let</code> variable can be reassigned to a new value at any time.</li>
-                                        </ul>
-                                        <p>Example:</p>
-                                        <pre><div><div><code>let age = 30;
-let name = &quot;John&quot;;
-</code></div></div></pre>
-                                        <p><code>const</code> keyword:</p>
-                                        <ul>
-                                            <li><code>const</code> was also introduced in ES6 as a way to declare block-scoped variables.</li>
-                                            <li>A <code>const</code> declaration is only visible within its containing block (e.g. inside a function or a loop).</li>
-                                            <li>A <code>const</code> variable cannot be reassigned to a new value once it has been assigned.</li>
-                                        </ul>
-                                        <p>Example:</p>
-                                        <pre><div><div><code >const PI = 3.14;
-const name = &quot;John&quot;;
-</code></div></div></pre>
-                                        <p>It&apos;s good practice to use <code>const</code> for values that won&apos;t change, and <code>let</code> for values that may change. You can use <code>var</code> if you need to support older browsers, but <code>let</code> and <code>const</code> are preferred in modern JavaScript.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div><br></div>
-            </div>
-        </div>
-    </div>
+<!-- Cards with media area -->
+<div class="card-container">
+  <mat-card *ngFor="let topic of topics" class="card" [routerLink]="['js-details/'+ topic.topicName]" (click)="openTopic(topic)" >
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{topic.topicName}}</mat-card-title>
+        <mat-card-subtitle>JavaScript</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- {{longText}} -->
+    </mat-card-content>
+  </mat-card>
 </div>
-<div *ngSwitchCase="'data types'">
-  <p>JavaScript is a dynamically-typed language, which means that variables can hold values of any data type, and the data type of a variable can change during the execution of a program. However, JavaScript supports several primitive data types that are fundamental to the language. These data types include:</p>
-  <p>Number: A numeric value that can be an integer or a floating-point number. For example: 42 or 3.14.</p>
-  <p>String: A sequence of characters enclosed in single or double quotes. For example: 'hello' or &quot;world&quot;.</p>
-  <p>Boolean: A logical value that can be either true or false.</p>
-  <p>Undefined: A special value that indicates the absence of a value. If a variable is declared but not assigned a value, its value is undefined.</p>
-  <p>Null: A special value that indicates the absence of an object value. It is a primitive value that represents nothing, empty, or value unknown.</p>
-  <p>In addition to these primitive data types, JavaScript also has two other data types:</p>
-  <p>Object: A collection of key-value pairs, where the values can be of any data type, including other objects. Objects can be created using object literals "{{ '({})' }}", constructor functions (new Object()), or object classes (class syntax).</p>
-  <p>Symbol: A unique and immutable data type that is used as an identifier for object properties. Symbols are created using the Symbol() function.</p>
-</div>
-<div *ngSwitchCase="'Strings'">
-  <mat-accordion *ngFor="let string of stringTopics">
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{string}}
-        </mat-panel-title>
-        <mat-panel-description>
-          This is a summary of the content
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p [innerHTML]="charAt"></p>
-    </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-<div *ngSwitchDefault>
-
-  <p>JavaScript is a programming language that is commonly used to create dynamic web content and interactive web applications. It is a high-level language that is interpreted, meaning that it is executed on the client-side, within a web browser, as opposed to being compiled into machine code.</p>
-  <p>JavaScript allows developers to add functionality to web pages by manipulating the Document Object Model (DOM), which is the hierarchical structure that represents the content of a web page. With JavaScript, developers can create dynamic effects such as animations, user interfaces, and form validations. It is also commonly used for creating client-side applications that interact with servers through APIs (Application Programming Interfaces).</p>
-  <p>JavaScript was originally created by Brendan Eich at Netscape Communications in 1995 and has since become one of the most popular programming languages in use today. It is supported by all modern web browsers and has a large and active community of developers who create and share libraries and frameworks that make it easier to build complex web applications.</p>
-</div>
-  </div>
-      </div>        
-      </div>
-      <div class="col-2">
-        <h1>On this page</h1>
-      </div>
-
-  </div>
-</div>  

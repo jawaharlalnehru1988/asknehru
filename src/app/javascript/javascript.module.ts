@@ -5,18 +5,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { JavascriptComponent } from './javascript/javascript.component';
 import { MatButtonModule } from '@angular/material/button';
 import { HighlightOptions } from 'highlight.js';
-import {MatExpansionModule} from '@angular/material/expansion'; 
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { JsDetailsComponent } from './js-details/js-details.component'; 
 
 @NgModule({
   declarations: [
-    JavascriptComponent
+    JavascriptComponent,
+    JsDetailsComponent
   ],
   imports: [
     CommonModule,
     JavascriptRoutingModule,
     HttpClientModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule,
   ],
   exports: [JavascriptComponent]
 })

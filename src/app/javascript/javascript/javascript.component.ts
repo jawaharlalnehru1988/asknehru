@@ -24,17 +24,17 @@ getCourse(){
   this.jscript.getJscript().subscribe({
     next:(res)=>{
       console.log(res);
-      this.topics = res[0].Topics;
+      this.topics = res[0].topics;
       this.stringTopics = res[1].listOfTopics;
       this.charAt = res[2].explanation;
-      console.log(this.charAt);
+      console.log(this.topics);
     }, error:()=>{
       alert('some issues happening in the backend')
     }
   })
 }
-openDetails(topic:any){
+openTopic(topic:any){
   console.log(topic);
-  this.title = topic;
+  
 }
 }
