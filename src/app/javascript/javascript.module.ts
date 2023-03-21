@@ -8,6 +8,7 @@ import { HighlightOptions } from 'highlight.js';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { JsDetailsComponent } from './js-details/js-details.component'; 
+import {MatTabsModule} from '@angular/material/tabs'; 
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { JsDetailsComponent } from './js-details/js-details.component';
   ],
   imports: [
     CommonModule,
+    MatTabsModule,
     JavascriptRoutingModule,
     HttpClientModule,
     MatButtonModule,

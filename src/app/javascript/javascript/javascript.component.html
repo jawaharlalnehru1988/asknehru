@@ -1,6 +1,6 @@
 <!-- Cards with media area -->
 <div class="card-container">
-  <mat-card *ngFor="let topic of topics" class="card" [routerLink]="['js-details/'+ topic.topicName]" (click)="openTopic(topic)" >
+  <mat-card *ngFor="let topic of topics" class="card" [routerLink]="['js-details/'+ topic.id]">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{topic.topicName}}</mat-card-title>

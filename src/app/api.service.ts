@@ -9,7 +9,8 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getCourses() {
-  //  return this.http.get<any>("http://localhost:3000/courses");
-   return this.http.get<any>("https://dark-puce-xerus-kit.cyclic.app/courses");
+   return this.http.get<any>("http://localhost:3000/courses");
+  //  return this.http.get<any>("https://dark-puce-xerus-kit.cyclic.app/courses");
   }
+  
 }

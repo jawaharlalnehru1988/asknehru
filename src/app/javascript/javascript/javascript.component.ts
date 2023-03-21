@@ -21,20 +21,12 @@ export class JavascriptComponent implements OnInit, AfterViewInit {
     hljs.highlightAll();
   }
 getCourse(){
-  this.jscript.getJscript().subscribe({
+  this.jscript.getCourse().subscribe({
     next:(res)=>{
-      console.log(res);
-      this.topics = res[0].topics;
-      this.stringTopics = res[1].listOfTopics;
-      this.charAt = res[2].explanation;
-      console.log(this.topics);
+      this.topics = res[3].topics;
     }, error:()=>{
       alert('some issues happening in the backend')
     }
   })
-}
-openTopic(topic:any){
-  console.log(topic);
-  
 }
 }
