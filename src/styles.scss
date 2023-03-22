@@ -26,3 +26,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  pre {
+    background-color: #1d1616;
+    padding: 1em;
+    overflow: auto;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+  }
