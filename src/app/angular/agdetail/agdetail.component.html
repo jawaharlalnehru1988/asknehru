@@ -1,0 +1,9 @@
+<h1>{{title.title}}</h1>
+<h4 [innerHTML]="title.intro" ></h4>
+<mat-tab-group>
+    <mat-tab  *ngFor="let type of types" [label]="type.title"> 
+        {{type.description}} 
+    <p [innerHTML]="type.example" class="typescript"></p> </mat-tab>
+  </mat-tab-group>  
+  
+
