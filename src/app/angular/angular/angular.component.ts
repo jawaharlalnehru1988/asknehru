@@ -22,10 +22,16 @@ export class AngularComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.agServie.getAgcourse().subscribe({
       next: (res)=>{
-        console.log(res);
-        this.agIntro = res;
-        this.topics = res.topics
+        res.courses.map((item:any)=>{
+          if (item.id === 7) {
+            this.agIntro = item;
+            this.topics = item.topics;
+          }
+        })
+      console.log(this.topics);
+      
       }
+
     })
     }  
     ngAfterViewInit() {

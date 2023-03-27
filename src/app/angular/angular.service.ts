@@ -10,9 +10,11 @@ export class AngularService {
 
 
   getAgcourse(){
-  return this.http.get<any>('https://dark-puce-xerus-kit.cyclic.app/courses/7');
+  return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
   }
-  getAngular(titleid:any){
-    return this.http.get<any>('https://dark-puce-xerus-kit.cyclic.app/Angular/'+titleid)
+  getAngular(){
+    return this.http.get<any>('http://localhost:3000/Angular');
+    // return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/angular.json');
   }
+  
 }

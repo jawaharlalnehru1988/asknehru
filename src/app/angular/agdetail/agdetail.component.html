@@ -1,9 +1,13 @@
-<h1>{{title.title}}</h1>
-<h4 [innerHTML]="title.intro" ></h4>
+<div class="container">
+<h1>{{subObj.title}}</h1> <button mat-button (click)="openDialog(null)">Add Content</button>
+<h4 [innerHTML]="subObj.intro" ></h4>
 <mat-tab-group>
     <mat-tab  *ngFor="let type of types" [label]="type.title"> 
-        {{type.description}} 
-    <p [innerHTML]="type.example" class="typescript"></p> </mat-tab>
+        <!-- {{type.description}}  -->
+    <p [innerText]="type.description"></p> 
+    <div class="codeSection container"><pre><code [innerText]="type.exampleCode"> </code>  </pre> </div>
+    <button mat-raised-button (click)="topicClicked(type)">edit</button>
+    <button mat-raised-button (click)="deleteDate(type)">Delete</button>
+</mat-tab>
   </mat-tab-group>  
-  
-
+</div>

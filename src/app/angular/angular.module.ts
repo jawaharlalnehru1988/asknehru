@@ -10,6 +10,11 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { AgdetailComponent } from './agdetail/agdetail.component';
 import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
 @NgModule({
   declarations: [
     AngularComponent,
@@ -24,7 +29,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatTabsModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [AngularComponent]
 })

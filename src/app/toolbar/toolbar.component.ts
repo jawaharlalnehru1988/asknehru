@@ -14,7 +14,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
 this.api.getCourses().subscribe({
   next:(res)=>{
-    this.courseName = res;
+    this.courseName = res.courses;
     
   }
 })
