@@ -18,7 +18,9 @@ export class AddcontentComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.actionBtn = "Submit"
+    this.actionBtn = "Submit";
+    console.log("incomeData",this.editDate);
+    
     this.contentForm = this.fb.group({
       description : [''],
       title: [''],
@@ -41,7 +43,6 @@ export class AddcontentComponent implements OnInit {
           alert('content added successfully');
           this.contentForm.reset();
           this.dialogRef.close();
-          console.log(res);
         },
         error: (err)=>{
           alert('check whether the relevent server connected or not')
@@ -55,7 +56,6 @@ this.updateProduct();
   updateProduct(){
     this.api.updateFormData(this.contentForm.value, this.editDate.id).subscribe({
       next:(res)=>{
-        console.log(res);
         alert('Forms Updated Successfully');
         this.contentForm.reset();
         this.dialogRef.close('update');

@@ -4,4 +4,8 @@
     flex: 1 1 auto;
   }
 
-  
+  @media screen and (max-width: 600px) {
+    .hide-on-small {
+      display: none;
+    }
+  }

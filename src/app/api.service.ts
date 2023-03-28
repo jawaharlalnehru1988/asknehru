@@ -14,6 +14,7 @@ export class ApiService {
   }
   getFormValues(){
     return this.http.get<any>('http://localhost:3000/Forms');
+    // return this.http.get<any>('http://localhost:3000/Forms');
   }
   postFormValues(inputData:any){
     return this.http.post<any>('http://localhost:3000/Forms', inputData);

@@ -21,32 +21,37 @@ export class AgdetailComponent implements OnInit {
   types: any;
   highlightedCode = '';
   code = '';
+  formattedText: any;
+  highlightedStr: any;
   constructor(private route: ActivatedRoute, private api: AngularService, public dialog: MatDialog, private appService: ApiService) { }
 
   ngOnInit(): void {
     this.highlightedCode = hljs.highlight('typescript', this.code).value;
-    console.log(this.route.snapshot.params['id']);
     let routerId = this.route.snapshot.params['id'];
     this.getAngularSub();
     this.getFormsDetails();
+    const originalStr = "My name is Ram ubstring. Finally, it constructs a new string by concatenating the original string sliced before and after the substring  Kumar and I live in Bangalore";
+this.highlightedStr = this.highlightSubstring(originalStr, "Ram", "Kumar", "yellow");
   }
 
   getAngularSub(){
     this.api.getAngular().subscribe({
       next:(res)=>{
-        console.log(res);
         this.subObj = res[0];
       },
       error: (err)=>{
-        console.log(err);
+        // console.log(err);
+        alert("some error occured");
       }
     });
   }
   getFormsDetails(){
     this.appService.getFormValues().subscribe({
       next:(res)=>{
-        console.log(res);
         this.types = res;    
+        // console.log(this.types[3].description);
+        
+        // this.formattedText = this.highlightCodeWithBackgroundColor(this.types[3].description, "yellow");
       },
       error: (res)=>{
         alert("check whether the proper path is given or not");
@@ -69,7 +74,6 @@ export class AgdetailComponent implements OnInit {
   deleteDate(type:any){
     this.appService.deleteFormData(type.id).subscribe({
       next:(res)=>{
-        console.log(res);
         alert("forms deleted successfully");
         this.getFormsDetails();
       },
@@ -78,4 +82,15 @@ export class AgdetailComponent implements OnInit {
       }
     })
   }
+  highlightSubstring(str:string, startStr:string, endStr:string, bgColor:any) {
+    const start = str.toLowerCase().indexOf(startStr.toLowerCase()) + startStr.length;
+    const end = str.toLowerCase().indexOf(endStr.toLowerCase());
+    if (start === -1 || end === -1) {
+      // Start or end substring not found, return original string
+      return str;
+    }
+    return `${str.slice(0, start)}<span style="background-color:${bgColor}">${str.slice(start, end)}</span>${str.slice(end)}`;
+  }
+  
+  
 }

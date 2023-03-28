@@ -26,10 +26,10 @@ export class AngularComponent implements OnInit, AfterViewInit {
           if (item.id === 7) {
             this.agIntro = item;
             this.topics = item.topics;
+            console.log(this.topics);
+            
           }
-        })
-      console.log(this.topics);
-      
+        });      
       }
 
     })

@@ -23,7 +23,9 @@ export class JavascriptComponent implements OnInit, AfterViewInit {
 getCourse(){
   this.jscript.getCourse().subscribe({
     next:(res)=>{
-      this.topics = res[3].topics;
+      console.log(res.courses);
+      
+      this.topics = res.courses[3].topics;
     }, error:()=>{
       alert('some issues happening in the backend')
     }
