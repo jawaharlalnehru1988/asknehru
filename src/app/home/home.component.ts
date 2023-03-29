@@ -19,6 +19,8 @@ getCourse(){
   this.isContentLoading = true;
   this.api.getCourses().subscribe({
     next: (res)=>{
+      console.log("res", res);
+      
       this.isContentLoading = false;
       this.courseDetails = res.courses;  
     },

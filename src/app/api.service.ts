@@ -8,9 +8,15 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  // getCourses() {
+  //   if (window.location.hostname === 'localhost') {
+  //     return this.http.get<any>('http://localhost:3000/courses');
+  //   } else {
+  //     return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
+  //   }
+  // }
   getCourses() {
-  //  return this.http.get<any>("http://localhost:3000/courses");
-   return this.http.get<any>("https://jawaharlalnehru1988.github.io/bookapi/course.json");
+      return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
   }
   getFormValues(){
     return this.http.get<any>('http://localhost:3000/Forms');
