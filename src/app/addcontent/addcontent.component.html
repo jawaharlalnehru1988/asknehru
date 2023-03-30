@@ -36,7 +36,8 @@
 </form>
 <div mat-dialog-actions align="end">
     <button mat-raised-button mat-dialog-close color="warn">cancel</button>
-    <button mat-raised-button color="primary" (click)="submitValue(editData)">{{actionBtn}}</button>
+    <button mat-raised-button color="primary" *ngIf="actionBtn" (click)="submitValue(editData)">Submit</button>
+    <button mat-raised-button color="primary" *ngIf="!actionBtn" (click)="updateProduct(editData)">Update</button>
 </div>
 </div>
 

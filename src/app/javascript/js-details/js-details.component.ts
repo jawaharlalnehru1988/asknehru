@@ -32,15 +32,30 @@ export class JsDetailsComponent implements OnInit {
     });
 
   }
-  addContent(routerPath:any){
-this.openDialog(routerPath);
+  addContent(addDetails:any){
+    addDetails["clickedBtn"]= "addBtn";
+    addDetails['routerPath'] = this.routerPath;
+    
+  this.dialog.open(AddcontentComponent,{
+  width: "70vw",
+  data: addDetails
+  });
   }
-  
+
+  deleteBtn(routerPath:any){
+  routerPath["clickedBtn"] = "deleteBtn";
+  }
+
   openDialog(edit:any){
     edit['routerPath'] = this.routerPath;
+    edit['clickedBtn'] = "EditBtn";
     this.dialog.open(AddcontentComponent,{
       width: "70vw",
       data: edit
     })
+  }
+
+  formatText(inputText:string) {
+    return inputText.replace(/\n/g, "<br>");
   }
 }

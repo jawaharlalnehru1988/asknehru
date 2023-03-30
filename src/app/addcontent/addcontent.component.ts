@@ -11,7 +11,7 @@ import { JscriptService } from '../javascript/jscript.service';
 })
 export class AddcontentComponent implements OnInit {
   contentForm! : FormGroup;
-  actionBtn: string = "";
+  actionBtn!: boolean;
   constructor(private fb: FormBuilder, 
      @Inject(MAT_DIALOG_DATA) public editData: any,
      private jsService: JscriptService,
@@ -20,8 +20,12 @@ export class AddcontentComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.actionBtn = "Submit";
     console.log("incomeData",this.editData);
+    if (this.editData.clickedBtn === "addBtn") {
+      this.actionBtn = true;
+    } else {
+      this.actionBtn = false;
+    }
     
     this.contentForm = this.fb.group({
       description : [''],
@@ -34,55 +38,60 @@ export class AddcontentComponent implements OnInit {
       this.contentForm.get('title')?.setValue(this.editData.title);
       this.contentForm.get('id')?.setValue(this.editData.id);
       this.contentForm.get('exampleCode')?.setValue(this.editData.exampleCode);
-      this.actionBtn = "Update";
     }
     
   }
   submitValue(income:any){
+    console.log(income, this.contentForm.value);
+    
     switch (income.routerPath) {
       case "js-details":
         this.jsService.postJsTopic(this.contentForm.value).subscribe({
           next:(res)=>{
-            alert('successfully posted inthe javascript database');
+            alert('successfully posted in the javascript database');
+            this.contentForm.reset();
+            this.dialogRef.close();
           },
           error:()=>{
             alert("not connected properly")
           }
         });
         break;
-    
       default:
         console.log("path does not match");
-        
         break;
     }
     
-//     if (!this.editData) {
-//       this.api.postFormValues(this.contentForm.value).subscribe({
-//         next:(res)=>{
-//           alert('content added successfully');
-//           this.contentForm.reset();
-//           this.dialogRef.close();
-//         },
-//         error: (err)=>{
-//           alert('check whether the relevent server connected or not')
-//         }
-//       });
-//     } else {
-// this.updateProduct();
-//     }
   }
 
-  updateProduct(){
-    this.api.updateFormData(this.contentForm.value, this.editData.id).subscribe({
-      next:(res)=>{
-        alert('Forms Updated Successfully');
-        this.contentForm.reset();
-        this.dialogRef.close('update');
-      },
-      error:()=>{
-        alert('error while updating the record')
-      }
-    })
+  updateProduct(income:any){
+    console.log("Update income", income.routerPath);
+    switch (income.routerPath) {
+      case "js-details":
+        this.jsService.updateTopic(this.contentForm.value, this.editData.id).subscribe({
+            next:(res)=>{
+              alert('Forms Updated Successfully');
+              this.contentForm.reset();
+              this.dialogRef.close('update');
+            },
+            error:()=>{
+              alert('error while updating the record');
+            }
+          })
+        break;
+    
+      default:
+        break;
+    }
+    // this.api.updateFormData(this.contentForm.value, this.editData.id).subscribe({
+    //   next:(res)=>{
+    //     alert('Forms Updated Successfully');
+    //     this.contentForm.reset();
+    //     this.dialogRef.close('update');
+    //   },
+    //   error:()=>{
+    //     alert('error while updating the record')
+    //   }
+    // })
   }
 }

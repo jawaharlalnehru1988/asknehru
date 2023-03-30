@@ -1,12 +1,15 @@
-<button mat-raised-button (click)="addContent({})" color="primary">Add content</button>
-<mat-tab-group >
+<div class="container">
+  
+  <button mat-raised-button (click)="addContent({})" color="primary">Add content</button>
+  <mat-tab-group >
     <mat-tab *ngFor="let jsTopics of jsTopic" [label]="jsTopics.title">
-        {{jsTopics.description}}
-        <div>
-          <button mat-raised-button (click)="openDialog(jsTopics)" color="primary">Edit</button>
-          <button mat-raised-button (click)="openDialog(routerPath)" color="warn">Delete</button>
-        </div>
-     </mat-tab>
-
+      <p class="description" [innerHTML]="formatText(jsTopics.description)"></p>
+      <div>
+        <button mat-raised-button (click)="openDialog(jsTopics)" color="primary">Edit</button>
+        <button mat-raised-button (click)="deleteBtn(routerPath)" color="warn">Delete</button>
+      </div>
+    </mat-tab>
+    
   </mat-tab-group>
+</div>
   
