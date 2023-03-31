@@ -1,1 +1,17 @@
-<p>html works!</p>
+<!-- Cards with media area -->
+<div *ngFor="let datas of htmlDatas">
+
+    <mat-card class="example-card">
+        <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{datas.title}}</mat-card-title>
+        <mat-card-subtitle>Small</mat-card-subtitle>
+        
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        
+        <!-- {{longText}} -->
+    </mat-card-content>
+</mat-card>
+</div>

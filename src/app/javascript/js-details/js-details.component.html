@@ -1,7 +1,7 @@
 <div class="container">
   
   <button mat-raised-button (click)="addContent({})" color="primary">Add content</button>
-  <mat-tab-group >
+  <mat-tab-group>
     <mat-tab *ngFor="let jsTopics of jsTopic" [label]="jsTopics.title">
       <p class="description" [innerHTML]="formatText(jsTopics.description)"></p>
       <div>

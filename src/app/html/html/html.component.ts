@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HtmlService } from './html.service';
 
 @Component({
   selector: 'app-html',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./html.component.scss']
 })
 export class HtmlComponent implements OnInit {
+  htmlDatas: any;
 
-  constructor() { }
+  constructor(private apiHtml: HtmlService) { }
 
   ngOnInit(): void {
+this.apiHtml.getHtmlData().subscribe({
+  next:(res)=>{
+    console.log(res.htmlTopics);
+    this.htmlDatas = res.htmlTopics
+  }
+})
   }
 
 }
