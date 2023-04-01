@@ -1,0 +1,9 @@
+<button color="primary" mat-raised-button (click)="addContent()">Add Info</button>
+<hr>
+<div>
+    <p class="titleClass">{{topicTitle}}</p>
+    <div [innerText]="topicDescription">
+
+    </div>
+    <button color="accent" align="end" mat-raised-button (click)="editContent()">Edit Content</button>
+</div>
