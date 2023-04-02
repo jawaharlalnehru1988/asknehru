@@ -10,6 +10,9 @@ export class HtmlService {
   getHtmlData(){
     return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/html.json');
   }
+  getDataFromLocalhost(){
+    return this.http.get<any>("http://localhost:3000/topicDetails");
+  }
   postData(postData:any){
 return this.http.post<any>("http://localhost:3000/topicDetails", postData)
   }

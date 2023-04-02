@@ -23,25 +23,32 @@ export class HtmlDetailsComponent implements OnInit {
     console.log(this.topicValue);
     if (this.topicValue && this.topicValue !== undefined) {
       this.getResponseData(); 
+      // this.getFromLocal();
     }
   }
   getResponseData(){
-    
     this.htmlService.getHtmlData().subscribe({
       next:(res)=>{
-       
           this.htmlSubject = res.topicDetails.find((obj:any) => obj.title == this.topicValue);
-         
             this.topicTitle = this.htmlSubject.title;
-          
-
           this.topicDescription = this.htmlSubject.description; 
-        
-
       }
     })
   }
-
+getFromLocal(){
+  this.htmlService.getDataFromLocalhost().subscribe({
+    next:(res)=>{
+      console.log(res.find((obj:any) => obj.title == this.topicValue));
+      this.htmlSubject = res.find((obj:any) => obj.title == this.topicValue);
+      this.topicTitle = this.htmlSubject.title;
+      this.topicDescription = this.htmlSubject.description; 
+    },
+    error:()=>{
+      alert("now localhost connection is lost. So connected from github host");
+      // this.getResponseData(); 
+    }
+  })
+}
   addContent(){
   this.dialog.open(HtmldialogComponent,{
   width: "54vw"
@@ -55,5 +62,8 @@ this.dialog.open(HtmldialogComponent,{
   data: this.htmlSubject
 })
 
+  }
+  formatText(inputText:string) {
+    return inputText.replace(/\n/g, "<br>");
   }
 }
