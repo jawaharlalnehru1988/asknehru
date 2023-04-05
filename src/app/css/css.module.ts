@@ -11,11 +11,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { A11yModule } from '@angular/cdk/a11y';
+import { CssdialogComponent } from './css/cssdialog/cssdialog.component';
 
 
 @NgModule({
   declarations: [
-    CssComponent
+    CssComponent,
+    CssdialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatButtonModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    OverlayModule,
+    A11yModule
   ]
 })
 export class CssModule { }
