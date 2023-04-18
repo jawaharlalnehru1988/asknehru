@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "test:coverage": "ng test --code-coverage=true",
     "test": "ng test"
   },
   "private": true,
@@ -20,6 +21,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "ag-grid-angular": "^29.2.0",
+    "ag-grid-community": "^29.2.0",
     "bootstrap": "^5.2.3",
     "highlight.js": "^11.7.0",
     "jquery": "^3.6.3",

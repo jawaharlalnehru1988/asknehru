@@ -19,10 +19,10 @@ getCourse(){
   this.isContentLoading = true;
   this.api.getCourses().subscribe({
     next: (res)=>{
-      console.log("res", res);
       
       this.isContentLoading = false;
       this.courseDetails = res.courses;  
+      console.log("res", res.courses);
     },
     error: (err)=>{
       alert("database source is not found");
