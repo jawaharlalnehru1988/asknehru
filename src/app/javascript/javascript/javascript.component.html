@@ -1,3 +1,5 @@
+<mat-tab-group>
+  <mat-tab label="JavaScript Topics"> 
 <!-- Cards with media area -->
 <div class="card-container">
   <mat-card *ngFor="let topic of topics" class="card" [routerLink]="['js-details/'+ topic.id]">
@@ -12,3 +14,79 @@
     </mat-card-content>
   </mat-card>
 </div>
+  </mat-tab>
+  <mat-tab label="JavaScript DSA"> 
+    <ul>
+      <li *ngFor="let topic of dsaData">
+        {{ topic.topic}}
+        <button mat-button *ngIf="topic.subtopics" (click)="topic.showSubtopics = !topic.showSubtopics">
+          <mat-icon>{{ topic.showSubtopics ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+        <ul *ngIf="topic.showSubtopics">
+          <li class="mainTopic" *ngFor="let subtopic of topic.subtopics">
+            {{ subtopic.name }}
+            <button mat-button color="primary" *ngIf="subtopic.subtopics" (click)="subtopic.showSubtopics = !subtopic.showSubtopics">
+              <mat-icon [ngClass]="{'mat-primary': topic.showSubtopics, 'mat-warn': !topic.showSubtopics}">
+                {{ subtopic.showSubtopics ? 'expand_less' : 'expand_more' }}
+              </mat-icon>
+            </button>
+            <ul *ngIf="subtopic.showSubtopics">
+              <li class="subtopics" *ngFor="let stopic of subtopic.subtopics">
+                {{stopic.name}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+  </mat-tab>
+  <mat-tab label="JavaScript Coding Challenges">JavaScript Coding Challenges 
+    <mat-tab-group>
+      <mat-tab label="Var, Let and Const related Challenges">
+        <div class="challenge" *ngFor="let challenge of challenges">
+          <h2 style="color: green;">{{challenge.id}}. {{ challenge.title }}</h2>
+          <p style="color: #40172c; font-weight: 500; font-size: 16px;">{{ challenge.description }}</p>
+          <pre class="hljs language-javascript"><code> {{ challenge.code }}</code></pre>
+          <button mat-raised-button color="accent" (click)="challenge.showSolution = !challenge.showSolution">{{ challenge.showSolution ? 'Hide' : 'Show' }} Solution</button>
+          <div class="mt-3" *ngIf="challenge.showSolution">
+            <p><span style="color: maroon; font-weight: 500;">Answer:</span> {{challenge.answer}}</p>
+            <p><span style="color: maroon; font-weight: 500;">Explanation:</span> {{challenge.explanation}}</p>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Interview Coding Challenges- Mixed">
+        <div class="challenge" *ngFor="let challenge of generalQuestions">
+          <h2>{{challenge.id}}. <span  style="color: green;">{{ challenge.question }}</span></h2>
+          <button mat-raised-button color="accent" (click)="challenge.showSolution = !challenge.showSolution">{{ challenge.showSolution ? 'Hide' : 'Show' }} Solution</button>
+          <div class="mt-3" *ngIf="challenge.showSolution">
+            <p style="color: maroon; font-weight: 500;">Answer Code ⬇️⬇️ </p>
+            <pre class="hljs language-javascript"><code> {{ challenge.answerCode }}</code></pre>
+            <p><span style="color: maroon; font-weight: 500;">Answer Code  Explained:</span> {{challenge.answerExplained}}</p>
+            <p style="color: maroon; font-weight: 500;">Testing Code ⬇️⬇️ </p>
+            <pre class="hljs language-javascript"><code> {{ challenge.testingCode }}</code></pre>
+            <p><span style="color: maroon; font-weight: 500;">Test Code Explained:</span> {{challenge.testExplained}}</p>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Interview Coding Challenges- Array of Numbers">
+        <div class="challenge" *ngFor="let challenge of numbersQuestions">
+          <h2>{{challenge.id}}. <span  style="color: green;">{{ challenge.question }}</span></h2>
+          <button mat-raised-button color="accent" (click)="challenge.showSolution = !challenge.showSolution">{{ challenge.showSolution ? 'Hide' : 'Show' }} Solution</button>
+          <div class="mt-3" *ngIf="challenge.showSolution">
+            <p style="color: maroon; font-weight: 500;">Answer Code ⬇️⬇️ </p>
+            <pre class="hljs language-javascript"><code> {{ challenge.answerCode }}</code></pre>
+            <p><span style="color: maroon; font-weight: 500;">Answer Code  Explained:</span> {{challenge.answerExplained}}</p>
+            <p style="color: maroon; font-weight: 500;">Testing Code ⬇️⬇️ </p>
+            <pre class="hljs language-javascript"><code> {{ challenge.testingCode }}</code></pre>
+            <p><span style="color: maroon; font-weight: 500;">Test Code Explained:</span> {{challenge.testExplained}}</p>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+        
+  </mat-tab>
+  <mat-tab label="JavaScript MCQ">JavaScript MCQ  </mat-tab>
+  <mat-tab label="JavaScript Questions and Answers">JavaScript Questions and Answers  </mat-tab>
+  <mat-tab label="JavaScript Projects">JavaScript Projects  </mat-tab>
+</mat-tab-group>

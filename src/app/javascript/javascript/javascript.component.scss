@@ -21,7 +21,12 @@
     grid-template-columns: 1fr;
   }
 }
-
+.challenge {
+  border: 1px solid maroon;
+  padding-inline: 8px;
+  margin: 8px 0px;
+  border-radius: 8px;
+}
 .card {
   background-color: #eace8b;
   padding: 20px;
@@ -30,4 +35,42 @@
 }
 .card:hover{
   background-color: azure;
+}
+.codeDetai{
+  background-color: black;
+  color: white;
+}
+li{
+    
+    font-size: 20px;
+    background-color: #edf3ef;
+    margin: 12px 0px;
+}
+.mainTopic{
+  color: rgb(19, 11, 54);
+}
+.subtopics{
+  color: #2e2102 !important;
+}
+.mat-primary {
+  color: blue;
+}
+
+.mat-warn {
+  color: red;
+}
+::ng-deep .mat-tab-labels {
+  display: flex;
+  border: 2px saddlebrown solid;
+}
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 8px 19px;
+  color: #180101;
+  font-size: 16px;
+  white-space: nowrap;
 }

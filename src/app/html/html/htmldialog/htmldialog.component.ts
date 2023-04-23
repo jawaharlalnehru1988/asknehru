@@ -18,7 +18,7 @@ export class HtmldialogComponent implements OnInit {
       title:[""],
       description:[""]
     })
-    console.log("this.incomeData", this.incomeData);
+    // console.log("this.incomeData", this.incomeData);
     if (this.incomeData) {
       this.htmlContent.controls['id'].setValue(this.incomeData.id);
       this.htmlContent.controls['title'].setValue(this.incomeData.title);

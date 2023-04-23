@@ -13,6 +13,37 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  .banner-photo{
+    width: 26vw;
+  }
+  .intro2, .intro1, .intro3{
+    font-size: 48px;
+    font-weight: 500;
+    color: white;
+    // margin-bottom: 26px;
+  }
+  .intro1, .intro3{
+    font-size: 16px !important;
+    font-weight: 200;
+  }
+  .social-media-links{
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: space-between;
+  }
+  .banner-container{
+    background-color: darkslateblue;
+    display: flex;
+    flex-direction: row;
+  }
   .parentCard {
     flex: 1 1 calc(33.33% - 10px);
   margin-bottom: 20px;
