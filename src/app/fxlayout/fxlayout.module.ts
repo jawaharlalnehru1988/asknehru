@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { FxlayoutRoutingModule } from './fxlayout-routing.module';
 import { FxlayoutComponent } from './fxlayout/fxlayout.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 @NgModule({
@@ -10,8 +9,8 @@ import { FxlayoutComponent } from './fxlayout/fxlayout.component';
     FxlayoutComponent
   ],
   imports: [
-    CommonModule,
-    FxlayoutRoutingModule
+    FxlayoutRoutingModule,
+    SharedModule
   ]
 })
 export class FxlayoutModule { }

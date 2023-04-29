@@ -1,1 +1,11 @@
-<p>karmajasmin works!</p>
+<mat-tab-group>
+    <mat-tab label="Jasmine Framework Intro"> 
+        <ul>
+          <li *ngFor="let topic of ksData">
+            <p>{{ topic.question}}</p>
+            <p>{{topic.answer}}</p>
+            
+          </li>
+        </ul>
+      </mat-tab>
+    </mat-tab-group>

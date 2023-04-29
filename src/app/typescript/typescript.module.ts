@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
 import { TypescriptRoutingModule } from './typescript-routing.module';
 import { TypescriptComponent } from './typescript/typescript.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 @NgModule({
@@ -10,8 +9,8 @@ import { TypescriptComponent } from './typescript/typescript.component';
     TypescriptComponent
   ],
   imports: [
-    CommonModule,
-    TypescriptRoutingModule
+    TypescriptRoutingModule,
+    SharedModule
   ]
 })
 export class TypescriptModule { }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from 'src/app/shared/shared/shared.module';
 import { KarmajasminRoutingModule } from './karmajasmin-routing.module';
 import { KarmajasminComponent } from './karmajasmin.component';
 
@@ -7,8 +7,8 @@ import { KarmajasminComponent } from './karmajasmin.component';
 @NgModule({
   declarations: [KarmajasminComponent],
   imports: [
-    CommonModule,
-    KarmajasminRoutingModule
+    KarmajasminRoutingModule,
+    SharedModule
   ]
 })
 export class KarmajasminModule { }

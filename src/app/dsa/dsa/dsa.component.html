@@ -1,7 +1,28 @@
-<p>dsa works!</p>
-<p>dsa works!</p>
-<p>dsa works!</p>
-<p>dsa works!</p>
-<p>dsa works!</p>
-<p>dsa works!</p>
-<p>dsa works!</p>
+<mat-tab-group>
+<mat-tab label="JavaScript DSA"> 
+    <ul>
+      <li *ngFor="let topic of dsaData">
+        {{ topic.topic}}
+        <button mat-button *ngIf="topic.subtopics" (click)="topic.showSubtopics = !topic.showSubtopics">
+          <mat-icon>{{ topic.showSubtopics ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+        <ul *ngIf="topic.showSubtopics">
+          <li class="mainTopic" *ngFor="let subtopic of topic.subtopics">
+            {{ subtopic.name }}
+            <button mat-button color="primary" *ngIf="subtopic.subtopics" (click)="subtopic.showSubtopics = !subtopic.showSubtopics">
+              <mat-icon [ngClass]="{'mat-primary': topic.showSubtopics, 'mat-warn': !topic.showSubtopics}">
+                {{ subtopic.showSubtopics ? 'expand_less' : 'expand_more' }}
+              </mat-icon>
+            </button>
+            <ul *ngIf="subtopic.showSubtopics">
+              <li class="subtopics" *ngFor="let stopic of subtopic.subtopics">
+                {{stopic.name}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+  </mat-tab>
+</mat-tab-group>
