@@ -1,11 +1,14 @@
-<mat-tab-group>
+<!-- <mat-tab-group>
     <mat-tab label="Jasmine Framework Intro"> 
         <ul>
-          <li *ngFor="let topic of ksData">
-            <p>{{ topic.question}}</p>
-            <p>{{topic.answer}}</p>
-            
+          <li *ngFor="let topic of Object.keys(ksData)">
+            <p>{{ topic.key}}</p>
+            <p>{{topic.value}}</p>
+            <div *ngFor="let value of topic.value">
+              {{value}}
+            </div> 
           </li>
         </ul>
       </mat-tab>
-    </mat-tab-group>
+    </mat-tab-group> -->
+    

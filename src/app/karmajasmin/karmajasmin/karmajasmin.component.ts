@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { KarmajasminService } from './karmajasmin.service';
-
 @Component({
   selector: 'app-karmajasmin',
   templateUrl: './karmajasmin.component.html',
   styleUrls: ['./karmajasmin.component.scss']
 })
 export class KarmajasminComponent implements OnInit {
-ksData:any
+  syllabus: any;
   constructor(private kjservice: KarmajasminService) { }
 
   ngOnInit(): void {
@@ -16,8 +15,9 @@ ksData:any
 getkjData(){
   this.kjservice.getjasminData().subscribe({
     next:(res)=>{
-    console.log('res :', res.jasmine);
-    this.ksData = res.jasmine;
+    console.log('res :', res.jasmine[0].syllabus);
+     this.syllabus = res.jasmine[0].syllabus;
+    // this.ksData2 = res;
 
     }
   })
