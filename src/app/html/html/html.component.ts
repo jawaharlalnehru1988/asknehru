@@ -18,8 +18,6 @@ export class HtmlComponent implements OnInit {
 this.apiHtml.getHtmlData().subscribe({
   next:(res)=>{
     this.htmlDatas = res.htmlTopics;
-    console.log("this.htmlDatas", this.htmlDatas);
-    
   }
 });
 

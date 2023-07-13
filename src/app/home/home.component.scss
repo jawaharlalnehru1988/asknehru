@@ -23,7 +23,8 @@
     // margin-bottom: 26px;
   }
   .intro1, .intro3{
-    font-size: 16px !important;
+    font-size: 16px;
+    padding-right: 12px;
     font-weight: 200;
   }
   .social-media-links{
@@ -56,6 +57,21 @@
   @media screen and (max-width: 520px) {
     .parentCard {
       flex-basis: 100%;
+    }
+    .intro2{
+      font-size:medium;
+    }
+    .intro3{
+      font-size: 12px;
+      text-align: justify;
+    }
+    .stars-container img.banner-photo {
+      border-radius: 50%;
+      width: 75%;
+      height: 23%;
+    }
+    .medianame{
+      font-size: 5px;
     }
   }
   .image-container {

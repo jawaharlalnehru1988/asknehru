@@ -20,10 +20,8 @@ export class HtmlDetailsComponent implements OnInit {
     
   }
   ngOnChanges(){
-    console.log(this.topicValue);
     if (this.topicValue && this.topicValue !== undefined) {
       this.getResponseData(); 
-      // this.getFromLocal();
     }
   }
   getResponseData(){

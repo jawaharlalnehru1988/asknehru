@@ -5,13 +5,13 @@
   <div class="intro">
     <p class="intro1">Hi there! My name is </p>
     <p class="intro2">Jawaharlal Nehru Elumalai </p>
-    <p class="intro3">and I am an Angular front-end developer, with over a year of experience in this field. My skill set includes proficiency in HTML, CSS, and JavaScript, as well as strong knowledge of Angular frameworks and libraries. Additionally, I have experience in building responsive and user-friendly web applications that provide an engaging user experience.</p>
+    <p class="intro3">I am an Angular front-end developer with over 2 years of experience in the IT industry. I am proficient in HTML, CSS, JavaScript, TypeScript, Git, GitHub, Bitbucket, and .NET Framework. I am currently learning C# to become a full-stack developer. I am passionate about building user-friendly and engaging web applications</p>
     <div class="social-media-links">
       <div *ngFor="let media of socialMedia" [matTooltip]="media.mediaLink">
          <a [href]="media.mediaLink" mat>
            <img [src]="['https://drive.google.com/uc?export=view&id='+media.imageLink]" width="24px" alt="">
          </a>
-         <span style="color: antiquewhite;">{{media.mediaName}}</span>
+         <span class="medianame" style="color: antiquewhite;">{{media.mediaName}}</span>
       </div>
      </div>
   </div>
