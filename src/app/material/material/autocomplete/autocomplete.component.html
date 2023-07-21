@@ -1,0 +1,41 @@
+<p>`mat-autocomplete` is a component provided by Angular Material, a library of pre-built UI components for Angular applications. <br><br> The `mat-autocomplete` component is specifically designed to add autocomplete functionality to input fields in Angular applications. <br><br>
+
+    With `mat-autocomplete`, users can start typing in an input field, and the component will display a dropdown list of suggested options that match the entered text. <br><br> This is useful for scenarios where users need to quickly and efficiently select from a large set of options without manually typing the entire value.
+    
+    The `mat-autocomplete` component is highly customizable, allowing developers to control the appearance, filtering behavior, and data source for the autocomplete suggestions. <br><br> It supports both synchronous and asynchronous data sources, making it suitable for scenarios involving local data as well as data fetched from servers via APIs.
+    
+    By using `mat-autocomplete`, developers can enhance user experience by providing a more intuitive and efficient way to input data and reduce the chances of errors caused by manual data entry.</p>
+    <br><br>
+    Example No 1:  This is simple Autocomplete <br><br>
+    <!-- Autocomplete input field -->
+    <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+        
+        <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl" placeholder="Select a fruit" [(ngModel)]="selectedFruit"> 
+        
+    <!-- Autocomplete dropdown -->
+    <mat-autocomplete #auto="matAutocomplete" [autoActiveFirstOption]="true">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{ option }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+</form>
+
+<br><br>
+Example No 2: Display value autocomplete
+<br><br>
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Assignee</mat-label>
+        <input type="text" matInput [formControl]="myControl2" [matAutocomplete]="auto2">
+        <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option2 of filteredOptions2 | async" [value]="option2">
+                {{option2.name}}
+
+            </mat-option>
+        </mat-autocomplete>
+
+    </mat-form-field>
+
+</form>
