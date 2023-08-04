@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 // import { AgGridAngular } from 'ag-grid-angular/public-api';
-import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
-import { Observable } from 'rxjs';
+import { CellClickedEvent, ColDef, GridOptions, GridReadyEvent } from 'ag-grid-community';
+import { Observable, map } from 'rxjs';
 import { AggridService } from '../aggrid.service';
+import { AgGridAngular } from 'ag-grid-angular';
+
 
 @Component({
   selector: 'app-aggrid',
@@ -11,11 +13,13 @@ import { AggridService } from '../aggrid.service';
   styleUrls: ['./aggrid.component.scss']
 })
 export class AggridComponent implements OnInit {
+  
    // Each Column Definition results in one Column.
   public columnDefs: ColDef[] = [
-    { field: 'make'},
+    { field: 'make', checkboxSelection: true},
     { field: 'model'},
-    { field: 'price' }
+    { field: 'price' },
+    {field: 'city'}
   ];
  // DefaultColDef sets props common to all Columns
   public defaultColDef: ColDef = {
@@ -26,27 +30,40 @@ export class AggridComponent implements OnInit {
   public rowData$!: Observable<any[]>;
 
    // For accessing the Grid's API
-//  @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
-
+ @ViewChild('agGrid') agGrid!: AgGridAngular;
+  rowDatas!: any[];
+  public modifiedRowDatas$!: Observable<any[]>;
+  public gridOptions: GridOptions = {
+    rowData: this.rowDatas,
+    defaultColDef: this.defaultColDef,
+    pagination: true,
+    rowSelection:'multiple',
+    columnDefs: this.columnDefs,
+    headerHeight: 36,
+    onRowClicked: event => console.log('A row was clicked'),
+  }
   constructor(private http: HttpClient, private agService: AggridService) { }
  // Example load data from server
- onGridReady(params: GridReadyEvent) {
-  this.rowData$ = this.http
-    .get<any[]>('https://www.ag-grid.com/example-assets/row-data.json');
-}
-  ngOnInit(): void {
-    this.agService.getData().subscribe({
-      next:(res)=>{
-      console.log('res :', res);
-        
-      }
-    })
+ ngOnInit(): void {
+  
   }
+  onGridReady(params: GridReadyEvent) {
+   this.http.get<any[]>('https://www.ag-grid.com/example-assets/row-data.json').subscribe(response =>{
+    this.rowDatas = response;
+    this.rowDatas.forEach((data, index) => {
+      data.city =  index +1; });
+   })
+ }
   onCellClicked( e: CellClickedEvent): void {
     console.log('cellClicked', e);
   }
    // Example using Grid's API
  clearSelection(): void {
-  // this.agGrid.api.deselectAll();
+  this.agGrid.api.deselectAll();
+}
+
+rowSelected(value:any){
+console.log('value :', value);
+
 }
 }
