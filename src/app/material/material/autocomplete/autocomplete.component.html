@@ -37,5 +37,26 @@ Example No 2: Display value autocomplete
         </mat-autocomplete>
 
     </mat-form-field>
+</form>
 
+<br><br>
+<form>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <input
+          type="text"
+          matInput
+          [formControl]="countryControl"
+          placeholder="Country"
+          aria-label="Country"
+          [matAutocomplete]="auto3"
+          [(ngModel)]="selectedCountry"
+          
+        />
+        <mat-autocomplete #auto3="matAutocomplete" [displayWith]="displayCountryFn">
+            <mat-option *ngFor="let country of filteredCountries" [value]="country">
+            <img [src]="country.image" alt="{{ country.name }} flag" class="country-image"/>
+            {{ country.dial_code }} {{ country.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>      
 </form>
