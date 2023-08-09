@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { Observable, startWith } from 'rxjs';
 import { MatServiceService } from '../../mat-service.service';
+import { FormControl } from '@angular/forms';
+
 
 export interface User{
   name: string;
@@ -33,6 +34,8 @@ options2: User[] = [{name: 'Mary'}, {name: 'Shelly'}, {name: 'Igor'}];
   modifiedCountryArray: Country[] = [];
   mobileCode: { name: string; dial_code: string; code: string }[] = [];
   selectedCountry: any;
+  result: number = 0;
+
 
   constructor(private countryService: MatServiceService) { }
   
@@ -40,12 +43,14 @@ options2: User[] = [{name: 'Mary'}, {name: 'Shelly'}, {name: 'Igor'}];
     this.filteringOption();
     this.getMobileCodes();
     this.getCountryDetails();
-    this.countryControl.valueChanges
-    .pipe(startWith(''))
-    .subscribe((value) => (this.filteredCountries = this.filterCountries(value)));
-
   }
-  
+  onCountryControlValueChange() {
+    this.countryControl.valueChanges
+      .pipe(startWith(''))
+      .subscribe((value:any) =>{ 
+      console.log('value :', value);        
+        (this.filteredCountries = this.filterCountries(value))});
+  }
   getCountryDetails(){
     this.countryService.getCountryCode().subscribe(res => {
     this.countryData = res;
@@ -120,5 +125,14 @@ return user && user.name ? user.name : '';
 private filter2(name:string): User[]{
 const filterValue2 = name.toLowerCase();
 return this.options2.filter(option => option.name.toLowerCase().includes(filterValue2));
+}
+add(a: number, b: number): number {
+  this.result = a + b;
+  return this.result;
+}
+
+subtract(a: number, b: number): number {
+  this.result = a - b;
+  return this.result;
 }
 }

@@ -50,7 +50,7 @@ Example No 2: Display value autocomplete
           aria-label="Country"
           [matAutocomplete]="auto3"
           [(ngModel)]="selectedCountry"
-          
+          (input)="onCountryControlValueChange()"
         />
         <mat-autocomplete #auto3="matAutocomplete" [displayWith]="displayCountryFn">
             <mat-option *ngFor="let country of filteredCountries" [value]="country">
@@ -60,3 +60,8 @@ Example No 2: Display value autocomplete
         </mat-autocomplete>
       </mat-form-field>      
 </form>
+<br>
+<br>
+<div>
+    <p>Result: {{ result }}</p>
+  </div>

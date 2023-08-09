@@ -20,4 +20,13 @@ describe('AutocompleteComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should add two numbers', () => {
+    const result = component.add(3, 5);
+    expect(result).toBe(8);
+  });
+
+  it('should subtract two numbers', () => {
+    const result = component.subtract(10, 4);
+    expect(result).toBe(6);
+  });
 });
