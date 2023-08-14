@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable, startWith } from 'rxjs';
 import { MatServiceService } from '../../mat-service.service';
 import { FormControl } from '@angular/forms';
+import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 
 
 export interface User{
@@ -35,14 +36,22 @@ options2: User[] = [{name: 'Mary'}, {name: 'Shelly'}, {name: 'Igor'}];
   mobileCode: { name: string; dial_code: string; code: string }[] = [];
   selectedCountry: any;
   result: number = 0;
+  myInput: any;
+  topics = ["Angular", "React", "Vue"]
+  @ViewChild('auto3Trigger', { static : false }) auto3Trigger!: MatAutocompleteTrigger;
 
-
+  numberControl = new FormControl();
   constructor(private countryService: MatServiceService) { }
   
   ngOnInit(): void {
     this.filteringOption();
     this.getMobileCodes();
-    this.getCountryDetails();
+    this.selectedCountry = {
+      name: 'AmericanSamoa',
+      dial_code: '+1684',
+      image: 'https:/cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AS.svg', 
+
+    };
   }
   onCountryControlValueChange() {
     this.countryControl.valueChanges
@@ -51,48 +60,26 @@ options2: User[] = [{name: 'Mary'}, {name: 'Shelly'}, {name: 'Igor'}];
       console.log('value :', value);        
         (this.filteredCountries = this.filterCountries(value))});
   }
-  getCountryDetails(){
-    this.countryService.getCountryCode().subscribe(res => {
-    this.countryData = res;
-for (const countryCode in this.countryData) {
-  if (this.countryData.hasOwnProperty(countryCode)) {
-    const countryObject = this.countryData[countryCode];
-    this.modifiedCountryArray.push(countryObject);
-  }
-}
-// Step 1: Create a mapping of country names to their corresponding dial_code
-const dialCodeMap: { [key: string]: string } = {};
-this.mobileCode.forEach((country) => {
-  dialCodeMap[country.name] = country.dial_code;
-});
-this.modifiedCountryArray.forEach((country) => {
-  const dialCode = dialCodeMap[country.name];
-  if (dialCode) {
-    // If the name exists in dialCodeMap, push the dial_code to the country object
-    country.dial_code = dialCode;
-  } else {
-    // If the name does not exist in dialCodeMap, set dial_code to an empty string or any other default value as needed
-    country.dial_code = ''; // Or country.dial_code = 'N/A' or any other default value
-  }
-});
-console.log(this.modifiedCountryArray);
-    })
-  }
   
+  openAutocomplete() {
+    if (this.auto3Trigger) {
+      setTimeout(() => {
+        this.auto3Trigger.openPanel();
+      }, 100); // Adjust the delay time as needed
+    }
+  }
 getMobileCodes(){
-  this.countryService.getMobileCode().subscribe(res => {
-    this.mobileCode = res;
+  this.countryService.getCountryfullDetails().subscribe(res => {
+    this.mobileCode = res.country;
     console.log('this.mobileCode :', this.mobileCode);
   })
 }
- 
   
   filterCountries(value: string): any[] {
     const filterValue = value.toLowerCase();
-    return this.modifiedCountryArray.filter(
+    return this.mobileCode.filter(
       (country) =>
-        country.name.toLowerCase().includes(filterValue) ||
-        country.emoji.includes(filterValue)
+        country.name.toLowerCase().includes(filterValue)
     )};
 
 
@@ -112,7 +99,7 @@ getMobileCodes(){
   }
    // Function to display the selected country information in the input field
    displayCountryFn(country: any): string {
-    return country ? `${country.dial_code} ${country.name}` : '';
+    return country ? `${country.dial_code}` : '';
   }
   _filter(value: string): string[]{
     const filterValue = value.toLowerCase();
