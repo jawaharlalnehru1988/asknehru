@@ -6,20 +6,17 @@ import { KarmajasminService } from './karmajasmin.service';
   styleUrls: ['./karmajasmin.component.scss']
 })
 export class KarmajasminComponent implements OnInit {
-  syllabus: any;
+  result: number = 0;
+
   constructor(private kjservice: KarmajasminService) { }
 
   ngOnInit(): void {
-    this.getkjData();
+   
   }
-getkjData(){
-  this.kjservice.getjasminData().subscribe({
-    next:(res)=>{
-    console.log('res :', res.jasmine[0].syllabus);
-     this.syllabus = res.jasmine[0].syllabus;
-    // this.ksData2 = res;
+  performAddition() {
+    const num1 = 5;
+    const num2 = 3;
+    this.result = num1 + num2;
+  }
+}
 
-    }
-  })
-}
-}

@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
 import { JsDetailsComponent } from './js-details.component';
+import { JscriptService } from '../jscript.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('JsDetailsComponent', () => {
   let component: JsDetailsComponent;
@@ -10,6 +12,7 @@ describe('JsDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ JsDetailsComponent ],
+      imports: [HttpClientModule],
       providers: [
         // Add the ActivatedRoute provider here
         {
@@ -22,6 +25,7 @@ describe('JsDetailsComponent', () => {
             },
           },
         },
+        JscriptService
       ],
     })
     .compileComponents();

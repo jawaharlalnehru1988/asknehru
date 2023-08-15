@@ -6,7 +6,7 @@
     <mat-step>
         <ng-template matStepLabel>Angular Important Topics </ng-template>
       <div  class="card-container">
-        <mat-card *ngFor="let topic of topics" class="card" [routerLink]="['agdetail/',topic.id]">
+        <mat-card  (click)="printTopicId(topic.id)" *ngFor="let topic of topics" class="card" [routerLink]="['agdetail/',topic.id]">
             <mat-card-header>
               <mat-card-subtitle>Topic No: {{topic.id}}</mat-card-subtitle>
               <mat-card-title>{{topic.topic}}</mat-card-title>
@@ -21,8 +21,6 @@
             </code></pre>
              </div>
             </mat-card-content>
-            <mat-card-footer>
-            </mat-card-footer>
           </mat-card>          
       </div>
     </mat-step>

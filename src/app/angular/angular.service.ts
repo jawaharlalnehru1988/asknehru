@@ -13,8 +13,8 @@ export class AngularService {
   return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
   }
   getAngular(){
-    return this.http.get<any>('http://localhost:3000/Angular');
-    // return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/angular.json');
+    // return this.http.get<any>('http://localhost:3000/Angular');
+    return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/angular.json');
   }
   
 }

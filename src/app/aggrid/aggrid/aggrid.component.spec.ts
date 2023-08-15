@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AggridComponent } from './aggrid.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AggridComponent', () => {
   let component: AggridComponent;
@@ -8,7 +9,8 @@ describe('AggridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AggridComponent ]
+      declarations: [ AggridComponent ],
+      imports: [HttpClientModule],
     })
     .compileComponents();
 
