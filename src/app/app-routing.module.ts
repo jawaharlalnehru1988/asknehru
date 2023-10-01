@@ -19,7 +19,6 @@ const routes: Routes = [
   {path: 'rxjs', loadChildren: ()=> import('./rxjs/rxjs.module').then(m => m.RxjsModule)},
   {path: 'restapi', loadChildren: ()=>import('./restapi/restapi/restapi.module').then(m => m.RestapiModule)},
   {path: 'git', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
-  {path: 'github', loadChildren: ()=> import('./github/github/github.module').then(m => m.GithubModule)},
   {path: 'bitbucket', loadChildren: ()=> import('./bitbucket/bitbucket/bitbucket.module').then(m => m.BitbucketModule)},
   {path: 'python', loadChildren: ()=> import('./python/python/python.module').then(m => m.PythonModule)},
   {path: 'karmajasmine', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},
