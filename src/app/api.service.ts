@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
-
+ apiUrl = "https://script.google.com/macros/s/AKfycbxUTlEiNPVw3H0EHEAKMBdmS6y2B0wtx9cnEgqWZeDn_jbKNyUw2XY6UtXbkwleQkZefw/exec";
   constructor(private http: HttpClient) { }
 
   // getCourses() {
@@ -15,6 +15,9 @@ export class ApiService {
   //     return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
   //   }
   // }
+  getUser(){
+    return this.http.get<any>(this.apiUrl);
+  }
   getCourses() {
       return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
   }
