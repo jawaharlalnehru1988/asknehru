@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AddcontentComponent } from './addcontent/addcontent.component';
 import { SharedModule } from './shared/shared/shared.module';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -18,6 +20,8 @@ import { SharedModule } from './shared/shared/shared.module';
     HomeComponent,
     PagenotfoundComponent,
     AddcontentComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

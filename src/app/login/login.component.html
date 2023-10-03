@@ -1,0 +1,31 @@
+<div class="forms">
+
+    <mat-card>
+        <mat-card-header>
+    <p class="font-size-header">  User Login</p>
+</mat-card-header>
+<mat-card-content>
+    <form class="example-form" [formGroup]="loginForm" >
+        <p class="username">
+            <mat-form-field appearance="outline">
+                <mat-label>User name</mat-label>
+                <input matInput type="text" formControlName="userName">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+        </p>
+    </form>
+        <div>
+            <button class="login-box" color="primary"  type="submit" (click)="save()" mat-raised-button>Submit</button>
+            <button mat-raised-button class="cancelBtn" (click)="cancel()" color="warn">cancel</button>
+        </div>
+        <div class="margin-top-xl">
+            <p>Are you a new user? <a routerLink="/register">click here to register</a></p>
+        </div>
+    </mat-card-content>
+</mat-card>
+</div>
