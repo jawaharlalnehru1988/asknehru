@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
   
     if (matchedUser) {
       // Redirect to the home component if a matching user is found
-      this.router.navigate(['']);
+      this.loginForm.reset();
+      alert("You are successfully Logged in!");
+      setTimeout(() => {
+        this.router.navigate(['']);   
+      }, 3000);
     } else {
       alert('Invalid username or password');
     }
