@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
- apiUrl = "https://script.google.com/macros/s/AKfycbxUTlEiNPVw3H0EHEAKMBdmS6y2B0wtx9cnEgqWZeDn_jbKNyUw2XY6UtXbkwleQkZefw/exec";
+ apiUrl = "https://script.google.com/macros/s/AKfycbxZZQWEfYE4MZaXvj3Q-FPQweL_hhsWQp1E0XdgxUri8keVH6MCpAtE6ni57mmBC3r_0w/exec";
   constructor(private http: HttpClient) { }
 
   // getCourses() {
@@ -15,8 +16,11 @@ export class ApiService {
   //     return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
   //   }
   // }
-  getUser(){
+  getUser(): Observable<any>{
     return this.http.get<any>(this.apiUrl);
+  }
+  postUser(input:any){
+return this.http.post(this.apiUrl, input);
   }
   getCourses() {
       return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');

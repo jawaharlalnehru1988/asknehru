@@ -11,14 +11,14 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   usersData: any;
-  constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router ) { 
+  constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router ) { }
+
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       userName: ["", Validators.required],
       password : ["", Validators.required]
     });
-  }
 
-  ngOnInit(): void {
     this.service.getUser().subscribe( {
       next: (res:any)=>{
         this.usersData = res;
