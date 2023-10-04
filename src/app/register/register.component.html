@@ -1,1 +1,43 @@
-<p>register works!</p>
+<div class="forms">
+
+    <mat-card>
+        <mat-card-header>
+    <p class="font-size-header">Register New User</p>
+</mat-card-header>
+<mat-card-content>
+    <form class="example-form" [formGroup]="signUpForm" >
+        <p class="username">
+            <mat-form-field appearance="outline">
+                <mat-label>User name</mat-label>
+                <input matInput type="text" formControlName="name">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-radio-group aria-label="Select an option" formControlName="gender">
+                <mat-radio-button value="Male">Male</mat-radio-button>
+                <mat-radio-button value="Female">Female</mat-radio-button>
+              </mat-radio-group>
+        </p>
+    </form>
+        <div>
+            <button class="login-box" color="primary"  type="submit" (click)="save()" mat-raised-button>Submit</button>
+            <button mat-raised-button class="cancelBtn" (click)="cancel()" color="warn">cancel</button>
+        </div>
+        <div class="margin-top-xl">
+            <p>Already a user? <a routerLink="/login">click here to login</a></p>
+        </div>
+    </mat-card-content>
+</mat-card>
+</div>
