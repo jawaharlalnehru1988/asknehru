@@ -10,6 +10,7 @@ import { AddcontentComponent } from './addcontent/addcontent.component';
 import { SharedModule } from './shared/shared/shared.module';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { UserlistComponent } from './userlist/userlist.component';
 
 
 
@@ -22,6 +23,7 @@ import { LoginComponent } from './login/login.component';
     AddcontentComponent,
     RegisterComponent,
     LoginComponent,
+    UserlistComponent,
   ],
   imports: [
     BrowserModule,

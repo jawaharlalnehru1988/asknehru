@@ -25,10 +25,24 @@ export class RegisterComponent implements OnInit {
   }
   save(){
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
-      this.service.postUser(this.signUpForm.value).subscribe({
+      const formData = {
+        "data": [{
+          id:  this.signUpForm.value.id,
+          name: this.signUpForm.value.name,
+          password: this.signUpForm.value.password,
+          email: this.signUpForm.value.email,
+          gender: this.signUpForm.value.gender,
+          role: this.signUpForm.value.role,
+          isactive: this.signUpForm.value.isactive
+        }]
+      }
+      this.service.postUser(formData).subscribe({
         next:(res =>{
+          this.signUpForm.reset();
           alert("Successfully registered");
+          setTimeout(()=>{
+            this.router.navigate(['/login']);
+          }, 2000);
         }),
         error:(err=>{
         console.log('err :', err);

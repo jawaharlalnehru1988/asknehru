@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
       password : ["", Validators.required]
     });
 
-    this.service.getUser().subscribe( {
+    this.service.usersData$.subscribe( {
       next: (res:any)=>{
         this.usersData = res;
         console.log('this.usersData :', this.usersData);
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     )
   }
   
-  save(){
+  submitLogin(){
     
     const formData = this.loginForm.value;
     // Find a user in this.usersData that matches the provided userName and password
