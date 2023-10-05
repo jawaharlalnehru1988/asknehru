@@ -1,26 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
- apiUrl = "https://script.google.com/macros/s/AKfycbxZZQWEfYE4MZaXvj3Q-FPQweL_hhsWQp1E0XdgxUri8keVH6MCpAtE6ni57mmBC3r_0w/exec";
-  constructor(private http: HttpClient) { }
 
-  // getCourses() {
-  //   if (window.location.hostname === 'localhost') {
-  //     return this.http.get<any>('http://localhost:3000/courses');
-  //   } else {
-  //     return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
-  //   }
-  // }
-  getUser(): Observable<any>{
-    return this.http.get<any>(this.apiUrl);
-  }
+export class ApiService {
+ apiUrl = "https://sheetdb.io/api/v1/8yxcpd7w4hy4y";
+ private usersDataSubject = new BehaviorSubject<any[]>([]);
+ usersData$: Observable<any[]> = this.usersDataSubject.asObservable();
+
+ constructor(private http: HttpClient) {
+   this.loadUsersData();
+ }
+
+ private loadUsersData() {
+   this.http.get<any[]>(this.apiUrl).subscribe((data) => {
+     this.usersDataSubject.next(data);
+   });
+ }
   postUser(input:any){
-return this.http.post(this.apiUrl, input);
+    return this.http.post(this.apiUrl, input);
   }
   getCourses() {
       return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
