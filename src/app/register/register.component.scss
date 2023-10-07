@@ -42,3 +42,9 @@ mat-card-header{
   .mat-mdc-radio-button ~ .mat-mdc-radio-button {
     margin-left: 16px;
   }
+
+  @media all and (max-width: 500px){
+    mat-card{
+    width: 90%;
+    }
+  }
