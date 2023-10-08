@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   signUpForm!: FormGroup;
-  constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router ) { }
+  updateRoute: boolean = false;
+  constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
@@ -22,8 +23,47 @@ export class RegisterComponent implements OnInit {
       role:[""],
       isactive:[""]
     });
+this.routeValueSet();
   }
-  save(){
+  //the routeValueSet is to setvalue dynamically to the formcontrol
+  routeValueSet(){
+    this.route.queryParams.subscribe(params => {
+      if (params['data']) {
+        this.updateRoute = true;
+         const objForUpdate = JSON.parse(params['data']);
+        for (const key in objForUpdate) {
+          if (objForUpdate.hasOwnProperty(key)) {
+            const control = this.signUpForm.get(key);
+            if (control) {
+              control.setValue(objForUpdate[key]);
+            }
+          }
+        }
+      }
+    });
+  }
+  onUpdateData(id: number, updateData: any) {
+    this.service.updateData(id, updateData).subscribe(
+      (response) => {
+        this.signUpForm.reset();
+        alert('Data updated successfully:');
+        this.router.navigate(['/userlist'], { queryParams: { shouldExecuteFunction: true } });
+      },
+      (error) => {
+        console.error('Error updating data:', error);
+        alert('Error updating data');
+      }
+    );
+  }
+  save(input:any, signValue:any){
+  if (input) {
+    this.onUpdateData(signValue.id, signValue);
+  } else {
+    this.postMethod();
+  }
+  }
+
+  postMethod(){
     if (this.signUpForm.valid) {
       const formData = {
         "data": [{
@@ -52,9 +92,8 @@ export class RegisterComponent implements OnInit {
       })
       
     } else {
-      
+      alert("please enter valid data in the form");
     }
-
   }
   cancel(){
     this.router.navigate(['']);

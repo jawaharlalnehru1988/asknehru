@@ -1,7 +1,8 @@
 <mat-form-field class="filter"> 
     <mat-label>Type here any user's data key from the table</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="type any user's data from the table" #input>
-  </mat-form-field>
+  </mat-form-field> 
+  <button mat-mini-fab (click)="refresh()"><mat-icon>refresh</mat-icon></button>
   
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -18,7 +19,7 @@
         <td mat-cell *matCellDef="let row"> {{row.name}} </td>
       </ng-container>
 
-      <!-- Progress Column -->
+      <!-- Gender Column -->
       <ng-container matColumnDef="gender">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
         <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
@@ -31,24 +32,30 @@
         <td mat-cell *matCellDef="let row"> {{row.email}} </td>
       </ng-container>
   
-      <!-- Fruit Column -->
+      <!-- Password Column -->
       <ng-container matColumnDef="password">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Password </th>
         <td mat-cell *matCellDef="let row"> {{row.password}} </td>
       </ng-container>
   
-      <!-- Fruit Column -->
+      <!-- Role Column -->
       <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
         <td mat-cell *matCellDef="let row"> {{row.role}} </td>
       </ng-container>
 
-      <!-- Fruit Column -->
+      <!-- Is Active -->
+      <ng-container matColumnDef="isactive">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Is Active </th>
+        <td mat-cell *matCellDef="let row"> {{row.isactive}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
         <td mat-cell *matCellDef="let row"> 
             <div class="actionBtn">
-                <button mat-button color="primary" matTooltip="Edit User"> <mat-icon>edit</mat-icon> </button>    
+                <button mat-button color="primary" matTooltip="Edit User" (click)="updateData(row)"> <mat-icon>edit</mat-icon> </button>    
                 <button mat-button color="warn" matTooltip="Delete User" (click)="deleteRow(row.id)" > <mat-icon>delete</mat-icon> </button>    
             </div>
         </td>

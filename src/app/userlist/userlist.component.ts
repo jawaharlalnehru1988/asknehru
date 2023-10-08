@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 
 export interface UserData {
@@ -18,24 +19,40 @@ export interface UserData {
 })
 export class UserlistComponent implements OnInit {
   usersData!: any[];
-  displayedColumns: string[] = ['id', 'name', 'gender', 'email', 'password', 'role', 'action'];
+  displayedColumns: string[] = ['id', 'name', 'gender', 'email', 'password', 'role', 'isactive', 'action'];
   dataSource!: MatTableDataSource<UserData>;
+  shouldExecuteFunction: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private userService: ApiService) {}
-
-  ngOnInit(): void {
-    this.userService.usersData$.subscribe((data) => {
-      this.usersData = data;
-      console.log('this.usersData :', this.usersData);
-      // Perform any component-specific logic with usersData
-      this.dataSource = new MatTableDataSource(this.usersData);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });
+  constructor(private userService: ApiService, private router: Router, private route: ActivatedRoute) {
   }
   
+  ngOnInit(): void {
+   this.receiveUserData();
+   this.routerData();
+  }
+routerData(){
+  this.route.queryParams.subscribe((queryParams) => {
+    this.shouldExecuteFunction = queryParams['shouldExecuteFunction'] === 'true';
+  });
+  if (this.shouldExecuteFunction) {
+    console.log("executed perfectly");
+    this.receiveUserData();
+  }
+}
+refresh(){
+  this.receiveUserData();
+}
+  receiveUserData(){
+    this.userService.getUserData().subscribe((data) => {
+      this.usersData = data;
+      this.dataSource = new MatTableDataSource(this.usersData);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;      
+    });
+  }
+ 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -54,5 +71,10 @@ export class UserlistComponent implements OnInit {
     }
     )
 
+  }
+  updateData(rowDataForUpdate: any){
+    this.router.navigate(['/register'], {
+      queryParams: { data: JSON.stringify(rowDataForUpdate) },
+    });
   }
 }
