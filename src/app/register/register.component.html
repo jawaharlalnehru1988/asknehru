@@ -25,14 +25,32 @@
             </mat-form-field>
         </p>
         <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Id</mat-label>
+                <input matInput type="text" formControlName="id">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Role</mat-label>
+                <input matInput type="text" formControlName="role">
+            </mat-form-field>
+        </p>
+        <p>Gender
             <mat-radio-group aria-label="Select an option" formControlName="gender">
                 <mat-radio-button value="Male">Male</mat-radio-button>
                 <mat-radio-button value="Female">Female</mat-radio-button>
               </mat-radio-group>
         </p>
+        <p> is Active
+            <mat-radio-group aria-label="Select an option" formControlName="isactive">
+                <mat-radio-button value="yes">Yes</mat-radio-button> 
+                <mat-radio-button value="no">No</mat-radio-button>
+              </mat-radio-group>
+        </p>
     </form>
         <div>
-            <button class="login-box" color="primary"  type="submit" (click)="save()" mat-raised-button>Submit</button>
+            <button class="login-box" color="primary"  type="submit" (click)="save(updateRoute, signUpForm.value)" mat-raised-button>{{updateRoute?"Update":"Submit"}}</button>
             <button mat-raised-button class="cancelBtn" (click)="cancel()" color="warn">cancel</button>
         </div>
         <div class="margin-top-xl">

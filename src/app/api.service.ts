@@ -21,6 +21,10 @@ export class ApiService {
      this.usersDataSubject.next(data);
    });
  }
+
+ getUserData(): Observable<any>{
+return this.http.get<any[]>(this.getUrl);
+ }
   postUser(input:any){
     return this.http.post(this.apiUrl, input);
   }
@@ -31,6 +35,13 @@ export class ApiService {
     
     // Send a DELETE request to the deleteUrl
     return this.http.delete(deleteUrl);
+  }
+  // Method to send a PATCH request
+  updateData(id: number, updateData: any): Observable<any> {
+    const patchUrl = `${this.apiUrl}/id/${id}`;
+
+    // Send a PATCH request with the provided data
+    return this.http.patch(patchUrl, updateData);
   }
   getCourses() {
       return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
