@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export class ApiService {
  apiUrl = "https://sheetdb.io/api/v1/8yxcpd7w4hy4y";
+ getUrl = "https://script.google.com/macros/s/AKfycbysfcraS4_qdipktKPs9blVZ-fJFSEDupkvHKmFI7oKWBUjA6qMjvjrDXJUd_GMlvrB/exec";
  private usersDataSubject = new BehaviorSubject<any[]>([]);
  usersData$: Observable<any[]> = this.usersDataSubject.asObservable();
 
@@ -16,12 +17,20 @@ export class ApiService {
  }
 
  private loadUsersData() {
-   this.http.get<any[]>(this.apiUrl).subscribe((data) => {
+   this.http.get<any[]>(this.getUrl).subscribe((data) => {
      this.usersDataSubject.next(data);
    });
  }
   postUser(input:any){
     return this.http.post(this.apiUrl, input);
+  }
+
+   // Function to delete a record by ID
+   deleteRecordById(id: number): Observable<any> {
+    const deleteUrl = `${this.apiUrl}/id/${id}`;
+    
+    // Send a DELETE request to the deleteUrl
+    return this.http.delete(deleteUrl);
   }
   getCourses() {
       return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
