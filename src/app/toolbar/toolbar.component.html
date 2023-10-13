@@ -7,11 +7,13 @@
       </button>
       <span class="hide-on-small">AskNehru</span>
       <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
+      <button mat-mini-fab *ngIf="!isUserLoggedIn">{{initialName}}</button>
       <span class="example-spacer"></span>
       <button class="hide-on-small" mat-button routerLink="">Projects</button>
-      <button class="hide-on-small" mat-button routerLink="/userlist">User's List</button>
-      <button mat-button routerLink="login">Login</button>
-      <button mat-button routerLink="register">Sign Up</button>
+      <button class="hide-on-small" *ngIf="isSuperAdmin" mat-button routerLink="/userlist">User's List</button>
+      <button *ngIf="isUserLoggedIn" [disabled]="!loggedInTrue" mat-button routerLink="login">Login</button>
+      <button *ngIf="isUserLoggedIn" [disabled]="signInTrue" mat-button routerLink="register">Sign Up</button>
+      <button *ngIf="!isUserLoggedIn" (click)="loggedOut()" mat-button routerLink="">Log Out</button>
     </mat-toolbar>
   </p>
   <mat-menu #menu="matMenu">

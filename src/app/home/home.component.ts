@@ -15,9 +15,14 @@ export class HomeComponent implements OnInit {
     mediaName: "GitHub"
   },
   {
-    imageLink: "1_lpLpoIxlvkwVgj8CGALzORSzlPFpNmF",
-    mediaLink: "https://www.instagram.com/invites/contact/?i=1mxqvd8i3ualr&utm_content=ln0e248",
-    mediaName: "Insta Gram"
+    imageLink: "1YDJ6WkVJwHMU7TCitsdIagXzbPYvJ0c0",
+    mediaLink: "https://www.linkedin.com/in/jawaharlal-nehru-elumalai-96a64a216",
+    mediaName: "LinkedIn"
+  },
+  {
+    imageLink: "1OCMRBlx6X_FwUw2iHAC9bRjvwdfp2Uko",
+    mediaLink: "+91 6382043976",
+    mediaName: "Whatsapp"
   },
   {
     imageLink: "1M5IaI5kh-Akzm16ZeMzLV7LFdigB1R4w",
@@ -27,18 +32,14 @@ export class HomeComponent implements OnInit {
   {
     imageLink: "12qeABCTwCFg48Jm1FLuC_d6NzqIi_CTA",
     mediaLink: "+91 63820 43976",
-    mediaName: "Voice Call"
+    mediaName: "+91 63820 43976"
   },
-  {
-    imageLink: "1YDJ6WkVJwHMU7TCitsdIagXzbPYvJ0c0",
-    mediaLink: "https://www.linkedin.com/in/jawaharlal-nehru-elumalai-96a64a216",
-    mediaName: "LinkedIn"
-  }
 ]
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.getCourse();
+    this.api.setLoginData(true);
   }
 getCourse(){
   this.isContentLoading = true;

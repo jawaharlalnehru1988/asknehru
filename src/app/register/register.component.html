@@ -2,52 +2,87 @@
 
     <mat-card>
         <mat-card-header>
-    <p class="font-size-header">Register New User</p>
+    <p class="font-size-header">{{updateRoute? "Update User Data" : "Register New User"}}</p>
 </mat-card-header>
 <mat-card-content>
     <form class="example-form" [formGroup]="signUpForm" >
-        <p class="username">
+        <div *ngIf="updateRoute; else nonAdminContent">
+
+            <div class="username">
+                <mat-form-field appearance="outline">
+                    <mat-label>User name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email">
+                </mat-form-field>
+            </div>
+            <div>Gender
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-radio-button value="Male">Male</mat-radio-button>
+                    <mat-radio-button value="Female">Female</mat-radio-button>
+                    <mat-radio-button value="notTosay">Prefer Not to Say</mat-radio-button>
+                  </mat-radio-group>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Id</mat-label>
+                    <input matInput type="text" formControlName="id">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Role</mat-label>
+                    <input matInput type="text" formControlName="role">
+                </mat-form-field>
+            </div>
+            
+            <div> is Active
+                <mat-radio-group aria-label="Select an option" formControlName="isactive">
+                    <mat-radio-button value="yes">Yes</mat-radio-button> 
+                    <mat-radio-button value="no">No</mat-radio-button>
+                  </mat-radio-group>
+            </div>
+            </div>
+            
+        <ng-template #nonAdminContent>
+
+        <div class="username">
             <mat-form-field appearance="outline">
                 <mat-label>User name</mat-label>
                 <input matInput type="text" formControlName="name">
             </mat-form-field>
-        </p>
-        <p>
+        </div>
+        <div>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" formControlName="password">
             </mat-form-field>
-        </p>
-        <p>
+        </div>
+        <div>
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" formControlName="email">
             </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Id</mat-label>
-                <input matInput type="text" formControlName="id">
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Role</mat-label>
-                <input matInput type="text" formControlName="role">
-            </mat-form-field>
-        </p>
-        <p>Gender
+        </div>
+        <div>Gender
             <mat-radio-group aria-label="Select an option" formControlName="gender">
                 <mat-radio-button value="Male">Male</mat-radio-button>
                 <mat-radio-button value="Female">Female</mat-radio-button>
+                <mat-radio-button value="notTosay">Prefer Not to Say</mat-radio-button>
               </mat-radio-group>
-        </p>
-        <p> is Active
-            <mat-radio-group aria-label="Select an option" formControlName="isactive">
-                <mat-radio-button value="yes">Yes</mat-radio-button> 
-                <mat-radio-button value="no">No</mat-radio-button>
-              </mat-radio-group>
-        </p>
+        </div>
+        </ng-template>
+ 
     </form>
         <div>
             <button class="login-box" color="primary"  type="submit" (click)="save(updateRoute, signUpForm.value)" mat-raised-button>{{updateRoute?"Update":"Submit"}}</button>
