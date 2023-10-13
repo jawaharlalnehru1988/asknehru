@@ -12,12 +12,12 @@
     As a dedicated full-stack developer, my passion lies in crafting captivating and user-friendly web applications. Join me
     on a journey to create engaging digital experiences!"</p>
     <div class="social-media-links">
-      <div *ngFor="let media of socialMedia" [matTooltip]="media.mediaLink">
-         <a [href]="media.mediaLink" mat>
-           <img [src]="['https://drive.google.com/uc?export=view&id='+media.imageLink]" width="24px" alt="">
-         </a>
-         <span class="medianame" style="color: antiquewhite;">{{media.mediaName}}</span>
-      </div>
+      <button mat-button color="warn" *ngFor="let media of socialMedia">
+        <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
+          <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="24px" alt="">
+          <span class="medianame">{{media.mediaName}}</span>
+        </a>
+      </button>
      </div>
   </div>
 </div>

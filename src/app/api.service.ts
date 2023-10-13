@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ export class ApiService {
  getUrl = "https://script.google.com/macros/s/AKfycbysfcraS4_qdipktKPs9blVZ-fJFSEDupkvHKmFI7oKWBUjA6qMjvjrDXJUd_GMlvrB/exec";
  private usersDataSubject = new BehaviorSubject<any[]>([]);
  usersData$: Observable<any[]> = this.usersDataSubject.asObservable();
-
+ private loginSubject = new Subject<boolean>();
+private signUpSubject = new Subject<boolean>();
  constructor(private http: HttpClient) {
    this.loadUsersData();
  }
@@ -58,5 +59,17 @@ return this.http.get<any[]>(this.getUrl);
   }
   deleteFormData(id:number){
     return this.http.delete<any>('http://localhost:3000/forms/'+id)
+  }
+  setLoginData(data: boolean) {
+    this.loginSubject.next(data);
+  }
+setSignUpData(data: boolean){
+ this.signUpSubject.next(data);
+}
+  getLoginData() {
+    return this.loginSubject.asObservable();
+  }
+  getSignUpData(){
+    return this.signUpSubject.asObservable();
   }
 }

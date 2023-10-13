@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
       isactive:[""]
     });
 this.routeValueSet();
+this.service.setSignUpData(true);
   }
   //the routeValueSet is to setvalue dynamically to the formcontrol
   routeValueSet(){
@@ -41,6 +42,9 @@ this.routeValueSet();
         }
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.service.setSignUpData(false);
   }
   onUpdateData(id: number, updateData: any) {
     this.service.updateData(id, updateData).subscribe(

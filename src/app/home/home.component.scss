@@ -69,8 +69,8 @@
     }
     .stars-container img.banner-photo {
       border-radius: 50%;
-      width: 75%;
-      height: 23%;
+      width: 92%;
+      height: 16%;
     }
     .medianame{
       font-size: 5px;
@@ -94,4 +94,8 @@
   }
   mat-card-actions{
     background-color: burlywood;
+}
+.link-no-underline {
+  text-decoration: none;
+  color: white; /* Replace with your desired color */
 }
