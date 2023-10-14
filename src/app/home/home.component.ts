@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   },
   {
     imageLink: "1M5IaI5kh-Akzm16ZeMzLV7LFdigB1R4w",
-    mediaLink: "https://twitter.com/Jawahar68291122?t=jXmngm4oSnVRFrqpVLKzYA&s=09",
+    mediaLink: "https://twitter.com/Jawahar58240946",
     mediaName: "Twitter"
   },
   {

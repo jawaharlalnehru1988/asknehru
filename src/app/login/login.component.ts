@@ -12,6 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   usersData: any;
+  hide : boolean = true;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router) { }
