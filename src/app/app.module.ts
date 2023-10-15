@@ -11,6 +11,8 @@ import { SharedModule } from './shared/shared/shared.module';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UserlistComponent } from './userlist/userlist.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 
 
@@ -24,12 +26,14 @@ import { UserlistComponent } from './userlist/userlist.component';
     RegisterComponent,
     LoginComponent,
     UserlistComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    OverlayModule
   ],
   providers: [],
   bootstrap: [AppComponent]

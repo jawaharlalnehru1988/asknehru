@@ -5,6 +5,7 @@
     <p class="font-size-header">{{updateRoute? "Update User Data" : "Register New User"}}</p>
 </mat-card-header>
 <mat-card-content>
+    
     <form class="example-form" [formGroup]="signUpForm" >
         <div *ngIf="updateRoute; else nonAdminContent">
 
@@ -85,7 +86,7 @@
  
     </form>
         <div>
-            <button class="login-box" color="primary"  type="submit" (click)="save(updateRoute, signUpForm.value)" mat-raised-button>{{updateRoute?"Update":"Submit"}}</button>
+            <button class="login-box" color="primary"  type="submit" [disabled]="signUpForm.invalid" (click)="save(updateRoute, signUpForm.value)" mat-raised-button>{{updateRoute?"Update":"Submit"}}</button>
             <button mat-raised-button class="cancelBtn" (click)="cancel()" color="warn">cancel</button>
         </div>
         <div class="margin-top-xl">
