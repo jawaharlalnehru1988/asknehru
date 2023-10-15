@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import * as intlTelInput from 'intl-tel-input';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,12 +14,20 @@ export class RegisterComponent implements OnInit {
   constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    const inputElement = document.getElementById('#phone');
+    if (inputElement) {
+      intlTelInput(inputElement,{
+        initialCountry: 'us',
+        separateDialCode: true,
+        utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js'
+      })
+    }
     this.signUpForm = this.formBuilder.group({
       id:[""],
       name: ["", Validators.required],
       password : ["", Validators.required],
-      email:["", Validators.required],
-      gender:["", Validators.required],
+      email:[""],
+      gender:[""],
       role:[""],
       isactive:[""]
     });
@@ -32,6 +40,7 @@ this.service.setSignUpData(true);
       if (params['data']) {
         this.updateRoute = true;
          const objForUpdate = JSON.parse(params['data']);
+         //the below code is the optimised way of setting values to form field
         for (const key in objForUpdate) {
           if (objForUpdate.hasOwnProperty(key)) {
             const control = this.signUpForm.get(key);

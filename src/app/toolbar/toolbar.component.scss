@@ -8,4 +8,44 @@
     .hide-on-small {
       display: none;
     }
+    .example-list{
+      width: 86vw !important;
+    }
+  }
+   ::ng-deep mat-form-field{
+    width: 80%;
+  }
+  .example-list {
+    width: 40vw;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    background: #fff;
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+    overflow-x: auto;
+  }
+  
+  .example-list > li {
+    list-style-type: none;
+    border-bottom: solid 1px #8b8b8b;
+    padding: 8px 0;
+  }
+  
+  .example-list > li:last-child {
+    border-bottom: none;
+  }
+  .example-list > div:first-child {
+    display: flex;
+    justify-content: space-between;
+  }
+  .example-list > div:last-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .cancelBtn{
+    margin-left: 8px;
+  }
+  mat-radio-button{
+    margin: 0px 12px;
   }
