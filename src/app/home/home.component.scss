@@ -24,6 +24,9 @@
     color: white;
     // margin-bottom: 26px;
   }
+  .intro3{
+    line-height: 24px;
+  }
   .intro1, .intro3{
     font-size: 16px;
     padding-right: 12px;
@@ -98,4 +101,22 @@
 .link-no-underline {
   text-decoration: none;
   color: white; /* Replace with your desired color */
+}
+.wrapper{
+  height: 48vh;
+  border: 1px solid #ddd;
+  display: flex;
+  overflow-x: auto;
+}
+.wrapper .item{
+  min-width: 25vw;
+    height: 40vh;
+line-height: 110px;
+text-align:center;
+background-color: #ddd;
+margin: 8px 4px;
+border-radius: 4px;
+}
+.wrapper::-webkit-scrollbar{
+  width: 0;
 }
