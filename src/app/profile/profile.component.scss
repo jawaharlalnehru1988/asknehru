@@ -1,0 +1,35 @@
+.left-bar{
+    background-color: #bd5d38;
+}
+.main-space{
+    background-color: #dee2e6;
+}
+.image-class{
+    width: 13vw;
+    border-radius: 50%;
+    border: 8px solid rgb(202 125 96);
+}
+.custom-button {
+    color: white;
+    font-size: 16px;
+  }
+.navigator{
+    display: flex;
+    flex-direction: column;
+}
+.display{
+    font-size: 64px;
+    
+}
+.address{
+    margin-top: 24px;
+    font-weight: 600;
+    font-size: 20px;
+    color: darksalmon;
+}
+.intro3{
+    width: 60vw;
+    margin-top: 16px;
+    font-size: large;
+    line-height: 26px;
+}

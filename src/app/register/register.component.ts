@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as intlTelInput from 'intl-tel-input';
@@ -11,18 +11,12 @@ import * as intlTelInput from 'intl-tel-input';
 export class RegisterComponent implements OnInit {
   signUpForm!: FormGroup;
   updateRoute: boolean = false;
+  abcd:any;
+  @ViewChild('phone', { static: false }) phone! : ElementRef ;
   constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    const inputElement = document.getElementById('#phone');
-    if (inputElement) {
-      intlTelInput(inputElement,{
-        initialCountry: 'us',
-        separateDialCode: true,
-        utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js'
-      })
-    }
-    this.signUpForm = this.formBuilder.group({
+        this.signUpForm = this.formBuilder.group({
       id:[""],
       name: ["", Validators.required],
       password : ["", Validators.required],
@@ -31,8 +25,16 @@ export class RegisterComponent implements OnInit {
       role:[""],
       isactive:[""]
     });
+    const country = new FormControl();
 this.routeValueSet();
 this.service.setSignUpData(true);
+  }
+  ngAfterViewInit(){
+      this.abcd = intlTelInput(this.phone.nativeElement,{
+        initialCountry: 'auto',
+        // utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js'
+      })
+
   }
   //the routeValueSet is to setvalue dynamically to the formcontrol
   routeValueSet(){
