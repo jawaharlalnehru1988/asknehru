@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { CodedocComponent } from './codedoc/codedoc.component';
 
 
 
@@ -27,6 +28,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     LoginComponent,
     UserlistComponent,
     ProfileComponent,
+    CodedocComponent,
   ],
   imports: [
     BrowserModule,
