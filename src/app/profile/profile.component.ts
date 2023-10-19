@@ -15,9 +15,11 @@ export class ProfileComponent implements OnInit {
     {id: 3, text: 'Skills'},
     {id: 4, text: 'Education'},
     {id: 5, text: 'Certifications'},
-    {id: 5, text: 'Interests'},
-    {id: 6, text: 'Github Repositories'},
+    {id: 6, text: 'Interests'},
+    {id: 7, text: 'Github Repositories'},
+    {id: 8, text: 'Contact'},
   ];
+  
   constructor() { }
 
   ngOnInit(): void {

@@ -13,9 +13,11 @@ export class RegisterComponent implements OnInit {
   updateRoute: boolean = false;
   abcd:any;
   @ViewChild('phone', { static: false }) phone! : ElementRef ;
+  selectedCode: any;
   constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    this.service.setSignUpData(true);
         this.signUpForm = this.formBuilder.group({
       id:[""],
       name: ["", Validators.required],
@@ -23,16 +25,21 @@ export class RegisterComponent implements OnInit {
       email:[""],
       gender:[""],
       role:[""],
-      isactive:[""]
+      isactive:[""],
+      countryCode : [""],
+      mobile: [""]
     });
     const country = new FormControl();
 this.routeValueSet();
-this.service.setSignUpData(true);
   }
   ngAfterViewInit(){
       this.abcd = intlTelInput(this.phone.nativeElement,{
-        initialCountry: 'auto',
+        initialCountry: 'us',
         // utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js'
+      });
+      this.selectedCode = this.abcd.getSelectedCountryData().dialCode;
+      this.phone.nativeElement.addEventListener('countrychange', ()=>{
+        this.signUpForm.get('countryCode')?.setValue("+" + this.abcd.getSelectedCountryData().dialCode);
       })
 
   }

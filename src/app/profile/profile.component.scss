@@ -1,8 +1,9 @@
 .left-bar{
     background-color: #bd5d38;
+    height: 100vh;
 }
 .main-space{
-    background-color: #dee2e6;
+    background-color: #eef1f5;
 }
 .image-class{
     width: 13vw;
@@ -19,17 +20,61 @@
 }
 .display{
     font-size: 64px;
-    
+    color: wheat;
 }
 .address{
     margin-top: 24px;
     font-weight: 600;
     font-size: 20px;
-    color: darksalmon;
+    color: #f7f2f1;
+    text-align: center;
 }
 .intro3{
     width: 60vw;
     margin-top: 16px;
     font-size: large;
     line-height: 26px;
+    color: white;
+    text-align: justify;
 }
+  
+  /* Media query for mobile view (screen width < 500px) */
+  @media screen and (max-width: 499px) {
+    .left-bar {
+        display: none;
+    }
+    .header{
+        display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid darkseagreen;
+    }
+    .image-class{
+        width: 40vw;
+    }
+    .display{
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    margin-top: 65px;
+    }
+    .intro3{
+     width: 90vw;
+     margin: 11px;
+     font-weight: 500;
+     font-size: large;
+     line-height: 26px;
+    }
+  }
+  @media screen and (min-width: 500px) {
+   .header{
+    display : none;
+   } 
+   .main-content{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+   }
+  }
+  

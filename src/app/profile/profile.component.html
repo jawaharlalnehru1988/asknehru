@@ -1,20 +1,24 @@
-<mat-grid-list cols="5" rowHeight="100vh">
-    <mat-grid-tile class="left-bar" colspan="1" rowspan="1" >
-        <div class="image-container">
+<div class="contanier">
+    <div class="row">
+        <div class="col-2 left-bar d-none d-sm-block">
             <img class="image-class mb-5" src="../../assets/image/nehru.png" alt="">
             <div class="navigator" *ngFor="let titles of tiles">
                 <button mat-button class="custom-button"> {{titles.text}}</button>
                 
             </div>
         </div>  
-        <div>
-        </div>  
-    </mat-grid-tile>
-    <mat-grid-tile class="main-space"  colspan="4" rowspan="1" >
+    
+    <div class="col-12 col-sm-10 main-content">
     <div class="detail-section">
+        <div class="header">
+            <img class="image-class mb-5" src="../../assets/image/nehru.png" alt="">
+            <div class="navigator" *ngFor="let titles of tiles">
+                <button mat-button class="custom-button"> {{titles.text}}</button>
+                
+            </div>
+        </div>
         <div class="display"><strong> Jawaharlal Nehru Elumalai</strong></div>
-        <div class="address">#30/1, Chinnaswami Mudaliyar Road, Shivaji Nagar, Bangalore,
-            Karnataka - 560001 </div>
+        <div class="address">Front End Developer, Aspiring Full Stack Developer </div>
             <div class="intro3"><p >With several years of expertise in the software industry, I am your trusted Angular developer. My skill set includes
                 HTML, CSS, JavaScript, TypeScript, and proficient use of version control systems like Git, GitHub, and Bitbucket. What's
                 more, I bring a strong backend knowledge with languages such as C#, PHP, and databases like MySQL and MS SQL.
@@ -22,6 +26,7 @@
                 As a dedicated full-stack developer, my passion lies in crafting captivating and user-friendly web applications. Join me
                 on a journey to create engaging digital experiences!"</p></div>
     </div>    
-    </mat-grid-tile>
-  </mat-grid-list>
+</div>
+</div>
+</div>
   

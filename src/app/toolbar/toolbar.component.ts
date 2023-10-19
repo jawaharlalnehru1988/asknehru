@@ -19,7 +19,7 @@ export class ToolbarComponent implements OnInit {
   isSuperAdmin: boolean = false;
   initialName!: string;
   isUserLoggedIn!: boolean;
-  loggedInTrue!: boolean;
+  loggedInTrue: boolean = false;
   signInTrue!: boolean;
   isOpen = false;
   signUpForm!: FormGroup;
@@ -30,8 +30,8 @@ export class ToolbarComponent implements OnInit {
 
 
   constructor(private api: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private overlay: Overlay) { 
-    this.api.getLoginData().subscribe((data) => {
-      this.loggedInTrue = data;
+    this.api.getLoginData().subscribe((booleanValue) => {
+      this.loggedInTrue = booleanValue;
     });
     this.api.getSignUpData().subscribe((data)=>{
       this.signInTrue = data;
