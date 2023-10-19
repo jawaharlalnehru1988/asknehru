@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private service: ApiService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.service.setLoginData(false);
     this.loginForm = this.formBuilder.group({
       userName: ["", Validators.required],
       password: ["", Validators.required]
@@ -34,7 +35,6 @@ export class LoginComponent implements OnInit {
           alert("There is a problem while fetching user's data");
         }
       });
-    this.service.setLoginData(false);
   }
   ngOnDestroy(): void {
     // Unsubscribe when the component is destroyed
