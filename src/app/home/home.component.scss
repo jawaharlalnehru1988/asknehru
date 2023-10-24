@@ -67,7 +67,14 @@
       flex-basis: 100%;
     }
     .intro2{
-      font-size:medium;
+      font-size:15px;
+    }
+    .social-media-links{
+      gap: 0px !important;
+      display: block !important;
+    }
+    ::ng-deep .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+      padding: 0% !important;
     }
     .intro3{
       font-size: 12px;
@@ -75,11 +82,18 @@
     }
     .stars-container img.banner-photo {
       border-radius: 50%;
-      width: 92%;
-      height: 16%;
+      width: 69%;
+      height: 94%;
+    }
+    .stars-container{
+      display: flex;
+      justify-content: center;
     }
     .medianame{
       font-size: 5px;
+    }
+    .wrapper .item{
+      min-width: 90vw !important;
     }
   }
   .image-container {
@@ -106,14 +120,14 @@
   color: white; /* Replace with your desired color */
 }
 .wrapper{
-  height: 52vh;
+  height: 40vh;
   border: 1px solid #ddd;
   display: flex;
   overflow-x: auto;
 }
 .wrapper .item{
+  height: 34vh;
   min-width: 25vw;
-    height: 46vh;
 text-align:center;
 background-color: #ddd;
 margin: 8px 4px;

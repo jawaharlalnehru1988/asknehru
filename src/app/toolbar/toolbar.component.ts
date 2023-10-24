@@ -19,7 +19,7 @@ export class ToolbarComponent implements OnInit {
   isSuperAdmin: boolean = false;
   initialName!: string;
   isUserLoggedIn!: boolean;
-  loggedInTrue: boolean = false;
+  loggedInTrue: boolean = true;
   signInTrue!: boolean;
   isOpen = false;
   signUpForm!: FormGroup;
