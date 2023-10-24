@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 projectData: Project[] =[
   {
     PName : "Portfolio",
-    PImage :  "https://repository-images.githubusercontent.com/384091706/a1614500-e03f-11eb-986a-30f6f0d4f1cc",
+    PImage :  "assets/image/portfolio.png",
     routerLink: "/profile"
   },
   {

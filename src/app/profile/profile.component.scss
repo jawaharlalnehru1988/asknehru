@@ -1,9 +1,46 @@
 .left-bar{
     background-color: #bd5d38;
-    height: 100vh;
+    height: 88vh;
 }
 .main-space{
     background-color: #eef1f5;
+}
+.left-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.social-media-links{
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+.carousel-wrapper{
+    width: 70vw;
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-color: #ded9df;
+    .caption{
+        font-weight: bold;
+    }
+}
+::ng-deep .carousel-control-next-icon {
+    background-color: #a0aeac;
+    border-radius: 50%;
+    padding: 16px;
+}
+::ng-deep .carousel-control-prev-icon {
+    background-color: #a0aeac;
+    border-radius: 50%;
+    padding: 16px;
+    }
+.carousel-image{
+    width: 56vw;
 }
 .image-class{
     width: 13vw;
@@ -20,35 +57,40 @@
 }
 .display{
     font-size: 64px;
-    color: wheat;
+    color: rgb(62, 41, 2);
 }
 .address{
-    margin-top: 24px;
     font-weight: 600;
-    font-size: 20px;
-    color: #f7f2f1;
-    text-align: center;
+    font-size: 16px;
+    color: #523a36;
+}
+.intro-text{
+    font-size: large !important;
 }
 .intro3{
     width: 60vw;
     margin-top: 16px;
-    font-size: large;
+    font-size: small;
     line-height: 26px;
-    color: white;
     text-align: justify;
 }
-  
+.main-content{
+    background-color: white;
+}
   /* Media query for mobile view (screen width < 500px) */
   @media screen and (max-width: 499px) {
     .left-bar {
         display: none;
     }
-    .header{
+    .header-section{
         display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     border-bottom: 1px solid darkseagreen;
+    background-color: #bd5d38;
+    padding: 21px;
+    margin-bottom: 24px;
     }
     .image-class{
         width: 40vw;
@@ -57,8 +99,13 @@
     display: flex;
     justify-content: center;
     font-size: 24px;
-    margin-top: 65px;
+    font-family: 'Saira Extra Condensed',serif;
     }
+    .experience-section{
+        height: 150px; /* Set a fixed height for your div to limit the scrollable area */
+        overflow-y: scroll;
+    }
+    
     .intro3{
      width: 90vw;
      margin: 11px;
@@ -66,9 +113,16 @@
      font-size: large;
      line-height: 26px;
     }
+    .carousel-wrapper{
+        width: 100vw;
+        height: 40vh;
+    }
+    .carousel-image{
+        width: 92vw;
+    }
   }
   @media screen and (min-width: 500px) {
-   .header{
+   .header-section{
     display : none;
    } 
    .main-content{
@@ -76,5 +130,8 @@
     align-items: center;
     display: flex;
    }
+   .display-exp{
+    font-size: 36px !important;
+}
   }
   

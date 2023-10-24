@@ -1,30 +1,147 @@
 <div class="contanier">
     <div class="row">
-        <div class="col-2 left-bar d-none d-sm-block">
-            <img class="image-class mb-5" src="../../assets/image/nehru.png" alt="">
-            <div class="navigator" *ngFor="let titles of tiles">
-                <button mat-button class="custom-button"> {{titles.text}}</button>
-                
+        <div class="left-bar col-2 d-none d-sm-block">
+            <div class="left-cont mt-5">
+                <img class="image-class mb-5" src="../../assets/image/nehru.png" alt="">
+                <div class="navigator" *ngFor="let titles of tiles">
+                    <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
+                </div>
             </div>
         </div>  
     
     <div class="col-12 col-sm-10 main-content">
     <div class="detail-section">
-        <div class="header">
+        <div class="header-section">
             <img class="image-class mb-5" src="../../assets/image/nehru.png" alt="">
             <div class="navigator" *ngFor="let titles of tiles">
                 <button mat-button class="custom-button"> {{titles.text}}</button>
                 
             </div>
         </div>
-        <div class="display"><strong> Jawaharlal Nehru Elumalai</strong></div>
-        <div class="address">Front End Developer, Aspiring Full Stack Developer </div>
-            <div class="intro3"><p >With several years of expertise in the software industry, I am your trusted Angular developer. My skill set includes
-                HTML, CSS, JavaScript, TypeScript, and proficient use of version control systems like Git, GitHub, and Bitbucket. What's
-                more, I bring a strong backend knowledge with languages such as C#, PHP, and databases like MySQL and MS SQL.
+        <div [ngSwitch]="condition">
+            <div *ngSwitchCase="1">
+                <div class="display mb-5"><strong> Jawaharlal Nehru Elumalai</strong></div>
+            <div class="address">Front End Developer, Aspiring Full Stack Developer </div>
+                <div class="intro3 intro-text"><p >With several years of expertise in the software industry, I am your trusted Angular developer. My skill set includes
+                    HTML, CSS, JavaScript, TypeScript, and proficient use of version control systems like Git, GitHub, and Bitbucket. What's
+                    more, I bring a strong backend knowledge with languages such as C#, PHP, and databases like MySQL and MS SQL.
+                    
+                    As a dedicated full-stack developer, my passion lies in crafting captivating and user-friendly web applications. Join me
+                    on a journey to create engaging digital experiences!"</p>
+                </div>
+            </div>
+            <div *ngSwitchCase="2">
+                <div class="display mb-5"><strong> Contact</strong></div>
+                <div class="social-media-links">
+                    <button mat-button color="warn" *ngFor="let media of socialMedia">
+                        <a [href]="media.mediaLink" class="text-decoration-none" [attr.target]="'_blank'" [matTooltip]="media.mediaLink"
+                            class="link-no-underline">
+                            <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="24px" alt="">
+                            <span class="medianame">{{media.mediaName}}</span>
+                        </a>
+                    </button>
+                </div>
+            </div>
+
+            <div *ngSwitchCase="3" class="experience-section">
+                <div class="display display-exp"><strong> Experience</strong></div>
+                <div class="mt-5 d-flex justify-content-between align-items-center">
+                    <div class="address">Associate UI Developer </div>
+                    <div class="text-muted h3"> Aug 2022 - Till now</div>
+                </div>
+                <div>Wolken Software Pvt Ltd</div>
+                <div class="intro3">
+                    <p>Here I worked on Task Management projects where I skillfully fixed bugs and introduced many features
+                        enhancements. For examples, worked on ,
+                        RoleBased - Read and write access on ITSM Modules,
+                        Introducing Email notification from SMS, slack and email to clients
+                        Checkbox and related functionalities on various modules of the ITSM project.
+                        Implemented server side pagination on role configuration tables ...etc
+            
+                    </p>
+                </div>
+                <div class="mt-5 d-flex justify-content-between align-items-center">
+                    <div class="address">Angular UI Developer - Intern </div>
+                    <div class="text-muted h3"> May 2022 - July 2022</div>
+                </div>
+                <div>Ninjacart Pvt Ltd</div>
+                <div class="intro3">
+                    <p>Ninjacart is an e-commerce-focused product based software company where I completed an internship, actively
+                        contributing to the enhancement of their proprietary web application by implementing diverse validation
+                        functionalities for form fields
+                    </p>
+                </div>
+                <div class="mt-5 d-flex justify-content-between align-items-center">
+                    <div class="address">Junior Web Developer </div>
+                    <div class="text-muted h3"> Sep 2021 - May 2022</div>
+                </div>
+                <div>Self-employed</div>
+                <div class="intro3">
+                    <p>As the beginner in web development, I joined to assist a Web developer to enhance UI pages with my skills like CSS3,
+                        Bootstrap 5, HTML5 and JavaScript . I worked on few webpages such as Gym Websites , Yoga Websites, Fashion Website,
+                        Food Websites
+                    </p>
+                </div>
+            </div>
+            <div *ngSwitchCase="4">
+                <div class="display display-exp mb-5"><strong>Technical Skills</strong></div>
+                <div class="address">Front End </div>
+                <ul>
+                    <li>Angular, Angular Material UI, CDK</li>
+                    <li>Typescript, JavaScript</li>
+                    <li>HTML5, CSS3, SCSS</li>
+                    <li>RxJS, Flex Layout, Ag Grid</li>
+                </ul>
+                <div class="address">Back End </div>
+                <ul>
+                    <li>.NET framework, ASP.NET </li>
+                    <li>C#, Ms SQL with SQL commands,</li>
+                    <li>Apps Script, Google Sheet Database</li>
+                    <li>API testing with Postman and swagger</li>
+                </ul>
+                <div class="address">Deployment Skills </div>
+                <ul>
+                    <li>Git Commands with Bitbucket and Github </li>
+                    <li>Debugging Skill and Error Handling </li>
+                    <li>Deploying to Netlify, GitHub Pages</li>
+                </ul>
+                <div class="address">Work Flow </div>
+                <ul>
+                    <li>Mobile-First, Responsive Design </li>
+                    <li>Cross Browser Testing & Debugging</li>
+                    <li>Cross Functional Teams</li>
+                    <li>Agile Development</li>
+                </ul>
+
+
+            </div>
+            <div *ngSwitchCase="5">
+                <ngb-carousel>
+                    <ng-template ngbSlide *ngFor="let image of certificatesImages">
+                        <div class="carousel-wrapper">
+                            <img class="carousel-image" [src]="image.name" [alt]="image.caption">
+                    
+                            <!-- <div class="caption">{{image.caption}}</div> -->
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+            <div *ngSwitchCase="6">Github Repositories</div>
+            <div *ngSwitchCase="8">Education</div>
+            <div *ngSwitchCase="7">Interests</div>
+            <div *ngSwitchDefault>
                 
-                As a dedicated full-stack developer, my passion lies in crafting captivating and user-friendly web applications. Join me
-                on a journey to create engaging digital experiences!"</p></div>
+                <div class="display mb-5"><strong> Jawaharlal Nehru Elumalai</strong></div>
+            <div class="address">Front End Developer, Aspiring Full Stack Developer </div>
+                <div class="intro3 intro-text"><p >With several years of expertise in the software industry, I am your trusted Angular developer. My skill set includes
+                    HTML, CSS, JavaScript, TypeScript, and proficient use of version control systems like Git, GitHub, and Bitbucket. What's
+                    more, I bring a strong backend knowledge with languages such as C#, PHP, and databases like MySQL and MS SQL.
+                    
+                    As a dedicated full-stack developer, my passion lies in crafting captivating and user-friendly web applications. Join me
+                    on a journey to create engaging digital experiences!"</p>
+                </div>
+                </div>
+          </div>
     </div>    
 </div>
 </div>

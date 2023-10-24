@@ -14,6 +14,7 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CodedocComponent } from './codedoc/codedoc.component';
+import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -35,7 +36,9 @@ import { CodedocComponent } from './codedoc/codedoc.component';
     SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    OverlayModule
+    OverlayModule,
+    NgbModule,
+    NgbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

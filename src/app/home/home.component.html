@@ -1,19 +1,24 @@
 <div class="banner-container">
-  <div class="stars-container">
-    <img class="banner-photo" src="../../assets/image/nehrimg.png" alt="Your photo">
-  </div>
-  <div class="intro">
-    <p class="intro1">Hi there! My name is Jawaharlal Nehru</p>
-    <p class="intro2">Unlock the Potential of Web Development with Me!</p>
-    
-    <div class="social-media-links">
-      <button mat-button color="warn" *ngFor="let media of socialMedia">
-        <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
-          <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="24px" alt="">
-          <span class="medianame">{{media.mediaName}}</span>
-        </a>
-      </button>
-     </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="stars-container col-12 d-sm-block">
+        <img class="banner-photo" src="../../assets/image/nehrimg.png" alt="Your photo">
+      </div>
+      <div class="intro col-12 col-sm-10">
+        <p class="intro1">Hi there! My name is Jawaharlal Nehru</p>
+        <p class="intro2">Unlock the Potential of Web Development with Me!</p>
+        
+        <div class="social-media-links">
+          <button mat-button color="warn" *ngFor="let media of socialMedia">
+            <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
+              <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="24px" alt="">
+              <span class="medianame">{{media.mediaName}}</span>
+            </a>
+          </button>
+         </div>
+      </div>
+
+    </div>
   </div>
 </div>
 <div class="wrapper">
