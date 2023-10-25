@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
     {id: 3, text: 'Experience'},
     {id: 4, text: 'Skills'},
     {id: 5, text: 'Certifications'},
-    {id: 6, text: 'Projects & Github'},
+    {id: 6, text: 'Github Repo & Output'},
     {id: 8, text: 'Education'},
     {id: 7, text: 'Interests'},
   ];
