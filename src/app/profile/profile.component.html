@@ -126,7 +126,57 @@
                     </ng-template>
                 </ngb-carousel>
             </div>
-            <div *ngSwitchCase="6">Github Repositories</div>
+            <div *ngSwitchCase="6">
+                <mat-tab-group>
+                    <mat-tab label="JSON API Projects"> 
+                        <div class="container mt-5">
+                            <ul>
+                                <li>Github Repository : <a class="text-decoration-none" href="https://github.com/jawaharlalnehru1988/bookapi" target="_blank">JSON APIs</a> </li>
+                                <li>Output on Githubpage : <a class="text-decoration-none" href="https://jawaharlalnehru1988.github.io/bookapi/country.json" target="_blank">Country Code and Flag</a></li>
+                            </ul>
+                            <h2>Project Description :</h2>
+                            <p>To achieve dynamic content rendering in my Angular applications, I harnessed the power of a JSON mock server,
+                                enabling the seamless generation of RESTful APIs. This not only simplifies CRUD operations but also enhances the
+                                flexibility of my applications. As the next step, I seamlessly deployed these JSON files to GitHub Pages, providing
+                                online accessibility to my applications. This approach empowers me to effortlessly integrate and utilize the JSON
+                                API across various platforms and scenarios.
+                            </p>
+                            <h2>Tools I have used:</h2>JSON Server, NPM packages, Git commands, github, Github page
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="ISKCON Kanyakumari"> 
+                        <div class="mt-5">
+                            <ul>
+                                <li>Github Repository : <a href="https://github.com/jawaharlalnehru1988/ram" class="text-decoration-none" target="_blank">Ram</a></li>
+                                <li>Output on Netlify : <a href="https://dazzling-cupcake-f2ff87.netlify.app"  class="text-decoration-none" target="_blank">Hare Krishna Tamil APP</a></li>
+                            </ul>
+                            <h2>Project Description :</h2>
+                            <p>
+                                Impressed by my web development proficiency, an administrative manager at ISKCON Kanyakumari commissioned me to create a
+                                website for their esteemed organization. I successfully delivered this project using Angular, applying my strong logical
+                                thinking and innovative problem-solving skills. Notably, I implemented a captivating counter app on one of the pages,
+                                enhancing the overall functionality and user experience.
+                            </p>
+                            <h2>Programming Languages and Tools I have used:</h2> Angular, TypeScript, HTML, CSS, GIT, Angular CLI, GitHub, Netlify
+                        </div>    
+                    </mat-tab>
+                    <mat-tab label="Old Portfolio"> 
+                        <div class="mt-5">
+                            <ul>
+                                <li>Github Repository : <a href="https://github.com/jawaharlalnehru1988/my-portfolio" class="text-decoration-none" target="_blank">My First Portfolio Repo</a></li>
+                                <li>Output on Github page : <a href="https://jawaharlalnehru1988.github.io/my-portfolio/" class="text-decoration-none" target="_blank">Portfolio Output</a></li>
+                            </ul>
+                            <h2>Project Description :</h2>
+                            <p>
+                                This project represents my maiden voyage into the world of web development, marking my debut in the field. As a
+                                newcomer, I embarked on my journey by acquiring proficiency in HTML and CSS. Leveraging these skills, I crafted my very
+                                first portfolio, which stands as a testament to my early achievements in web development.
+                            </p>
+                            <h2>Programming Languages and Tools I have used:</h2> Angular, TypeScript, JavaScript, RxJS, HTML, SCSS, GIT, Angular CLI, GitHub, Netlify
+                        </div>     
+                    </mat-tab>
+                  </mat-tab-group>
+            </div>
             <div *ngSwitchCase="8">Education</div>
             <div *ngSwitchCase="7">Interests</div>
             <div *ngSwitchDefault>
