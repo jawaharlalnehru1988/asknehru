@@ -95,7 +95,9 @@ this.routeValueSet();
           email: this.signUpForm.value.email,
           gender: this.signUpForm.value.gender,
           role: this.signUpForm.value.role,
-          isactive: this.signUpForm.value.isactive
+          isactive: this.signUpForm.value.isactive,
+          countryCode: this.signUpForm.value.countryCode,
+          mobile : this.signUpForm.value.mobile
         }]
       }
       this.service.postUser(formData).subscribe({
