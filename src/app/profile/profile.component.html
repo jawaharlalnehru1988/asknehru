@@ -2,7 +2,7 @@
     <div class="row">
         <div class="left-bar col-2 d-none d-sm-block">
             <div class="left-cont mt-5">
-                <img class="image-class mb-5" src="../../assets/image/nehru.png" alt="">
+                <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
                 <div class="navigator" *ngFor="let titles of tiles">
                     <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
                 </div>
@@ -12,10 +12,9 @@
     <div class="col-12 col-sm-10 main-content">
     <div class="detail-section">
         <div class="header-section">
-            <img class="image-class mb-5" src="../../assets/image/nehru.png" alt="">
+            <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
             <div class="navigator" *ngFor="let titles of tiles">
                 <button mat-button class="custom-button"> {{titles.text}}</button>
-                
             </div>
         </div>
         <div [ngSwitch]="condition">
@@ -36,7 +35,7 @@
                     <button mat-button color="warn" *ngFor="let media of socialMedia">
                         <a [href]="media.mediaLink" class="text-decoration-none" [attr.target]="'_blank'" [matTooltip]="media.mediaLink"
                             class="link-no-underline">
-                            <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="24px" alt="">
+                            <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="40px" alt="">
                             <span class="medianame">{{media.mediaName}}</span>
                         </a>
                     </button>
@@ -175,10 +174,60 @@
                             <h2>Programming Languages and Tools I have used:</h2> Angular, TypeScript, JavaScript, RxJS, HTML, SCSS, GIT, Angular CLI, GitHub, Netlify
                         </div>     
                     </mat-tab>
+                    <mat-tab label="Gym Website"> 
+                        <div class="mt-5">
+                            <ul>
+                                <li>Github Repository: <a href="https://github.com/jawaharlalnehru1988/gymwebpage" class="text-decoration-none" target="_blank">Gym Website Repo</a></li>
+                                <li>Output on Github page : <a href="https://jawaharlalnehru1988.github.io/gymwebpage/" class="text-decoration-none" target="_blank">Gym Website Output</a></li>
+                            </ul>
+                            <h2>Project Description :</h2>
+                            <p>
+                                I completed this project while making gradual progress in my web development journey. It's an advertising website
+                                focused on promoting gyms.
+                            </p>
+                            <h2>Programming Languages and Tools I have used:</h2> HTML, CSS, Bootstrap 5, GIT, GitHub, github Page
+                        </div>     
+                    </mat-tab>
+                    <mat-tab label="Food Website"> 
+                        <div class="mt-5">
+                            <ul>
+                                <li>Github Repository: <a href="https://github.com/jawaharlalnehru1988/food-website" class="text-decoration-none" target="_blank">Food Website Repo</a></li>
+                                <li>Output on Github page : <a href="https://jawaharlalnehru1988.github.io/food-website/" class="text-decoration-none" target="_blank">Food Website Output</a></li>
+                            </ul>
+                            <h2>Project Description :</h2>
+                            <p>
+                                I completed this project while making gradual progress in my web development journey. It's an advertising website
+                                focused on promoting gyms.
+                            </p>
+                            <h2>Programming Languages and Tools I have used:</h2> HTML, CSS, Bootstrap 5, GIT, GitHub, github Page
+                        </div>     
+                    </mat-tab>
                   </mat-tab-group>
             </div>
-            <div *ngSwitchCase="8">Education</div>
-            <div *ngSwitchCase="7">Interests</div>
+            <div *ngSwitchCase="7">
+                <div class="address mb-3 fs-2">Education</div>
+                <ul>
+                    <li class="fs-3">MSc Physics  - 79% - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
+                    <li class="fs-3">B. Sc Physics  - 78.4 % - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
+                    <li class="fs-3">12th - 76.2% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
+                    <li class="fs-3">SSLC - 78% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
+                </ul>
+            </div>
+            <div *ngSwitchCase="8">
+                <ul>
+                    <li>
+                        <h2>Download My Resume in PDF format  </h2>
+                        <img src="../../assets/image/pdflogo.png" width="28px" class="me-4" alt="image">
+                        <button mat-raised-button  color="primary" (click)="downloadPdf()">Download PDF</button>
+                    </li>
+                    <li class="mt-5">
+                        <h2>Download My Resume in word document format </h2>
+                        <img src="../../assets/image/doclogo.png" width="38px" class="me-3" alt="image"> 
+                        <button mat-raised-button color="primary" (click)="downloadDoc()">Download Docx</button>
+                    </li>
+                </ul>
+
+            </div>
             <div *ngSwitchDefault>
                 
                 <div class="display mb-5"><strong> Jawaharlal Nehru Elumalai</strong></div>

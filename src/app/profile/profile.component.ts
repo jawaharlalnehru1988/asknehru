@@ -16,8 +16,8 @@ export class ProfileComponent implements OnInit {
     {id: 4, text: 'Skills'},
     {id: 5, text: 'Certifications'},
     {id: 6, text: 'Github Repo & Output'},
-    {id: 8, text: 'Education'},
-    {id: 7, text: 'Interests'},
+    {id: 7, text: 'Education'},
+    {id: 8, text: 'Resume Download'},
   ];
 
   socialMedia = [{
@@ -64,5 +64,28 @@ certificatesImages: { name: string, caption: string }[]  = [
   console.log('titles :', titles);
   this.condition = titles;
 
+  }
+  downloadPdf() {
+    // Define the path to your PDF file in the assets folder
+    const pdfFilePath = 'assets/image/Jawaharlal.pdf';
+  
+    // Create an anchor element
+    const a = document.createElement('a');
+    a.href = pdfFilePath;
+    a.download = 'Jawaharlal_Resume.pdf';
+  
+    // Trigger a click event on the anchor element
+    const event = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+    a.dispatchEvent(event);
+  }
+  downloadDoc(){
+    const docFilePath = 'assets/image/Jawaharlal_Resume.docx';
+
+    const a = document.createElement('a');
+    a.href = docFilePath;
+    a.download = 'Jawaharlal_Resume.docx';
+
+    const event = new MouseEvent('click', {bubbles: true, cancelable: true, view: window});
+    a.dispatchEvent(event);
   }
 }
