@@ -5,6 +5,10 @@
 .main-space{
     background-color: #eef1f5;
 }
+.medianame{
+    font-size: 24px;
+    padding: 8px;
+}
 .left-cont{
     display: flex;
     flex-direction: column;
@@ -56,7 +60,7 @@
     flex-direction: column;
 }
 .display{
-    font-size: 64px;
+    font-size: 40px;
     color: rgb(62, 41, 2);
 }
 .address{
