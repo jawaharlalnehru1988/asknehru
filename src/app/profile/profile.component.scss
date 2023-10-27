@@ -111,11 +111,6 @@
     font-size: 24px;
     font-family: 'Saira Extra Condensed',serif;
     }
-    .experience-section{
-        height: 150px; /* Set a fixed height for your div to limit the scrollable area */
-        overflow-y: scroll;
-    }
-    
     .intro3{
      width: 90vw;
      margin: 11px;
@@ -129,6 +124,12 @@
     }
     .carousel-image{
         width: 92vw;
+    }
+    .social-media-links{
+        flex-direction: column !important;
+    }
+    .address{
+        text-align: center;
     }
   }
   @media screen and (min-width: 500px) {
