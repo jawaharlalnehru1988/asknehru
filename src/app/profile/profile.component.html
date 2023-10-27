@@ -14,7 +14,7 @@
         <div class="header-section">
             <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
             <div class="navigator" *ngFor="let titles of tiles">
-                <button mat-button class="custom-button"> {{titles.text}}</button>
+                <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
             </div>
         </div>
         <div [ngSwitch]="condition">
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div *ngSwitchCase="3" class="experience-section">
+            <div *ngSwitchCase="3">
                 <div class="display display-exp"><strong> Experience</strong></div>
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Associate UI Developer </div>
@@ -206,7 +206,7 @@
             </div>
             <div *ngSwitchCase="7">
                 <div class="address mb-3 fs-2">Education</div>
-                <ul>
+                <ul class="Education mb-5">
                     <li class="fs-3">MSc Physics  - 79% - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
                     <li class="fs-3">B. Sc Physics  - 78.4 % - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
                     <li class="fs-3">12th - 76.2% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
