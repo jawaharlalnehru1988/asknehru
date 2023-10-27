@@ -61,9 +61,7 @@ certificatesImages: { name: string, caption: string }[]  = [
   ngOnInit(): void {
   }
   profileTitle(titles:number){
-  console.log('titles :', titles);
   this.condition = titles;
-
   }
   downloadPdf() {
     // Define the path to your PDF file in the assets folder
