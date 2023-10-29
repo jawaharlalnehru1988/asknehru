@@ -47,9 +47,9 @@ projectData: Project[] =[
     routerLink: "/profile"
   },
   {
-    PName: "Code Documentation",
+    PName: "Blog for Code",
     PImage: "https://64.media.tumblr.com/064ec507f6eaaa47474fb2b8c785a258/tumblr_inline_pg37yqq3Pq1sliaqe_1280.png",
-    routerLink: "/codedoc"
+    routerLink: "/dsa"
   },
   {
     PName: "E-commerce",
