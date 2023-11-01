@@ -96,6 +96,10 @@
     .wrapper .item{
       min-width: 90vw !important;
     }
+    .wrapper {
+      height: 80vh !important;
+      flex-direction: column !important;
+    }
   }
   .image-container {
     display: flex;

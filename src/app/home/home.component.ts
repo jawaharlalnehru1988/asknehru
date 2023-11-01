@@ -47,30 +47,37 @@ projectData: Project[] =[
     routerLink: "/profile"
   },
   {
-    PName: "Code Documentation",
+    PName: "Javascript",
     PImage: "https://64.media.tumblr.com/064ec507f6eaaa47474fb2b8c785a258/tumblr_inline_pg37yqq3Pq1sliaqe_1280.png",
-    routerLink: "/codedoc"
+    routerLink: "/javascript"
+  },
+  {
+    PName: "Podcast for Softskill",
+    PImage: "assets/image/spotifymylogo.png",
+    routerLink: "/dsa"
   },
   {
     PName: "E-commerce",
     PImage : "https://img.freepik.com/free-psd/e-commerce-discounts-landing-page-template_23-2149965971.jpg",
     routerLink : "/ecommerce"
   },
-  {
-    PName: "Task Management",
-    PImage: "https://cdn.dribbble.com/users/7782319/screenshots/16958653/media/880d412eaaddbb8103c699410d34996c.png?resize=400x300&vertical=center",
-    routerLink: "/taskManagement"
-  },
-  {
-    PName: "To do List",
-    PImage: "https://d3h2k7ug3o5pb3.cloudfront.net/image/2020-12-14/d2480830-3df5-11eb-9513-43e7f40c9d54.jpg",
-    routerLink: "/toDoList"
-  },
-  {
-    PName: "Whether APP",
-    PImage: "https://t3.ftcdn.net/jpg/04/91/54/18/360_F_491541875_c0vIhFwHnRZvmRfJELvJxtSQbRDOwbGC.jpg",
-    routerLink: "/weatherapp"
-  }
+  // {
+  //   PName: "Task Management",
+  //   PImage: "https://cdn.dribbble.com/users/7782319/screenshots/16958653/media/880d412eaaddbb8103c699410d34996c.png?resize=400x300&vertical=center",
+  //   routerLink: "/taskManagement"
+  // },
+  // {
+  //   PName: "To do List",
+  //   PImage: "https://d3h2k7ug3o5pb3.cloudfront.net/image/2020-12-14/d2480830-3df5-11eb-9513-43e7f40c9d54.jpg",
+  //   routerLink: "/toDoList"
+  // },
+  // {
+  //   PName: "Whether APP",
+  //   PImage: "https://t3.ftcdn.net/jpg/04/91/54/18/360_F_491541875_c0vIhFwHnRZvmRfJELvJxtSQbRDOwbGC.jpg",
+  //   routerLink: "/weatherapp"
+  // },
+ 
+
 ]
   constructor(private api: ApiService) { }
 
