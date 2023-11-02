@@ -1,1 +1,39 @@
-<p>bootstrap works!</p>
+<div class="green-Tool">
+    <mat-toolbar>
+        <img class="logo" src="assets/image/GreenKart.png" alt="">
+            <mat-form-field class="example-form-field" appearance="outline">
+            <input placeholder="Search your item" matInput type="text">
+          </mat-form-field>
+        <button mat-button class="example-icon" aria-label="Example icon-button with share icon" 
+        (mouseenter)="isHovered = true" (mouseleave)="isHovered = false" [ngClass]="{'hover-primary': isHovered}">
+          
+          <mat-icon class="material-symbols-outlined">
+          person
+        </mat-icon> Sign In
+        </button>
+        <button mat-button class="example-icon" aria-label="Example icon-button with share icon">
+          
+          <mat-icon class="material-symbols-outlined">
+          shopping_cart
+        </mat-icon> Cart
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>notifications</mat-icon>
+            <span>Notifications</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voice mail</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+    </mat-toolbar>
+    
+</div>

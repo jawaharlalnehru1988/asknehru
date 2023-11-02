@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bootstrap.component.scss']
 })
 export class BootstrapComponent implements OnInit {
-
+  isHovered: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
