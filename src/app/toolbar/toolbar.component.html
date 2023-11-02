@@ -2,9 +2,9 @@
 
   <p>
     <mat-toolbar color="primary">
-      <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <!-- <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
-      </button>
+      </button> -->
       <span class="hide-on-small">AskNehru</span>
       <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
       <div [ngStyle]="{ 'visibility': initialName ? 'visible' : 'hidden' }">
@@ -21,9 +21,9 @@
       <button *ngIf="!isUserLoggedIn" (click)="loggedOut()" mat-button routerLink="">Log Out</button>
     </mat-toolbar>
   </p>
-  <mat-menu #menu="matMenu">
+  <!-- <mat-menu #menu="matMenu">
     <button mat-menu-item *ngFor="let course of courseName" [routerLink]="course.routerName" >{{course.title}}</button>
-  </mat-menu>
+  </mat-menu> -->
 
   
   <!-- This template displays the overlay content and is connected to the button -->
