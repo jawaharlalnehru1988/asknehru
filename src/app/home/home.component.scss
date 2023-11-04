@@ -141,6 +141,11 @@ border-radius: 4px;
 .wrapper::-webkit-scrollbar{
   width: 0;
 }
+.project-title{
+  margin-top: 25px;
+  color: beige;
+  border-top: 1px dotted;
+}
 .custom-mat-card {
   width: 100%; /* Match the width of the .item class */
   height: 100%; /* Match the height of the .item class */

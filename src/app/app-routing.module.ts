@@ -8,6 +8,7 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CodedocComponent } from './codedoc/codedoc.component';
+import { AutocompleteComponent } from './material/material/autocomplete/autocomplete.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -17,19 +18,20 @@ const routes: Routes = [
   {path: "toolbar", component: ToolbarComponent},
   {path: "profile", component: ProfileComponent},
   {path: "codedoc", component: CodedocComponent},
+  {path: "yoga", component: AutocompleteComponent},
   {path: "javascript", loadChildren: ()=>import('./javascript/javascript.module').then(m => m.JavascriptModule)},
   {path: "angular", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
   {path: "dsa", loadChildren: ()=>import('./dsa/dsa.module').then(m => m.DsaModule) },
   {path: 'html', loadChildren: ()=>import('./html/html.module').then(m=>m.HtmlModule)},
-  {path: 'css', loadChildren: ()=>import('./css/css.module').then(m=> m.CssModule)},
+  {path: 'gymwebpage', loadChildren: ()=>import('./css/css.module').then(m=> m.CssModule)},
   {path: 'ecommerce', loadChildren: ()=> import('./bootstrap/bootstrap.module').then(m=> m.BootstrapModule)},
   {path: 'typescript', loadChildren: ()=> import('./typescript/typescript.module').then(m => m.TypescriptModule)},
-  {path: 'materialAngular', loadChildren: ()=> import('./material/material.module').then(m => m.MaterialModule)},
-  {path: 'fxlayout', loadChildren: ()=> import('./fxlayout/fxlayout.module').then(m => m.FxlayoutModule)},
+  {path: 'fashion', loadChildren: ()=> import('./material/material.module').then(m => m.MaterialModule)},
+  {path: 'projectStudio', loadChildren: ()=> import('./fxlayout/fxlayout.module').then(m => m.FxlayoutModule)},
   {path: 'aggrid', loadChildren: ()=> import('./aggrid/aggrid.module').then(m=>m.AggridModule)},
-  {path: 'rxjs', loadChildren: ()=> import('./rxjs/rxjs.module').then(m => m.RxjsModule)},
-  {path: 'git', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
-  {path: 'karmajasmine', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},
+  {path: 'techexpert', loadChildren: ()=> import('./rxjs/rxjs.module').then(m => m.RxjsModule)},
+  {path: 'food', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
+  {path: 'productshop', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},
 ];
 
 @NgModule({

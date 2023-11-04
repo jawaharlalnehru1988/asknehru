@@ -6,17 +6,12 @@ import { KarmajasminService } from './karmajasmin.service';
   styleUrls: ['./karmajasmin.component.scss']
 })
 export class KarmajasminComponent implements OnInit {
-  result: number = 0;
 
   constructor(private kjservice: KarmajasminService) { }
 
   ngOnInit(): void {
    
   }
-  performAddition() {
-    const num1 = 5;
-    const num2 = 3;
-    this.result = num1 + num2;
-  }
+ 
 }
 

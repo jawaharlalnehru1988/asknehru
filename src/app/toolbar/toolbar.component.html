@@ -14,16 +14,16 @@
       </div>
       <!-- <button mat-mini-fab *ngIf="!isUserLoggedIn" (click)="openOverlay()" matTooltip="Profile">{{initialName}}</button> -->
       <span class="example-spacer"></span>
-      <button class="hide-on-small" mat-button routerLink="">Projects</button>
+      <button class="hide-on-small" mat-button [matMenuTriggerFor]="menu" >Projects</button>
       <button class="hide-on-small" *ngIf="isSuperAdmin" mat-button routerLink="/userlist">User's List</button>
       <button *ngIf="isUserLoggedIn" [disabled]="!loggedInTrue" mat-button routerLink="login">Login</button>
       <button *ngIf="isUserLoggedIn" [disabled]="signInTrue" mat-button routerLink="register">Sign Up</button>
       <button *ngIf="!isUserLoggedIn" (click)="loggedOut()" mat-button routerLink="">Log Out</button>
     </mat-toolbar>
   </p>
-  <!-- <mat-menu #menu="matMenu">
-    <button mat-menu-item *ngFor="let course of courseName" [routerLink]="course.routerName" >{{course.title}}</button>
-  </mat-menu> -->
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let project of ProjectList" [routerLink]="project.routerName" >{{project.title}}</button>
+  </mat-menu>
 
   
   <!-- This template displays the overlay content and is connected to the button -->
