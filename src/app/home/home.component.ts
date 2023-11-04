@@ -39,7 +39,43 @@ export class HomeComponent implements OnInit {
     mediaName: "+91 63820 43976"
   },
 ];
-
+staticWebData: Project[] = [
+  {
+    PName : "Gym website",
+    PImage :  "assets/image/gym.png",
+    routerLink: "/gymwebpage"
+  },
+  {
+    PName : "Yoga website",
+    PImage :  "assets/image/yoga.png",
+    routerLink: "/yoga"
+  },
+  {
+    PName : "Shop Products",
+    PImage :  "assets/image/shop.png",
+    routerLink: "/productshop"
+  },
+  {
+    PName : "Food website",
+    PImage :  "assets/image/food.png",
+    routerLink: "/food"
+  },
+  {
+    PName : "Tech Expert",
+    PImage :  "assets/image/tecxprt.png",
+    routerLink: "/techexpert"
+  },
+  {
+    PName : "Fashion website",
+    PImage :  "assets/image/fashion.png",
+    routerLink: "/fashion"
+  },
+  {
+    PName : "Project Studio",
+    PImage :  "assets/image/pjstudio.png",
+    routerLink: "/projectStudio"
+  },
+];
 projectData: Project[] =[
   {
     PName : "Portfolio",

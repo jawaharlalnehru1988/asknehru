@@ -27,7 +27,15 @@ export class ToolbarComponent implements OnInit {
   hide : boolean = true;
   isEditPwd: boolean = false;
   isEditEmail: boolean = false;
-
+  ProjectList = [
+    {title: "Gym Website", routerName: "gymwebpage"},
+    {title: "Yoga Website", routerName: "yoga"},
+    {title: "Shop Products", routerName: "productshop"},
+    {title: "Food Order", routerName: "food"},
+    {title: "Tech Experts", routerName: "techexpert"},
+    {title: "Fashion Collections", routerName: "fashion"},
+    {title: "project Studio", routerName: "projectStudio"},
+  ];
 
   constructor(private api: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private overlay: Overlay) { 
     this.api.getLoginData().subscribe((booleanValue) => {
