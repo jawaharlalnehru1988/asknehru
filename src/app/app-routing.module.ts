@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'typescript', loadChildren: ()=> import('./typescript/typescript.module').then(m => m.TypescriptModule)},
   {path: 'fashion', loadChildren: ()=> import('./material/material.module').then(m => m.MaterialModule)},
   {path: 'projectStudio', loadChildren: ()=> import('./fxlayout/fxlayout.module').then(m => m.FxlayoutModule)},
-  {path: 'aggrid', loadChildren: ()=> import('./aggrid/aggrid.module').then(m=>m.AggridModule)},
+  {path: 'harekrishna', loadChildren: ()=> import('./aggrid/aggrid.module').then(m=>m.AggridModule)},
   {path: 'techexpert', loadChildren: ()=> import('./rxjs/rxjs.module').then(m => m.RxjsModule)},
   {path: 'food', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
   {path: 'productshop', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},

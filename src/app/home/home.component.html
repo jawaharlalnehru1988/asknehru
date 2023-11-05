@@ -22,29 +22,80 @@
   </div>
 </div>
 <h1 class="project-title">My Dynamic Web Apps with Angular, Typescript, Bootstrap...etc.</h1>
-<div class="wrapper">
-  <div class="item" *ngFor="let info of projectData">
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col-md-4 " *ngFor="let info of projectData">
+  <div>
     <mat-card class="example-card custom-mat-card" [routerLink]="info.routerLink">
       <mat-card-header>
-        <mat-card-title>{{info.PName}}</mat-card-title>
+        <mat-card-title class="text-light p-4 pt-sm-4">{{info.PName}}</mat-card-title>
       </mat-card-header>
       <img mat-card-image class="mar-card-image" [src]="info.PImage" alt="Photo of a Shiba Inu">
+      <div>
+      <mat-card-content >
+      <p class="text-light p-3 p-sm-4">
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+      <button mat-raised-button color="primary">Visit the Page...</button>
+  </div>
     </mat-card>
   </div>
+  </div>
+  </div>
 </div>
-<h1 class="project-title">My Static Websites with simple HTML, CSS, Bootstrap</h1>
-<div class="wrapper">
-  <div class="item" *ngFor="let static of staticWebData">
+<h1 class="project-title">My Static Websites with simple HTML, CSS and Bootstrap</h1>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col-md-4 " *ngFor="let static of staticWebData">
+  <div>
     <mat-card class="example-card custom-mat-card" [routerLink]="static.routerLink">
       <mat-card-header>
-        <mat-card-title>{{static.PName}}</mat-card-title>
+        <mat-card-title class="text-light p-4 pt-sm-4">{{static.PName}}</mat-card-title>
       </mat-card-header>
       <img mat-card-image class="mar-card-image" [src]="static.PImage" alt="Photo of a Shiba Inu">
+      <div>
+      <mat-card-content >
+      <p class="text-light p-3 p-sm-4">
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+      <button mat-raised-button color="primary">Visit the Page...</button>
+  </div>
     </mat-card>
   </div>
+  </div>
+  </div>
 </div>
-
-  
+<h1 class="project-title">My Blogs, Podcasts, Articles</h1>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col-md-4 " *ngFor="let blog of blogArticleData">
+  <div>
+    <mat-card class="example-card custom-mat-card" [routerLink]="blog.routerLink">
+      <mat-card-header>
+        <mat-card-title class="text-light p-4 pt-sm-4">{{blog.PName}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image class="mar-card-image" [src]="blog.PImage" alt="Photo of a Shiba Inu">
+      <div>
+      <mat-card-content >
+      <p class="text-light p-3 p-sm-4">
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+        bred for hunting.
+      </p>
+    </mat-card-content>
+      <button mat-raised-button color="primary">Visit the Page...</button>
+  </div>
+    </mat-card>
+  </div>
+  </div>
+  </div>
+</div>
 <div *ngIf="isContentLoading" class="spinner-container">
   <mat-spinner color="accent" diameter="132" class="spinner"></mat-spinner>
   <span class="spinner-text">Loading Lessons...</span>
