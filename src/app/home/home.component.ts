@@ -5,6 +5,7 @@ export interface Project {
   PName: string;
   routerLink : string;
   PImage: string;
+  intro: string;
 }
 @Component({
   selector: 'app-home',
@@ -43,66 +44,77 @@ blogArticleData: Project[] = [
   {
     PName: "Javascript",
     PImage: "assets/image/javascript.png",
-    routerLink: "/javascript"
+    routerLink: "/javascript",
+    intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
     PName: "Podcast for Softskill",
     PImage: "assets/image/spotifymylogo.png",
-    routerLink: "/dsa"
+    routerLink: "/Podcast",
+    intro:"Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
 ]
 staticWebData: Project[] = [
   {
     PName : "Gym website",
     PImage :  "assets/image/gym.png",
-    routerLink: "/gymwebpage"
+    routerLink: "/gymwebpage",
+    intro:"Welcome to my gym website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
     PName : "Yoga website",
     PImage :  "assets/image/yoga.png",
-    routerLink: "/yoga"
+    routerLink: "/yoga",
+    intro:"Welcome to my yoga website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
     PName : "Shop Products",
     PImage :  "assets/image/shop.png",
-    routerLink: "/productshop"
+    routerLink: "/productshop",
+    intro:"Welcome to my Shopping website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
     PName : "Food website",
     PImage :  "assets/image/food.png",
-    routerLink: "/food"
+    routerLink: "/food",
+    intro:"Welcome to my food website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
     PName : "Tech Expert",
     PImage :  "assets/image/tecxprt.png",
-    routerLink: "/techexpert"
+    routerLink: "/techexpert",
+    intro:"Welcome to my Tech Expert website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
     PName : "Fashion website",
     PImage :  "assets/image/fashion.png",
-    routerLink: "/fashion"
+    routerLink: "/fashion",
+    intro:"Welcome to my fashion Product website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
     PName : "Project Studio",
     PImage :  "assets/image/pjstudio.png",
-    routerLink: "/projectStudio"
+    routerLink: "/projectStudio",
+    intro:"Welcome to my Project Studio website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
 ];
 projectData: Project[] =[
   {
     PName : "Portfolio",
     PImage :  "assets/image/portfolio.png",
-    routerLink: "/profile"
+    routerLink: "/profile",
+    intro: "Welcome to my portfolio website. I am Jawaharlal, a web developer who loves Angular. Here you can see my webpage I have created using TypeScript, HTML, CSS, and other technologies. I hope you enjoy my work and contact me for any inquiries."
   },
-  {
-    PName: "Client Hare Krishna",
-    PImage: "assets/image/goudiya.png",
-    routerLink: "/harekrishna"
-  },
+  // {
+  //   PName: "Client Hare Krishna",
+  //   PImage: "assets/image/goudiya.png",
+  //   routerLink: "/harekrishna"
+  // },
   {
     PName: "E-commerce",
     PImage : "https://img.freepik.com/free-psd/e-commerce-discounts-landing-page-template_23-2149965971.jpg",
-    routerLink : "/ecommerce"
+    routerLink : "/ecommerce",
+    intro:"Welcome to my ecommerce website. I am Jawaharlal, a web developer who loves Angular. Here you can find an online store I have built using TypeScript, HTML, CSS, and other technologies. I create ecommerce websites that are fast, secure, and user-friendly. I hope you like my work and feel free to contact me for any queries."
   },
 ]
   constructor(private api: ApiService) { }

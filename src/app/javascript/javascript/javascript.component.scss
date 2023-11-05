@@ -1,71 +1,9 @@
-.example-card {
-  max-width: 400px;
-  margin-bottom: 8px;
+.green-Tool{
+  margin-top: -6px !important;
+  height: 100vh;
 }
-.card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* default 3 columns for desktop */
-  grid-gap: 20px;
-}
-
-@media only screen and (max-width: 768px) {
-  /* for medium devices */
-  .card-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  /* for small devices */
-  .card-container {
-    grid-template-columns: 1fr;
-  }
-}
-.challenge {
-  border: 1px solid maroon;
-  padding-inline: 8px;
-  margin: 8px 0px;
-  border-radius: 8px;
-}
-.card {
-  background-color: #eace8b;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-}
-.card:hover{
-  background-color: azure;
-}
-.codeDetai{
-  background-color: black;
-  color: white;
-}
-li{
-    
-    font-size: 20px;
-    background-color: #edf3ef;
-    margin: 12px 0px;
-}
-
-.mat-primary {
-  color: blue;
-}
-
-.mat-warn {
-  color: red;
-}
-::ng-deep .mat-tab-labels {
-  display: flex;
-  border: 2px saddlebrown solid;
-}
-::ng-deep .mat-tab-label .mat-tab-label-content {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 8px 19px;
-  color: #180101;
-  font-size: 16px;
-  white-space: nowrap;
+iframe {
+width: 100%;
+height: 100%;
+border: 0; /* Remove iframe border */
 }
