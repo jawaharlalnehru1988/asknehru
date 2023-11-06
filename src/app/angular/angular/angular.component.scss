@@ -1,44 +1,9 @@
-.example-input-wrapper {
-    margin-bottom: 16px;
-  }
- 
-  label {
-    margin-right: 4px;
-  }
-  pre{
-    background-color: rgb(8, 0, 0);
-    color: white;
+.green-Tool{
+  margin-top: -6px !important;
+  height: 100vh;
 }
-  .example-card {
-    max-width: 400px;
-    margin-bottom: 8px;
-  }
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* default 3 columns for desktop */
-    grid-gap: 20px;
-  }
- 
-  @media only screen and (max-width: 768px) {
-    /* for medium devices */
-    .card-container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
- 
-  @media only screen and (max-width: 576px) {
-    /* for small devices */
-    .card-container {
-      grid-template-columns: 1fr;
-    }
-  }
- 
-  .card {
-    background-color: #6cc9b1;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-  }
-  .card:hover{
-    background-color: azure;
-  }
+iframe {
+width: 100%;
+height: 100%;
+border: 0; /* Remove iframe border */
+}
