@@ -9,6 +9,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CodedocComponent } from './codedoc/codedoc.component';
 import { AutocompleteComponent } from './material/material/autocomplete/autocomplete.component';
+import { JsDetailsComponent } from './javascript/js-details/js-details.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path: "codedoc", component: CodedocComponent},
   {path: "yoga", component: AutocompleteComponent},
   {path: "javascript", loadChildren: ()=>import('./javascript/javascript.module').then(m => m.JavascriptModule)},
-  {path: "angular", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
+  {path: "dsa", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
   {path: "Podcast", loadChildren: ()=>import('./dsa/dsa.module').then(m => m.DsaModule) },
   {path: 'html', loadChildren: ()=>import('./html/html.module').then(m=>m.HtmlModule)},
   {path: 'gymwebpage', loadChildren: ()=>import('./css/css.module').then(m=> m.CssModule)},

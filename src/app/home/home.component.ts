@@ -42,9 +42,15 @@ export class HomeComponent implements OnInit {
 ];
 blogArticleData: Project[] = [
   {
-    PName: "Javascript",
+    PName: "Javascript Core",
     PImage: "assets/image/javascript.png",
     routerLink: "/javascript",
+    intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
+  },
+  {
+    PName: "DSA with JS",
+    PImage: "assets/image/dsa.png",
+    routerLink: "/dsa",
     intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
