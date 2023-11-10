@@ -26,6 +26,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/_redirects",
+              "src/netlify.toml",
               {
                 "glob": "**/*",
                 "input": "node_modules/bootstrap/dist/css",
