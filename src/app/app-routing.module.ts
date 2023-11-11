@@ -12,7 +12,6 @@ import { AutocompleteComponent } from './material/material/autocomplete/autocomp
 import { JsDetailsComponent } from './javascript/js-details/js-details.component';
 
 const routes: Routes = [
-  {path: "", component: HomeComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "userlist", component: UserlistComponent},
@@ -33,6 +32,8 @@ const routes: Routes = [
   {path: 'techexpert', loadChildren: ()=> import('./rxjs/rxjs.module').then(m => m.RxjsModule)},
   {path: 'food', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
   {path: 'productshop', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},
+  {path: "", component: HomeComponent},
+  {path: '**', redirectTo: "" }
 ];
 
 @NgModule({
