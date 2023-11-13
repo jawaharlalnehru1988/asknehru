@@ -20,8 +20,8 @@ const routes: Routes = [
   {path: "codedoc", component: CodedocComponent},
   {path: "yoga", component: AutocompleteComponent},
   {path: "javascript", loadChildren: ()=>import('./javascript/javascript.module').then(m => m.JavascriptModule)},
-  {path: "dsa", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
-  {path: "Podcast", loadChildren: ()=>import('./dsa/dsa.module').then(m => m.DsaModule) },
+  {path: "angular", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
+  {path: "dsa", loadChildren: ()=>import('./dsa/dsa.module').then(m => m.DsaModule) },
   {path: 'html', loadChildren: ()=>import('./html/html.module').then(m=>m.HtmlModule)},
   {path: 'gymwebpage', loadChildren: ()=>import('./css/css.module').then(m=> m.CssModule)},
   {path: 'ecommerce', loadChildren: ()=> import('./bootstrap/bootstrap.module').then(m=> m.BootstrapModule)},
@@ -32,6 +32,7 @@ const routes: Routes = [
   {path: 'techexpert', loadChildren: ()=> import('./rxjs/rxjs.module').then(m => m.RxjsModule)},
   {path: 'food', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
   {path: 'productshop', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},
+  {path: "spotify", loadChildren: ()=> import('./spotify/spotify/spotify.module').then(m => m.SpotifyModule)},
   {path: "", component: HomeComponent},
   {path: '**', redirectTo: "" }
 ];
