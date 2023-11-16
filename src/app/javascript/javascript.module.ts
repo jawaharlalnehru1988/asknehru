@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { JavascriptRoutingModule } from './javascript-routing.module';
 import { JavascriptComponent } from './javascript/javascript.component';
-import { JsDetailsComponent } from './js-details/js-details.component'; 
 import { SharedModule } from '../shared/shared/shared.module';
+import { JscoreComponent } from './jscomponents/jscore/jscore.component';
+import { TrickyjsComponent } from './jscomponents/trickyjs/trickyjs.component';
+import { VideojsComponent } from './jscomponents/videojs/videojs.component';
 @NgModule({
   declarations: [
     JavascriptComponent,
-    JsDetailsComponent  ],
+    JscoreComponent,
+    TrickyjsComponent,
+    VideojsComponent  ],
   imports: [
     SharedModule,
     JavascriptRoutingModule

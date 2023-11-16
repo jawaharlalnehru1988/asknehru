@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { JavascriptComponent } from './javascript/javascript.component';
-import { JsDetailsComponent } from './js-details/js-details.component';
+import { JscoreComponent } from './jscomponents/jscore/jscore.component';
+import { TrickyjsComponent } from './jscomponents/trickyjs/trickyjs.component';
+import { VideojsComponent } from './jscomponents/videojs/videojs.component';
 
 const routes: Routes = [
   {path: "", component: JavascriptComponent},
-  {path:'js-details/:id', component:JsDetailsComponent}
+  {path: "jscore", component: JscoreComponent},
+  {path: "trickyjs", component: TrickyjsComponent},
+  {path: "videojs", component: VideojsComponent}
 ];
 
 @NgModule({
