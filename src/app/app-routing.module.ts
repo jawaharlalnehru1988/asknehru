@@ -9,7 +9,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CodedocComponent } from './codedoc/codedoc.component';
 import { AutocompleteComponent } from './material/material/autocomplete/autocomplete.component';
-import { JsDetailsComponent } from './javascript/js-details/js-details.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
