@@ -7,7 +7,6 @@
       <div class="intro col-9">
         <p class="intro1">Hi there! My name is Jawaharlal Nehru</p>
         <p class="intro2">Unlock the Potential of Web Development with Me!</p>
-        
         <div class="social-media-links">
           <button mat-button color="warn" *ngFor="let media of socialMedia">
             <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
@@ -17,7 +16,6 @@
           </button>
          </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -90,7 +88,4 @@
   </div>
   </div>
 </div>
-<div *ngIf="isContentLoading" class="spinner-container">
-  <mat-spinner color="accent" diameter="132" class="spinner"></mat-spinner>
-  <span class="spinner-text">Loading Lessons...</span>
-</div>
+

@@ -1,3 +1,16 @@
-<div class="green-Tool">
+<!-- <div class="green-Tool">
     <iframe src="https://docs.google.com/document/d/1m_KSXON2QYH-NTU0REVR0Kmuk77MaGqpp_2Y40-yDUY/edit?usp=sharing" frameborder="0"></iframe>
+  </div> -->
+
+  <div class="green-Tool">
+    <div *ngIf="!iframeLoaded" class="loader-container">      
+      <mat-progress-bar mode="query"></mat-progress-bar> <div class="loading">Loading...</div>
+    </div>
+    <iframe
+    
+      src="https://docs.google.com/document/d/1m_KSXON2QYH-NTU0REVR0Kmuk77MaGqpp_2Y40-yDUY/edit?usp=sharing"
+      frameborder="0"
+      (load)="onIframeLoad()">
+    </iframe>
   </div>
+  
