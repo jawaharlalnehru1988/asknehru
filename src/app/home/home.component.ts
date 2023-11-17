@@ -54,7 +54,7 @@ blogArticleData: Project[] = [
     intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName: "Podcast for Softskill",
+    PName: "Audios/Videos",
     PImage: "assets/image/spotifymylogo.png",
     routerLink: "/spotify",
     intro:"Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."

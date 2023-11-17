@@ -16,7 +16,7 @@ export class JavascriptComponent implements OnInit {
   blogArticleData: Project[] = [
     {
       PName: "Javascript Core",
-      PImage: "assets/image/jscore.png",
+      PImage: "assets/image/videojs.png",
       routerLink: "/javascript/jscore",
       intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
     },
@@ -26,12 +26,12 @@ export class JavascriptComponent implements OnInit {
       routerLink: "/javascript/trickyjs",
       intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
     },
-    {
-      PName: "Video Lessons",
-      PImage: "assets/image/videojs.png",
-      routerLink: "/javascript/videojs",
-      intro:"Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
-    },
+    // {
+    //   PName: "Audio/Video",
+    //   PImage: "assets/image/videojs.png",
+    //   routerLink: "/javascript/videojs",
+    //   intro:"Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
+    // },
   ]
 constructor() { }
 
