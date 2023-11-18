@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared/shared.module';
 import { JscoreComponent } from './jscomponents/jscore/jscore.component';
 import { TrickyjsComponent } from './jscomponents/trickyjs/trickyjs.component';
 import { VideojsComponent } from './jscomponents/videojs/videojs.component';
+import { JsaudioComponent } from './jscomponents/jsaudio/jsaudio.component';
 // import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
@@ -12,7 +13,8 @@ import { VideojsComponent } from './jscomponents/videojs/videojs.component';
     JavascriptComponent,
     JscoreComponent,
     TrickyjsComponent,
-    VideojsComponent  ],
+    VideojsComponent,
+    JsaudioComponent  ],
   imports: [
     SharedModule,
     JavascriptRoutingModule

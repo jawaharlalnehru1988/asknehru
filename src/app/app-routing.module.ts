@@ -32,6 +32,7 @@ const routes: Routes = [
   {path: 'food', loadChildren: ()=>import('./git/git/git.module').then(m => m.GitModule)},
   {path: 'productshop', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},
   {path: "spotify", loadChildren: ()=> import('./spotify/spotify/spotify.module').then(m => m.SpotifyModule)},
+  {path: "audiovideo", loadChildren: ()=>import('./audiovideo/audiovideo.module').then(m => m.AudiovideoModule)},
   {path: "", component: HomeComponent},
   {path: '**', redirectTo: "" }
 ];

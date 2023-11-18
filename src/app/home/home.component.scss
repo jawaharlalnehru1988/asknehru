@@ -12,7 +12,7 @@
   }
   .example-card .mar-card-image {
     text-align: center; /* Center-align the card title */
-    min-height: 90%;
+    height: 33vh;
     min-width: 100%;
   }
   .example-card:hover{
@@ -121,6 +121,9 @@
     .wrapper {
       height: 80vh !important;
       flex-direction: column !important;
+    }
+    .example-card .mar-card-image {
+      height: 30vh;
     }
   }
   .image-container {

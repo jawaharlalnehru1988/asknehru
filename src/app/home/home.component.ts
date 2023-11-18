@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 blogArticleData: Project[] = [
   {
     PName: "Javascript Core",
-    PImage: "assets/image/jscore.png",
+    PImage: "assets/image/videojs.png",
     routerLink: "/javascript",
     intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
@@ -55,8 +55,8 @@ blogArticleData: Project[] = [
   },
   {
     PName: "Audios/Videos",
-    PImage: "assets/image/spotifymylogo.png",
-    routerLink: "/spotify",
+    PImage: "assets/image/podcastbanner.png",
+    routerLink: "/audiovideo",
     intro:"Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
 ]
