@@ -57,7 +57,7 @@ blogArticleData: Project[] = [
     PName: "Audios/Videos",
     PImage: "assets/image/podcastbanner.png",
     routerLink: "/audiovideo",
-    intro:"Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
+    intro:"Welcome to my podcast website. Here you can find audio tutorials I have recorded for you by which you can learn programming, that are really inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
 ]
 staticWebData: Project[] = [
@@ -116,12 +116,12 @@ projectData: Project[] =[
   //   PImage: "assets/image/goudiya.png",
   //   routerLink: "/harekrishna"
   // },
-  {
-    PName: "E-commerce",
-    PImage : "https://img.freepik.com/free-psd/e-commerce-discounts-landing-page-template_23-2149965971.jpg",
-    routerLink : "/ecommerce",
-    intro:"Welcome to my ecommerce website. I am Jawaharlal, a web developer who loves Angular. Here you can find an online store I have built using TypeScript, HTML, CSS, and other technologies. I create ecommerce websites that are fast, secure, and user-friendly. I hope you like my work and feel free to contact me for any queries."
-  },
+  // {
+  //   PName: "E-commerce",
+  //   PImage : "https://img.freepik.com/free-psd/e-commerce-discounts-landing-page-template_23-2149965971.jpg",
+  //   routerLink : "/ecommerce",
+  //   intro:"Welcome to my ecommerce website. I am Jawaharlal, a web developer who loves Angular. Here you can find an online store I have built using TypeScript, HTML, CSS, and other technologies. I create ecommerce websites that are fast, secure, and user-friendly. I hope you like my work and feel free to contact me for any queries."
+  // },
 ]
   constructor(private api: ApiService) { }
 

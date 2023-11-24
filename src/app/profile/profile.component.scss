@@ -9,6 +9,10 @@
     font-size: 24px;
     padding: 8px;
 }
+.experience-body{
+    overflow-y: scroll; /* This will add a vertical scrollbar */
+    height: 100vh;
+}
 .Education{
     line-height: 28px;
 }

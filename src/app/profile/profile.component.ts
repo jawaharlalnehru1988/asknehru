@@ -65,7 +65,7 @@ certificatesImages: { name: string, caption: string }[]  = [
   }
   downloadPdf() {
     // Define the path to your PDF file in the assets folder
-    const pdfFilePath = 'assets/image/Jawaharlal.pdf';
+    const pdfFilePath = 'assets/image/Jawaharlalnehru_resumePdf.pdf';
   
     // Create an anchor element
     const a = document.createElement('a');
@@ -77,7 +77,7 @@ certificatesImages: { name: string, caption: string }[]  = [
     a.dispatchEvent(event);
   }
   downloadDoc(){
-    const docFilePath = 'assets/image/Jawaharlal_Resume.docx';
+    const docFilePath = 'assets/image/Jawaharlalnehru_resume.docx';
 
     const a = document.createElement('a');
     a.href = docFilePath;
