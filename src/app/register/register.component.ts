@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as intlTelInput from 'intl-tel-input';
@@ -20,16 +20,15 @@ export class RegisterComponent implements OnInit {
     this.service.setSignUpData(true);
         this.signUpForm = this.formBuilder.group({
       id:[""],
-      name: ["", Validators.required],
+      name: ["", Validators.required, Validators.minLength(3), Validators.maxLength(25)],
       password : ["", Validators.required],
-      email:[""],
+      email:["", Validators.pattern(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)],
       gender:[""],
       role:[""],
       isactive:[""],
       countryCode : [""],
       mobile: [""]
     });
-    const country = new FormControl();
 this.routeValueSet();
   }
   ngAfterViewInit(){

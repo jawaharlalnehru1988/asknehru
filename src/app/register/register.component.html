@@ -13,7 +13,12 @@
                 <mat-form-field appearance="outline">
                     <mat-label>User name</mat-label>
                     <input matInput type="text" formControlName="name">
-                </mat-form-field>
+                  </mat-form-field>
+                  <div class="text-danger" *ngIf="signUpForm.get('name')?.touched && signUpForm.get('name')?.invalid">
+                    <div *ngIf="signUpForm.get('name')?.hasError('required')">User name is required</div>
+                    <div *ngIf="signUpForm.get('name')?.hasError('minlength')">Minimum 3 characters required</div>
+                    <div *ngIf="signUpForm.get('name')?.hasError('maxlength')">Maximum 25 characters only allowed</div>
+                  </div> 
             </div>
             <div>
                 <mat-form-field appearance="outline">
@@ -26,13 +31,13 @@
                     <mat-label>Email</mat-label>
                     <input matInput type="email" formControlName="email">
                 </mat-form-field>
+                <div class="text-danger" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.hasError('pattern')">Please enter a Valid email</div>
             </div>
             <div>Gender
                 <mat-radio-group aria-label="Select an option" formControlName="gender">
                     <mat-radio-button value="Male">Male</mat-radio-button>
                     <mat-radio-button value="Female">Female</mat-radio-button>
-                    <mat-radio-button value="notTosay">Prefer Not to Say</mat-radio-button>
-                  </mat-radio-group>
+                </mat-radio-group>
             </div>
             <div>
                 <mat-form-field appearance="outline">
@@ -51,32 +56,38 @@
                 <mat-radio-group aria-label="Select an option" formControlName="isactive">
                     <mat-radio-button value="yes">Yes</mat-radio-button> 
                     <mat-radio-button value="no">No</mat-radio-button>
-                  </mat-radio-group>
+                </mat-radio-group>
             </div>
-            </div>
-            
+        </div>
+        
         <ng-template #nonAdminContent>
-
-        <div class="username">
-            <mat-form-field appearance="outline">
-                <mat-label>User name</mat-label>
-                <input matInput type="text" formControlName="name">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="email">
-            </mat-form-field>
-        </div>
-        <div class="countryCode">
-            <mat-form-field id="countryCode" appearance="outline">
+            
+            <div class="username">
+                <mat-form-field appearance="outline">
+                    <mat-label>User name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                  </mat-form-field>
+                  <div class="text-danger" *ngIf="signUpForm.get('name')?.touched && signUpForm.get('name')?.invalid">
+                    <div *ngIf="signUpForm.get('name')?.hasError('required')">User name is required</div>
+                    <div *ngIf="signUpForm.get('name')?.hasError('minlength')">Minimum 3 characters required</div>
+                    <div *ngIf="signUpForm.get('name')?.hasError('maxlength')">Maximum 25 characters only allowed</div>
+                  </div>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email">
+                </mat-form-field>
+                <div class="text-danger" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.hasError('pattern')">Please enter a Valid email</div>
+            </div>
+            <div class="countryCode">
+                <mat-form-field id="countryCode" appearance="outline">
                 <input matInput type="tel" #phone formControlName="countryCode" />
             </mat-form-field>
             <mat-form-field appearance="outline">
