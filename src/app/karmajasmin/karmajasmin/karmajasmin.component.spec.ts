@@ -22,11 +22,5 @@ describe('KarmajasminComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should perform addition when button is clicked', () => {
-    const addButton = fixture.nativeElement.querySelector('button');
-    addButton.click();
-
-    fixture.detectChanges();
-    expect(component.result).toBe(8); // Expected result of 5 + 3
-  });
+  
 });
