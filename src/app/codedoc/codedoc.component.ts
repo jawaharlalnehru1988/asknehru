@@ -18,7 +18,6 @@ export class CodedocComponent implements OnInit {
     this.isContentLoading = true;
     this.api.getCourses().subscribe({
       next: (res)=>{
-        
         this.isContentLoading = false;
         this.courseDetails = res.courses;  
       },
