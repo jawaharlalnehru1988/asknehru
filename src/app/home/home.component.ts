@@ -7,6 +7,13 @@ export interface Project {
   PImage: string;
   intro: string;
 }
+
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -122,12 +129,54 @@ projectData: Project[] =[
   //   routerLink : "/ecommerce",
   //   intro:"Welcome to my ecommerce website. I am Jawaharlal, a web developer who loves Angular. Here you can find an online store I have built using TypeScript, HTML, CSS, and other technologies. I create ecommerce websites that are fast, secure, and user-friendly. I hope you like my work and feel free to contact me for any queries."
   // },
-]
-  constructor(private api: ApiService) { }
+];
 
+  constructor(private api: ApiService) { }
+  labelPosition = 'now';
+  checked= false;
+  indeterminate = false;
+  beans : boolean = false;
+  Carrot : boolean = false;
+  Beetroot : boolean = false;
+  apple : boolean = false;
+  itemsq: { name: string, checked: boolean }[] = [
+    { name: 'Beans', checked: false },
+    { name: 'Carrot', checked: false },
+    { name: 'Beet Root', checked: false },
+    { name: 'Apple', checked: false },
+  ];
+  items: string[] = ['ram', 'krishna' , 'govinda']
+  fontStyle?: string;
+  isConditionTrue : boolean = true;
+  items1 = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 30,
+    country: 'USA',
+  };
+
+  categories = [
+    {
+      name: 'Fruits',
+      items: ['Apple', 'Banana', 'Orange'],
+    },
+    {
+      name: 'Vegetables',
+      items: ['Carrot', 'Broccoli', 'Spinach'],
+    },
+    {
+      name: 'Dairy',
+      items: ['Milk', 'Cheese', 'Yogurt'],
+    },
+  ];
   ngOnInit() {
     
+    
     this.api.setLoginData(true);
+    this.api.fetchData().subscribe(data => {
+      // Handle API response
+      console.log(data);
+    });
   }
 
 }

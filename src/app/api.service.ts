@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -71,5 +72,19 @@ setSignUpData(data: boolean){
   }
   getSignUpData(){
     return this.signUpSubject.asObservable();
+  }
+
+  fetchData(): Observable<any> {
+    const startTime = performance.now();
+    const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1'; // Example endpoint
+
+    return this.http.get(apiUrl).pipe(
+      tap(response => {
+        const endTime = performance.now();
+        const loadingTime = endTime - startTime;
+
+        console.log(`API loaded in ${loadingTime} milliseconds`);
+      })
+    );
   }
 }
