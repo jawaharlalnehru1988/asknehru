@@ -19,21 +19,6 @@
     </div>
   </div>
 </div>
-
-<div class="container">
-  <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
-    <div>
-      <mat-form-field>
-        <mat-label>First Name</mat-label>
-        <input type="text" matInput formControlName="firstName">
-        <mat-error *ngIf="loginForm.get('firstName')?.hasError('required')">This field should not be empty</mat-error>
-        <mat-hint *ngIf="minValidate"  color="warn">*Minimum characters 3 is required</mat-hint>
-        <mat-hint *ngIf="patternValidata" color="warn">*Invalid input; contains characters other than uppercase and lowercase letters.</mat-hint>
-      </mat-form-field>
-    </div>
-    <button type="submit" mat-raised-button>Submit</button>
-  </form>
-</div>
 <h1 class="project-title">My Dynamic Web Apps with Angular, Typescript, Bootstrap...etc.</h1>
 <div class="container">
   <div class="space-even row row-cols-1 row-cols-md-3 g-4">
