@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface Project {
   PName: string;
@@ -130,8 +131,14 @@ projectData: Project[] =[
   //   intro:"Welcome to my ecommerce website. I am Jawaharlal, a web developer who loves Angular. Here you can find an online store I have built using TypeScript, HTML, CSS, and other technologies. I create ecommerce websites that are fast, secure, and user-friendly. I hope you like my work and feel free to contact me for any queries."
   // },
 ];
-
-  constructor(private api: ApiService) { }
+loginForm!:FormGroup;
+  minValidate: boolean = false;
+  patternValidata: boolean = false;
+  constructor(private api: ApiService, private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      firstName: ["", Validators.required]
+    })
+   }
   labelPosition = 'now';
   checked= false;
   indeterminate = false;
@@ -177,6 +184,20 @@ projectData: Project[] =[
       // Handle API response
       console.log(data);
     });
-  }
 
+    this.loginForm.get('firstName')?.valueChanges.subscribe((res: any) => {
+      const resValue = res;
+      console.log('resValue :', resValue);
+      this.minValidate = resValue.length < 3;
+      this.patternValidata = !/^[a-zA-Z\s]+$/.test(resValue);
+    });
+    
+  }
+  OnSubmit(){
+   if ( this.loginForm.value) {
+   console.log('this.loginForm.value :', this.loginForm.value);
+    
+   }
+  }
+  
 }
