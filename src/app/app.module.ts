@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CodedocComponent } from './codedoc/codedoc.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -38,9 +38,11 @@ import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     OverlayModule,
     NgbModule,
+    MatMenuModule,
     NgbCarouselModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
