@@ -5,14 +5,11 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ProfileComponent } from '../profile/profile.component';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatMenu } from '@angular/material/menu';
-
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
-  imports:[MatMenu]
 })
 export class ToolbarComponent implements OnInit {
   showFiller = false;
