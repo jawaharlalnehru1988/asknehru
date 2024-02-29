@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Overlay } from '@angular/cdk/overlay';
 import { ToolbarComponent } from './toolbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../api.service';
