@@ -58,7 +58,6 @@ export class ToolbarComponent implements OnInit {
     });
     this.route.queryParams.subscribe(params => {
       this.loggedInUser();
-      const param1 = params['loggedInUser'];
     });
     this.api.getCourses().subscribe({
       next: (res) => {
@@ -97,7 +96,7 @@ getObjectKeys() {
   return Object.keys(this.loggedInUserData);
 }
 checkIfSuperAdmin(loggedInUserData: any) {
-  this.isSuperAdmin = loggedInUserData && loggedInUserData.role === "Super Admin" ? true : false;
+  this.isSuperAdmin = !!(loggedInUserData && loggedInUserData.role === "Super Admin");
 }
    getInitials(name : string) {
     // Split the name by spaces

@@ -2,9 +2,6 @@
 
   <p>
     <mat-toolbar color="primary">
-      <!-- <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button> -->
       <span class="hide-on-small">AskNehru</span>
       <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
       <div [ngStyle]="{ 'visibility': initialName ? 'visible' : 'hidden' }">
@@ -12,7 +9,6 @@
           {{initialName}}
         </button>
       </div>
-      <!-- <button mat-mini-fab *ngIf="!isUserLoggedIn" (click)="openOverlay()" matTooltip="Profile">{{initialName}}</button> -->
       <span class="example-spacer"></span>
       <button class="hide-on-small" mat-button [matMenuTriggerFor]="menu" >Projects</button>
       <button class="hide-on-small" *ngIf="isSuperAdmin" mat-button routerLink="/userlist">User's List</button>
