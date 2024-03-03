@@ -119,11 +119,12 @@ projectData: Project[] =[
     routerLink: "/profile",
     intro: "Welcome to my portfolio website. I am Jawaharlal, a web developer who loves Angular. Here you can see my webpage I have created using TypeScript, HTML, CSS, and other technologies. I hope you enjoy my work and contact me for any inquiries."
   },
-  // {
-  //   PName: "Client Hare Krishna",
-  //   PImage: "assets/image/goudiya.png",
-  //   routerLink: "/harekrishna"
-  // },
+  {
+    PName: "Articles/Essays",
+    PImage: "assets/image/dsacommon.png",
+    routerLink: "/dsa",
+    intro: "Articles Related to DSA, Angular, Unit Testing, Java, Springboot, and other tech stacks. Enjoy reading my articles and share your thoughts"
+  },
   // {
   //   PName: "E-commerce",
   //   PImage : "https://img.freepik.com/free-psd/e-commerce-discounts-landing-page-template_23-2149965971.jpg",
