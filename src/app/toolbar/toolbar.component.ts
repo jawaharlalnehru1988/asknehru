@@ -123,16 +123,16 @@ checkIfSuperAdmin(loggedInUserData: any) {
       this.onUpdateData(signValue.id, signValue);
     }
   onUpdateData(id: number, updateData: any) {
-      this.api.updateData(id, updateData).subscribe(
-        (response) => {
+      this.api.updateData(id, updateData).subscribe( {next:(
+        response:any) => {
           this.signUpForm.reset();
           alert('Data updated successfully:');
           this.isOpen = false;
-        },
-        (error) => {
+        }, error: (error)=>{
           console.error('Error updating data:', error);
           alert('Error updating data');
         }
+      }
       );
     }
 
