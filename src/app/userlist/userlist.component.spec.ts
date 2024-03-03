@@ -1,30 +1,4 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-// import { UserlistComponent } from './userlist.component';
-// import { HttpClientModule } from '@angular/common/http';
-
-// fdescribe('UserlistComponent', () => {
-//   let component: UserlistComponent;
-//   let fixture: ComponentFixture<UserlistComponent>;
-
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [ UserlistComponent ],
-//       imports: [HttpClientModule]
-//     })
-//     .compileComponents();
-
-//     fixture = TestBed.createComponent(UserlistComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
-
-import { ComponentFixture, TestBed, inject, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { UserlistComponent } from './userlist.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
