@@ -122,8 +122,8 @@ projectData: Project[] =[
   {
     PName: "Articles/Essays",
     PImage: "assets/image/dsacommon.png",
-    routerLink: "/dsa",
-    intro: "Articles Related to DSA, Angular, Unit Testing, Java, Springboot, and other tech stacks. Enjoy reading my articles and share your thoughts"
+    routerLink: "/articles",
+    intro: "Explore articles covering Data Structures, Algorithms, prominent Angular features, Unit Testing, Java Spring Boot REST APIs, and various other technology stacks. Dive into these topics, enjoy the read, and feel free to share your thoughts."
   },
   // {
   //   PName: "E-commerce",
