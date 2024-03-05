@@ -5,7 +5,7 @@
             <p>Intro to DSA?</p>
         </div>
         <div>
-            <button mat-raised-button class="full-width-button">Jasmine Articles</button>
+            <button mat-raised-button class="full-width-button">APP Security Best Practices</button>
         </div>
         <div>
             <button mat-raised-button class="full-width-button">Full stack Articles</button>
@@ -54,6 +54,80 @@
         </div>
         <!-- Dsa Intro ends -->
 
+        <div class="container">
+            <article>
+                <h1>Optimal Session Management for Web Applications</h1>
+        
+                <p>One crucial aspect of ensuring robust security in web applications is effective session management. When it comes to session identifiers, it's best practice to rely solely on the server-side controls provided by the chosen framework.</p>
+        
+                <p>In the context of this security measure:</p>
+        
+                <blockquote>
+                    <p><em>"The application uses only the server of the framework's session management controls and only recognizes these session identifiers as valid."</em></p>
+                </blockquote>
+        
+                <p>This ensures that the generation, validation, and maintenance of session identifiers are handled securely by the server, reducing the risk of unauthorized access or session hijacking.</p>
+        
+                <p>By adhering to this principle, developers can enhance the overall security posture of their web applications, making it more resilient against potential threats.</p>
+            </article>
+        </div>
+
+        <!-- Secure Session Identifier Creation -->
+        <div class="container">
+            <article>
+                <h1>Secure Session Identifier Creation</h1>
+        
+                <p>Ensuring the integrity of session identifiers is a fundamental aspect of robust session management in web applications. In the realm of session creation, it is a best practice to generate session identifiers on a trusted system, notably the server.</p>
+        
+                <p>Expressed as a key security principle:</p>
+        
+                <blockquote>
+                    <p><em>"The application creates session identifiers on a trusted system (e.g., the server)."</em></p>
+                </blockquote>
+        
+                <p>By generating session identifiers on a server, developers establish a trusted environment for the creation process. This reduces the likelihood of compromised or insecure session identifiers, contributing to a more secure web application.</p>
+        
+                <p>Embracing this practice aligns with the broader goal of safeguarding user sessions and fortifying the overall security architecture of the application.</p>
+            </article>
+        </div>
+        
+        <!-- Ensuring Secure Session Identifiers with Well-Vetted Algorithms -->
+        <div class="container">
+            <article>
+                <h1>Ensuring Secure Session Identifiers with Well-Vetted Algorithms</h1>
+        
+                <p>One critical aspect of session management is the careful selection of algorithms for generating session identifiers. To enhance security, it is imperative to utilize well-vetted algorithms that guarantee the creation of sufficiently random session identifiers.</p>
+        
+                <p>Summarized as a key security principle:</p>
+        
+                <blockquote>
+                    <p><em>"The session management controls use well-vetted algorithms that ensure sufficiently random session identifiers."</em></p>
+                </blockquote>
+        
+                <p>By adopting this practice, developers ensure that the session identifiers are not predictable, making it significantly more challenging for attackers to compromise user sessions through unauthorized access or session hijacking.</p>
+        
+                <p>Choosing algorithms with a strong track record of security enhances the overall resilience of the session management system, contributing to a more robust defense against potential threats.</p>
+            </article>
+        </div>
+
+        <!-- Enhancing Security: Cookie Domain and Path Configuration -->
+        <div class="container">
+            <article>
+                <h1>Enhancing Security: Cookie Domain and Path Configuration</h1>
+        
+                <p>An essential aspect of securing authenticated session identifiers involves meticulous configuration of cookie properties. Specifically, the application should set the domain and path for cookies containing authenticated session identifiers to values that are appropriately restricted for the site.</p>
+        
+                <p>Expressed as a key security principle:</p>
+        
+                <blockquote>
+                    <p><em>"The application sets the domain and path for cookies containing authenticated session identifiers to an appropriately restricted value for the site."</em></p>
+                </blockquote>
+        
+                <p>By adhering to this practice, developers can control the scope of cookies, limiting their accessibility to specific domains and paths. This ensures that sensitive session information is not inadvertently exposed to unauthorized locations, bolstering the overall security of the web application.</p>
+        
+                <p>Configuring cookies with precision contributes to a more robust defense against potential attacks, providing an additional layer of protection for user sessions.</p>
+            </article>        
+        </div>
     </mat-drawer-content>
   </mat-drawer-container>
   
