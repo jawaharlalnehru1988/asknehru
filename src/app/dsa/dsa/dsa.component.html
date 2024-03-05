@@ -1,397 +1,57 @@
-<mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>
-        <div class="dsa">
-            <button (click)="redirect('dsa')" [class.active]="selectedCategory === 'dsa'" mat-raised-button class="full-width-button">DSA Articles</button>
-            <p>Intro to DSA?</p>
-          </div>
-          <div>
-            <button (click)="redirect('security')" [class.active]="selectedCategory === 'security'" mat-raised-button class="full-width-button">APP Security Best Practices</button>
-          </div>
-          <div>
-            <button (click)="redirect('fullstact')" [class.active]="selectedCategory === 'fullstact'" mat-raised-button class="full-width-button">Full stack Articles</button>
-          </div>
-          <div>
-            <button (click)="redirect('javacript')" [class.active]="selectedCategory === 'javacript'" mat-raised-button class="full-width-button">Javascript Articles</button>
-          </div>
-          <div>
-            <button (click)="redirect('angular')" [class.active]="selectedCategory === 'angular'" mat-raised-button class="full-width-button">Angular Articles</button>
-          </div>
-    </mat-drawer>
-    
-    <mat-drawer-content>
-        <div [ngSwitch]="selectedCategory">
+<div class="bg-light">
+    <button (click)="drawer.toggle()" mat-icon-button>
+        <mat-icon>view_headline</mat-icon> <span class="fs-4">
+            <= hide and show menus</span>
+    </button>
+    <mat-drawer-container class="example-container">
+        <mat-drawer #drawer mode="side" opened="true">
+            <div>
+                <button (click)="redirect('security')" [class.active]="selectedCategory === 'security'"
+                    mat-raised-button class="full-width-button">APP Security Best Practices</button>
+            </div>
+            <div class="dsa">
+                <button (click)="redirect('dsa')" [class.active]="selectedCategory === 'dsa'" mat-raised-button
+                    class="full-width-button">DSA Articles</button>
+            </div>
+            <div>
+                <button (click)="redirect('fullstack')" [class.active]="selectedCategory === 'fullstact'"
+                    mat-raised-button class="full-width-button">Full stack Articles</button>
+            </div>
+            <div>
+                <button (click)="redirect('javacript')" [class.active]="selectedCategory === 'javacript'"
+                    mat-raised-button class="full-width-button">Javascript Articles</button>
+            </div>
+            <div>
+                <button (click)="redirect('angular')" [class.active]="selectedCategory === 'angular'" mat-raised-button
+                    class="full-width-button">Angular Articles</button>
+            </div>
+        </mat-drawer>
 
-        <!-- Dsa Intro starts -->
-        <div class="container"  *ngSwitchCase="'dsa'">
-            <h1 class="text-success fw-bold text-center">Understanding Data Structures and Algorithms</h1>
+        <mat-drawer-content>
+            <div [ngSwitch]="selectedCategory">
 
-            <p>Data Structures and Algorithms (DSA) form the backbone of computer science and programming. They are fundamental concepts that every aspiring software developer should grasp to write efficient and scalable code.</p>
-        
-            <h2>What are Data Structures?</h2>
-        
-            <p>Data Structures are specialized formats for organizing and storing data to perform operations efficiently. They provide a way to manage and organize data in a manner that facilitates efficient retrieval and modification. Common examples of data structures include arrays, linked lists, stacks, queues, trees, and graphs.</p>
-        
-            <h2>What are Algorithms?</h2>
-        
-            <p>Algorithms are step-by-step procedures or sets of rules for performing specific tasks or solving particular problems. In the context of DSA, algorithms are designed to manipulate and process data stored in data structures. Efficient algorithms are crucial for optimizing the performance of a program.</p>
-        
-            <h2>Why Learn DSA?</h2>
-        
-            <p>Understanding DSA is essential for several reasons:</p>
-        
-            <ul>
-                <li><strong>Efficiency:</strong> Well-designed data structures and algorithms lead to efficient and optimized code.</li>
-                <li><strong>Problem Solving:</strong> DSA provide effective solutions to a wide range of programming problems.</li>
-                <li><strong>Interviews and Challenges:</strong> Many technical interviews and coding challenges assess a candidate's proficiency in DSA.</li>
-            </ul>
-        
-            <h2>Getting Started</h2>
-        
-            <p>If you're new to DSA, start by learning about basic data structures like arrays and linked lists, and common algorithms like sorting and searching. As you progress, delve into more advanced topics such as dynamic programming, graph theory, and tree traversal.</p>
-        
-            <p>Mastering DSA will empower you to write efficient, scalable, and robust code, making you a more proficient and sought-after software developer.</p>
-        
-            <p>Happy coding!</p>
-        </div>
-        <!-- Dsa Intro ends -->
-<div class="sessionManagement"  *ngSwitchCase="'security'">
-        <div class="container">
-            <article>
-                <h1>Optimal Session Management for Web Applications</h1>
-        
-                <p>One crucial aspect of ensuring robust security in web applications is effective session management. When it comes to session identifiers, it's best practice to rely solely on the server-side controls provided by the chosen framework.</p>
-        
-                <p>In the context of this security measure:</p>
-        
-                <blockquote>
-                    <p><em>"The application uses only the server of the framework's session management controls and only recognizes these session identifiers as valid."</em></p>
-                </blockquote>
-        
-                <p>This ensures that the generation, validation, and maintenance of session identifiers are handled securely by the server, reducing the risk of unauthorized access or session hijacking.</p>
-        
-                <p>By adhering to this principle, developers can enhance the overall security posture of their web applications, making it more resilient against potential threats.</p>
-            </article>
-        </div>
+                <!-- Dsa starts -->
+                <div class="dsa" *ngSwitchCase="'dsa'">
+                    <app-dsabasics></app-dsabasics>
+                </div>
+                <!-- Dsa ends -->
+                <div class="sessionManagement" *ngSwitchCase="'security'">
+                    <app-security></app-security>
+                </div>
 
-        <!-- Secure Session Identifier Creation -->
-        <div class="container">
-            <article>
-                <h1>Secure Session Identifier Creation</h1>
-        
-                <p>Ensuring the integrity of session identifiers is a fundamental aspect of robust session management in web applications. In the realm of session creation, it is a best practice to generate session identifiers on a trusted system, notably the server.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The application creates session identifiers on a trusted system (e.g., the server)."</em></p>
-                </blockquote>
-        
-                <p>By generating session identifiers on a server, developers establish a trusted environment for the creation process. This reduces the likelihood of compromised or insecure session identifiers, contributing to a more secure web application.</p>
-        
-                <p>Embracing this practice aligns with the broader goal of safeguarding user sessions and fortifying the overall security architecture of the application.</p>
-            </article>
-        </div>
-        
-        <!-- Ensuring Secure Session Identifiers with Well-Vetted Algorithms -->
-        <div class="container">
-            <article>
-                <h1>Ensuring Secure Session Identifiers with Well-Vetted Algorithms</h1>
-        
-                <p>One critical aspect of session management is the careful selection of algorithms for generating session identifiers. To enhance security, it is imperative to utilize well-vetted algorithms that guarantee the creation of sufficiently random session identifiers.</p>
-        
-                <p>Summarized as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The session management controls use well-vetted algorithms that ensure sufficiently random session identifiers."</em></p>
-                </blockquote>
-        
-                <p>By adopting this practice, developers ensure that the session identifiers are not predictable, making it significantly more challenging for attackers to compromise user sessions through unauthorized access or session hijacking.</p>
-        
-                <p>Choosing algorithms with a strong track record of security enhances the overall resilience of the session management system, contributing to a more robust defense against potential threats.</p>
-            </article>
-        </div>
-
-        <!-- Enhancing Security: Cookie Domain and Path Configuration -->
-        <div class="container">
-            <article>
-                <h1>Enhancing Security: Cookie Domain and Path Configuration</h1>
-        
-                <p>An essential aspect of securing authenticated session identifiers involves meticulous configuration of cookie properties. Specifically, the application should set the domain and path for cookies containing authenticated session identifiers to values that are appropriately restricted for the site.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The application sets the domain and path for cookies containing authenticated session identifiers to an appropriately restricted value for the site."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers can control the scope of cookies, limiting their accessibility to specific domains and paths. This ensures that sensitive session information is not inadvertently exposed to unauthorized locations, bolstering the overall security of the web application.</p>
-        
-                <p>Configuring cookies with precision contributes to a more robust defense against potential attacks, providing an additional layer of protection for user sessions.</p>
-            </article>        
-        </div>
-
-        <!-- Ensuring Complete Session Termination with Logout Functionality -->
-        <div class="container">
-            <article>
-                <h1>Ensuring Complete Session Termination with Logout Functionality</h1>
-        
-                <p>Securing user sessions involves not only effective authentication but also ensuring that the logout functionality performs a comprehensive termination of the associated session or connection. This is a critical aspect of maintaining a secure web application.</p>
-        
-                <p>Summarized as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The logout functionality fully terminates the associated session or connection."</em></p>
-                </blockquote>
-        
-                <p>By implementing a robust logout mechanism, developers ensure that all session-related data is completely cleared, preventing any unauthorized access or lingering connections. This proactive approach enhances the overall security posture of the web application.</p>
-        
-                <p>Users can trust that, upon logging out, their session is unequivocally terminated, reducing the risk of session-based attacks. This practice aligns with industry standards for secure session management and user privacy.</p>
-            </article>
-        </div>
-
-        <!-- Ensuring Secure Session Termination -->
-        <div class="container">
-            <article>
-                <h1>Ensuring Secure Session Termination</h1>
-        
-                <p>One crucial aspect of maintaining a secure web application is to ensure that the logout functionality
-                    performs a complete termination of the associated session or connection. This is vital for protecting user
-                    data and preventing unauthorized access.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The logout functionality fully terminates the associated session or connection."</em></p>
-                </blockquote>
-        
-                <p>By implementing a robust logout mechanism, developers guarantee that all session-related information is
-                    thoroughly cleared, minimizing the risk of lingering connections or potential security vulnerabilities. This
-                    proactive approach contributes to a more secure user experience.</p>
-        
-                <p>Users can trust that, upon initiating the logout process, their session is terminated, reducing the chances
-                    of unauthorized access to sensitive data. This practice aligns with industry standards for secure session
-                    management and user privacy.</p>
-            </article>
-        </div>
-
-        <!-- Optimizing Security with Session Inactivity Timeout -->
-        <div class="container">
-            <article>
-                <h1>Optimizing Security with Session Inactivity Timeout</h1>
-        
-                <p>Enhancing the security of user sessions involves implementing an effective session inactivity timeout. This ensures that user sessions are automatically terminated after a period of inactivity, reducing the risk of unauthorized access in case a user forgets to log out.</p>
-        
-                <p>Summarized as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The session inactivity timeout is set between 15-20 minutes or as per the organization's policy."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers establish a balance between usability and security. Setting a reasonable inactivity timeout minimizes the window of opportunity for potential attackers while still providing users with a smooth and secure experience.</p>
-        
-                <p>It's important to align the timeout duration with the organization's policy, ensuring that it meets specific security requirements and complies with industry standards. This proactive measure contributes to a more resilient defense against session-based threats.</p>
-            </article>
-        </div>
-
-        <!-- Implementing Strict Session Management Policies -->
-        <div class="container">
-            <article>
-                <h1>Implementing Strict Session Management Policies</h1>
-        
-                <p>Maintaining a secure web application involves establishing stringent session management policies. One key practice is to disallow persistent logins and enforce periodic session terminations, even if the session is currently active.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"Persistent logins are not allowed, and periodic session terminations are enforced, even when the session is active."</em></p>
-                </blockquote>
-        
-                <p>By implementing this policy, developers ensure that users are regularly reauthenticated, minimizing the impact of potential session-based attacks. This proactive approach significantly enhances the overall security posture of the application.</p>
-        
-                <p>Disallowing persistent logins prevents prolonged exposure of active sessions, reducing the risk of unauthorized access. Periodic session terminations add an additional layer of security, making it more challenging for attackers to exploit session vulnerabilities.</p>
-            </article>
-        </div>
-
-
-        <!-- Ensuring Secure Session Transitions: Pre and Post Login -->
-        <div class="container">
-            <article>
-                <h1>Ensuring Secure Session Transitions: Pre and Post Login</h1>
-        
-                <p>An essential security practice in web applications involves meticulous handling of sessions, especially in scenarios where a session was established before user login. To enhance security, the application should close the pre-login session and establish a new one upon successful login.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"If a session was established before login, the application closes that session and establishes a new session after a successful login."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers minimize the risk associated with pre-login sessions and ensure that user interactions are securely managed. Closing the existing session and initiating a new one post-login reduces the chances of session-based vulnerabilities and enhances the overall security posture.</p>
-        
-                <p>This approach aligns with industry best practices, contributing to a more resilient defense against potential threats related to session handling and authentication.</p>
-            </article>
-        </div>
-
-
-        <!-- Enhancing Security: New Session Identifier on Re-authentication -->
-        <div class="container">
-        
-            <article>
-                <h1>Enhancing Security: New Session Identifier on Re-authentication</h1>
-        
-                <p>Securing user sessions involves not only initial authentication but also implementing measures for
-                    re-authentication scenarios. To bolster security, the application should generate a new session identifier
-                    whenever a user undergoes re-authentication.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"Application generates a new session identifier on any re-authentication."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers mitigate the risk associated with re-authentication processes.
-                    Generating a fresh session identifier ensures that any previous session-related information is invalidated,
-                    reducing the likelihood of unauthorized access during re-authentication.</p>
-        
-                <p>This proactive approach aligns with industry standards for secure session management, contributing to a
-                    robust defense against potential threats and enhancing overall user data protection.</p>
-            </article>
-        </div>
-
-        <!-- Securing User Accounts: Prohibiting Concurrent Logins -->
-        <div class="container">
-            <article>
-                <h1>Securing User Accounts: Prohibiting Concurrent Logins</h1>
-        
-                <p>Ensuring the security of user accounts involves implementing measures to prevent concurrent logins with the same user ID. This practice adds an additional layer of protection against unauthorized access and enhances overall account security.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"Concurrent logins are not allowed with the same user ID."</em></p>
-                </blockquote>
-        
-                <p>By enforcing this policy, developers restrict the possibility of multiple active sessions for a single user, minimizing the risk of account compromise or misuse. This proactive approach aligns with industry standards for secure user authentication and account management.</p>
-        
-                <p>Users can trust that their accounts are safeguarded against unauthorized access attempts, contributing to a more robust defense against potential security threats related to concurrent logins.</p>
-            </article>
-        </div>
-
-        <!-- Securing Session Identifiers: Best Practices -->
-        <div class="container">
-            <article>
-                <h1>Securing Session Identifiers: Best Practices</h1>
-        
-                <p>Protecting the confidentiality of session identifiers is paramount for a secure web application. To achieve this, it's crucial to ensure that session identifiers are not exposed in URLs, error messages, or logs. Instead, they should exclusively reside in the HTTP cookie header.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"Session identifiers are not exposed in URLs, error messages, or logs. Session identifiers are only located in the HTTP cookie header."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers mitigate the risk of inadvertent exposure of sensitive session information. Placing session identifiers solely in the HTTP cookie header enhances security by limiting their visibility and reducing the chances of unauthorized access or session hijacking.</p>
-        
-                <p>This proactive approach aligns with industry best practices for secure session management, contributing to a robust defense against potential security threats related to session identifier handling.</p>
-            </article>
-        </div>
-
-        <!-- Ensuring Server-Side Session Data Security: Access Controls -->
-        <div class="container">
-            <article>
-                <h1>Ensuring Server-Side Session Data Security: Access Controls</h1>
-        
-                <p>Preserving the integrity and confidentiality of server-side session data is paramount for a secure web application. To achieve this, it is crucial to implement robust access controls on the server, safeguarding session data from unauthorized access by other users of the server.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"Application protects server-side session data from unauthorized access, by other users of the server, by implementing appropriate access controls on the server."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers ensure that only authorized users have access to server-side session data, minimizing the risk of data breaches or unauthorized manipulation. Implementing appropriate access controls is a proactive measure that contributes to a more secure server environment.</p>
-        
-                <p>This approach aligns with industry best practices for secure session management, fostering a robust defense against potential security threats related to server-side data handling.</p>
-            </article>
-        </div>
-
-        <!-- Optimizing Security: Periodic Session Identifier Rotation -->
-        <div class="container">
-            <article>
-                <h1>Optimizing Security: Periodic Session Identifier Rotation</h1>
-        
-                <p>Maintaining the security of user sessions involves proactive measures, including the periodic generation of new session identifiers and deactivation of the old ones. This practice helps safeguard against potential vulnerabilities and unauthorized access.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"Application generates a new session identifier and deactivates the old one periodically."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers enhance the resilience of the session management system. Periodically generating fresh session identifiers reduces the risk associated with static identifiers, making it more challenging for attackers to exploit session vulnerabilities.</p>
-        
-                <p>Deactivating old session identifiers ensures that even if one is compromised, it becomes inactive, minimizing the potential impact on user security. This approach aligns with industry best practices, contributing to a more robust defense against evolving security threats.</p>
-            </article>
-        </div>
-
-        <!-- Securing Sensitive Operations: Per-Session Strong Random Tokens -->
-        <div class="container">
-            <article>
-                <h1>Securing Sensitive Operations: Per-Session Strong Random Tokens</h1>
-        
-                <p>Ensuring the security of sensitive server-side operations, such as account management, requires additional protective measures. The application can achieve this by providing extra session management identifiers through the use of per-session strong random tokens.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"Application provides additional session management identifiers for sensitive server-side operations, like account management, by utilizing per-session strong random tokens."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers enhance the security posture of critical operations. Per-session strong random tokens add an extra layer of protection, making it more challenging for attackers to compromise sensitive transactions or access privileged functionalities.</p>
-        
-                <p>This approach aligns with industry best practices for secure session management, contributing to a more robust defense against potential security threats related to sensitive server-side operations.</p>
-            </article>
-        </div>
-
-        <!-- Strengthening Cookie Security: Implementation of the Secure Attribute -->
-        <div class="container">
-            <article>
-                <h1>Strengthening Cookie Security: Implementation of the Secure Attribute</h1>
-        
-                <p>An essential aspect of securing cookies involves setting the secure attribute, particularly for those transmitted over a TLS connection. This practice significantly enhances the confidentiality and integrity of sensitive data exchanged between the client and server.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The secure attribute is set for cookies transmitted over a TLS connection."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers ensure that cookies marked with the secure attribute are only transmitted over encrypted connections. This mitigates the risk of data interception and unauthorized access, especially in scenarios where sensitive information is involved.</p>
-        
-                <p>Implementing the secure attribute is a proactive measure that aligns with industry best practices for secure web communication, contributing to a more robust defense against potential security threats related to cookie handling.</p>
-            </article>
-        </div>
-
-        <!-- Enhancing Cookie Security: Utilizing the HTTP Only Attribute -->
-        <div class="container">
-            <article>
-                <h1>Enhancing Cookie Security: Utilizing the HTTP Only Attribute</h1>
-        
-                <p>Securing cookies is a critical aspect of web application security. To strengthen protection against client-side attacks, it's recommended to set the HTTP Only attribute for cookies, unless specific client-side scripts within your application require access to read or set a cookie's value.</p>
-        
-                <p>Expressed as a key security principle:</p>
-        
-                <blockquote>
-                    <p><em>"The HTTP Only attribute is set for cookies, unless you specifically require client-side scripts within your application to read or set a cookie's value."</em></p>
-                </blockquote>
-        
-                <p>By adhering to this practice, developers restrict the access of client-side scripts to cookie values, reducing the risk of cross-site scripting (XSS) attacks. This proactive approach enhances the overall security posture of the application, preventing unauthorized access to sensitive cookie data.</p>
-        
-                <p>Implementing the HTTP Only attribute aligns with industry best practices, contributing to a more robust defense against potential security threats related to cookie handling.</p>
-            </article>
-        </div>
-    </div>
-</div>   
-</mat-drawer-content>
-  </mat-drawer-container>
-  
+                <div class="javacript" *ngSwitchCase="'javacript'">
+                    Javascript contents should be developed
+                </div>
+                <div class="fullstack" *ngSwitchCase="'fullstack'">
+                    Full-Stack contents should be developed
+                </div>
+                <div class="angular" *ngSwitchCase="'angular'">
+                    Angular contents should be developed
+                </div>
+                <div *ngSwitchDefault>
+                    <app-security></app-security>
+                </div>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>
