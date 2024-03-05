@@ -5,13 +5,15 @@ import { DsaComponent } from './dsa/dsa.component';
 import { DsabasicsComponent } from './components/dsabasics/dsabasics.component';
 import { DsacommonComponent } from './components/dsacommon/dsacommon.component';
 import { LeetcodeComponent } from './components/leetcode/leetcode.component';
+import { SecurityComponent } from './components/security/security.component';
 
 @NgModule({
   declarations: [
     DsaComponent,
     DsabasicsComponent,
     DsacommonComponent,
-    LeetcodeComponent
+    LeetcodeComponent,
+    SecurityComponent
   ],
   imports: [
     DsaRoutingModule,
