@@ -13,12 +13,12 @@
     </mat-menu>
 
 
-    <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Session Management</button>
+    <button mat-stroked-button color="primary" (click)="sessionManage('Session Management')" [matMenuTriggerFor]="menu">Session Management</button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item  *ngFor="let topic of options" (click)="accessId(topic.id)">{{topic.title}}</button>
     </mat-menu>
 
-    <button mat-stroked-button color="primary" [matMenuTriggerFor]="accessControl">Access Control</button>
+    <button mat-stroked-button color="primary"  [matMenuTriggerFor]="accessControl">Access Control</button>
     <mat-menu #accessControl="matMenu">
         <button mat-menu-item >topics</button>
     </mat-menu>
@@ -74,6 +74,7 @@
     </mat-menu>
 </div>
     <div class="bigSection">
+        <h1 class="text-center">{{topic}}</h1>
         <div class="container">
     <article>
         <h1>Optimal Session Management for Web Applications</h1>

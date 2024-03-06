@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-security',
@@ -25,6 +25,8 @@ options = [
   {id: 16, title:"Strengthening Cookie Security: Implementation of the Secure Attribute"},
   {id: 17, title:"Enhancing Cookie Security: Utilizing the HTTP Only Attribute"}
 ]
+  topic: string = 'Session Management';
+
   constructor() { }
 
   ngOnInit(): void {
@@ -33,4 +35,10 @@ options = [
   console.log('valueId :', valueId);
 
   }
+  sessionManage(value: string){
+  console.log('value :', value);
+  this.topic = value;
+
+  }
+
 }
