@@ -4,7 +4,7 @@
             <= hide and show menus</span>
     </button>
     <mat-drawer-container class="example-container">
-        <mat-drawer #drawer mode="side" opened="true">
+        <mat-drawer #drawer mode="push" opened="true">
             <div>
                 <button (click)="redirect('security')" [class.active]="selectedCategory === 'security'"
                     mat-raised-button class="full-width-button">APP Security Best Practices</button>
