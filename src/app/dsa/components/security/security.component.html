@@ -15,7 +15,7 @@
 
     <button mat-stroked-button color="primary" (click)="sessionManage('Session Management')" [matMenuTriggerFor]="menu">Session Management</button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item  *ngFor="let topic of options" (click)="accessId(topic.id)">{{topic.title}}</button>
+        <button mat-menu-item  *ngFor="let topic of options" (click)="accessId(topic.id)">{{topic.id}}. {{topic.title}}</button>
     </mat-menu>
 
     <button mat-stroked-button color="primary"  [matMenuTriggerFor]="accessControl">Access Control</button>
@@ -77,7 +77,7 @@
         <h1 class="text-center">{{topic}}</h1>
         <div class="container">
     <article>
-        <h1>Optimal Session Management for Web Applications</h1>
+        <h1>1. Optimal Session Management for Web Applications</h1>
 
         <p>One crucial aspect of ensuring robust security in web applications is effective session management. When it comes to session identifiers, it's best practice to rely solely on the server-side controls provided by the chosen framework.</p>
 
@@ -96,7 +96,7 @@
 <!-- Secure Session Identifier Creation -->
 <div class="container">
     <article>
-        <h1>Secure Session Identifier Creation</h1>
+        <h1>2. Secure Session Identifier Creation</h1>
 
         <p>Ensuring the integrity of session identifiers is a fundamental aspect of robust session management in web applications. In the realm of session creation, it is a best practice to generate session identifiers on a trusted system, notably the server.</p>
 
@@ -115,7 +115,7 @@
 <!-- Ensuring Secure Session Identifiers with Well-Vetted Algorithms -->
 <div class="container">
     <article>
-        <h1>Ensuring Secure Session Identifiers with Well-Vetted Algorithms</h1>
+        <h1>3. Ensuring Secure Session Identifiers with Well-Vetted Algorithms</h1>
 
         <p>One critical aspect of session management is the careful selection of algorithms for generating session identifiers. To enhance security, it is imperative to utilize well-vetted algorithms that guarantee the creation of sufficiently random session identifiers.</p>
 
@@ -134,7 +134,7 @@
 <!-- Enhancing Security: Cookie Domain and Path Configuration -->
 <div class="container">
     <article>
-        <h1>Enhancing Security: Cookie Domain and Path Configuration</h1>
+        <h1>4. Enhancing Security: Cookie Domain and Path Configuration</h1>
 
         <p>An essential aspect of securing authenticated session identifiers involves meticulous configuration of cookie properties. Specifically, the application should set the domain and path for cookies containing authenticated session identifiers to values that are appropriately restricted for the site.</p>
 
@@ -153,7 +153,7 @@
 <!-- Ensuring Complete Session Termination with Logout Functionality -->
 <div class="container">
     <article>
-        <h1>Ensuring Complete Session Termination with Logout Functionality</h1>
+        <h1>5. Ensuring Complete Session Termination with Logout Functionality</h1>
 
         <p>Securing user sessions involves not only effective authentication but also ensuring that the logout functionality performs a comprehensive termination of the associated session or connection. This is a critical aspect of maintaining a secure web application.</p>
 
@@ -172,7 +172,7 @@
 <!-- Ensuring Secure Session Termination -->
 <div class="container">
     <article>
-        <h1>Ensuring Secure Session Termination</h1>
+        <h1>6. Ensuring Secure Session Termination</h1>
 
         <p>One crucial aspect of maintaining a secure web application is to ensure that the logout functionality
             performs a complete termination of the associated session or connection. This is vital for protecting user
@@ -197,7 +197,7 @@
 <!-- Optimizing Security with Session Inactivity Timeout -->
 <div class="container">
     <article>
-        <h1>Optimizing Security with Session Inactivity Timeout</h1>
+        <h1>7. Optimizing Security with Session Inactivity Timeout</h1>
 
         <p>Enhancing the security of user sessions involves implementing an effective session inactivity timeout. This ensures that user sessions are automatically terminated after a period of inactivity, reducing the risk of unauthorized access in case a user forgets to log out.</p>
 
@@ -216,7 +216,7 @@
 <!-- Implementing Strict Session Management Policies -->
 <div class="container">
     <article>
-        <h1>Implementing Strict Session Management Policies</h1>
+        <h1>8. Implementing Strict Session Management Policies</h1>
 
         <p>Maintaining a secure web application involves establishing stringent session management policies. One key practice is to disallow persistent logins and enforce periodic session terminations, even if the session is currently active.</p>
 
@@ -236,7 +236,7 @@
 <!-- Ensuring Secure Session Transitions: Pre and Post Login -->
 <div class="container">
     <article>
-        <h1>Ensuring Secure Session Transitions: Pre and Post Login</h1>
+        <h1>9. Ensuring Secure Session Transitions: Pre and Post Login</h1>
 
         <p>An essential security practice in web applications involves meticulous handling of sessions, especially in scenarios where a session was established before user login. To enhance security, the application should close the pre-login session and establish a new one upon successful login.</p>
 
@@ -257,7 +257,7 @@
 <div class="container">
 
     <article>
-        <h1>Enhancing Security: New Session Identifier on Re-authentication</h1>
+        <h1>10. Enhancing Security: New Session Identifier on Re-authentication</h1>
 
         <p>Securing user sessions involves not only initial authentication but also implementing measures for
             re-authentication scenarios. To bolster security, the application should generate a new session identifier
@@ -281,7 +281,7 @@
 <!-- Securing User Accounts: Prohibiting Concurrent Logins -->
 <div class="container">
     <article>
-        <h1>Securing User Accounts: Prohibiting Concurrent Logins</h1>
+        <h1>11. Securing User Accounts: Prohibiting Concurrent Logins</h1>
 
         <p>Ensuring the security of user accounts involves implementing measures to prevent concurrent logins with the same user ID. This practice adds an additional layer of protection against unauthorized access and enhances overall account security.</p>
 
@@ -300,7 +300,7 @@
 <!-- Securing Session Identifiers: Best Practices -->
 <div class="container">
     <article>
-        <h1>Securing Session Identifiers: Best Practices</h1>
+        <h1>12. Securing Session Identifiers: Best Practices</h1>
 
         <p>Protecting the confidentiality of session identifiers is paramount for a secure web application. To achieve this, it's crucial to ensure that session identifiers are not exposed in URLs, error messages, or logs. Instead, they should exclusively reside in the HTTP cookie header.</p>
 
@@ -319,7 +319,7 @@
 <!-- Ensuring Server-Side Session Data Security: Access Controls -->
 <div class="container">
     <article>
-        <h1>Ensuring Server-Side Session Data Security: Access Controls</h1>
+        <h1>13. Ensuring Server-Side Session Data Security: Access Controls</h1>
 
         <p>Preserving the integrity and confidentiality of server-side session data is paramount for a secure web application. To achieve this, it is crucial to implement robust access controls on the server, safeguarding session data from unauthorized access by other users of the server.</p>
 
@@ -338,7 +338,7 @@
 <!-- Optimizing Security: Periodic Session Identifier Rotation -->
 <div class="container">
     <article>
-        <h1>Optimizing Security: Periodic Session Identifier Rotation</h1>
+        <h1>14. Optimizing Security: Periodic Session Identifier Rotation</h1>
 
         <p>Maintaining the security of user sessions involves proactive measures, including the periodic generation of new session identifiers and deactivation of the old ones. This practice helps safeguard against potential vulnerabilities and unauthorized access.</p>
 
@@ -357,7 +357,7 @@
 <!-- Securing Sensitive Operations: Per-Session Strong Random Tokens -->
 <div class="container">
     <article>
-        <h1>Securing Sensitive Operations: Per-Session Strong Random Tokens</h1>
+        <h1>15. Securing Sensitive Operations: Per-Session Strong Random Tokens</h1>
 
         <p>Ensuring the security of sensitive server-side operations, such as account management, requires additional protective measures. The application can achieve this by providing extra session management identifiers through the use of per-session strong random tokens.</p>
 
@@ -376,7 +376,7 @@
 <!-- Strengthening Cookie Security: Implementation of the Secure Attribute -->
 <div class="container">
     <article>
-        <h1>Strengthening Cookie Security: Implementation of the Secure Attribute</h1>
+        <h1>16. Strengthening Cookie Security: Implementation of the Secure Attribute</h1>
 
         <p>An essential aspect of securing cookies involves setting the secure attribute, particularly for those transmitted over a TLS connection. This practice significantly enhances the confidentiality and integrity of sensitive data exchanged between the client and server.</p>
 
@@ -395,7 +395,7 @@
 <!-- Enhancing Cookie Security: Utilizing the HTTP Only Attribute -->
 <div class="container">
     <article>
-        <h1>Enhancing Cookie Security: Utilizing the HTTP Only Attribute</h1>
+        <h1>17. Enhancing Cookie Security: Utilizing the HTTP Only Attribute</h1>
 
         <p>Securing cookies is a critical aspect of web application security. To strengthen protection against client-side attacks, it's recommended to set the HTTP Only attribute for cookies, unless specific client-side scripts within your application require access to read or set a cookie's value.</p>
 
