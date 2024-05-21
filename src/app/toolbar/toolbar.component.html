@@ -4,11 +4,6 @@
     <mat-toolbar color="primary">
       <span class="hide-on-small">AskNehru</span>
       <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
-      <div [ngStyle]="{ 'visibility': initialName ? 'visible' : 'hidden' }">
-        <button mat-mini-fab (click)="isOpen = !isOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-          {{initialName}}
-        </button>
-      </div>
       <span class="example-spacer"></span>
       <button class="hide-on-small" mat-button [matMenuTriggerFor]="menu" >Projects</button>
       <button class="hide-on-small" *ngIf="isSuperAdmin" mat-button routerLink="/userlist">User's List</button>
@@ -22,60 +17,3 @@
   </mat-menu>
 
   
-  <!-- This template displays the overlay content and is connected to the button -->
-  <ng-template
-    cdkConnectedOverlay
-    [cdkConnectedOverlayOrigin]="trigger"
-    [cdkConnectedOverlayOpen]="isOpen"
-  >
-  <div class="example-list">
-    <div>
-      <h2> Profile</h2>  <button mat-button (click)="isOpen = false" matTooltip="close"><mat-icon>close</mat-icon></button>
-    </div>
-    <form class="example-form" [formGroup]="signUpForm" >
-      <div class="username">
-        <mat-form-field appearance="outline">
-          <mat-label>User name</mat-label>
-          <input matInput type="text" formControlName="name" [readonly]="!isEditUser">
-        </mat-form-field>
-        
-        <button color="primary" mat-icon-button (click)="toggleEditMode('username')">
-          <mat-icon>{{ isEditUser ? 'save' : 'edit' }}</mat-icon>
-        </button>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" [type]="hide ? 'password' : 'text'" [readonly]="!isEditPwd" formControlName="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide">
-              <mat-icon >{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-            </button>
-        </mat-form-field>
-        <button mat-icon-button color="primary" (click)="toggleEditMode('password')">
-          <mat-icon>{{isEditPwd? 'save' : 'edit'}}</mat-icon>
-        </button>
-    </div>
-    <div>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" [readonly]="!isEditEmail">
-        </mat-form-field>
-        <button mat-icon-button color="primary" (click)="toggleEditMode('email')">
-          <mat-icon>{{isEditEmail? 'save' : 'edit'}}</mat-icon>
-        </button>
-    </div>
-    <div><strong> Gender</strong>
-        <mat-radio-group aria-label="Select an option" formControlName="gender">
-            <mat-radio-button value="Male">Male</mat-radio-button>
-            <mat-radio-button value="Female">Female</mat-radio-button>
-            <mat-radio-button value="notTosay">Prefer Not to Say</mat-radio-button>
-          </mat-radio-group>
-    </div>
-    
-    </form>
-    <div class="mt-5">
-      <button class="login-box" color="primary"  type="submit" [disabled]="signUpForm.invalid" (click)="save(signUpForm.value)" mat-raised-button>Update</button>
-      <button mat-raised-button class="cancelBtn" (click)="isOpen = false" color="warn">cancel</button>
-  </div>
-  </div>
-  </ng-template>

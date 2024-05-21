@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { UserlistComponent } from './userlist.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { ApiService } from '../api.service';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -52,4 +50,19 @@ describe('UserlistComponent', () => {
     expect(window.alert).toHaveBeenCalledWith('Some server error is there while deleting your data');
   });
 
+  it("should return sum of all even numbers from the array", ()=>{
+    const array = [1, 2, 3, 4, 5, 6, 7, 8];
+    const result =  component.evenNumbers(array);
+    expect(result).toBe(20);
+  });
+
+  it("should return 0 if there are no even numbers in the array", ()=>{
+    const array = [1, 3, 5, 7];
+    const result = component.evenNumbers(array);
+    expect(result).toBe(0);
+  });
+  it('should return the correct sum when all numbers are even', () => {
+    const result = component.evenNumbers([2, 4, 6, 8]);
+    expect(result).toBe(20);
+  });
 });
