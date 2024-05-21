@@ -25,9 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-
-
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -56,6 +54,7 @@ import { MatCardModule } from '@angular/material/card';
     MatToolbarModule,
     MatCardModule,
     MatTableModule,
+    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
