@@ -77,4 +77,14 @@ refresh(){
       queryParams: { data: JSON.stringify(rowDataForUpdate) },
     });
   }
+  //Write a function that takes an array of numbers as input and returns the sum of all the even numbers in the array.
+  evenNumbers(array: number[]): number {
+    let sum = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 2 === 0) {
+            sum += array[i];
+        }
+    }
+    return sum;
+}
 }

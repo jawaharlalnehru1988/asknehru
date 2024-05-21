@@ -17,6 +17,9 @@ import { CodedocComponent } from './codedoc/codedoc.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatMenuModule } from '@angular/material/menu';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatFormField } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 
@@ -39,6 +42,8 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     OverlayModule,
+    MatIconModule,
+    MatFormField,
     NgbModule,
     MatMenuModule,
     NgbCarouselModule
