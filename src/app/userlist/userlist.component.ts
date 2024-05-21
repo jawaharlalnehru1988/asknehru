@@ -64,7 +64,7 @@ refresh(){
   deleteRow(idToDelete: any){
     this.userService.deleteRecordById(idToDelete).subscribe({
       next:((res:any)=>{
-        alert(`Record with id number " ${idToDelete} " deleted successfully`);
+        alert(`Record with id number "${idToDelete}" deleted successfully`);
       }), error:((err:any)=>{
         alert("Some server error is there while deleting your data");
       })
