@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SecurityComponent } from './security.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('SecurityComponent', () => {
   let component: SecurityComponent;
@@ -8,7 +9,8 @@ describe('SecurityComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SecurityComponent ]
+      declarations: [ SecurityComponent ],
+      imports:[MatMenuModule]
     })
     .compileComponents();
 

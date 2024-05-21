@@ -2,73 +2,54 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { UserlistComponent } from './userlist.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
+import { ApiService } from '../api.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-class MockActivatedRoute {
-  queryParams = of({ shouldExecuteFunction: 'true' });
-}
-
-class MockRouter {
-  navigate = jasmine.createSpy('navigate');
-}
 
 describe('UserlistComponent', () => {
   let component: UserlistComponent;
   let fixture: ComponentFixture<UserlistComponent>;
-  let mockRouter: MockRouter;
+  
+  let userServiceSpy: jasmine.SpyObj<ApiService>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    const userServiceStub = jasmine.createSpyObj('ApiService', ['deleteRecordById']);
+
+    await TestBed.configureTestingModule({
       declarations: [UserlistComponent],
-      imports: [HttpClientModule],
-      providers: [
-        { provide: ActivatedRoute, useClass: MockActivatedRoute },
-        { provide: Router, useClass: MockRouter },
-      ],
-    })
-      .compileComponents();
-  }));
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [{ provide: ApiService, useValue: userServiceStub }]
+    }).compileComponents();
 
-  beforeEach(() => {
+    userServiceSpy = TestBed.inject(ApiService) as jasmine.SpyObj<ApiService>;
     fixture = TestBed.createComponent(UserlistComponent);
     component = fixture.componentInstance;
-    mockRouter = TestBed.inject(Router) as unknown as MockRouter;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should delete a record and show success message', () => {
+    const idToDelete = 1;
+    const mockResponse = { success: true };
+    userServiceSpy.deleteRecordById.and.returnValue(of(mockResponse));
+
+    spyOn(window, 'alert'); // Spy on alert function
+    component.deleteRow(idToDelete);
+    expect(userServiceSpy.deleteRecordById).toHaveBeenCalledWith(idToDelete);
+    expect(window.alert).toHaveBeenCalledWith(`Record with id number "${idToDelete}" deleted successfully`);
   });
 
-  it('should execute receiveUserData when shouldExecuteFunction is true', () => {
-    component.shouldExecuteFunction = true;
-    spyOn(component, 'receiveUserData');
-    component.routerData();
-    expect(component.receiveUserData).toHaveBeenCalled();
-  });
+  it('should handle server error and show error message', () => {
+    const idToDelete = 1;
+    const mockError = new Error('Server error');
+    userServiceSpy.deleteRecordById.and.returnValue(throwError(mockError));
 
-  it('should not execute receiveUserData when shouldExecuteFunction is false', () => {
-    component.shouldExecuteFunction = false;
-    spyOn(component, 'receiveUserData');
-    component.routerData();
-    expect(component.receiveUserData).toHaveBeenCalled();
-  });
+    spyOn(window, 'alert'); // Spy on alert function
 
-  it('should call receiveUserData on refresh', () => {
-    spyOn(component, 'receiveUserData');
-    component.refresh();
-    expect(component.receiveUserData).toHaveBeenCalled();
-  });
+    component.deleteRow(idToDelete);
 
-  it('should navigate to /register with query params on updateData', () => {
-    const mockRowDataForUpdate = { /* your mock data here */ };
-    component.updateData(mockRowDataForUpdate);
-    const navigationExtras: NavigationExtras = {
-      queryParams: { data: JSON.stringify(mockRowDataForUpdate) },
-    };
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/register'], navigationExtras);
+    expect(userServiceSpy.deleteRecordById).toHaveBeenCalledWith(idToDelete);
+    expect(window.alert).toHaveBeenCalledWith('Some server error is there while deleting your data');
   });
-
-  // Add more test cases as needed for other methods and behaviors
 
 });

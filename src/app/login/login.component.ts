@@ -24,17 +24,20 @@ export class LoginComponent implements OnInit {
       password: ["", Validators.required]
     });
 
+ this.getUserDetails();
+  }
+  getUserDetails(){
     this.service
-      .getUserData()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe({
-        next: (res: any) => {
-          this.usersData = res;
-        },
-        error: (error) => {
-          alert("There is a problem while fetching user's data");
-        }
-      });
+    .getUserData()
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe({
+      next: (res: any) => {
+        this.usersData = res;
+      },
+      error: (error) => {
+        alert("There is a problem while fetching user's data");
+      }
+    });
   }
   ngOnDestroy(): void {
     // Unsubscribe when the component is destroyed

@@ -33,12 +33,7 @@
                 </mat-form-field>
                 <div class="text-danger" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.hasError('pattern')">Please enter a Valid email</div>
             </div>
-            <div>Gender
-                <mat-radio-group aria-label="Select an option" formControlName="gender">
-                    <mat-radio-button value="Male">Male</mat-radio-button>
-                    <mat-radio-button value="Female">Female</mat-radio-button>
-                </mat-radio-group>
-            </div>
+            
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Id</mat-label>
@@ -94,13 +89,7 @@
                 <input matInput type="text" formControlName="mobile" />
             </mat-form-field>
         </div>
-        <div>Gender
-            <mat-radio-group aria-label="Select an option" formControlName="gender">
-                <mat-radio-button value="Male">Male</mat-radio-button>
-                <mat-radio-button value="Female">Female</mat-radio-button>
-                <mat-radio-button value="notTosay">Prefer Not to Say</mat-radio-button>
-              </mat-radio-group>
-        </div>
+        
         </ng-template>
  
     </form>

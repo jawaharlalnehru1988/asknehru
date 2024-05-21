@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, forwardRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { CodedocComponent } from './codedoc/codedoc.component';
 import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatMenuModule } from '@angular/material/menu';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
 
 
 @NgModule({
@@ -41,7 +43,13 @@ import { MatMenuModule } from '@angular/material/menu';
     MatMenuModule,
     NgbCarouselModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => RegisterComponent),
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
