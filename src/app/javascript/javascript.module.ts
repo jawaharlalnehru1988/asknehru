@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { JavascriptRoutingModule } from './javascript-routing.module';
 import { JavascriptComponent } from './javascript/javascript.component';
-import { SharedModule } from '../shared/shared/shared.module';
 import { JscoreComponent } from './jscomponents/jscore/jscore.component';
 import { TrickyjsComponent } from './jscomponents/trickyjs/trickyjs.component';
 import { VideojsComponent } from './jscomponents/videojs/videojs.component';
 import { JsaudioComponent } from './jscomponents/jsaudio/jsaudio.component';
+import { MatCardModule } from '@angular/material/card';
 // import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
@@ -16,8 +16,8 @@ import { JsaudioComponent } from './jscomponents/jsaudio/jsaudio.component';
     VideojsComponent,
     JsaudioComponent  ],
   imports: [
-    SharedModule,
-    JavascriptRoutingModule
+    JavascriptRoutingModule,
+    MatCardModule
   ],
   exports: [JavascriptComponent]
 })
