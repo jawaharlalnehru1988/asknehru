@@ -43,7 +43,7 @@ export class ToolbarComponent implements OnInit {
     });
     this.api.getSignUpData().subscribe((data)=>{
       this.signInTrue = data;
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -151,5 +151,16 @@ checkIfSuperAdmin(loggedInUserData: any) {
       default:
         break;
     }
+    }
+
+    isDivisible(num1: number, num2: number): boolean {
+      if(num2 === 0){
+        throw new Error("Division by zero is not allowed");
+      }
+      return num1 % num2 === 0;
+    };
+
+    filterLongStrings(Strings: string[]): string[]{
+      return Strings.filter(str => str.length >= 5);
     }
 }
