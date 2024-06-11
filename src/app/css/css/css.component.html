@@ -1,3 +1,17 @@
+<div class="form-class">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="items">
+      <div *ngFor="let item of items.controls; let i=index" [formGroupName]="i">
+        <input formControlName="name" placeholder="Name">
+        <input formControlName="description" placeholder="Description">
+        <button type="button" (click)="removeItem(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" (click)="addItem()">Add Item</button>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
 <div class="green-Tool">
   <iframe src="https://jawaharlalnehru1988.github.io/gymwebpage/" frameborder="0"></iframe>
 </div>
