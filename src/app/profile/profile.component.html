@@ -9,16 +9,16 @@
             </div>
         </div>  
     
-    <div class="col-12 col-sm-10 main-content">
-    <div class="detail-section">
+    <div class="col-12 col-sm-10 main-content ">
+    <div class="detail-section moving-gradient">
         <div class="header-section">
             <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
             <div class="navigator" *ngFor="let titles of tiles">
                 <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
             </div>
         </div>
-        <div [ngSwitch]="condition">
-            <div *ngSwitchCase="1">
+        <div [ngSwitch]="condition" class="experience">
+            <div  *ngSwitchCase="1">
             <div class="display mb-5"><strong> Jawaharlal Nehru Elumalai</strong></div>
             <div class="address">Angular Java Full Stack Developer</div>
                 <div class="intro3 intro-text"><p >With a background spanning three years in the software field, I offer dependable expertise in Angular development. My capabilities extend across HTML, CSS, JavaScript, TypeScript, and adept management of version control systems such as Git. Additionally, I possess backend proficiency in languages like Java, Springboot, and familiarity with databases like MySQL and Oracle DB. As a committed full-stack developer, I am driven by the passion to craft immersive and intuitive web applications. Let's embark together on a journey to create compelling digital experiences!</p>
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div *ngSwitchCase="3">
+            <div *ngSwitchCase="3" >
                 <div class="display display-exp"><strong> Experience</strong></div>
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Associate UI Developer </div>
@@ -69,7 +69,7 @@
                     </p>
                 </div>
             </div>
-            <div *ngSwitchCase="4">
+            <div *ngSwitchCase="4" class="text-light">
                 <div class="display display-exp mb-5"><strong>Technical Skills</strong></div>
                 <div class="address">Front End </div>
                 <ul>
@@ -112,7 +112,7 @@
                     </ng-template>
                 </ngb-carousel>
             </div>
-            <div *ngSwitchCase="6">
+            <div *ngSwitchCase="6"  class="text-light">
                 <mat-tab-group>
                     <mat-tab label="JSON API Projects"> 
                         <div class="container mt-5">
