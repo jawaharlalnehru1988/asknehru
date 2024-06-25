@@ -26,4 +26,9 @@ export class CodedocComponent implements OnInit {
       }
     })
   }
+
+  isPalindrome(str: string): boolean {
+    const reversedStr = str.split('').reverse().join('');
+    return str === reversedStr;
+  }
 }

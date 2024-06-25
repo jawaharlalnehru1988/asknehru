@@ -12,12 +12,18 @@ export class ProfileComponent implements OnInit {
   tiles: Tile[] = [
     {id: 1, text: 'About'},
     {id: 2, text: 'Contact'},
-    {id: 3, text: 'Experience'},
-    {id: 4, text: 'Skills'},
-    {id: 5, text: 'Certifications'},
-    {id: 6, text: 'Github Repo & Output'},
-    {id: 7, text: 'Education'},
-    {id: 8, text: 'Resume Download'},
+    {id: 3, text: 'Experience - Current'},
+    {id: 4, text: 'Experience - 2022-23'},
+    {id: 5, text: 'Experience - 2022'},
+    {id: 6, text: 'Experience - 2021-22'},
+    {id: 7, text: 'Experience - 2018-21'},
+    {id: 8, text: 'Experience - 2014-18'},
+    {id: 9, text: 'Experience - 2011-14'},
+    {id: 10, text: 'Skills'},
+    {id: 11, text: 'Certifications'},
+    {id: 12, text: 'Github Repo & Output'},
+    {id: 13, text: 'Education'},
+    {id: 14, text: 'Resume Download'},
   ];
 
   socialMedia = [{
@@ -86,4 +92,6 @@ certificatesImages: { name: string, caption: string }[]  = [
     const event = new MouseEvent('click', {bubbles: true, cancelable: true, view: window});
     a.dispatchEvent(event);
   }
+
+
 }

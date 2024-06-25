@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-css',
   templateUrl: './css.component.html',
@@ -6,10 +7,11 @@ import { Component } from '@angular/core';
 })
 export class CssComponent {
  
-  constructor() { }
-  
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit(): void {
    
-  }
-  
+ }
+
 }
+  

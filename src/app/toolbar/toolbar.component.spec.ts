@@ -34,4 +34,25 @@ describe('ToolbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should divide the first number by second number", ()=> {
+    const result = component.isDivisible(4, 2);
+    expect(result).toBe(true);
+    expect(component.isDivisible(10, 5)).toBe(true);
+  });
+
+  it('should return false if the second number is not divisible', ()=> {
+    expect(component.isDivisible(10, 4)).toBe(false);
+  });
+
+  it('should throw error if the second number is 0', ()=> {
+    expect(()=> component.isDivisible(10, 0)).toThrow(new Error("Division by zero is not allowed"));
+  });
+
+  it('should return array of string which has atleast 5 character', ()=> {
+    const input = ["hare", "Krishna", "Radha", "rama", "Balarama"];
+    const expOutput = ["Krishna", "Radha", "Balarama"];
+    expect(component.filterLongStrings(input)).toEqual(expOutput);
+  });
+
 });
