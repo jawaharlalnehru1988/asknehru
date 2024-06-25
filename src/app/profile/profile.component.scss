@@ -185,7 +185,27 @@
     display: flex;
     justify-content: center;
   }
+  .disc-list {
+    list-style-type: disc;
+    padding-left: 20px; /* Optional: Adds padding to align bullets nicely */
+  }
+  .disc-list li {
+    margin-bottom: 10px; /* Adjust the value to increase/decrease spacing */
+  }
   .experience{
     position: relative;
     top: 20%;
   }
+  .container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+  }
+  
+
+  
+
+  
+  

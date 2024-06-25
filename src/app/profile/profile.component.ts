@@ -92,4 +92,6 @@ certificatesImages: { name: string, caption: string }[]  = [
     const event = new MouseEvent('click', {bubbles: true, cancelable: true, view: window});
     a.dispatchEvent(event);
   }
+
+
 }
