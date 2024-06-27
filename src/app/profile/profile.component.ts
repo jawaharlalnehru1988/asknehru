@@ -3,6 +3,11 @@ export interface Tile {
   id: number;
   text: string;
 }
+
+export interface Person {
+  name: string;
+  age: number;
+}
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -19,13 +24,45 @@ export class ProfileComponent implements OnInit {
     {id: 7, text: 'Experience - 2018-21'},
     {id: 8, text: 'Experience - 2014-18'},
     {id: 9, text: 'Experience - 2011-14'},
-    {id: 10, text: 'Skills'},
+    {id: 10, text: 'Skills and Techstacks'},
     {id: 11, text: 'Certifications'},
     {id: 12, text: 'Github Repo & Output'},
     {id: 13, text: 'Education'},
     {id: 14, text: 'Resume Download'},
   ];
-
+  technicalSkills = [
+    {
+      category: 'Front End',
+      skills: [
+        'FrameWork: Angular (Can able to work on Versions From 8 to 17th)',
+        'Layout and UI Frameworks: Angular Material, Primeng, Bootstrap 5 and CDK',
+        'Programming Languages: Typescript, JavaScript',
+        'Unit Testing: Jasmine, Jest and Karma',
+        'Designing Languages: HTML5, CSS3, SCSS preprocessor, Flex Layout, Ag Grid',
+        'Asynchronous Libraries: RxJS, NGRx'
+      ]
+    },
+    {
+      category: 'Back End',
+      skills: [
+        'Framework: Springboot',
+        'DataBases: Oracle DB, MySQL',
+        'Programming Languages: Core Java with DSA, SQL',
+        'API testing Tools: Postman and swagger'
+      ]
+    },
+    {
+      category: 'Additional Skills and Experience',
+      skills: [
+        'Sound Experience on Git Commands with Cloud repositories such as GitLab, Bitbucket and Github',
+        'Coding Best Practices: Code Scanning with SonarQube and Coverity Bugfix Standards',
+        'Debugging Skills and Error Handling Skills',
+        'Responsive Web Design for various Devices',
+        'Cross Browser Testing & Debugging',
+        'Ability to work on Agile methodology Environment and used PM tools like Jira and Nimble'
+      ]
+    }
+  ];
   socialMedia = [{
     imageLink: "1aYv_7mLgreOn_Ua6lFVRGxK5hPRJj-FM",
     mediaLink: "https://github.com/jawaharlalnehru1988",
@@ -71,7 +108,7 @@ certificatesImages: { name: string, caption: string }[]  = [
   }
   downloadPdf() {
     // Define the path to your PDF file in the assets folder
-    const pdfFilePath = 'assets/image/Jawaharlalnehru_resumePdf.pdf';
+    const pdfFilePath = 'assets/image/Jawaharlalnehru_Resume.pdf';
   
     // Create an anchor element
     const a = document.createElement('a');
@@ -82,16 +119,14 @@ certificatesImages: { name: string, caption: string }[]  = [
     const event = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
     a.dispatchEvent(event);
   }
-  downloadDoc(){
-    const docFilePath = 'assets/image/Jawaharlalnehru_resume.docx';
-
-    const a = document.createElement('a');
-    a.href = docFilePath;
-    a.download = 'Jawaharlal_Resume.docx';
-
-    const event = new MouseEvent('click', {bubbles: true, cancelable: true, view: window});
-    a.dispatchEvent(event);
+ 
+  calculateAverageAge(people: Person[]): number {
+    if (people.length === 0) {
+      return 0; // Return 0 for an empty array (or you can throw an error)
+    }
+  
+    const totalAge = people.reduce((sum, person) => sum + person.age, 0);
+    return totalAge / people.length;
   }
-
 
 }
