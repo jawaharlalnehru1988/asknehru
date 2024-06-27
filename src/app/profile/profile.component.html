@@ -19,15 +19,7 @@
         </div>
         <div [ngSwitch]="condition" class="experience">
             <div  *ngSwitchCase="1">
-            <div class="display mb-5"><strong> Jawaharlal Nehru Elumalai</strong></div>
-            <div class="address">Angular Java Full Stack Developer</div>
-                <div class="intro3 intro-text">
-                    <ul class="disc-list">
-                        <li>With a background spanning three years in the software field, I offer dependable expertise in Angular development.</li>
-                        <li>My capabilities extend across HTML, CSS, JavaScript, TypeScript, and adept management of version control systems such as Git.</li>
-                        <li>Additionally, I possess backend proficiency in languages like Java, Spring Boot, and familiarity with databases like MySQL and Oracle DB.</li>
-                      </ul>
-                </div>
+                <ng-container *ngTemplateOutlet="profileTemplate"></ng-container>
             </div>
             <div *ngSwitchCase="2">
                 <div class="display mb-5"><strong> Contact</strong></div>
@@ -115,7 +107,7 @@
                 <div class="text-light"> Computer Hardware and Networking</div>
                 <div class="intro3">
                     <p>
-                        I started my own shop where I troubleshoot issues with laptops, PCs, mobile phones, printers, and more. The business has been running successfully.                    </p>
+                        I started my own shop where I troubleshoot issues with laptops, PCs, mobile phones, printers, and more. The business had been running successfully till 2018 </p>
                 </div>
 
             </div>
@@ -134,35 +126,12 @@
             </div>
             <div *ngSwitchCase="10" class="text-light">
                 <div class="display display-exp mb-5"><strong>Technical Skills</strong></div>
-                <div class="address">Front End </div>
-                <ul>
-                    <li>Angular, Angular Material UI, CDK</li>
-                    <li>Typescript, JavaScript</li>
-                    <li>HTML5, CSS3, SCSS</li>
-                    <li>RxJS, Flex Layout, Ag Grid</li>
-                </ul>
-                <div class="address">Back End </div>
-                <ul>
-                    <li>.NET framework, ASP.NET </li>
-                    <li>C#, Ms SQL with SQL commands,</li>
-                    <li>Apps Script, Google Sheet Database</li>
-                    <li>API testing with Postman and swagger</li>
-                </ul>
-                <div class="address">Deployment Skills </div>
-                <ul>
-                    <li>Git Commands with Bitbucket and Github </li>
-                    <li>Debugging Skill and Error Handling </li>
-                    <li>Deploying to Netlify, GitHub Pages</li>
-                </ul>
-                <div class="address">Work Flow </div>
-                <ul>
-                    <li>Mobile-First, Responsive Design </li>
-                    <li>Cross Browser Testing & Debugging</li>
-                    <li>Cross Functional Teams</li>
-                    <li>Agile Development</li>
-                </ul>
-
-
+                <div *ngFor="let category of technicalSkills">
+                    <div class="address">{{ category.category }}</div>
+                    <ul>
+                        <li *ngFor="let skill of category.skills">{{ skill }}</li>
+                    </ul>
+                </div>
             </div>
             <div *ngSwitchCase="11">
                 <ngb-carousel>
@@ -170,7 +139,6 @@
                         <div class="carousel-wrapper">
                             <img class="carousel-image" [src]="image.name" [alt]="image.caption">
                     
-                            <!-- <div class="caption">{{image.caption}}</div> -->
                         </div>
                     </ng-template>
                 </ngb-carousel>
@@ -256,30 +224,33 @@
                         <img src="../../assets/image/pdflogo.png" width="28px" class="me-4" alt="image">
                         <button mat-raised-button  color="primary" (click)="downloadPdf()">Download PDF</button>
                     </li>
-                    <li class="mt-5">
-                        <h2>Download My Resume in word document format </h2>
-                        <img src="../../assets/image/doclogo.png" width="38px" class="me-3" alt="image"> 
-                        <button mat-raised-button color="primary" (click)="downloadDoc()">Download Docx</button>
-                    </li>
                 </ul>
 
             </div>
             <div *ngSwitchDefault>
-                
-                <div class="display mb-5"><strong> Jawaharlal Nehru Elumalai</strong></div>
-            <div class="address">Angular Java Full Stack Developer </div>
-            <div class="intro3 intro-text">
-                <ul class="disc-list">
-                    <li>With a background spanning three years in the software field, I offer dependable expertise in Angular development.</li>
-                    <li>My capabilities extend across HTML, CSS, JavaScript, TypeScript, and adept management of version control systems such as Git.</li>
-                    <li>Additionally, I possess backend proficiency in languages like Java, Spring Boot, and familiarity with databases like MySQL and Oracle DB.</li>
-                  </ul>
+                <ng-container *ngTemplateOutlet="profileTemplate"></ng-container>
             </div>
-                          
-                </div>
           </div>
     </div>    
 </div>
 </div>
 </div>
+
+<ng-template #profileTemplate>
+    <div class="display mb-5"><strong>Jawaharlal Nehru Elumalai</strong></div>
+    <div class="address">Angular Java Full Stack Developer</div>
+    <div class="intro3 intro-text">
+      <ul class="disc-list">
+        <li>With a background spanning three years in the software field, I offer dependable expertise in Angular
+          development.
+        </li>
+        <li>My capabilities extend across HTML, CSS, JavaScript, TypeScript, and adept management of version control
+          systems such as Git.
+        </li>
+        <li>Additionally, I possess backend proficiency in languages like Java, Spring Boot, and familiarity with
+          databases like MySQL and Oracle DB.
+        </li>
+      </ul>
+    </div>
+  </ng-template>
   
