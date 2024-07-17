@@ -144,22 +144,23 @@
                 </ngb-carousel>
             </div>
             <div *ngSwitchCase="12"  class="text-light">
-                <mat-tab-group>
+                <div class="m-5">
+                    <ul>
+                        <li>Github Repository : <a class="text-decoration-none" href="https://github.com/jawaharlalnehru1988/bookapi" target="_blank">JSON APIs</a> </li>
+                        <li>Output on Githubpage : <a class="text-decoration-none" href="https://jawaharlalnehru1988.github.io/bookapi/country.json" target="_blank">Country Code and Flag</a></li>
+                    </ul>
+                    <h2>Project Description :</h2>
+                    <p>To achieve dynamic content rendering in my Angular applications, I harnessed the power of a JSON mock server,
+                        enabling the seamless generation of RESTful APIs. This not only simplifies CRUD operations but also enhances the
+                        flexibility of my applications. As the next step, I seamlessly deployed these JSON files to GitHub Pages, providing
+                        online accessibility to my applications. This approach empowers me to effortlessly integrate and utilize the JSON
+                        API across various platforms and scenarios.
+                    </p>
+                    <h2>Tools I have used:</h2>JSON Server, NPM packages, Git commands, github, Github page
+                </div>
+                <!-- <mat-tab-group>
                     <mat-tab label="JSON API Projects"> 
-                        <div class="container mt-5">
-                            <ul>
-                                <li>Github Repository : <a class="text-decoration-none" href="https://github.com/jawaharlalnehru1988/bookapi" target="_blank">JSON APIs</a> </li>
-                                <li>Output on Githubpage : <a class="text-decoration-none" href="https://jawaharlalnehru1988.github.io/bookapi/country.json" target="_blank">Country Code and Flag</a></li>
-                            </ul>
-                            <h2>Project Description :</h2>
-                            <p>To achieve dynamic content rendering in my Angular applications, I harnessed the power of a JSON mock server,
-                                enabling the seamless generation of RESTful APIs. This not only simplifies CRUD operations but also enhances the
-                                flexibility of my applications. As the next step, I seamlessly deployed these JSON files to GitHub Pages, providing
-                                online accessibility to my applications. This approach empowers me to effortlessly integrate and utilize the JSON
-                                API across various platforms and scenarios.
-                            </p>
-                            <h2>Tools I have used:</h2>JSON Server, NPM packages, Git commands, github, Github page
-                        </div>
+                       
                     </mat-tab>
                     <mat-tab label="ISKCON Kanyakumari"> 
                         <div class="mt-5">
@@ -206,11 +207,11 @@
                             <h2>Programming Languages and Tools I have used:</h2> HTML, CSS, Bootstrap 5, GIT, GitHub, github Page
                         </div>     
                     </mat-tab>
-                  </mat-tab-group>
+                  </mat-tab-group> -->
             </div>
             <div *ngSwitchCase="13">
                 <div class="address mb-3 fs-2">Education</div>
-                <ul class="Education mb-5">
+                <ul class="Education text-light mb-5">
                     <li class="fs-3">MSc Physics  - 79% - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
                     <li class="fs-3">B. Sc Physics  - 78.4 % - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
                     <li class="fs-3">12th - 82.6% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
@@ -219,7 +220,7 @@
             </div>
             <div *ngSwitchCase="14">
                 <ul>
-                    <li>
+                    <li class="text-light" >
                         <h2>Download My Resume </h2>
                         <img src="../../assets/image/pdflogo.png" width="28px" class="me-4" alt="image">
                         <button mat-raised-button  color="primary" (click)="downloadPdf()">Download PDF</button>
