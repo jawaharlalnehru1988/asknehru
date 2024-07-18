@@ -7,3 +7,15 @@
   height: 100%;
   border: 0; /* Remove iframe border */
   }
+  .titles{
+    border: 2px #28a745 solid;
+    height: 100%;
+    width: 100%;
+    padding-left: 12px;
+  }
+  .title-dsa{
+    border: 2px solid #28a745; /* Example border color */
+    border-radius: 50px 50px 50px 50px; /* Top-left and top-right corners curved, bottom-left and bottom-right corners straight */
+    padding: 10px; /* Optional: adds some padding inside the element */
+    text-align: center; /* Center the text */
+  }

@@ -12,3 +12,32 @@
   background-color: #2196F3 !important; /* Add your desired highlight color */
   color: white !important;
 }
+.icon-wrapper {
+  // position: relative;
+  display: inline-block;
+}
+.arrow{
+  position: relative;
+    top: 9px;
+    left: 24px;
+}
+
+.color-changing-icon {
+  font-size: 28px; /* Adjust the size as needed */
+  animation: colorChange 6s infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    color: red;
+  }
+  33% {
+    color: green;
+  }
+  66% {
+    color: blue;
+  }
+  100% {
+    color: red;
+  }
+}

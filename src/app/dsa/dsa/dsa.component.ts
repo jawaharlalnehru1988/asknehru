@@ -32,7 +32,7 @@ export class DsaComponent implements OnInit {
       intro:"Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
     },
   ]
-  selectedCategory: string = '';
+  selectedCategory: string = 'dsa';
  
   constructor(private dsaService: DsaService) { }
 
