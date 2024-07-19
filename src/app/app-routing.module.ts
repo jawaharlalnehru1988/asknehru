@@ -20,7 +20,6 @@ const routes: Routes = [
   {path: "yoga", component: AutocompleteComponent},
   {path: "javascript", loadChildren: ()=>import('./javascript/javascript.module').then(m => m.JavascriptModule)},
   {path: "angular", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
-  {path: "articles", loadChildren: ()=>import('./dsa/dsa.module').then(m => m.DsaModule) },
   {path: 'html', loadChildren: ()=>import('./html/html.module').then(m=>m.HtmlModule)},
   {path: 'gymwebpage', loadChildren: ()=>import('./css/css.module').then(m=> m.CssModule)},
   {path: 'ecommerce', loadChildren: ()=> import('./bootstrap/bootstrap.module').then(m=> m.BootstrapModule)},

@@ -99,12 +99,12 @@ staticWebData: Project[] = [
     routerLink: "/fashion",
     intro:"Welcome to my fashion Product website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
-  {
-    PName : "Project Studio",
-    PImage :  "assets/image/pjstudio.png",
-    routerLink: "/projectStudio",
-    intro:"Welcome to my Project Studio website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
-  },
+  // {
+  //   PName : "Project Studio",
+  //   PImage :  "assets/image/pjstudio.png",
+  //   routerLink: "/projectStudio",
+  //   intro:"Welcome to my Project Studio website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
+  // },
 ];
 projectData: Project[] =[
   {
@@ -113,12 +113,12 @@ projectData: Project[] =[
     routerLink: "/profile",
     intro: "Welcome to my portfolio website. I am Jawaharlal, a web developer who loves Angular. Here you can see my webpage I have created using TypeScript, HTML, CSS, and other technologies. I hope you enjoy my work and contact me for any inquiries."
   },
-  {
-    PName: "Articles/Essays",
-    PImage: "assets/image/article.png",
-    routerLink: "/articles",
-    intro: "Explore articles covering Data Structures, Algorithms, prominent Angular features, Unit Testing, Java Spring Boot REST APIs, and various other technology stacks. Dive into these topics, enjoy the read, and feel free to share your thoughts."
-  }
+  // {
+  //   PName: "Articles/Essays",
+  //   PImage: "assets/image/article.png",
+  //   routerLink: "/articles",
+  //   intro: "Explore articles covering Data Structures, Algorithms, prominent Angular features, Unit Testing, Java Spring Boot REST APIs, and various other technology stacks. Dive into these topics, enjoy the read, and feel free to share your thoughts."
+  // }
 ];
 loginForm!:FormGroup;
   minValidate: boolean = false;
