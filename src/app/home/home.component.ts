@@ -50,10 +50,10 @@ export class HomeComponent implements OnInit {
 ];
 blogArticleData: Project[] = [
   {
-    PName: "Javascript Core",
-    PImage: "assets/image/videojs.png",
-    routerLink: "/javascript",
-    intro: "Welcome to my Javascript Blog website. Here you can find some of the gym websites I have designed using TypeScript, HTML, CSS, and other technologies. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
+    PName: "Practice DSA with Typescript",
+    PImage: "assets/image/typscriptdsa.jpg",
+    routerLink: "/typescript",
+    intro: "Welcome to my DSA Typescript Coding tutorial. Here you can find many coding concepts with insights into them. There are multiple data structures in programming and solving various problems by traversing throught the data structures are really challenging"
   },
   {
     PName: "Audios/Videos",
