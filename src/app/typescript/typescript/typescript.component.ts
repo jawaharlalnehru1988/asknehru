@@ -1,9 +1,11 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-typescript',
   templateUrl: './typescript.component.html',
-  styleUrls: ['./typescript.component.scss']
+  styleUrls: ['./typescript.component.scss'],
+  
 })
 export class TypescriptComponent implements OnInit {
 
@@ -14,12 +16,24 @@ export class TypescriptComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.fruits.pop();
+  //   this.fruits.pop();
  
-    this.fruits.push("Orange");
+  //   this.fruits.push("Orange");
+  //   this.fruits.shift();
+  //   this.fruits.unshift("Apple");
+  //   console.log('this.fruits :', this.fruits);
+  }
+  push(fruit:string){
+    this.fruits.push(fruit);
+  }
+  pop(){
+    this.fruits.pop();
+  }
+  shift(){
     this.fruits.shift();
-    this.fruits.unshift("Apple");
-    console.log('this.fruits :', this.fruits);
   }
 
+  unshift(){
+    this.fruits.unshift("first fruit");
+  }
 }
