@@ -1,3 +1,16 @@
-<div class="bg-white min-vw-100 min-vh-100">
-hare krishna
+<div class="bg-white min-vw-100 min-vh-100 d-flex"  >
+    <div class="border h-25" >
+
+        <ul *ngFor="let fruit of fruits">
+            <li> {{fruit}}</li>
+        </ul>
+    </div>
+    <div>
+
+        <button (click)="push('fruit')">push</button>
+        <button (click)="pop()">pop</button>
+        <button (click)="shift()">shift</button>
+        <button (click)="unshift()">unshift</button>
+    </div>
 </div>
+
