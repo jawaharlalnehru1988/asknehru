@@ -99,12 +99,7 @@ staticWebData: Project[] = [
     routerLink: "/fashion",
     intro:"Welcome to my fashion Product website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
-  // {
-  //   PName : "Project Studio",
-  //   PImage :  "assets/image/pjstudio.png",
-  //   routerLink: "/projectStudio",
-  //   intro:"Welcome to my Project Studio website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
-  // },
+ 
 ];
 projectData: Project[] =[
   {
@@ -120,6 +115,8 @@ projectData: Project[] =[
   //   intro: "Explore articles covering Data Structures, Algorithms, prominent Angular features, Unit Testing, Java Spring Boot REST APIs, and various other technology stacks. Dive into these topics, enjoy the read, and feel free to share your thoughts."
   // }
 ];
+
+webTechs: string[] =["HTML5", "CSS3", "Bootstrap 5", "JavaScript ES6", "TypeScript", "Angular 8+", "Rxjs", "DSA", "Karma & Jasmine", "Java", "SpringBoot"];
 loginForm!:FormGroup;
   minValidate: boolean = false;
   patternValidata: boolean = false;
@@ -165,8 +162,31 @@ loginForm!:FormGroup;
       items: ['Milk', 'Cheese', 'Yogurt'],
     },
   ];
+  experience: {
+    years: number;
+    days: number;
+    hours: number;
+    minutes: number;
+  } = {
+    years: 0,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+  };
+
+  currentDate: Date = new Date();
+  startDate: Date = new Date('2021-09-10T12:30:00'); //
   ngOnInit() {
-    
+    const diffMilliseconds = this.currentDate.getTime() - this.startDate.getTime();
+    const diffSeconds = diffMilliseconds / 1000;
+    const diffMinutes = diffSeconds / 60;
+    const diffHours = diffMinutes / 60;
+    const diffDays = diffHours / 24;
+
+    this.experience.years = Math.floor(diffDays / 365);
+    this.experience.days = Math.floor(diffDays % 365);
+    this.experience.hours = Math.floor(diffHours % 24);
+    this.experience.minutes = Math.floor(diffMinutes % 60);
     
     this.api.setLoginData(true);
     this.api.fetchData().subscribe(data => {
