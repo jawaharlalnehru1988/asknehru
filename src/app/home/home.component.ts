@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -117,51 +117,10 @@ projectData: Project[] =[
 ];
 
 webTechs: string[] =["HTML5", "CSS3", "Bootstrap 5", "JavaScript ES6", "TypeScript", "Angular 8+", "Rxjs", "DSA", "Karma & Jasmine", "Java", "SpringBoot"];
-loginForm!:FormGroup;
-  minValidate: boolean = false;
-  patternValidata: boolean = false;
-  constructor(private api: ApiService, private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      firstName: ["", Validators.required]
-    })
-   }
-  labelPosition = 'now';
-  checked= false;
-  indeterminate = false;
-  beans : boolean = false;
-  Carrot : boolean = false;
-  Beetroot : boolean = false;
-  apple : boolean = false;
-  itemsq: { name: string, checked: boolean }[] = [
-    { name: 'Beans', checked: false },
-    { name: 'Carrot', checked: false },
-    { name: 'Beet Root', checked: false },
-    { name: 'Apple', checked: false },
-  ];
-  items: string[] = ['ram', 'krishna' , 'govinda']
-  fontStyle?: string;
-  isConditionTrue : boolean = true;
-  items1 = {
-    firstName: 'John',
-    lastName: 'Doe',
-    age: 30,
-    country: 'USA',
-  };
 
-  categories = [
-    {
-      name: 'Fruits',
-      items: ['Apple', 'Banana', 'Orange'],
-    },
-    {
-      name: 'Vegetables',
-      items: ['Carrot', 'Broccoli', 'Spinach'],
-    },
-    {
-      name: 'Dairy',
-      items: ['Milk', 'Cheese', 'Yogurt'],
-    },
-  ];
+  constructor(private api: ApiService, private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
+   }
+
   experience: {
     years: number;
     days: number;
@@ -189,24 +148,17 @@ loginForm!:FormGroup;
     this.experience.minutes = Math.floor(diffMinutes % 60);
     
     this.api.setLoginData(true);
-    this.api.fetchData().subscribe(data => {
-      // Handle API response
-      console.log(data);
-    });
 
-    this.loginForm.get('firstName')?.valueChanges.subscribe((res: any) => {
-      const resValue = res;
-      console.log('resValue :', resValue);
-      this.minValidate = resValue.length < 3;
-      this.patternValidata = !/^[a-zA-Z\s]+$/.test(resValue);
-    });
+    this.highlight('yellow');
+
+
+
     
   }
-  OnSubmit(){
-   if ( this.loginForm.value) {
-   console.log('this.loginForm.value :', this.loginForm.value);
-    
-   }
+
+
+  private highlight(color:string){
+    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', color);
   }
   
 }
