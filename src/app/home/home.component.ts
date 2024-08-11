@@ -62,27 +62,27 @@ blogArticleData: Project[] = [
     intro:"Welcome to my podcast website. Here you can find audio tutorials I have recorded for you by which you can learn programming, that are really inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
 ]
-staticWebData: Project[] = [
+staticWebsites: Project[] = [
   {
-    PName : "Gym website",
+    PName : "Gym",
     PImage :  "assets/image/gym.png",
     routerLink: "/gymwebpage",
     intro:"Welcome to my gym website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Yoga website",
+    PName : "Yoga",
     PImage :  "assets/image/yoga.png",
     routerLink: "/yoga",
     intro:"Welcome to my yoga website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Shop Products",
+    PName : "Shop",
     PImage :  "assets/image/shop.png",
     routerLink: "/productshop",
     intro:"Welcome to my Shopping website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Food website",
+    PName : "Food",
     PImage :  "assets/image/food.png",
     routerLink: "/food",
     intro:"Welcome to my food website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
@@ -94,7 +94,7 @@ staticWebData: Project[] = [
     intro:"Welcome to my Tech Expert website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Fashion website",
+    PName : "Fashion",
     PImage :  "assets/image/fashion.png",
     routerLink: "/fashion",
     intro:"Welcome to my fashion Product website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
@@ -116,7 +116,7 @@ projectData: Project[] =[
   // }
 ];
 
-webTechs: string[] =["HTML5", "CSS3", "Bootstrap 5", "JavaScript ES6", "TypeScript", "Angular 8+", "Rxjs", "DSA", "Karma & Jasmine", "Java", "SpringBoot"];
+webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
 
   constructor(private api: ApiService, private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
    }
