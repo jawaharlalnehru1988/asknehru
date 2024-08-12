@@ -116,6 +116,17 @@ projectData: Project[] =[
   // }
 ];
 
+techStacks = {
+  rebit: [
+    {imgsrc: "assets/image/angular.png", techName: "Angular 16+" },
+    {imgsrc: "assets/image/jasmine.png", techName: "Jasmine" },
+    {imgsrc: "assets/image/karma.png", techName: "Karma" },
+    {imgsrc: "assets/image/oracledb.png", techName: "Oracle DB" },
+    {imgsrc: "assets/image/sql.png", techName: "SQL" },
+    {imgsrc: "assets/image/agile.png", techName: "Agile Workflow" },
+  ]
+}
+
 webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
 
   constructor(private api: ApiService, private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
@@ -134,7 +145,7 @@ webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
   };
 
   currentDate: Date = new Date();
-  startDate: Date = new Date('2021-09-10T12:30:00'); //
+  startDate: Date = new Date('2021-09-10T12:30:00'); 
   ngOnInit() {
     const diffMilliseconds = this.currentDate.getTime() - this.startDate.getTime();
     const diffSeconds = diffMilliseconds / 1000;
@@ -148,17 +159,9 @@ webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
     this.experience.minutes = Math.floor(diffMinutes % 60);
     
     this.api.setLoginData(true);
-
-    this.highlight('yellow');
-
-
-
     
   }
 
 
-  private highlight(color:string){
-    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', color);
-  }
   
 }
