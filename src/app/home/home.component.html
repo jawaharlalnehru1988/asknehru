@@ -26,14 +26,14 @@
   <div class="container-fluid ">
     <div class="row ">
       <div class="p-10 flex justify-center col-sm-12 col-lg-3">
-        <div class="max-w-xl rounded overflow-hidden shadow-lg">
-         <p class="text-2xl font-bold font-serif text-FireBrick p-8">Skills & Tech stacks I used</p> 
-         <div class="d-flex px-12 space-between" *ngFor="let techs of techStacks.rebit">
-          <div class="col-6">
+        <div class="skill-set rounded overflow-hidden shadow-lg">
+         <p class="text-2xl text-center font-bold font-serif text-FireBrick p-8">Skills & Tech stacks I used...</p> 
+         <div class="d-flex space-between" *ngFor="let techs of techStacks.rebit">
+          <div class="ps-12 col-6">
             <img class="w-14 mt-8" [src]="techs.imgsrc" alt="">
           </div>
           <div class="col-6 mt-8">
-            <p>{{techs.techName}}</p>
+            <p class="font-bold mt-2 text-DarkCyan" >{{techs.techName}}</p>
           </div>
         </div>
         </div>
@@ -41,16 +41,19 @@
       <div class="intro col-lg-6 col-sm-12">
         <div class="font-bold">
           <div class="text-4xl text-center leading-normal font-handwritten">
-            I Started My Professional coding Journey with HTML, CSS, Bootstrap and TailwindCSS under a Freelancer on 
-            <p>
-              <span class="bg-yellow rounded-lg px-3 font-serif"> 10-Sep-2021 at 12:30 PM.</span>
-            </p>
-            Till today <p> <span class="bg-PeachPuff rounded-lg px-3"> {{ currentDate | date:'dd-MMM-yyyy' }} at {{
-                currentDate | date:'hh:mm a' }} </span>,</p>
-            my total experience is <p> <span class="bg-Lilac rounded-lg px-3"> {{ experience.years }} years </span>,
-              <span class="bg-LightGreen rounded-lg px-3"> {{ experience.days }} days</span>, <span
-                class="bg-Orange rounded-lg px-3"> {{ experience.hours }} hours</span>, and <span
-                class="bg-SteelBlue rounded-lg px-3">{{ experience.minutes }} minutes</span>.
+            <div class="flex justify-center">
+              <p class="text-center">Currently I am working on</p>
+              <img src="../../assets/image/rebit-logo.jpg" class="w-52 hover:scale-110 transition-transform duration-300 mb-8 ms-10" alt="Rebit Logo">
+            </div>
+            <div class="flex">
+              <p> Joined On </p>
+              <span class="bg-yellow rounded-lg px-3 font-serif border-double  border-2"> 27-Dec-2023</span>  Serving Till today 
+              <span class="bg-orange rounded-lg px-3 border-double border-2"> {{ currentDate | date:'dd-MMM-yyyy' }} </span>
+            </div> 
+           <p> </p>
+           So my experience in REBIT is <p> 
+            
+            <span class="bg-LightSkyBlue border-double border-2 rounded-lg px-3"> {{calculateDateDifference('27-Dec-2023')}}  </span>
             </p>
           </div>
         </div>
@@ -58,14 +61,13 @@
       <div class="col-lg-3 mt-4">
         <div class="max-w-xl rounded overflow-hidden shadow-lg">
           <div class="">
-            <p class="font-bold px-3 text-center text-RoyalBlue">My sample webpages simply with HTMl, CSS & Bootstrap
+            <p class="font-bold px-3 pt-8 text-center text-FireBrick">Projects I have worked on
             </p>
-            <div class="list-disc col-lg-12" *ngFor="let tech of staticWebsites">
-              <div class="row text-DarkCyan cursor-pointer">
-                <div class="d-flex gap-6" [routerLink]="tech.routerLink">
-                  <div class="col-4 font-display"> {{tech.PName}}</div>
-                  <div class="col-4 mb-12"> <img class="w-24" [src]="tech.PImage" alt=""></div>
-                  <div class="col-4"> Visit</div>
+            <div class="list-disc col-lg-12" *ngFor="let pjt of projects.rebit">
+              <div class="row ">
+                <div class="d-flex mt-3 text-DarkCyan cursor-pointer">
+                  <div class="col-4 font-display"> {{pjt.pjtName}}</div>
+                  <div class="col-8 text-justify"> {{pjt.pjtDetails.substring(0, 168)+"..."}}</div>
                 </div>
               </div>
             </div>

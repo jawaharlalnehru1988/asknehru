@@ -126,7 +126,13 @@ techStacks = {
     {imgsrc: "assets/image/agile.png", techName: "Agile Workflow" },
   ]
 }
-
+projects = {
+  rebit: [
+    {pjtName: "MDMS", pjtDetails: "This Application is meant to maintain master datas which will be available for all other applications ReBIT. Here I developed new modules to manage Resilience alerts and maintained other modules for feature enhancements"},
+    {pjtName: "EFD-MIS Report", pjtDetails: "This application generates MIS - reports based on data given in the forms. I have helped in Developing complex forms with form arrays of reactive form modules"},
+    {pjtName: "NGCB-GPX", pjtDetails: "In this application I have integrated APIs and developed CBDT flow with complex functionalities."},
+  ]
+}
 webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
 
   constructor(private api: ApiService, private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
@@ -136,9 +142,11 @@ webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
     years: number;
     days: number;
     hours: number;
+    months: number;
     minutes: number;
   } = {
     years: 0,
+    months:0,
     days: 0,
     hours: 0,
     minutes: 0,
@@ -147,6 +155,14 @@ webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
   currentDate: Date = new Date();
   startDate: Date = new Date('2021-09-10T12:30:00'); 
   ngOnInit() {
+    
+    
+    this.api.setLoginData(true);
+    this.getDataTime();
+    
+  }
+
+  getDataTime(){
     const diffMilliseconds = this.currentDate.getTime() - this.startDate.getTime();
     const diffSeconds = diffMilliseconds / 1000;
     const diffMinutes = diffSeconds / 60;
@@ -157,11 +173,19 @@ webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
     this.experience.days = Math.floor(diffDays % 365);
     this.experience.hours = Math.floor(diffHours % 24);
     this.experience.minutes = Math.floor(diffMinutes % 60);
-    
-    this.api.setLoginData(true);
-    
   }
 
+
+  calculateDateDifference(dateString:string) {
+    const inputDate:any = new Date(dateString);
+    const currentDate:any = new Date();
+    const timeDifference = currentDate - inputDate;
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const months = Math.floor(days / 30);
+    const years = Math.floor(months / 12);
+    const result =  `${years} years, ${months} months, ${days % 30} days`;
+    return result;
+  }
 
   
 }
