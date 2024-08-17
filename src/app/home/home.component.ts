@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -62,27 +62,27 @@ blogArticleData: Project[] = [
     intro:"Welcome to my podcast website. Here you can find audio tutorials I have recorded for you by which you can learn programming, that are really inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
 ]
-staticWebData: Project[] = [
+staticWebsites: Project[] = [
   {
-    PName : "Gym website",
+    PName : "Gym",
     PImage :  "assets/image/gym.png",
     routerLink: "/gymwebpage",
     intro:"Welcome to my gym website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Yoga website",
+    PName : "Yoga",
     PImage :  "assets/image/yoga.png",
     routerLink: "/yoga",
     intro:"Welcome to my yoga website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Shop Products",
+    PName : "Shop",
     PImage :  "assets/image/shop.png",
     routerLink: "/productshop",
     intro:"Welcome to my Shopping website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Food website",
+    PName : "Food",
     PImage :  "assets/image/food.png",
     routerLink: "/food",
     intro:"Welcome to my food website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
@@ -94,17 +94,12 @@ staticWebData: Project[] = [
     intro:"Welcome to my Tech Expert website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
   {
-    PName : "Fashion website",
+    PName : "Fashion",
     PImage :  "assets/image/fashion.png",
     routerLink: "/fashion",
     intro:"Welcome to my fashion Product website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
   },
-  // {
-  //   PName : "Project Studio",
-  //   PImage :  "assets/image/pjstudio.png",
-  //   routerLink: "/projectStudio",
-  //   intro:"Welcome to my Project Studio website. Here you can find a gym website I have designed using HTML, CSS, and Bootstrap. I create gym websites that are inspiring, engaging, and functional. I hope you appreciate my work and feel free to contact me for any requests."
-  // },
+ 
 ];
 projectData: Project[] =[
   {
@@ -120,73 +115,77 @@ projectData: Project[] =[
   //   intro: "Explore articles covering Data Structures, Algorithms, prominent Angular features, Unit Testing, Java Spring Boot REST APIs, and various other technology stacks. Dive into these topics, enjoy the read, and feel free to share your thoughts."
   // }
 ];
-loginForm!:FormGroup;
-  minValidate: boolean = false;
-  patternValidata: boolean = false;
-  constructor(private api: ApiService, private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      firstName: ["", Validators.required]
-    })
+
+techStacks = {
+  rebit: [
+    {imgsrc: "assets/image/angular.png", techName: "Angular 16+" },
+    {imgsrc: "assets/image/jasmine.png", techName: "Jasmine" },
+    {imgsrc: "assets/image/karma.png", techName: "Karma" },
+    {imgsrc: "assets/image/oracledb.png", techName: "Oracle DB" },
+    {imgsrc: "assets/image/sql.png", techName: "SQL" },
+    {imgsrc: "assets/image/agile.png", techName: "Agile Workflow" },
+  ]
+}
+projects = {
+  rebit: [
+    {pjtName: "MDMS", pjtDetails: "This Application is meant to maintain master datas which will be available for all other applications ReBIT. Here I developed new modules to manage Resilience alerts and maintained other modules for feature enhancements"},
+    {pjtName: "EFD-MIS Report", pjtDetails: "This application generates MIS - reports based on data given in the forms. I have helped in Developing complex forms with form arrays of reactive form modules"},
+    {pjtName: "NGCB-GPX", pjtDetails: "In this application I have integrated APIs and developed CBDT flow with complex functionalities."},
+  ]
+}
+webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
+
+  constructor(private api: ApiService, private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
    }
-  labelPosition = 'now';
-  checked= false;
-  indeterminate = false;
-  beans : boolean = false;
-  Carrot : boolean = false;
-  Beetroot : boolean = false;
-  apple : boolean = false;
-  itemsq: { name: string, checked: boolean }[] = [
-    { name: 'Beans', checked: false },
-    { name: 'Carrot', checked: false },
-    { name: 'Beet Root', checked: false },
-    { name: 'Apple', checked: false },
-  ];
-  items: string[] = ['ram', 'krishna' , 'govinda']
-  fontStyle?: string;
-  isConditionTrue : boolean = true;
-  items1 = {
-    firstName: 'John',
-    lastName: 'Doe',
-    age: 30,
-    country: 'USA',
+
+  experience: {
+    years: number;
+    days: number;
+    hours: number;
+    months: number;
+    minutes: number;
+  } = {
+    years: 0,
+    months:0,
+    days: 0,
+    hours: 0,
+    minutes: 0,
   };
 
-  categories = [
-    {
-      name: 'Fruits',
-      items: ['Apple', 'Banana', 'Orange'],
-    },
-    {
-      name: 'Vegetables',
-      items: ['Carrot', 'Broccoli', 'Spinach'],
-    },
-    {
-      name: 'Dairy',
-      items: ['Milk', 'Cheese', 'Yogurt'],
-    },
-  ];
+  currentDate: Date = new Date();
+  startDate: Date = new Date('2021-09-10T12:30:00'); 
   ngOnInit() {
     
     
     this.api.setLoginData(true);
-    this.api.fetchData().subscribe(data => {
-      // Handle API response
-      console.log(data);
-    });
+    this.getDataTime();
+    
+  }
 
-    this.loginForm.get('firstName')?.valueChanges.subscribe((res: any) => {
-      const resValue = res;
-      console.log('resValue :', resValue);
-      this.minValidate = resValue.length < 3;
-      this.patternValidata = !/^[a-zA-Z\s]+$/.test(resValue);
-    });
-    
+  getDataTime(){
+    const diffMilliseconds = this.currentDate.getTime() - this.startDate.getTime();
+    const diffSeconds = diffMilliseconds / 1000;
+    const diffMinutes = diffSeconds / 60;
+    const diffHours = diffMinutes / 60;
+    const diffDays = diffHours / 24;
+
+    this.experience.years = Math.floor(diffDays / 365);
+    this.experience.days = Math.floor(diffDays % 365);
+    this.experience.hours = Math.floor(diffHours % 24);
+    this.experience.minutes = Math.floor(diffMinutes % 60);
   }
-  OnSubmit(){
-   if ( this.loginForm.value) {
-   console.log('this.loginForm.value :', this.loginForm.value);
-    
-   }
+
+
+  calculateDateDifference(dateString:string) {
+    const inputDate:any = new Date(dateString);
+    const currentDate:any = new Date();
+    const timeDifference = currentDate - inputDate;
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const months = Math.floor(days / 30);
+    const years = Math.floor(months / 12);
+    const result =  `${years} years, ${months} months, ${days % 30} days`;
+    return result;
   }
+
   
 }
