@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 export interface Name{
   name: string,
   id?: number
@@ -8,35 +8,41 @@ export interface Name{
   templateUrl: './typescript.component.html',
   styleUrls: ['./typescript.component.scss'],
 })
+export class TypescriptComponent{
+  @ViewChild('myTemplate') myTemplate!: TemplateRef<any>;
+  @ViewChild('myTemplate2') myTemplate2!: TemplateRef<any>;
+  @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
+  fruits: string[] = ['Banana', 'Mango', 'Jackfruit'];
 
-export class TypescriptComponent implements OnInit {
-
-  number:number[] = [1, 2, 3, 4, 5, 6];
-  fruits:string[] = ["Banana", "Mango", "Jackfruit"];
-  isEnable:boolean[] = [true, false, false, true];
-  mixedArray:any[] = ["Banana", true, 78, null, undefined, {name: "hi"}];
-  ArrayOfObjects:Name[] = [{name: "how", id: 12}, {name: "are"}, {name: "you"}, {name: "Krishna"}, {name: "Balaram"}];
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.fruits.pop();
-    this.fruits.push("Orange");
-    this.fruits.shift();
-    this.fruits.unshift("Apple");
-    console.log('this.fruits :', this.fruits);
-  }
-  push(fruit:string){
+  constructor(private renderer: Renderer2, private el: ElementRef){}
+  addElementAtEnd(fruit: string) {
     this.fruits.push(fruit);
   }
-  pop(){
+  ngAfterViewInit() {
+    const newDiv = this.renderer.createElement('div');
+    this.renderer.setProperty(newDiv, 'textContent', 'Hello World');
+    this.renderer.addClass(newDiv, 'my-class');
+    this.renderer.appendChild(this.el.nativeElement, newDiv);
+  }
+  removeElementAtEnd() {
     this.fruits.pop();
   }
-  shift(){
+
+  removeElementAtStart() {
     this.fruits.shift();
   }
 
-  unshift(){
-    this.fruits.unshift("first fruit");
+  addElementAtFirst(fruit:string) {
+    this.fruits.unshift(fruit);
+  }
+  addTemplate() {
+    this.container.createEmbeddedView(this.myTemplate);
+  }
+  addTemplate2() {
+    this.container.createEmbeddedView(this.myTemplate2);
+  }
+
+  removeTemplate() {
+    this.container.remove();
   }
 }

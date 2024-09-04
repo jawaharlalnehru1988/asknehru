@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserlistComponent } from './userlist/userlist.component';
@@ -23,7 +22,7 @@ const routes: Routes = [
   {path: 'html', loadChildren: ()=>import('./html/html.module').then(m=>m.HtmlModule)},
   {path: 'gymwebpage', loadChildren: ()=>import('./css/css.module').then(m=> m.CssModule)},
   {path: 'ecommerce', loadChildren: ()=> import('./bootstrap/bootstrap.module').then(m=> m.BootstrapModule)},
-  {path: 'typescript', loadChildren: ()=> import('./typescript/typescript.module').then(m => m.TypescriptModule)},
+  {path: 'typescript', loadChildren: ()=> import('./typescript/typescript/typescript/typescript.module').then(m => m.TypescriptModule)},
   {path: 'fashion', loadChildren: ()=> import('./material/material.module').then(m => m.MaterialModule)},
   {path: 'projectStudio', loadChildren: ()=> import('./fxlayout/fxlayout.module').then(m => m.FxlayoutModule)},
   {path: 'harekrishna', loadChildren: ()=> import('./aggrid/aggrid.module').then(m=>m.AggridModule)},

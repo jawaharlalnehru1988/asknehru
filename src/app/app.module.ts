@@ -26,8 +26,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { HighlightDirective } from './highlight.directive';
-import { BackgroundColorDirective } from './background-color.directive';
 
 @NgModule({
   declarations: [
@@ -41,8 +39,6 @@ import { BackgroundColorDirective } from './background-color.directive';
     ProfileComponent,
     ToolbarComponent,
     CodedocComponent,
-    HighlightDirective,
-    BackgroundColorDirective,
   ],
   imports: [
     BrowserModule,
