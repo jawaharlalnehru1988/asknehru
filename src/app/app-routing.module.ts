@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: "profile", component: ProfileComponent},
   {path: "codedoc", component: CodedocComponent},
   {path: "yoga", component: AutocompleteComponent},
+  {path: "products", loadChildren: ()=> import('./products/products.module').then(m => m.ProductsModule)},
   {path: "javascript", loadChildren: ()=>import('./javascript/javascript.module').then(m => m.JavascriptModule)},
   {path: "angular", loadChildren: ()=>import('./angular/angular.module').then(m => m.AngularModule) },
   {path: 'html', loadChildren: ()=>import('./html/html.module').then(m=>m.HtmlModule)},

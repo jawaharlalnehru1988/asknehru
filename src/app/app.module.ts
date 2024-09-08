@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ProfileComponent,
     ToolbarComponent,
     CodedocComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,
