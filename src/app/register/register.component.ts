@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as intlTelInput from 'intl-tel-input';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,17 +30,7 @@ export class RegisterComponent implements OnInit {
     });
 this.routeValueSet();
   }
-  ngAfterViewInit(){
-      this.abcd = intlTelInput(this.phone.nativeElement,{
-        initialCountry: 'us',
-        // utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js'
-      });
-      this.selectedCode = this.abcd.getSelectedCountryData().dialCode;
-      this.phone.nativeElement.addEventListener('countrychange', ()=>{
-        this.signUpForm.get('countryCode')?.setValue("+" + this.abcd.getSelectedCountryData().dialCode);
-      })
 
-  }
   //the routeValueSet is to setvalue dynamically to the formcontrol
   routeValueSet(){
     this.route.queryParams.subscribe(params => {
