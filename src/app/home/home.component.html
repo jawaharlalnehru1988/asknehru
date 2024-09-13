@@ -6,16 +6,18 @@
       </div>
       <div class="intro col-lg-6 col-sm-12">
         <div class="d-flex align-items-sm-center flex-column">
-        <p class="intro1">Hi there! My name is </p>
-        <p class="intro2">Jawaharlal Nehru Elumalai</p>
-        <p class="intro1">Unlock the Potential of Web Development with Me!</p>
-        <div class="social-media-links">
-          <button mat-button color="warn" *ngFor="let media of socialMedia">
-            <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
+          <p class="intro1">Hi there! My name is </p>
+          <p class="intro2">Jawaharlal Nehru Elumalai</p>
+          <p class="intro1">Unlock the Potential of Web Development with Me!</p>
+          <div class="social-media-links">
+            @for (media of socialMedia; track media) {
+              <button mat-button color="warn">
+                <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
               <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="24px" alt="">
               <span class="medianame">{{media.mediaName}}</span>
             </a>
           </button>
+}
          </div>
         </div>
       </div>
@@ -28,7 +30,8 @@
       <div class="p-10 flex justify-center col-sm-12 col-lg-3">
         <div class="skill-set rounded overflow-hidden shadow-lg">
          <p class="text-2xl text-center font-bold font-serif text-FireBrick p-8">Skills & Tech stacks I used...</p> 
-         <div class="d-flex space-between" *ngFor="let techs of techStacks.rebit">
+         @for (techs of techStacks.rebit; track techs) {
+<div class="d-flex space-between">
           <div class="ps-12 col-6">
             <img class="w-14 mt-8" [src]="techs.imgsrc" alt="">
           </div>
@@ -36,6 +39,7 @@
             <p class="font-bold mt-2 text-DarkCyan" >{{techs.techName}}</p>
           </div>
         </div>
+}
         </div>
       </div>
       <div class="intro col-lg-6 col-sm-12">
@@ -63,7 +67,8 @@
           <div class="">
             <p class="font-bold px-3 pt-8 text-center text-FireBrick">Projects I have worked on
             </p>
-            <div class="list-disc col-lg-12" *ngFor="let pjt of projects.rebit">
+            @for (pjt of projects.rebit; track pjt) {
+<div class="list-disc col-lg-12">
               <div class="row ">
                 <div class="d-flex mt-3 text-DarkCyan cursor-pointer">
                   <div class="col-4 font-display"> {{pjt.pjtName}}</div>
@@ -71,6 +76,7 @@
                 </div>
               </div>
             </div>
+}
           </div>
         </div>
       </div>
@@ -106,57 +112,61 @@
               <span class="bg-yellow rounded-lg px-3 font-serif"> 10-Sep-2021 at 12:30 PM.</span> </p>
             Till today <p> <span class="bg-PeachPuff rounded-lg px-3"> {{ currentDate | date:'dd-MMM-yyyy' }} at {{
                 currentDate | date:'hh:mm a' }} </span>,</p>
-            my total experience is <p> <span class="bg-Lilac rounded-lg px-3"> {{ experience.years }} years </span>,
-              <span class="bg-LightGreen rounded-lg px-3"> {{ experience.days }} days</span>, <span
-                class="bg-Orange rounded-lg px-3"> {{ experience.hours }} hours</span>, and <span
-                class="bg-SteelBlue rounded-lg px-3">{{ experience.minutes }} minutes</span>.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 mt-4">
-        <div class="max-w-xl rounded overflow-hidden shadow-lg">
-          <div class="">
-            <p class="font-bold px-3 text-center text-RoyalBlue">My sample webpages simply with HTMl, CSS & Bootstrap
-            </p>
-            <div class="list-disc col-lg-12" *ngFor="let tech of staticWebsites">
-              <div class="row text-DarkCyan cursor-pointer">
-                <div class="d-flex gap-6" [routerLink]="tech.routerLink">
-                  <div class="col-4 font-display"> {{tech.PName}}</div>
-                  <div class="col-4 mb-12"> <img class="w-24" [src]="tech.PImage" alt=""></div>
-                  <div class="col-4"> Visit</div>
-                </div>
-              </div>
+    my total experience is <p> <span class="bg-Lilac rounded-lg px-3"> {{ experience.years }} years </span>,
+    <span class="bg-LightGreen rounded-lg px-3"> {{ experience.days }} days</span>, <span
+  class="bg-Orange rounded-lg px-3"> {{ experience.hours }} hours</span>, and <span
+class="bg-SteelBlue rounded-lg px-3">{{ experience.minutes }} minutes</span>.
+</p>
+</div>
+</div>
+</div>
+<div class="col-lg-3 mt-4">
+  <div class="max-w-xl rounded overflow-hidden shadow-lg">
+    <div class="">
+      <p class="font-bold px-3 text-center text-RoyalBlue">My sample webpages simply with HTMl, CSS & Bootstrap
+      </p>
+      @for (tech of staticWebsites; track tech) {
+        <div class="list-disc col-lg-12">
+          <div class="row text-DarkCyan cursor-pointer">
+            <div class="d-flex gap-6" [routerLink]="tech.routerLink">
+              <div class="col-4 font-display"> {{tech.PName}}</div>
+              <div class="col-4 mb-12"> <img class="w-24" [src]="tech.PImage" alt=""></div>
+              <div class="col-4"> Visit</div>
             </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
+</div>
+</div>
+</div>
 </div>
 
 
 <h1 class="project-title" appHighlight defaultColor="lightblue">My Blogs, Podcasts, Articles</h1>
 <div class="container">
   <div class="space-even row row-cols-1 row-cols-md-3 g-4">
-    <div class="col-md-4 " *ngFor="let blog of blogArticleData">
-  <div>
-    <mat-card class="example-card custom-mat-card" [routerLink]="blog.routerLink">
-      <mat-card-header>
-        <mat-card-title class="text-light p-4 pt-sm-4">{{blog.PName}}</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image class="mar-card-image" [src]="blog.PImage" alt="Photo of a Shiba Inu">
-      <div>
-      <mat-card-content >
-        <p class="text-light text-justify p-3 p-sm-4">
-          {{blog.intro.slice(0, 210)}}...
-        </p>
-    </mat-card-content>
-      <button mat-raised-button color="primary">Visit the Page</button>
-  </div>
-    </mat-card>
-  </div>
-  </div>
+    @for (blog of blogArticleData; track blog) {
+      <div class="col-md-4 ">
+        <div>
+          <mat-card class="example-card custom-mat-card" [routerLink]="blog.routerLink">
+            <mat-card-header>
+              <mat-card-title class="text-light p-4 pt-sm-4">{{blog.PName}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="mar-card-image" [src]="blog.PImage" alt="Photo of a Shiba Inu">
+            <div>
+              <mat-card-content >
+                <p class="text-light text-justify p-3 p-sm-4">
+                  {{blog.intro.slice(0, 210)}}...
+                </p>
+              </mat-card-content>
+              <button mat-raised-button color="primary">Visit the Page</button>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    }
   </div>
 </div>
 

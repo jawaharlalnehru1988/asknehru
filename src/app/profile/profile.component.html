@@ -1,40 +1,52 @@
 <div class="contanier">
-    <div class="row">
-        <div class="left-bar col-2 d-none d-sm-block">
-            <div class="left-cont mt-5">
-                <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
-                <div class="navigator" *ngFor="let titles of tiles">
-                    <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
-                </div>
-            </div>
-        </div>  
-    
+  <div class="row">
+    <div class="left-bar col-2 d-none d-sm-block">
+      <div class="left-cont mt-5">
+        <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
+        @for (titles of tiles; track titles) {
+          <div class="navigator">
+            <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
+          </div>
+        }
+      </div>
+    </div>
+
     <div class="col-12 col-sm-10 main-content ">
-    <div class="detail-section moving-gradient">
+      <div class="detail-section moving-gradient">
         <div class="header-section">
-            <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
-            <div class="navigator" *ngFor="let titles of tiles">
-                <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
+          <img class="image-class mb-3" src="../../assets/image/nehru.png" alt="">
+          @for (titles of tiles; track titles) {
+            <div class="navigator">
+              <button mat-button class="custom-button" (click)="profileTitle(titles.id)"> {{titles.text}}</button>
             </div>
+          }
         </div>
-        <div [ngSwitch]="condition" class="experience">
-            <div  *ngSwitchCase="1">
+        <div class="experience">
+          @switch (condition) {
+            @case (1) {
+              <div >
                 <ng-container *ngTemplateOutlet="profileTemplate"></ng-container>
-            </div>
-            <div *ngSwitchCase="2">
+              </div>
+            }
+            @case (2) {
+              <div>
                 <div class="display mb-5"><strong> Contact</strong></div>
                 <div class="social-media-links">
-                    <button mat-button color="warn" *ngFor="let media of socialMedia">
-                        <a [href]="media.mediaLink" class="text-decoration-none" [attr.target]="'_blank'" [matTooltip]="media.mediaLink"
-                            class="link-no-underline">
+                  @for (media of socialMedia; track media) {
+                    <button mat-button color="warn">
+                      <a [href]="media.mediaLink" class="text-decoration-none" [attr.target]="'_blank'" [matTooltip]="media.mediaLink"
+                        class="link-no-underline">
                             <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="40px" alt="">
                             <span class="medianame">{{media.mediaName}}</span>
                         </a>
                     </button>
+}
                 </div>
             </div>
+}
 
-            <div *ngSwitchCase="3" >
+            @case (3) {
+<div >
                 <div class="display display-exp"><strong> Experience</strong></div>
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Development Engineer </div>
@@ -49,8 +61,10 @@
                 
               
             </div>
+}
 
-            <div *ngSwitchCase="4" class="text-light">
+            @case (4) {
+<div class="text-light">
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Associate UI Developer </div>
                     <div class="h3"> Aug 2022 - Till now</div>
@@ -61,7 +75,9 @@
                     </p>
                 </div>
             </div>
-            <div *ngSwitchCase="5" class="text-light">
+}
+            @case (5) {
+<div class="text-light">
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Angular UI Developer - Intern </div>
                     <div class="text-light h3"> May 2022 - July 2022</div>
@@ -73,7 +89,9 @@
                     </p>
                 </div>
             </div>
-            <div *ngSwitchCase="6" class="text-light">
+}
+            @case (6) {
+<div class="text-light">
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Freelancing Web Developer, Salem, Tamil Nadu  </div>
                     <div class="text-light h3"> Sep 2021 - May 2022</div>
@@ -85,7 +103,9 @@
                     </p>
                 </div>
             </div>
-            <div *ngSwitchCase="7" class="text-light">
+}
+            @case (7) {
+<div class="text-light">
 
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Domain Skill Trainer, Kanchipuram, Tamil Nadu  </div>
@@ -98,7 +118,9 @@
                 </div>
 
             </div>
-            <div *ngSwitchCase="8" class="text-light">
+}
+            @case (8) {
+<div class="text-light">
 
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">System Support Engineer, Kanchipuram, Tamil Nadu</div>
@@ -111,7 +133,9 @@
                 </div>
 
             </div>
-            <div *ngSwitchCase="9" class="text-light">
+}
+            @case (9) {
+<div class="text-light">
                 
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="address">Photoshop Designer, Kanchipuram, Tamil Nadu</div>
@@ -124,26 +148,38 @@
                 </div>
 
             </div>
-            <div *ngSwitchCase="10" class="text-light">
+}
+            @case (10) {
+<div class="text-light">
                 <div class="display display-exp mb-5"><strong>Technical Skills</strong></div>
-                <div *ngFor="let category of technicalSkills">
+                @for (category of technicalSkills; track category) {
+<div>
                     <div class="address">{{ category.category }}</div>
                     <ul>
-                        <li *ngFor="let skill of category.skills">{{ skill }}</li>
+                        @for (skill of category.skills; track skill) {
+<li>{{ skill }}</li>
+}
                     </ul>
                 </div>
+}
             </div>
-            <div *ngSwitchCase="11">
+}
+            @case (11) {
+<div>
                 <ngb-carousel>
-                    <ng-template ngbSlide *ngFor="let image of certificatesImages">
+                    @for (image of certificatesImages; track image) {
+<ng-template ngbSlide>
                         <div class="carousel-wrapper">
                             <img class="carousel-image" [src]="image.name" [alt]="image.caption">
                     
                         </div>
                     </ng-template>
+}
                 </ngb-carousel>
             </div>
-            <div *ngSwitchCase="12"  class="text-light">
+}
+            @case (12) {
+<div  class="text-light">
                 <div class="m-5">
                     <ul>
                         <li>Github Repository : <a class="text-decoration-none" href="https://github.com/jawaharlalnehru1988/bookapi" target="_blank">JSON APIs</a> </li>
@@ -188,70 +224,76 @@
                             <h2>Project Description :</h2>
                             <p>
                                 I completed this project while making gradual progress in my web development journey. It's an advertising website
-                                focused on promoting gyms.
-                            </p>
-                            <h2>Programming Languages and Tools I have used:</h2> HTML, CSS, Bootstrap 5, GIT, GitHub, github Page
-                        </div>     
-                    </mat-tab>
-                    <mat-tab label="Food Website"> 
-                        <div class="mt-5">
-                            <ul>
-                                <li>Github Repository: <a href="https://github.com/jawaharlalnehru1988/food-website" class="text-decoration-none" target="_blank">Food Website Repo</a></li>
-                                <li>Output on Github page : <a href="https://jawaharlalnehru1988.github.io/food-website/" class="text-decoration-none" target="_blank">Food Website Output</a></li>
-                            </ul>
-                            <h2>Project Description :</h2>
-                            <p>
-                                I completed this project while making gradual progress in my web development journey. It's an advertising website
-                                focused on promoting gyms.
-                            </p>
-                            <h2>Programming Languages and Tools I have used:</h2> HTML, CSS, Bootstrap 5, GIT, GitHub, github Page
-                        </div>     
-                    </mat-tab>
-                  </mat-tab-group> -->
+                      focused on promoting gyms.
+                    </p>
+                    <h2>Programming Languages and Tools I have used:</h2> HTML, CSS, Bootstrap 5, GIT, GitHub, github Page
+                  </div>
+                </mat-tab>
+                <mat-tab label="Food Website">
+                  <div class="mt-5">
+                    <ul>
+                      <li>Github Repository: <a href="https://github.com/jawaharlalnehru1988/food-website" class="text-decoration-none" target="_blank">Food Website Repo</a></li>
+                      <li>Output on Github page : <a href="https://jawaharlalnehru1988.github.io/food-website/" class="text-decoration-none" target="_blank">Food Website Output</a></li>
+                    </ul>
+                    <h2>Project Description :</h2>
+                    <p>
+                      I completed this project while making gradual progress in my web development journey. It's an advertising website
+                      focused on promoting gyms.
+                    </p>
+                    <h2>Programming Languages and Tools I have used:</h2> HTML, CSS, Bootstrap 5, GIT, GitHub, github Page
+                  </div>
+                </mat-tab>
+              </mat-tab-group> -->
             </div>
-            <div *ngSwitchCase="13">
-                <div class="address mb-3 fs-2">Education</div>
-                <ul class="Education text-light mb-5">
-                    <li class="fs-3">MSc Physics  - 79% - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
-                    <li class="fs-3">B. Sc Physics  - 78.4 % - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
-                    <li class="fs-3">12th - 82.6% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
-                    <li class="fs-3">SSLC - 77.8% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
-                </ul>
+          }
+          @case (13) {
+            <div>
+              <div class="address mb-3 fs-2">Education</div>
+              <ul class="Education text-light mb-5">
+                <li class="fs-3">MSc Physics  - 79% - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
+                <li class="fs-3">B. Sc Physics  - 78.4 % - Pachaiyappa’s College For Men, Kanchipuram, TN</li>
+                <li class="fs-3">12th - 82.6% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
+                <li class="fs-3">SSLC - 77.8% - C.S.M.Hr.sec.school, Kanchipuram, TN</li>
+              </ul>
             </div>
-            <div *ngSwitchCase="14">
-                <ul>
-                    <li class="text-light" >
-                        <h2>Download My Resume </h2>
-                        <img src="../../assets/image/pdflogo.png" width="28px" class="me-4" alt="image">
-                        <button mat-raised-button  color="primary" (click)="downloadPdf()">Download PDF</button>
-                    </li>
-                </ul>
-
+          }
+          @case (14) {
+            <div>
+              <ul>
+                <li class="text-light" >
+                  <h2>Download My Resume </h2>
+                  <img src="../../assets/image/pdflogo.png" width="28px" class="me-4" alt="image">
+                  <button mat-raised-button  color="primary" (click)="downloadPdf()">Download PDF</button>
+                </li>
+              </ul>
             </div>
-            <div *ngSwitchDefault>
-                <ng-container *ngTemplateOutlet="profileTemplate"></ng-container>
+          }
+          @default {
+            <div>
+              <ng-container *ngTemplateOutlet="profileTemplate"></ng-container>
             </div>
-          </div>
-    </div>    
-</div>
+          }
+        }
+      </div>
+    </div>
+  </div>
 </div>
 </div>
 
 <ng-template #profileTemplate>
-    <div class="display mb-5"><strong>Jawaharlal Nehru Elumalai</strong></div>
-    <div class="address">Angular Java Full Stack Developer</div>
-    <div class="intro3 intro-text">
-      <ul class="disc-list">
-        <li>With a background spanning three years in the software field, I offer dependable expertise in Angular
-          development.
-        </li>
-        <li>My capabilities extend across HTML, CSS, JavaScript, TypeScript, and adept management of version control
-          systems such as Git.
-        </li>
-        <li>Additionally, I possess backend proficiency in languages like Java, Spring Boot, and familiarity with
-          databases like MySQL and Oracle DB.
-        </li>
-      </ul>
-    </div>
-  </ng-template>
-  
+  <div class="display mb-5"><strong>Jawaharlal Nehru Elumalai</strong></div>
+  <div class="address">Angular Java Full Stack Developer</div>
+  <div class="intro3 intro-text">
+    <ul class="disc-list">
+      <li>With a background spanning three years in the software field, I offer dependable expertise in Angular
+        development.
+      </li>
+      <li>My capabilities extend across HTML, CSS, JavaScript, TypeScript, and adept management of version control
+        systems such as Git.
+      </li>
+      <li>Additionally, I possess backend proficiency in languages like Java, Spring Boot, and familiarity with
+        databases like MySQL and Oracle DB.
+      </li>
+    </ul>
+  </div>
+</ng-template>

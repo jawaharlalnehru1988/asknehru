@@ -1,7 +1,8 @@
 <div class="card-grid">
 
-    <div class="container mt-5 parentCard" *ngFor="let info of courseDetails">
-    <mat-card class="example-card">
+  @for (info of courseDetails; track info) {
+    <div class="container mt-5 parentCard">
+      <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{info.title}}</mat-card-title>
@@ -21,4 +22,5 @@
         </mat-card-actions>
       </mat-card>
     </div>
+}
     </div>
