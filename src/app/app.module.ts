@@ -12,7 +12,6 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CodedocComponent } from './codedoc/codedoc.component';
-import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -48,7 +47,6 @@ import { ItemComponent } from './item/item.component';
     BrowserAnimationsModule,
     OverlayModule,
     MatIconModule,
-    NgbModule,
     MatRadioModule,
     MatMenuModule,
     HttpClientModule,
@@ -61,7 +59,6 @@ import { ItemComponent } from './item/item.component';
     ReactiveFormsModule,
     MatTooltipModule,
     RouterModule,
-    NgbCarouselModule
   ],
   providers: [
     {
