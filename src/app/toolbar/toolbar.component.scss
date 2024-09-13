@@ -49,3 +49,10 @@
   mat-radio-button{
     margin: 0px 12px;
   }
+
+  .active-link {
+    color: #efeb22; /* Text color for the active link */
+    background-color: #1b134d;
+    font-weight: bold; /* Make text bold for emphasis */
+    text-decoration: underline; /* Add underline to indicate active state */
+  }

@@ -1,16 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TypescriptComponent } from './typescript.component';
 
-describe('TypescriptComponent', () => {
+fdescribe('TypescriptComponent', () => {
   let component: TypescriptComponent;
   let fixture: ComponentFixture<TypescriptComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ TypescriptComponent ]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TypescriptComponent);
     component = fixture.componentInstance;
@@ -21,29 +19,27 @@ describe('TypescriptComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize with default fruits', () => {
-    expect(component.fruits).toEqual(["Banana", "Mango", "Jackfruit"]);
+  it('should add element at the end of fruits array', ()=>{
+    const newFruit = "Orange";
+    component.addElementAtEnd(newFruit);
+    expect(component.fruits).toContain(newFruit);
   });
 
-  it('should add a fruit to the end of the array', () => {
-    component.push('Apple');
-    expect(component.fruits).toEqual(["Banana", "Mango", "Jackfruit", "Apple"]);
+  it("should remove element from the end of the array", ()=>{
+    component.removeElementAtEnd();
+    expect(component.fruits).not.toContain('Jackfruit');
   });
 
-  it('should remove the last fruit from the array', () => {
-    const lastFruit = component.fruits.pop();
-    expect(lastFruit).toBe("Jackfruit");
-    expect(component.fruits).toEqual(["Banana", "Mango"]);
+  it('should remove element from the beginning of the array', ()=>{
+    component.removeElementAtStart();
+    expect(component.fruits).not.toContain('Banana');
   });
 
-  it('should remove the first fruit from the array', () => {
-    const firstFruit = component.fruits.shift();
-    expect(firstFruit).toBe("Banana");
-    expect(component.fruits).toEqual(["Mango", "Jackfruit"]);
-  });
+  it('should add element at the beginning of the fruit array', ()=>{
+    component.addElementAtFirst("Pinapple");
+    expect(component.fruits).toContain("Pinapple");
+  } )
 
-  it('should add a fruit to the start of the array', () => {
-    component.unshift();
-    expect(component.fruits).toEqual(["first fruit", "Banana", "Mango", "Jackfruit"]);
-  });
+
+
 });

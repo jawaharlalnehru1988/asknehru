@@ -6,10 +6,10 @@
       <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
       <span class="example-spacer"></span>
       <button class="hide-on-small" mat-button [matMenuTriggerFor]="menu" >Projects</button>
-      <button class="hide-on-small" *ngIf="isSuperAdmin" mat-button routerLink="/userlist">User's List</button>
-      <button *ngIf="isUserLoggedIn" [disabled]="!loggedInTrue" mat-button routerLink="login">Login</button>
-      <button *ngIf="isUserLoggedIn" [disabled]="signInTrue" mat-button routerLink="register">Sign Up</button>
-      <button *ngIf="!isUserLoggedIn" (click)="loggedOut()" mat-button routerLink="">Log Out</button>
+      <button class="hide-on-small" *ngIf="isSuperAdmin" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
+      <button *ngIf="isUserLoggedIn" [disabled]="!loggedInTrue" mat-button routerLinkActive="active-link" routerLink="login">Login</button>
+      <button *ngIf="isUserLoggedIn" [disabled]="signInTrue" mat-button routerLinkActive="active-link" routerLink="register">Sign Up</button>
+      <button *ngIf="!isUserLoggedIn" (click)="loggedOut()" mat-button routerLinkActive="active-link" routerLink="">Log Out</button>
     </mat-toolbar>
   </p>
   <mat-menu #menu="matMenu">

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { TypescriptRoutingModule } from './typescript-routing.module';
-import { TypescriptComponent } from './typescript/typescript.component';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { TypescriptComponent } from '../typescript.component';
 
 
 @NgModule({
-  declarations: [
-    TypescriptComponent
-  ],
+  declarations: [TypescriptComponent],
   imports: [
+    CommonModule,
     TypescriptRoutingModule,
-    CommonModule 
+    
   ]
 })
 export class TypescriptModule { }

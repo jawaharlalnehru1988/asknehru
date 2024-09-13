@@ -1,12 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { AngularService } from '../angular.service';
-import hljs from 'highlight.js/lib/core';
-import typescript from 'highlight.js/lib/languages/typescript';
-import html from 'highlight.js/lib/languages/xml';
 import { Router } from '@angular/router';
-
-hljs.registerLanguage('typescript', typescript);
-hljs.registerLanguage('html', html);
 
 @Component({
   selector: 'app-angular',

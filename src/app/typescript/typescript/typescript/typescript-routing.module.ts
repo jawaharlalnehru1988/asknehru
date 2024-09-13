@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TypescriptComponent } from './typescript/typescript.component';
+import { TypescriptComponent } from '../typescript.component';
 
 const routes: Routes = [
-  {path: "", component: TypescriptComponent}
+  {path:'', component: TypescriptComponent},
 ];
 
 @NgModule({
