@@ -10,6 +10,7 @@ import { CodedocComponent } from './codedoc/codedoc.component';
 import { AutocompleteComponent } from './material/material/autocomplete/autocomplete.component';
 
 const routes: Routes = [
+  {path: 'home', component: HomeComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "userlist", component: UserlistComponent},
@@ -32,8 +33,8 @@ const routes: Routes = [
   {path: 'productshop', loadChildren: ()=> import('./karmajasmin/karmajasmin/karmajasmin.module').then(m => m.KarmajasminModule)},
   {path: "spotify", loadChildren: ()=> import('./spotify/spotify/spotify.module').then(m => m.SpotifyModule)},
   {path: "audiovideo", loadChildren: ()=>import('./audiovideo/audiovideo.module').then(m => m.AudiovideoModule)},
-  {path: "", component: HomeComponent},
-  {path: '**', redirectTo: "" }
+  {path: "", redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', redirectTo: "/home" }
 ];
 
 @NgModule({
