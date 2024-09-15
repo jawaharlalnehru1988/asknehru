@@ -55,3 +55,57 @@ html, body {
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+/* You can add global styles to this file, and also import other style files */
+// @import '@angular/cdk/overlay-prebuilt.css';
+// @import "~prismjs/themes/prism-solarizedlight.css";
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// html, body {
+//    height: 100%;
+//    width: 100%;
+
+//    box-sizing: border-box;
+ 
+//     background-repeat: no-repeat;
+//     background-attachment: fixed;
+// }
+
+ 
+//   .margin-top-xl{
+//     margin-top: 16px;
+//   }
+
+//   .font-size-header{
+//     position: relative;
+//     top: 4px;
+//     padding: 8px;
+//     font-size: 24px;
+//     font-weight: 500;
+//   }
+
+
+// .loader-container {
+//   /* Style your loader container to position it and make it visually appealing */
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   width: 20vw;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   transform: translate(-50%, -50%);
+
+//   /* Add more styles as needed */
+// }
+// .loading{
+//   // color: #ffd700; /* Hexadecimal representation of gold */
+//   background-image: linear-gradient(to right, #ffcc00, #ff9900);
+//   color: transparent;
+//   -webkit-background-clip: text; /* For Safari/Chrome */
+//   background-clip: text;
+//   font-weight: 900;
+//   font-size: 16px;
+// }

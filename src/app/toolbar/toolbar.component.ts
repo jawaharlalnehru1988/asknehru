@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 import { Overlay } from '@angular/cdk/overlay';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
-import { MatIcon } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
 
@@ -17,7 +17,7 @@ import { MatToolbar } from '@angular/material/toolbar';
         MatToolbar,
         MatButton,
         RouterLink,
-        MatIcon,
+        MatIconModule,
         MatMenuTrigger,
         RouterLinkActive,
         MatMenu,

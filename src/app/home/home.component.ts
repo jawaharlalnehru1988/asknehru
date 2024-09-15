@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent } from '@angular/material/card';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton } from '@angular/material/button';
@@ -25,9 +25,10 @@ export interface Tile {
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [MatButton, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, DatePipe]
+    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, DatePipe]
 })
 export class HomeComponent implements OnInit {
+  longText:string = 'This is my experience journey'
   isContentLoading: boolean = false;
   socialMedia = [{
     imageLink: "1aYv_7mLgreOn_Ua6lFVRGxK5hPRJj-FM",

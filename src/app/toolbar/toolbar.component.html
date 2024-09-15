@@ -1,8 +1,8 @@
 
 
 <p>
-  <mat-toolbar color="primary">
-    <span class="hide-on-small">AskNehru</span>
+  <mat-toolbar>
+    <span class="hide-on-small font-bold">AskNehru</span>
     <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
     <span class="example-spacer"></span>
     <button class="hide-on-small" mat-button [matMenuTriggerFor]="menu" >Projects</button>
@@ -10,13 +10,13 @@
       <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
     }
     @if (isUserLoggedIn) {
-      <button [disabled]="!loggedInTrue" mat-button routerLinkActive="active-link" routerLink="login">Login</button>
+      <button [disabled]="!loggedInTrue" mat-button routerLinkActive="active-link" routerLink="login" class="font-bold">Login</button>
     }
     @if (isUserLoggedIn) {
-      <button [disabled]="signInTrue" mat-button routerLinkActive="active-link" routerLink="register">Sign Up</button>
+      <button [disabled]="signInTrue" mat-button routerLinkActive="active-link" routerLink="register" class="font-bold">Sign Up</button>
     }
     @if (!isUserLoggedIn) {
-      <button (click)="loggedOut()" mat-button routerLinkActive="active-link" routerLink="">Log Out</button>
+      <button (click)="loggedOut()" mat-button routerLinkActive="active-link" routerLink="" class="font-bold">Log Out</button>
     }
   </mat-toolbar>
 </p>

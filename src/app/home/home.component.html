@@ -1,82 +1,23 @@
 <div class="banner-container">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="stars-container col-lg-6 col-sm-12">
+  <div class="w-full">
+    <div class="flex flex-wrap">
+      <div class="stars-container w-full lg:w-1/2">
         <img class="banner-photo" src="../../assets/image/nehruphoto.png" alt="Your photo">
       </div>
-      <div class="intro col-lg-6 col-sm-12">
-        <div class="d-flex align-items-sm-center flex-column">
+      <div class="intro w-full lg:w-1/2">
+        <div class="flex flex-col items-center">
           <p class="intro1">Hi there! My name is </p>
           <p class="intro2">Jawaharlal Nehru Elumalai</p>
           <p class="intro1">Unlock the Potential of Web Development with Me!</p>
           <div class="social-media-links">
             @for (media of socialMedia; track media) {
               <button mat-button color="warn">
-                <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
-              <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" width="24px" alt="">
-              <span class="medianame">{{media.mediaName}}</span>
-            </a>
-          </button>
-}
-         </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="programming-journey bg-indigo-500">
-  <div class="container-fluid ">
-    <div class="row ">
-      <div class="p-10 flex justify-center col-sm-12 col-lg-3">
-        <div class="skill-set rounded overflow-hidden shadow-lg">
-         <p class="text-2xl text-center font-bold font-serif text-FireBrick p-8">Skills & Tech stacks I used...</p> 
-         @for (techs of techStacks.rebit; track techs) {
-<div class="d-flex space-between">
-          <div class="ps-12 col-6">
-            <img class="w-14 mt-8" [src]="techs.imgsrc" alt="">
-          </div>
-          <div class="col-6 mt-8">
-            <p class="font-bold mt-2 text-DarkCyan" >{{techs.techName}}</p>
-          </div>
-        </div>
-}
-        </div>
-      </div>
-      <div class="intro col-lg-6 col-sm-12">
-        <div class="font-bold">
-          <div class="text-4xl text-center leading-normal font-handwritten">
-            <div class="flex justify-center">
-              <p class="text-center">Currently I am working on</p>
-              <img src="../../assets/image/rebit-logo.jpg" class="w-52 hover:scale-110 transition-transform duration-300 mb-8 ms-10" alt="Rebit Logo">
-            </div>
-            <div class="flex">
-              <p> Joined On </p>
-              <span class="bg-yellow rounded-lg px-3 font-serif border-double  border-2"> 27-Dec-2023</span>  Serving Till today 
-              <span class="bg-orange rounded-lg px-3 border-double border-2"> {{ currentDate | date:'dd-MMM-yyyy' }} </span>
-            </div> 
-           <p> </p>
-           So my experience in REBIT is <p> 
-            
-            <span class="bg-LightSkyBlue border-double border-2 rounded-lg px-3"> {{calculateDateDifference('27-Dec-2023')}}  </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 mt-4">
-        <div class="max-w-xl rounded overflow-hidden shadow-lg">
-          <div class="">
-            <p class="font-bold px-3 pt-8 text-center text-FireBrick">Projects I have worked on
-            </p>
-            @for (pjt of projects.rebit; track pjt) {
-<div class="list-disc col-lg-12">
-              <div class="row ">
-                <div class="d-flex mt-3 text-DarkCyan cursor-pointer">
-                  <div class="col-4 font-display"> {{pjt.pjtName}}</div>
-                  <div class="col-8 text-justify"> {{pjt.pjtDetails.substring(0, 168)+"..."}}</div>
-                </div>
-              </div>
-            </div>
-}
+                <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="no-underline">
+                  <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" class="w-6" alt="">
+                  <span class="medianame">{{media.mediaName}}</span>
+                </a>
+              </button>
+            }
           </div>
         </div>
       </div>
@@ -84,80 +25,87 @@
   </div>
 </div>
 
-<!-- My career Journey starts -->
-
-<div class="programming-journey bg-indigo-500">
-  <div class="container-fluid ">
-    <div class="row ">
-      <div class="p-10 flex justify-center col-sm-12 col-lg-3">
-        <div class="max-w-xl rounded overflow-hidden shadow-lg">
-          <img class="w-full" src="../../assets/image/htmlcssbootail.png" alt="Mountain">
-          <div class="px-6 py-4">
-            <p class="text-gray-700 text-base">
-            <p><span class="font-bold text-3xl"> HTML 5:</span> <span class="text-2xl"> I started with this
-                version.</span></p>
-            <p> <span class="font-bold text-3xl"> CSS 3: </span> <span class="text-2xl">I learnt Styles and
-                design.</span></p>
-            <p> <span class="font-bold text-3xl">Bootstrap 5:</span> <span class="text-2xl">Using Bootstrap really
-                reduces many lines of CSS code 🌐✨</span></p>
-            <p> <span class="font-bold text-3xl">Tailwind CSS:</span> <span class="text-2xl">Tailwind Made the disigning
-                more easier than writting Plain CSS</span></p>
-          </div>
-        </div>
-      </div>
-      <div class="intro col-lg-6 col-sm-12">
-        <div class="font-bold">
-          <div class="text-4xl text-center leading-normal font-handwritten">
-            I Started My Professional coding Journey with HTML, CSS, Bootstrap and TailwindCSS under a Freelancer on <p>
-              <span class="bg-yellow rounded-lg px-3 font-serif"> 10-Sep-2021 at 12:30 PM.</span> </p>
-            Till today <p> <span class="bg-PeachPuff rounded-lg px-3"> {{ currentDate | date:'dd-MMM-yyyy' }} at {{
-                currentDate | date:'hh:mm a' }} </span>,</p>
-    my total experience is <p> <span class="bg-Lilac rounded-lg px-3"> {{ experience.years }} years </span>,
-    <span class="bg-LightGreen rounded-lg px-3"> {{ experience.days }} days</span>, <span
-  class="bg-Orange rounded-lg px-3"> {{ experience.hours }} hours</span>, and <span
-class="bg-SteelBlue rounded-lg px-3">{{ experience.minutes }} minutes</span>.
-</p>
-</div>
-</div>
-</div>
-<div class="col-lg-3 mt-4">
-  <div class="max-w-xl rounded overflow-hidden shadow-lg">
-    <div class="">
-      <p class="font-bold px-3 text-center text-RoyalBlue">My sample webpages simply with HTMl, CSS & Bootstrap
-      </p>
-      @for (tech of staticWebsites; track tech) {
-        <div class="list-disc col-lg-12">
-          <div class="row text-DarkCyan cursor-pointer">
-            <div class="d-flex gap-6" [routerLink]="tech.routerLink">
-              <div class="col-4 font-display"> {{tech.PName}}</div>
-              <div class="col-4 mb-12"> <img class="w-24" [src]="tech.PImage" alt=""></div>
-              <div class="col-4"> Visit</div>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
+<div class="relative overflow-hidden border-4 border-blue-500 rounded-lg bg-gradient-to-r from-purple-400 to-blue-400 p-4 shadow-md">
+  <div class="animate-scroll whitespace-nowrap text-white text-lg font-bold tracking-wider">
+    Learn latest technologies from this webpage
   </div>
 </div>
-</div>
-</div>
-</div>
 
 
-<h1 class="project-title" appHighlight defaultColor="lightblue">My Blogs, Podcasts, Articles</h1>
-<div class="container">
-  <div class="space-even row row-cols-1 row-cols-md-3 g-4">
+
+<div class=" mt-12 grid gap-4 grid-cols-3">
+  <div class="">
+    <mat-card class="mb-6">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>My Portfolio</mat-card-title>
+          <mat-card-subtitle>click on the card to visit</mat-card-subtitle>
+          <img mat-card-sm-image src="../../assets/image/nehrimg.png">
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{longText}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="example-card-small mb-6" >
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>My Portfolio</mat-card-title>
+          <mat-card-subtitle>click on the card to visit</mat-card-subtitle>
+          <img mat-card-sm-image src="../../assets/image/nehrimg.png" >
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{longText}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="example-card-small mb-6" >
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>My Portfolio</mat-card-title>
+          <mat-card-subtitle>click on the card to visit</mat-card-subtitle>
+          <img mat-card-sm-image src="../../assets/image/nehrimg.png" >
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{longText}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card class="example-card-small mb-6" >
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>My Portfolio</mat-card-title>
+          <mat-card-subtitle>click on the card to visit</mat-card-subtitle>
+          <img mat-card-sm-image src="../../assets/image/nehrimg.png" >
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{longText}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<p class="text-center text-3xl font-bold">My Blogs, Podcasts, Articles</p>
+<div class="container mx-auto mt-12">
+  <div class="flex flex-wrap justify-between gap-4">
     @for (blog of blogArticleData; track blog) {
-      <div class="col-md-4 ">
+      <div class="w-full md:w-1/3">
         <div>
           <mat-card class="example-card custom-mat-card" [routerLink]="blog.routerLink">
             <mat-card-header>
-              <mat-card-title class="text-light p-4 pt-sm-4">{{blog.PName}}</mat-card-title>
+              <mat-card-title class="text-white p-4 pt-4">{{blog.PName}}</mat-card-title>
             </mat-card-header>
-            <img mat-card-image class="mar-card-image" [src]="blog.PImage" alt="Photo of a Shiba Inu">
+            <img mat-card-image class="w-full h-64 object-cover" [src]="blog.PImage" alt="Photo of a Shiba Inu">
             <div>
-              <mat-card-content >
-                <p class="text-light text-justify p-3 p-sm-4">
+              <mat-card-content>
+                <p class="text-white text-justify p-3 pt-4">
                   {{blog.intro.slice(0, 210)}}...
                 </p>
               </mat-card-content>
@@ -169,4 +117,5 @@ class="bg-SteelBlue rounded-lg px-3">{{ experience.minutes }} minutes</span>.
     }
   </div>
 </div>
+
 
