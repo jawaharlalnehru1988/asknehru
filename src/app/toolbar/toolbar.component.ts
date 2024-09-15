@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
-import { ProfileComponent } from '../profile/profile.component';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
+import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
-  selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss'],
+    selector: 'app-toolbar',
+    templateUrl: './toolbar.component.html',
+    styleUrls: ['./toolbar.component.scss'],
+    standalone: true,
+    imports: [
+        MatToolbar,
+        MatButton,
+        RouterLink,
+        MatIcon,
+        MatMenuTrigger,
+        RouterLinkActive,
+        MatMenu,
+        MatMenuItem,
+    ],
 })
 export class ToolbarComponent implements OnInit {
   showFiller = false;
@@ -112,12 +125,6 @@ checkIfSuperAdmin(loggedInUserData: any) {
     this.isSuperAdmin = false;
   }
   openOverlay() {
-    // Create the overlay ref.
-    const overlayRef = this.overlay.create();
-    // Create the component portal.
-    const componentPortal = new ComponentPortal(ProfileComponent);
-    // Attach the component to the overlay.
-    overlayRef.attach(componentPortal);
   }
   save(signValue:any){
       this.onUpdateData(signValue.id, signValue);

@@ -47,13 +47,12 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"            
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
             "./node_modules/jquery/dist/jquery.min.js",
             "./node_modules/popper.js/dist/umd/popper.min.js",
             "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-            
             ]
           },
           "configurations": {
@@ -93,10 +92,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "asknehru:build:production"
+              "buildTarget": "asknehru:build:production"
             },
             "development": {
-              "browserTarget": "asknehru:build:development"
+              "buildTarget": "asknehru:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -104,7 +103,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "asknehru:build"
+            "buildTarget": "asknehru:build"
           }
         },
         "test": {

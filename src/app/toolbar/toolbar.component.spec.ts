@@ -18,12 +18,11 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolbarComponent ],
-      imports: [OverlayModule, MatMenuModule, HttpClientModule,BrowserAnimationsModule, RouterTestingModule, ReactiveFormsModule, MatToolbarModule, MatIconModule], // Include HttpClientModule here
+    imports: [OverlayModule, MatMenuModule, HttpClientModule, BrowserAnimationsModule, RouterTestingModule, ReactiveFormsModule, MatToolbarModule, MatIconModule, ToolbarComponent], // Include HttpClientModule here
     providers: [ApiService, { provide: MatDialogRef, useValue: {} }, // Mock MatDialogRef
-    { provide: MAT_DIALOG_DATA, useValue: {} }], // Mock MAT_DIALOG_DATA], // Provide your service here
+        { provide: MAT_DIALOG_DATA, useValue: {} }], // Mock MAT_DIALOG_DATA], // Provide your service here
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);

@@ -11,10 +11,9 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
-      imports: [HttpClientModule, ReactiveFormsModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
+    imports: [HttpClientModule, ReactiveFormsModule, HomeComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
