@@ -1,6 +1,11 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatButton } from '@angular/material/button';
 
 export interface Project {
   PName: string;
@@ -16,9 +21,11 @@ export interface Tile {
   text: string;
 }
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: true,
+    imports: [MatButton, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, DatePipe]
 })
 export class HomeComponent implements OnInit {
   isContentLoading: boolean = false;

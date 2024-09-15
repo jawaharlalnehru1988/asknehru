@@ -1,12 +1,18 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { MatButton } from '@angular/material/button';
+import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatCard, MatCardHeader, MatCardContent } from '@angular/material/card';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: true,
+    imports: [MatCard, MatCardHeader, MatCardContent, ReactiveFormsModule, MatFormField, MatLabel, MatRadioGroup, MatRadioButton, MatButton, RouterLink]
 })
 export class RegisterComponent implements OnInit {
   signUpForm!: FormGroup;
