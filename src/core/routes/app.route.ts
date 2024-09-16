@@ -22,6 +22,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'topic/:id', 
+    loadComponent: () =>
+      import('../../app/typescript-details/typescript-details.component').then(
+        (m) => m.TypescriptDetailsComponent
+      ),
+    },
+  {
     path: 'toolbar',
 
     loadComponent: () =>
