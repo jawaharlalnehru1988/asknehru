@@ -11,9 +11,7 @@
       <p class="text-1xl font-bold mb-4">Hear and learn TS</p>
       <p class="text-1xl font-bold mb-4">Watch and learn TS</p>
     </div>
-  
     
-  
     <!-- Overlay for small screen sidebar -->
      @if (isSidebarOpen) {
          <div class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" (click)="isSidebarOpen = false"></div>
@@ -49,7 +47,7 @@
             @for (subtopic of topic.subtopics; track $index) {
 
                 <li class="mt-1">
-                    <a [routerLink]="['/topic', subtopic.id]" class="text-blue-600 hover:underline">
+                    <a [routerLink]="['/tstopic', subtopic.id]" class="text-blue-600 hover:underline">
                         {{ subtopic.name }}
                     </a>
                 </li>
