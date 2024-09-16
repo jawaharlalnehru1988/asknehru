@@ -8,11 +8,16 @@ export const routes: Routes = [
       import('../../app/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'register',
+    path: 'angular-demystified',
+    loadChildren: () =>
+      import('../../core/routes/angular.route').then((m) => m.routes),
+  },
+  {
+    path: 'angular-topic/:id',
     loadComponent: () =>
-      import('../../app/register/register.component').then(
-        (m) => m.RegisterComponent
-      ),
+      import(
+        '../../app/angular-demystify/angular-blogs/angular-blogs.component'
+      ).then((m) => m.AngularBlogsComponent),
   },
   {
     path: 'typescript',
@@ -22,12 +27,12 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'topic/:id', 
+    path: 'tstopic/:id',
     loadComponent: () =>
       import('../../app/typescript-details/typescript-details.component').then(
         (m) => m.TypescriptDetailsComponent
       ),
-    },
+  },
   {
     path: 'toolbar',
 

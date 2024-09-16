@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -25,7 +25,7 @@ export interface Tile {
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, DatePipe]
+    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, DatePipe, NgClass]
 })
 export class HomeComponent {
   longText:string = 'This is my experience journey'
@@ -59,10 +59,16 @@ export class HomeComponent {
 
 blogArticleData: Project[] = [
   {
-    PName: "DSA with Typescript",
-    PImage: "assets/image/dsabasics.png",
+    PName: "Angular Demystified",
+    PImage: "assets/image/angular.png",
+    routerLink: "/angular-demystified",
+    intro:"Core topics in Angular"
+  },
+  {
+    PName: "TS zero to hero",
+    PImage: "assets/image/ts.png",
     routerLink: "/typescript",
-    intro: "Learn DSA to optimize perfomance"
+    intro: "Learn TS to be a good developer"
   },
   {
     PName: "Soft Skill Podcast",
@@ -70,6 +76,7 @@ blogArticleData: Project[] = [
     routerLink: "/spotify",
     intro:"Hear and learn Softskills"
   },
+ 
 ]
 staticWebsites: Project[] = [
   {

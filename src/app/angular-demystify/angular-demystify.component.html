@@ -7,9 +7,9 @@
 <div class="flex h-screen">
     <!-- Sidebar -->
     <div class="hidden lg:flex lg:w-2/12 bg-gray-800 text-white p-4 flex-col">
-      <p class="text-1xl font-bold mb-4">TypeScript Tutorial</p>
-      <p class="text-1xl font-bold mb-4">Hear and learn TS</p>
-      <p class="text-1xl font-bold mb-4">Watch and learn TS</p>
+      <p class="text-1xl font-bold mb-4">Angular Tutorial</p>
+      <p class="text-1xl font-bold mb-4">Hear and learn Angular</p>
+      <p class="text-1xl font-bold mb-4">Watch and learn Angular</p>
     </div>
     
     <!-- Overlay for small screen sidebar -->
@@ -21,8 +21,8 @@
      @if (isSidebarOpen) {
 
          <div class="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-4 z-50 lg:hidden">
-             <h1 class="text-2xl font-bold mb-4">TypeScript Tutorial</h1>
-             <p class="text-lg">Learn the essentials of TypeScript.</p>
+             <h1 class="text-2xl font-bold mb-4">Angular Tutorial</h1>
+             <p class="text-lg">Learn the essentials of Angular.</p>
              <button class="mt-4 text-white bg-red-600 px-4 py-2 rounded-md" (click)="isSidebarOpen = false">
                  Close
                 </button>
@@ -31,14 +31,9 @@
   
     <!-- Main Content -->
     <div class="w-full lg:w-10/12 p-6 bg-white">
-      <h2 class="text-3xl font-bold mb-4">Understanding TypeScript</h2>
-      <p class="text-lg mb-4">
-        TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
-      </p>
-      <!-- Add more content here -->
-
+      
       <div class="p-6">
-        @for (topic of typescriptTopics; track $index) {
+        @for (topic of angularTopics; track $index) {
 
      
         <div  class="mb-8">
@@ -47,7 +42,7 @@
             @for (subtopic of topic.subtopics; track $index) {
 
                 <li class="mt-1">
-                    <a [routerLink]="['/tstopic', subtopic.id]" class="text-blue-600 hover:underline">
+                    <a [routerLink]="['/angular-topic', subtopic.id]" class="text-blue-600 hover:underline">
                         {{ subtopic.name }}
                     </a>
                 </li>
