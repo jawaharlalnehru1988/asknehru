@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
 
 @Component({
@@ -9,7 +10,15 @@ import { PrismHighlightDirective } from 'src/core/directives/highlight.directive
   styleUrl: './angular-blogs.component.scss'
 })
 export class AngularBlogsComponent {
-firstcode = `// app.module.ts
+  id!: string | null;
+constructor(private route: ActivatedRoute){}
+
+ngOnInit(): void {
+  this.id = this.route.snapshot.paramMap.get('id');
+  console.log(this.id);
+}
+
+firstcode:string = `// app.module.ts
   
   import { NgModule, APP_INITIALIZER } from '@angular/core';
   import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +44,7 @@ firstcode = `// app.module.ts
   })
   export class AppModule {}`;
 
-  secondCode = `// config.service.ts
+  secondCode:string = `// config.service.ts
   
   import { HttpClient } from '@angular/common/http';
   import { Injectable } from '@angular/core';
@@ -58,5 +67,107 @@ firstcode = `// app.module.ts
     getConfig() {
       return this.configData;
     }
-  }`
+  }`;
+
+  testCaseCode:string = `// Example Test for a Component in Angular 18
+          import { TestBed } from '@angular/core/testing';
+          import { StandaloneComponent } from './standalone.component';
+          
+          describe('StandaloneComponent', () => {
+            beforeEach(async () => {
+              await TestBed.configureTestingModule({
+                imports: [StandaloneComponent],
+              }).compileComponents();
+            });
+          
+            it('should create the component', () => {
+              const fixture = TestBed.createComponent(StandaloneComponent);
+              const component = fixture.componentInstance;
+              expect(component).toBeTruthy();
+            });
+          });`;
+
+  stanaloneCode:string = `// Example of a standalone component
+          import { Component } from '@angular/core';
+          
+          @Component({
+            selector: 'app-standalone',
+            standalone: true,
+            template: \`<h1>Standalone Component</h1>\',
+          })
+          export class StandaloneComponent {}`;
+
+    ngOninitCode:string = `// ngOnInit example in a component
+          import { Component, OnInit } from '@angular/core';
+          
+          @Component({
+            selector: 'app-lifecycle',
+            templateUrl: './lifecycle.component.html',
+            styleUrls: ['./lifecycle.component.css']
+          })
+          export class LifecycleComponent implements OnInit {
+          
+            data: any;
+          
+            ngOnInit() {
+              // Fetch or initialize data here
+              this.data = { message: 'Component Initialized!' };
+            }
+          }
+            `;
+    ngOnChangesCode: string = `// ngOnChanges example in a component
+          import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+          
+          @Component({
+            selector: 'app-child',
+            templateUrl: './child.component.html',
+            styleUrls: ['./child.component.css']
+          })
+          export class ChildComponent implements OnChanges {
+          
+            @Input() message: string;
+          
+            ngOnChanges(changes: SimpleChanges) {
+              // React to changes in input properties
+              console.log('Input changed:', changes.message.currentValue);
+            }
+          }`;
+
+
+    ngAfterViewInitCode:string = `// ngAfterViewInit example in a component
+          import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+          
+          @Component({
+            selector: 'app-view-child',
+            template: '<div #childDiv>View Child Example</div>',
+            styleUrls: ['./view-child.component.css']
+          })
+          export class ViewChildComponent implements AfterViewInit {
+          
+            @ViewChild('childDiv') childDiv: ElementRef;
+          
+            ngAfterViewInit() {
+              // Access the child element
+              const childElement = this.childDiv.nativeElement;
+              console.log('Child element:', childElement);
+            }
+          }`;
+
+    ngOnDestroyCode:string = `// ngOnDestroy example in a component
+          import { Component, OnDestroy } from '@angular/core';
+          
+          @Component({
+            selector: 'app-lifecycle',
+            templateUrl: './lifecycle.component.html',
+            styleUrls: ['./lifecycle.component.css']
+          })
+          export class LifecycleComponent implements OnDestroy {
+          
+            data: any;
+          
+            ngOnDestroy() {
+              // Clean up any resources here
+              this.data = null;
+            }
+          }`;
 }
