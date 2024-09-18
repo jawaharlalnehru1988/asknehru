@@ -20,6 +20,13 @@ export const routes: Routes = [
       ).then((m) => m.AngularBlogsComponent),
   },
   {
+    path: 'angular-audio/:id',
+    loadComponent: () =>
+      import(
+        '../../app/angular-demystify/angular-audio/angular-audio.component'
+      ).then((m) => m.AngularAudioComponent),
+  },
+  {
     path: 'typescript',
     loadComponent: () =>
       import('../../app/typescript/typescript.component').then(
