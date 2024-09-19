@@ -12,7 +12,7 @@ interface TsTopics {
   standalone: true,
   imports: [RouterLink],
   templateUrl: './typescript.component.html',
-  styleUrl: './typescript.component.scss'
+  styleUrl: './typescript.component.scss',
 })
 export class TypescriptComponent {
   isSidebarOpen: boolean = false;
@@ -21,24 +21,99 @@ export class TypescriptComponent {
     {
       title: 'Introduction to TypeScript',
       subtopics: [
-        { id: 1, name: 'What is TypeScript?' },
-        { id: 2, name: 'Installing TypeScript' }
-      ]
+        { id: 2, name: 'What are the key features of TypeScript' },
+        { id: 3, name: 'What are the benefits of using TypeScript' },
+        { id: 4, name: 'What are the drawbacks of using TypeScript' },
+        { id: 5, name: 'What is the TypeScript compiler' },
+      ],
     },
     {
       title: 'TypeScript Basics',
       subtopics: [
-        { id: 3, name: 'Types in TypeScript' },
-        { id: 4, name: 'Interfaces and Classes' }
-      ]
+        { id: 11, name: 'Types Conversions' },
+        { id: 12, name: 'for loops and while loops' },
+        { id: 13, name: 'Basic Operators, Maths' },
+        { id: 14, name: 'The Switch Statement' },
+        { id: 15, name: 'The Ternary Operator' },
+        { id: 16, name: 'Type Assertions' },
+        { id: 17, name: 'Type Aliases' },
+        { id: 18, name: 'Interfaces' },
+        { id: 19, name: 'Classes' },
+        { id: 20, name: 'Modules' },
+        { id: 21, name: 'Generics' },
+        { id: 22, name: 'Namespaces' },
+      ],
     },
     {
-      title: 'Advanced TypeScript',
+      title: 'TypeScript functions',
       subtopics: [
-        { id: 5, name: 'Generics' },
-        { id: 6, name: 'Modules and Namespaces' }
-      ]
+        { id: 23, name: 'Basic Functions' },
+        { id: 24, name: 'Arrow Functions ' },
+        { id: 25, name: 'Rest Parameters' },
+        { id: 26, name: 'Spread Operator' },
+        { id: 27, name: 'Default Parameters' },
+        { id: 28, name: 'Optional Parameters' },
+        { id: 29, name: 'Named Parameters' },
+        { id: 30, name: 'Function expressions' },
+        { id: 31, name: 'Anonymous Functions' },
+        { id: 32, name: 'Function Types' },
+        { id: 33, name: 'Function Overloading' },
+        { id: 34, name: 'Function Overriding' },
+        { id: 35, name: 'Nullish coalescing operator' },
+        { id: 36, name: 'Optional chaining' },
+        { id: 37, name: 'Optional nullish coalescing operator' },
+        { id: 38, name: 'Type narrowing' },
+        { id: 39, name: 'Type predicates' },
+      ],
+    },
+    {
+      title: 'Typescript Code quality',
+      subtopics: [
+        { id: 40, name: 'Code Styles' },
+        { id: 41, name: 'Linting' },
+        { id: 42, name: 'Formatting' },
+        { id: 43, name: 'Static analysis' },
+        { id: 44, name: 'Code coverage' },
+        { id: 45, name: 'Code quality issues' },
+        { id: 46, name: 'Code quality tools' },
+        { id: 47, name: 'polyfills and transpilers' },
+        { id: 48, name: 'Automated Testing with Jasmine and Karma' },
+        { id: 48, name: 'Debugging with Chrome DevTools' },
+      ],
+    },
+    {title: 'Array and Object Methods in Typescript',
+      subtopics: [
+        { id: 49, name: 'Array Methods' },
+        {id: 50, name: 'for methods'},
+        {id: 51, name: 'forEach methods'},
+        {id: 52, name: 'map methods'},
+        {id: 53, name: 'filter methods'},
+        {id: 54, name: 'some methods'},
+        {id: 55, name: 'every methods'},
+        {id: 56, name: 'find methods'},
+        {id: 57, name: 'findIndex methods'},
+        {id: 58, name: 'reduce methods'},
+        {id: 59, name: 'reduceRight methods'},
+        {id: 60, name: 'sort methods'},
+        {id: 61, name: 'reverse methods'},
+        {id: 62, name: 'push methods'},
+        {id: 63, name: 'pop methods'},
+        {id: 64, name: 'Object Methods'},
+        {id: 65, name: 'keys methods'},
+        {id: 66, name: 'values methods'},
+        {id: 67, name: 'entries methods'},
+        {id: 68, name: 'assign methods'},
+        {id: 69, name: 'spread methods'},
+        {id: 70, name: 'Object.keys methods'},
+        {id: 71, name: 'Object.values methods'},
+        {id: 72, name: 'Object.entries methods'},
+        {id: 73, name: 'Object.assign methods'},
+        {id: 74, name: 'Object.fromEntries methods'},
+        {id: 75, name: 'set methods'},
+        {id: 76, name: 'get methods'},
+        {id: 77, name: 'has methods'},
+        {id: 78, name: 'delete methods'},
+            ]
     }
-    // Add more topics and subtopics as needed
   ];
 }
