@@ -113,7 +113,35 @@ export class TypescriptComponent {
         {id: 76, name: 'get methods'},
         {id: 77, name: 'has methods'},
         {id: 78, name: 'delete methods'},
+        {id: 79, name: 'Destructuring methods'},
+        {id: 80, name: 'WeakMap methods'},
+        {id: 81, name: 'WeakSet methods'},
+        {id: 82, name: 'Proxy methods'},
+        {id: 83, name: 'Reflect methods'},
+        {id: 84, name: 'Symbol methods'},
+        {id: 85, name: 'Promise methods'},
+        {id: 86, name: 'Generator methods'},
+        {id: 87, name: 'Async methods'},
+        {id: 88, name: 'Async/await methods'},
+        {id: 89, name: 'Async generators methods'},
+        {id: 90, name: 'Async/await generators methods'},
+        {id: 91, name: 'Async iterators methods'},
+        {id: 92, name: 'Async/await iterators methods'},
+        {id: 93, name: 'Json methods'},
+        {id: 94, name: "Date and time methods"},
             ]
-    }
+    },
+    {
+      title: 'Strings in Typescript',
+      subtopics: [
+        { id: 80, name: 'String Methods' },
+        { id: 81, name: 'String Concatenation' },
+        { id: 82, name: 'String Interpolation' },
+        { id: 83, name: 'String Template Literals' },
+        { id: 84, name: 'String Properties' },
+        { id: 85, name: 'String Regular Expressions' },
+      ]
+    },
+    
   ];
 }
