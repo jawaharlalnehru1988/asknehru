@@ -76,6 +76,12 @@ blogArticleData: Project[] = [
     routerLink: "/spotify",
     intro:"Hear and learn Softskills"
   },
+  {
+    PName: "Rxjs Masterclass",
+    PImage: "assets/image/rxjs.png",
+    routerLink: "/rxjs",
+    intro:"Watch and learn Rxjs"
+  },
  
 ]
 staticWebsites: Project[] = [

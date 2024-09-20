@@ -41,6 +41,9 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'rxjs', loadComponent: () => import('../../app/angular-demystify/rxjs/rxjs.component').then((m) => m.RxjsComponent),
+  },
+  {
     path: 'toolbar',
 
     loadComponent: () =>
