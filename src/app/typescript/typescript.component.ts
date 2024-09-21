@@ -30,7 +30,7 @@ export class TypescriptComponent {
     {
       title: 'TypeScript Basics',
       subtopics: [
-        { id: 11, name: 'Types Conversions' },
+        { id: 5, name: 'Types Conversions' },
         { id: 12, name: 'for loops and while loops' },
         { id: 13, name: 'Basic Operators, Maths' },
         { id: 14, name: 'The Switch Statement' },
