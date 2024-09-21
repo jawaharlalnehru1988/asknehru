@@ -21,10 +21,10 @@ export class TypescriptComponent {
     {
       title: 'Introduction to TypeScript',
       subtopics: [
-        { id: 2, name: 'What are the key features of TypeScript' },
-        { id: 3, name: 'What are the benefits of using TypeScript' },
-        { id: 4, name: 'What are the drawbacks of using TypeScript' },
-        { id: 5, name: 'What is the TypeScript compiler' },
+        { id: 1, name: 'What are the key features of TypeScript' },
+        { id: 2, name: 'What are the benefits of using TypeScript' },
+        { id: 3, name: 'What are the drawbacks of using TypeScript' },
+        { id: 4, name: 'What is the TypeScript compiler' },
       ],
     },
     {
