@@ -1,5 +1,252 @@
-<pre>
+<!-- <pre>
     <code class="language-javascript" codeHighlight>
         {{code}}
     </code>
-</pre>
+</pre> -->
+
+@switch (topicId) {
+    @case (1){
+<div class="max-w-4xl mx-auto p-8">
+    <h1 class="text-3xl font-bold text-blue-600 mb-6">TypeScript Key Features</h1>
+  
+    <p class="text-lg text-gray-700 mb-4">
+      TypeScript is a strongly typed superset of JavaScript that adds optional static typing and other features to enhance the development experience. Here are the key features of TypeScript:
+    </p>
+  
+    <ul class="space-y-6">
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">1. Static Typing</h2>
+        <p class="text-gray-700">
+          TypeScript allows developers to assign specific data types (e.g., number, string, boolean, array, etc.) to variables, function parameters, and return types. This helps catch type-related errors at compile time, improving code safety and maintainability.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">2. Type Inference</h2>
+        <p class="text-gray-700">
+          TypeScript can automatically infer types based on the assigned values, which means you don't have to explicitly annotate types in every case, making the code cleaner while still maintaining type safety.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">3. Interfaces and Type Aliases</h2>
+        <p class="text-gray-700">
+          TypeScript provides interfaces to define the structure of objects and ensure that they have a consistent shape. Type aliases can be used to define custom types, making the code more expressive and reusable.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">4. Classes and Object-Oriented Programming (OOP)</h2>
+        <p class="text-gray-700">
+          TypeScript supports OOP concepts like classes, inheritance, access modifiers (public, private, protected), and abstract classes. This brings a more structured, traditional approach to JavaScript development.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">5. Generics</h2>
+        <p class="text-gray-700">
+          TypeScript supports generics, allowing you to write reusable and flexible code that can work with different data types while maintaining type safety.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">6. Type Checking and Compile-Time Error Detection</h2>
+        <p class="text-gray-700">
+          TypeScript performs type checking at compile time, helping developers catch potential errors early in the development process, reducing runtime issues in production.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">7. Union and Intersection Types</h2>
+        <p class="text-gray-700">
+          Union types allow variables to hold multiple possible types (e.g., number | string), and intersection types let you combine multiple types into one, offering more flexibility in defining data structures.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">8. Enums</h2>
+        <p class="text-gray-700">
+          Enums provide a way to define a set of named constants, improving the readability and maintainability of code by representing a collection of related values more clearly.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">9. Advanced IDE Support</h2>
+        <p class="text-gray-700">
+          TypeScript integrates well with modern IDEs like VS Code, offering powerful tooling such as autocompletion, refactoring tools, and inline type hints, which significantly improve developer productivity.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">10. Modules and Namespaces</h2>
+        <p class="text-gray-700">
+          TypeScript supports both ES modules and its own module system, making it easy to organize code into reusable components. Namespaces help organize large codebases by grouping related code under a common namespace.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">11. Compatibility with JavaScript</h2>
+        <p class="text-gray-700">
+          Since TypeScript is a superset of JavaScript, all valid JavaScript code is also valid TypeScript code. This makes it easy to gradually adopt TypeScript in existing JavaScript projects.
+        </p>
+      </li>
+  
+      <li>
+        <h2 class="text-xl font-semibold text-indigo-500 mb-2">12. Decorators (Experimental)</h2>
+        <p class="text-gray-700">
+          TypeScript supports decorators, which are special annotations used for adding metadata to classes and methods. They are commonly used in frameworks like Angular to define behaviors like routing, services, or component metadata.
+        </p>
+      </li>
+    </ul>
+  </div>
+}
+@case (2) {
+    <div class="max-w-4xl mx-auto p-8">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6">Benefits of Using TypeScript</h1>
+      
+        <p class="text-lg text-gray-700 mb-4">
+          TypeScript offers numerous benefits to developers, especially when working on large-scale applications or projects that require strong type safety. Below are some of the key benefits of using TypeScript:
+        </p>
+      
+        <ul class="space-y-6">
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">1. Improved Code Quality and Safety</h2>
+            <p class="text-gray-700">
+              By enforcing static typing, TypeScript helps catch type-related errors during development, reducing the likelihood of runtime errors. This improves overall code quality and safety, making it easier to maintain and scale projects.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">2. Enhanced Developer Experience</h2>
+            <p class="text-gray-700">
+              TypeScript integrates seamlessly with popular IDEs like Visual Studio Code, offering advanced features like autocompletion, real-time error checking, and intelligent code refactoring. This boosts productivity and allows for a smoother development experience.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">3. Early Error Detection</h2>
+            <p class="text-gray-700">
+              TypeScript’s compile-time error checking allows developers to detect and fix errors early in the development process. This minimizes the number of bugs found during testing and reduces time spent debugging during production.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">4. Scalability for Large Projects</h2>
+            <p class="text-gray-700">
+              For large codebases, TypeScript’s static typing and OOP features like interfaces, classes, and generics provide a more structured approach. This makes it easier to manage and scale complex projects while maintaining consistent code quality.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">5. Better Collaboration and Readability</h2>
+            <p class="text-gray-700">
+              The self-documenting nature of TypeScript (through type annotations and interfaces) enhances collaboration among team members. Developers can easily understand each other's code and work with greater efficiency, leading to better readability and maintainability.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">6. Compatibility with JavaScript</h2>
+            <p class="text-gray-700">
+              Since TypeScript is a superset of JavaScript, it can run alongside existing JavaScript code. This allows teams to gradually migrate to TypeScript without the need for a complete rewrite of legacy code, making it an ideal choice for both new and existing projects.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">7. Strong Ecosystem and Community Support</h2>
+            <p class="text-gray-700">
+              TypeScript has a growing and active community, with support from major frameworks like Angular and libraries like React and Vue. The ecosystem is mature, offering a wide range of resources, tutorials, and tools to support developers.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">8. Enables Modern JavaScript Features</h2>
+            <p class="text-gray-700">
+              TypeScript supports the latest JavaScript features (e.g., async/await, destructuring, modules) while ensuring backward compatibility with older browsers through transpilation. This means developers can take advantage of modern features without sacrificing browser support.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">9. Supports Large-Scale Refactoring</h2>
+            <p class="text-gray-700">
+              TypeScript's strong typing and IDE integration provide powerful refactoring capabilities, allowing developers to rename variables, functions, or entire modules with confidence, knowing the changes will propagate throughout the codebase safely.
+            </p>
+          </li>
+        </ul>
+      </div>      
+}
+@case (3) {
+    <div class="max-w-4xl mx-auto p-8">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6">Drawbacks of Using TypeScript</h1>
+      
+        <p class="text-lg text-gray-700 mb-4">
+          While TypeScript offers many advantages, it also comes with certain drawbacks that developers should be aware of before adopting it in their projects. Below are some of the key drawbacks of using TypeScript:
+        </p>
+      
+        <ul class="space-y-6">
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">1. Additional Learning Curve</h2>
+            <p class="text-gray-700">
+              For developers who are familiar with JavaScript but new to TypeScript, there is an additional learning curve. Concepts like static typing, interfaces, and generics can take time to grasp, which may slow down the initial development process.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">2. Longer Compilation Time</h2>
+            <p class="text-gray-700">
+              TypeScript code needs to be compiled into JavaScript before it can be executed. This extra compilation step can introduce delays, especially in larger projects, leading to longer build times and slower feedback during development.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">3. Increased Project Complexity</h2>
+            <p class="text-gray-700">
+              The introduction of TypeScript can add complexity to a project, as developers must manage type definitions, configurations, and potential integration issues with third-party libraries. This may increase the overall maintenance overhead.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">4. Limited Support for Some JavaScript Libraries</h2>
+            <p class="text-gray-700">
+              Not all JavaScript libraries have complete TypeScript definitions, which can make integrating certain libraries difficult. Developers may need to write their own type definitions or use third-party tools to ensure compatibility.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">5. Larger Codebase</h2>
+            <p class="text-gray-700">
+              TypeScript's strict type enforcement often results in writing more code, especially with type annotations. While this improves code safety, it can also lead to a larger codebase, which may require additional effort to maintain.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">6. Potential Overhead for Small Projects</h2>
+            <p class="text-gray-700">
+              For small projects or scripts, the benefits of TypeScript might not justify the added complexity and setup requirements. In such cases, the overhead of configuring and maintaining TypeScript might outweigh the advantages.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">7. Migration Challenges</h2>
+            <p class="text-gray-700">
+              Migrating existing JavaScript projects to TypeScript can be time-consuming, especially for large codebases. Developers must refactor code, define types, and address potential issues with dependencies, which can slow down the migration process.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">8. Dependency on Build Tools</h2>
+            <p class="text-gray-700">
+              TypeScript relies on build tools like Webpack, Babel, or TypeScript’s own compiler to convert TypeScript code into JavaScript. This adds a layer of complexity to the development environment, especially for teams that are not familiar with these tools.
+            </p>
+          </li>
+      
+          <li>
+            <h2 class="text-xl font-semibold text-indigo-500 mb-2">9. Debugging Overhead</h2>
+            <p class="text-gray-700">
+              Although TypeScript provides many benefits for catching errors early, debugging compiled TypeScript code can sometimes be more challenging than debugging plain JavaScript. Developers must use source maps or other tools to trace errors back to the original TypeScript source.
+            </p>
+          </li>
+        </ul>
+      </div>
+      
+}
+}
