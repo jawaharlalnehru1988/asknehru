@@ -296,4 +296,56 @@
       </div>
       
 }
+@case (5){
+    <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
+        <h1 class="text-3xl font-bold text-gray-800">Type Conversions in TypeScript</h1>
+        
+        <p class="text-lg text-gray-700">
+          TypeScript allows for various ways to convert from one type to another. Type conversion, also known as type casting, helps you ensure that data is interpreted as expected during code execution.
+        </p>
+      
+        <div class="space-y-2">
+          <h2 class="text-xl font-semibold text-gray-700">Key Types of Type Conversions:</h2>
+      
+          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800">1. Explicit Conversion (Type Casting)</h3>
+            <p class="text-gray-600">
+              In TypeScript, you can explicitly convert one type to another using either the angle-bracket syntax 
+              (<code class="font-mono bg-gray-200 p-1 rounded">&lt;type&gt;</code>) or the 
+              <code class="font-mono bg-gray-200 p-1 rounded">as</code> keyword.
+            </p>
+            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight >let value: any = "123";<br>let num: number = &lt;number&gt;value;</code></pre>
+            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: any = "123";<br>let num: number = value as number;</code></pre>
+          </div>
+      
+          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800">2. Implicit Conversion (Type Inference)</h3>
+            <p class="text-gray-600">
+              TypeScript also performs automatic type inference in some cases, where it converts one type to another without explicit casting.
+            </p>
+            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight >let num = 123;<br>let str = num + " is a number"; // 'str' becomes a string</code></pre>
+          </div>
+      
+          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800">3. Built-in Conversion Functions</h3>
+            <p class="text-gray-600">
+              JavaScript (and TypeScript) provides built-in functions like <code class="font-mono bg-gray-200 p-1 rounded">Number()</code>, 
+              <code class="font-mono bg-gray-200 p-1 rounded" >String()</code>, and 
+              <code class="font-mono bg-gray-200 p-1 rounded" >Boolean()</code> for converting data types.
+            </p>
+            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: string = "456";<br>let num: number = Number(value);</code></pre>
+          </div>
+      
+          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800">4. Avoiding Runtime Errors</h3>
+            <p class="text-gray-600">
+              Type conversions help avoid unexpected runtime errors. TypeScript ensures that conversions are valid or warns you at compile-time.
+            </p>
+            <p class="text-gray-600">For example, converting a non-numeric string to a number will result in <code class="language-javascript" codeHighlight class="font-mono bg-gray-200 p-1 rounded">NaN</code>.</p>
+            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight>let invalidNum: number = Number("not a number"); // NaN</code></pre>
+          </div>
+        </div>
+      </div>
+      
+}
 }
