@@ -31,9 +31,9 @@ export class TypescriptComponent {
       title: 'TypeScript Basics',
       subtopics: [
         { id: 5, name: 'Types Conversions' },
-        { id: 12, name: 'for loops and while loops' },
-        { id: 13, name: 'Basic Operators, Maths' },
-        { id: 14, name: 'The Switch Statement' },
+        { id: 6, name: 'for loops and while loops' },
+        { id: 7, name: 'Basic Operators, Maths' },
+        { id: 8, name: 'The Switch Statement' },
         { id: 15, name: 'The Ternary Operator' },
         { id: 16, name: 'Type Assertions' },
         { id: 17, name: 'Type Aliases' },
