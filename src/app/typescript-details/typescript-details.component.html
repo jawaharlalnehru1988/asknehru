@@ -4,8 +4,8 @@
     </code>
 </pre> -->
 
-@switch (topicId)
-{ @case (1){
+@switch (topicId) {
+   @case (1){
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">TypeScript Key Features</h1>
 
@@ -148,14 +148,15 @@
     </li>
   </ul>
 </div>
-} @case (2) {
+}
+ @case (2) {
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">
     Benefits of Using TypeScript
   </h1>
 
   <p class="text-lg text-gray-700 mb-4">
-    TypeScript offers numerous benefits to developers, especially when working
+    TypeScript offe    rs numerous benefits to developers, especially when working
     on large-scale applications or projects that require strong type safety.
     Below are some of the key benefits of using TypeScript:
   </p>
@@ -270,7 +271,8 @@
     </li>
   </ul>
 </div>
-} @case (3) {
+} 
+@case (3) {
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">
     Drawbacks of Using TypeScript
@@ -392,7 +394,8 @@
     </li>
   </ul>
 </div>
-} @case (4){
+} 
+@case (4){
 <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
   <h1 class="text-3xl font-bold text-gray-800">TypeScript Compiler (tsc)</h1>
 
@@ -449,7 +452,8 @@
     </div>
   </div>
 </div>
-} @case (5){
+}
+ @case (5){
 <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
   <h1 class="text-3xl font-bold text-gray-800">
     Type Conversions in TypeScript
@@ -480,10 +484,16 @@
       </p>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight >let value: any = "123";<br>let num: number = &lt;number&gt;value;</code></pre>
+      ><code class="font-mono text-sm language-javascript" codeHighlight >
+        let value: any = "123";
+        let num: number = &lt;number&gt;value;
+      </code></pre>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: any = "123";<br>let num: number = value as number;</code></pre>
+      ><code class="font-mono text-sm language-javascript" codeHighlight>
+        let value: any = "123";<br>
+        let num: number = value as number;
+      </code></pre>
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
@@ -495,8 +505,10 @@
         it converts one type to another without explicit casting.
       </p>
       <pre
-        class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight >let num = 123;<br>let str = num + " is a number"; // 'str' becomes a string</code></pre>
+        class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm language-javascript" codeHighlight >
+          let num = 123;<br>
+          let str = num + " is a number"; // 'str' becomes a string
+        </code></pre>
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
@@ -512,7 +524,10 @@
       </p>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: string = "456";<br>let num: number = Number(value);</code></pre>
+      ><code class="font-mono text-sm language-javascript" codeHighlight>
+        let value: string = "456";<br>
+        let num: number = Number(value);
+      </code></pre>
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
@@ -525,22 +540,23 @@
       </p>
       <p class="text-gray-600">
         For example, converting a non-numeric string to a number will result in
-        <code
-          class="language-javascript"
-          codeHighlight
-          class="font-mono bg-gray-200 p-1 rounded"
+        <code class="font-mono bg-gray-200 p-1 rounded"
           >NaN</code
         >.
       </p>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight>let invalidNum: number = Number("not a number"); // NaN</code></pre>
+      ><code class="font-mono text-sm language-javascript" class="" codeHighlight>
+        let invalidNum: number = Number("not a number"); // NaN</code></pre>
     </div>
   </div>
 </div>
-} @case (6) {
+} 
+@case (6) {
 
-}@case (7){
+}
+@case (7){
+
   <article class="prose lg:prose-xl p-6 bg-gray-100 rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold mb-6">Basic Operators and Maths in TypeScript</h1>
     
@@ -706,129 +722,9 @@
       These are just a few of the key operators and functions available in TypeScript for performing mathematical and logical operations.
     </p>
   </article>
-  
-}@case (8){
-  <article class="prose lg:prose-xl p-6 bg-gray-100 rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold mb-6">The Switch Statement in TypeScript</h1>
-  
-    <!-- Introduction -->
-    <p class="mb-4">
-      In TypeScript, the <code>switch</code> statement is used to perform different actions based on different conditions. It's an alternative to using multiple <code>if...else</code> statements when you need to compare the same variable or expression to multiple potential values.
-    </p>
-  
-    <!-- Syntax Section -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">Syntax of the Switch Statement</h2>
-    <p class="mb-4">
-      The <code>switch</code> statement evaluates an expression and executes the corresponding code block based on the result of the expression. The syntax looks like this:
-    </p>
-  
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
-        switch (expression) {
-          case value1:
-            // Code block for value1
-            break;
-          case value2:
-            // Code block for value2
-            break;
-          default:
-            // Code block if none of the cases match
-        }
-      </code>
-    </pre>
-  
-    <!-- Explanation -->
-    <p class="mb-4">
-      - <strong>expression</strong>: This is the value that you are comparing against different cases.
-      - <strong>case value</strong>: The different values the expression is compared to. If a match is found, the corresponding code block runs.
-      - <strong>break</strong>: Used to stop the execution of the code block and prevent the execution from "falling through" to other cases.
-      - <strong>default</strong>: This block runs if none of the case values match the expression.
-    </p>
-  
-    <!-- Example Section -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">Example of a Switch Statement</h2>
-    <p class="mb-4">
-      Let's see an example where we use the <code>switch</code> statement to determine what day of the week it is:
-    </p>
-  
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
-        let day: number = 3;
-        let dayName: string;
-  
-        switch (day) {
-          case 0:
-            dayName = "Sunday";
-            break;
-          case 1:
-            dayName = "Monday";
-            break;
-          case 2:
-            dayName = "Tuesday";
-            break;
-          case 3:
-            dayName = "Wednesday";
-            break;
-          case 4:
-            dayName = "Thursday";
-            break;
-          case 5:
-            dayName = "Friday";
-            break;
-          case 6:
-            dayName = "Saturday";
-            break;
-          default:
-            dayName = "Invalid day";
-        }
-  
-        console.log(dayName);  // Output: "Wednesday"
-      </code>
-    </pre>
-  
-    <!-- Explanation of the Example -->
-    <p class="mb-4">
-      In this example, the value of the variable <code>day</code> is <code>3</code>, so the corresponding case for <code>3</code> is matched, and the value <code>"Wednesday"</code> is assigned to <code>dayName</code>.
-      If the value of <code>day</code> was something other than <code>0</code> to <code>6</code>, the <code>default</code> block would execute, and <code>dayName</code> would be set to <code>"Invalid day"</code>.
-    </p>
-  
-    <!-- Fall-Through Case -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">The Fall-Through Case</h2>
-    <p class="mb-4">
-      If you omit the <code>break</code> statement, the execution continues with the next case even if a match is found. This is called a "fall-through." Here's an example:
-    </p>
-  
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
-        let fruit: string = "banana";
-  
-        switch (fruit) {
-          case "apple":
-          case "banana":
-            console.log("It's a fruit!");
-            break;
-          case "carrot":
-            console.log("It's a vegetable!");
-            break;
-          default:
-            console.log("Unknown food.");
-        }
-  
-        // Output: "It's a fruit!"
-      </code>
-    </pre>
-  
-    <!-- Explanation of Fall-Through -->
-    <p class="mb-4">
-      In the example above, both <code>"apple"</code> and <code>"banana"</code> cases are grouped together. If either <code>"apple"</code> or <code>"banana"</code> matches, the code block executes. This is a common pattern for cases that share the same code block.
-    </p>
-  
-    <!-- Conclusion -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">Conclusion</h2>
-    <p class="mb-4">
-      The <code>switch</code> statement in TypeScript is useful when you have a variable or expression that can take multiple values and you want to execute different code for each value. It provides a more readable and organized alternative to using multiple <code>if...else</code> statements.
-    </p>
-  </article>
-  
 }
+@case (8){
+  
+} 
+
 }
