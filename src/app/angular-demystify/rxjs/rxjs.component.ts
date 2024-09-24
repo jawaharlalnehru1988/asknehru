@@ -1,38 +1,32 @@
-import { Component } from '@angular/core';
-import { resolve } from 'core-js/fn/promise';
-import { from, interval, of, timer } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { combineLatest, interval, fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
   standalone: true,
   imports: [],
   templateUrl: './rxjs.component.html',
-  styleUrl: './rxjs.component.scss'
+  styleUrls: ['./rxjs.component.scss']  // Corrected property name
 })
-export class RxjsComponent {
-map = new Map();
-  // ofObservable$ = of(1, 2, 3);
-  sampleObject = {
-    name: "Nehru",
-    age: 23,
-    address: {
-      city: "Chennai",
-      state: "Tamilnadu"
-    }
-  }
-  
-  ngOnInit(): void {
-    this.map.set(1, "hi");
-    this.map.set(2, "bye");
-    this.map.set(3, "hello");
-    
-    const entries = Object.entries(this.sampleObject);
-    console.log('entries :', entries);
-    const observable = from(entries);
-    observable.subscribe(([key, value]) => console.log(`${key}: ${ JSON.stringify(value)}`));
-    // const arraySource$ = from(this.sampleObject);
-    // this.ofObservable$.subscribe(value => console.log(value));
+export class RxjsComponent  {
 
-    // arraySource$.subscribe(value => console.log(value));
+  @ViewChild('filterInput') filterInput!: ElementRef;
+
+
+
+  ngAfterViewInit() {
+
+    const keyUp$ = fromEvent<KeyboardEvent>(this.filterInput.nativeElement, 'keyup');
+
+    const filter$ = keyUp$.pipe(
+      map((event: KeyboardEvent)=> (event.target as HTMLInputElement).value)
+    )
+
+
+    filter$.subscribe(value => console.log(value));
+
   }
+
+
 }
