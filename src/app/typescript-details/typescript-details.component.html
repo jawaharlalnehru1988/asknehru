@@ -5,347 +5,726 @@
 </pre> -->
 
 @switch (topicId) {
-    @case (1){
+   @case (1){
 <div class="max-w-4xl mx-auto p-8">
-    <h1 class="text-3xl font-bold text-blue-600 mb-6">TypeScript Key Features</h1>
-  
-    <p class="text-lg text-gray-700 mb-4">
-      TypeScript is a strongly typed superset of JavaScript that adds optional static typing and other features to enhance the development experience. Here are the key features of TypeScript:
+  <h1 class="text-3xl font-bold text-blue-600 mb-6">TypeScript Key Features</h1>
+
+  <p class="text-lg text-gray-700 mb-4">
+    TypeScript is a strongly typed superset of JavaScript that adds optional
+    static typing and other features to enhance the development experience. Here
+    are the key features of TypeScript:
+  </p>
+
+  <ul class="space-y-6">
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        1. Static Typing
+      </h2>
+      <p class="text-gray-700">
+        TypeScript allows developers to assign specific data types (e.g.,
+        number, string, boolean, array, etc.) to variables, function parameters,
+        and return types. This helps catch type-related errors at compile time,
+        improving code safety and maintainability.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        2. Type Inference
+      </h2>
+      <p class="text-gray-700">
+        TypeScript can automatically infer types based on the assigned values,
+        which means you don't have to explicitly annotate types in every case,
+        making the code cleaner while still maintaining type safety.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        3. Interfaces and Type Aliases
+      </h2>
+      <p class="text-gray-700">
+        TypeScript provides interfaces to define the structure of objects and
+        ensure that they have a consistent shape. Type aliases can be used to
+        define custom types, making the code more expressive and reusable.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        4. Classes and Object-Oriented Programming (OOP)
+      </h2>
+      <p class="text-gray-700">
+        TypeScript supports OOP concepts like classes, inheritance, access
+        modifiers (public, private, protected), and abstract classes. This
+        brings a more structured, traditional approach to JavaScript
+        development.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">5. Generics</h2>
+      <p class="text-gray-700">
+        TypeScript supports generics, allowing you to write reusable and
+        flexible code that can work with different data types while maintaining
+        type safety.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        6. Type Checking and Compile-Time Error Detection
+      </h2>
+      <p class="text-gray-700">
+        TypeScript performs type checking at compile time, helping developers
+        catch potential errors early in the development process, reducing
+        runtime issues in production.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        7. Union and Intersection Types
+      </h2>
+      <p class="text-gray-700">
+        Union types allow variables to hold multiple possible types (e.g.,
+        number | string), and intersection types let you combine multiple types
+        into one, offering more flexibility in defining data structures.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">8. Enums</h2>
+      <p class="text-gray-700">
+        Enums provide a way to define a set of named constants, improving the
+        readability and maintainability of code by representing a collection of
+        related values more clearly.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        9. Advanced IDE Support
+      </h2>
+      <p class="text-gray-700">
+        TypeScript integrates well with modern IDEs like VS Code, offering
+        powerful tooling such as autocompletion, refactoring tools, and inline
+        type hints, which significantly improve developer productivity.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        10. Modules and Namespaces
+      </h2>
+      <p class="text-gray-700">
+        TypeScript supports both ES modules and its own module system, making it
+        easy to organize code into reusable components. Namespaces help organize
+        large codebases by grouping related code under a common namespace.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        11. Compatibility with JavaScript
+      </h2>
+      <p class="text-gray-700">
+        Since TypeScript is a superset of JavaScript, all valid JavaScript code
+        is also valid TypeScript code. This makes it easy to gradually adopt
+        TypeScript in existing JavaScript projects.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        12. Decorators (Experimental)
+      </h2>
+      <p class="text-gray-700">
+        TypeScript supports decorators, which are special annotations used for
+        adding metadata to classes and methods. They are commonly used in
+        frameworks like Angular to define behaviors like routing, services, or
+        component metadata.
+      </p>
+    </li>
+  </ul>
+</div>
+}
+ @case (2) {
+<div class="max-w-4xl mx-auto p-8">
+  <h1 class="text-3xl font-bold text-blue-600 mb-6">
+    Benefits of Using TypeScript
+  </h1>
+
+  <p class="text-lg text-gray-700 mb-4">
+    TypeScript offe    rs numerous benefits to developers, especially when working
+    on large-scale applications or projects that require strong type safety.
+    Below are some of the key benefits of using TypeScript:
+  </p>
+
+  <ul class="space-y-6">
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        1. Improved Code Quality and Safety
+      </h2>
+      <p class="text-gray-700">
+        By enforcing static typing, TypeScript helps catch type-related errors
+        during development, reducing the likelihood of runtime errors. This
+        improves overall code quality and safety, making it easier to maintain
+        and scale projects.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        2. Enhanced Developer Experience
+      </h2>
+      <p class="text-gray-700">
+        TypeScript integrates seamlessly with popular IDEs like Visual Studio
+        Code, offering advanced features like autocompletion, real-time error
+        checking, and intelligent code refactoring. This boosts productivity and
+        allows for a smoother development experience.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        3. Early Error Detection
+      </h2>
+      <p class="text-gray-700">
+        TypeScript’s compile-time error checking allows developers to detect and
+        fix errors early in the development process. This minimizes the number
+        of bugs found during testing and reduces time spent debugging during
+        production.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        4. Scalability for Large Projects
+      </h2>
+      <p class="text-gray-700">
+        For large codebases, TypeScript’s static typing and OOP features like
+        interfaces, classes, and generics provide a more structured approach.
+        This makes it easier to manage and scale complex projects while
+        maintaining consistent code quality.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        5. Better Collaboration and Readability
+      </h2>
+      <p class="text-gray-700">
+        The self-documenting nature of TypeScript (through type annotations and
+        interfaces) enhances collaboration among team members. Developers can
+        easily understand each other's code and work with greater efficiency,
+        leading to better readability and maintainability.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        6. Compatibility with JavaScript
+      </h2>
+      <p class="text-gray-700">
+        Since TypeScript is a superset of JavaScript, it can run alongside
+        existing JavaScript code. This allows teams to gradually migrate to
+        TypeScript without the need for a complete rewrite of legacy code,
+        making it an ideal choice for both new and existing projects.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        7. Strong Ecosystem and Community Support
+      </h2>
+      <p class="text-gray-700">
+        TypeScript has a growing and active community, with support from major
+        frameworks like Angular and libraries like React and Vue. The ecosystem
+        is mature, offering a wide range of resources, tutorials, and tools to
+        support developers.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        8. Enables Modern JavaScript Features
+      </h2>
+      <p class="text-gray-700">
+        TypeScript supports the latest JavaScript features (e.g., async/await,
+        destructuring, modules) while ensuring backward compatibility with older
+        browsers through transpilation. This means developers can take advantage
+        of modern features without sacrificing browser support.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        9. Supports Large-Scale Refactoring
+      </h2>
+      <p class="text-gray-700">
+        TypeScript's strong typing and IDE integration provide powerful
+        refactoring capabilities, allowing developers to rename variables,
+        functions, or entire modules with confidence, knowing the changes will
+        propagate throughout the codebase safely.
+      </p>
+    </li>
+  </ul>
+</div>
+} 
+@case (3) {
+<div class="max-w-4xl mx-auto p-8">
+  <h1 class="text-3xl font-bold text-blue-600 mb-6">
+    Drawbacks of Using TypeScript
+  </h1>
+
+  <p class="text-lg text-gray-700 mb-4">
+    While TypeScript offers many advantages, it also comes with certain
+    drawbacks that developers should be aware of before adopting it in their
+    projects. Below are some of the key drawbacks of using TypeScript:
+  </p>
+
+  <ul class="space-y-6">
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        1. Additional Learning Curve
+      </h2>
+      <p class="text-gray-700">
+        For developers who are familiar with JavaScript but new to TypeScript,
+        there is an additional learning curve. Concepts like static typing,
+        interfaces, and generics can take time to grasp, which may slow down the
+        initial development process.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        2. Longer Compilation Time
+      </h2>
+      <p class="text-gray-700">
+        TypeScript code needs to be compiled into JavaScript before it can be
+        executed. This extra compilation step can introduce delays, especially
+        in larger projects, leading to longer build times and slower feedback
+        during development.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        3. Increased Project Complexity
+      </h2>
+      <p class="text-gray-700">
+        The introduction of TypeScript can add complexity to a project, as
+        developers must manage type definitions, configurations, and potential
+        integration issues with third-party libraries. This may increase the
+        overall maintenance overhead.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        4. Limited Support for Some JavaScript Libraries
+      </h2>
+      <p class="text-gray-700">
+        Not all JavaScript libraries have complete TypeScript definitions, which
+        can make integrating certain libraries difficult. Developers may need to
+        write their own type definitions or use third-party tools to ensure
+        compatibility.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        5. Larger Codebase
+      </h2>
+      <p class="text-gray-700">
+        TypeScript's strict type enforcement often results in writing more code,
+        especially with type annotations. While this improves code safety, it
+        can also lead to a larger codebase, which may require additional effort
+        to maintain.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        6. Potential Overhead for Small Projects
+      </h2>
+      <p class="text-gray-700">
+        For small projects or scripts, the benefits of TypeScript might not
+        justify the added complexity and setup requirements. In such cases, the
+        overhead of configuring and maintaining TypeScript might outweigh the
+        advantages.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        7. Migration Challenges
+      </h2>
+      <p class="text-gray-700">
+        Migrating existing JavaScript projects to TypeScript can be
+        time-consuming, especially for large codebases. Developers must refactor
+        code, define types, and address potential issues with dependencies,
+        which can slow down the migration process.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        8. Dependency on Build Tools
+      </h2>
+      <p class="text-gray-700">
+        TypeScript relies on build tools like Webpack, Babel, or TypeScript’s
+        own compiler to convert TypeScript code into JavaScript. This adds a
+        layer of complexity to the development environment, especially for teams
+        that are not familiar with these tools.
+      </p>
+    </li>
+
+    <li>
+      <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+        9. Debugging Overhead
+      </h2>
+      <p class="text-gray-700">
+        Although TypeScript provides many benefits for catching errors early,
+        debugging compiled TypeScript code can sometimes be more challenging
+        than debugging plain JavaScript. Developers must use source maps or
+        other tools to trace errors back to the original TypeScript source.
+      </p>
+    </li>
+  </ul>
+</div>
+} 
+@case (4){
+<div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
+  <h1 class="text-3xl font-bold text-gray-800">TypeScript Compiler (tsc)</h1>
+
+  <p class="text-lg text-gray-700">
+    The TypeScript compiler, commonly referred to as
+    <code class="font-mono bg-gray-200 p-1 rounded">tsc</code>, is a tool that
+    translates TypeScript code into JavaScript. Since browsers and JavaScript
+    engines can't execute TypeScript directly,
+    <code class="font-mono bg-gray-200 p-1 rounded">tsc</code> is essential in
+    converting it.
+  </p>
+
+  <div class="space-y-2">
+    <h2 class="text-xl font-semibold text-gray-700">
+      Key Functions of
+      <code class="font-mono bg-gray-200 p-1 rounded">tsc</code>:
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">1. Transpilation</h3>
+      <p class="text-gray-600">
+        Translates TypeScript code into plain JavaScript, allowing it to run in
+        any environment supporting JavaScript.
+      </p>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">2. Type Checking</h3>
+      <p class="text-gray-600">
+        Before converting to JavaScript,
+        <code class="font-mono bg-gray-200 p-1 rounded">tsc</code> checks for
+        type errors and ensures code consistency based on provided type
+        annotations.
+      </p>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">3. Configuration</h3>
+      <p class="text-gray-600">
+        You can customize the compiler using the
+        <code class="font-mono bg-gray-200 p-1 rounded">tsconfig.json</code>
+        file to set options like JavaScript target version and module systems.
+      </p>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">
+        4. Incremental Compilation
+      </h3>
+      <p class="text-gray-600">
+        The compiler can incrementally compile only changed files, improving
+        efficiency in larger projects.
+      </p>
+    </div>
+  </div>
+</div>
+}
+ @case (5){
+<div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
+  <h1 class="text-3xl font-bold text-gray-800">
+    Type Conversions in TypeScript
+  </h1>
+
+  <p class="text-lg text-gray-700">
+    TypeScript allows for various ways to convert from one type to another. Type
+    conversion, also known as type casting, helps you ensure that data is
+    interpreted as expected during code execution.
+  </p>
+
+  <div class="space-y-2">
+    <h2 class="text-xl font-semibold text-gray-700">
+      Key Types of Type Conversions:
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">
+        1. Explicit Conversion (Type Casting)
+      </h3>
+      <p class="text-gray-600">
+        In TypeScript, you can explicitly convert one type to another using
+        either the angle-bracket syntax (<code
+          class="font-mono bg-gray-200 p-1 rounded"
+          >&lt;type&gt;</code
+        >) or the
+        <code class="font-mono bg-gray-200 p-1 rounded">as</code> keyword.
+      </p>
+      <pre
+        class="bg-gray-100 p-3 rounded"
+      ><code class="font-mono text-sm language-javascript" codeHighlight >
+        let value: any = "123";
+        let num: number = &lt;number&gt;value;
+      </code></pre>
+      <pre
+        class="bg-gray-100 p-3 rounded"
+      ><code class="font-mono text-sm language-javascript" codeHighlight>
+        let value: any = "123";<br>
+        let num: number = value as number;
+      </code></pre>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">
+        2. Implicit Conversion (Type Inference)
+      </h3>
+      <p class="text-gray-600">
+        TypeScript also performs automatic type inference in some cases, where
+        it converts one type to another without explicit casting.
+      </p>
+      <pre
+        class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm language-javascript" codeHighlight >
+          let num = 123;<br>
+          let str = num + " is a number"; // 'str' becomes a string
+        </code></pre>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">
+        3. Built-in Conversion Functions
+      </h3>
+      <p class="text-gray-600">
+        JavaScript (and TypeScript) provides built-in functions like
+        <code class="font-mono bg-gray-200 p-1 rounded">Number()</code>,
+        <code class="font-mono bg-gray-200 p-1 rounded">String()</code>, and
+        <code class="font-mono bg-gray-200 p-1 rounded">Boolean()</code> for
+        converting data types.
+      </p>
+      <pre
+        class="bg-gray-100 p-3 rounded"
+      ><code class="font-mono text-sm language-javascript" codeHighlight>
+        let value: string = "456";<br>
+        let num: number = Number(value);
+      </code></pre>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">
+        4. Avoiding Runtime Errors
+      </h3>
+      <p class="text-gray-600">
+        Type conversions help avoid unexpected runtime errors. TypeScript
+        ensures that conversions are valid or warns you at compile-time.
+      </p>
+      <p class="text-gray-600">
+        For example, converting a non-numeric string to a number will result in
+        <code class="font-mono bg-gray-200 p-1 rounded"
+          >NaN</code
+        >.
+      </p>
+      <pre
+        class="bg-gray-100 p-3 rounded"
+      ><code class="font-mono text-sm language-javascript" class="" codeHighlight>
+        let invalidNum: number = Number("not a number"); // NaN</code></pre>
+    </div>
+  </div>
+</div>
+} 
+@case (6) {
+
+}
+@case (7){
+
+  <article class="prose lg:prose-xl p-6 bg-gray-100 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6">Basic Operators and Maths in TypeScript</h1>
+    
+    <!-- Introduction -->
+    <p class="mb-4">
+      In TypeScript (and JavaScript), operators are symbols used to perform specific operations on variables or values. These operations can include mathematical calculations, comparisons, and logical operations. Here’s a breakdown of the most common types of operators with a focus on <strong>mathematical operators</strong>.
     </p>
   
-    <ul class="space-y-6">
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">1. Static Typing</h2>
-        <p class="text-gray-700">
-          TypeScript allows developers to assign specific data types (e.g., number, string, boolean, array, etc.) to variables, function parameters, and return types. This helps catch type-related errors at compile time, improving code safety and maintainability.
-        </p>
-      </li>
+    <!-- Arithmetic Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">1. Arithmetic Operators</h2>
+    <p class="mb-4">
+      Arithmetic operators are used to perform mathematical operations on numbers.
+    </p>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">2. Type Inference</h2>
-        <p class="text-gray-700">
-          TypeScript can automatically infer types based on the assigned values, which means you don't have to explicitly annotate types in every case, making the code cleaner while still maintaining type safety.
-        </p>
-      </li>
+    <table class="table-auto bg-white shadow rounded-lg mb-6">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Operator</th>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Example</th>
+          <th class="px-4 py-2">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t">
+          <td class="px-4 py-2">+</td>
+          <td class="px-4 py-2">Addition</td>
+          <td class="px-4 py-2">5 + 2</td>
+          <td class="px-4 py-2">7</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">-</td>
+          <td class="px-4 py-2">Subtraction</td>
+          <td class="px-4 py-2">5 - 2</td>
+          <td class="px-4 py-2">3</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">*</td>
+          <td class="px-4 py-2">Multiplication</td>
+          <td class="px-4 py-2">5 * 2</td>
+          <td class="px-4 py-2">10</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">/</td>
+          <td class="px-4 py-2">Division</td>
+          <td class="px-4 py-2">10 / 2</td>
+          <td class="px-4 py-2">5</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">%</td>
+          <td class="px-4 py-2">Modulus</td>
+          <td class="px-4 py-2">5 % 2</td>
+          <td class="px-4 py-2">1</td>
+        </tr>
+      </tbody>
+    </table>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">3. Interfaces and Type Aliases</h2>
-        <p class="text-gray-700">
-          TypeScript provides interfaces to define the structure of objects and ensure that they have a consistent shape. Type aliases can be used to define custom types, making the code more expressive and reusable.
-        </p>
-      </li>
+    <!-- Assignment Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">2. Assignment Operators</h2>
+    <p class="mb-4">
+      Assignment operators assign values to variables.
+    </p>
+    
+    <table class="table-auto bg-white shadow rounded-lg mb-6">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Operator</th>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Example</th>
+          <th class="px-4 py-2">Equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t">
+          <td class="px-4 py-2">=</td>
+          <td class="px-4 py-2">Assign value</td>
+          <td class="px-4 py-2">x = 5</td>
+          <td class="px-4 py-2">-</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">+=</td>
+          <td class="px-4 py-2">Add and assign</td>
+          <td class="px-4 py-2">x += 3</td>
+          <td class="px-4 py-2">x = x + 3</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">-=</td>
+          <td class="px-4 py-2">Subtract and assign</td>
+          <td class="px-4 py-2">x -= 3</td>
+          <td class="px-4 py-2">x = x - 3</td>
+        </tr>
+      </tbody>
+    </table>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">4. Classes and Object-Oriented Programming (OOP)</h2>
-        <p class="text-gray-700">
-          TypeScript supports OOP concepts like classes, inheritance, access modifiers (public, private, protected), and abstract classes. This brings a more structured, traditional approach to JavaScript development.
-        </p>
-      </li>
+    <!-- Comparison Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">3. Comparison Operators</h2>
+    <p class="mb-4">
+      Comparison operators are used to compare two values and return a Boolean value (<code>true</code> or <code>false</code>).
+    </p>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">5. Generics</h2>
-        <p class="text-gray-700">
-          TypeScript supports generics, allowing you to write reusable and flexible code that can work with different data types while maintaining type safety.
-        </p>
-      </li>
+    <table class="table-auto bg-white shadow rounded-lg mb-6">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Operator</th>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Example</th>
+          <th class="px-4 py-2">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t">
+          <td class="px-4 py-2">==</td>
+          <td class="px-4 py-2">Equal to</td>
+          <td class="px-4 py-2">5 == 5</td>
+          <td class="px-4 py-2">true</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">===</td>
+          <td class="px-4 py-2">Strict equal</td>
+          <td class="px-4 py-2">5 === "5"</td>
+          <td class="px-4 py-2">false</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">!=</td>
+          <td class="px-4 py-2">Not equal</td>
+          <td class="px-4 py-2">5 != 3</td>
+          <td class="px-4 py-2">true</td>
+        </tr>
+      </tbody>
+    </table>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">6. Type Checking and Compile-Time Error Detection</h2>
-        <p class="text-gray-700">
-          TypeScript performs type checking at compile time, helping developers catch potential errors early in the development process, reducing runtime issues in production.
-        </p>
-      </li>
+    <!-- Logical Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">4. Logical Operators</h2>
+    <p class="mb-4">
+      Logical operators are used to combine multiple conditions.
+    </p>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">7. Union and Intersection Types</h2>
-        <p class="text-gray-700">
-          Union types allow variables to hold multiple possible types (e.g., number | string), and intersection types let you combine multiple types into one, offering more flexibility in defining data structures.
-        </p>
-      </li>
+    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
+      <code>
+        let a = true;
+        let b = false;
+        console.log(a && b);  // false
+        console.log(a || b);  // true
+        console.log(!a);      // false
+      </code>
+    </pre>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">8. Enums</h2>
-        <p class="text-gray-700">
-          Enums provide a way to define a set of named constants, improving the readability and maintainability of code by representing a collection of related values more clearly.
-        </p>
-      </li>
+    <!-- Mathematical Functions -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">5. Mathematical Functions</h2>
+    <p class="mb-4">
+      TypeScript also supports several built-in mathematical functions through the <code>Math</code> object.
+    </p>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">9. Advanced IDE Support</h2>
-        <p class="text-gray-700">
-          TypeScript integrates well with modern IDEs like VS Code, offering powerful tooling such as autocompletion, refactoring tools, and inline type hints, which significantly improve developer productivity.
-        </p>
-      </li>
+    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
+      <code>
+        let num = Math.sqrt(16);  // 4
+        console.log(Math.round(4.7));  // 5
+        console.log(Math.random());    // Random number between 0 and 1
+      </code>
+    </pre>
   
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">10. Modules and Namespaces</h2>
-        <p class="text-gray-700">
-          TypeScript supports both ES modules and its own module system, making it easy to organize code into reusable components. Namespaces help organize large codebases by grouping related code under a common namespace.
-        </p>
-      </li>
-  
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">11. Compatibility with JavaScript</h2>
-        <p class="text-gray-700">
-          Since TypeScript is a superset of JavaScript, all valid JavaScript code is also valid TypeScript code. This makes it easy to gradually adopt TypeScript in existing JavaScript projects.
-        </p>
-      </li>
-  
-      <li>
-        <h2 class="text-xl font-semibold text-indigo-500 mb-2">12. Decorators (Experimental)</h2>
-        <p class="text-gray-700">
-          TypeScript supports decorators, which are special annotations used for adding metadata to classes and methods. They are commonly used in frameworks like Angular to define behaviors like routing, services, or component metadata.
-        </p>
-      </li>
-    </ul>
-  </div>
+    <p class="mb-4">
+      These are just a few of the key operators and functions available in TypeScript for performing mathematical and logical operations.
+    </p>
+  </article>
 }
-@case (2) {
-    <div class="max-w-4xl mx-auto p-8">
-        <h1 class="text-3xl font-bold text-blue-600 mb-6">Benefits of Using TypeScript</h1>
-      
-        <p class="text-lg text-gray-700 mb-4">
-          TypeScript offers numerous benefits to developers, especially when working on large-scale applications or projects that require strong type safety. Below are some of the key benefits of using TypeScript:
-        </p>
-      
-        <ul class="space-y-6">
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">1. Improved Code Quality and Safety</h2>
-            <p class="text-gray-700">
-              By enforcing static typing, TypeScript helps catch type-related errors during development, reducing the likelihood of runtime errors. This improves overall code quality and safety, making it easier to maintain and scale projects.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">2. Enhanced Developer Experience</h2>
-            <p class="text-gray-700">
-              TypeScript integrates seamlessly with popular IDEs like Visual Studio Code, offering advanced features like autocompletion, real-time error checking, and intelligent code refactoring. This boosts productivity and allows for a smoother development experience.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">3. Early Error Detection</h2>
-            <p class="text-gray-700">
-              TypeScript’s compile-time error checking allows developers to detect and fix errors early in the development process. This minimizes the number of bugs found during testing and reduces time spent debugging during production.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">4. Scalability for Large Projects</h2>
-            <p class="text-gray-700">
-              For large codebases, TypeScript’s static typing and OOP features like interfaces, classes, and generics provide a more structured approach. This makes it easier to manage and scale complex projects while maintaining consistent code quality.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">5. Better Collaboration and Readability</h2>
-            <p class="text-gray-700">
-              The self-documenting nature of TypeScript (through type annotations and interfaces) enhances collaboration among team members. Developers can easily understand each other's code and work with greater efficiency, leading to better readability and maintainability.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">6. Compatibility with JavaScript</h2>
-            <p class="text-gray-700">
-              Since TypeScript is a superset of JavaScript, it can run alongside existing JavaScript code. This allows teams to gradually migrate to TypeScript without the need for a complete rewrite of legacy code, making it an ideal choice for both new and existing projects.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">7. Strong Ecosystem and Community Support</h2>
-            <p class="text-gray-700">
-              TypeScript has a growing and active community, with support from major frameworks like Angular and libraries like React and Vue. The ecosystem is mature, offering a wide range of resources, tutorials, and tools to support developers.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">8. Enables Modern JavaScript Features</h2>
-            <p class="text-gray-700">
-              TypeScript supports the latest JavaScript features (e.g., async/await, destructuring, modules) while ensuring backward compatibility with older browsers through transpilation. This means developers can take advantage of modern features without sacrificing browser support.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">9. Supports Large-Scale Refactoring</h2>
-            <p class="text-gray-700">
-              TypeScript's strong typing and IDE integration provide powerful refactoring capabilities, allowing developers to rename variables, functions, or entire modules with confidence, knowing the changes will propagate throughout the codebase safely.
-            </p>
-          </li>
-        </ul>
-      </div>      
-}
-@case (3) {
-    <div class="max-w-4xl mx-auto p-8">
-        <h1 class="text-3xl font-bold text-blue-600 mb-6">Drawbacks of Using TypeScript</h1>
-      
-        <p class="text-lg text-gray-700 mb-4">
-          While TypeScript offers many advantages, it also comes with certain drawbacks that developers should be aware of before adopting it in their projects. Below are some of the key drawbacks of using TypeScript:
-        </p>
-      
-        <ul class="space-y-6">
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">1. Additional Learning Curve</h2>
-            <p class="text-gray-700">
-              For developers who are familiar with JavaScript but new to TypeScript, there is an additional learning curve. Concepts like static typing, interfaces, and generics can take time to grasp, which may slow down the initial development process.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">2. Longer Compilation Time</h2>
-            <p class="text-gray-700">
-              TypeScript code needs to be compiled into JavaScript before it can be executed. This extra compilation step can introduce delays, especially in larger projects, leading to longer build times and slower feedback during development.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">3. Increased Project Complexity</h2>
-            <p class="text-gray-700">
-              The introduction of TypeScript can add complexity to a project, as developers must manage type definitions, configurations, and potential integration issues with third-party libraries. This may increase the overall maintenance overhead.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">4. Limited Support for Some JavaScript Libraries</h2>
-            <p class="text-gray-700">
-              Not all JavaScript libraries have complete TypeScript definitions, which can make integrating certain libraries difficult. Developers may need to write their own type definitions or use third-party tools to ensure compatibility.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">5. Larger Codebase</h2>
-            <p class="text-gray-700">
-              TypeScript's strict type enforcement often results in writing more code, especially with type annotations. While this improves code safety, it can also lead to a larger codebase, which may require additional effort to maintain.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">6. Potential Overhead for Small Projects</h2>
-            <p class="text-gray-700">
-              For small projects or scripts, the benefits of TypeScript might not justify the added complexity and setup requirements. In such cases, the overhead of configuring and maintaining TypeScript might outweigh the advantages.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">7. Migration Challenges</h2>
-            <p class="text-gray-700">
-              Migrating existing JavaScript projects to TypeScript can be time-consuming, especially for large codebases. Developers must refactor code, define types, and address potential issues with dependencies, which can slow down the migration process.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">8. Dependency on Build Tools</h2>
-            <p class="text-gray-700">
-              TypeScript relies on build tools like Webpack, Babel, or TypeScript’s own compiler to convert TypeScript code into JavaScript. This adds a layer of complexity to the development environment, especially for teams that are not familiar with these tools.
-            </p>
-          </li>
-      
-          <li>
-            <h2 class="text-xl font-semibold text-indigo-500 mb-2">9. Debugging Overhead</h2>
-            <p class="text-gray-700">
-              Although TypeScript provides many benefits for catching errors early, debugging compiled TypeScript code can sometimes be more challenging than debugging plain JavaScript. Developers must use source maps or other tools to trace errors back to the original TypeScript source.
-            </p>
-          </li>
-        </ul>
-      </div>
-      
-}
-@case (4){
-    <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
-        <h1 class="text-3xl font-bold text-gray-800">TypeScript Compiler (tsc)</h1>
-        
-        <p class="text-lg text-gray-700">
-          The TypeScript compiler, commonly referred to as <code class="font-mono bg-gray-200 p-1 rounded">tsc</code>, 
-          is a tool that translates TypeScript code into JavaScript. 
-          Since browsers and JavaScript engines can't execute TypeScript directly, 
-          <code class="font-mono bg-gray-200 p-1 rounded">tsc</code> is essential in converting it.
-        </p>
-      
-        <div class="space-y-2">
-          <h2 class="text-xl font-semibold text-gray-700">Key Functions of <code class="font-mono bg-gray-200 p-1 rounded">tsc</code>:</h2>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">1. Transpilation</h3>
-            <p class="text-gray-600">
-              Translates TypeScript code into plain JavaScript, allowing it to run in any environment supporting JavaScript.
-            </p>
-          </div>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">2. Type Checking</h3>
-            <p class="text-gray-600">
-              Before converting to JavaScript, <code class="font-mono bg-gray-200 p-1 rounded">tsc</code> checks for type errors 
-              and ensures code consistency based on provided type annotations.
-            </p>
-          </div>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">3. Configuration</h3>
-            <p class="text-gray-600">
-              You can customize the compiler using the <code class="font-mono bg-gray-200 p-1 rounded">tsconfig.json</code> file 
-              to set options like JavaScript target version and module systems.
-            </p>
-          </div>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">4. Incremental Compilation</h3>
-            <p class="text-gray-600">
-              The compiler can incrementally compile only changed files, improving efficiency in larger projects.
-            </p>
-          </div>
-        </div>
-      </div>
-      
-}
-@case (5){
-    <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
-        <h1 class="text-3xl font-bold text-gray-800">Type Conversions in TypeScript</h1>
-        
-        <p class="text-lg text-gray-700">
-          TypeScript allows for various ways to convert from one type to another. Type conversion, also known as type casting, helps you ensure that data is interpreted as expected during code execution.
-        </p>
-      
-        <div class="space-y-2">
-          <h2 class="text-xl font-semibold text-gray-700">Key Types of Type Conversions:</h2>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">1. Explicit Conversion (Type Casting)</h3>
-            <p class="text-gray-600">
-              In TypeScript, you can explicitly convert one type to another using either the angle-bracket syntax 
-              (<code class="font-mono bg-gray-200 p-1 rounded">&lt;type&gt;</code>) or the 
-              <code class="font-mono bg-gray-200 p-1 rounded">as</code> keyword.
-            </p>
-            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight >let value: any = "123";<br>let num: number = &lt;number&gt;value;</code></pre>
-            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: any = "123";<br>let num: number = value as number;</code></pre>
-          </div>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">2. Implicit Conversion (Type Inference)</h3>
-            <p class="text-gray-600">
-              TypeScript also performs automatic type inference in some cases, where it converts one type to another without explicit casting.
-            </p>
-            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight >let num = 123;<br>let str = num + " is a number"; // 'str' becomes a string</code></pre>
-          </div>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">3. Built-in Conversion Functions</h3>
-            <p class="text-gray-600">
-              JavaScript (and TypeScript) provides built-in functions like <code class="font-mono bg-gray-200 p-1 rounded">Number()</code>, 
-              <code class="font-mono bg-gray-200 p-1 rounded" >String()</code>, and 
-              <code class="font-mono bg-gray-200 p-1 rounded" >Boolean()</code> for converting data types.
-            </p>
-            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: string = "456";<br>let num: number = Number(value);</code></pre>
-          </div>
-      
-          <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">4. Avoiding Runtime Errors</h3>
-            <p class="text-gray-600">
-              Type conversions help avoid unexpected runtime errors. TypeScript ensures that conversions are valid or warns you at compile-time.
-            </p>
-            <p class="text-gray-600">For example, converting a non-numeric string to a number will result in <code class="language-javascript" codeHighlight class="font-mono bg-gray-200 p-1 rounded">NaN</code>.</p>
-            <pre class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm" class="language-javascript" codeHighlight>let invalidNum: number = Number("not a number"); // NaN</code></pre>
-          </div>
-        </div>
-      </div>
-      
-}
+@case (8){
+  
+} 
+
 }
