@@ -1,77 +1,83 @@
-<!-- Toggleable Sidebar on Small Screens -->
 <div class="lg:hidden fixed top-4 left-4 z-50">
-    <button class="text-white bg-indigo-600 px-4 py-2 rounded-md" (click)="isSidebarOpen = !isSidebarOpen">
-      Menu
-    </button>
-  </div>
-<div class="flex h-screen">
-    <!-- Sidebar -->
-    <div class="hidden lg:flex lg:w-2/12 bg-gray-800 text-white p-4 flex-col">
-      <p class="text-1xl font-bold mb-4 p-2 rounded hover:bg-gray-700 active:bg-gray-600">Angular's Core Concepts</p>
-      <p class="text-1xl font-bold mb-4 p-2 rounded hover:bg-gray-700 active:bg-gray-600">Hear and learn Angular</p>
-      <p class="text-1xl font-bold mb-4 p-2 rounded hover:bg-gray-700 active:bg-gray-600">Watch  and learn Angular</p>
+  <button class="text-white bg-indigo-600 px-4 py-2 rounded-md" (click)="isSidebarOpen = !isSidebarOpen">
+    Menu
+  </button>
 </div>
+  @if(isSidebarOpen){}
+<div class="flex h-screen">
+    <div class="hidden lg:flex lg:w-2/12 bg-gray-800 text-white p-4 flex-col">
+      @for(sideIndex of sidebarTopics ; track sideIndex) {
+        <p class="text-1xl font-bold mb-4 p-2 rounded  hover:bg-gray-700 active:bg-gray-600  cursor-pointer" 
+        (click)="displayTopic(sideIndex.titleId)">{{sideIndex.title}}</p>
+      }
+    </div>
     
-    <!-- Overlay for small screen sidebar -->
      @if (isSidebarOpen) {
-         <div class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" (click)="isSidebarOpen = false"></div>
+         <div class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"  (click)="isSidebarOpen = false"></div>
      }
     
-    <!-- Sidebar content on small screens -->
      @if (isSidebarOpen) {
 
          <div class="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-4 z-50 lg:hidden">
-             <h1 class="text-2xl font-bold mb-4">Angular Tutorial</h1>
-             <p class="text-lg">Learn the essentials of Angular.</p>
+          @for(sideIndex of sidebarTopics ; track sideIndex) {
+            <button class="text-1xl font-bold mb-4 p-2 rounded hover:bg-gray-700 active:bg-gray-600 cursor-pointer"
+            [ngClass]="{'bg-gray-700': selectedTopic === sideIndex.titleId}"
+            (keypress)="onKeyPress($event, sideIndex.titleId)"  (click)="displayTopic(sideIndex.titleId)">{{sideIndex.title}}
+            </button>
+          }
              <button class="mt-4 text-white bg-red-600 px-4 py-2 rounded-md" (click)="isSidebarOpen = false">
                  Close
                 </button>
             </div>
         }
   
-    <!-- Main Content -->
     <div class="w-full lg:w-10/12 p-6 bg-white">
-      
-      <div class="p-6">
-        @for (topic of angularTopics; track $index) {
+      @switch (sidebarTitle) {
+        @case ('read') {
+          <div class="p-6">
+            @for (topic of angularTopics; track $index) {
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-gray-800">{{ topic.title }}</h2>
+              <ul class="list-disc ml-6 mt-2">
+                @for (subtopic of topic.subtopics; track $index) {
+                <li class="mt-1">
+                  <a [routerLink]="['/angular-topic', subtopic.id]" class="text-blue-600 hover:underline">
+                    {{ subtopic.name }}
+                  </a>
+                </li>
+                }
+              </ul>
+            </div>
+            }
+          </div>
+        }
+
+        @case ('hear') { 
+          <div class="p-6">
+            @for (topic of audioContents; track $index) {
+            <div class="mb-8">
+              <h2 class="text-2xl font-bold text-gray-800">{{ topic.title }}</h2>
+              <ul class="list-disc ml-6 mt-2">
+                @for (subtopic of topic.subtopics; track $index) {
+                <li class="mt-1">
+                  <a [routerLink]="['/angular-audio', subtopic.id]" class="text-blue-600 hover:underline">
+                    {{ subtopic.name }}
+                  </a>
+                </li>
+                }
+              </ul>
+            </div>
+            }
+          </div>
+        }
+
+        @case ('watch') {
+          <p>Topics are being prepared... Stay tuned</p>
+        }
+      }
+   
 
      
-        <div  class="mb-8">
-          <h2 class="text-2xl font-bold text-gray-800">{{ topic.title }}</h2>
-          <ul class="list-disc ml-6 mt-2">
-            @for (subtopic of topic.subtopics; track $index) {
-
-                <li class="mt-1">
-                    <a [routerLink]="['/angular-topic', subtopic.id]" class="text-blue-600 hover:underline">
-                        {{ subtopic.name }}
-                    </a>
-                </li>
-            }
-          </ul>
-        </div>
-    }
-      </div>
-
-      <div class="p-6">
-        @for (topic of audioContents; track $index) {
-
-     
-        <div  class="mb-8">
-          <h2 class="text-2xl font-bold text-gray-800">{{ topic.title }}</h2>
-          <ul class="list-disc ml-6 mt-2">
-            @for (subtopic of topic.subtopics; track $index) {
-
-                <li class="mt-1">
-                    <a [routerLink]="['/angular-audio', subtopic.id]" class="text-blue-600 hover:underline">
-                        {{ subtopic.name }}
-                    </a>
-                </li>
-            }
-          </ul>
-        </div>
-    }
-      </div>
-      
     </div>
   </div>
   
