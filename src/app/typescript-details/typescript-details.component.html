@@ -4,8 +4,9 @@
     </code>
 </pre> -->
 
-@switch (topicId)
-{ @case (1){
+@switch (topicId) 
+{ 
+@case (1){
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">TypeScript Key Features</h1>
 
@@ -148,7 +149,8 @@
     </li>
   </ul>
 </div>
-} @case (2) {
+
+} @case (2){
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">
     Benefits of Using TypeScript
@@ -270,7 +272,8 @@
     </li>
   </ul>
 </div>
-} @case (3) {
+
+} @case (3){
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">
     Drawbacks of Using TypeScript
@@ -392,7 +395,7 @@
     </li>
   </ul>
 </div>
-} @case (4){
+}@case (4){
 <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
   <h1 class="text-3xl font-bold text-gray-800">TypeScript Compiler (tsc)</h1>
 
@@ -462,12 +465,12 @@
   </p>
 
   <div class="space-y-2">
-    <h2 class="text-xl font-semibold text-gray-700">
+    <h2 class="text-xl font-semibold text-blue-700">
       Key Types of Type Conversions:
     </h2>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800">
+      <h3 class="text-lg font-semibold text-blue-800">
         1. Explicit Conversion (Type Casting)
       </h3>
       <p class="text-gray-600">
@@ -487,7 +490,7 @@
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800">
+      <h3 class="text-lg font-semibold text-blue-800">
         2. Implicit Conversion (Type Inference)
       </h3>
       <p class="text-gray-600">
@@ -500,7 +503,7 @@
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800">
+      <h3 class="text-lg font-semibold text-blue-800">
         3. Built-in Conversion Functions
       </h3>
       <p class="text-gray-600">
@@ -516,7 +519,7 @@
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800">
+      <h3 class="text-lg font-semibold text-blue-800">
         4. Avoiding Runtime Errors
       </h3>
       <p class="text-gray-600">
@@ -538,148 +541,263 @@
     </div>
   </div>
 </div>
-} @case (6) {
-
+}@case (6){
+  <div class="container mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">TypeScript Loops in Angular</h1>
+  
+    <p class="mb-4">
+      In TypeScript, both <span class="font-semibold">for</span> loops and
+      <span class="font-semibold">while</span> loops work similarly to how they do in JavaScript, but with optional static
+      typing features that TypeScript provides. Below is an explanation of both types of loops:
+    </p>
+  
+    <!-- For Loop Section -->
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold text-blue-700">1. For Loop</h2>
+      <p class="mb-4">
+        A for loop is typically used when you know the number of iterations beforehand. The structure consists of three
+        parts: initialization, condition, and increment/decrement.
+      </p>
+      <h3 class="text-lg font-semibold">Syntax:</h3>
+      <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight >for (initialization; condition; increment/decrement) {{'{'}} <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;// code block to execute <br>
+          {{'}'}}</code>
+      </pre>
+  
+      <h3 class="text-lg font-semibold">Example:</h3>
+      <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight>for (let i: number = 0; i < 5; i++)  {{'{'}}<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(i);  // Output: 0 1 2 3 4 <br>
+          {{'}'}}</code>
+      </pre>
+      <p class="my-2">
+        <span class="font-semibold">let i: number = 0;</span> → initializes the loop counter <span class="italic">i</span>
+        as a number and starts at 0.
+      </p>
+      <p class="my-2">
+        <span class="font-semibold">i < 5;</span> → loop continues as long as <span class="italic">i</span> is less than 5.
+      </p>
+      <p class="my-2">
+        <span class="font-semibold">i++</span> → increments <span class="italic">i</span> by 1 after every iteration.
+      </p>
+    </div>
+  
+    <!-- While Loop Section -->
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold text-blue-700">2. While Loop</h2>
+      <p class="mb-4">
+        A while loop runs as long as a specified condition is <span class="font-semibold">true</span>. It’s commonly used
+        when the number of iterations is not known beforehand.
+      </p>
+      <h3 class="text-lg font-semibold">Syntax:</h3>
+      <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight>while (condition) {{'{'}} <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;// code block to execute <br>
+          {{'}'}}</code>
+      </pre>
+  
+      <h3 class="text-lg font-semibold">Example:</h3>
+      <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight>let i: number = 0;<br><br>
+        while (i < 5)  {{'{'}}<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(i);  // Output: 0 1 2 3 4 <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+          {{'}'}}</code>
+      </pre>
+      <p class="my-2">
+        The condition <span class="font-semibold">i < 5</span> is checked before each iteration.
+      </p>
+      <p class="my-2">The loop runs as long as <span class="font-semibold">i</span> is less than 5.</p>
+    </div>
+  
+    <!-- Do-While Loop Section -->
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold text-blue-700">3. Do-While Loop</h2>
+      <p class="mb-4">
+        A do-while loop is similar to the while loop but guarantees that the loop will run at least once since the
+        condition is checked after the execution of the code block.
+      </p>
+      <h3 class="text-lg font-semibold">Syntax:</h3>
+      <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight>do {{'{'}}<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;// code block to execute <br>
+          {{'}'}} while (condition);</code>
+      </pre>
+  
+      <h3 class="text-lg font-semibold">Example:</h3>
+      <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight>let i: number = 0;<br><br>
+        do {{'{'}}<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;console.log(i);  // Output: 0 1 2 3 4 <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;i++;<br>
+          {{'}'}} while (i < 5);</code>
+      </pre>
+      <p class="my-2">
+        In this example, the loop runs the first iteration before checking if <span class="font-semibold">i < 5</span>.
+      </p>
+    </div>
+  
+    <!-- Key Points -->
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold text-blue-700">Key Points:</h2>
+      <ul class="list-disc ml-6">
+        <li class="my-2">
+          <span class="font-semibold">For Loops:</span> Best when you know how many times to iterate.
+        </li>
+        <li class="my-2">
+          <span class="font-semibold">While Loops:</span> Best when the number of iterations is unknown and depends on a
+          condition.
+        </li>
+        <li class="my-2">
+          <span class="font-semibold">Do-While Loops:</span> Ensures that the loop runs at least once before checking the
+          condition.
+        </li>
+      </ul>
+    </div>
+</div>
 }@case (7){
-  <article class="prose lg:prose-xl p-6 bg-gray-100 rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold mb-6">Basic Operators and Maths in TypeScript</h1>
-    
-    <!-- Introduction -->
-    <p class="mb-4">
-      In TypeScript (and JavaScript), operators are symbols used to perform specific operations on variables or values. These operations can include mathematical calculations, comparisons, and logical operations. Here’s a breakdown of the most common types of operators with a focus on <strong>mathematical operators</strong>.
-    </p>
-  
-    <!-- Arithmetic Operators -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">1. Arithmetic Operators</h2>
-    <p class="mb-4">
-      Arithmetic operators are used to perform mathematical operations on numbers.
-    </p>
-  
-    <table class="table-auto bg-white shadow rounded-lg mb-6">
-      <thead>
-        <tr>
-          <th class="px-4 py-2">Operator</th>
-          <th class="px-4 py-2">Description</th>
-          <th class="px-4 py-2">Example</th>
-          <th class="px-4 py-2">Result</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-t">
-          <td class="px-4 py-2">+</td>
-          <td class="px-4 py-2">Addition</td>
-          <td class="px-4 py-2">5 + 2</td>
-          <td class="px-4 py-2">7</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">-</td>
-          <td class="px-4 py-2">Subtraction</td>
-          <td class="px-4 py-2">5 - 2</td>
-          <td class="px-4 py-2">3</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">*</td>
-          <td class="px-4 py-2">Multiplication</td>
-          <td class="px-4 py-2">5 * 2</td>
-          <td class="px-4 py-2">10</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">/</td>
-          <td class="px-4 py-2">Division</td>
-          <td class="px-4 py-2">10 / 2</td>
-          <td class="px-4 py-2">5</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">%</td>
-          <td class="px-4 py-2">Modulus</td>
-          <td class="px-4 py-2">5 % 2</td>
-          <td class="px-4 py-2">1</td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <!-- Assignment Operators -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">2. Assignment Operators</h2>
-    <p class="mb-4">
-      Assignment operators assign values to variables.
-    </p>
-    
-    <table class="table-auto bg-white shadow rounded-lg mb-6">
-      <thead>
-        <tr>
-          <th class="px-4 py-2">Operator</th>
-          <th class="px-4 py-2">Description</th>
-          <th class="px-4 py-2">Example</th>
-          <th class="px-4 py-2">Equivalent</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-t">
-          <td class="px-4 py-2">=</td>
-          <td class="px-4 py-2">Assign value</td>
-          <td class="px-4 py-2">x = 5</td>
-          <td class="px-4 py-2">-</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">+=</td>
-          <td class="px-4 py-2">Add and assign</td>
-          <td class="px-4 py-2">x += 3</td>
-          <td class="px-4 py-2">x = x + 3</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">-=</td>
-          <td class="px-4 py-2">Subtract and assign</td>
-          <td class="px-4 py-2">x -= 3</td>
-          <td class="px-4 py-2">x = x - 3</td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <!-- Comparison Operators -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">3. Comparison Operators</h2>
-    <p class="mb-4">
-      Comparison operators are used to compare two values and return a Boolean value (<code>true</code> or <code>false</code>).
-    </p>
-  
-    <table class="table-auto bg-white shadow rounded-lg mb-6">
-      <thead>
-        <tr>
-          <th class="px-4 py-2">Operator</th>
-          <th class="px-4 py-2">Description</th>
-          <th class="px-4 py-2">Example</th>
-          <th class="px-4 py-2">Result</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-t">
-          <td class="px-4 py-2">==</td>
-          <td class="px-4 py-2">Equal to</td>
-          <td class="px-4 py-2">5 == 5</td>
-          <td class="px-4 py-2">true</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">===</td>
-          <td class="px-4 py-2">Strict equal</td>
-          <td class="px-4 py-2">5 === "5"</td>
-          <td class="px-4 py-2">false</td>
-        </tr>
-        <tr class="border-t">
-          <td class="px-4 py-2">!=</td>
-          <td class="px-4 py-2">Not equal</td>
-          <td class="px-4 py-2">5 != 3</td>
-          <td class="px-4 py-2">true</td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <!-- Logical Operators -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">4. Logical Operators</h2>
-    <p class="mb-4">
-      Logical operators are used to combine multiple conditions.
-    </p>
-  
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
+<article class="prose lg:prose-xl p-6 bg-gray-100 rounded-lg shadow-lg">
+  <h1 class="text-3xl font-bold mb-6">
+    Basic Operators and Maths in TypeScript
+  </h1>
+  <!-- Introduction -->
+  <p class="mb-4">
+    In TypeScript (and JavaScript), operators are symbols used to perform
+    specific operations on variables or values. These operations can include
+    mathematical calculations, comparisons, and logical operations. Here’s a
+    breakdown of the most common types of operators with a focus on
+    <strong>mathematical operators</strong>.
+  </p>
+
+  <!-- Arithmetic Operators -->
+  <h2 class="text-xl font-semibold text-blue-700">1. Arithmetic Operators</h2>
+  <p class="mb-4">
+    Arithmetic operators are used to perform mathematical operations on numbers.
+  </p>
+
+  <table class="table-auto bg-white shadow rounded-lg mb-6">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Operator</th>
+        <th class="px-4 py-2">Description</th>
+        <th class="px-4 py-2">Example</th>
+        <th class="px-4 py-2">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-t">
+        <td class="px-4 py-2">+</td>
+        <td class="px-4 py-2">Addition</td>
+        <td class="px-4 py-2">5 + 2</td>
+        <td class="px-4 py-2">7</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">-</td>
+        <td class="px-4 py-2">Subtraction</td>
+        <td class="px-4 py-2">5 - 2</td>
+        <td class="px-4 py-2">3</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">*</td>
+        <td class="px-4 py-2">Multiplication</td>
+        <td class="px-4 py-2">5 * 2</td>
+        <td class="px-4 py-2">10</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">/</td>
+        <td class="px-4 py-2">Division</td>
+        <td class="px-4 py-2">10 / 2</td>
+        <td class="px-4 py-2">5</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">%</td>
+        <td class="px-4 py-2">Modulus</td>
+        <td class="px-4 py-2">5 % 2</td>
+        <td class="px-4 py-2">1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Assignment Operators -->
+  <h2 class="text-xl font-semibold text-blue-700">2. Assignment Operators</h2>
+  <p class="mb-4">Assignment operators assign values to variables.</p>
+
+  <table class="table-auto bg-white shadow rounded-lg mb-6">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Operator</th>
+        <th class="px-4 py-2">Description</th>
+        <th class="px-4 py-2">Example</th>
+        <th class="px-4 py-2">Equivalent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-t">
+        <td class="px-4 py-2">=</td>
+        <td class="px-4 py-2">Assign value</td>
+        <td class="px-4 py-2">x = 5</td>
+        <td class="px-4 py-2">-</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">+=</td>
+        <td class="px-4 py-2">Add and assign</td>
+        <td class="px-4 py-2">x += 3</td>
+        <td class="px-4 py-2">x = x + 3</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">-=</td>
+        <td class="px-4 py-2">Subtract and assign</td>
+        <td class="px-4 py-2">x -= 3</td>
+        <td class="px-4 py-2">x = x - 3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Comparison Operators -->
+  <h2 class="text-xl font-semibold text-blue-700">3. Comparison Operators</h2>
+  <p class="mb-4">
+    Comparison operators are used to compare two values and return a Boolean
+    value (<code>true</code> or <code>false</code>).
+  </p>
+
+  <table class="table-auto bg-white shadow rounded-lg mb-6">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">Operator</th>
+        <th class="px-4 py-2">Description</th>
+        <th class="px-4 py-2">Example</th>
+        <th class="px-4 py-2">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-t">
+        <td class="px-4 py-2">==</td>
+        <td class="px-4 py-2">Equal to</td>
+        <td class="px-4 py-2">5 == 5</td>
+        <td class="px-4 py-2">true</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">===</td>
+        <td class="px-4 py-2">Strict equal</td>
+        <td class="px-4 py-2">5 === "5"</td>
+        <td class="px-4 py-2">false</td>
+      </tr>
+      <tr class="border-t">
+        <td class="px-4 py-2">!=</td>
+        <td class="px-4 py-2">Not equal</td>
+        <td class="px-4 py-2">5 != 3</td>
+        <td class="px-4 py-2">true</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Logical Operators -->
+  <h2 class="text-xl font-semibold text-blue-700">4. Logical Operators</h2>
+  <p class="mb-4">Logical operators are used to combine multiple conditions.</p>
+
+  <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight>
         let a = true;
         let b = false;
         console.log(a && b);  // false
@@ -687,148 +805,453 @@
         console.log(!a);      // false
       </code>
     </pre>
-  
-    <!-- Mathematical Functions -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">5. Mathematical Functions</h2>
-    <p class="mb-4">
-      TypeScript also supports several built-in mathematical functions through the <code>Math</code> object.
-    </p>
-  
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
+
+  <!-- Mathematical Functions -->
+  <h2 class="text-xl font-semibold text-blue-700">5. Mathematical Functions</h2>
+  <p class="mb-4">
+    TypeScript also supports several built-in mathematical functions through the
+    <code>Math</code> object.
+  </p>
+
+  <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight>
         let num = Math.sqrt(16);  // 4
         console.log(Math.round(4.7));  // 5
         console.log(Math.random());    // Random number between 0 and 1
       </code>
     </pre>
+
+  <p class="mb-4">
+    These are just a few of the key operators and functions available in
+    TypeScript for performing mathematical and logical operations.
+  </p>
+</article>
+}@case(8){
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-xl font-semibold text-indigo-500 mb-2">
+    The Switch Statement in TypeScript
+  </h1>
+
+  <p class="text-lg mb-4">
+    The <span class="font-semibold">switch</span> statement in TypeScript is a
+    control flow structure used to perform different actions based on different
+    conditions. It's often used as an alternative to a series of
+    <span class="font-semibold">if-else</span> statements when there are
+    multiple possible outcomes for a single expression.
+  </p>
+
+  <h2 class="text-xl font-semibold text-indigo-500 mb-2">Basic Structure</h2>
+
+  <pre class="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >
+  switch (expression) 
+    case value1:
+      // Code to execute if expression matches value1
+      break;
+    case value2:
+      // Code to execute if expression matches value2
+      break;
+    default:
+      // Code to execute if no cases match
   
-    <p class="mb-4">
-      These are just a few of the key operators and functions available in TypeScript for performing mathematical and logical operations.
-    </p>
-  </article>
-  
-}@case (8){
-  <article class="prose lg:prose-xl p-6 bg-gray-100 rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold mb-6">The Switch Statement in TypeScript</h1>
-  
-    <!-- Introduction -->
-    <p class="mb-4">
-      In TypeScript, the <code>switch</code> statement is used to perform different actions based on different conditions. It's an alternative to using multiple <code>if...else</code> statements when you need to compare the same variable or expression to multiple potential values.
-    </p>
-  
-    <!-- Syntax Section -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">Syntax of the Switch Statement</h2>
-    <p class="mb-4">
-      The <code>switch</code> statement evaluates an expression and executes the corresponding code block based on the result of the expression. The syntax looks like this:
-    </p>
-  
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
-        switch (expression) {
-          case value1:
-            // Code block for value1
-            break;
-          case value2:
-            // Code block for value2
-            break;
-          default:
-            // Code block if none of the cases match
-        }
       </code>
     </pre>
-  
-    <!-- Explanation -->
-    <p class="mb-4">
-      - <strong>expression</strong>: This is the value that you are comparing against different cases.
-      - <strong>case value</strong>: The different values the expression is compared to. If a match is found, the corresponding code block runs.
-      - <strong>break</strong>: Used to stop the execution of the code block and prevent the execution from "falling through" to other cases.
-      - <strong>default</strong>: This block runs if none of the case values match the expression.
-    </p>
-  
-    <!-- Example Section -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">Example of a Switch Statement</h2>
-    <p class="mb-4">
-      Let's see an example where we use the <code>switch</code> statement to determine what day of the week it is:
-    </p>
-  
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
-        let day: number = 3;
-        let dayName: string;
-  
-        switch (day) {
-          case 0:
-            dayName = "Sunday";
-            break;
-          case 1:
-            dayName = "Monday";
-            break;
-          case 2:
-            dayName = "Tuesday";
-            break;
-          case 3:
-            dayName = "Wednesday";
-            break;
-          case 4:
-            dayName = "Thursday";
-            break;
-          case 5:
-            dayName = "Friday";
-            break;
-          case 6:
-            dayName = "Saturday";
-            break;
-          default:
-            dayName = "Invalid day";
-        }
-  
-        console.log(dayName);  // Output: "Wednesday"
+
+  <h2 class="text-xl font-semibold text-indigo-500 mb-2">Explanation of the Components:</h2>
+
+  <div class="mb-6">
+    <h3 class="text-xl font-semibold">expression:</h3>
+    <ul class="list-disc pl-8 text-lg">
+      <li>
+        The expression inside the <span class="font-semibold">switch</span> is
+        evaluated once.
+      </li>
+      <li>
+        The result of the expression is then compared to the values of each case
+        (value1, value2, etc.).
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-6">
+    <h3 class="text-xl font-semibold">case value1, value2:</h3>
+    <ul class="list-disc pl-8 text-lg">
+      <li>Each case represents a possible value of the expression.</li>
+      <li>
+        If a case matches the value of the expression, the corresponding block
+        of code will be executed.
+      </li>
+      <li>
+        <span class="font-semibold">break:</span> The
+        <span class="font-semibold">break</span> statement ensures that after a
+        matching case's code is executed, the
+        <span class="font-semibold">switch</span> statement ends. Without a
+        <span class="font-semibold">break</span>, the code would continue to
+        execute the following cases (a behavior called "fall-through").
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-6">
+    <h3 class="text-xl font-semibold">default:</h3>
+    <ul class="list-disc pl-8 text-lg">
+      <li>The <span class="font-semibold">default</span> case is optional.</li>
+      <li>
+        If no case matches the value of the expression, the
+        <span class="font-semibold">default</span> block will be executed.
+      </li>
+    </ul>
+  </div>
+
+  <h2 class="text-xl font-semibold text-indigo-500 mb-2">Example of a switch Statement</h2>
+
+  <pre class="bg-gray-800 text-white p-4 rounded-lg overflow-auto mb-4">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight>
+  let day = 2;
+
+  switch (day) 
+    case 1:
+      console.log('Monday');
+      break;
+    case 2:
+      console.log('Tuesday');
+      break;
+    case 3:
+      console.log('Wednesday');
+      break;
+    default:
+      console.log('Other day');
+        
       </code>
     </pre>
+
+  <h3 class="text-xl font-semibold text-indigo-500 mb-4">Explanation:</h3>
+  <ul class="list-disc pl-8 text-lg">
+    <li>
+      The variable <span class="font-semibold">day</span> has a value of 2.
+    </li>
+    <li>
+      The <span class="font-semibold">switch</span> statement checks the value
+      of <span class="font-semibold">day</span>:
+    </li>
+    <li>If it’s 1, it prints "Monday".</li>
+    <li>
+      If it’s 2, it prints "Tuesday" (this is the matching case, so the code
+      executes this block and breaks out of the switch).
+    </li>
+    <li>
+      If no case matches, the <span class="font-semibold">default</span> block
+      would execute.
+    </li>
+  </ul>
+
+  <h2 class="text-xl font-semibold text-indigo-500 mb-2">
+    Use Cases for the switch Statement:
+  </h2>
+  <ul class="list-disc pl-8 text-lg">
+    <li>
+      The <span class="font-semibold">switch</span> statement is useful when you
+      have multiple potential outcomes for a single expression.
+    </li>
+    <li>
+      It simplifies code readability over long chains of
+      <span class="font-semibold">if-else</span> conditions, especially when
+      comparing the same variable multiple times.
+    </li>
+  </ul>
+
+  <h2 class="text-xl font-semibold text-indigo-500 mb-2">Key Points:</h2>
+  <ul class="list-disc pl-8 text-lg">
+    <li>
+      <span class="font-semibold">Fall-through:</span> Without a
+      <span class="font-semibold">break</span>, TypeScript (and JavaScript) will
+      continue to execute subsequent case blocks until it finds a break.
+    </li>
+    <li>
+      <span class="font-semibold">Type Safety:</span> Since TypeScript is
+      strongly typed, mismatched data types (like comparing a string case with a
+      number expression) will cause compile-time errors.
+    </li>
+  </ul>
+</div>
+}@case(9){
+  <div>
+
   
-    <!-- Explanation of the Example -->
+  <p class="mb-4">
+    The ternary operator in TypeScript (as in JavaScript) is a concise way to perform conditional logic. It’s sometimes
+    called the "conditional operator" and takes three operands, hence the name "ternary." It’s often used as a
+    shorthand for simple <span class="font-semibold">if-else</span> conditions.
+  </p>
+
+  <!-- Syntax Section -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Syntax:</h2>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >condition ? expressionIfTrue : expressionIfFalse;</code>
+    </pre>
+    <p class="mt-2">
+      <span class="font-semibold">condition</span>: A boolean expression that is evaluated.
+    </p>
+    <p class="mt-2">
+      <span class="font-semibold">expressionIfTrue</span>: The expression that will be executed if the condition is true.
+    </p>
+    <p class="mt-2">
+      <span class="font-semibold">expressionIfFalse</span>: The expression that will be executed if the condition is false.
+    </p>
+  </div>
+   <!-- Example 1: Basic Usage -->
+   <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 1: Basic Usage</h2>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >let age: number = 18;<br>
+      let message: string = age >= 18 ? "You are an adult." : "You are a minor.";<br>
+      console.log(message);  // Output: "You are an adult."</code>
+    </pre>
+    <p class="mt-2">
+      If <span class="font-semibold">age >= 18</span> is true, <span class="font-semibold">message</span> will be set to
+      <span class="font-semibold">"You are an adult."</span>
+    </p>
+    <p class="mt-2">
+      If <span class="font-semibold">age >= 18</span> is false, <span class="font-semibold">message</span> will be set to
+      <span class="font-semibold">"You are a minor."</span>
+    </p>
+  </div>
+
+  <!-- Example 2: Assigning Values Conditionally -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 2: Assigning Values Conditionally</h2>
     <p class="mb-4">
-      In this example, the value of the variable <code>day</code> is <code>3</code>, so the corresponding case for <code>3</code> is matched, and the value <code>"Wednesday"</code> is assigned to <code>dayName</code>.
-      If the value of <code>day</code> was something other than <code>0</code> to <code>6</code>, the <code>default</code> block would execute, and <code>dayName</code> would be set to <code>"Invalid day"</code>.
+      The ternary operator is often used to assign values based on conditions, especially for simple logic.
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >let isAuthenticated: boolean = true;<br>
+      let greeting: string = isAuthenticated ? "Welcome back!" : "Please log in.";<br>
+      console.log(greeting);  // Output: "Welcome back!"</code>
+    </pre>
+  </div>
+  <!
+  <!-- Example 3: Ternary Operator in JSX -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 3: Using Ternary Operator in JSX (React with TypeScript)</h2>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >const loggedIn: boolean = true;<br><br>
+      return (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{'{'}}loggedIn ? &lt;p&gt;Welcome User!&lt;/p&gt; : &lt;p&gt;Please sign in&lt;/p&gt; {{'}'}};<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+      );</code>
+    </pre>
+    <p class="mt-2">
+      You can use the ternary operator in JSX to render different UI elements conditionally.
+    </p>
+  </div>
+
+  <!-- Example 4: Nesting Ternary Operators -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 4: Nesting Ternary Operators</h2>
+    <p class="mb-4">
+      Although nesting ternary operators is possible, it can reduce code readability, so it’s recommended to avoid deep
+      nesting.
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >let score: number = 75;<br>
+      let grade: string = score >= 90 ? "A" : score >= 75 ? "B" : "C";<br>
+      console.log(grade);  // Output: "B"</code>
+    </pre>
+    <p class="mt-2">
+      In this example:
+    </p>
+    <ul class="list-disc ml-6">
+      <li class="my-2">
+        If <span class="font-semibold">score >= 90</span>, <span class="font-semibold">grade</span> is "A".
+      </li>
+      <li class="my-2">
+        Otherwise, if <span class="font-semibold">score >= 75</span>, <span class="font-semibold">grade</span> is "B".
+      </li>
+      <li class="my-2">Otherwise, <span class="font-semibold">grade</span> is "C".</li>
+    </ul>
+  </div>
+
+  <!-- Key Points Section -->
+<!-- Key Points Section -->
+<div class="mb-6">
+  <h2 class="text-xl font-semibold text-blue-700">Key Points:</h2>
+  <ul class="list-disc ml-6">
+    <li class="my-2">
+      The ternary operator is best used for simple conditional expressions.
+    </li>
+    <li class="my-2">
+      For complex logic, using <span class="font-semibold">if-else</span> statements might improve readability.
+    </li>
+    <li class="my-2">
+      It is a powerful tool for writing concise code, especially in inline scenarios like JSX, or when assigning
+      values based on conditions.
+    </li>
+  </ul>
+</div>
+
+</div>  
+}@case(10){
+  <div class="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-md space-y-4">
+    <h1 class="text-2xl font-bold text-blue-800">Type Assertions in TypeScript</h1>
+    <p class="text-gray-700">
+      Type assertions in TypeScript are a way to tell the TypeScript compiler to treat a variable as a different type than what it is initially inferred as or declared. Type assertions can be used when you're certain about the type of a value but TypeScript is unable to infer it.
     </p>
   
-    <!-- Fall-Through Case -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">The Fall-Through Case</h2>
-    <p class="mb-4">
-      If you omit the <code>break</code> statement, the execution continues with the next case even if a match is found. This is called a "fall-through." Here's an example:
-    </p>
+    <h2 class="text-xl font-semibold text-blue-800">Two Syntaxes for Type Assertions:</h2>
   
-    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
-      <code>
-        let fruit: string = "banana";
+    <div class="space-y-2">
+      <h3 class="font-semibold text-lg text-blue-700">1. Using the <span class="text-red-500">as</span> keyword (recommended):</h3>
+      <pre class="bg-gray-100 p-4 rounded-md">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight >let someValue: unknown = "Hello, World!";<br />let strLength: number = (someValue as string).length;</code>
+      </pre>
   
-        switch (fruit) {
-          case "apple":
-          case "banana":
-            console.log("It's a fruit!");
-            break;
-          case "carrot":
-            console.log("It's a vegetable!");
-            break;
-          default:
-            console.log("Unknown food.");
-        }
+      <h3 class="font-semibold text-lg text-blue-700">2. Using angle-bracket syntax:</h3>
+      <pre class="bg-gray-100 p-4 rounded-md">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight >let someValue: unknown = "Hello, World!";<br />let strLength: number = (&lt;string&gt;someValue).length;</code>
+      </pre>
   
-        // Output: "It's a fruit!"
-      </code>
+      <p class="text-gray-600">
+        <span class="font-bold">Note:</span> The angle-bracket syntax cannot be used in <span class="text-purple-600">.tsx</span> files (React files) because it conflicts with JSX syntax, so the <span class="text-red-500">as</span> syntax is preferred, especially when working with React.
+      </p>
+    </div>
+  
+    <h2 class="text-xl font-semibold text-blue-800">Key Points:</h2>
+    <ul class="list-disc pl-6 text-gray-700">
+      <li>Type assertions do not perform any runtime type checks, they only affect the compile-time type checking.</li>
+      <li>Type assertions should only be used when you are confident about the type of the value.</li>
+      <li>Type assertions can help when dealing with legacy code, third-party libraries, or when TypeScript cannot infer a specific type.</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold text-blue-800">Example Usage:</h2>
+    <pre class="bg-gray-100 p-4 rounded-md" >
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >// Example with DOM element<br />const inputElement = document.getElementById("myInput") as HTMLInputElement;<br />inputElement.value = "Typed value";</code>
     </pre>
   
-    <!-- Explanation of Fall-Through -->
-    <p class="mb-4">
-      In the example above, both <code>"apple"</code> and <code>"banana"</code> cases are grouped together. If either <code>"apple"</code> or <code>"banana"</code> matches, the code block executes. This is a common pattern for cases that share the same code block.
+    <p class="text-gray-700">
+      Without type assertion, the type of <code>inputElement</code> would just be <code>HTMLElement | null</code>. With type assertion, we're telling TypeScript that we're sure it's an HTMLInputElement.
     </p>
-  
-    <!-- Conclusion -->
-    <h2 class="text-2xl font-semibold mt-6 mb-4">Conclusion</h2>
+  </div> 
+}@case(11){
+  <div class="container mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">Type Aliases in TypeScript</h1>
+    
     <p class="mb-4">
-      The <code>switch</code> statement in TypeScript is useful when you have a variable or expression that can take multiple values and you want to execute different code for each value. It provides a more readable and organized alternative to using multiple <code>if...else</code> statements.
+      In TypeScript, <span class="font-semibold">Type Aliases</span> provide a way to define a custom name (alias) for a specific type. 
+      They can simplify complex type definitions and make your code more readable and manageable. A type alias can be used for 
+      primitive types, object types, union types, function signatures, or any other type.
     </p>
-  </article>
-  
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold text-blue-700">Syntax:</h2>
+      <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+        <code class="font-mono text-sm" class="language-javascript" codeHighlight  >type AliasName = ExistingType;</code>
+      </pre>
+    </div>
+     <!-- Example 1: Basic Usage with Primitives -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 1: Basic Usage with Primitives</h2>
+    <p class="mb-2">
+      You can create a type alias for primitive types like <span class="font-semibold">string</span>, <span class="font-semibold">number</span>, etc.
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >type ID = number;<br>type Name = string;<br><br>
+      let userID: ID = 123;<br>let userName: Name = "Alice";</code>
+    </pre>
+    <p class="mt-2">
+      Here, <span class="font-semibold">ID</span> is an alias for <span class="font-semibold">number</span>, and <span class="font-semibold">Name</span> is an alias for <span class="font-semibold">string</span>.
+    </p>
+  </div>
+
+  <!-- Example 2: Type Aliases with Objects -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 2: Type Aliases with Objects</h2>
+    <p class="mb-2">
+      You can also create type aliases for objects and use them to define the shape of the object.
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >type User =  {{'{'}}<br>&nbsp;&nbsp;id: number;<br>&nbsp;&nbsp;name: string;<br>&nbsp;&nbsp;age: number;<br> {{'}'}};<br><br>
+      let user: User = {{'{'}}<br>&nbsp;&nbsp;id: 1,<br>&nbsp;&nbsp;name: "Alice",<br>&nbsp;&nbsp;age: 25<br> {{'}'}};</code>
+    </pre>
+    <p class="mt-2">
+      Here, the <span class="font-semibold">User</span> type alias defines the structure of a user object.
+    </p>
+  </div>
+
+  <!-- Example 3: Type Aliases with Union Types -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 3: Type Aliases with Union Types</h2>
+    <p class="mb-2">
+      Type aliases are often useful when dealing with <span class="font-semibold">union types</span> (a type that can be one of several types).
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >type Status = "success" | "error" | "loading";<br><br>
+      let requestStatus: Status = "success";<br>requestStatus = "loading";<br>// requestStatus = "failed"; // Error</code>
+    </pre>
+    <p class="mt-2">
+      Here, <span class="font-semibold">Status</span> is an alias for a union of string literals, allowing only three possible values.
+    </p>
+  </div>
+
+  <!-- Example 4: Type Aliases with Functions -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 4: Type Aliases with Functions</h2>
+    <p class="mb-2">
+      You can use type aliases to describe function signatures.
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >type AddFunction = (a: number, b: number) => number;<br><br>
+      let add: AddFunction = (x, y) => x + y;<br>console.log(add(5, 3));  // Output: 8</code>
+    </pre>
+    <p class="mt-2">
+      In this example, <span class="font-semibold">AddFunction</span> is a type alias for a function that takes two <span class="font-semibold">number</span> arguments and returns a <span class="font-semibold">number</span>.
+    </p>
+  </div>
+
+  <!-- Example 5: Type Aliases with Tuples -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 5: Type Aliases with Tuples</h2>
+    <p class="mb-2">
+      Type aliases can also be used for tuples, which are fixed-length arrays with specific types at each index.
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >type Point = [number, number];<br><br>
+      let point: Point = [10, 20];</code>
+    </pre>
+    <p class="mt-2">
+      Here, <span class="font-semibold">Point</span> is an alias for a tuple containing two <span class="font-semibold">number</span> values.
+    </p>
+  </div>
+
+  <!-- Example 6: Type Aliases with Optional and Read-Only Properties -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold text-blue-700">Example 6: Type Aliases with Optional and Read-Only Properties</h2>
+    <p class="mb-2">
+      You can create type aliases that include optional and read-only properties.
+    </p>
+    <pre class="bg-gray-100 rounded-lg p-4 my-2 text-sm">
+      <code class="font-mono text-sm" class="language-javascript" codeHighlight >type Person =  {{'{'}}<br>&nbsp;&nbsp;name: string;<br>&nbsp;&nbsp;age?: number; // Optional<br>&nbsp;&nbsp;readonly id: number; // Read-only<br> {{'}'}};<br><br>
+      let person: Person =  {{'{'}} name: "Alice", id: 1 {{'}'}};<br>person.age = 30;<br>// person.id = 2; // Error</code>
+    </pre>
+    <p class="mt-2">
+      In this example, <span class="font-semibold">Person</span> has both optional and read-only properties.
+    </p>
+  </div>
+
+ <!-- Key Points Section -->
+ <div class="mb-6">
+  <h2 class="text-xl font-semibold text-blue-700">Key Points:</h2>
+  <ul class="list-disc ml-6">
+    <li class="my-2">Type Aliases can represent complex types in a simpler and more readable form.</li>
+    <li class="my-2">They are flexible and can be used for primitives, objects, union types, functions, tuples, and more.</li>
+    <li class="my-2">
+      Type aliases are not unique types, but just a way to create a name for a type. The alias does not create a new type, it just gives an existing type a new name.
+    </li>
+    <li class="my-2">
+      Type aliases in TypeScript make your code easier to maintain and understand, especially in scenarios where the same structure or pattern is used multiple times.
+    </li>
+  </ul>
+</div>
+    </div>
 }
 }
