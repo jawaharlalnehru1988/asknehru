@@ -1,9 +1,41 @@
-<!-- app.component.html -->
-<youtube-player
-  videoId="x1hrAZhrsxY"
-  height="390"
-  width="640"
-  suggestedQuality="hd720">
-</youtube-player>
+
+ <div class="flex flex-col md:flex-row">
+  
+  <div class="w-full md:w-3/4 p-4">
+    @if(selectedVideo){
+      <youtube-player
+      [videoId]="selectedVideo.videoId"
+      [height]="isMobile ? 250 : 390"
+      [width]="isMobile ? 350 : 640"
+      suggestedQuality="hd1080">
+    </youtube-player>
+    <div >
+      <p class="mt-4 text-xl font-bold">{{selectedVideo.title}}</p>
+      <p class="mt-2">{{selectedVideo.description}}</p>
+    </div>
+  }
+  </div>
+  <div class="w-full md:w-1/4 h-auto md:h-screen overflow-y-auto border-t md:border-t-0 md:border-l border-gray-200">
+    @for(topicObj of videoObject; track topicObj) {
+      <div  (click)="selectVideo(topicObj)" 
+      [class.selected]="selectedVideo === topicObj"
+      class="cursor-pointer p-2 hover:bg-gray-100">
+      @if(isMobile){
+        <youtube-player
+        [videoId]="selectedVideo.videoId"
+        [height]="isMobile ? 250 : 390"
+        [width]="isMobile ? 350 : 640"
+        suggestedQuality="hd1080">
+      </youtube-player>
+    } @else {
+      <img [src]="'https://img.youtube.com/vi/' + topicObj.videoId + '/maxresdefault.jpg'" alt="">
+    }
+      <p class="font-semibold">{{topicObj.title}}</p>
+    </div>
+  }
+  </div>
+</div>
+
+
 
 
