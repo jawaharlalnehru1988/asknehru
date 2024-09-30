@@ -11,19 +11,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./rxjs.component.scss'], // Corrected property name
 })
 export class RxjsComponent {
-  @ViewChild('clickButton',) button!: ElementRef;
-  @ViewChild('inputText') inputText!: ElementRef;
+ 
 
 
   ngAfterViewInit() {
 
-   const inputText$ = fromEvent<KeyboardEvent>
-   (this.inputText.nativeElement, 'input');
-
-   inputText$.pipe(
-    map((event: KeyboardEvent) => 
-      (event.target as HTMLInputElement)?.value)
-   ).subscribe((value:string) => console.log( value))
   }
 
   ngOnDestroy() {}
