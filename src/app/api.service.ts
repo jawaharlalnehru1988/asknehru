@@ -24,7 +24,7 @@ private signUpSubject = new Subject<boolean>();
    });
  }
 
- getUserData(): Observable<any>{
+ getUserData(id:number): Observable<any>{
 return this.http.get<any[]>(this.getUrl);
  }
   postUser(input:any){
@@ -86,5 +86,21 @@ setSignUpData(data: boolean){
         console.log(`API loaded in ${loadingTime} milliseconds`);
       })
     );
+  }
+
+  getDataFromAddress(id:number): Observable<any> {
+    return this.http.get('http://localhost:8080/api/addresses/'+id);
+  }
+
+  // API 2
+  getDataFromEssays(id:number): Observable<any> {
+    return this.http.get('http://localhost:8080/essays/'+id);
+  }
+  getAllEssays(): Observable<any> {
+    return this.http.get('http://localhost:8080/essays');
+  }
+
+  postEssayData(inputData:any){
+    return this.http.post<any>('http://localhost:8080/essays', inputData);
   }
 }
