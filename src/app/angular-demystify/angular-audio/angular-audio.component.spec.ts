@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AngularAudioComponent } from './angular-audio.component';
+
 
 describe('AngularAudioComponent', () => {
   let component: AngularAudioComponent;
   let fixture: ComponentFixture<AngularAudioComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AngularAudioComponent]

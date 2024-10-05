@@ -4,8 +4,8 @@
     </code>
 </pre> -->
 
-@switch (topicId){ 
-@case (1){
+@switch (topicId) {
+   @case (1){
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">TypeScript Key Features</h1>
 
@@ -148,15 +148,20 @@
     </li>
   </ul>
 </div>
+<<<<<<< HEAD
 
 } @case (2){
+=======
+}
+ @case (2) {
+>>>>>>> 9b971de1d9f49e6e2493d9b62a064cf241aad66b
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">
     Benefits of Using TypeScript
   </h1>
 
   <p class="text-lg text-gray-700 mb-4">
-    TypeScript offers numerous benefits to developers, especially when working
+    TypeScript offe    rs numerous benefits to developers, especially when working
     on large-scale applications or projects that require strong type safety.
     Below are some of the key benefits of using TypeScript:
   </p>
@@ -271,8 +276,13 @@
     </li>
   </ul>
 </div>
+<<<<<<< HEAD
 
 } @case (3){
+=======
+} 
+@case (3) {
+>>>>>>> 9b971de1d9f49e6e2493d9b62a064cf241aad66b
 <div class="max-w-4xl mx-auto p-8">
   <h1 class="text-3xl font-bold text-blue-600 mb-6">
     Drawbacks of Using TypeScript
@@ -394,8 +404,13 @@
     </li>
   </ul>
 </div>
+<<<<<<< HEAD
 
 }@case (4){
+=======
+} 
+@case (4){
+>>>>>>> 9b971de1d9f49e6e2493d9b62a064cf241aad66b
 <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
   <h1 class="text-3xl font-bold text-gray-800">TypeScript Compiler (tsc)</h1>
 
@@ -452,8 +467,13 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 
 } @case (5){
+=======
+}
+ @case (5){
+>>>>>>> 9b971de1d9f49e6e2493d9b62a064cf241aad66b
 <div class="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-lg space-y-4">
   <h1 class="text-3xl font-bold text-gray-800">
     Type Conversions in TypeScript
@@ -484,10 +504,16 @@
       </p>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight >let value: any = "123";<br>let num: number = &lt;number&gt;value;</code></pre>
+      ><code class="font-mono text-sm language-javascript" codeHighlight >
+        let value: any = "123";
+        let num: number = &lt;number&gt;value;
+      </code></pre>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: any = "123";<br>let num: number = value as number;</code></pre>
+      ><code class="font-mono text-sm language-javascript" codeHighlight>
+        let value: any = "123";<br>
+        let num: number = value as number;
+      </code></pre>
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
@@ -499,8 +525,10 @@
         it converts one type to another without explicit casting.
       </p>
       <pre
-        class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight >let num = 123;<br>let str = num + " is a number"; // 'str' becomes a string</code></pre>
+        class="bg-gray-100 p-3 rounded"><code class="font-mono text-sm language-javascript" codeHighlight >
+          let num = 123;<br>
+          let str = num + " is a number"; // 'str' becomes a string
+        </code></pre>
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
@@ -516,7 +544,10 @@
       </p>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight>let value: string = "456";<br>let num: number = Number(value);</code></pre>
+      ><code class="font-mono text-sm language-javascript" codeHighlight>
+        let value: string = "456";<br>
+        let num: number = Number(value);
+      </code></pre>
     </div>
 
     <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
@@ -529,19 +560,18 @@
       </p>
       <p class="text-gray-600">
         For example, converting a non-numeric string to a number will result in
-        <code
-          class="language-javascript"
-          codeHighlight
-          class="font-mono bg-gray-200 p-1 rounded"
+        <code class="font-mono bg-gray-200 p-1 rounded"
           >NaN</code
         >.
       </p>
       <pre
         class="bg-gray-100 p-3 rounded"
-      ><code class="font-mono text-sm" class="language-javascript" codeHighlight>let invalidNum: number = Number("not a number"); // NaN</code></pre>
+      ><code class="font-mono text-sm language-javascript" class="" codeHighlight>
+        let invalidNum: number = Number("not a number"); // NaN</code></pre>
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 
 }@case (6){
   <div class="container mx-auto p-6">
@@ -801,6 +831,153 @@
 
   <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
       <code class="font-mono text-sm" class="language-javascript" codeHighlight>
+=======
+} 
+@case (6) {
+
+}
+@case (7){
+
+  <article class="prose lg:prose-xl p-6 bg-gray-100 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6">Basic Operators and Maths in TypeScript</h1>
+    
+    <!-- Introduction -->
+    <p class="mb-4">
+      In TypeScript (and JavaScript), operators are symbols used to perform specific operations on variables or values. These operations can include mathematical calculations, comparisons, and logical operations. Here’s a breakdown of the most common types of operators with a focus on <strong>mathematical operators</strong>.
+    </p>
+  
+    <!-- Arithmetic Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">1. Arithmetic Operators</h2>
+    <p class="mb-4">
+      Arithmetic operators are used to perform mathematical operations on numbers.
+    </p>
+  
+    <table class="table-auto bg-white shadow rounded-lg mb-6">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Operator</th>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Example</th>
+          <th class="px-4 py-2">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t">
+          <td class="px-4 py-2">+</td>
+          <td class="px-4 py-2">Addition</td>
+          <td class="px-4 py-2">5 + 2</td>
+          <td class="px-4 py-2">7</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">-</td>
+          <td class="px-4 py-2">Subtraction</td>
+          <td class="px-4 py-2">5 - 2</td>
+          <td class="px-4 py-2">3</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">*</td>
+          <td class="px-4 py-2">Multiplication</td>
+          <td class="px-4 py-2">5 * 2</td>
+          <td class="px-4 py-2">10</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">/</td>
+          <td class="px-4 py-2">Division</td>
+          <td class="px-4 py-2">10 / 2</td>
+          <td class="px-4 py-2">5</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">%</td>
+          <td class="px-4 py-2">Modulus</td>
+          <td class="px-4 py-2">5 % 2</td>
+          <td class="px-4 py-2">1</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Assignment Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">2. Assignment Operators</h2>
+    <p class="mb-4">
+      Assignment operators assign values to variables.
+    </p>
+    
+    <table class="table-auto bg-white shadow rounded-lg mb-6">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Operator</th>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Example</th>
+          <th class="px-4 py-2">Equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t">
+          <td class="px-4 py-2">=</td>
+          <td class="px-4 py-2">Assign value</td>
+          <td class="px-4 py-2">x = 5</td>
+          <td class="px-4 py-2">-</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">+=</td>
+          <td class="px-4 py-2">Add and assign</td>
+          <td class="px-4 py-2">x += 3</td>
+          <td class="px-4 py-2">x = x + 3</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">-=</td>
+          <td class="px-4 py-2">Subtract and assign</td>
+          <td class="px-4 py-2">x -= 3</td>
+          <td class="px-4 py-2">x = x - 3</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Comparison Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">3. Comparison Operators</h2>
+    <p class="mb-4">
+      Comparison operators are used to compare two values and return a Boolean value (<code>true</code> or <code>false</code>).
+    </p>
+  
+    <table class="table-auto bg-white shadow rounded-lg mb-6">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Operator</th>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Example</th>
+          <th class="px-4 py-2">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t">
+          <td class="px-4 py-2">==</td>
+          <td class="px-4 py-2">Equal to</td>
+          <td class="px-4 py-2">5 == 5</td>
+          <td class="px-4 py-2">true</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">===</td>
+          <td class="px-4 py-2">Strict equal</td>
+          <td class="px-4 py-2">5 === "5"</td>
+          <td class="px-4 py-2">false</td>
+        </tr>
+        <tr class="border-t">
+          <td class="px-4 py-2">!=</td>
+          <td class="px-4 py-2">Not equal</td>
+          <td class="px-4 py-2">5 != 3</td>
+          <td class="px-4 py-2">true</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Logical Operators -->
+    <h2 class="text-2xl font-semibold mt-6 mb-4">4. Logical Operators</h2>
+    <p class="mb-4">
+      Logical operators are used to combine multiple conditions.
+    </p>
+  
+    <pre class="bg-gray-800 text-white p-4 rounded-md mb-4">
+      <code>
+>>>>>>> 9b971de1d9f49e6e2493d9b62a064cf241aad66b
         let a = true;
         let b = false;
         console.log(a && b);  // false
@@ -998,6 +1175,7 @@
     <p class="mt-2">
       <span class="font-semibold">condition</span>: A boolean expression that is evaluated.
     </p>
+<<<<<<< HEAD
     <p class="mt-2">
       <span class="font-semibold">expressionIfTrue</span>: The expression that will be executed if the condition is true.
     </p>
@@ -4559,5 +4737,12 @@ console.log(PI);</code></pre>
     </p>
   </div>
   
+=======
+  </article>
+>>>>>>> 9b971de1d9f49e6e2493d9b62a064cf241aad66b
 }
+@case (8){
+  
+} 
+
 }

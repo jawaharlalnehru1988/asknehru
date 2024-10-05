@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as Prism from 'prismjs';
 import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
 
 @Component({
@@ -11,12 +12,7 @@ import { PrismHighlightDirective } from 'src/core/directives/highlight.directive
 })
 export class AngularBlogsComponent {
   id!: string | null;
-constructor(private route: ActivatedRoute){}
 
-ngOnInit(): void {
-  this.id = this.route.snapshot.paramMap.get('id');
-  console.log(this.id);
-}
 
 firstcode:string = `// app.module.ts
   
@@ -170,4 +166,11 @@ firstcode:string = `// app.module.ts
               this.data = null;
             }
           }`;
+          constructor(private route: ActivatedRoute){}
+          ngOnInit(): void {
+            this.id = this.route.snapshot.paramMap.get('id');
+          }
+          ngAfterViewInit(): void {
+         Prism.highlightAll();
+          }
 }
