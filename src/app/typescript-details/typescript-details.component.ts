@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as Prism from 'prismjs';
 import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
 
 @Component({
@@ -31,4 +32,8 @@ code = `@NgModule({
       // You can now fetch the details of the topic using the topicId
     });
   }
+
+  ngAfterViewInit(): void {
+    Prism.highlightAll();
+     }
 }
