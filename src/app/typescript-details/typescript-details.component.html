@@ -5021,5 +5021,2841 @@ console.log(PI);</code></pre>
     </p>
   </div>
 
+}@case(48){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">filter Method in TypeScript</h1>
+  
+    <p>
+      The <code>filter()</code> method in TypeScript is used to create a new array with elements that pass a specific test (provided as a function). This method is commonly used to filter out unwanted data or extract specific elements from an array. In this article, we will dive into how the <code>filter()</code> method works, its syntax, and examples of its usage.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>filter()</code></h2>
+  
+    <p>
+      The <code>filter()</code> method creates a new array with all elements that pass the test implemented by the provided function.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.filter((element, index, array) => &#123;<br />
+          // return true or false based on condition<br />
+        &#125;);
+      </code>
+    </pre>
+  
+    <p>
+      The <code>filter()</code> method takes a callback function that accepts three parameters:
+    </p>
+    <ul class="list-disc list-inside">
+      <li><code>element</code> (required) - the current element being processed in the array</li>
+      <li><code>index</code> (optional) - the index of the current element</li>
+      <li><code>array</code> (optional) - the original array being filtered</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Basic Example of <code>filter()</code></h2>
+  
+    <p>
+      Let’s start with a simple example of using <code>filter()</code> to create a new array containing only the even numbers from an array of numbers.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 2, 3, 4, 5, 6];<br />
+        let evenNumbers = numbers.filter(num => num % 2 === 0);<br />
+        console.log(evenNumbers); // Output: [2, 4, 6]
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code>filter()</code> method returns a new array <code>evenNumbers</code> that contains only the elements that satisfy the condition <code>num % 2 === 0</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Filtering Objects</h2>
+  
+    <p>
+      The <code>filter()</code> method is also useful when working with arrays of objects. Let’s use it to filter an array of objects to find users older than 30 years.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let users = [<br />
+          &#123; name: 'John', age: 32 &#125;,<br />
+          &#123; name: 'Jane', age: 25 &#125;,<br />
+          &#123; name: 'Jack', age: 40 &#125;<br />
+        ];<br />
+        let olderUsers = users.filter(user => user.age > 30);<br />
+        console.log(olderUsers);<br />
+        // Output: [&#123; name: 'John', age: 32 &#125;, &#123; name: 'Jack', age: 40 &#125;]
+      </code>
+    </pre>
+  
+    <p>
+      The <code>filter()</code> method returns an array <code>olderUsers</code> containing only the objects where the user's age is greater than 30.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using <code>index</code> in <code>filter()</code></h2>
+  
+    <p>
+      The second parameter of the callback function is the index of the current element. This can be useful when filtering based on the element’s position in the array.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let fruits: string[] = ['apple', 'banana', 'cherry', 'date'];<br />
+        let filteredFruits = fruits.filter((fruit, index) => index % 2 === 0);<br />
+        console.log(filteredFruits);<br />
+        // Output: ['apple', 'cherry']
+      </code>
+    </pre>
+  
+    <p>
+      In this example, we use the <code>index</code> to filter out every second element in the <code>fruits</code> array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Chaining <code>filter()</code> with Other Methods</h2>
+  
+    <p>
+      The <code>filter()</code> method can be combined with other array methods such as <code>map()</code> for more complex transformations. Let’s use <code>filter()</code> to find numbers greater than 10 and then use <code>map()</code> to multiply those numbers by 2.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [5, 10, 15, 20, 25];<br />
+        let doubledFilteredNumbers = numbers<br />
+          .filter(num => num > 10)<br />
+          .map(num => num * 2);<br />
+        console.log(doubledFilteredNumbers); // Output: [30, 40, 50]
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>filter()</code> returns numbers greater than 10, and <code>map()</code> then multiplies each of those numbers by 2.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>filter()</code> method in TypeScript is an essential tool for creating new arrays based on specific conditions. Whether you are filtering numbers or objects, <code>filter()</code> makes it easy to extract the elements that meet your criteria. It is also flexible enough to be combined with other methods for more complex operations.
+    </p>
+  </div>
+  
+}@case(49){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">some Method in TypeScript</h1>
+  
+    <p>
+      The <code>some()</code> method in TypeScript is used to check whether at least one element in an array satisfies a specific condition (provided as a function). This method returns a boolean value, <code>true</code> if at least one element passes the test and <code>false</code> otherwise. In this article, we will explore how the <code>some()</code> method works, its syntax, and common use cases.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>some()</code></h2>
+  
+    <p>
+      The <code>some()</code> method tests whether at least one element in the array passes the test implemented by the provided function.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.some((element, index, array) => &#123;<br />
+          // return true or false based on the condition<br />
+        &#125;);
+      </code>
+    </pre>
+  
+    <p>
+      The <code>some()</code> method takes a callback function that can accept three parameters:
+    </p>
+    <ul class="list-disc list-inside">
+      <li><code>element</code> (required) - the current element being processed in the array</li>
+      <li><code>index</code> (optional) - the index of the current element</li>
+      <li><code>array</code> (optional) - the original array being processed</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Basic Example of <code>some()</code></h2>
+  
+    <p>
+      Let’s begin with a simple example of using <code>some()</code> to check if an array contains any even numbers.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 3, 5, 7, 8];<br />
+        let hasEven = numbers.some(num => num % 2 === 0);<br />
+        console.log(hasEven); // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>some()</code> returns <code>true</code> because at least one element (the number 8) in the array is even.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Using <code>some()</code> with Objects</h2>
+  
+    <p>
+      The <code>some()</code> method can also be applied to arrays of objects. For instance, let’s check if at least one user in an array is older than 30 years.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let users = [<br />
+          &#123; name: 'John', age: 25 &#125;,<br />
+          &#123; name: 'Jane', age: 35 &#125;,<br />
+          &#123; name: 'Jack', age: 28 &#125;<br />
+        ];<br />
+        let hasOlderUser = users.some(user => user.age > 30);<br />
+        console.log(hasOlderUser); // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>some()</code> returns <code>true</code> because at least one user (Jane) is older than 30.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using <code>index</code> in <code>some()</code></h2>
+  
+    <p>
+      The second parameter of the callback function is the index of the current element. This can be useful when the test involves the element's position in the array.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let fruits: string[] = ['apple', 'banana', 'cherry', 'date'];<br />
+        let hasFruitAtEvenIndex = fruits.some((fruit, index) => index % 2 === 0 && fruit.length > 5);<br />
+        console.log(hasFruitAtEvenIndex);<br />
+        // Output: false
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>some()</code> checks if there is any fruit with more than 5 characters at an even index, and returns <code>false</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Chaining <code>some()</code> with Other Methods</h2>
+  
+    <p>
+      You can chain <code>some()</code> with other array methods like <code>filter()</code> and <code>map()</code>. For example, let’s use <code>some()</code> to check if the result of filtering an array contains any elements greater than 10.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [4, 7, 10, 15, 20];<br />
+        let result = numbers<br />
+          .filter(num => num > 5)<br />
+          .some(num => num > 10);<br />
+        console.log(result); // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      In this case, <code>filter()</code> first returns the numbers greater than 5, and then <code>some()</code> checks if any of these numbers are greater than 10, returning <code>true</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>some()</code> method is a valuable tool in TypeScript for checking whether at least one element in an array satisfies a given condition. Whether you’re working with simple arrays or complex objects, <code>some()</code> provides an easy way to validate or filter data without iterating through the entire array. It is particularly useful when you only care about the presence of a matching element rather than the entire result.
+    </p>
+  </div>
+  
+}@case(50){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">every Method in TypeScript</h1>
+  
+    <p>
+      The <code>every()</code> method in TypeScript is used to test whether all elements in an array pass a specific test (provided as a function). It returns a boolean value: <code>true</code> if all elements meet the condition, and <code>false</code> if at least one element fails the test. This method is useful for verifying if all elements in an array satisfy a condition. In this article, we’ll explore the <code>every()</code> method, its syntax, and examples of its usage.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>every()</code></h2>
+  
+    <p>
+      The <code>every()</code> method checks if all elements in the array pass the test provided by the callback function.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.every((element, index, array) => &#123;<br />
+          // return true or false based on condition<br />
+        &#125;);
+      </code>
+    </pre>
+  
+    <p>
+      The callback function for <code>every()</code> accepts three parameters:
+    </p>
+    <ul class="list-disc list-inside">
+      <li><code>element</code> (required) - the current element being processed in the array</li>
+      <li><code>index</code> (optional) - the index of the current element</li>
+      <li><code>array</code> (optional) - the original array being processed</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Basic Example of <code>every()</code></h2>
+  
+    <p>
+      Let’s start with a simple example of using <code>every()</code> to check if all numbers in an array are even.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [2, 4, 6, 8];<br />
+        let allEven = numbers.every(num => num % 2 === 0);<br />
+        console.log(allEven); // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>every()</code> returns <code>true</code> because all the numbers in the array are even.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Using <code>every()</code> with Objects</h2>
+  
+    <p>
+      The <code>every()</code> method can also be used with arrays of objects. Let’s use it to check if all users in an array are older than 18.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let users = [<br />
+          &#123; name: 'John', age: 20 &#125;,<br />
+          &#123; name: 'Jane', age: 25 &#125;,<br />
+          &#123; name: 'Jack', age: 30 &#125;<br />
+        ];<br />
+        let allAdults = users.every(user => user.age > 18);<br />
+        console.log(allAdults); // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>every()</code> returns <code>true</code> because all users are older than 18.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using <code>index</code> in <code>every()</code></h2>
+  
+    <p>
+      The second parameter of the callback function is the index of the current element. Let’s use the index to check if all elements at even indices are greater than 5.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [6, 2, 8, 4, 10];<br />
+        let checkIndices = numbers.every((num, index) => index % 2 === 0 && num > 5);<br />
+        console.log(checkIndices);<br />
+        // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>every()</code> checks whether the elements at even indices (0, 2, 4) are greater than 5, and returns <code>true</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Chaining <code>every()</code> with Other Methods</h2>
+  
+    <p>
+      The <code>every()</code> method can be chained with other array methods like <code>map()</code> or <code>filter()</code>. Let’s filter an array and then check if the resulting array has all elements greater than 10.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [5, 10, 15, 20];<br />
+        let result = numbers<br />
+          .filter(num => num > 5)<br />
+          .every(num => num > 10);<br />
+        console.log(result); // Output: false
+      </code>
+    </pre>
+  
+    <p>
+      Here, the <code>filter()</code> method returns numbers greater than 5, and then <code>every()</code> checks if all of them are greater than 10. Since the number 10 is not greater than 10, it returns <code>false</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>every()</code> method in TypeScript is useful when you need to verify that all elements in an array satisfy a specific condition. Whether you are working with simple data types or complex objects, <code>every()</code> provides a simple and efficient way to ensure that all elements pass a given test. It is a great tool for validation and data integrity checks.
+    </p>
+  </div>
+  
+}@case(51){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">find Method in TypeScript</h1>
+  
+    <p>
+      The <code>find()</code> method in TypeScript is used to search through an array and return the first element that satisfies a given condition (test function). If no elements match the condition, <code>find()</code> returns <code>undefined</code>. This method is commonly used to locate a specific item in an array, especially when working with complex data structures like arrays of objects.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>find()</code></h2>
+  
+    <p>
+      The <code>find()</code> method accepts a callback function that tests each element of the array. It stops execution and returns the first element that meets the condition.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.find((element, index, array) => &#123;<br />
+          // return true or false based on condition<br />
+        &#125;);
+      </code>
+    </pre>
+  
+    <p>
+      The callback function for <code>find()</code> takes three parameters:
+    </p>
+    <ul class="list-disc list-inside">
+      <li><code>element</code> (required) - the current element being processed</li>
+      <li><code>index</code> (optional) - the index of the current element</li>
+      <li><code>array</code> (optional) - the original array being processed</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Basic Example of <code>find()</code></h2>
+  
+    <p>
+      Let’s start with a simple example of using <code>find()</code> to search for the first even number in an array.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 3, 5, 8, 10];<br />
+        let firstEven = numbers.find(num => num % 2 === 0);<br />
+        console.log(firstEven); // Output: 8
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>find()</code> returns <code>8</code> because it’s the first even number in the array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Using <code>find()</code> with Objects</h2>
+  
+    <p>
+      The <code>find()</code> method is very useful when searching for objects in an array. For example, let's use it to find a user object based on a specific property (e.g., <code>age</code>).
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let users = [<br />
+          &#123; name: 'John', age: 25 &#125;,<br />
+          &#123; name: 'Jane', age: 30 &#125;,<br />
+          &#123; name: 'Jack', age: 35 &#125;<br />
+        ];<br />
+        let user = users.find(user => user.age === 30);<br />
+        console.log(user); // Output: &#123; name: 'Jane', age: 30 &#125;
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>find()</code> returns the object representing the user with age 30.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Handling <code>undefined</code> with <code>find()</code></h2>
+  
+    <p>
+      Since <code>find()</code> returns <code>undefined</code> if no element matches the condition, it’s important to handle this case to avoid errors.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 3, 5];<br />
+        let firstEven = numbers.find(num => num % 2 === 0);<br />
+        if (firstEven !== undefined) &#123;<br />
+          console.log('First even number:', firstEven);<br />
+        &#125; else &#123;<br />
+          console.log('No even number found');<br />
+        &#125;
+      </code>
+    </pre>
+  
+    <p>
+      In this example, since there are no even numbers in the array, <code>find()</code> returns <code>undefined</code>, and the conditional check ensures the appropriate message is logged.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Chaining <code>find()</code> with Other Array Methods</h2>
+  
+    <p>
+      The <code>find()</code> method can be chained with other array methods such as <code>filter()</code> and <code>map()</code>. For example, let’s filter an array and then find a specific element in the filtered result.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [4, 9, 16, 25, 36];<br />
+        let result = numbers<br />
+          .filter(num => num > 10)<br />
+          .find(num => num % 3 === 0);<br />
+        console.log(result); // Output: 36
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code>filter()</code> method returns numbers greater than 10, and <code>find()</code> locates the first number divisible by 3, which is <code>36</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>find()</code> method in TypeScript is a powerful tool for searching through arrays to find the first element that meets a specified condition. It’s particularly useful when dealing with arrays of objects and when you need to locate a specific element quickly without iterating through the entire array. Just remember to handle cases where <code>undefined</code> is returned when no matching element is found.
+    </p>
+  </div>
+  
+}@case(52){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">findIndex Method in TypeScript</h1>
+  
+    <p>
+      The <code>findIndex()</code> method in TypeScript is used to search an array for the first element that satisfies a given condition (test function) and returns the index of that element. If no elements match the condition, it returns <code>-1</code>. This method is helpful when you need to know the position of a particular element that matches the specified condition in an array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>findIndex()</code></h2>
+  
+    <p>
+      The <code>findIndex()</code> method tests each element in the array with a callback function and returns the index of the first matching element. If none of the elements pass the test, it returns <code>-1</code>.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.findIndex((element, index, array) => &#123;<br />
+          // return true or false based on condition<br />
+        &#125;);
+      </code>
+    </pre>
+  
+    <p>
+      The callback function for <code>findIndex()</code> takes three parameters:
+    </p>
+    <ul class="list-disc list-inside">
+      <li><code>element</code> (required) - the current element being processed</li>
+      <li><code>index</code> (optional) - the index of the current element</li>
+      <li><code>array</code> (optional) - the original array being processed</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Basic Example of <code>findIndex()</code></h2>
+  
+    <p>
+      Here is a simple example that uses the <code>findIndex()</code> method to find the index of the first even number in an array.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 3, 5, 8, 10];<br />
+        let firstEvenIndex = numbers.findIndex(num => num % 2 === 0);<br />
+        console.log(firstEvenIndex); // Output: 3
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>findIndex()</code> returns <code>3</code> because <code>8</code> is the first even number in the array, and it is located at index <code>3</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Using <code>findIndex()</code> with Objects</h2>
+  
+    <p>
+      The <code>findIndex()</code> method can also be used with arrays of objects. Here’s an example where we search for a user object based on a specific property (e.g., <code>age</code>).
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let users = [<br />
+          &#123; name: 'John', age: 25 &#125;,<br />
+          &#123; name: 'Jane', age: 30 &#125;,<br />
+          &#123; name: 'Jack', age: 35 &#125;<br />
+        ];<br />
+        let userIndex = users.findIndex(user => user.age === 30);<br />
+        console.log(userIndex); // Output: 1
+      </code>
+    </pre>
+  
+    <p>
+      In this case, <code>findIndex()</code> returns <code>1</code> because the user with age <code>30</code> is located at index <code>1</code> in the array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Handling <code>-1</code> with <code>findIndex()</code></h2>
+  
+    <p>
+      Since <code>findIndex()</code> returns <code>-1</code> if no element matches the condition, it’s important to handle this case to avoid errors.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 3, 5];<br />
+        let firstEvenIndex = numbers.findIndex(num => num % 2 === 0);<br />
+        if (firstEvenIndex !== -1) &#123;<br />
+          console.log('First even number is at index:', firstEvenIndex);<br />
+        &#125; else &#123;<br />
+          console.log('No even number found');<br />
+        &#125;
+      </code>
+    </pre>
+  
+    <p>
+      In this example, since no even numbers exist in the array, <code>findIndex()</code> returns <code>-1</code>, and the condition ensures an appropriate message is logged.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Chaining <code>findIndex()</code> with Other Methods</h2>
+  
+    <p>
+      The <code>findIndex()</code> method can be combined with other array methods like <code>filter()</code> or <code>map()</code>. Here’s an example where we first filter the array and then find the index of an element in the filtered result.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [4, 9, 16, 25, 36];<br />
+        let index = numbers<br />
+          .filter(num => num > 10)<br />
+          .findIndex(num => num % 2 === 0);<br />
+        console.log(index); // Output: 1
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>filter()</code> returns numbers greater than <code>10</code>, and then <code>findIndex()</code> finds the index of the first even number in the filtered array, which is <code>16</code>, at index <code>1</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>findIndex()</code> method in TypeScript is a powerful tool for locating the index of an element that meets a certain condition in an array. Whether you’re working with primitive values or complex objects, this method is efficient and easy to use. However, be mindful of cases where it returns <code>-1</code>, which indicates no matching element was found.
+    </p>
+  </div>
+  
+}@case(53){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">reduce Method in TypeScript</h1>
+  
+    <p>
+      The <code>reduce()</code> method in TypeScript is used to iterate over an array and apply a reducer function on each element, which results in a single output value. It is one of the most powerful array methods that can accumulate values, flatten arrays, or transform data into any desired structure.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>reduce()</code></h2>
+  
+    <p>
+      The <code>reduce()</code> method takes two arguments:
+    </p>
+  
+    <ul class="list-disc list-inside">
+      <li><code>callback</code> - A function to execute on each element in the array.</li>
+      <li><code>initialValue</code> (optional) - The value to use as the first argument in the first call of the <code>callback</code>.</li>
+    </ul>
+  
+    <p>The basic syntax looks like this:</p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.reduce((accumulator, currentValue, currentIndex, array) => &#123;<br />
+          // reducer logic<br />
+        &#125;, initialValue);
+      </code>
+    </pre>
+  
+    <p>The <code>callback</code> function parameters are:</p>
+    <ul class="list-disc list-inside">
+      <li><code>accumulator</code> (required) - Accumulates the result of each call.</li>
+      <li><code>currentValue</code> (required) - The current element being processed.</li>
+      <li><code>currentIndex</code> (optional) - The index of the current element.</li>
+      <li><code>array</code> (optional) - The original array being reduced.</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Example of Summing Numbers</h2>
+  
+    <p>
+      A common use case of <code>reduce()</code> is summing all elements in an array. Here's an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 2, 3, 4, 5];<br />
+        let sum = numbers.reduce((acc, curr) => acc + curr, 0);<br />
+        console.log(sum); // Output: 15
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>reduce()</code> iterates over the array and adds each number to the accumulator, starting with an initial value of <code>0</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Flattening Arrays with <code>reduce()</code></h2>
+  
+    <p>
+      The <code>reduce()</code> method is also useful for tasks like flattening arrays. Here's an example where a 2D array is flattened into a 1D array.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let nestedArray: number[][] = [[1, 2], [3, 4], [5]];<br />
+        let flatArray = nestedArray.reduce((acc, curr) => acc.concat(curr), []);<br />
+        console.log(flatArray); // Output: [1, 2, 3, 4, 5]
+      </code>
+    </pre>
+  
+    <p>
+      In this case, <code>reduce()</code> concatenates each sub-array into a single array, starting with an empty array as the initial value.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Counting Occurrences with <code>reduce()</code></h2>
+  
+    <p>
+      Another useful application of <code>reduce()</code> is counting occurrences of items in an array. Here’s how you can count the number of times each element appears in an array:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let fruits: string[] = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];<br />
+        let fruitCount = fruits.reduce((acc, fruit) => &#123;<br />
+          acc[fruit] = (acc[fruit] || 0) + 1;<br />
+          return acc;<br />
+        &#125;, &#123;&#125;);<br />
+        console.log(fruitCount); // Output: &#123; apple: 3, banana: 2, orange: 1 &#125;
+      </code>
+    </pre>
+  
+    <p>
+      This example demonstrates how to use <code>reduce()</code> to build an object where the keys are the array elements and the values are their counts.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Using <code>reduce()</code> with Objects</h2>
+  
+    <p>
+      You can also use <code>reduce()</code> with arrays of objects. Here's an example that sums the total price of items in a shopping cart:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let cart = [<br />
+          &#123; item: 'Book', price: 15 &#125;,<br />
+          &#123; item: 'Pen', price: 3 &#125;,<br />
+          &#123; item: 'Notebook', price: 7 &#125;<br />
+        ];<br />
+        let totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);<br />
+        console.log(totalPrice); // Output: 25
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code>reduce()</code> method sums up the <code>price</code> property of each object in the array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>reduce()</code> method in TypeScript is extremely versatile and can be applied to a wide variety of use cases, from summing numbers to flattening arrays and counting occurrences. With its ability to accumulate values, <code>reduce()</code> can transform data in powerful ways.
+    </p>
+  </div>
+  
+}@case(54){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">reduceRight Method in TypeScript</h1>
+  
+    <p>
+      The <code>reduceRight()</code> method in TypeScript is used to apply a function against an accumulator and each value of the array (from right to left) to reduce it to a single value. This is similar to the <code>reduce()</code> method but operates in reverse order.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>reduceRight()</code></h2>
+  
+    <p>
+      The <code>reduceRight()</code> method takes two arguments:
+    </p>
+  
+    <ul class="list-disc list-inside">
+      <li><code>callback</code> - A function to execute on each element in the array, starting from the right-most element.</li>
+      <li><code>initialValue</code> (optional) - The initial value for the accumulator.</li>
+    </ul>
+  
+    <p>The basic syntax looks like this:</p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.reduceRight((accumulator, currentValue, currentIndex, array) => &#123;<br />
+          // logic to apply<br />
+        &#125;, initialValue);
+      </code>
+    </pre>
+  
+    <p>The <code>callback</code> function receives the following parameters:</p>
+  
+    <ul class="list-disc list-inside">
+      <li><code>accumulator</code> (required) - Accumulates the return values of the function.</li>
+      <li><code>currentValue</code> (required) - The current element being processed from right to left.</li>
+      <li><code>currentIndex</code> (optional) - The index of the current element.</li>
+      <li><code>array</code> (optional) - The original array being reduced.</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Example of Reversing a String</h2>
+  
+    <p>
+      One common use case of <code>reduceRight()</code> is to reverse a string by reducing an array of characters:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let str = 'hello';<br />
+        let reversed = str.split('').reduceRight((acc, curr) => acc + curr, '');<br />
+        console.log(reversed); // Output: 'olleh'
+      </code>
+    </pre>
+  
+    <p>
+      In this example, <code>reduceRight()</code> processes the array of characters from the right-most element and accumulates them in reverse order.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Summing Numbers in Reverse</h2>
+  
+    <p>
+      Here's an example of using <code>reduceRight()</code> to sum an array of numbers, starting from the last element:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers: number[] = [1, 2, 3, 4, 5];<br />
+        let sum = numbers.reduceRight((acc, curr) => acc + curr, 0);<br />
+        console.log(sum); // Output: 15
+      </code>
+    </pre>
+  
+    <p>
+      Although the result is the same as using <code>reduce()</code>, the accumulation starts from the last element, i.e., 5, and proceeds toward the first element.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Flattening Arrays in Reverse</h2>
+  
+    <p>
+      You can use <code>reduceRight()</code> to flatten nested arrays starting from the last sub-array:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let nestedArray: number[][] = [[1, 2], [3, 4], [5]];<br />
+        let flatArray = nestedArray.reduceRight((acc, curr) => acc.concat(curr), []);<br />
+        console.log(flatArray); // Output: [5, 3, 4, 1, 2]
+      </code>
+    </pre>
+  
+    <p>
+      In this case, the nested arrays are flattened in reverse order, starting with the last sub-array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Processing Objects with <code>reduceRight()</code></h2>
+  
+    <p>
+      Like <code>reduce()</code>, the <code>reduceRight()</code> method can be applied to arrays of objects. For example, we can calculate the total price of items in a shopping cart, starting from the last item:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let cart = [<br />
+          &#123; item: 'Book', price: 15 &#125;,<br />
+          &#123; item: 'Pen', price: 3 &#125;,<br />
+          &#123; item: 'Notebook', price: 7 &#125;<br />
+        ];<br />
+        let totalPrice = cart.reduceRight((acc, curr) => acc + curr.price, 0);<br />
+        console.log(totalPrice); // Output: 25
+      </code>
+    </pre>
+  
+    <p>
+      This example demonstrates how to use <code>reduceRight()</code> to accumulate the price starting from the last item in the cart.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>reduceRight()</code> method in TypeScript is similar to <code>reduce()</code>, but it processes elements from right to left. It is useful for scenarios where the order of processing is significant, such as reversing strings, summing numbers in reverse, or flattening nested arrays from the right.
+    </p>
+  </div>
+  
+}@case(55){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">sort() Method in TypeScript</h1>
+  
+    <p>
+      The <code>sort()</code> method in TypeScript is used to sort the elements of an array in place and returns the sorted array. The default sorting order is based on converting the elements into strings and comparing their sequences of UTF-16 code units.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>sort()</code></h2>
+  
+    <p>
+      The <code>sort()</code> method can be used with or without a compare function. Its syntax is:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.sort([compareFunction]);
+      </code>
+    </pre>
+  
+    <p>
+      The <code>compareFunction</code> is optional and defines the sort order. If omitted, the array elements are converted to strings and sorted in ascending Unicode code point order.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Sorting Numbers</h2>
+  
+    <p>
+      By default, <code>sort()</code> treats elements as strings, which may cause unexpected results when sorting numbers. To sort numbers correctly, a <code>compareFunction</code> should be provided:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [40, 100, 1, 5, 25, 10];<br />
+        numbers.sort((a, b) => a - b);<br />
+        console.log(numbers); // Output: [1, 5, 10, 25, 40, 100]
+      </code>
+    </pre>
+  
+    <p>
+      The <code>compareFunction</code> takes two arguments, <code>a</code> and <code>b</code>, and returns:
+    </p>
+  
+    <ul class="list-disc list-inside">
+      <li>A negative value if <code>a</code> should come before <code>b</code>.</li>
+      <li>A positive value if <code>a</code> should come after <code>b</code>.</li>
+      <li><code>0</code> if they are equal.</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Sorting Strings</h2>
+  
+    <p>
+      When sorting strings, the <code>sort()</code> method sorts in ascending order by default. However, to sort in descending order, you can provide a compare function:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let fruits = ['Banana', 'Apple', 'Orange', 'Mango'];<br />
+        fruits.sort();<br />
+        console.log(fruits); // Output: ['Apple', 'Banana', 'Mango', 'Orange']<br /><br />
+        
+        fruits.sort((a, b) => b.localeCompare(a));<br />
+        console.log(fruits); // Output: ['Orange', 'Mango', 'Banana', 'Apple']
+      </code>
+    </pre>
+  
+    <p>
+      The <code>localeCompare()</code> method can also be used within the <code>sort()</code> method for locale-aware sorting.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Sorting Objects by Property</h2>
+  
+    <p>
+      To sort an array of objects by a specific property, you need to provide a compare function that compares the values of that property:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let students = [<br />
+          &#123; name: 'John', age: 21 &#125;,<br />
+          &#123; name: 'Emma', age: 19 &#125;,<br />
+          &#123; name: 'Alex', age: 25 &#125;<br />
+        ];<br /><br />
+        
+        students.sort((a, b) => a.age - b.age);<br />
+        console.log(students);<br />
+        // Output: [&#123; name: 'Emma', age: 19 &#125;, &#123; name: 'John', age: 21 &#125;, &#123; name: 'Alex', age: 25 &#125;]
+      </code>
+    </pre>
+  
+    <p>
+      In this example, we are sorting the students by their age in ascending order.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Case-Insensitive Sorting</h2>
+  
+    <p>
+      By default, <code>sort()</code> is case-sensitive, meaning capitalized letters come before lowercase letters. You can perform case-insensitive sorting by converting strings to lowercase:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let words = ['apple', 'Banana', 'orange', 'Mango'];<br />
+        words.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));<br />
+        console.log(words);<br />
+        // Output: ['apple', 'Banana', 'Mango', 'orange']
+      </code>
+    </pre>
+  
+    <p>
+      The <code>toLowerCase()</code> method ensures that the sorting is case-insensitive.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Sorting with <code>undefined</code> Values</h2>
+  
+    <p>
+      When sorting arrays that contain <code>undefined</code> values, <code>undefined</code> is treated as the largest possible value. Here's an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let mixedArray = [5, undefined, 2, 8, undefined, 3];<br />
+        mixedArray.sort();<br />
+        console.log(mixedArray); // Output: [2, 3, 5, 8, undefined, undefined]
+      </code>
+    </pre>
+  
+    <p>
+      If you want <code>undefined</code> values to appear at the beginning of the array, you can provide a custom compare function:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        mixedArray.sort((a, b) => (a === undefined ? -1 : b === undefined ? 1 : a - b));<br />
+        console.log(mixedArray);<br />
+        // Output: [undefined, undefined, 2, 3, 5, 8]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">7. Conclusion</h2>
+  
+    <p>
+      The <code>sort()</code> method in TypeScript is a powerful way to organize arrays, whether you’re working with numbers, strings, or objects. By using custom compare functions, you can implement sorting logic that fits your needs. It's important to understand how sorting works with different types, especially strings and objects, and how case sensitivity and <code>undefined</code> values affect the result.
+    </p>
+  </div>
+  
+}@case(56){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">reverse() Method in TypeScript</h1>
+  
+    <p>
+      The <code>reverse()</code> method in TypeScript is used to reverse the elements of an array in place. This method modifies the original array and returns the reversed array. It's a simple and useful method for reversing the order of elements in any array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>reverse()</code></h2>
+  
+    <p>
+      The <code>reverse()</code> method does not take any arguments and its syntax is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.reverse();
+      </code>
+    </pre>
+  
+    <p>
+      This method operates on the array itself and returns the modified array, with its elements reversed.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Example: Reversing an Array of Numbers</h2>
+  
+    <p>
+      Let’s look at an example where we reverse an array of numbers:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [1, 2, 3, 4, 5];<br />
+        numbers.reverse();<br />
+        console.log(numbers); // Output: [5, 4, 3, 2, 1]
+      </code>
+    </pre>
+  
+    <p>
+      As shown, the <code>reverse()</code> method reverses the elements of the array and modifies the original array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Reversing an Array of Strings</h2>
+  
+    <p>
+      The <code>reverse()</code> method works just as well with arrays of strings. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let fruits = ['Apple', 'Banana', 'Cherry'];<br />
+        fruits.reverse();<br />
+        console.log(fruits); // Output: ['Cherry', 'Banana', 'Apple']
+      </code>
+    </pre>
+  
+    <p>
+      The string elements are also reversed, maintaining the functionality of reversing the order of elements in any array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Reversing an Array of Objects</h2>
+  
+    <p>
+      You can also use <code>reverse()</code> to reverse an array of objects. Here’s an example of reversing a list of student objects:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let students = [<br />
+          &#123; name: 'John', age: 20 &#125;,<br />
+          &#123; name: 'Alice', age: 22 &#125;,<br />
+          &#123; name: 'Bob', age: 25 &#125;<br />
+        ];<br /><br />
+        students.reverse();<br />
+        console.log(students);<br />
+        // Output: [&#123; name: 'Bob', age: 25 &#125;, &#123; name: 'Alice', age: 22 &#125;, &#123; name: 'John', age: 20 &#125;]
+      </code>
+    </pre>
+  
+    <p>
+      The array of objects is reversed in the same way as arrays of numbers or strings.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Considerations when Using <code>reverse()</code></h2>
+  
+    <p>
+      There are a few important considerations to keep in mind when using the <code>reverse()</code> method:
+    </p>
+  
+    <ul class="list-disc list-inside">
+      <li>The <code>reverse()</code> method modifies the original array in place. If you want to keep the original array intact, you should first create a copy of the array and then reverse the copy.</li>
+      <li>Reversing an already reversed array will return it to its original order.</li>
+    </ul>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [1, 2, 3, 4, 5];<br />
+        let reversedNumbers = numbers.reverse();<br />
+        reversedNumbers.reverse();<br />
+        console.log(reversedNumbers); // Output: [1, 2, 3, 4, 5]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Using <code>reverse()</code> with <code>sort()</code></h2>
+  
+    <p>
+      A common use case is to first sort an array and then reverse the sorted array. Here’s an example where we sort an array of numbers in ascending order, then reverse it to get a descending order:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [10, 5, 8, 3, 2];<br />
+        numbers.sort((a, b) => a - b);<br />
+        console.log(numbers); // Output: [2, 3, 5, 8, 10]<br /><br />
+        
+        numbers.reverse();<br />
+        console.log(numbers); // Output: [10, 8, 5, 3, 2]
+      </code>
+    </pre>
+  
+    <p>
+      Combining <code>sort()</code> and <code>reverse()</code> allows for powerful sorting and reordering of elements.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">7. Conclusion</h2>
+  
+    <p>
+      The <code>reverse()</code> method in TypeScript is a straightforward and effective way to reverse the order of elements in an array. Whether you’re working with numbers, strings, or objects, this method provides a simple and efficient solution for reversing arrays.
+    </p>
+  </div>
+  
+}@case(57){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">push() Method in TypeScript</h1>
+  
+    <p>
+      The <code>push()</code> method in TypeScript is used to add one or more elements to the end of an array. This method modifies the original array and returns the new length of the array after the elements have been added. It’s a simple yet powerful method for managing arrays.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>push()</code></h2>
+  
+    <p>
+      The <code>push()</code> method takes one or more elements as arguments and its syntax is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        array.push(element1, element2, ...);
+      </code>
+    </pre>
+  
+    <p>
+      The method modifies the original array and returns the new length of the array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Example: Adding Elements to an Array</h2>
+  
+    <p>
+      Let’s look at an example where we add elements to an array of numbers:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [1, 2, 3];<br />
+        numbers.push(4, 5);<br />
+        console.log(numbers); // Output: [1, 2, 3, 4, 5]
+      </code>
+    </pre>
+  
+    <p>
+      As shown, the <code>push()</code> method adds the elements <code>4</code> and <code>5</code> to the end of the array.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Adding Elements of Different Types</h2>
+  
+    <p>
+      The <code>push()</code> method can be used to add elements of different types to an array. Here’s an example with an array of mixed types:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let mixedArray = [1, 'two', true];<br />
+        mixedArray.push(3.14, 'four');<br />
+        console.log(mixedArray); // Output: [1, 'two', true, 3.14, 'four']
+      </code>
+    </pre>
+  
+    <p>
+      The <code>push()</code> method allows adding various data types seamlessly.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using <code>push()</code> with Objects</h2>
+  
+    <p>
+      You can also use <code>push()</code> to add objects to an array. Here’s an example of adding student objects to an array:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let students = [];<br />
+        students.push(&#123; name: 'John', age: 20 &#125;);<br />
+        students.push(&#123; name: 'Alice', age: 22 &#125;);<br />
+        console.log(students);<br />
+        // Output: [&#123; name: 'John', age: 20 &#125;, &#123; name: 'Alice', age: 22 &#125;]
+      </code>
+    </pre>
+  
+    <p>
+      In this case, we created an array of student objects by using the <code>push()</code> method.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Chaining <code>push()</code> Method Calls</h2>
+  
+    <p>
+      You can also chain multiple <code>push()</code> calls together. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let colors = ['red'];<br />
+        colors.push('green').push('blue');<br />
+        console.log(colors); // Output: ['red', 'green', 'blue']
+      </code>
+    </pre>
+  
+    <p>
+      Chaining allows for concise and efficient code.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Considerations when Using <code>push()</code></h2>
+  
+    <p>
+      There are a few important considerations when using the <code>push()</code> method:
+    </p>
+  
+    <ul class="list-disc list-inside">
+      <li>The <code>push()</code> method modifies the original array. If you need to keep the original array intact, consider creating a copy first.</li>
+      <li>You can push multiple elements at once, separated by commas.</li>
+      <li>The method returns the new length of the array, which can be useful for further operations.</li>
+    </ul>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [1, 2, 3];<br />
+        let newLength = numbers.push(4);<br />
+        console.log(newLength); // Output: 4
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">7. Conclusion</h2>
+  
+    <p>
+      The <code>push()</code> method in TypeScript is a fundamental way to add elements to an array. Its versatility allows for adding different data types and objects, making it a valuable tool for any TypeScript developer. By understanding how to effectively use the <code>push()</code> method, you can enhance your array manipulation capabilities.
+    </p>
+  </div>
+  
+}@case(58){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">pop() Method in TypeScript</h1>
+  
+    <p>
+      The <code>pop()</code> method in TypeScript is used to remove the last element from an array. This method modifies the original array and returns the removed element. If the array is empty, it returns <code>undefined</code>. It’s a straightforward method for managing arrays and is widely used in TypeScript development.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Syntax of <code>pop()</code></h2>
+  
+    <p>
+      The syntax of the <code>pop()</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let removedElement = array.pop();
+      </code>
+    </pre>
+  
+    <p>
+      The method modifies the original array and returns the element that was removed.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Example: Removing an Element from an Array</h2>
+  
+    <p>
+      Let’s look at an example where we remove the last element from an array of numbers:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [1, 2, 3, 4, 5];<br />
+        let lastElement = numbers.pop();<br />
+        console.log(lastElement); // Output: 5<br />
+        console.log(numbers); // Output: [1, 2, 3, 4]
+      </code>
+    </pre>
+  
+    <p>
+      As shown, the <code>pop()</code> method removes the last element <code>5</code> from the array and returns it.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Removing Elements from an Empty Array</h2>
+  
+    <p>
+      If the <code>pop()</code> method is called on an empty array, it will return <code>undefined</code>. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let emptyArray = [];<br />
+        let removedElement = emptyArray.pop();<br />
+        console.log(removedElement); // Output: undefined
+      </code>
+    </pre>
+  
+    <p>
+      In this case, since the array is empty, the returned value is <code>undefined</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using <code>pop()</code> in a Loop</h2>
+  
+    <p>
+      The <code>pop()</code> method can be used in a loop to remove all elements from an array. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let items = ['apple', 'banana', 'cherry'];<br />
+        while (items.length > 0) {{'{'}}<br />
+          console.log(items.pop());<br />
+        {{'}'}}<br />
+        // Output: cherry, banana, apple
+      </code>
+    </pre>
+  
+    <p>
+      This example demonstrates how to continuously remove elements until the array is empty.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Considerations when Using <code>pop()</code></h2>
+  
+    <p>
+      There are a few important considerations when using the <code>pop()</code> method:
+    </p>
+  
+    <ul class="list-disc list-inside">
+      <li>The <code>pop()</code> method modifies the original array. If you need to keep the original array intact, consider creating a copy first.</li>
+      <li>The method returns the removed element, which can be useful for further operations.</li>
+      <li>Using <code>pop()</code> on an empty array returns <code>undefined</code>, so it’s good practice to check the array length before using it if you are unsure.</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>pop()</code> method in TypeScript is a fundamental way to remove the last element from an array. Its simplicity and effectiveness make it a valuable tool for managing arrays in TypeScript development. By understanding how to effectively use the <code>pop()</code> method, you can enhance your array manipulation capabilities and streamline your code.
+    </p>
+  </div>
+  
+}@case(59){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Object Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, objects are a fundamental building block of the language, allowing you to group related data and functionality. Object methods are functions that are properties of objects, enabling you to manipulate object data efficiently. This article explores the various object methods available in TypeScript, along with examples and best practices.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Creating an Object</h2>
+  
+    <p>
+      Before diving into object methods, let’s first understand how to create an object in TypeScript. You can create an object using either object literals or the <code>new</code> keyword.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        // Object Literal<br />
+        let person = &#123;<br />
+        &nbsp;&nbsp;name: 'Alice',<br />
+        &nbsp;&nbsp;age: 30,<br />
+        &nbsp;&nbsp;greet: function() &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(`Hello, my name is $&#123;this.name&#125;`);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+        
+        // Using Constructor<br />
+        class Animal &#123;<br />
+        &nbsp;&nbsp;constructor(public name: string) &#123;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &nbsp;&nbsp;makeSound() &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(`$&#123;this.name&#125; makes a sound!`);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br />
+        
+        let dog = new Animal('Buddy');<br />
+        dog.makeSound(); // Output: Buddy makes a sound!
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Common Object Methods</h2>
+  
+    <p>
+      TypeScript allows you to define methods within objects. Here are some common object methods:
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">2.1 <code>Object.keys()</code></h3>
+  
+    <p>
+      The <code>Object.keys()</code> method returns an array of a given object's own property names. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let person = &#123; name: 'Alice', age: 30 &#125;;<br />
+        let keys = Object.keys(person);<br />
+        console.log(keys); // Output: ['name', 'age']
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">2.2 <code>Object.values()</code></h3>
+  
+    <p>
+      The <code>Object.values()</code> method returns an array of a given object's own property values:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let values = Object.values(person);<br />
+        console.log(values); // Output: ['Alice', 30]
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">2.3 <code>Object.entries()</code></h3>
+  
+    <p>
+      The <code>Object.entries()</code> method returns an array of a given object's own enumerable string-keyed property [key, value] pairs:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let entries = Object.entries(person);<br />
+        console.log(entries); // Output: [['name', 'Alice'], ['age', 30]]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Adding and Modifying Object Methods</h2>
+  
+    <p>
+      You can add or modify methods of an object at any time. Here’s how to do it:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        person.sayAge = function() &#123;<br />
+        &nbsp;&nbsp;console.log(`I am $&#123;this.age&#125; years old`);<br />
+        &#125;;<br />
+        
+        person.sayAge(); // Output: I am 30 years old
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Object Destructuring</h2>
+  
+    <p>
+      Object destructuring is a powerful feature in TypeScript that allows you to extract properties from objects into variables. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const &#123; name, age &#125; = person;<br />
+        console.log(name); // Output: Alice<br />
+        console.log(age); // Output: 30
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      Object methods in TypeScript provide a powerful way to organize and manipulate data. Understanding these methods, such as <code>Object.keys()</code>, <code>Object.values()</code>, and <code>Object.entries()</code>, enhances your ability to work with complex data structures. By leveraging object methods and features like destructuring, you can write cleaner and more efficient code in TypeScript.
+    </p>
+  </div>
+  
+}@case(60){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Keys Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, the concept of keys is crucial for accessing properties of objects. Understanding how to use key methods allows you to manipulate and interact with objects effectively. This article explores the various key methods in TypeScript, including examples and best practices.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Understanding Keys in TypeScript</h2>
+  
+    <p>
+      Keys in TypeScript refer to the property names of objects. These keys can be used to access the corresponding values. In TypeScript, keys can be either strings or numbers, and they are often defined using interfaces or types.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using <code>Object.keys()</code> Method</h2>
+  
+    <p>
+      The <code>Object.keys()</code> method returns an array of a given object's own property names, in the same order as we get with a standard loop. This method is particularly useful when you need to iterate over the properties of an object.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let person = &#123; name: 'Alice', age: 30, city: 'Wonderland' &#125;;<br />
+        let keys = Object.keys(person);<br />
+        console.log(keys); // Output: ['name', 'age', 'city']
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Using <code>Object.values()</code> Method</h2>
+  
+    <p>
+      While <code>Object.keys()</code> retrieves the keys, the <code>Object.values()</code> method returns an array of a given object's own property values, providing a way to get the values corresponding to those keys.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let values = Object.values(person);<br />
+        console.log(values); // Output: ['Alice', 30, 'Wonderland']
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using <code>Object.entries()</code> Method</h2>
+  
+    <p>
+      The <code>Object.entries()</code> method returns an array of a given object's own enumerable string-keyed property [key, value] pairs, making it easy to access both keys and values.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let entries = Object.entries(person);<br />
+        console.log(entries); // Output: [['name', 'Alice'], ['age', 30], ['city', 'Wonderland']]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Example: Iterating Over Keys</h2>
+  
+    <p>
+      You can use the <code>Object.keys()</code> method in combination with the <code>forEach</code> loop to iterate over the properties of an object easily.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.keys(person).forEach(key => &#123;<br />
+        &nbsp;&nbsp;console.log(`$&#123;key&#125;: $&#123;person[key]&#125;`);<br />
+        &#125;);<br />
+        // Output: <br />
+        // name: Alice<br />
+        // age: 30<br />
+        // city: Wonderland
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      Understanding and utilizing key methods in TypeScript, such as <code>Object.keys()</code>, <code>Object.values()</code>, and <code>Object.entries()</code>, empowers developers to work effectively with object data. By leveraging these methods, you can write cleaner, more efficient code and manipulate objects with ease.
+    </p>
+  </div>
+  
+}@case(61){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Values Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, understanding how to work with values in objects and collections is essential for effective data manipulation. This article explores various methods related to values in TypeScript, including practical examples and usage tips.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Values in TypeScript</h2>
+  
+    <p>
+      Values in TypeScript can be of various types, including primitive types (like numbers, strings, and booleans) and complex types (like objects and arrays). Manipulating these values efficiently is key to effective programming in TypeScript.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using <code>Object.values()</code> Method</h2>
+  
+    <p>
+      The <code>Object.values()</code> method returns an array of a given object's own property values. This method is particularly useful when you need to access the values of an object without needing to know its keys.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let person = &#123; name: 'Alice', age: 30, city: 'Wonderland' &#125;;<br />
+        let values = Object.values(person);<br />
+        console.log(values); // Output: ['Alice', 30, 'Wonderland']
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example: Summing Numeric Values</h2>
+  
+    <p>
+      You can use the <code>Object.values()</code> method to sum numeric values in an object. Here’s a simple example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let scores = &#123; math: 90, science: 85, english: 88 &#125;;<br />
+        let totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);<br />
+        console.log(totalScore); // Output: 263
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using Values in Arrays</h2>
+  
+    <p>
+      When working with arrays, you can also manipulate values using methods such as <code>map()</code>, <code>filter()</code>, and <code>reduce()</code>. Here’s an example of how to use the <code>map()</code> method to create a new array from an existing one:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let numbers = [1, 2, 3, 4];<br />
+        let doubled = numbers.map(num => num * 2);<br />
+        console.log(doubled); // Output: [2, 4, 6, 8]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Filtering Values in an Array</h2>
+  
+    <p>
+      You can also filter values in an array using the <code>filter()</code> method. Here’s how to filter out numbers greater than 2:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let filtered = numbers.filter(num => num > 2);<br />
+        console.log(filtered); // Output: [3, 4]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      Mastering values methods in TypeScript, particularly <code>Object.values()</code> and array manipulation methods, is crucial for efficient data handling and programming. By leveraging these methods, you can write cleaner, more effective code and manipulate data structures with ease.
+    </p>
+  </div>
+  
+}@case(62){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Entries Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, the concept of entries is fundamental when working with objects. This article explores the various methods related to entries, particularly the <code>Object.entries()</code> method, and provides practical examples of its usage.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Entries in TypeScript</h2>
+  
+    <p>
+      Entries in TypeScript refer to key-value pairs within objects. Understanding how to retrieve and manipulate these entries is crucial for effective data management and interaction in applications.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using <code>Object.entries()</code> Method</h2>
+  
+    <p>
+      The <code>Object.entries()</code> method returns an array of a given object's own enumerable string-keyed property [key, value] pairs. This method is particularly useful for iterating over an object’s properties and accessing both keys and values.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let person = &#123; name: 'Alice', age: 30, city: 'Wonderland' &#125;;<br />
+        let entries = Object.entries(person);<br />
+        console.log(entries); // Output: [['name', 'Alice'], ['age', 30], ['city', 'Wonderland']]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Iterating Over Entries</h2>
+  
+    <p>
+      You can easily iterate over the entries of an object using the <code>forEach</code> method on the array returned by <code>Object.entries()</code>. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.entries(person).forEach(([key, value]) => &#123;<br />
+        &nbsp;&nbsp;console.log(`$&#123;key&#125;: $&#123;value&#125;`);<br />
+        &#125;);<br />
+        // Output:<br />
+        // name: Alice<br />
+        // age: 30<br />
+        // city: Wonderland
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Converting Entries Back to Object</h2>
+  
+    <p>
+      After manipulating entries, you might want to convert them back into an object. You can achieve this using the <code>Object.fromEntries()</code> method. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let modifiedEntries = entries.map(([key, value]) => [key, value.toString()]);<br />
+        let modifiedPerson = Object.fromEntries(modifiedEntries);<br />
+        console.log(modifiedPerson); // Output: &#123; name: 'Alice', age: '30', city: 'Wonderland' &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Example: Filtering Entries</h2>
+  
+    <p>
+      You can also filter entries based on certain criteria. For instance, to get entries where the value is a string, you can do the following:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let stringEntries = Object.entries(person).filter(([key, value]) => typeof value === 'string');<br />
+        console.log(stringEntries); // Output: [['name', 'Alice'], ['city', 'Wonderland']]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      Mastering entries methods in TypeScript, especially <code>Object.entries()</code> and its associated functionalities, enables developers to efficiently manage object properties. By understanding how to work with entries, you can enhance your coding practices and streamline data handling in your applications.
+    </p>
+  </div>
+  
+}@case(63){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Assign Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, the <code>Object.assign()</code> method is a crucial utility for merging objects or copying values from one or more source objects to a target object. This article will explore the functionality of the <code>Object.assign()</code> method and provide practical examples to illustrate its usage.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Object.assign()</h2>
+  
+    <p>
+      The <code>Object.assign()</code> method is a built-in function that allows developers to copy properties from one or more source objects to a target object. If the target object already contains properties with the same keys as the source, the values from the source objects will overwrite the target object's properties.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Syntax of Object.assign()</h2>
+  
+    <p>
+      The syntax of the <code>Object.assign()</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.assign(target, ...sources);
+      </code>
+    </pre>
+  
+    <p>
+      - <code>target</code>: The target object to which properties will be copied.<br />
+      - <code>...sources</code>: One or more source objects from which properties will be copied.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Object.assign()</h2>
+  
+    <p>
+      Below is a simple example demonstrating how to use the <code>Object.assign()</code> method to copy properties from one object to another:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let target = &#123; a: 1, b: 2 &#125;;<br />
+        let source = &#123; b: 3, c: 4 &#125;;<br />
+        let returnedTarget = Object.assign(target, source);<br />
+        console.log(returnedTarget); // Output: &#123; a: 1, b: 3, c: 4 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Merging Multiple Objects</h2>
+  
+    <p>
+      The <code>Object.assign()</code> method can also merge multiple source objects into a single target object. Here’s how it works:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let target = &#123; a: 1 &#125;;<br />
+        let source1 = &#123; b: 2 &#125;;<br />
+        let source2 = &#123; c: 3, d: 4 &#125;;<br />
+        Object.assign(target, source1, source2);<br />
+        console.log(target); // Output: &#123; a: 1, b: 2, c: 3, d: 4 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Handling Property Overwrites</h2>
+  
+    <p>
+      If multiple source objects have properties with the same keys, the last one specified will overwrite the previous ones. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let obj1 = &#123; a: 1, b: 2 &#125;;<br />
+        let obj2 = &#123; b: 3, c: 4 &#125;;<br />
+        let obj3 = &#123; c: 5, d: 6 &#125;;<br />
+        Object.assign(obj1, obj2, obj3);<br />
+        console.log(obj1); // Output: &#123; a: 1, b: 3, c: 5, d: 6 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Cloning Objects with Object.assign()</h2>
+  
+    <p>
+      The <code>Object.assign()</code> method can also be used to create a shallow copy of an object. Here's an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let original = &#123; a: 1, b: 2 &#125;;<br />
+        let clone = Object.assign(&#123;&#125;, original);<br />
+        console.log(clone); // Output: &#123; a: 1, b: 2 &#125;<br />
+        clone.a = 5;<br />
+        console.log(original.a); // Output: 1 (original is unchanged)
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">7. Conclusion</h2>
+  
+    <p>
+      The <code>Object.assign()</code> method in TypeScript is a powerful tool for merging and cloning objects. By understanding how to effectively use this method, developers can manage object properties more efficiently in their applications.
+    </p>
+  </div>
+  
+}@case(64){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Spread Methods in TypeScript</h1>
+  
+    <p>
+      The spread operator in TypeScript, represented by three dots (<code>...</code>), allows for an elegant way to expand iterable objects such as arrays and objects into individual elements or properties. This article explores the functionality of the spread operator and provides practical examples to illustrate its usage.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to the Spread Operator</h2>
+  
+    <p>
+      The spread operator is a powerful feature in TypeScript that simplifies array and object manipulations. It is particularly useful for combining arrays, copying them, and creating new objects by merging existing ones.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using the Spread Operator with Arrays</h2>
+  
+    <p>
+      The spread operator can be used to expand an array into individual elements. Here’s a simple example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let array1 = &#123;1, 2, 3&#125;;<br />
+        let array2 = &#123;...array1, 4, 5&#125;;<br />
+        console.log(array2); // Output: [1, 2, 3, 4, 5]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Copying Arrays</h2>
+  
+    <p>
+      You can create a shallow copy of an array using the spread operator. This is particularly useful to avoid modifying the original array:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let originalArray = &#123;1, 2, 3&#125;;<br />
+        let copiedArray = &#123;...originalArray&#125;;<br />
+        console.log(copiedArray); // Output: [1, 2, 3]<br />
+        copiedArray.push(4);<br />
+        console.log(originalArray); // Output: [1, 2, 3] (original is unchanged)
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Using the Spread Operator with Objects</h2>
+  
+    <p>
+      The spread operator is also applicable to objects, allowing you to merge properties from multiple objects or create copies of objects. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let obj1 = &#123; a: 1, b: 2 &#125;;<br />
+        let obj2 = &#123; b: 3, c: 4 &#125;;<br />
+        let mergedObject = &#123;...obj1, ...obj2&#125;;<br />
+        console.log(mergedObject); // Output: &#123; a: 1, b: 3, c: 4 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Combining Arrays</h2>
+  
+    <p>
+      The spread operator is useful for combining multiple arrays into one. Here’s how it works:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let arr1 = &#123;1, 2&#125;;<br />
+        let arr2 = &#123;3, 4&#125;;<br />
+        let combinedArray = &#123;...arr1, ...arr2&#125;;<br />
+        console.log(combinedArray); // Output: [1, 2, 3, 4]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Function Calls with Spread Operator</h2>
+  
+    <p>
+      You can use the spread operator to pass elements of an array as arguments to a function. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        function add(a, b, c) &#123;<br />
+        &nbsp;&nbsp;return a + b + c;<br />
+        &#125;;<br />
+        let numbers = &#123;1, 2, 3&#125;;<br />
+        console.log(add(...numbers)); // Output: 6
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">7. Conclusion</h2>
+  
+    <p>
+      The spread operator in TypeScript is an essential feature for efficient array and object manipulation. By mastering the spread operator, developers can write cleaner, more concise code when dealing with iterable objects in their applications.
+    </p>
+  </div>
+  
+}@case(65){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Object.keys Methods in TypeScript</h1>
+  
+    <p>
+      The <code>Object.keys()</code> method in TypeScript is a powerful utility for retrieving the keys of an object as an array of strings. This article will explore how to use <code>Object.keys()</code>, along with practical examples to illustrate its functionality.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Object.keys()</h2>
+  
+    <p>
+      The <code>Object.keys()</code> method is part of the Object class in JavaScript and TypeScript. It returns an array containing the names of the object's own enumerable properties. This method is particularly useful for iterating over object keys when performing various operations on the object.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Syntax of Object.keys()</h2>
+  
+    <p>
+      The syntax of the <code>Object.keys()</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.keys(obj);
+      </code>
+    </pre>
+  
+    <p>
+      - <code>obj</code>: The object from which you want to retrieve the keys.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Object.keys()</h2>
+  
+    <p>
+      Below is a simple example demonstrating how to use the <code>Object.keys()</code> method:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let person = &#123; name: "Alice", age: 30, city: "New York" &#125;;<br />
+        let keys = Object.keys(person);<br />
+        console.log(keys); // Output: ["name", "age", "city"]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Iterating Over Object Keys</h2>
+  
+    <p>
+      The <code>Object.keys()</code> method can be used in conjunction with other methods to iterate over an object's properties. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let car = &#123; make: "Toyota", model: "Corolla", year: 2020 &#125;;<br />
+        Object.keys(car).forEach(key => &#123;<br />
+        &nbsp;&nbsp;console.log(key + ": " + car[key]);<br />
+        &#125;);<br />
+        // Output:<br />
+        // make: Toyota<br />
+        // model: Corolla<br />
+        // year: 2020
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Practical Use Cases</h2>
+  
+    <p>
+      The <code>Object.keys()</code> method is useful in many scenarios, such as:
+    </p>
+    <ul class="list-disc ml-5">
+      <li>Validating object properties</li>
+      <li>Creating dynamic forms based on object keys</li>
+      <li>Transforming objects into arrays for data processing</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>Object.keys()</code> method in TypeScript is a vital tool for working with object properties. By understanding how to effectively use this method, developers can manipulate and access object data with greater ease and efficiency.
+    </p>
+  </div>
+  
+}@case(66){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Object.values Methods in TypeScript</h1>
+  
+    <p>
+      The <code>Object.values()</code> method in TypeScript is a powerful utility that retrieves the values of an object as an array. This article will explore how to use <code>Object.values()</code>, along with practical examples to illustrate its functionality.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Object.values()</h2>
+  
+    <p>
+      The <code>Object.values()</code> method is part of the Object class in JavaScript and TypeScript. It returns an array containing the values of the object's own enumerable properties. This method is particularly useful for accessing and processing the values stored in an object.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Syntax of Object.values()</h2>
+  
+    <p>
+      The syntax of the <code>Object.values()</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.values(obj);
+      </code>
+    </pre>
+  
+    <p>
+      - <code>obj</code>: The object from which you want to retrieve the values.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Object.values()</h2>
+  
+    <p>
+      Below is a simple example demonstrating how to use the <code>Object.values()</code> method:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let person = &#123; name: "Alice", age: 30, city: "New York" &#125;;<br />
+        let values = Object.values(person);<br />
+        console.log(values); // Output: ["Alice", 30, "New York"]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Iterating Over Object Values</h2>
+  
+    <p>
+      The <code>Object.values()</code> method can be used in conjunction with other methods to iterate over an object's values. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let car = &#123; make: "Toyota", model: "Corolla", year: 2020 &#125;;<br />
+        Object.values(car).forEach(value => &#123;<br />
+        &nbsp;&nbsp;console.log(value);<br />
+        &#125;);<br />
+        // Output:<br />
+        // Toyota<br />
+        // Corolla<br />
+        // 2020
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Practical Use Cases</h2>
+  
+    <p>
+      The <code>Object.values()</code> method is useful in many scenarios, such as:
+    </p>
+    <ul class="list-disc ml-5">
+      <li>Validating object values</li>
+      <li>Transforming objects into arrays for data processing</li>
+      <li>Filtering or searching values within objects</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>Object.values()</code> method in TypeScript is a vital tool for working with object values. By understanding how to effectively use this method, developers can manipulate and access object data with greater ease and efficiency.
+    </p>
+  </div>
+  
+}@case(67){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Object.entries Methods in TypeScript</h1>
+  
+    <p>
+      The <code>Object.entries()</code> method in TypeScript is a useful utility for retrieving the key-value pairs of an object as an array of arrays. This article will explore how to use <code>Object.entries()</code>, along with practical examples to illustrate its functionality.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Object.entries()</h2>
+  
+    <p>
+      The <code>Object.entries()</code> method is part of the Object class in JavaScript and TypeScript. It returns an array of a given object's own enumerable string-keyed property [key, value] pairs. This method is particularly useful for iterating over object properties and accessing both keys and values simultaneously.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Syntax of Object.entries()</h2>
+  
+    <p>
+      The syntax of the <code>Object.entries()</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.entries(obj);
+      </code>
+    </pre>
+  
+    <p>
+      - <code>obj</code>: The object from which you want to retrieve the entries.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Object.entries()</h2>
+  
+    <p>
+      Below is a simple example demonstrating how to use the <code>Object.entries()</code> method:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let person = &#123; name: "Alice", age: 30, city: "New York" &#125;;<br />
+        let entries = Object.entries(person);<br />
+        console.log(entries); // Output: [["name", "Alice"], ["age", 30], ["city", "New York"]]
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Iterating Over Object Entries</h2>
+  
+    <p>
+      The <code>Object.entries()</code> method can be used in conjunction with other methods to iterate over an object's entries. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let car = &#123; make: "Toyota", model: "Corolla", year: 2020 &#125;;<br />
+        Object.entries(car).forEach(([key, value]) => &#123;<br />
+        &nbsp;&nbsp;console.log(key + ": " + value);<br />
+        &#125;);<br />
+        // Output:<br />
+        // make: Toyota<br />
+        // model: Corolla<br />
+        // year: 2020
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Practical Use Cases</h2>
+  
+    <p>
+      The <code>Object.entries()</code> method is useful in many scenarios, such as:
+    </p>
+    <ul class="list-disc ml-5">
+      <li>Transforming objects into arrays for data processing</li>
+      <li>Filtering or searching key-value pairs within objects</li>
+      <li>Creating dynamic structures based on object entries</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>Object.entries()</code> method in TypeScript is a vital tool for working with object properties. By understanding how to effectively use this method, developers can manipulate and access object data with greater ease and efficiency.
+    </p>
+  </div>
+  
+}@case(68){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Object.assign Methods in TypeScript</h1>
+  
+    <p>
+      The <code>Object.assign()</code> method in TypeScript is a powerful utility that allows you to copy the values of all enumerable own properties from one or more source objects to a target object. This article will explore how to use <code>Object.assign()</code>, along with practical examples to illustrate its functionality.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Object.assign()</h2>
+  
+    <p>
+      The <code>Object.assign()</code> method is part of the Object class in JavaScript and TypeScript. It can be used for merging objects, cloning objects, and setting default values. This method returns the target object, which is modified by the properties of the source objects.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Syntax of Object.assign()</h2>
+  
+    <p>
+      The syntax of the <code>Object.assign()</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.assign(target, ...sources);
+      </code>
+    </pre>
+  
+    <p>
+      - <code>target</code>: The target object that will receive the properties.
+    </p>
+    <p>
+      - <code>...sources</code>: One or more source objects from which properties will be copied.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Object.assign()</h2>
+  
+    <p>
+      Below is a simple example demonstrating how to use the <code>Object.assign()</code> method:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let target = &#123; a: 1, b: 2 &#125;;<br />
+        let source = &#123; b: 3, c: 4 &#125;;<br />
+        let result = Object.assign(target, source);<br />
+        console.log(result); // Output: &#123; a: 1, b: 3, c: 4 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Merging Multiple Objects</h2>
+  
+    <p>
+      The <code>Object.assign()</code> method can also be used to merge multiple objects into one. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let obj1 = &#123; a: 1 &#125;;<br />
+        let obj2 = &#123; b: 2 &#125;;<br />
+        let obj3 = &#123; c: 3 &#125;;<br />
+        let merged = Object.assign({{'{}'}}, obj1, obj2, obj3);<br />
+        console.log(merged); // Output: &#123; a: 1, b: 2, c: 3 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Cloning Objects</h2>
+  
+    <p>
+      You can also use <code>Object.assign()</code> to create a shallow clone of an object:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let original = &#123; x: 1, y: 2 &#125;;<br />
+        let clone = Object.assign({{'{}'}}, original);<br />
+        console.log(clone); // Output: &#123; x: 1, y: 2 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>Object.assign()</code> method in TypeScript is a versatile tool for merging, cloning, and manipulating objects. By understanding how to effectively use this method, developers can streamline their code and enhance object handling in TypeScript applications.
+    </p>
+  </div>
+  
+}@case(69){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Object.fromEntries Methods in TypeScript</h1>
+  
+    <p>
+      The <code>Object.fromEntries()</code> method in TypeScript is a powerful utility that allows you to convert a list of key-value pairs into an object. This article will explore how to use <code>Object.fromEntries()</code>, along with practical examples to illustrate its functionality.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Object.fromEntries()</h2>
+  
+    <p>
+      The <code>Object.fromEntries()</code> method is a part of the Object class in JavaScript and TypeScript. It takes an iterable (such as an array) of key-value pairs and transforms them into an object. This method is particularly useful when you need to create an object from data structures like Maps or arrays.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Syntax of Object.fromEntries()</h2>
+  
+    <p>
+      The syntax of the <code>Object.fromEntries()</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        Object.fromEntries(iterable);
+      </code>
+    </pre>
+  
+    <p>
+      - <code>iterable</code>: An iterable such as an array or a Map that contains key-value pairs.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Object.fromEntries()</h2>
+  
+    <p>
+      Below is a simple example demonstrating how to use the <code>Object.fromEntries()</code> method:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const entries = [['name', 'Alice'], ['age', 30], ['city', 'New York']];<br />
+        const obj = Object.fromEntries(entries);<br />
+        console.log(obj); // Output: &#123; name: "Alice", age: 30, city: "New York" &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Converting Maps to Objects</h2>
+  
+    <p>
+      The <code>Object.fromEntries()</code> method can be used to convert a Map into an object. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const map = new Map();<br />
+        map.set('a', 1);<br />
+        map.set('b', 2);<br />
+        const objFromMap = Object.fromEntries(map);<br />
+        console.log(objFromMap); // Output: &#123; a: 1, b: 2 &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Use Cases for Object.fromEntries()</h2>
+  
+    <p>
+      The <code>Object.fromEntries()</code> method is useful in many scenarios, such as:
+    </p>
+    <ul class="list-disc ml-5">
+      <li>Transforming key-value pairs from various data structures into objects</li>
+      <li>Reconstructing objects from serialized data</li>
+      <li>Working with dynamic property names in applications</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code>Object.fromEntries()</code> method in TypeScript is an essential tool for converting key-value pairs into objects. By understanding how to effectively use this method, developers can streamline their code and enhance data manipulation in TypeScript applications.
+    </p>
+  </div>
+  
+}@case(70){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Set Methods in TypeScript</h1>
+  
+    <p>
+      The <code>Set</code> object in TypeScript is a collection of values where each value must be unique. This article explores the various methods provided by the <code>Set</code> class and how they can be utilized in TypeScript applications.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Set</h2>
+  
+    <p>
+      A <code>Set</code> is a built-in data structure that lets you store unique values of any type, whether primitive values or object references. The <code>Set</code> object provides various methods to manipulate the collection of unique values.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Creating a Set</h2>
+  
+    <p>
+      You can create a <code>Set</code> using the following syntax:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const mySet = new Set();<br />
+        const mySetWithValues = new Set(&#123;'apple', 'banana', 'orange'&#125;);
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Common Set Methods</h2>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">a. add(value)</h3>
+    <p>
+      The <code>add()</code> method adds a new element to the <code>Set</code>. If the value already exists, it will not add it again.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        mySet.add('grape');<br />
+        console.log(mySet); // Output: Set(4) &#123; 'apple', 'banana', 'orange', 'grape' &#125;
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">b. delete(value)</h3>
+    <p>
+      The <code>delete()</code> method removes a specified value from the <code>Set</code>.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        mySet.delete('banana');<br />
+        console.log(mySet); // Output: Set(3) &#123; 'apple', 'orange', 'grape' &#125;
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">c. has(value)</h3>
+    <p>
+      The <code>has()</code> method checks if a specific value exists in the <code>Set</code>.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        console.log(mySet.has('apple')); // Output: true<br />
+        console.log(mySet.has('banana')); // Output: false
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">d. clear()</h3>
+    <p>
+      The <code>clear()</code> method removes all elements from the <code>Set</code>.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        mySet.clear();<br />
+        console.log(mySet); // Output: Set(0) {{'{}'}}
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">e. size</h3>
+    <p>
+      The <code>size</code> property returns the number of unique values in the <code>Set</code>.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        console.log(mySet.size); // Output: 0
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Conclusion</h2>
+  
+    <p>
+      The <code>Set</code> object in TypeScript provides a versatile way to work with collections of unique values. By utilizing the various methods provided, developers can efficiently manage and manipulate data collections in their TypeScript applications.
+    </p>
+  </div>
+  
+}@case(71){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Get Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, the <code>get</code> methods are used to define properties in a class that can be accessed like regular properties, but they run a method when accessed. This article will explore the usage of <code>get</code> methods, along with practical examples to illustrate their functionality.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Get Methods</h2>
+  
+    <p>
+      A <code>get</code> method in TypeScript is a way to create a property that retrieves a value when accessed. This provides a way to encapsulate data and implement logic without exposing the underlying implementation directly.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Syntax of Get Methods</h2>
+  
+    <p>
+      The syntax for defining a <code>get</code> method is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        class ClassName &#123;<br />
+        &nbsp;&nbsp;private _property: type;<br />
+        <br />
+        &nbsp;&nbsp;constructor(value: type) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;this._property = value;<br />
+        &nbsp;&nbsp;&#125;<br />
+        <br />
+        &nbsp;&nbsp;get property() &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;return this._property;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Example of Get Methods</h2>
+  
+    <p>
+      Below is a simple example demonstrating how to use a <code>get</code> method in a class:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        class Person &#123;<br />
+        &nbsp;&nbsp;private _name: string;<br />
+        <br />
+        &nbsp;&nbsp;constructor(name: string) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;this._name = name;<br />
+        &nbsp;&nbsp;&#125;<br />
+        <br />
+        &nbsp;&nbsp;get name() &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;return this._name;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br />
+        <br />
+        const person = new Person('Alice');<br />
+        console.log(person.name); // Output: Alice
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Use Cases for Get Methods</h2>
+  
+    <p>
+      Get methods are particularly useful in scenarios where:
+    </p>
+    <ul class="list-disc ml-5">
+      <li>You want to calculate a value dynamically based on other properties.</li>
+      <li>You need to encapsulate logic when retrieving a value, such as validation or transformation.</li>
+      <li>You want to provide read-only access to a property while keeping the internal state private.</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      Get methods in TypeScript provide a powerful way to manage properties within classes. By using <code>get</code> methods, developers can implement encapsulation, validation, and dynamic calculations seamlessly, enhancing the maintainability and readability of their code.
+    </p>
+  </div>
+  
+}@case(72){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Has Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, the <code>has</code> method is commonly associated with the <code>Set</code> and <code>Map</code> objects, allowing developers to check the existence of a specific value in a collection. This article will explore how the <code>has</code> method works in TypeScript, with practical examples to illustrate its usage.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to the Has Method</h2>
+  
+    <p>
+      The <code>has</code> method is used to determine if a particular value exists in a <code>Set</code> or a key exists in a <code>Map</code>. This method returns a boolean value: <code>true</code> if the value or key is found and <code>false</code> otherwise.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using the Has Method with Sets</h2>
+  
+    <p>
+      The syntax for using the <code>has</code> method with a <code>Set</code> is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const mySet = new Set(&#123;'apple', 'banana', 'orange'&#125;);<br />
+        console.log(mySet.has('banana')); // Output: true<br />
+        console.log(mySet.has('grape')); // Output: false
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Using the Has Method with Maps</h2>
+  
+    <p>
+      The syntax for using the <code>has</code> method with a <code>Map</code> is as follows:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const myMap = new Map(&#123;<br />
+        &nbsp;&nbsp;'name': 'Alice',<br />
+        &nbsp;&nbsp;'age': 25,<br />
+        &nbsp;&nbsp;'city': 'New York'&#125;);<br />
+        <br />
+        console.log(myMap.has('name')); // Output: true<br />
+        console.log(myMap.has('country')); // Output: false
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Practical Example of Has Methods</h2>
+  
+    <p>
+      Below is an example that combines both <code>Set</code> and <code>Map</code> objects to illustrate the usage of the <code>has</code> method:
+    </p>
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        class UserProfile &#123;<br />
+        &nbsp;&nbsp;private roles: Set&lt;string&gt;;<br />
+        &nbsp;&nbsp;private settings: Map&lt;string, any&gt;;<br />
+        <br />
+        &nbsp;&nbsp;constructor() &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;this.roles = new Set(&#123;'admin', 'user'&#125;);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;this.settings = new Map(&#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'theme': 'dark',<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'notifications': true<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&#125;);<br />
+        &nbsp;&nbsp;&#125;<br />
+        <br />
+        &nbsp;&nbsp;checkRole(role: string) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;return this.roles.has(role);<br />
+        &nbsp;&nbsp;&#125;<br />
+        <br />
+        &nbsp;&nbsp;checkSetting(setting: string) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;return this.settings.has(setting);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br />
+        <br />
+        const userProfile = new UserProfile();<br />
+        console.log(userProfile.checkRole('admin')); // Output: true<br />
+        console.log(userProfile.checkSetting('theme')); // Output: true<br />
+        console.log(userProfile.checkSetting('language')); // Output: false
+      </code>
+    </pre>
+
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      The <code>has</code> method in TypeScript is a valuable tool for checking the presence of values in collections like <code>Set</code> and <code>Map</code>. By leveraging this method, developers can efficiently manage and validate the existence of data in their applications, ensuring better data integrity and performance.
+    </p>
+  </div>
+  
+}@case(73){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Delete Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, the <code>delete</code> operator is used to remove properties from an object. This operator allows you to manage object properties dynamically at runtime. In this article, we'll explore how to use the <code>delete</code> operator effectively with practical examples.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to the Delete Operator</h2>
+  
+    <p>
+      The <code>delete</code> operator removes a property from an object. It takes the form:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        delete objectName.propertyName;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using the Delete Operator</h2>
+  
+    <p>
+      Below is an example of how to use the <code>delete</code> operator to remove properties from an object:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const user = &#123;<br />
+        &nbsp;&nbsp;'name': 'Alice',<br />
+        &nbsp;&nbsp;'age': 30,<br />
+        &nbsp;&nbsp;'city': 'New York'&#125;;<br />
+        <br />
+        console.log(user); // Output: &#123; name: 'Alice', age: 30, city: 'New York' &#125;<br />
+        delete user.age;<br />
+        console.log(user); // Output: &#123; name: 'Alice', city: 'New York' &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Important Notes on the Delete Operator</h2>
+  
+    <p>
+      - The <code>delete</code> operator returns <code>true</code> if the property was successfully deleted, and <code>false</code> if the property could not be deleted (e.g., if it is a non-configurable property).<br />
+      - If the property does not exist, <code>delete</code> will return <code>true</code> without throwing an error.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Practical Example of the Delete Operator</h2>
+  
+    <p>
+      Here’s a practical example that shows the use of the <code>delete</code> operator in a more complex scenario:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        class Car &#123;<br />
+        &nbsp;&nbsp;make: string;<br />
+        &nbsp;&nbsp;model: string;<br />
+        &nbsp;&nbsp;year: number;<br />
+        <br />
+        &nbsp;&nbsp;constructor(make: string, model: string, year: number) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;this.make = make;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;this.model = model;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;this.year = year;<br />
+        &nbsp;&nbsp;&#125;<br />
+        <br />
+        &nbsp;&nbsp;deleteYear() &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;delete this.year;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br />
+        <br />
+        const myCar = new Car('Toyota', 'Corolla', 2020);<br />
+        console.log(myCar); // Output: Car &#123; make: 'Toyota', model: 'Corolla', year: 2020 &#125;<br />
+        myCar.deleteYear();<br />
+        console.log(myCar); // Output: Car &#123; make: 'Toyota', model: 'Corolla' &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      The <code>delete</code> operator in TypeScript is a powerful tool for dynamically managing object properties. It allows developers to create flexible and adaptable objects, making it easier to handle various scenarios in applications.
+    </p>
+  </div>
+  
+}@case(74){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Destructuring Methods in TypeScript</h1>
+  
+    <p>
+      Destructuring is a powerful feature in TypeScript that allows you to unpack values from arrays or properties from objects into distinct variables. This method simplifies the code and enhances readability. In this article, we'll explore how to use destructuring effectively in TypeScript.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Destructuring</h2>
+  
+    <p>
+      Destructuring allows you to extract values from arrays or properties from objects and assign them to variables. This syntax is more concise and cleaner than traditional methods of accessing object properties or array elements.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Destructuring Objects</h2>
+  
+    <p>
+      You can destructure objects by using curly braces. Here’s an example:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const person = &#123;<br />
+        &nbsp;&nbsp;'name': 'Alice',<br />
+        &nbsp;&nbsp;'age': 25,<br />
+        &nbsp;&nbsp;'city': 'New York'&#125;;<br />
+        <br />
+        const &#123; name, age &#125; = person;<br />
+        console.log(name); // Output: Alice<br />
+        console.log(age); // Output: 25
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Destructuring Arrays</h2>
+  
+    <p>
+      Array destructuring uses square brackets. Here's how to do it:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const colors = ['red', 'green', 'blue'];<br />
+        const &#91; firstColor, secondColor &#93; = colors;<br />
+        console.log(firstColor); // Output: red<br />
+        console.log(secondColor); // Output: green
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Default Values in Destructuring</h2>
+  
+    <p>
+      You can assign default values to variables during destructuring. This is useful when the property might be undefined:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const user = &#123;<br />
+        &nbsp;&nbsp;'name': 'Alice'<br />
+        &#125;;<br />
+        <br />
+        const &#123; name, age = 30 &#125; = user;<br />
+        console.log(name); // Output: Alice<br />
+        console.log(age); // Output: 30
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Nested Destructuring</h2>
+  
+    <p>
+      Destructuring can also be used for nested objects and arrays:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const student = &#123;<br />
+        &nbsp;&nbsp;'name': 'Bob',<br />
+        &nbsp;&nbsp;'scores': &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'math': 90,<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'science': 85<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;;<br />
+        <br />
+        const &#123; scores: &#123; math &#125; &#125; = student;<br />
+        console.log(math); // Output: 90
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      Destructuring in TypeScript simplifies the process of extracting values from objects and arrays. It enhances code readability and reduces boilerplate code, making it a valuable feature in modern JavaScript and TypeScript development.
+    </p>
+  </div>
+  
+}@case(75){
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">WeakMap Methods in TypeScript</h1>
+  
+    <p>
+      A WeakMap is a collection of key-value pairs where the keys are objects and the values can be any value. WeakMaps are similar to Maps, but they allow for garbage collection of the keys. This article will explore the key methods provided by WeakMap in TypeScript and how to use them effectively.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to WeakMap</h2>
+  
+    <p>
+      A WeakMap is particularly useful for storing data that needs to be associated with an object without preventing that object from being garbage-collected. This is ideal for cases like caching and managing private data.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Creating a WeakMap</h2>
+  
+    <p>
+      You can create a WeakMap using the following syntax:
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const weakMap = new WeakMap();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. WeakMap Methods</h2>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">3.1. set(key: object, value: any)</h3>
+  
+    <p>
+      The <code class="font-mono">set</code> method adds a new key-value pair to the WeakMap. The key must be an object.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const obj = &#123;&#125;;<br />
+        weakMap.set(obj, 'value');<br />
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">3.2. get(key: object)</h3>
+  
+    <p>
+      The <code class="font-mono">get</code> method retrieves the value associated with the specified key.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const value = weakMap.get(obj);<br />
+        console.log(value); // Output: 'value'<br />
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">3.3. has(key: object)</h3>
+  
+    <p>
+      The <code class="font-mono">has</code> method checks if a key exists in the WeakMap.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const exists = weakMap.has(obj);<br />
+        console.log(exists); // Output: true<br />
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">3.4. delete(key: object)</h3>
+  
+    <p>
+      The <code class="font-mono">delete</code> method removes the specified key and its associated value from the WeakMap.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        weakMap.delete(obj);<br />
+        console.log(weakMap.has(obj)); // Output: false<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Use Cases for WeakMap</h2>
+  
+    <p>
+      WeakMaps are useful for scenarios such as:
+    </p>
+    <ul class="list-disc ml-6">
+      <li>Storing metadata about an object.</li>
+      <li>Caching results of expensive computations.</li>
+      <li>Maintaining private data for objects without risking memory leaks.</li>
+    </ul>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      WeakMaps provide a powerful way to manage memory efficiently in JavaScript and TypeScript. By allowing garbage collection of keys, they enable developers to avoid memory leaks while associating values with objects.
+    </p>
+  </div>
+  
 }
 }
