@@ -8375,23 +8375,1041 @@ console.log(PI);</code></pre>
   </div>
   
 }@case(81){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Generator Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, generator functions are a special type of function that can be paused and resumed. A generator is declared using the function keyword followed by an asterisk <code class="font-mono">*</code>. These functions return an iterator object that adheres to the <code class="font-mono">Iterator</code> interface. Let's explore how generator methods work and their use cases in TypeScript.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Basic Generator Function</h2>
+  
+    <p>
+      A generator function uses the <code class="font-mono">yield</code> keyword to pause its execution. Each call to <code class="font-mono">next()</code> on the returned iterator resumes the function until the next <code class="font-mono">yield</code> is encountered.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        function* numberGenerator() &#123;<br />
+        &nbsp;&nbsp;yield 1;<br />
+        &nbsp;&nbsp;yield 2;<br />
+        &nbsp;&nbsp;yield 3;<br />
+        &#125;<br /><br />
+  
+        const numbers = numberGenerator();<br />
+        console.log(numbers.next().value); // Output: 1<br />
+        console.log(numbers.next().value); // Output: 2<br />
+        console.log(numbers.next().value); // Output: 3<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Generator Methods</h2>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">2.1. <code class="font-mono">next()</code> Method</h3>
+  
+    <p>
+      The <code class="font-mono">next()</code> method is used to resume a generator function and return an object with two properties: <code class="font-mono">value</code> and <code class="font-mono">done</code>. <code class="font-mono">value</code> is the yielded value, and <code class="font-mono">done</code> is a boolean that indicates whether the generator has completed.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const iterator = numberGenerator();<br />
+        console.log(iterator.next()); // Output: &#123; value: 1, done: false &#125;<br />
+        console.log(iterator.next()); // Output: &#123; value: 2, done: false &#125;<br />
+        console.log(iterator.next()); // Output: &#123; value: 3, done: false &#125;<br />
+        console.log(iterator.next()); // Output: &#123; value: undefined, done: true &#125;<br />
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">2.2. <code class="font-mono">return()</code> Method</h3>
+  
+    <p>
+      The <code class="font-mono">return()</code> method is used to return a given value and finish the generator function. It forces the generator to return and set the <code class="font-mono">done</code> property to <code class="font-mono">true</code>.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const iterator2 = numberGenerator();<br />
+        console.log(iterator2.next()); // Output: &#123; value: 1, done: false &#125;<br />
+        console.log(iterator2.return('finished')); // Output: &#123; value: 'finished', done: true &#125;<br />
+      </code>
+    </pre>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">2.3. <code class="font-mono">throw()</code> Method</h3>
+  
+    <p>
+      The <code class="font-mono">throw()</code> method is used to throw an error from the generator. The exception is thrown at the current <code class="font-mono">yield</code> point inside the generator.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        function* exampleGenerator() &#123;<br />
+        &nbsp;&nbsp;try &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield 1;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield 2;<br />
+        &nbsp;&nbsp;&#125; catch (err) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log('Error caught:', err);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        const iterator3 = exampleGenerator();<br />
+        console.log(iterator3.next()); // Output: &#123; value: 1, done: false &#125;<br />
+        console.log(iterator3.throw('An error occurred')); // Error caught: An error occurred<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Conclusion</h2>
+  
+    <p>
+      Generator functions in TypeScript provide a powerful way to pause and resume execution. They offer flexibility in handling asynchronous data streams and managing sequences. By using the <code class="font-mono">next()</code>, <code class="font-mono">return()</code>, and <code class="font-mono">throw()</code> methods, developers can have fine-grained control over how the generator functions behave and handle different situations.
+    </p>
+  </div>
+  
 }@case(82){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Async Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, the <code class="font-mono">async</code> keyword is used to define asynchronous functions that return a <code class="font-mono">Promise</code>. It allows for the use of the <code class="font-mono">await</code> keyword, which pauses the execution of the function until the awaited promise resolves. Let's explore how async methods work and how they simplify asynchronous code handling.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Basic Async Function</h2>
+  
+    <p>
+      An async function returns a <code class="font-mono">Promise</code> implicitly. Even if no <code class="font-mono">Promise</code> is returned, the function itself will wrap the return value in a promise.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function fetchData() &#123;<br />
+        &nbsp;&nbsp;return 'Data loaded';<br />
+        &#125;<br /><br />
+  
+        fetchData().then(data => console.log(data));<br />
+        // Output: 'Data loaded'<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using <code class="font-mono">await</code> with Async Functions</h2>
+  
+    <p>
+      The <code class="font-mono">await</code> keyword can only be used inside async functions. It allows you to wait for a promise to resolve and access the resolved value directly, making asynchronous code more readable.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function loadData() &#123;<br />
+        &nbsp;&nbsp;const data = await fetchDataFromAPI();<br />
+        &nbsp;&nbsp;console.log(data);<br />
+        &#125;<br /><br />
+  
+        loadData();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Error Handling in Async Functions</h2>
+  
+    <p>
+      Error handling is simplified in async functions by using <code class="font-mono">try...catch</code> blocks. If a promise rejects, the error can be caught and handled within the catch block.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function loadUserData() &#123;<br />
+        &nbsp;&nbsp;try &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;const user = await fetchUserFromAPI();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(user);<br />
+        &nbsp;&nbsp;&#125; catch (error) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.error('Error fetching user data:', error);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        loadUserData();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Combining Multiple Async Calls</h2>
+  
+    <p>
+      Async functions can await multiple promises in sequence, making it easier to handle complex asynchronous operations.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function getUserAndPosts() &#123;<br />
+        &nbsp;&nbsp;const user = await fetchUser();<br />
+        &nbsp;&nbsp;const posts = await fetchUserPosts(user.id);<br />
+        &nbsp;&nbsp;console.log(user, posts);<br />
+        &#125;<br /><br />
+  
+        getUserAndPosts();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      Async functions in TypeScript provide a powerful way to work with promises and asynchronous operations. By using the <code class="font-mono">async</code> and <code class="font-mono">await</code> keywords, developers can write more readable and maintainable asynchronous code. The ability to handle errors with <code class="font-mono">try...catch</code> blocks also makes it easier to manage promise rejections.
+    </p>
+  </div>
+  
 }@case(83){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Async/Await Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, <code class="font-mono">async</code> and <code class="font-mono">await</code> are used to simplify working with promises. By using these keywords, you can write asynchronous code that looks more like synchronous code, improving readability and error handling.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Basic Async Function</h2>
+  
+    <p>
+      An <code class="font-mono">async</code> function always returns a promise. Even if you don't explicitly return a promise, it will implicitly return a resolved promise when using the <code class="font-mono">async</code> keyword.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function fetchData() &#123;<br />
+        &nbsp;&nbsp;return 'Data fetched';<br />
+        &#125;<br /><br />
+  
+        fetchData().then(data => console.log(data));<br />
+        // Output: 'Data fetched'<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using <code class="font-mono">await</code> to Handle Promises</h2>
+  
+    <p>
+      The <code class="font-mono">await</code> keyword is used inside an <code class="font-mono">async</code> function to pause execution until the promise resolves. This makes the code easier to understand, eliminating the need for chaining <code class="font-mono">.then()</code> methods.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function getData() &#123;<br />
+        &nbsp;&nbsp;const data = await fetch('https://api.example.com/data');<br />
+        &nbsp;&nbsp;console.log(data);<br />
+        &#125;<br /><br />
+  
+        getData();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Error Handling with Async/Await</h2>
+  
+    <p>
+      Error handling in async functions is straightforward. By using <code class="font-mono">try...catch</code> blocks, you can catch errors from promises in a more traditional and structured way.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function loadData() &#123;<br />
+        &nbsp;&nbsp;try &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;const data = await fetchDataFromAPI();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(data);<br />
+        &nbsp;&nbsp;&#125; catch (error) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.error('Error fetching data:', error);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        loadData();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Running Multiple Async Calls</h2>
+  
+    <p>
+      You can combine multiple asynchronous calls by awaiting each promise in sequence or by using <code class="font-mono">Promise.all()</code> for parallel execution. This ensures that each async call completes before moving on to the next.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function getUserData() &#123;<br />
+        &nbsp;&nbsp;const user = await fetchUser();<br />
+        &nbsp;&nbsp;const posts = await fetchUserPosts(user.id);<br />
+        &nbsp;&nbsp;console.log(user, posts);<br />
+        &#125;<br /><br />
+  
+        getUserData();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      The <code class="font-mono">async</code> and <code class="font-mono">await</code> keywords are powerful tools for handling asynchronous operations in TypeScript. They provide a cleaner and more intuitive way to work with promises, improving both code readability and error management. Async/await is especially useful in real-world applications that involve multiple asynchronous tasks, such as data fetching from APIs or interacting with databases.
+    </p>
+  </div>
+  
 }@case(84){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Async Generators in TypeScript</h1>
+  
+    <p>
+      Async generators in TypeScript provide a way to create functions that can pause execution and yield values asynchronously. This is especially useful when you need to handle a series of asynchronous operations, such as fetching paginated data from an API or processing a stream of events over time.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Basic Syntax of Async Generators</h2>
+  
+    <p>
+      An async generator function is defined using the <code class="font-mono">async</code> and <code class="font-mono">*</code> keywords. The <code class="font-mono">yield</code> keyword is used to return values, and each <code class="font-mono">yield</code> can be followed by an asynchronous operation.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* asyncGenerator() &#123;<br />
+        &nbsp;&nbsp;yield 'First';<br />
+        &nbsp;&nbsp;yield 'Second';<br />
+        &nbsp;&nbsp;yield 'Third';<br />
+        &#125;<br /><br />
+  
+        const generator = asyncGenerator();<br />
+        console.log(await generator.next()); // Output: &#123; value: 'First', done: false &#125;<br />
+        console.log(await generator.next()); // Output: &#123; value: 'Second', done: false &#125;<br />
+        console.log(await generator.next()); // Output: &#123; value: 'Third', done: false &#125;<br />
+        console.log(await generator.next()); // Output: &#123; value: undefined, done: true &#125;<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Async Generators with Promises</h2>
+  
+    <p>
+      Async generators can be used to handle asynchronous tasks by yielding promises. This allows you to perform asynchronous operations in a sequential manner, while using <code class="font-mono">await</code> within the generator.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* fetchAsyncData() &#123;<br />
+        &nbsp;&nbsp;const data1 = await fetch('https://api.example.com/data1');<br />
+        &nbsp;&nbsp;yield data1;<br /><br />
+  
+        &nbsp;&nbsp;const data2 = await fetch('https://api.example.com/data2');<br />
+        &nbsp;&nbsp;yield data2;<br />
+        &#125;<br /><br />
+  
+        const asyncGen = fetchAsyncData();<br />
+        console.log(await asyncGen.next()); // Output: first API data<br />
+        console.log(await asyncGen.next()); // Output: second API data<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Iterating Over Async Generators</h2>
+  
+    <p>
+      You can use the <code class="font-mono">for await...of</code> loop to iterate over async generators, waiting for each asynchronous result as it becomes available.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* asyncCounter() &#123;<br />
+        &nbsp;&nbsp;let i = 0;<br />
+        &nbsp;&nbsp;while (i &lt; 3) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;await new Promise(resolve => setTimeout(resolve, 1000));<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield i++;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function printAsyncCounter() &#123;<br />
+        &nbsp;&nbsp;for await (const value of asyncCounter()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(value);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        printAsyncCounter();<br />
+        // Output: 0, 1, 2 (each after 1 second)
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Error Handling in Async Generators</h2>
+  
+    <p>
+      You can handle errors inside async generators using <code class="font-mono">try...catch</code> blocks, ensuring that the generator gracefully handles any issues during asynchronous operations.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* errorProneAsyncGen() &#123;<br />
+        &nbsp;&nbsp;try &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield await fetch('https://api.example.com/data');<br />
+        &nbsp;&nbsp;&#125; catch (error) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.error('Error fetching data:', error);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function handleErrors() &#123;<br />
+        &nbsp;&nbsp;for await (const value of errorProneAsyncGen()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(value);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        handleErrors();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      Async generators in TypeScript are a powerful tool for managing asynchronous tasks, especially when dealing with sequences of asynchronous events or tasks. They allow developers to pause execution and yield values asynchronously, improving readability and control over complex asynchronous flows.
+    </p>
+  </div>
+  
 }@case(85){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Async/Await Generators in TypeScript</h1>
+  
+    <p>
+      TypeScript's async/await and generators provide powerful tools to handle asynchronous operations in a synchronous-like manner, improving code readability and flow control. Async generators combine both concepts, allowing functions to yield values asynchronously.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. What Are Async Generators?</h2>
+  
+    <p>
+      An async generator is a special type of generator function that can handle asynchronous operations. They return an async iterable object and can pause and resume execution while waiting for asynchronous tasks to complete.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* asyncGenerator() &#123;<br />
+        &nbsp;&nbsp;yield 'Fetching data...';<br />
+        &nbsp;&nbsp;await new Promise(resolve => setTimeout(resolve, 1000));<br />
+        &nbsp;&nbsp;yield 'Data fetched!';<br />
+        &#125;<br /><br />
+  
+        const generator = asyncGenerator();<br />
+        console.log(await generator.next()); // &#123; value: 'Fetching data...', done: false &#125;<br />
+        console.log(await generator.next()); // &#123; value: 'Data fetched!', done: false &#125;<br />
+        console.log(await generator.next()); // &#123; value: undefined, done: true &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Combining Async/Await with Generators</h2>
+  
+    <p>
+      You can combine async/await with generators for handling asynchronous code in a more manageable way. The <code class="font-mono">async</code> keyword allows the generator to await promises and yield values asynchronously.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* fetchAsyncData() &#123;<br />
+        &nbsp;&nbsp;yield 'Start fetching...';<br />
+        &nbsp;&nbsp;const data1 = await fetch('https://api.example.com/data1');<br />
+        &nbsp;&nbsp;yield data1;<br /><br />
+  
+        &nbsp;&nbsp;const data2 = await fetch('https://api.example.com/data2');<br />
+        &nbsp;&nbsp;yield data2;<br />
+        &#125;<br /><br />
+  
+        const asyncGen = fetchAsyncData();<br />
+        console.log(await asyncGen.next()); // Output: 'Start fetching...'<br />
+        console.log(await asyncGen.next()); // Output: data1<br />
+        console.log(await asyncGen.next()); // Output: data2<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Iterating Over Async/Await Generators</h2>
+  
+    <p>
+      To iterate over async/await generators, the <code class="font-mono">for await...of</code> loop is used. It allows you to handle each yielded value after awaiting its resolution, making it perfect for handling multiple asynchronous tasks sequentially.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* asyncCounter() &#123;<br />
+        &nbsp;&nbsp;for (let i = 0; i < 3; i++) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;await new Promise(resolve => setTimeout(resolve, 1000));<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield i;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function iterateAsyncCounter() &#123;<br />
+        &nbsp;&nbsp;for await (const value of asyncCounter()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(value);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        iterateAsyncCounter();<br />
+        // Output: 0, 1, 2 (each after 1 second)
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Error Handling in Async Generators</h2>
+  
+    <p>
+      You can use <code class="font-mono">try...catch</code> within an async generator to handle errors during asynchronous operations. This ensures the generator can manage errors gracefully, without breaking the sequence.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* fetchWithErrorHandling() &#123;<br />
+        &nbsp;&nbsp;try &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield await fetch('https://api.example.com/valid-url');<br />
+        &nbsp;&nbsp;&#125; catch (error) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.error('Error:', error);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function handleErrors() &#123;<br />
+        &nbsp;&nbsp;for await (const result of fetchWithErrorHandling()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(result);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        handleErrors();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Real-World Use Cases</h2>
+  
+    <p>
+      Async/await generators are useful when you need to perform multiple asynchronous tasks in sequence, such as fetching data from multiple APIs or processing events over time. They make it easier to manage complex asynchronous workflows in TypeScript.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      Async/Await generators in TypeScript are a versatile tool for handling asynchronous operations in a more readable and manageable way. By combining the power of async functions with the generator's ability to yield values, you can create efficient and clean code for handling complex async processes.
+    </p>
+  </div>
+  
 }@case(86){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Async Iterators in TypeScript</h1>
+  
+    <p>
+      In TypeScript, <strong>async iterators</strong> are a powerful feature that allows asynchronous iteration over a collection of values. They help manage data streams or asynchronous operations in a more manageable and readable way, using the <code class="font-mono">for await...of</code> loop.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. What Are Async Iterators?</h2>
+  
+    <p>
+      Async iterators are an extension of JavaScript iterators, designed for asynchronous data sources. An async iterator implements the <code class="font-mono">AsyncIterator</code> interface, which returns promises that resolve to the next value in the sequence.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* asyncGenerator() &#123;<br />
+        &nbsp;&nbsp;let i = 0;<br />
+        &nbsp;&nbsp;while (i < 3) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;await new Promise(resolve => setTimeout(resolve, 1000));<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield i++;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        const asyncIterator = asyncGenerator();<br />
+        console.log(await asyncIterator.next()); // &#123; value: 0, done: false &#125;<br />
+        console.log(await asyncIterator.next()); // &#123; value: 1, done: false &#125;<br />
+        console.log(await asyncIterator.next()); // &#123; value: 2, done: false &#125;<br />
+        console.log(await asyncIterator.next()); // &#123; value: undefined, done: true &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. The <code>for await...of</code> Loop</h2>
+  
+    <p>
+      The <code class="font-mono">for await...of</code> loop allows you to iterate over async iterators seamlessly. It pauses for each <code class="font-mono">await</code> expression, allowing asynchronous values to be processed one by one.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function processAsync() &#123;<br />
+        &nbsp;&nbsp;for await (const value of asyncGenerator()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(value);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        processAsync();<br />
+        // Output: 0, 1, 2 (one value per second)
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Use Cases for Async Iterators</h2>
+  
+    <p>
+      Async iterators are useful when handling data streams or events that occur asynchronously, such as reading files, making multiple API calls, or working with WebSocket data.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Fetching Data from an API</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* fetchApiData() &#123;<br />
+        &nbsp;&nbsp;const urls = [<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'https://api.example.com/data1',<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'https://api.example.com/data2',<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'https://api.example.com/data3'<br />
+        &nbsp;&nbsp;];<br />
+        &nbsp;&nbsp;for (const url of urls) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;const response = await fetch(url);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;const data = await response.json();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield data;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function processApiData() &#123;<br />
+        &nbsp;&nbsp;for await (const data of fetchApiData()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(data);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        processApiData();<br />
+        // Output: JSON data from the 3 API calls, sequentially
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Handling Errors in Async Iterators</h2>
+  
+    <p>
+      You can use <code class="font-mono">try...catch</code> blocks inside async iterators to gracefully handle any errors that occur during iteration. This ensures your application can recover from failed promises and continue processing the rest of the data.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* fetchDataWithErrorHandling() &#123;<br />
+        &nbsp;&nbsp;const urls = ['https://valid-url.com', 'https://invalid-url.com'];<br />
+        &nbsp;&nbsp;for (const url of urls) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;try &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const response = await fetch(url);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yield await response.json();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&#125; catch (error) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.error('Failed to fetch:', url, error);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function processWithErrors() &#123;<br />
+        &nbsp;&nbsp;for await (const data of fetchDataWithErrorHandling()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(data);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        processWithErrors();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      Async iterators provide a clean and powerful way to handle asynchronous data streams in TypeScript. They are particularly useful when processing multiple asynchronous tasks in sequence, such as fetching API data, processing real-time events, or reading large files. By leveraging the <code class="font-mono">for await...of</code> loop, you can simplify your async workflows and make your code more maintainable.
+    </p>
+  </div>
+  
 }@case(87){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Async/Await Iterators in TypeScript</h1>
+  
+    <p>
+      The <strong>Async/Await Iterators</strong> in TypeScript allow developers to handle asynchronous iteration over a sequence of values. Combining async functions with iterators makes it possible to work with asynchronous data streams efficiently.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Introduction to Async/Await Iterators</h2>
+  
+    <p>
+      In TypeScript, async iterators enable iteration over asynchronous data sources. By using <code class="font-mono">for await...of</code> loops, you can seamlessly process asynchronous sequences like data from APIs, file streams, or real-time events.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* asyncNumbers() &#123;<br />
+        &nbsp;&nbsp;for (let i = 1; i <= 3; i++) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;await new Promise(resolve => setTimeout(resolve, 1000));<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield i;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function printNumbers() &#123;<br />
+        &nbsp;&nbsp;for await (let number of asyncNumbers()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(number);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        printNumbers();<br />
+        // Output: 1 (after 1s), 2 (after 1s), 3 (after 1s)
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Using Async/Await with Iterators</h2>
+  
+    <p>
+      The <code class="font-mono">for await...of</code> loop is a key element in handling asynchronous iterators. This construct pauses the iteration at each asynchronous yield, awaiting the next value before continuing. It's perfect for handling streams of data that need to be processed sequentially.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* fetchDataFromUrls() &#123;<br />
+        &nbsp;&nbsp;const urls = [<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'https://api.example.com/data1',<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'https://api.example.com/data2',<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;'https://api.example.com/data3'<br />
+        &nbsp;&nbsp;];<br />
+        &nbsp;&nbsp;for (const url of urls) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;const response = await fetch(url);<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;const data = await response.json();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield data;<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function processApiData() &#123;<br />
+        &nbsp;&nbsp;for await (const data of fetchDataFromUrls()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(data);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        processApiData();<br />
+        // Output: JSON data from three different API calls
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Use Cases for Async/Await Iterators</h2>
+  
+    <p>
+      Async/Await iterators are particularly useful in scenarios like:
+    </p>
+  
+    <ul class="list-disc ml-5">
+      <li>Fetching data from multiple APIs or services in sequence.</li>
+      <li>Reading large files or streams of data asynchronously.</li>
+      <li>Processing real-time events like WebSockets or server-sent events.</li>
+    </ul>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Processing WebSocket Messages</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* webSocketMessages(socket) &#123;<br />
+        &nbsp;&nbsp;socket.onmessage = (event) => socket.messageQueue.push(event.data);<br />
+        &nbsp;&nbsp;while (true) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;if (socket.messageQueue.length) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yield socket.messageQueue.shift();<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&#125;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;await new Promise(resolve => setTimeout(resolve, 500));<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function processWebSocket(socket) &#123;<br />
+        &nbsp;&nbsp;for await (const message of webSocketMessages(socket)) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log('Received:', message);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Handling Errors in Async/Await Iterators</h2>
+  
+    <p>
+      Just like with normal async functions, you can use <code class="font-mono">try...catch</code> within async iterators to handle errors. This is particularly useful when you are dealing with unreliable data sources such as network requests or file I/O.
+    </p>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        async function* asyncErrorProneIterator() &#123;<br />
+        &nbsp;&nbsp;try &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;yield await fetch('https://api.example.com/data');<br />
+        &nbsp;&nbsp;&#125; catch (error) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.error('Error fetching data:', error);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        async function processWithErrorHandling() &#123;<br />
+        &nbsp;&nbsp;for await (const data of asyncErrorProneIterator()) &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log(data);<br />
+        &nbsp;&nbsp;&#125;<br />
+        &#125;<br /><br />
+  
+        processWithErrorHandling();<br />
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      Async/Await iterators are a powerful way to handle asynchronous streams of data in a readable and structured manner. Whether you are making sequential API calls or working with real-time data, using the <code class="font-mono">for await...of</code> loop simplifies your code and reduces the complexity of managing asynchronous operations in TypeScript.
+    </p>
+  </div>
+  
 }@case(88){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">JSON Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, JSON methods are used to work with JavaScript Object Notation (JSON). JSON is a lightweight data-interchange format that is easy to read and write for humans and machines. The two most common methods for working with JSON in TypeScript are <code class="font-mono">JSON.stringify()</code> and <code class="font-mono">JSON.parse()</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. JSON.stringify()</h2>
+  
+    <p>
+      The <code class="font-mono">JSON.stringify()</code> method converts a JavaScript object or value into a JSON string. It is often used when you need to send data from the client to a server or store it in localStorage.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example Usage of JSON.stringify()</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const user = &#123;<br />
+        &nbsp;&nbsp;name: 'John',<br />
+        &nbsp;&nbsp;age: 30,<br />
+        &nbsp;&nbsp;isAdmin: true<br />
+        &#125;;<br /><br />
+  
+        const jsonString = JSON.stringify(user);<br />
+        console.log(jsonString);<br />
+        // Output: '&#123;"name":"John","age":30,"isAdmin":true &#125;'
+      </code>
+    </pre>
+  
+    <p>
+      In the above example, the object <code class="font-mono">user</code> is converted into a JSON string using <code class="font-mono">JSON.stringify()</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. JSON.parse()</h2>
+  
+    <p>
+      The <code class="font-mono">JSON.parse()</code> method parses a JSON string and returns a JavaScript object. This method is commonly used when receiving data from an external source, such as an API, that returns a JSON response.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example Usage of JSON.parse()</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const jsonString = '&#123;"name":"John","age":30,"isAdmin":true &#125;';<br /><br />
+  
+        const userObject = JSON.parse(jsonString);<br />
+        console.log(userObject);<br />
+        // Output: &#123; name: 'John', age: 30, isAdmin: true &#125;
+      </code>
+    </pre>
+  
+    <p>
+      In the above example, a JSON string is parsed back into a JavaScript object using <code class="font-mono">JSON.parse()</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Use Cases of JSON Methods</h2>
+  
+    <p>
+      JSON methods are highly useful in a variety of scenarios, including:
+    </p>
+  
+    <ul class="list-disc ml-5">
+      <li>Sending data to a server through API requests.</li>
+      <li>Storing data in the browser’s localStorage or sessionStorage.</li>
+      <li>Parsing responses from RESTful APIs.</li>
+    </ul>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Storing Data in localStorage</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const user = &#123; name: 'Jane', age: 25, isAdmin: false &#125;;<br /><br />
+  
+        // Convert object to JSON string and store in localStorage
+        localStorage.setItem('user', JSON.stringify(user));<br /><br />
+  
+        // Retrieve JSON string and parse it back to an object
+        const retrievedUser = JSON.parse(localStorage.getItem('user') || '');<br />
+        console.log(retrievedUser);<br />
+        // Output: &#123; name: 'Jane', age: 25, isAdmin: false &#125;
+      </code>
+    </pre>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Reviver and Replacer Functions</h2>
+  
+    <p>
+      Both <code class="font-mono">JSON.stringify()</code> and <code class="font-mono">JSON.parse()</code> accept additional arguments called replacer and reviver, respectively. These functions can transform the data during stringification or parsing.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Using a Replacer with JSON.stringify()</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const user = &#123; name: 'Sam', age: 22, isAdmin: false &#125;;<br /><br />
+  
+        const jsonString = JSON.stringify(user, (key, value) => &#123;<br />
+        &nbsp;&nbsp;if (typeof value === 'boolean') &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;return undefined;  // Remove boolean values<br />
+        &nbsp;&nbsp;&#125;<br />
+        &nbsp;&nbsp;return value;<br />
+        &#125;);<br />
+        console.log(jsonString);<br />
+        // Output: '&#123;"name":"Sam","age":22 &#125;'
+      </code>
+    </pre>
+  
+    <p>
+      In the above example, the <code class="font-mono">replacer</code> function removes boolean properties from the object during the conversion process.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Using a Reviver with JSON.parse()</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const jsonString = '&#123;"name":"Sam","age":"22"&#125;';<br /><br />
+  
+        const userObject = JSON.parse(jsonString, (key, value) => &#123;<br />
+        &nbsp;&nbsp;if (key === 'age') &#123;<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;return Number(value);  // Convert age to a number<br />
+        &nbsp;&nbsp;&#125;<br />
+        &nbsp;&nbsp;return value;<br />
+        &#125;);<br />
+        console.log(userObject);<br />
+        // Output: &#123; name: 'Sam', age: 22 &#125;
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code class="font-mono">reviver</code> function converts the <code class="font-mono">age</code> property back into a number after parsing the JSON string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      JSON methods like <code class="font-mono">JSON.stringify()</code> and <code class="font-mono">JSON.parse()</code> are essential tools for working with JSON in TypeScript. They provide a simple way to convert between JavaScript objects and JSON strings, which is useful for data storage, transmission, and retrieval.
+    </p>
+  </div>
+  
 }@case(89){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">Date and Time Methods in TypeScript</h1>
+  
+    <p>
+      In TypeScript, working with dates and times can be done using the built-in <code class="font-mono">Date</code> object. The <code class="font-mono">Date</code> object provides numerous methods to manipulate, format, and display dates and times. Here we will explore some common date and time methods and their usage in TypeScript.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Creating a Date Object</h2>
+  
+    <p>
+      You can create a new date instance using the <code class="font-mono">Date</code> constructor. It can represent the current date and time or a specific date.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Creating a New Date</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const currentDate = new Date();<br />
+        console.log(currentDate);<br />
+        // Output: current date and time<br /><br />
+  
+        const specificDate = new Date('2023-10-07T14:30:00');<br />
+        console.log(specificDate);<br />
+        // Output: Sat Oct 07 2023 14:30:00 GMT+0000 (UTC)
+      </code>
+    </pre>
+  
+    <p>
+      In the above examples, the first instance creates the current date and time, while the second creates a specific date.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Getting Date and Time Components</h2>
+  
+    <p>
+      The <code class="font-mono">Date</code> object provides methods to retrieve different parts of the date, such as the year, month, day, hours, minutes, etc.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Retrieving Date Components</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const now = new Date();<br /><br />
+  
+        const year = now.getFullYear();<br />
+        const month = now.getMonth() + 1; // Months are zero-based<br />
+        const day = now.getDate();<br />
+        const hours = now.getHours();<br />
+        const minutes = now.getMinutes();<br /><br />
+  
+        console.log(`Year: &#123;year&#125;, Month: &#123;month&#125;, Day: &#123;day&#125;`);<br />
+        console.log(`Time: &#123;hours&#125;:&#123;minutes&#125;`);<br />
+        // Output: Year: 2024, Month: 10, Day: 7<br />
+        // Output: Time: 14:30
+      </code>
+    </pre>
+  
+    <p>
+      This example shows how to extract components from a date, such as the year, month, day, and time.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Setting Date and Time Components</h2>
+  
+    <p>
+      You can also modify individual components of the date using setter methods like <code class="font-mono">setFullYear()</code>, <code class="font-mono">setMonth()</code>, and <code class="font-mono">setDate()</code>.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Modifying Date Components</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const date = new Date('2024-01-01T00:00:00');<br />
+        console.log('Original Date:', date);<br /><br />
+  
+        date.setFullYear(2025);<br />
+        date.setMonth(5); // Sets the month to June (0-based)<br />
+        date.setDate(15);<br /><br />
+  
+        console.log('Modified Date:', date);<br />
+        // Output: Modified Date: Sun Jun 15 2025 00:00:00 GMT+0000 (UTC)
+      </code>
+    </pre>
+  
+    <p>
+      The above example demonstrates how to modify specific components of a date.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Formatting Dates</h2>
+  
+    <p>
+      The <code class="font-mono">toLocaleDateString()</code> and <code class="font-mono">toLocaleTimeString()</code> methods allow you to format the date and time in different locales or styles.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Formatting Dates and Times</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const date = new Date();<br /><br />
+  
+        const formattedDate = date.toLocaleDateString('en-US');<br />
+        const formattedTime = date.toLocaleTimeString('en-US');<br /><br />
+  
+        console.log('Formatted Date:', formattedDate);<br />
+        console.log('Formatted Time:', formattedTime);<br />
+        // Output: Formatted Date: 10/7/2024<br />
+        // Output: Formatted Time: 2:30:00 PM
+      </code>
+    </pre>
+  
+    <p>
+      This example demonstrates how to format a date and time for the US locale.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Calculating Time Differences</h2>
+  
+    <p>
+      You can perform date calculations like finding the difference between two dates in milliseconds, and then convert it into days, hours, or minutes.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Calculating Date Difference</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const startDate = new Date('2024-01-01');<br />
+        const endDate = new Date('2024-12-31');<br /><br />
+  
+        const timeDifference = endDate.getTime() - startDate.getTime();<br />
+        const daysDifference = timeDifference / (1000 * 60 * 60 * 24);<br /><br />
+  
+        console.log(`Difference in days: &#123;daysDifference&#125;`);<br />
+        // Output: Difference in days: 364
+      </code>
+    </pre>
+  
+    <p>
+      In this example, we calculate the difference in days between two dates.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      The <code class="font-mono">Date</code> object in TypeScript provides powerful methods to work with dates and times, allowing you to create, manipulate, and format them. Whether you're displaying the current date, performing date arithmetic, or formatting dates for different locales, the <code class="font-mono">Date</code> object has you covered.
+    </p>
+  </div>
+  
 }@case(90){
 
 }@case(91){
