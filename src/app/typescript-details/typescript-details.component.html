@@ -9411,17 +9411,722 @@ console.log(PI);</code></pre>
   </div>
   
 }@case(90){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">String Methods in TypeScript</h1>
+  
+    <p>
+      Strings are a fundamental part of TypeScript, and there are many built-in methods available to manipulate and work with strings. These methods allow developers to perform common operations like searching, replacing, splitting, and more. Let's dive into some of the most commonly used string methods in TypeScript.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. <code class="font-mono">length</code> Property</h2>
+  
+    <p>
+      The <code class="font-mono">length</code> property returns the number of characters in a string.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Finding the Length of a String</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "Hello, TypeScript!";<br />
+        console.log(str.length);<br />
+        // Output: 18
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code class="font-mono">length</code> property returns the length of the string <code class="font-mono">"Hello, TypeScript!"</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. <code class="font-mono">toUpperCase()</code> and <code class="font-mono">toLowerCase()</code></h2>
+  
+    <p>
+      The <code class="font-mono">toUpperCase()</code> method converts a string to uppercase letters, while <code class="font-mono">toLowerCase()</code> converts it to lowercase.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Converting String to Upper and Lower Case</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "Hello, TypeScript!";<br />
+        console.log(str.toUpperCase());<br />
+        // Output: "HELLO, TYPESCRIPT!"<br /><br />
+  
+        console.log(str.toLowerCase());<br />
+        // Output: "hello, typescript!"
+      </code>
+    </pre>
+  
+    <p>
+      These methods allow you to change the case of the characters in a string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. <code class="font-mono">indexOf()</code> and <code class="font-mono">lastIndexOf()</code></h2>
+  
+    <p>
+      The <code class="font-mono">indexOf()</code> method returns the position of the first occurrence of a substring within a string. The <code class="font-mono">lastIndexOf()</code> method returns the position of the last occurrence of the substring.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Finding Substring Position</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "Hello, TypeScript!";<br />
+        console.log(str.indexOf('Type'));<br />
+        // Output: 7<br /><br />
+  
+        console.log(str.lastIndexOf('o'));<br />
+        // Output: 4
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">indexOf()</code> method finds the position of the first occurrence, while <code class="font-mono">lastIndexOf()</code> finds the last occurrence.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. <code class="font-mono">slice()</code></h2>
+  
+    <p>
+      The <code class="font-mono">slice()</code> method extracts a portion of a string and returns it as a new string without modifying the original string.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Extracting Part of a String</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "Hello, TypeScript!";<br />
+        console.log(str.slice(7, 16));<br />
+        // Output: "TypeScript"
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">slice()</code> method extracts characters from index 7 to 16, returning <code class="font-mono">"TypeScript"</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. <code class="font-mono">split()</code></h2>
+  
+    <p>
+      The <code class="font-mono">split()</code> method splits a string into an array of substrings based on a specified separator.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Splitting a String into an Array</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "apple, banana, cherry";<br />
+        const fruits = str.split(", ");<br />
+        console.log(fruits);<br />
+        // Output: ["apple", "banana", "cherry"]
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">split()</code> method splits the string into an array of fruit names.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. <code class="font-mono">replace()</code></h2>
+  
+    <p>
+      The <code class="font-mono">replace()</code> method searches for a specified value in a string and replaces it with another value.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Replacing Substrings</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "I love JavaScript!";<br />
+        const newStr = str.replace("JavaScript", "TypeScript");<br />
+        console.log(newStr);<br />
+        // Output: "I love TypeScript!"
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">replace()</code> method replaces "JavaScript" with "TypeScript" in the original string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">7. <code class="font-mono">trim()</code></h2>
+  
+    <p>
+      The <code class="font-mono">trim()</code> method removes whitespace from both sides of a string.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Trimming Whitespace</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "   Hello, TypeScript!   ";<br />
+        const trimmedStr = str.trim();<br />
+        console.log(trimmedStr);<br />
+        // Output: "Hello, TypeScript!"
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">trim()</code> method removes the extra spaces at the beginning and end of the string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">8. Conclusion</h2>
+  
+    <p>
+      TypeScript provides a wide range of string methods that help in manipulating and working with strings efficiently. These methods enable you to modify, format, and extract data from strings, making them an essential part of TypeScript programming.
+    </p>
+  </div>
+  
 }@case(91){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">String Concatenation in TypeScript</h1>
+  
+    <p>
+      String concatenation is the process of joining two or more strings together. In TypeScript, you can concatenate strings using different methods such as the <code class="font-mono">+</code> operator, template literals, or the <code class="font-mono">concat()</code> method. Let's explore these approaches in detail.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Concatenation Using the <code class="font-mono">+</code> Operator</h2>
+  
+    <p>
+      The simplest way to concatenate strings in TypeScript is by using the <code class="font-mono">+</code> operator. It appends one string to another.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Using the <code class="font-mono">+</code> Operator</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const greeting = "Hello, " + "World!";<br />
+        console.log(greeting);<br />
+        // Output: "Hello, World!"
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code class="font-mono">+</code> operator combines two strings: <code class="font-mono">"Hello, "</code> and <code class="font-mono">"World!"</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Concatenation Using <code class="font-mono">concat()</code> Method</h2>
+  
+    <p>
+      The <code class="font-mono">concat()</code> method is another way to concatenate strings. This method can take multiple arguments and concatenate them in a single call.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Using the <code class="font-mono">concat()</code> Method</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const part1 = "Type";<br />
+        const part2 = "Script";<br />
+        const result = part1.concat(part2);<br />
+        console.log(result);<br />
+        // Output: "TypeScript"
+      </code>
+    </pre>
+  
+    <p>
+      Here, the <code class="font-mono">concat()</code> method joins the two strings <code class="font-mono">"Type"</code> and <code class="font-mono">"Script"</code> into a single string <code class="font-mono">"TypeScript"</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Concatenation Using Template Literals</h2>
+  
+    <p>
+      Template literals provide a more readable and flexible way to concatenate strings, especially when dealing with variables. Template literals are enclosed by backticks (<code class="font-mono">`</code>) and allow embedded expressions.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Using Template Literals</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const firstName = "John";<br />
+        const lastName = "Doe";<br />
+        const fullName = `Hello, my name is &#123;firstName&#125; &#123;lastName&#125;.`;<br />
+        console.log(fullName);<br />
+        // Output: "Hello, my name is John Doe."
+      </code>
+    </pre>
+  
+    <p>
+      In this example, template literals are used to concatenate the <code class="font-mono">firstName</code> and <code class="font-mono">lastName</code> variables, providing a more readable and flexible syntax.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Performance Considerations</h2>
+  
+    <p>
+      While all these methods are effective for string concatenation, using template literals is typically more readable, especially when dealing with multiple variables. For performance-sensitive applications, concatenation with the <code class="font-mono">+</code> operator may be slightly faster for smaller strings, but template literals are usually more maintainable in larger projects.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      TypeScript provides multiple ways to concatenate strings, including the <code class="font-mono">+</code> operator, the <code class="font-mono">concat()</code> method, and template literals. Each method has its use cases, but template literals are the most flexible and preferred for readability.
+    </p>
+  </div>
+  
 }@case(92){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">String Interpolation in TypeScript</h1>
+  
+    <p>
+      String interpolation is a feature in TypeScript (and JavaScript) that allows embedding expressions directly within string literals using a cleaner and more readable syntax. This is done with <strong>template literals</strong>, which are enclosed by backticks (<code class="font-mono">`</code>), allowing you to insert variables, expressions, and function calls inside strings.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Template Literals for Interpolation</h2>
+  
+    <p>
+      Template literals are introduced by using the backtick character (<code class="font-mono">`</code>) instead of regular quotes. Expressions are wrapped in curly braces with a dollar sign: <code class="font-mono">&#123;&#36;expression&#125;</code>.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Basic String Interpolation</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const firstName = "Alice";<br />
+        const lastName = "Johnson";<br />
+        const fullName = `Hello, my name is &#123;firstName&#125; &#123;lastName&#125;.`;<br />
+        console.log(fullName);<br />
+        // Output: "Hello, my name is Alice Johnson."
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code class="font-mono">&#123;&#36;firstName&#125;</code> and <code class="font-mono">&#123;&#36;lastName&#125;</code> expressions inside the template literal automatically substitute the values of the variables <code class="font-mono">firstName</code> and <code class="font-mono">lastName</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Embedding Expressions</h2>
+  
+    <p>
+      With template literals, you can include more than just variables. You can embed expressions directly inside the string.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Embedding Expressions</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const price = 50;<br />
+        const quantity = 3;<br />
+        const totalCost = `Total cost: &#36;&#123;price * quantity&#125;.`;<br />
+        console.log(totalCost);<br />
+        // Output: "Total cost: 150."
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the expression <code class="font-mono">&#123;price * quantity&#125;</code> is calculated within the template literal and the result, <code class="font-mono">150</code>, is substituted directly into the string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Multiline Strings with Template Literals</h2>
+  
+    <p>
+      Template literals make it easier to create multiline strings without needing escape characters like <code class="font-mono">\n</code>. Just write the string across multiple lines, and it will preserve the formatting.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Multiline String</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const multilineString = `This is a string<br />
+        that spans multiple lines<br />
+        without needing escape sequences.`;<br />
+        console.log(multilineString);<br />
+        // Output: 
+        // This is a string
+        // that spans multiple lines
+        // without needing escape sequences.
+      </code>
+    </pre>
+  
+    <p>
+      Using backticks, the string can span multiple lines, making it easy to format long text.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Nesting Template Literals</h2>
+  
+    <p>
+      You can also nest template literals or combine them with other strings dynamically.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Nesting Template Literals</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const greet = `Good $&#125;new Date().getHours() < 12 ? "Morning" : "Afternoon"&#125;`;<br />
+        console.log(greet);<br />
+        // Output will change depending on the time of day
+      </code>
+    </pre>
+  
+    <p>
+      In this example, a conditional expression checks the current hour to output either "Good Morning" or "Good Afternoon," demonstrating how template literals can be dynamically evaluated.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      String interpolation in TypeScript, via template literals, is a powerful way to simplify the creation of dynamic strings. It makes code more readable and reduces the need for concatenation operators.
+    </p>
+  </div>
+  
 }@case(93){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">String Template Literals in TypeScript</h1>
+  
+    <p>
+      Template literals, also known as template strings, are a way to work with strings in a more intuitive and flexible manner in TypeScript and JavaScript. They are enclosed by backticks (<code class="font-mono">`</code>) and allow embedding expressions, multi-line strings, and more.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Basic Syntax of Template Literals</h2>
+  
+    <p>
+      Template literals are enclosed by backticks rather than single or double quotes. Inside the backticks, you can include variables and expressions using <code class="font-mono">&#36;&#123;expression&#125;</code>.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Basic Usage</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const name = "John";<br />
+        const age = 25;<br />
+        const greeting = `Hello, my name is &#123;name&#125; and I am &#123;age&#125; years old.`;<br />
+        console.log(greeting);<br />
+        // Output: "Hello, my name is John and I am 25 years old."
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the variables <code class="font-mono">name</code> and <code class="font-mono">age</code> are embedded inside the template literal and replaced with their values when the string is evaluated.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Multi-line Strings</h2>
+  
+    <p>
+      One of the powerful features of template literals is the ability to create multi-line strings without needing escape characters like <code class="font-mono">\n</code>.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Multi-line String</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const multiLineString = `This is a string<br />
+        that spans multiple lines<br />
+        without needing escape characters.`;<br />
+        console.log(multiLineString);<br />
+        // Output: <br />
+        // This is a string <br />
+        // that spans multiple lines <br />
+        // without needing escape characters.
+      </code>
+    </pre>
+  
+    <p>
+      Template literals make it easy to write strings that span multiple lines, improving code readability.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Expression Interpolation</h2>
+  
+    <p>
+      Template literals support embedding expressions directly into the string. This can include mathematical operations, function calls, or any other valid expression.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Expression Interpolation</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const a = 10;<br />
+        const b = 20;<br />
+        const result = `The sum of &#123;a&#125; and &#123;b&#125; is &#123;a + b&#125;.`;<br />
+        console.log(result);<br />
+        // Output: "The sum of 10 and 20 is 30."
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the expression <code class="font-mono">&#123;a + b&#125;</code> is evaluated inside the template literal, and the result is inserted into the string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Nesting Template Literals</h2>
+  
+    <p>
+      You can nest template literals or use them within larger template literals to create more complex expressions.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Nested Template Literals</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const hours = new Date().getHours();<br />
+        const greeting = `Good &#123;hours < 12 ? "morning" : "afternoon"&#125;!`;<br />
+        console.log(greeting);<br />
+        // Output will vary based on the current time
+      </code>
+    </pre>
+  
+    <p>
+      Here, a conditional expression is evaluated within the template literal to display a dynamic greeting based on the current time.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Tagged Template Literals</h2>
+  
+    <p>
+      Tagged template literals allow you to call a function with a template literal and its interpolated expressions. This gives you the ability to manipulate the literal before it is evaluated.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Tagged Template Literals</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        function highlight(strings, ...values) &#123;<br />
+        &nbsp;&nbsp;return strings.reduce((acc, str, i) => `$&#123;acc&#125;$&#123;str&#125;<b>&#123;values[i] || ''&#125;</b>`, '');<br />
+        &#125;<br />
+        const name = "Alice";<br />
+        const age = 30;<br />
+        const result = highlight`Name: &#123;name&#125;, Age: &#123;age&#125;`;<br />
+        console.log(result);<br />
+        // Output: "Name: <b>Alice</b>, Age: <b>30</b>"
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the <code class="font-mono">highlight</code> function is used to wrap interpolated values with bold HTML tags, demonstrating how tagged template literals can be used for advanced formatting.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">6. Conclusion</h2>
+  
+    <p>
+      String template literals in TypeScript offer a more flexible and readable way to handle strings, making it easy to embed variables, expressions, and even multi-line content. By leveraging features like expression interpolation and tagged templates, you can write cleaner and more dynamic code.
+    </p>
+  </div>
+  
 }@case(94){
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">String Properties in TypeScript</h1>
+  
+    <p>
+      Strings in TypeScript, just like in JavaScript, have several properties that allow you to perform operations such as checking the length of a string or accessing individual characters. These properties can be helpful when manipulating or processing strings.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. <code class="font-mono">length</code> Property</h2>
+  
+    <p>
+      The <code class="font-mono">length</code> property returns the number of characters in a string, including spaces and special characters.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Using the <code class="font-mono">length</code> Property</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "Hello, TypeScript!";<br />
+        console.log(str.length);<br />
+        // Output: 18
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the string <code class="font-mono">"Hello, TypeScript!"</code> contains 18 characters, including the spaces and punctuation, so the <code class="font-mono">length</code> property returns <code class="font-mono">18</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Accessing Individual Characters</h2>
+  
+    <p>
+      You can access individual characters of a string using bracket notation, where the index starts from 0.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Accessing Characters by Index</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "TypeScript";<br />
+        console.log(str[0]);  // Output: T<br />
+        console.log(str[4]);  // Output: S<br />
+        console.log(str[str.length - 1]); // Output: t
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the character at index <code class="font-mono">0</code> is <code class="font-mono">T</code>, at index <code class="font-mono">4</code> is <code class="font-mono">S</code>, and the last character is <code class="font-mono">t</code>, which is at index <code class="font-mono">str.length - 1</code>.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Immutable Nature of Strings</h2>
+  
+    <p>
+      Strings in TypeScript are immutable, which means once a string is created, it cannot be modified. Any operations that change a string result in the creation of a new string.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Demonstrating Immutability</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        let str = "TypeScript";<br />
+        str[0] = "J";  // Attempting to change the first character<br />
+        console.log(str);  // Output: "TypeScript" (unchanged)
+      </code>
+    </pre>
+  
+    <p>
+      In this example, trying to modify the first character of the string <code class="font-mono">str</code> has no effect, as strings in TypeScript are immutable. The string remains unchanged.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Template Strings and Properties</h2>
+  
+    <p>
+      You can also use template literals, which provide a more flexible way of working with strings and expressions. Properties like <code class="font-mono">length</code> and indexing still apply.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Template Literals with String Properties</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const name = "TypeScript";<br />
+        const greeting = `Hello, &#123;name&#125;!`;<br />
+        console.log(greeting);<br />
+        // Output: "Hello, TypeScript!"<br />
+        console.log(greeting.length);<br />
+        // Output: 18
+      </code>
+    </pre>
+  
+    <p>
+      In this example, a template literal is used to create a string, and we can still access the <code class="font-mono">length</code> property of the resulting string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">5. Conclusion</h2>
+  
+    <p>
+      Understanding string properties like <code class="font-mono">length</code> and how to access individual characters helps you manipulate and work with strings effectively in TypeScript. It's important to remember that strings are immutable, so operations on them create new strings.
+    </p>
+  </div>
+  
 }@case(95){
-
-
+  <div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-4 text-blue-500">String Regular Expressions in TypeScript</h1>
+  
+    <p>
+      Regular Expressions (RegEx) are a powerful tool in TypeScript (and JavaScript) used to search, match, or replace parts of a string. Regular expressions use patterns to find sequences of characters within strings.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">1. Creating a Regular Expression</h2>
+  
+    <p>
+      Regular expressions can be created in two ways: using a regular expression literal or using the <code class="font-mono">RegExp</code> constructor.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Using Literal Syntax</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const regex = /hello/;<br />
+        const str = "hello world";<br />
+        console.log(regex.test(str));<br />
+        // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      In this example, a regular expression <code class="font-mono">/hello/</code> is used to check if the string <code class="font-mono">"hello world"</code> contains the word "hello". The <code class="font-mono">test</code> method returns <code class="font-mono">true</code> if the pattern matches.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Using <code class="font-mono">RegExp</code> Constructor</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const regex = new RegExp('world');<br />
+        const str = "hello world";<br />
+        console.log(regex.test(str));<br />
+        // Output: true
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">RegExp</code> constructor allows dynamic creation of regular expressions. This example uses the same string and pattern to test if "world" is present in the string.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">2. Common RegEx Methods</h2>
+  
+    <p>
+      There are several methods available in TypeScript that utilize regular expressions for string manipulation.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500"><code class="font-mono">test()</code> Method</h3>
+  
+    <p>
+      The <code class="font-mono">test()</code> method tests whether the regular expression matches a portion of the string.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500"><code class="font-mono">match()</code> Method</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "TypeScript is great";<br />
+        const result = str.match(/great/);<br />
+        console.log(result);<br />
+        // Output: ["great"]
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">match()</code> method searches a string for a match against a regular expression and returns an array of results if found. In this case, it matches the word "great" in the string.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500"><code class="font-mono">replace()</code> Method</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "hello world";<br />
+        const newStr = str.replace(/world/, 'TypeScript');<br />
+        console.log(newStr);<br />
+        // Output: "hello TypeScript"
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">replace()</code> method searches for matches and replaces the matched substring with a new substring.
+    </p>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500"><code class="font-mono">search()</code> Method</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "hello world";<br />
+        const index = str.search(/world/);<br />
+        console.log(index);<br />
+        // Output: 6
+      </code>
+    </pre>
+  
+    <p>
+      The <code class="font-mono">search()</code> method returns the index of the first match in the string or <code class="font-mono">-1</code> if no match is found.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">3. Flags in Regular Expressions</h2>
+  
+    <p>
+      Regular expressions can be enhanced by using flags. Flags are optional parameters that allow for more advanced pattern matching.
+    </p>
+  
+    <ul class="list-disc ml-6">
+      <li><code class="font-mono">g</code>: Global search, finds all matches rather than stopping after the first match.</li>
+      <li><code class="font-mono">i</code>: Case-insensitive search.</li>
+      <li><code class="font-mono">m</code>: Multi-line search.</li>
+    </ul>
+  
+    <h3 class="text-lg font-semibold mt-4 text-blue-500">Example: Using Flags</h3>
+  
+    <pre class="bg-gray-100 p-4 rounded-md">
+      <code class="font-mono text-sm language-javascript">
+        const str = "Hello World, hello TypeScript";<br />
+        const regex = /hello/gi;<br />
+        const result = str.match(regex);<br />
+        console.log(result);<br />
+        // Output: ["Hello", "hello"]
+      </code>
+    </pre>
+  
+    <p>
+      In this example, the global flag <code class="font-mono">g</code> is used to find all occurrences of "hello", and the case-insensitive flag <code class="font-mono">i</code> allows the search to match "Hello" as well.
+    </p>
+  
+    <h2 class="text-xl font-semibold mt-6 text-blue-500">4. Conclusion</h2>
+  
+    <p>
+      Regular expressions are essential for text processing and pattern matching in TypeScript. By using methods like <code class="font-mono">test()</code>, <code class="font-mono">match()</code>, <code class="font-mono">replace()</code>, and <code class="font-mono">search()</code>, along with flags to modify their behavior, you can effectively manipulate strings to match your requirements.
+    </p>
+  </div>
+  
 }             
 }
