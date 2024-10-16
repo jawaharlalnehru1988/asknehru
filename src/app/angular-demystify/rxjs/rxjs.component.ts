@@ -43,6 +43,31 @@ videoObject: Video[] = [
     description: 'Learn how to use the powerful fromEvent operator in RxJS to efficiently handle DOM events with reactive programming! This tutorial will guide you through the basics of creating observables from DOM events, like clicks, key presses, and more. You\'ll see practical examples of how to integrate fromEvent into your web applications to streamline event handling and improve performance. Whether you\'re new to RxJS or just looking to sharpen your skills, this video has you covered.',
     videoId: '_7bWE6vPQFo'
   },
+  {
+    title: 'RxJS range Operator Explained: Efficiently Create Observable Sequence',
+    description: 'Discover the power of the range creation function in RxJS for generating sequential numbers with ease! In this tutorial, you\'ll learn how the range operator works, how to use it to create observables, and practical scenarios where it\'s beneficial. Whether you\'re working on iterating over sequences or performing actions at specific intervals, the range function can streamline your code.',
+    videoId: 'mQyDGiQmuR4'
+  },
+  {
+    title: 'RxJS mergeMap Operator: Mastering Concurrent Observable Mapping',
+    description: 'Unlock the power of the mergeMap operator in RxJS for handling concurrent observables like a pro! In this video, we’ll dive deep into how mergeMap works, allowing you to flatten and merge multiple inner observables. You’ll learn how to manage asynchronous operations more efficiently, especially when dealing with HTTP requests, streams, and complex data flows. This tutorial is perfect for both beginners and experienced developers looking to optimize their RxJS code.',
+    videoId: 'fVZ1FBC0M7I'
+  },
+  {
+    title: 'RxJS switchMap Operator Explained: Efficient Observable Switching',
+    description: 'Learn how to use the powerful switchMap operator in RxJS to efficiently manage switching between observables! This tutorial will help you understand how switchMap cancels previous inner observables and only subscribes to the latest one, making it perfect for handling fast-changing data like search inputs, HTTP requests, and more. By the end of this video, you\'ll know when and how to apply switchMap in real-world scenarios for optimal reactive programming.',
+    videoId: 'vlZ92x41zCE'
+  },
+  {
+    title: 'RxJS concatMap Operator: Sequential Observable Mapping Explained',
+    description: 'Master the concatMap operator in RxJS for sequentially handling multiple observables! In this tutorial, you\'ll learn how concatMap ensures that observables are processed one after the other, maintaining their order. It\'s perfect for scenarios where preserving sequence matters, such as processing API calls or event streams. This video breaks down how to use concatMap with practical examples, helping you integrate it into your reactive programming toolkit.',
+    videoId: 'hlcs0_S9QRU'
+  },
+  {
+    title: 'RxJS debounceTime Operator: Optimize Event Handling & Performance',
+    description: 'Learn how to use the debounceTime operator in RxJS to optimize event handling and improve performance! This tutorial explains how debounceTime works by delaying values emitted by observables and only emitting the latest one after a specified time. It\'s ideal for scenarios like handling user inputs, search boxes, and preventing unnecessary API calls. By the end of this video, you\'ll be able to implement debounceTime to enhance the efficiency of your reactive applications.',
+    videoId: 'b98AkDHDGzQ'
+  },
 
 ]
 selectedVideo:Video = this.videoObject[0];
