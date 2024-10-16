@@ -35,7 +35,7 @@ videoObject: Video[] = [
   },
   {
     title: 'RxJS Handlers & Unsubscribe: Managing Subscriptions Like a Pro',
-    description: 'Master subscription management in RxJS with this detailed guide on handlers and the unsubscribe method! In this video, we’ll explore the importance of managing observable subscriptions efficiently to prevent memory leaks. You\'ll learn how to use handlers to manage your streams and the proper way to unsubscribe when observables are no longer needed. Whether you\'re new to RxJS or improving your skills, this tutorial is essential for writing clean, efficient reactive code.',
+    description: 'Master subscription management in RxJS with this detailed guide on handlers and the unsubscribe method! In this video, we\'ll explore the importance of managing observable subscriptions efficiently to prevent memory leaks. You\'ll learn how to use handlers to manage your streams and the proper way to unsubscribe when observables are no longer needed. Whether you\'re new to RxJS or improving your skills, this tutorial is essential for writing clean, efficient reactive code.',
     videoId: 'x1hrAZhrsxY'
   },
   {
