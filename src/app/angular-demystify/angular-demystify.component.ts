@@ -54,16 +54,23 @@ export class AngularDemystifyComponent {
     
     {
       title: 'How to Create a Component in Angular 18: Quick and Easy Tutorial PART 2',
-      description: 'Learn how to create components in Angular 18 with this step-by-step guide! In this tutorial, I\'ll walk you through the process of generating, configuring, and using Angular components. Whether you’re new to Angular or just getting started with version 18, this video will help you understand the core concepts behind component-based development and how to integrate them into your projects..',
+      description: 'Learn how to create components in Angular 18 with this step-by-step guide! In this tutorial, I\'ll walk you through the process of generating, configuring, and using Angular components. Whether you’re new to Angular or just getting started with version 18, this video will help you understand the core concepts behind component-based development and how to integrate them into your projects.',
       videoId: 'uQ3DYqroc9E'
     },
     {
       title: 'How to Push an Angular 18 Project to GitHub: Complete Guide for Beginners PART 3',
-      description: 'Learn how to push your Angular 18 project to GitHub with this step-by-step guide! In this tutorial, I’ll show you how to set up version control for your Angular 18 app, connect it to GitHub, and push your code for easy collaboration and backup. Whether you\'re new to Angular or GitHub, this guide will help you seamlessly integrate your project with GitHub..',
+      description: ' Learn how to push your Angular 18 project to GitHub with this step-by-step guide! In this tutorial, I’ll show you how to set up version control for your Angular 18 app, connect it to GitHub, and push your code for easy collaboration and backup. Whether you\'re new to Angular or GitHub, this guide will help you seamlessly integrate your project with GitHub.',
       videoId: 'N-bxHQUo0U8'
+    },
+   
+    {
+      title: 'How to Add PrimeNG NavBar and SideBar in Angular: Complete Guide',
+      description: 'Learn how to integrate PrimeNG’s powerful NavBar and SideBar components into your Angular application! In this tutorial, I’ll walk you through setting up the PrimeNG library, adding a responsive NavBar and SideBar, and customizing them for your project’s needs. PrimeNG makes it easy to create modern, user-friendly navigation in your Angular apps. Perfect for developers looking to enhance their UI with PrimeNG components!',
+      videoId: 'TxeAyS_fg4o'
     },
     
   
+    
   ];
   isMobile = false;
   selectedVideo:Video = this.videoObject[0];
