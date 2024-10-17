@@ -28,9 +28,9 @@ export class AngularDemystifyComponent {
   isSidebarOpen: boolean = false;
   selectedTopic: string | null = null;
   sidebarTopics:AngularTopics[] = [
+    {title: 'Watch and learn Angular', titleId: 'watch'},
     {title: 'Read and learn Angular', titleId: 'read'},
     {title: 'Hear and learn Angular', titleId: 'hear'},
-    {title: 'Watch and learn Angular', titleId: 'watch'},
   ]
   angularTopics: TsTopics[] = [
     {
@@ -94,7 +94,7 @@ export class AngularDemystifyComponent {
   ];
 
   currentSection: string = 'Angular tutorial';
-  sidebarTitle: string = 'read';
+  sidebarTitle: string = 'watch';
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
