@@ -79,8 +79,8 @@
     @if(selectedVideo){
       <youtube-player
       [videoId]="selectedVideo.videoId"
-      [height]="isMobile ? 250 : 390"
-      [width]="isMobile ? 350 : 640"
+      [height]="isMobile ? 250 : 500"
+      [width]="isMobile ? 350 : 900"
       suggestedQuality="hd1080">
     </youtube-player>
     <div >
@@ -97,8 +97,8 @@
       @if(isMobile){
         <youtube-player
         [videoId]="selectedVideo.videoId"
-        [height]="isMobile ? 250 : 390"
-        [width]="isMobile ? 350 : 640"
+        [height]="isMobile ? 250 : 500"
+        [width]="isMobile ? 350 : 900"
         suggestedQuality="hd1080">
       </youtube-player>
     } @else {

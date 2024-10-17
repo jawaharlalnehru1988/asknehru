@@ -43,6 +43,11 @@ videoObject: Video[] = [
     description: 'Learn how to use the powerful fromEvent operator in RxJS to efficiently handle DOM events with reactive programming! This tutorial will guide you through the basics of creating observables from DOM events, like clicks, key presses, and more. You\'ll see practical examples of how to integrate fromEvent into your web applications to streamline event handling and improve performance. Whether you\'re new to RxJS or just looking to sharpen your skills, this video has you covered.',
     videoId: '_7bWE6vPQFo'
   },
+  {
+    title: 'RxJS range Operator Explained: Efficiently Create Observable Sequence',
+    description: 'Discover the power of the range creation function in RxJS for generating sequential numbers with ease! In this tutorial, you\'ll learn how the range operator works, how to use it to create observables, and practical scenarios where it\'s beneficial. Whether you\'re working on iterating over sequences or performing actions at specific intervals, the range function can streamline your code.',
+    videoId: 'mQyDGiQmuR4'
+  },
 
 ]
 selectedVideo:Video = this.videoObject[0];
