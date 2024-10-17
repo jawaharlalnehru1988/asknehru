@@ -68,6 +68,7 @@ export class AngularDemystifyComponent {
       description: 'Learn how to integrate PrimeNG’s powerful NavBar and SideBar components into your Angular application! In this tutorial, I’ll walk you through setting up the PrimeNG library, adding a responsive NavBar and SideBar, and customizing them for your project’s needs. PrimeNG makes it easy to create modern, user-friendly navigation in your Angular apps. Perfect for developers looking to enhance their UI with PrimeNG components!',
       videoId: 'TxeAyS_fg4o'
     },
+    
   
     
   ];

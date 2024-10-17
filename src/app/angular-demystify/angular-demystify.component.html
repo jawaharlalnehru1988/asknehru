@@ -79,13 +79,13 @@
     @if(selectedVideo){
       <youtube-player
       [videoId]="selectedVideo.videoId"
-      [height]="isMobile ? 250 : 500"
+      [height]="isMobile ? 250 : 600"
       [width]="isMobile ? 350 : 900"
       suggestedQuality="hd1080">
     </youtube-player>
     <div >
       <p class="mt-4 text-xl font-bold">{{selectedVideo.title}}</p>
-      <p class="mt-2">{{selectedVideo.description}}</p>
+      <p class="mt-2 text-justify">{{selectedVideo.description}}</p>
     </div>
   }
   </div>
