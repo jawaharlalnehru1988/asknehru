@@ -69,6 +69,42 @@ export class AngularDemystifyComponent {
       videoId: 'TxeAyS_fg4o'
     },
     
+   
+    {
+      title: 'Single File vs Multi-File Components in Angular 18: Key Differences Explained',
+      description: 'Learn the difference between single file and multi-file components in Angular 18 with this detailed guide! In this tutorial, I’ll show you how to create both types of components and explain when to use each one. Discover the best practices for organizing your Angular components and how these different approaches impact your app’s scalability and maintainability.',
+      videoId: 'eMiO22UZj50'
+    },
+    {
+      title: 'Understanding View Encapsulation in Angular: Styling and Scoping Explained',
+      description: 'Master the concept of View Encapsulation in Angular with this in-depth tutorial! In this video, I’ll explain what View Encapsulation is, the different modes available (Emulated, Shadow DOM, and None), and how it affects the styling and scoping of your Angular components. By the end, you’ll know how to control CSS behavior within your components and apply best practices for component styling in Angular.',
+      videoId: 'XxmiBap-1JY'
+    },
+    
+    {
+      title: 'Text Interpolation in Angular 18: Display Dynamic Data Easily PART 7',
+      description: 'Learn how to use text interpolation in Angular 18 to display dynamic data directly within your HTML templates! In this beginner-friendly tutorial, I’ll show you how to bind data to your views using interpolation, making it easy to reflect changes in your Angular components. This is an essential feature for anyone getting started with Angular or looking to understand its powerful data-binding capabilities.',
+      videoId: '1Q0_VdMA1ao'
+    },
+    
+    {
+      title: 'API Integration with Text Interpolation in Angular: Display Data Dynamically PART 8',
+      description: 'Learn how to integrate APIs with Angular and display data dynamically using text interpolation! In this tutorial, I’ll show you how to fetch data from an API and bind it directly to your HTML views with Angular’s powerful text interpolation feature. This step-by-step guide is perfect for developers looking to connect external data sources to their Angular applications and present real-time information in the UI.',
+      videoId: 'PXNsEaZnlQ8'
+    },
+    
+    {
+      title: 'Master Property Binding in Angular 18: Dynamic UI Updates Made Easy PART 9',
+      description: 'how to use property binding in Angular 18 to dynamically update your user interface! In this tutorial, I’ll show you how to bind data from your Angular components directly to your HTML properties, allowing for seamless dynamic updates. This guide is perfect for beginners who want to understand the power of Angular property binding and how to use it to create interactive, responsive web applications.',
+      videoId: 'F7e-npUBoeE'
+    },
+    
+    {
+      title: 'Attribute Binding in Angular 18: Bind HTML Attributes Dynamically PART 10',
+      description: 'Learn how to use attribute binding in Angular 18 to dynamically bind values to HTML attributes! In this tutorial, I’ll explain the concept of attribute binding, show you how to implement it in your Angular applications, and highlight the differences between attribute binding and property binding. This video is perfect for Angular developers looking to create more flexible and dynamic UIs.',
+      videoId: 'CCrPbOtfzOI'
+    },
+    
   
     
   ];
