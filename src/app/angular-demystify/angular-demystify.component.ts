@@ -105,8 +105,7 @@ export class AngularDemystifyComponent {
       videoId: 'CCrPbOtfzOI'
     },
     
-  
-    
+
   ];
   isMobile = false;
   selectedVideo:Video = this.videoObject[0];
