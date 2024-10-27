@@ -104,6 +104,23 @@ export class AngularDemystifyComponent {
       description: 'Learn how to use attribute binding in Angular 18 to dynamically bind values to HTML attributes! In this tutorial, I’ll explain the concept of attribute binding, show you how to implement it in your Angular applications, and highlight the differences between attribute binding and property binding. This video is perfect for Angular developers looking to create more flexible and dynamic UIs.',
       videoId: 'CCrPbOtfzOI'
     },
+    {
+      title: 'Master Event Binding and One-Way Data Binding in Angular 18: Full Guide PART 11',
+      description: 'Learn how to implement event binding and one-way data binding in Angular 18 to create interactive, responsive applications! In this tutorial, I’ll explain how Angular’s one-way data binding works and show you how to handle user events with event binding. These are essential concepts for building dynamic Angular applications that react to user input and trigger updates efficiently.',
+      videoId: 'NRmNJG10coc'
+    },
+    
+    {
+      title: 'In-Depth Guide to Two-Way Data Binding in Angular 18: Master Data Syncing PART 12',
+      description: ' Dive deep into two-way data binding in Angular 18 with this comprehensive guide! In this video, I’ll explain the fundamentals and mechanics of two-way data binding, show you how to use ngModel effectively, and discuss common scenarios and best practices for implementing this powerful feature. Perfect for developers who want to gain a full understanding of data syncing between components and views in Angular applications.',
+      videoId: 'wGOy41FbB3Y'
+    },
+    
+    {
+      title: 'Data Transfer from Parent to Child Component in Angular 18: A Complete Guide part 13',
+      description: 'Learn how to pass data from a parent component to a child component in Angular 18! In this tutorial, I’ll cover the essentials of data transfer between components, focusing on using @Input to send data from parent to child. This guide is perfect for Angular developers looking to understand component communication and build more dynamic, organized applications.',
+      videoId: 'ShkQufvzdIQ'
+    },
     
 
   ];
