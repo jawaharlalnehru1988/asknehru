@@ -69,8 +69,60 @@ export class AngularDemystifyComponent {
       videoId: 'TxeAyS_fg4o'
     },
     
-  
+   
+    {
+      title: 'Single File vs Multi-File Components in Angular 18: Key Differences Explained',
+      description: 'Learn the difference between single file and multi-file components in Angular 18 with this detailed guide! In this tutorial, I’ll show you how to create both types of components and explain when to use each one. Discover the best practices for organizing your Angular components and how these different approaches impact your app’s scalability and maintainability.',
+      videoId: 'eMiO22UZj50'
+    },
+    {
+      title: 'Understanding View Encapsulation in Angular: Styling and Scoping Explained',
+      description: 'Master the concept of View Encapsulation in Angular with this in-depth tutorial! In this video, I’ll explain what View Encapsulation is, the different modes available (Emulated, Shadow DOM, and None), and how it affects the styling and scoping of your Angular components. By the end, you’ll know how to control CSS behavior within your components and apply best practices for component styling in Angular.',
+      videoId: 'XxmiBap-1JY'
+    },
     
+    {
+      title: 'Text Interpolation in Angular 18: Display Dynamic Data Easily PART 7',
+      description: 'Learn how to use text interpolation in Angular 18 to display dynamic data directly within your HTML templates! In this beginner-friendly tutorial, I’ll show you how to bind data to your views using interpolation, making it easy to reflect changes in your Angular components. This is an essential feature for anyone getting started with Angular or looking to understand its powerful data-binding capabilities.',
+      videoId: '1Q0_VdMA1ao'
+    },
+    
+    {
+      title: 'API Integration with Text Interpolation in Angular: Display Data Dynamically PART 8',
+      description: 'Learn how to integrate APIs with Angular and display data dynamically using text interpolation! In this tutorial, I’ll show you how to fetch data from an API and bind it directly to your HTML views with Angular’s powerful text interpolation feature. This step-by-step guide is perfect for developers looking to connect external data sources to their Angular applications and present real-time information in the UI.',
+      videoId: 'PXNsEaZnlQ8'
+    },
+    
+    {
+      title: 'Master Property Binding in Angular 18: Dynamic UI Updates Made Easy PART 9',
+      description: 'how to use property binding in Angular 18 to dynamically update your user interface! In this tutorial, I’ll show you how to bind data from your Angular components directly to your HTML properties, allowing for seamless dynamic updates. This guide is perfect for beginners who want to understand the power of Angular property binding and how to use it to create interactive, responsive web applications.',
+      videoId: 'F7e-npUBoeE'
+    },
+    
+    {
+      title: 'Attribute Binding in Angular 18: Bind HTML Attributes Dynamically PART 10',
+      description: 'Learn how to use attribute binding in Angular 18 to dynamically bind values to HTML attributes! In this tutorial, I’ll explain the concept of attribute binding, show you how to implement it in your Angular applications, and highlight the differences between attribute binding and property binding. This video is perfect for Angular developers looking to create more flexible and dynamic UIs.',
+      videoId: 'CCrPbOtfzOI'
+    },
+    {
+      title: 'Master Event Binding and One-Way Data Binding in Angular 18: Full Guide PART 11',
+      description: 'Learn how to implement event binding and one-way data binding in Angular 18 to create interactive, responsive applications! In this tutorial, I’ll explain how Angular’s one-way data binding works and show you how to handle user events with event binding. These are essential concepts for building dynamic Angular applications that react to user input and trigger updates efficiently.',
+      videoId: 'NRmNJG10coc'
+    },
+    
+    {
+      title: 'In-Depth Guide to Two-Way Data Binding in Angular 18: Master Data Syncing PART 12',
+      description: ' Dive deep into two-way data binding in Angular 18 with this comprehensive guide! In this video, I’ll explain the fundamentals and mechanics of two-way data binding, show you how to use ngModel effectively, and discuss common scenarios and best practices for implementing this powerful feature. Perfect for developers who want to gain a full understanding of data syncing between components and views in Angular applications.',
+      videoId: 'wGOy41FbB3Y'
+    },
+    
+    {
+      title: 'Data Transfer from Parent to Child Component in Angular 18: A Complete Guide part 13',
+      description: 'Learn how to pass data from a parent component to a child component in Angular 18! In this tutorial, I’ll cover the essentials of data transfer between components, focusing on using @Input to send data from parent to child. This guide is perfect for Angular developers looking to understand component communication and build more dynamic, organized applications.',
+      videoId: 'ShkQufvzdIQ'
+    },
+    
+
   ];
   isMobile = false;
   selectedVideo:Video = this.videoObject[0];
