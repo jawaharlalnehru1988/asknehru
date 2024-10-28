@@ -64,19 +64,19 @@ export class AngularDemystifyComponent {
     },
    
     {
-      title: 'How to Add PrimeNG NavBar and SideBar in Angular: Complete Guide',
+      title: 'How to Add PrimeNG NavBar and SideBar in Angular: Complete Guide PART 4' ,
       description: 'Learn how to integrate PrimeNG’s powerful NavBar and SideBar components into your Angular application! In this tutorial, I’ll walk you through setting up the PrimeNG library, adding a responsive NavBar and SideBar, and customizing them for your project’s needs. PrimeNG makes it easy to create modern, user-friendly navigation in your Angular apps. Perfect for developers looking to enhance their UI with PrimeNG components!',
       videoId: 'TxeAyS_fg4o'
     },
     
    
     {
-      title: 'Single File vs Multi-File Components in Angular 18: Key Differences Explained',
+      title: 'Single File vs Multi-File Components in Angular 18: Key Differences Explained PART 5',
       description: 'Learn the difference between single file and multi-file components in Angular 18 with this detailed guide! In this tutorial, I’ll show you how to create both types of components and explain when to use each one. Discover the best practices for organizing your Angular components and how these different approaches impact your app’s scalability and maintainability.',
       videoId: 'eMiO22UZj50'
     },
     {
-      title: 'Understanding View Encapsulation in Angular: Styling and Scoping Explained',
+      title: 'Understanding View Encapsulation in Angular: Styling and Scoping Explained PART 6',
       description: 'Master the concept of View Encapsulation in Angular with this in-depth tutorial! In this video, I’ll explain what View Encapsulation is, the different modes available (Emulated, Shadow DOM, and None), and how it affects the styling and scoping of your Angular components. By the end, you’ll know how to control CSS behavior within your components and apply best practices for component styling in Angular.',
       videoId: 'XxmiBap-1JY'
     },
@@ -120,6 +120,12 @@ export class AngularDemystifyComponent {
       title: 'Data Transfer from Parent to Child Component in Angular 18: A Complete Guide part 13',
       description: 'Learn how to pass data from a parent component to a child component in Angular 18! In this tutorial, I’ll cover the essentials of data transfer between components, focusing on using @Input to send data from parent to child. This guide is perfect for Angular developers looking to understand component communication and build more dynamic, organized applications.',
       videoId: 'ShkQufvzdIQ'
+    },
+    
+    {
+      title: 'Transform Property in Input Decorator in Angular 18: Enhance Data Passing PART 14',
+      description: 'how to use the transform property with the @Input decorator in Angular 18 to control and modify data passed from a parent component! In this tutorial, I’ll explain how you can transform input data in real-time, ensuring cleaner, more predictable data flow in your Angular applications. This guide is ideal for developers looking to refine component communication and enhance data handling in Angular.',
+      videoId: 'urU2gcTk-ww'
     },
     
 
