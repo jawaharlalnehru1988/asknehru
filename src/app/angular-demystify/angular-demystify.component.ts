@@ -142,6 +142,11 @@ export class AngularDemystifyComponent {
       description: 'how to use the *ngIf directive in Angular 17 for controlling the flow and conditionally rendering components! In this tutorial, I’ll explain how the *ngIf directive works, demonstrate practical examples, and show you how to structure your components with conditional statements for efficient and clean UIs.',
       videoId: 'Nmsg5RUlfmA'
     },
+    {
+      title: 'Switch Control Flow in Angular 18: Mastering ngSwitch for Dynamic Rendering PART 18',
+      description: 'Explore the power of the ngSwitch directive in Angular 18 to control flow and render views dynamically based on conditions! In this tutorial, I’ll guide you through using ngSwitch, ngSwitchCase, and ngSwitchDefault to handle complex UI scenarios. Perfect for developers looking to manage component views based on multiple conditions!',
+      videoId: 'yUOC_EP3HCs'
+    },
 
     
 
