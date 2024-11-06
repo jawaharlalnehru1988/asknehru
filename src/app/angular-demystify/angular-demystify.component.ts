@@ -127,6 +127,22 @@ export class AngularDemystifyComponent {
       description: 'how to use the transform property with the @Input decorator in Angular 18 to control and modify data passed from a parent component! In this tutorial, I’ll explain how you can transform input data in real-time, ensuring cleaner, more predictable data flow in your Angular applications. This guide is ideal for developers looking to refine component communication and enhance data handling in Angular.',
       videoId: 'urU2gcTk-ww'
     },
+    {
+      title: 'Child to Parent Data Transfer in Angular 18: Emitting Data with @Output  PART 15',
+      description: 'Learn how to send data from a child component to a parent component in Angular 18 using the @Output decorator and EventEmitter! In this tutorial, I’ll walk you through the steps to set up child-to-parent data transfer, providing examples and best practices to keep your components connected and maintain data flow in your Angular applications.',
+      videoId: 'aclsXPxBVHI'
+    },
+    {
+      title: 'Using the New Output Function in Angular 18: Simplify Component Communication PART 16',
+      description: 'Discover the latest features of Angular 18\'s new Output function and learn how it enhances component communication! In this tutorial, I’ll explain how to set up and use the new Output function to pass data and events from child components to parent components easily and efficiently. Perfect for Angular developers looking to stay updated on the latest features!',
+      videoId: 'KkH-FQ2EDJg'
+    },
+    {
+      title: 'Control Flow in Angular 17+: Mastering *ngIf for Conditional Rendering PART 17',
+      description: 'how to use the *ngIf directive in Angular 17 for controlling the flow and conditionally rendering components! In this tutorial, I’ll explain how the *ngIf directive works, demonstrate practical examples, and show you how to structure your components with conditional statements for efficient and clean UIs.',
+      videoId: 'Nmsg5RUlfmA'
+    },
+
     
 
   ];
