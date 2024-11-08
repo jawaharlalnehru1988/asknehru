@@ -147,6 +147,11 @@ export class AngularDemystifyComponent {
       description: 'Explore the power of the ngSwitch directive in Angular 18 to control flow and render views dynamically based on conditions! In this tutorial, I’ll guide you through using ngSwitch, ngSwitchCase, and ngSwitchDefault to handle complex UI scenarios. Perfect for developers looking to manage component views based on multiple conditions!',
       videoId: 'yUOC_EP3HCs'
     },
+    {
+      title: 'Iterating Elements in Angular 18: Master the New @For Directive! PART 19',
+      description: 'Learn how to use Angular 18’s new @For directive to iterate over elements effortlessly! In this tutorial, I’ll walk you through setting up @For to display lists, arrays, and dynamic content in Angular applications. Perfect for developers looking to streamline component templates and improve performance in data rendering.',
+      videoId: 'M482vfbhnLM'
+    },
 
     
 
