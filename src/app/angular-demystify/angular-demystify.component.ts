@@ -152,8 +152,32 @@ export class AngularDemystifyComponent {
       description: 'Learn how to use Angular 18’s new @For directive to iterate over elements effortlessly! In this tutorial, I’ll walk you through setting up @For to display lists, arrays, and dynamic content in Angular applications. Perfect for developers looking to streamline component templates and improve performance in data rendering.',
       videoId: 'M482vfbhnLM'
     },
+    {
+      title: 'Mastering Content Projection in Angular: Using ng-content for Dynamic Templates PART 20',
+      description: 'Learn how to use content projection in Angular to create flexible, reusable components with ng-content! In this video, I’ll walk you through the concept of content projection, how to project dynamic content into components, and why this feature is powerful for building customizable UIs in Angular. Perfect for developers looking to deepen their Angular knowledge and component architecture skills!',
+      videoId: 'VJL_kGBSdus'
+    },
+    {
+      title: 'Mastering ViewChild and ViewChildren in Angular 18: Access Child Components Efficiently! PART 21',
+      description: 'Explore how to use ViewChild and ViewChildren in Angular 18 to access child components and DOM elements directly! In this video, I’ll walk you through setting up ViewChild and ViewChildren, explain when to use each, and show practical examples to enhance inter-component communication and DOM manipulation. Ideal for Angular developers looking to deepen their component interaction skills!',
+      videoId: '69mtQ81qGmA'
+    },
+    {
+      title: 'Angular Services Explained: Simplify Data Sharing and Logic and state Management PART 22',
+      description: 'Learn everything you need to know about services in Angular! In this video, I’ll explain what Angular services are, their role in sharing data and managing logic, and how to create and use them in your applications. Enhance your understanding of dependency injection and build more modular, scalable apps with Angular.',
+      videoId: 'fPE_HOEe5yE'
+    },
+    {
+      title: 'Mastering FormControl in Angular Reactive Forms: A Complete Guide PART 23',
+      description: 'Learn how to use FormControl in Angular Reactive Forms to build robust and dynamic forms for your applications! In this video, I’ll explain the basics of FormControl, how to manage form state, and handle validations effectively. Whether you’re new to Angular forms or looking to refine your skills, this tutorial will guide you step-by-step.',
+      videoId: 'R1nyQCQTwaQ'
+    },
+    {
+      title: 'Mastering FormGroup in Angular Reactive Forms: Complete Guide for Beginners PART 24',
+      description: 'Learn how to use FormGroup in Angular Reactive Forms to create and manage dynamic forms effectively! In this video, I’ll explain the concept of FormGroup, how to group form controls, and the best practices for building scalable forms in Angular. Perfect for developers looking to enhance their skills in form handling.',
+      videoId: 'ymjyajFQ2kk'
+    },
 
-    
 
   ];
   isMobile = false;
