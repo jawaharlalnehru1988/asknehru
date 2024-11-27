@@ -56,5 +56,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),
   },
+  {
+    path: 'javascript',
+    loadChildren: () =>
+      import('../../core/routes/javascript.route').then((m) => m.routes),
+  },
   { path: '**', redirectTo: '/home' },
 ];
