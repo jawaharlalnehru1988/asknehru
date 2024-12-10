@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@javascript/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JavascriptComponent } from './javascript.component';
 

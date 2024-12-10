@@ -82,6 +82,12 @@ blogArticleData: Project[] = [
     routerLink: "/rxjs",
     intro:"Watch and learn Rxjs"
   },
+  {
+    PName: "Javascript Concepts",
+    PImage: "assets/image/javascript.png",
+    routerLink: "/jsconcepts",
+    intro:"Watch and learn javascript concepts"
+  },
  
 ]
 staticWebsites: Project[] = [
