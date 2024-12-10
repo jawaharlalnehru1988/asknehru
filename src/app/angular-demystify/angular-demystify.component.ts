@@ -29,7 +29,7 @@ export class AngularDemystifyComponent {
   selectedTopic: string | null = null;
   sidebarTopics:AngularTopics[] = [
     {title: 'Watch and learn Angular', titleId: 'watch'},
-    {title: 'Read and learn Angular', titleId: 'read'},
+    {title: 'Blogs', titleId: 'read'},
     {title: 'Hear and learn Angular', titleId: 'hear'},
   ]
   angularTopics: TsTopics[] = [
