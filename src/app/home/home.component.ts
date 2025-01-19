@@ -25,7 +25,7 @@ export interface Tile {
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, DatePipe, NgClass]
+    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
 })
 export class HomeComponent {
   longText:string = 'This is my experience journey'
@@ -151,10 +151,6 @@ projects = {
 }
 webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
 
-  constructor(private api: ApiService, private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
-   }
-
-  
-
+constructor(){}
   
 }

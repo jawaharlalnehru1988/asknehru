@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/cdk/overlay-prebuilt.css';
-@import "~prismjs/themes/prism-okaidia.css";
+@import "prismjs/themes/prism-okaidia.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -52,12 +52,13 @@ html, body {
   font-size: 16px;
 }
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* You can add global styles to this file, and also import other style files */
 // @import '@angular/cdk/overlay-prebuilt.css';
-// @import "~prismjs/themes/prism-solarizedlight.css";
+// @import "prismjs/themes/prism-solarizedlight.css";
 
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

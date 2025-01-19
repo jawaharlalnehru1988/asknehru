@@ -15,15 +15,20 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "allowedCommonJsDependencies": [
               "prismjs"
             ],
-            "outputPath": "dist/asknehru",
+            "outputPath": {
+              "base": "dist/asknehru"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts",
+              "zone.js",
+              "@angular/localize/init"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -52,7 +57,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -77,9 +83,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -96,6 +100,9 @@
             "development": {
               "buildTarget": "asknehru:build:development"
             }
+          },
+          "options": {
+            "hmr": false
           },
           "defaultConfiguration": "development"
         },
