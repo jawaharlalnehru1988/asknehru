@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { NgClass } from '@angular/common';
-import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
-
 
 @Component({
     selector: 'app-root',
+    standalone:true,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [ToolbarComponent, RouterOutlet, NgClass,  PrismHighlightDirective]
+    imports: [RouterOutlet, ToolbarComponent]
 })
 export class AppComponent {
   title = 'asknehru';

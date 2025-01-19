@@ -25,7 +25,7 @@ export interface Tile {
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, DatePipe, NgClass]
+    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
 })
 export class HomeComponent {
   longText:string = 'This is my experience journey'

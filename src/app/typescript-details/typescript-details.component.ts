@@ -4,11 +4,10 @@ import * as Prism from 'prismjs';
 import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
 
 @Component({
-  selector: 'app-typescript-details',
-  standalone: true,
-  imports: [PrismHighlightDirective],
-  templateUrl: './typescript-details.component.html',
-  styleUrl: './typescript-details.component.scss'
+    selector: 'app-typescript-details',
+    imports: [PrismHighlightDirective],
+    templateUrl: './typescript-details.component.html',
+    styleUrl: './typescript-details.component.scss'
 })
 export class TypescriptDetailsComponent {
   topicId: number = 0;

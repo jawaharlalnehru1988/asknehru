@@ -8,11 +8,10 @@ interface TsTopics {
 }
 
 @Component({
-  selector: 'app-typescript',
-  standalone: true,
-  imports: [RouterLink],
-  templateUrl: './typescript.component.html',
-  styleUrl: './typescript.component.scss',
+    selector: 'app-typescript',
+    imports: [RouterLink],
+    templateUrl: './typescript.component.html',
+    styleUrl: './typescript.component.scss'
 })
 export class TypescriptComponent {
   isSidebarOpen: boolean = false;

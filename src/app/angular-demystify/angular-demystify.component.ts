@@ -18,11 +18,10 @@ interface Video{
   videoId: string;
 }
 @Component({
-  selector: 'app-angular-demystify',
-  standalone: true,
-  imports: [RouterLink, NgClass, YouTubePlayerModule],
-  templateUrl: './angular-demystify.component.html',
-  styleUrl: './angular-demystify.component.scss'
+    selector: 'app-angular-demystify',
+    imports: [RouterLink, NgClass, YouTubePlayerModule],
+    templateUrl: './angular-demystify.component.html',
+    styleUrl: './angular-demystify.component.scss'
 })
 export class AngularDemystifyComponent {
   isSidebarOpen: boolean = false;

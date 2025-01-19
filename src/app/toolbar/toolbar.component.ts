@@ -12,7 +12,6 @@ import { MatToolbar } from '@angular/material/toolbar';
     selector: 'app-toolbar',
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss'],
-    standalone: true,
     imports: [
         MatToolbar,
         MatButton,
@@ -22,7 +21,7 @@ import { MatToolbar } from '@angular/material/toolbar';
         RouterLinkActive,
         MatMenu,
         MatMenuItem,
-    ],
+    ]
 })
 export class ToolbarComponent implements OnInit {
   showFiller = false;

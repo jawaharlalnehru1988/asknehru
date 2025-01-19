@@ -4,11 +4,10 @@ import * as Prism from 'prismjs';
 import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
 
 @Component({
-  selector: 'app-angular-blogs',
-  standalone: true,
-  imports: [PrismHighlightDirective],
-  templateUrl: './angular-blogs.component.html',
-  styleUrl: './angular-blogs.component.scss'
+    selector: 'app-angular-blogs',
+    imports: [PrismHighlightDirective],
+    templateUrl: './angular-blogs.component.html',
+    styleUrl: './angular-blogs.component.scss'
 })
 export class AngularBlogsComponent {
   id!: string | null;

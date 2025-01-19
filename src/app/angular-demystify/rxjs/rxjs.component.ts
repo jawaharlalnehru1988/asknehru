@@ -8,11 +8,10 @@ interface Video{
   videoId: string;
 }
 @Component({
-  selector: 'app-rxjs',
-  standalone: true,
-  imports: [YouTubePlayerModule],
-  templateUrl: './rxjs.component.html',
-  styleUrls: ['./rxjs.component.scss'], // Corrected property name
+    selector: 'app-rxjs',
+    imports: [YouTubePlayerModule],
+    templateUrl: './rxjs.component.html',
+    styleUrls: ['./rxjs.component.scss']
 })
 export class RxjsComponent {
 
