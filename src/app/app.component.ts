@@ -7,7 +7,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     standalone:true,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    imports: [RouterOutlet, ToolbarComponent]
+    imports: [ToolbarComponent, RouterOutlet]
 })
 export class AppComponent {
   title = 'asknehru';

@@ -151,10 +151,6 @@ projects = {
 }
 webTechs: string[] =["Gym", "Yoga", "Shop", "Food", "Tech Expert", "Fashion"];
 
-  constructor(private api: ApiService, private fb: FormBuilder, private el: ElementRef, private renderer: Renderer2) {
-   }
-
-  
-
+constructor(){}
   
 }
