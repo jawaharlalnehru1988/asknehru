@@ -1,0 +1,98 @@
+.main-container {
+    display: flex;
+    height: 89vh;
+    align-items: stretch;
+    position: relative;
+  }
+  app-jssidebar {
+    background-color: rgb(248, 236, 236);
+    width: 200px;
+    flex-shrink: 0; /* Prevent the sidebar from shrinking */
+  }
+  .content {
+    flex-grow: 1; /* Allow the content area to grow and fill the remaining space */
+    padding: 20px;
+    background-color: rgb(243, 250, 250); /* Add some padding for better spacing */
+  }
+  
+  .js-sidebar{
+    background-color: rgb(248, 236, 236);
+    width: 200px;
+    transition: width 0.5s ease;
+  }
+
+  .js-sidebar-small{
+    @extend .js-sidebar;
+    width: 80px;
+  }
+
+.circle-arrow {
+  position: absolute; 
+  left: 180px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  width: 40px;
+  height: 40px;
+  border: 3px solid #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+
+.arrow {
+    width: 8px;
+    height: 8px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    transform: rotate(135deg); 
+    transition: transform 0.5s ease;
+}
+
+.right-arrow {
+    @extend .arrow;
+      transform: rotate(-45deg); 
+      }
+}
+
+.circle-arrow-small{
+    @extend .circle-arrow;
+    left: 58px;
+ }
+
+
+
+.circle-arrow:hover {
+    background-color: #f0f0f0;
+  }
+
+  .topics-list{
+    padding: 12px;
+}
+
+.topics-container{
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+
+    grid-template-columns: 1fr;
+
+    @media (min-width: 768px){
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .topic{
+        background-color: #f8f9fa;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: left;
+    }
+
+    .topic:hover{
+        background-color: #e9ecef;
+    }
+
+}

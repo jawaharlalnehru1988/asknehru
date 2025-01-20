@@ -1,1 +1,24 @@
-<p>javascript works!</p>
+<div class="main-container">
+    <div [ngClass]="isArrowActive? 'js-sidebar' : 'js-sidebar-small'">
+        <app-jssidebar (passTopic)="receiveTopic($event)" [toggleValue]="isArrowActive"></app-jssidebar>
+    </div>
+    <div [ngClass]="isArrowActive? 'circle-arrow': 'circle-arrow-small'" (click)="toggleArrow()" [class.active]="isArrowActive">
+        <div [ngClass]="isArrowActive ? 'arrow' : 'right-arrow'"></div>
+      </div>
+
+    
+    <div class="content">
+        @if(jstopic){
+        
+            <div class="topics-container">
+                @for(topic of topics; track topic){
+                <div class="topic" (click)="clickTopic(topic)" >
+                    {{topic.id}}. {{topic.topic}}
+                </div>
+                }
+            </div>  
+      }
+
+    </div>
+  </div>
+  
