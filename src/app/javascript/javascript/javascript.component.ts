@@ -22,7 +22,6 @@ export class JavascriptComponent {
     }
 
     receiveTopic(topic: string){
-    console.log('topic :', topic);
     this.jstopic = topic;
 
     }

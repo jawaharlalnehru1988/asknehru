@@ -74,13 +74,9 @@ export class Jstopics{
         {id: 67, topic: "Array Methods - toLocaleString"},
         {id: 68, topic: "Array Methods - toSorted"},
         {id: 69, topic: "Array Methods - toSpliced"},
-
+        
       
-     
-   
-       
-
-     
+    
         
         
       ];
