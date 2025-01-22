@@ -1,23 +1,35 @@
 <div class="main-container">
-    <div [ngClass]="isArrowActive? 'js-sidebar' : 'js-sidebar-small'">
+    <div class="js-sidebar-small">
         <app-jssidebar (passTopic)="receiveTopic($event)" [toggleValue]="isArrowActive"></app-jssidebar>
     </div>
-    <div [ngClass]="isArrowActive? 'circle-arrow': 'circle-arrow-small'" (click)="toggleArrow()" [class.active]="isArrowActive">
-        <div [ngClass]="isArrowActive ? 'arrow' : 'right-arrow'"></div>
-      </div>
-
-    
+       
     <div class="content">
         
         @switch (jstopic) {
             @case ('Javascript Basics') {
-                <div class="topics-container">
-                    @for(topic of topics; track topic; let idx = $index){
-                        <div class="topic" (click)="clickTopic(topic)" >
-                            {{idx + 1}}. {{topic.topic}}
-                        </div>
+                <div class="topic-content-space">
+                    @if(!mainTopicAppear){
+                        <div class="topics-container">
+                            @for(topic of topics; track topic; let idx = $index){
+                                <div class="topic" (click)="clickTopic(topic)" >
+                                    {{idx + 1}}. {{topic.title}}  <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+                                </div>
+                            }
+                        </div>  
+                    } @else if(mainTopicAppear){
+                        <div class="topics-container">
+                            <div class="sub-title" (click)="backToMainTopic()" > <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon> <span> {{subTopicTitle}} </span> </div>
+                            @for(subTopic of subTopicArray; track subTopic; let idx = $index){
+                                <div class="sub-topic" (click)="subTopicClicked(subTopic)" >
+                                    {{idx + 1}}. {{subTopic.subTopic}}  
+                                </div>
+                            }
+                        </div>  
                     }
-                </div>  
+                    <div class="topic-detail">
+                        <p>Main content</p>
+                    </div>
+                </div>
             } 
 
             @case ('Javascript DSA') {
@@ -29,17 +41,34 @@
             }
 
             @default {
-                <div class="topics-container">
-                    @for(topic of topics; track topic){
-                        <div class="topic" (click)="clickTopic(topic)" >
-                            {{topic.id}}. {{topic.topic}}
-                        </div>
+                <div class="topic-content-space">
+                    @if(!mainTopicAppear){
+                        <div class="topics-container">
+                            @for(topic of topics; track topic; let idx = $index){
+                                <div class="topic" (click)="clickTopic(topic)" >
+                                    {{idx + 1}}. {{topic.title}}  <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
+                                </div>
+                            }
+                        </div>  
+                    } @else if(mainTopicAppear){
+                        <div class="topics-container">
+                            <div class="sub-title" (click)="backToMainTopic()" > <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon> <span> {{subTopicTitle}} </span> </div>
+                            @for(subTopic of subTopicArray; track subTopic; let idx = $index){
+                                <div class="sub-topic" (click)="subTopicClicked(subTopic)" >
+                                    {{idx + 1}}. {{subTopic.subTopic}}  
+                                </div>
+                            }
+                        </div>  
                     }
-                </div>  
+                    <div class="topic-detail">
+                        <p>Main content</p>
+                    </div>
+                </div>
             }
         }
       
 
     </div>
   </div>
+  
   
