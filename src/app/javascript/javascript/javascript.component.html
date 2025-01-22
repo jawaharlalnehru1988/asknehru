@@ -4,9 +4,9 @@
     </div>
        
     <div class="content">
-        
-        @switch (jstopic) {
-            @case ('Javascript Basics') {
+            @if(jstopic == 'Javascript DSA'){
+                
+       
                 <div class="topic-content-space">
                     @if(!mainTopicAppear){
                         <div class="topics-container">
@@ -30,17 +30,9 @@
                         <p>Main content</p>
                     </div>
                 </div>
-            } 
+            }           
 
-            @case ('Javascript DSA') {
-
-            }
-
-            @case ('Javascript OOP') {
-
-            }
-
-            @default {
+            @else {
                 <div class="topic-content-space">
                     @if(!mainTopicAppear){
                         <div class="topics-container">
@@ -61,11 +53,37 @@
                         </div>  
                     }
                     <div class="topic-detail">
-                        <p>Main content</p>
+                        <div class="article-container">
+                            <h1>{{ articleTitle }}</h1>
+                            <p>{{ introduction }}</p>
+                          
+                            <h2>List of Primitive Data Types</h2>
+                            <ul>
+                              <li *ngFor="let type of primitiveTypes">
+                                <strong>{{ type.name }}:</strong> {{ type.description }}
+                              </li>
+                            </ul>
+                          
+                            <h2>Key Points</h2>
+                            <p *ngFor="let point of keyPoints">- {{ point }}</p>
+                          
+                            <h2>Example Code</h2>
+                            <pre>
+                              <code class="font-mono text-sm" class="language-javascript" codeHighlight>
+                                {{ exampleCode }}
+                              </code>
+                            </pre>
+                          
+                            <h2>Conclusion</h2>
+                            <p>{{ conclusion }}</p>
+                          </div>
+                          
+
+
                     </div>
                 </div>
             }
-        }
+
       
 
     </div>

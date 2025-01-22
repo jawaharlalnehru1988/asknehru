@@ -94,3 +94,23 @@
   cursor: pointer;
   color: #054164;
 }
+
+.article-container {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 70vw;
+  margin: 0 auto;
+  overflow-y: scroll;
+  height: 84vh;
+}
+
+h1, h2 {
+  color: #2c3e50;
+}
+
+ul {
+  list-style-type: square;
+  margin-left: 20px;
+}
+

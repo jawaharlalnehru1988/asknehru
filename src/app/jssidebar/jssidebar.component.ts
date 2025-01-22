@@ -10,7 +10,7 @@ import { Component, Input, output} from '@angular/core';
   styleUrl: './jssidebar.component.scss'
 })
 export class JssidebarComponent {
-  topics = ['Javascript Basics', 'Javascript DSA', 'Javascript OOP'];
+  topics = ['Javascript Basics', 'Javascript DSA'];
   @Input() toggleValue :boolean = false;
   passTopic =  output<string>();
 
@@ -23,6 +23,5 @@ export class JssidebarComponent {
     switch (topic) { 
       case 'Javascript Basics': return '📚';
       case 'Javascript DSA': return '📅'; 
-      case 'Javascript OOP': return '⭕'; 
       default: return '❓'; } }
 }
