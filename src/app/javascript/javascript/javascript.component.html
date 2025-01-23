@@ -5,8 +5,6 @@
        
     <div class="content">
             @if(jstopic == 'Javascript DSA'){
-                
-       
                 <div class="topic-content-space">
                     @if(!mainTopicAppear){
                         <div class="topics-container">
@@ -20,7 +18,7 @@
                         <div class="topics-container">
                             <div class="sub-title" (click)="backToMainTopic()" > <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon> <span> {{subTopicTitle}} </span> </div>
                             @for(subTopic of subTopicArray; track subTopic; let idx = $index){
-                                <div class="sub-topic" (click)="subTopicClicked(subTopic)" >
+                                <div class="sub-topic" (click)="subTopicClicked('', subTopic)" >
                                     {{idx + 1}}. {{subTopic.subTopic}}  
                                 </div>
                             }
@@ -46,46 +44,96 @@
                         <div class="topics-container">
                             <div class="sub-title" (click)="backToMainTopic()" > <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon> <span> {{subTopicTitle}} </span> </div>
                             @for(subTopic of subTopicArray; track subTopic; let idx = $index){
-                                <div class="sub-topic" (click)="subTopicClicked(subTopic)" >
+                                <div class="sub-topic" (click)="subTopicClicked(subTopicTitle, subTopic)" >
                                     {{idx + 1}}. {{subTopic.subTopic}}  
                                 </div>
                             }
                         </div>  
                     }
+
                     <div class="topic-detail">
                         <div class="article-container">
-                            <h1>{{ articleTitle }}</h1>
-                            <p>{{ introduction }}</p>
+                            @switch (matchingTopicId) {
+                                @case ("Data types 1") {
+                                            <h1>{{ jsContent[1].articleTitle }}</h1>
+                                            <p>{{ jsContent[1].introduction }}</p>
+                                          
+                                            <h2>List of Primitive Data Types</h2>
+                                            <ul>
+                                              <li *ngFor="let type of jsContent[1].primitiveTypes">
+                                                <strong>{{ type.name }}:</strong> {{ type.description }}
+                                              </li>
+                                            </ul>
+                                          
+                                            <h2>Key Points</h2>
+                                            <p *ngFor="let point of jsContent[1].keyPoints">- {{ point }}</p>
+                                          
+                                            <h2>Example Code</h2>
+                                            <pre>
+                                              <code class="language-javascript" codeHighlight>
+                                                {{ jsContent[1].exampleCode }}
+                                              </code>
+                                            </pre>
+                                          
+                                            <h2>Conclusion</h2>
+                                            <p>{{ jsContent[1].conclusion }}</p>                                                                              
+                                }
+
+                                @case ("Data types 2") {
+
+                                    <h1>{{ jsContent[2].articleTitle }}</h1>
+                                    <p>{{ jsContent[2].introduction }}</p>
+                                  
+                                    <h2>List of Primitive Data Types</h2>
+                                    <ul>
+                                      <li *ngFor="let type of jsContent[2].primitiveTypes">
+                                        <strong>{{ type.name }}:</strong> {{ type.description }}
+                                      </li>
+                                    </ul>
+                                  
+                                    <h2>Key Points</h2>
+                                    <p *ngFor="let point of jsContent[2].keyPoints">- {{ point }}</p>
+                                  
+                                    <h2>Example Code</h2>
+                                    <pre>
+                                      <code class="language-javascript" codeHighlight>
+                                        {{ jsContent[2].exampleCode }}
+                                      </code>
+                                    </pre>
+                                  
+                                    <h2>Conclusion</h2>
+                                    <p>{{ jsContent[2].conclusion }}</p>                                                                              
+
+                                }
+
+                                @default {
+                                    <h1>{{ jsContent[0].articleTitle }}</h1>
+                            <p>{{ jsContent[0].introduction }}</p>
+                            <h2>Key Points</h2>
+                                <p *ngFor="let point of jsContent[0].reasonsToLearn">  {{ point }}</p>
                           
-                            <h2>List of Primitive Data Types</h2>
+                            <h2>Key Features of Javascript</h2>
                             <ul>
-                              <li *ngFor="let type of primitiveTypes">
+                              <li *ngFor="let type of jsContent[0].keyFeatures">
                                 <strong>{{ type.name }}:</strong> {{ type.description }}
                               </li>
                             </ul>
-                          
-                            <h2>Key Points</h2>
-                            <p *ngFor="let point of keyPoints">- {{ point }}</p>
-                          
+
                             <h2>Example Code</h2>
                             <pre>
                               <code class="font-mono text-sm" class="language-javascript" codeHighlight>
-                                {{ exampleCode }}
+                                {{ jsContent[0].exampleCode }}
                               </code>
                             </pre>
                           
                             <h2>Conclusion</h2>
-                            <p>{{ conclusion }}</p>
+                            <p>{{ jsContent[0].conclusion }}</p>
+                                }
+                            }
                           </div>
-                          
-
-
                     </div>
                 </div>
             }
-
-      
-
     </div>
   </div>
   

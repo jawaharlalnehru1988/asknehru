@@ -1,15 +1,17 @@
+
 export interface JsModel {
+    title: string
+    topics: Topic[]
+  }
+  
+  export interface Topic {
     id: number
-    topic: string
-}
+    subTopic: string
+  }
 
 export class Jstopics{
-    topics: JsModel[] = [
-        {id: 18, topic: "Modules and Imports"},
-             
-      ];
-
-      categorisedTopics = [
+ 
+      categorisedTopics: JsModel[] = [
         { title: "Data types", topics: [
             {id: 1, subTopic: "Primitive Data Types"},
             {id: 2, subTopic: "Non-Primitive Data Types"},
