@@ -52,6 +52,9 @@ export const routes: Routes = [
       ),
   },
   {
+    path:'java', loadComponent: ()=> import('../../app/java/java.component').then(c => c.JavaComponent)
+  },
+  {
     path: 'spotify',
     loadChildren: () =>
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),

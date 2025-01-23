@@ -88,6 +88,12 @@ blogArticleData: Project[] = [
     routerLink: "/jsconcepts",
     intro:"Watch and learn javascript concepts"
   },
+  {
+    PName: "Java Core and DSA",
+    PImage: "assets/image/java.png",
+    routerLink: "/java",
+    intro:"Learn java's Essential concepts"
+  },
  
 ]
 staticWebsites: Project[] = [

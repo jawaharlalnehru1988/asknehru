@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    min-height: 94vh;
+    .side-nav{
+        padding: 8px;
+        align-items: stretch;
+        background: linear-gradient(to top right, #f3e9e7, #fae7d9, #e9eef7, #91eae4);
+        display: flex;
+        flex-direction: column;
+       gap: 20px;
+        .content-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .content-container:hover{
+            background-color: #91eae4;
+        }
+    }
+}
+.java-core, .java-dsa{
+    width: 50px;
+}
+
+.java-dsa{
+    background: linear-gradient(to bottom left, #f3e9e7, #fae7d9, #e9eef7, #91eae4);
+    border-radius: 30%;
+}
