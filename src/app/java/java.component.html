@@ -1,12 +1,12 @@
 
 <div class="container">
     <div class="side-nav">
-            <div class="content-container">
+            <div class="content-container" (click)="openMainDetails()">
                 <div>
                     <img alt="" src="../../assets/image/java.png" class="java-core">
                 </div>
                 <div>
-                    <div>Java Core</div>
+                    <div class="java-concept">Core Concepts</div>
                 </div>
             </div>
             <div class="content-container">
@@ -14,20 +14,43 @@
                     <img alt="" src="../../assets/image/java.png" class="java-dsa">
                 </div>
                 <div>
-                    <div>Java DSA</div>
+                    <div class="java-concept">DSA Mastery</div>
                 </div>
             </div>
     </div>
+    @if(sideTopicAppear){
     <div class="topics-list">
         <ul>
-            <li>Java Concept 1</li>
-            <li>Java Concept 1</li>
-            <li>Java Concept 1</li>
-            <li>Java Concept 1</li>
-            <li>Java Concept 1</li>
+            @for(jTopic of javaArray; track jTopic; let idx = $index){
+                <li class="java-topic" (click)="javaTopicClicked(jTopic)"> <div>{{idx + 1}}.{{jTopic.title}}</div> 
+                <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon> </div> </li>
+            }
         </ul>
-
     </div>
+}
+    @if(!sideTopicAppear){
+    <div class="sub-topic-list">
+            <div class="sub-topic-title" (click)="backToMainTopic()">
+                <div>
+                    <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon>
+                </div>
+                <div>
+                    {{subTopicTitle}}
+                </div>
+            </div>
+            <div>
+                <ul>
+                    @for(jSubTopic of subTopicArray; track jSubTopic; let idx = $index){
+                        <li class="java-topic" (click)="javaSubTopicClicked(subTopicTitle, jSubTopic.id)">
+                            <div>{{idx + 1}}.{{jSubTopic.subTopic}}</div>
+                            <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon"
+                                fontIcon="chevron_right"></mat-icon> </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
     <div class="main">
 
         Main projected content

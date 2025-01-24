@@ -2,7 +2,8 @@
     display: flex;
     min-height: 94vh;
     .side-nav{
-        padding: 8px;
+        padding: 8px 0px;
+        width: 8%;
         align-items: stretch;
         background: linear-gradient(to top right, #f3e9e7, #fae7d9, #e9eef7, #91eae4);
         display: flex;
@@ -12,6 +13,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 8px 0px;
             cursor: pointer;
         }
 
@@ -27,4 +29,60 @@
 .java-dsa{
     background: linear-gradient(to bottom left, #f3e9e7, #fae7d9, #e9eef7, #91eae4);
     border-radius: 30%;
+}
+
+.topics-list{
+    width: 20%;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid rgb(211, 208, 208);
+    ul{
+        width: 100%;
+        background-color: #f3fdfd;
+    }
+    ul li{
+        padding: 4px 8px;
+        background-color: #e2f8f8;
+        cursor: pointer;
+        margin-bottom: 2px;
+    }
+    ul li:hover{
+        background-color: #91eae4;
+    }
+}
+
+.java-topic{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.java-concept{
+    text-align: center;
+    font-weight: 600;
+    color: rgb(75, 39, 75);
+   
+}
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+
+.sub-topic-list{
+    @extend .topics-list;
+    display: flex;
+    flex-direction: column;
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+.sub-topic-title{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    background-color: #72ebe3;
 }
