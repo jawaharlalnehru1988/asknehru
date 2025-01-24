@@ -41,7 +41,7 @@
             <div>
                 <ul>
                     @for(jSubTopic of subTopicArray; track jSubTopic; let idx = $index){
-                        <li class="java-topic" (click)="javaSubTopicClicked(subTopicTitle, jSubTopic.id)">
+                        <li class="java-topic" (click)="javaSubTopicClicked(jSubTopic.subTopic, jSubTopic.id)">
                             <div>{{idx + 1}}.{{jSubTopic.subTopic}}</div>
                             <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon"
                                 fontIcon="chevron_right"></mat-icon> </div>
@@ -53,6 +53,77 @@
         }
     <div class="main">
 
-        Main projected content
+        @switch (specificTopic) {
+            @case ('Class 1') {
+                <div class="java-class-article">
+                    <h1>{{ javaArticleArr[0].javaClassTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[0].javaClassContent"></p>
+                  
+                    <h2>Key Features of a Class</h2>
+                    <ul>
+                      <li *ngFor="let feature of javaArticleArr[0].javaClassFeatures">{{ feature }}</li>
+                    </ul>
+                  
+                    <h2>Example of a Class in Java</h2>
+                    <div [innerHTML]="javaArticleArr[0].javaClassExample"></div>
+                  
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[0].javaClassConclusion"></p>
+                  </div>                  
+            }
+            @case ('data structure') {
+
+            }
+            @case ('algorithm') {
+
+            }
+            @default {
+                <div class="java-introduction">
+                    <h1>Introduction to Java</h1>
+                    <p>
+                      Java is one of the most popular and widely-used programming languages in the world. 
+                      Developed by Sun Microsystems in 1995 and now owned by Oracle Corporation, 
+                      Java is known for its platform independence, versatility, and robustness.
+                    </p>
+                    
+                    <h2>Key Features of Java</h2>
+                    <ul>
+                      <li><strong>Platform Independent:</strong> Java’s “Write Once, Run Anywhere” (WORA) philosophy allows programs to run on any platform with a Java Virtual Machine (JVM).</li>
+                      <li><strong>Object-Oriented:</strong> Java follows object-oriented principles, making it easier to build modular, reusable, and scalable applications.</li>
+                      <li><strong>Secure:</strong> With features like a secure class loader and bytecode verifier, Java ensures safe execution of untrusted code.</li>
+                      <li><strong>Robust:</strong> Java provides strong memory management and exception handling capabilities to build reliable applications.</li>
+                      <li><strong>High Performance:</strong> While Java is an interpreted language, Just-In-Time (JIT) compilation improves its performance significantly.</li>
+                    </ul>
+                    
+                    <h2>Applications of Java</h2>
+                    <p>Java is versatile and finds its use in various domains, including:</p>
+                    <ol>
+                      <li><strong>Web Development:</strong> Frameworks like Spring and Hibernate enable developers to create dynamic web applications.</li>
+                      <li><strong>Mobile Development:</strong> Java is the foundation for Android application development.</li>
+                      <li><strong>Enterprise Applications:</strong> Java EE (Jakarta EE) is widely used to build enterprise-grade applications.</li>
+                      <li><strong>Big Data:</strong> Tools like Hadoop and Apache Spark are written in Java or leverage Java-based libraries.</li>
+                      <li><strong>Game Development:</strong> Java provides libraries like LWJGL for building games.</li>
+                    </ol>
+                  
+                    <h2>Why Learn Java?</h2>
+                    <p>
+                      Java is an excellent choice for beginners and experienced developers alike due to its:
+                    </p>
+                    <ul>
+                      <li>Easy-to-learn syntax.</li>
+                      <li>Extensive community support.</li>
+                      <li>Wide range of libraries and frameworks.</li>
+                      <li>Strong demand in the job market.</li>
+                    </ul>
+                    
+                    <h2>Conclusion</h2>
+                    <p>
+                      Java is a powerful, versatile language that has stood the test of time. 
+                      Whether you are building web applications, mobile apps, or enterprise-grade software, 
+                      Java offers the tools and frameworks to bring your ideas to life. Start your journey with Java today and unlock a world of opportunities!
+                    </p>
+                  </div>                  
+            }
+        }
     </div>
 </div>
