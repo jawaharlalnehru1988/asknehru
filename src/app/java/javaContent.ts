@@ -204,7 +204,205 @@ Local String: Initialized!
        </code></pre>
        `,
             javaVariablesConclusion: `Variables are fundamental to any Java program. By understanding their types, scope, and usage, developers can write efficient, readable, and maintainable code. Proper variable naming and scoping practices are key to avoiding errors and improving program clarity.`
+          },
+          {
+            javaConstructorTitle: 'Constructors in Java',
+            javaConstructorContent: `
+              A <strong>constructor</strong> in Java is a special type of method used to initialize an object when it is created. Unlike regular methods, constructors do not have a return type, not even <code>void</code>. 
+              They have the same name as the class and are automatically called when an object of the class is instantiated. Constructors are essential for setting up initial values and ensuring objects are properly initialized.`,
+            javaConstructorTypes: `
+              <p>There are primarily three types of constructors in Java:</p>
+              <ul>
+                <li><strong>Default Constructor:</strong> A constructor provided by the compiler when no other constructor is defined. It initializes object attributes with default values.</li>
+                <li><strong>Parameterized Constructor:</strong> A constructor that accepts arguments, allowing you to initialize object attributes with specific values.</li>
+                <li><strong>All-Argument Constructor:</strong> A constructor that accepts all possible attributes of the class, enabling full initialization of the object.</li>
+              </ul>
+            `,
+            javaConstructorExample: `
+              <pre><code>
+              public class ConstructorExample {
+                  // Instance variables
+                  String name;
+                  int age;
+          
+                  // Default Constructor
+                  public ConstructorExample() {
+                      this.name = "Default Name";
+                      this.age = 0;
+                      System.out.println("Default Constructor Called");
+                  }
+          
+                  // Parameterized Constructor
+                  public ConstructorExample(String name, int age) {
+                      this.name = name;
+                      this.age = age;
+                      System.out.println("Parameterized Constructor Called");
+                  }
+          
+                  // All-Argument Constructor
+                  public ConstructorExample(String name, int age, String additionalInfo) {
+                      this.name = name + " (" + additionalInfo + ")";
+                      this.age = age;
+                      System.out.println("All-Argument Constructor Called");
+                  }
+          
+                  public void displayInfo() {
+                      System.out.println("Name: " + name + ", Age: " + age);
+                  }
+          
+                  public static void main(String[] args) {
+                      // Using Default Constructor
+                      ConstructorExample obj1 = new ConstructorExample();
+                      obj1.displayInfo();
+          
+                      // Using Parameterized Constructor
+                      ConstructorExample obj2 = new ConstructorExample("John", 25);
+                      obj2.displayInfo();
+          
+                      // Using All-Argument Constructor
+                      ConstructorExample obj3 = new ConstructorExample("Jane", 30, "Employee");
+                      obj3.displayInfo();
+                  }
+              }
+              </code></pre>
+            `,
+            javaConstructorFeatures: `
+              <p>Key features of constructors:</p>
+              <ul>
+                <li>Constructors share the same name as the class.</li>
+                <li>They do not have a return type.</li>
+                <li>They are automatically called when an object is created.</li>
+                <li>Constructors can be overloaded (multiple constructors with different parameter lists).</li>
+                <li>If no constructor is defined, Java provides a default constructor automatically.</li>
+              </ul>
+            `,
+            javaConstructorConclusion: `
+              Constructors are an integral part of Java classes, allowing developers to initialize objects efficiently and consistently. By using default, parameterized, and all-argument constructors appropriately, 
+              you can handle different initialization scenarios, ensuring flexibility and code readability in your programs.
+            `
+          },
+          {
+            javaMethodsTitle: 'Types of Methods in Java',
+            javaMethodsContent: `
+              Methods in Java are blocks of code that perform a specific task. They allow developers to define reusable logic, improving code modularity and reducing redundancy. 
+              A method is invoked to perform an action, and it can take input parameters and return a value. Methods in a class can be categorized based on their functionality and use cases.`,
+            javaMethodsTypes: `
+              <p>There are various types of methods in a class:</p>
+              <ul>
+                <li><strong>Instance Methods:</strong> Belong to an object and require an instance of the class to be called. These methods can access instance variables and other instance methods.</li>
+                <li><strong>Static Methods:</strong> Belong to the class rather than any specific object. Declared with the <code>static</code> keyword, they can be called without creating an object and can only access static variables and methods directly.</li>
+                <li><strong>Abstract Methods:</strong> Declared without a body (using the <code>abstract</code> keyword) in an abstract class. They must be implemented by subclasses.</li>
+                <li><strong>Final Methods:</strong> Declared with the <code>final</code> keyword, these methods cannot be overridden by subclasses.</li>
+                <li><strong>Constructor Methods:</strong> Special methods used to initialize objects. While technically not a method (since they don't have a return type), they play a similar role in setting up the state of an object.</li>
+                <li><strong>Getter and Setter Methods:</strong> Used to encapsulate and manage access to private instance variables, adhering to the principles of encapsulation.</li>
+                <li><strong>Overloaded Methods:</strong> Methods with the same name but different parameter lists, enabling multiple implementations based on the inputs.</li>
+                <li><strong>Overridden Methods:</strong> Methods that provide a new implementation of a method inherited from a superclass or interface.</li>
+              </ul>
+            `,
+            javaMethodsExample: `
+              <pre><code>
+              public class MethodExamples {
+                  // Instance variable
+                  private String name;
+         
+                  // Instance Method
+                  public void displayInstanceMethod() {
+                      System.out.println("Instance Method called. Name: " + name);
+                  }
+          
+                  // Static Method
+                  public static void displayStaticMethod() {
+                      System.out.println("Static Method called.");
+                  }
+          
+                  // Abstract Method can be declared only in an abstract class
+                //   public abstract void displayAbstractMethod();
+          
+                  // Final Method
+                  public final void displayFinalMethod() {
+                      System.out.println("Final Method called.");
+                  }
+                         
+                  // Constructor Method
+                  public MethodExamples(String name) {
+                      this.name = name;
+                  }
+          
+                  // Getter Method
+                  public String getName() {
+                      return name;
+                  }
+          
+                  // Setter Method
+                  public void setName(String name) {
+                      this.name = name;
+                  }
+          
+                  // Overloaded Method
+                  public void displayOverloadedMethod() {
+                      System.out.println("No arguments provided.");
+                  }
+          
+                  public void displayOverloadedMethod(String message) {
+                      System.out.println("Message: " + message);
+                  }
+          
+                  // Overridden Method Example
+                  @Override
+                  public String toString() {
+                      return "MethodExamples{name='" + name + "'}";
+                  }
+          
+                  public static void main(String[] args) {
+                    
+                    MethodExamples obj = new MethodExamples("Java");
+                      // Calling instance method
+                      obj.displayInstanceMethod();
+          
+                      // Calling static method
+                      MethodExamples.displayStaticMethod();
+
+                      // Abstract method
+                    //   obj.displayAbstractMethod();
+
+                      // Final method
+                      obj.displayFinalMethod();
+          
+                      // Calling Constructor method
+                      
+                      MethodExamples obj1 = new MethodExamples("Java");
+                      System.out.println("Constructor called");
+          
+                      // Using getter and setter methods
+                      System.out.println("Getter: " + obj.getName());
+                      obj.setName("Updated Name");
+                      System.out.println("Setter updated name: " + obj.getName());
+          
+                      // Calling overloaded methods
+                      obj.displayOverloadedMethod();
+                      obj.displayOverloadedMethod("Hello from Java!");
+          
+                      // Calling overridden method
+                      System.out.println(obj.toString());
+                  }
+              }
+              </code></pre>
+            `,
+            javaMethodsFeatures: `
+              <p>Key features of methods in Java:</p>
+              <ul>
+                <li>They improve code reusability and modularity.</li>
+                <li>They can take parameters and return values, enabling dynamic behavior.</li>
+                <li>They support polymorphism through method overloading and overriding.</li>
+                <li>They can be used to encapsulate logic, ensuring better readability and maintenance.</li>
+              </ul>
+            `,
+            javaMethodsConclusion: `
+              Methods are the backbone of Java programming, enabling developers to organize logic and functionality effectively. 
+              By using different types of methods appropriately, you can write clean, modular, and maintainable code that adheres to object-oriented principles.
+            `
           }
+          
           
           
         

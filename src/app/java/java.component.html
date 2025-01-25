@@ -137,6 +137,40 @@
                     <p [innerHTML]="javaArticleArr[2].javaVariablesConclusion"></p>
                   </div>
             }
+            @case ('Constructor 4') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[3].javaConstructorTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[3].javaConstructorContent"></p>
+                    <h2>Types of Constructor in Java</h2>
+                    <p [innerHTML]="javaArticleArr[3].javaConstructorTypes"></p>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[3].javaConstructorExample)">
+                            Copy Code
+                          </button>
+                        <p [innerHTML]="javaArticleArr[3].javaConstructorExample"></p>
+                    </div>     
+                    <p [innerHTML]="javaArticleArr[3].javaConstructorFeatures"></p>
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[3].javaConstructorConclusion"></p>
+                </div>
+            }
+            @case ('Methods 5') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[4].javaMethodsTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[4].javaMethodsContent"></p>
+                    <h2>Types of Method in Java</h2>
+                    <p [innerHTML]="javaArticleArr[4].javaMethodsTypes"></p>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[4].javaMethodsExample)">
+                            Copy Code
+                          </button>
+                        <p [innerHTML]="javaArticleArr[4].javaMethodsExample"></p>
+                    </div>     
+                    <p [innerHTML]="javaArticleArr[4].javaMethodsFeatures"></p>
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[4].javaMethodsConclusion"></p>
+                </div>
+            }
             @default {
                 <div class="java-introduction">
                     <h1>Introduction to Java</h1>
