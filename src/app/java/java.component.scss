@@ -3,7 +3,7 @@
     min-height: 94vh;
     .side-nav{
         padding: 8px 0px;
-        width: 10vw;
+        width: 18vw;
         align-items: stretch;
         background: linear-gradient(to top right, #f3e9e7, #fae7d9, #e9eef7, #91eae4);
         display: flex;
@@ -55,11 +55,24 @@
     animation: slideInFromRight 1s ease-out forwards;
 }
 
-.java-topic{
+.java-topic {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+.java-topic:hover{
+    background-color: #f0f0f0;
+}
+
+.java-topic.selected{
+    font-weight: bold;
+    background-color: #385548 !important;
+    color: #e2f8f8 !important;
+}
+
 
 .java-concept{
     text-align: center;
@@ -106,6 +119,8 @@
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
+    overflow-y: scroll;
+    height: 84vh;
     width: 72vw;
   }
   
@@ -125,25 +140,28 @@
     padding: 12px 24px;
   }
 
-  .java-class-article {
+  .java-article {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
+    overflow-y: scroll;
+    height: 84vh;
+    width: 72vw;
   }
   
-  .java-class-article h1, .java-class-article h2 {
+  .java-article h1, .java-article h2 {
     color: #0056b3;
   }
   
-  .java-class-article ul {
+  .java-article ul {
     margin-left: 20px;
   }
   
-  .java-class-article ul li {
+  .java-article ul li {
     margin-bottom: 10px;
   }
   
-  .java-class-article pre {
+  .java-article pre {
     background: #f5f5f5;
     padding: 10px;
     border-radius: 5px;
@@ -151,8 +169,50 @@
   }
 
   .example-code{
-    background: #413b3b;
+    background: #2c2929;
     padding: 10px;
+    color: white;
     border-radius: 5px;
+    position: relative;
   }
   
+  .copy-code-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+   font-size: 12px;
+
+  }
+
+  .copy-code-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .floating-message {
+    position: absolute;
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 1;
+    animation: fade-out 3s forwards;
+    z-index: 1000;
+  }
+  
+  /* Fade-out animation */
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }

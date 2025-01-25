@@ -22,7 +22,7 @@
     <div class="topics-list">
         <ul>
             @for(jTopic of javaArray; track jTopic; let idx = $index){
-                <li class="java-topic" (click)="javaTopicClicked(jTopic)"> <div>{{idx + 1}}.{{jTopic.title}}</div> 
+                <li class="java-topic" [class.selected]="selectedMainTopic === jTopic.title" (click)="javaTopicClicked(jTopic)"> <div>{{idx + 1}}.{{jTopic.title}}</div> 
                 <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon> </div> </li>
             }
         </ul>
@@ -41,21 +41,23 @@
             <div>
                 <ul>
                     @for(jSubTopic of subTopicArray; track jSubTopic; let idx = $index){
-                        <li class="java-topic" (click)="javaSubTopicClicked(jSubTopic.subTopic, jSubTopic.id)">
+                        <li class="java-topic" [class.selected]="selectedSubTopic === jSubTopic.id" (click)="javaSubTopicClicked(jSubTopic.subTopic, jSubTopic.id)">
                             <div>{{idx + 1}}.{{jSubTopic.subTopic}}</div>
                             <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon"
                                 fontIcon="chevron_right"></mat-icon> </div>
-                            </li>
+                        </li>
                         }
                     </ul>
                 </div>
             </div>
         }
     <div class="main">
-
+        <div class="floating-message" *ngIf="showMessage" [ngStyle]="{ top: messagePosition.top, left: messagePosition.left }">
+            Code copied to clipboard!
+        </div>
         @switch (specificTopic) {
             @case ('Class 1') {
-                <div class="java-class-article">
+                <div class="java-article">
                     <h1>{{ javaArticleArr[0].javaClassTitle }}</h1>
                     <p [innerHTML]="javaArticleArr[0].javaClassContent"></p>
                   
@@ -65,17 +67,75 @@
                     </ul>
                   
                     <h2>Example of a Class in Java</h2>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[0].javaClassExample)">
+                            Copy Code
+                          </button>
+                        
                     <div [innerHTML]="javaArticleArr[0].javaClassExample"></div>
-                  
+                    </div>
                     <h2>Conclusion</h2>
                     <p [innerHTML]="javaArticleArr[0].javaClassConclusion"></p>
                   </div>                  
             }
-            @case ('data structure') {
-
+            @case ('Object 2') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[1].javaObjectTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[1].javaObjectContent"></p>
+                  
+                    <h2>Key Features of an Object</h2>
+                    <ul>
+                      <li *ngFor="let feature of javaArticleArr[1].javaObjectFeatures">{{ feature }}</li>
+                    </ul>
+                  
+                    <h2>Example of a Object in Java</h2>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[1].javaObjectExample)">
+                            Copy Code
+                          </button>
+                        <div [innerHTML]="javaArticleArr[1].javaObjectExample"></div>
+                    </div>
+                  
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[1].javaObjectConclusion"></p>
+                  </div>  
             }
-            @case ('algorithm') {
+            @case ('Variables 3') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[2].javaVariablesTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[2].javaVariablesContent"></p>
+                  
+                    <h2>Types of Variables in Java</h2>
+                    <p [innerHTML]="javaArticleArr[2].javaVariablesTypes"></p>
+                                      
+                    <h2>Example of Variables in Java</h2>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[2].javaVariablesExample)">
+                            Copy Code
+                          </button>
+                        <div [innerHTML]="javaArticleArr[2].javaVariablesExample"></div>
+                    </div>
 
+                    <h2>Rules and Best Practices of Variables</h2>
+                    <p [innerHTML]="javaArticleArr[2].javaVariablesRules"></p>
+                    <h2>Default value examples of Variables if not initialized</h2>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[2].defaultValueExamples)">
+                            Copy Code
+                          </button>
+                        <p [innerHTML]="javaArticleArr[2].defaultValueExamples"></p>
+                    </div>
+                    <h2>Output of the above code</h2>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[2].output)">
+                            Copy Code
+                          </button>
+                        <p [innerHTML]="javaArticleArr[2].output"></p>
+                    </div>
+                    
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[2].javaVariablesConclusion"></p>
+                  </div>
             }
             @default {
                 <div class="java-introduction">
