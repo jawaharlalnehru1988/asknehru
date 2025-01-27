@@ -10,11 +10,11 @@ export class Javacore {
                     {id: 3, subTopic: "Variables"},
                     {id: 4, subTopic: "Constructor"},
                     {id: 5, subTopic: "Methods"},
-                    {id: 6, subTopic: "Fields"},
-                    {id: 7, subTopic: "Static"},
+                    {id: 6, subTopic: "Static"},
+                    {id: 7, subTopic: "Access Modifiers"},
                     {id: 8, subTopic: "Inner Classes"},
-                    {id: 9, subTopic: "singleton"},
-                    {id: 10, subTopic: "final"},
+                    {id: 9, subTopic: "Singleton"},
+                    {id: 10, subTopic: "Final"},
 
                 ]
             },

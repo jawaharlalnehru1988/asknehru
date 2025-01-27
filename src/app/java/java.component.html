@@ -171,6 +171,221 @@
                     <p [innerHTML]="javaArticleArr[4].javaMethodsConclusion"></p>
                 </div>
             }
+            @case ('Static 6') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[5].javaStaticTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[5].javaStaticIntroduction"></p>
+                    <h2>Types of Static in Java</h2>
+                    <p [innerHTML]="javaArticleArr[5].javaStaticUses"></p>
+                    <div class="example-code">
+                        <button class="copy-code-btn" (click)="copyCode($event,  javaArticleArr[5].javaStaticExample)">
+                            Copy Code
+                          </button>
+                        <p [innerHTML]="javaArticleArr[5].javaStaticExample"></p>
+                    </div>     
+                    <p [innerHTML]="javaArticleArr[5].javaStaticFeatures"></p>
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[5].javaStaticConclusion"></p>
+                </div>
+            }
+            @case ('Access Modifiers 7') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[6].javaAccessModifiersTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[6].javaAccessModifiersIntroduction"></p>
+                    <h2>Types of Access Modifiers in Java</h2>
+                    @for(types of javaArticleArr[6].javaAccessModifiersTypes; track types) {
+                        <p></p>
+                        <h2>{{ types.type }}</h2>        
+                        <p [innerHTML]="types.description"></p>    
+                        <div class="example-code">
+                            <button class="copy-code-btn" (click)="copyCode($event,  types.example)">
+                                Copy Code
+                              </button>
+                            <p [innerHTML]="types.example"></p>
+                        </div>            
+                    }
+                    <p [innerHTML]="javaArticleArr[6].javaAccessModifiersTable"></p>
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[6].javaAccessModifiersConclusion"></p>
+                </div>
+            }
+            @case ('Inner Classes 8') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[7].javaInnerClassesTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[7].javaInnerClassesIntroduction"></p>
+                    <h2>Types of Inner Classes in Java</h2>
+                    @for(types of javaArticleArr[7].javaInnerClassesTypes; track types) {
+                        <p></p>
+                        <h2>{{ types.type }}</h2>        
+                        <p [innerHTML]="types.description"></p>    
+                        <div class="example-code">
+                            <button class="copy-code-btn" (click)="copyCode($event,  types.example)">
+                                Copy Code
+                              </button>
+                            <p [innerHTML]="types.example"></p>
+                        </div>            
+                    } 
+                    @for(advantage of javaArticleArr[7].javaInnerClassesAdvantages; track advantage) {
+                        <ul>
+                            <li [innerHTML]="advantage"></li>
+                        </ul>
+                    }
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[7].javaInnerClassesConclusion"></p>
+                </div>
+            }
+            @case ('Singleton 9') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[8].javaSingletonTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[8].javaSingletonIntroduction"></p>
+                    <h2>Types of Singleton in Java</h2>
+                    @for(types of javaArticleArr[8].javaSingletonImplementation; track types) {
+                        <p></p>
+                        <h2>{{ types.type }}</h2>        
+                        <p [innerHTML]="types.description"></p>    
+                        <div class="example-code">
+                            <button class="copy-code-btn" (click)="copyCode($event,  types.example)">
+                                Copy Code
+                              </button>
+                            <p [innerHTML]="types.example"></p>
+                        </div>            
+                    } 
+                    <p></p>
+                    <h2>Advantages</h2>
+                    @for(advantage of javaArticleArr[8].javaSingletonAdvantages; track advantage) {
+                        <ul>
+                            <li [innerHTML]="advantage"></li>
+                        </ul>
+                    }
+                    <p></p>
+                    <h2>Disadvantages</h2>
+                    @for(disadvantage of javaArticleArr[8].javaSingletonDisadvantages; track disadvantage) {
+                        <ul>
+                            <li [innerHTML]="disadvantage"></li>
+                        </ul>
+                    }
+                    <p></p>
+                    <h2>Use Cases</h2>
+                    @for(uses of javaArticleArr[8].javaSingletonUseCases; track uses) {
+                        <ul>
+                            <li [innerHTML]="uses"></li>
+                        </ul>
+                    }
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[8].javaSingletonConclusion"></p>
+                </div>
+            }
+            @case ('Final 10') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[9].javaFinalTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[9].javaFinalIntroduction"></p>
+                    <h2>Types of Final in Java</h2>
+                    @for(types of javaArticleArr[9].javaFinalApplications; track types) {
+                        <p></p>
+                        <h2>{{ types.usage }}</h2>        
+                        <p [innerHTML]="types.description"></p>    
+                        <div class="example-code">
+                            <button class="copy-code-btn" (click)="copyCode($event,  types.example)">
+                                Copy Code
+                              </button>
+                            <p [innerHTML]="types.example"></p>
+                        </div>            
+                    } 
+                    <p></p>
+                    <h2>Advantages</h2>
+                    @for(advantage of javaArticleArr[9].javaFinalAdvantages; track advantage) {
+                        <ul>
+                            <li [innerHTML]="advantage"></li>
+                        </ul>
+                    }
+                    <p></p>
+                    <h2>Disadvantages</h2>
+                    @for(disadvantage of javaArticleArr[9].javaFinalLimitations; track disadvantage) {
+                        <ul>
+                            <li [innerHTML]="disadvantage"></li>
+                        </ul>
+                    }
+                    <p></p>
+                    <h2>Use Cases</h2>
+                    @for(uses of javaArticleArr[9].javaFinalUseCases; track uses) {
+                        <ul>
+                            <li [innerHTML]="uses"></li>
+                        </ul>
+                    }
+                    <p></p>
+
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[9].javaFinalConclusion"></p>
+                </div>
+            }
+
+            @case ('Primitives 1') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[10].javaPrimitiveTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[10].javaPrimitiveIntroduction"></p>
+                    <p [innerHTML]="javaArticleArr[10].javaPrimitiveOverview"></p>
+                    <h2>Types of Primitive in Java</h2>
+                    @for(types of javaArticleArr[10].javaPrimitiveTypes; track types) {
+                        <p></p>
+                        <h2>{{ types.type }}</h2>        
+                        <p [innerHTML]="types.description"></p>    
+                        <p>Size: {{ types.size }}</p>
+                        <div class="example-code">
+                            <button class="copy-code-btn" (click)="copyCode($event,  types.example)">
+                                Copy Code
+                              </button>
+                            <p [innerHTML]="types.example"></p>
+                        </div>            
+                    } 
+                    <p></p>
+                    <h2>Advantages</h2>
+                    @for(advantage of javaArticleArr[10].javaPrimitiveAdvantages; track advantage) {
+                        <ul>
+                            <li [innerHTML]="advantage"></li>
+                        </ul>
+                    }
+                    <p></p>
+                    <h2>Disadvantages</h2>
+                    @for(disadvantage of javaArticleArr[10].javaPrimitiveLimitations; track disadvantage) {
+                        <ul>
+                            <li [innerHTML]="disadvantage"></li>
+                        </ul>
+                    }
+                    <p></p>
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[10].javaPrimitiveConclusion"></p>
+                </div>
+            }
+            @case ('Wrapper classes 2') {
+                <div class="java-article">
+                    <h1>{{ javaArticleArr[11].javaWrapperTitle }}</h1>
+                    <p [innerHTML]="javaArticleArr[11].javaWrapperIntroduction"></p>
+                    <p [innerHTML]="javaArticleArr[11].javaWrapperPurpose"></p>
+                    
+                    <h2>Types of Wrapper Classes in Java</h2>
+                    
+                    @for(types of javaArticleArr[11].javaWrapperClasses; track types) {
+                        <p></p>
+                        <h2>{{ types.type }}</h2>        
+                        <p [innerHTML]="types.primitive"></p>    
+                        <div class="example-code">
+                            <button class="copy-code-btn" (click)="copyCode($event,  types.example)">
+                                Copy Code
+                            </button>
+                            <p [innerHTML]="types.example"></p>
+                        </div>            
+                    } 
+                    <p></p>
+                    <p [innerHTML]="javaArticleArr[11].javaWrapperAutoboxingUnboxing"></p>
+                    <p></p>
+                    <p [innerHTML]="javaArticleArr[11].javaWrapperUseCases"></p>
+                    <p></p>
+                    <p [innerHTML]="javaArticleArr[11].javaWrapperLimitations"></p>
+                    <h2>Conclusion</h2>
+                    <p [innerHTML]="javaArticleArr[11].javaWrapperConclusion"></p>
+                </div>
+            }
+
             @default {
                 <div class="java-introduction">
                     <h1>Introduction to Java</h1>
