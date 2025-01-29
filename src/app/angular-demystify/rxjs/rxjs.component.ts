@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { combineLatest, interval, fromEvent, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 interface Video{
   title: string;
   description: string;
@@ -71,7 +72,9 @@ videoObject: Video[] = [
 ]
 selectedVideo:Video = this.videoObject[0];
 isMobile = false;
-constructor(){
+screenWidth: number = 0;
+screenHeight: number = 0;
+constructor(private screenService: ScreenSizeService){
   this.checkScreenSize();
 }
 selectVideo(video:Video) {
@@ -79,7 +82,13 @@ selectVideo(video:Video) {
 }
 
   ngAfterViewInit() {
-
+    this.screenService.screenWidth$.pipe(map(num => num * 0.6)).subscribe(width => {
+      this.screenWidth = width;
+    });
+  
+    this.screenService.screenHeight$.pipe(map(num => num * 0.7)).subscribe(height => {
+      this.screenHeight = height;
+    });
   }
 
   ngOnDestroy() {}

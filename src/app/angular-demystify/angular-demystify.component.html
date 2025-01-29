@@ -77,12 +77,15 @@
   
   <div class="w-full md:w-3/4 p-4">
     @if(selectedVideo){
-      <youtube-player
-      [videoId]="selectedVideo.videoId"
-      [height]="isMobile ? 250 : 400"
-      [width]="isMobile ? 350 : 600"
-      suggestedQuality="hd1080">
-    </youtube-player>
+      <div class="video-container">
+        <youtube-player
+          [width]="screenWidth"
+          [height]="screenHeight"
+          [videoId]="selectedVideo.videoId"
+          suggestedQuality="hd1080"
+          >
+        </youtube-player>
+      </div>
     <div >
       <p class="mt-4 text-xl font-bold">{{selectedVideo.title}}</p>
       <p class="mt-2 text-justify">{{selectedVideo.description}}</p>

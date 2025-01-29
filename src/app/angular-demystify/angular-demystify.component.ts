@@ -2,6 +2,8 @@ import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { ScreenSizeService } from '../services/screen-size.service';
+import { map } from 'rxjs';
 interface TsTopics {
   title: string;
   subtopics: { id: string; name: string }[];
@@ -27,9 +29,9 @@ export class AngularDemystifyComponent {
   isSidebarOpen: boolean = false;
   selectedTopic: string | null = null;
   sidebarTopics:AngularTopics[] = [
-    {title: 'Watch and learn Angular', titleId: 'watch'},
+    {title: 'Video Tutorials', titleId: 'watch'},
     {title: 'Blogs', titleId: 'read'},
-    {title: 'Hear and learn Angular', titleId: 'hear'},
+    {title: 'Audio Tutorials', titleId: 'hear'},
   ]
   angularTopics: TsTopics[] = [
     {
@@ -202,13 +204,26 @@ export class AngularDemystifyComponent {
 
   currentSection: string = 'Angular tutorial';
   sidebarTitle: string = 'watch';
-
-  constructor(private route: ActivatedRoute, private router: Router) {}
+screenWidth: number = 0;
+screenHeight: number = 0;
+  constructor(private route: ActivatedRoute, private screenService: ScreenSizeService) {}
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
       this.currentSection = url[0].path;
     });
+
+  }
+  
+  ngAfterViewInit() {
+    this.screenService.screenWidth$.pipe(map(num => num * 0.6)).subscribe(width => {
+      this.screenWidth = width;
+    });
+  
+    this.screenService.screenHeight$.pipe(map(num => num * 0.7)).subscribe(height => {
+      this.screenHeight = height;
+    });
+    
   }
 
   displayTopic(topicId: string) {
