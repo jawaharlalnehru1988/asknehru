@@ -86,17 +86,29 @@ blogArticleData: Project[] = [
     intro:"Watch and learn javascript concepts"
   },
   {
+    PName: "Jasmine Framework",
+    PImage: "assets/image/jasmine.png",
+    routerLink: "/jasmine",
+    intro:"Learn jasmine's Essential concepts"
+  },
+  {
     PName: "Java Core and DSA",
     PImage: "assets/image/java.png",
     routerLink: "/java",
     intro:"Learn java's Essential concepts"
   },
   {
-    PName: "Jasmine Framework",
-    PImage: "assets/image/jasmine.png",
-    routerLink: "/jasmine",
-    intro:"Learn jasmine's Essential concepts"
+    PName: "Spring Boot",
+    PImage: "assets/image/springboot.png",
+    routerLink: "/springboot",
+    intro:"Learn Spring Boot's Essential concepts"
   },
+  {
+    PName: "SQL",
+    PImage: "assets/image/sql.png",
+    routerLink: "/sql",
+    intro:"Learn SQL's Essential concepts"
+  }
  
 ]
 staticWebsites: Project[] = [
