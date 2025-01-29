@@ -1,8 +1,5 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { ApiService } from '../api.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DatePipe, NgClass } from '@angular/common';
-import { MatCard, MatCardHeader, MatCardTitle, MatCardImage, MatCardContent, MatCardModule } from '@angular/material/card';
+import { Component } from '@angular/core';
+import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton } from '@angular/material/button';
@@ -37,7 +34,7 @@ export class HomeComponent {
   },
   {
     imageLink: "1YDJ6WkVJwHMU7TCitsdIagXzbPYvJ0c0",
-    mediaLink: "https://www.linkedin.com/in/jawaharlal-nehru-elumalai-96a64a216",
+    mediaLink: "https://www.linkedin.com/in/jawaharlal-nehru-elumalai",
     mediaName: "LinkedIn"
   },
   {
@@ -59,7 +56,7 @@ export class HomeComponent {
 
 blogArticleData: Project[] = [
   {
-    PName: "Angular Demystified",
+    PName: "Angular Blogs",
     PImage: "assets/image/angular.png",
     routerLink: "/angular-demystified",
     intro:"Core topics in Angular"

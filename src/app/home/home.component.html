@@ -6,19 +6,26 @@
       </div>
       <div class="intro w-full lg:w-1/2">
         <div class="flex flex-col items-center">
-          <p class="intro1">Hi there! My name is </p>
-          <p class="intro2">Jawaharlal Nehru Elumalai</p>
-          <p class="intro1">Unlock the Potential of Web Development with Me!</p>
-          <div class="social-media-links">
-            @for (media of socialMedia; track media) {
-              <button mat-button color="warn">
-                <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="no-underline">
-                  <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" class="w-6" alt="">
-                  <span class="medianame">{{media.mediaName}}</span>
-                </a>
-              </button>
-            }
-          </div>
+          <section class="hero-section">
+            <div class="hero-content">
+              <p class="intro">
+                Hi, I’m <span class="highlight">Jawaharlal Nehru Elumalai</span> a Full-Stack Developer passionate about building seamless web experiences. With expertise in <span class="highlight">Angular</span> and <span class="highlight">SpringBoot</span> I bridge the gap between frontend elegance and backend robustness.
+              </p>
+              <p class="tagline">
+                Here, I share my journey, insights, and tutorials on <span class="highlight">frontend and backend technologies</span> to help you stay ahead in the ever-evolving world of web development.
+              </p>
+              <p class="tagline">
+                @for (media of socialMedia; track media) {
+                  <button class="media-button" mat-button color="primary">
+                    <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="no-underline">
+                      <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" class="w-6" alt="">
+                      <span class="medianame">{{media.mediaName}}</span>
+                    </a>
+                  </button>
+                }
+              </p>
+            </div>
+          </section>
         </div>
       </div>
     </div>
@@ -27,7 +34,7 @@
 
 <div class="relative overflow-hidden border-4 border-blue-500 rounded-lg bg-gradient-to-r from-purple-400 to-blue-400 p-4 shadow-md">
   <div class="animate-scroll whitespace-nowrap text-white text-lg font-bold tracking-wider">
-    Learn latest technologies from this webpage
+    Let's explore the world of web development together! 
   </div>
 </div>
 
