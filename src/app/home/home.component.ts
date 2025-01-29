@@ -31,7 +31,7 @@ export class HomeComponent {
     imageLink: "1aYv_7mLgreOn_Ua6lFVRGxK5hPRJj-FM",
     mediaLink: "https://github.com/jawaharlalnehru1988",
     mediaName: "GitHub"
-  },
+  }, 
   {
     imageLink: "1YDJ6WkVJwHMU7TCitsdIagXzbPYvJ0c0",
     mediaLink: "https://www.linkedin.com/in/jawaharlal-nehru-elumalai",
@@ -90,6 +90,12 @@ blogArticleData: Project[] = [
     PImage: "assets/image/java.png",
     routerLink: "/java",
     intro:"Learn java's Essential concepts"
+  },
+  {
+    PName: "Jasmine Framework",
+    PImage: "assets/image/jasmine.png",
+    routerLink: "/jasmine",
+    intro:"Learn jasmine's Essential concepts"
   },
  
 ]

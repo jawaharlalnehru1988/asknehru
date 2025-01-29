@@ -1,0 +1,33 @@
+<div class="jasmine-container">
+   <div class="main-sidebar-content">
+
+       @for(topic of testing; track topic; let idx = $index){
+           <div >
+            <button class="topic-btn" (click)="selectSubTopic(topic)">{{topic.title}}</button>
+        </div>
+        }
+   </div>
+
+     @if(isSidebarOpen){
+
+         <aside class="sidebar">
+             <ul>
+                 <li *ngFor="let subtopic of selectedSubTopic.subTopic; track subtopic;" (click)="selectTopic(subtopic)" class="sidebar-item">
+                     {{ subtopic }}
+                    </li>
+                </ul>
+            </aside>
+        }
+    
+    <!-- Main Content -->
+    <main class="content">
+        <article *ngIf="selectedTopic">
+            @if (!isSidebarOpen) {
+                <mat-icon aria-hidden="false" class="menu-btn" (click)="toggleSidebar()" class="mat-icon" aria-label="Example menu icon" fontIcon="menu"></mat-icon>
+            }
+        <h1>{{ selectedTopic.title }}</h1>
+        <p>{{ selectedTopic.content }}</p>
+      </article>
+    </main>
+  </div>
+  
