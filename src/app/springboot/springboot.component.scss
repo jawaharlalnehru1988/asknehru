@@ -6,7 +6,7 @@
 .side-topic{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     padding: 4px 10px;
     cursor: pointer;
     font-size: 12px;
@@ -19,7 +19,11 @@
     padding: 4px 10px;
 }
 .title-big{
-    background-color: #91eae4;
+    background-color: #183d3a;
+    color: #fff;
+    width: calc(100% + 20px); 
+    padding: 4px 10px;
+    margin-left: -10px;  
 }
 .side-nav{
     padding: 2px 0px;
@@ -52,7 +56,7 @@
     padding: 8px 0px;
     cursor: pointer;
     background-color: aliceblue;
-    width: 62vw;
+    width: 70vw;
     overflow-y: scroll;
     max-height: 88vh;
 }
@@ -68,7 +72,4 @@
     background-color: #232928;
     border-radius: 8px;
     cursor: pointer;
-}
-.sub-topic-list{
-    width: 8vw;
 }

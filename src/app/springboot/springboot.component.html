@@ -1,5 +1,5 @@
 <div class="body-container">
-    <div class="side-nav">
+    <nav class="side-nav">
         <ul>
             @for(titles of sideTopics; track titles; let idx = $index){
                 <li class="side-topic" (click)="selectSideTopic(titles)">
@@ -7,8 +7,8 @@
                 </li>
             }
         </ul>
-    </div>
-    <div class="topic-list">
+    </nav>
+    <aside class="topic-list">
         <ul>
             @for(topic of topics; track topic; let idx = $index){
                 <li class="topic" (click)="selectTopic(topic)">
@@ -16,16 +16,8 @@
                    <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon></div></li>
             }
         </ul>
-    </div>
-    <div class="content-container">content-container</div>
-    <div class="sub-topic-list">
-        <ul>
-            <li>springboot</li>
-            <li>springboot</li>
-            <li>springboot</li>
-            <li>springboot</li>
-            <li>springboot</li>
-            <li>springboot</li>
-        </ul>
-    </div>
+    </aside>
+    <main class="content-container">
+        <article [innerHTML]="projectedContent"></article>
+    </main>
 </div>
