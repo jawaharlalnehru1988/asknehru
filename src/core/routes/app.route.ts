@@ -58,6 +58,12 @@ export const routes: Routes = [
     path:'jasmine', loadComponent: ()=> import('../../app/jasmine/jasmine.component').then(c => c.JasmineComponent)
   },
   {
+    path:'springboot', loadComponent: ()=> import('../../app/springboot/springboot.component').then(c => c.SpringbootComponent)
+  },
+  {
+    path:'sql', loadComponent: ()=> import('../../app/sql/sql.component').then(c => c.SqlComponent)
+  },
+  {
     path: 'spotify',
     loadChildren: () =>
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),
