@@ -12,10 +12,9 @@ import Prism from 'prismjs';
   templateUrl: './springboot.component.html',
   styleUrl: './springboot.component.scss'
 })
-export class SpringbootComponent {
-  spring = new Spring();
-
-  sideTopics = this.spring.springboot; 
+export class SpringbootComponent extends Spring {
+  
+  sideTopics = this.springboot; 
   topics = this.sideTopics[0].topics;
   subtopics: string ="";
   mainTitle: string = "";
@@ -24,6 +23,7 @@ export class SpringbootComponent {
   mainContent = this.springContent.mainContent;
 
 constructor(private sanitizer: DomSanitizer){
+  super();
   this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(this.mainContent[0].content);
 }
   selectSideTopic(title:SpringTopic){

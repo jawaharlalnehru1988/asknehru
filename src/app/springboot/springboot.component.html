@@ -3,7 +3,9 @@
         <ul>
             @for(titles of sideTopics; track titles; let idx = $index){
                 <li class="side-topic" (click)="selectSideTopic(titles)">
-                   <div [ngClass]="titles.title === mainTitle ? 'title-big' : 'title-small'"> {{titles.title}} </div>
+                   <div class="main-div" [ngClass]="titles.title === mainTitle? 'title-big':''"> 
+                    <div> {{titles.title}} </div> 
+                    <div><mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon></div> </div>
                 </li>
             }
         </ul>
@@ -11,9 +13,9 @@
     <aside class="topic-list">
         <ul>
             @for(topic of topics; track topic; let idx = $index){
-                <li class="topic" (click)="selectTopic(topic)">
+                <li class="topic" [class.selected]="subtopics === topic" (click)="selectTopic(topic)">
                    <div>{{idx + 1}}. {{topic}} </div>
-                   <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon></div></li>
+                </li>
             }
         </ul>
     </aside>

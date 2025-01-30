@@ -1,8 +1,15 @@
+import { Component, inject } from "@angular/core";
+
 export interface ISpringContent {
     title: string;
     content: string;
 }
 
+@Component({
+  selector: 'spring-content',
+  standalone: true,
+  template: ``,
+})
 export class SpringContent {
     mainContent = [
         {title: "Intro", content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -31,7 +38,7 @@ export class SpringContent {
 
   <h3 style="color: #2980b9;">Example: Basic Spring Boot Application</h3>
   <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
-    <code>
+    <code codeHighlight class="language-java">
       import org.springframework.boot.SpringApplication;
       import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -74,7 +81,7 @@ export class SpringContent {
 
   <h3 style="color: #2980b9;">Example: Basic Spring Boot Controller</h3>
   <pre style="background: #2c3e50; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto; color: white;">
-    <code>
+    <code codeHighlight class="language-java">
       import org.springframework.web.bind.annotation.GetMapping;
       import org.springframework.web.bind.annotation.RequestMapping;
       import org.springframework.web.bind.annotation.RestController;
@@ -239,7 +246,7 @@ export class SpringContent {
     Instead of returning a string, we can return JSON using a model class:
   </p>
   <pre style="background: #2c3e50; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto; color: white;">
-    <code class="language-java">
+    <code codeHighlight class="language-java">
       import org.springframework.web.bind.annotation.GetMapping;
       import org.springframework.web.bind.annotation.RequestMapping;
       import org.springframework.web.bind.annotation.RestController;
