@@ -1,3 +1,4 @@
+<main>
 <section class="main-hero-section">
   <aside class="stars-container">
     <img class="banner-photo" src="../../assets/image/nehruphoto.png" alt="Your photo">
@@ -25,31 +26,55 @@
   </aside>
 </section>
 
-
 <section class="main-container">
   <div class="text">
-      Let's explore the world of web development together!
+    Let's explore the world of web development together!
   </div>
 </section>
 
-
-
-<section class="blog-section ">
-@for( blog of blogArticleData; track blog) {
-    <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
-      <mat-card-header>
-        <mat-card-title-group>
-          <mat-card-title>{{ blog.PName }}</mat-card-title>
-          <mat-card-subtitle>click here to explore</mat-card-subtitle>
-          <img mat-card-sm-image [alt]="''" [src]="blog.PImage" class="blog-image">
-        </mat-card-title-group>
-      </mat-card-header>
-      <mat-card-content>
-        {{ blog.intro }}
-      </mat-card-content>
-    </mat-card>
+<section class="blog-section">
+  @for( blog of blogArticleData; track blog) {
+  <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ blog.PName }}</mat-card-title>
+        <mat-card-subtitle>click here to explore</mat-card-subtitle>
+        <img mat-card-sm-image [alt]="''" [src]="blog.PImage" class="blog-image">
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      {{ blog.intro }}
+    </mat-card-content>
+  </mat-card>
   }
 </section>
-
-
-
+<section>
+  <footer class="footer">
+    <div class="container">
+      <!-- <div class="footer-column">
+        <h3>Contact</h3>
+        <p>Email: jawaharlalnehru&#64;gmail.com</p>
+        <p>Phone: +91 6382043976</p>
+        <p>Available for projects</p>
+      </div>
+  
+      <div class="footer-column">
+        <h3>Projects</h3>
+        <ul>
+          <li><a href="#">Yet to Add</a></li>
+          <li><a href="#">Yet to Add</a></li>
+          <li><a href="#">Yet to Add</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-column">
+        <h3>Follow Me</h3>
+        <a href="https://www.linkedin.com/in/jawaharlal-nehru-elumalai" target="_blank">LinkedIn</a>
+        <a href="https://github.com/jawaharlalnehru1988" target="_blank">GitHub</a>
+        <a href="https://x.com/JElumalai90495" target="_blank">X (Twitter)</a>
+      </div> -->
+    </div>
+  </footer>
+  
+</section>
+</main>
