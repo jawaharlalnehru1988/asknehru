@@ -5,11 +5,6 @@ export interface ISpringContent {
     content: string;
 }
 
-@Component({
-  selector: 'spring-content',
-  standalone: true,
-  template: ``,
-})
 export class SpringContent {
     mainContent = [
         {title: "Intro", content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">

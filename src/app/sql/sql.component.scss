@@ -1,0 +1,36 @@
+section{
+    display: flex;
+    height: 92vh;
+}
+
+nav{
+    padding: 2px 0px;
+    width: 10vw;
+    align-items: stretch;
+    background: linear-gradient(#f7d6b6, #edfcca, #c5c8fa, #f1ced7);
+}
+main{
+    padding: 8px 16px;
+    overflow-y: scroll;
+    width: 90vw;
+    background: linear-gradient(to top left, #fff9f9, #fde5d2, #ebf2ff, #f6fdfd);
+}
+
+.side-topic{
+    font-size: 1em;
+    padding: 4px 8px;
+    cursor: pointer;
+
+}
+.main-div{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    width: 100%;
+}
+.side-topic:hover{
+    color: yellow;
+    background-color: #232928;
+    border-radius: 8px;
+    cursor: pointer;
+}
