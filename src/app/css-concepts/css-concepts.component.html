@@ -1,0 +1,15 @@
+<main>
+    <nav>
+        <ul>
+            @for(topic of cssConcepts; track topic; let idx = $index){
+                <li class="side-topic" (click)="selectSideTopic(topic.short)">{{topic.short}}</li>
+            }
+        </ul>
+    </nav>
+    <aside>
+
+    </aside>
+    <main>  
+
+    </main>
+</main>

@@ -64,6 +64,15 @@ export const routes: Routes = [
     path:'sql', loadComponent: ()=> import('../../app/sql/sql.component').then(c => c.SqlComponent)
   },
   {
+    path:'git', loadComponent: ()=> import('../../app/git-commands/git-commands.component').then(c => c.GitCommandsComponent)
+  },
+  {
+    path: 'css', loadComponent: () => import('../../app/css-concepts/css-concepts.component').then((m) => m.CssConceptsComponent)
+  },
+  {
+    path: 'portfolio', loadComponent: () => import('../../app/portfolio/portfolio.component').then((m) => m.PortfolioComponent)
+  },
+  {
     path: 'spotify',
     loadChildren: () =>
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),
