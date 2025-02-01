@@ -1,60 +1,55 @@
-<div class="banner-container">
-  <div class="w-full">
-    <div class="flex flex-wrap">
-      <div class="stars-container w-full lg:w-1/2">
-        <img class="banner-photo" src="../../assets/image/nehruphoto.png" alt="Your photo">
-      </div>
-      <div class="intro w-full lg:w-1/2">
-        <div class="flex flex-col items-center">
-          <section class="hero-section">
-            <div class="hero-content">
-              <p class="intro">
-                Hi, I’m <span class="highlight">Jawaharlal Nehru Elumalai</span> a Full-Stack Developer passionate about building seamless web experiences. With expertise in <span class="highlight">Angular</span> and <span class="highlight">SpringBoot</span> I bridge the gap between frontend elegance and backend robustness.
-              </p>
-              <p class="tagline">
-                Here, I share my journey, insights, and tutorials on <span class="highlight">frontend and backend technologies</span> to help you stay ahead in the ever-evolving world of web development.
-              </p>
-              <p class="tagline">
-                @for (media of socialMedia; track media) {
-                  <button class="media-button" mat-button color="primary">
-                    <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="no-underline">
-                      <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" class="w-6" alt="">
-                      <span class="medianame">{{media.mediaName}}</span>
-                    </a>
-                  </button>
-                }
-              </p>
-            </div>
-          </section>
-        </div>
-      </div>
-    </div>
+<section class="main-hero-section">
+  <aside class="stars-container">
+    <img class="banner-photo" src="../../assets/image/nehruphoto.png" alt="Your photo">
+  </aside>
+  <aside class="hero-section">
+    <p class="tagline">
+      Hi, I’m <span class="highlight">Jawaharlal Nehru Elumalai</span> a Full-Stack Developer passionate about
+      building seamless web experiences. With expertise in <span class="highlight">Angular</span> and <span
+        class="highlight">SpringBoot</span> I bridge the gap between frontend elegance and backend robustness.
+    </p>
+    <p class="tagline">
+      Here, I share my journey, insights, and tutorials on <span class="highlight">frontend and backend
+        technologies</span> to help you stay ahead in the ever-evolving world of web development.
+    </p>
+    <p class="tagline">
+      @for (media of socialMedia; track media) {
+      <button class="media-button" mat-button color="primary">
+        <a [href]="media.mediaLink" [attr.target]="'_blank'" [matTooltip]="media.mediaLink" class="link-no-underline">
+          <img [src]="'https://drive.google.com/uc?export=view&id=' + media.imageLink" class="w-6" alt="">
+          <span class="medianame">{{media.mediaName}}</span>
+        </a>
+      </button>
+      }
+    </p>
+  </aside>
+</section>
+
+
+<section class="main-container">
+  <div class="text">
+      Let's explore the world of web development together!
   </div>
-</div>
-
-<div class="relative overflow-hidden border-4 border-blue-500 rounded-lg bg-gradient-to-r from-purple-400 to-blue-400 p-4 shadow-md">
-  <div class="animate-scroll whitespace-nowrap text-white text-lg font-bold tracking-wider">
-    Let's explore the world of web development together! 
-  </div>
-</div>
+</section>
 
 
 
-<div class="mt-12 grid gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-  @for (blog of blogArticleData; track blog) {
-    <mat-card class="mb-6 cursor-pointer transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg" [routerLink]="blog.routerLink">
+<section class="blog-section ">
+@for( blog of blogArticleData; track blog) {
+    <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
       <mat-card-header>
         <mat-card-title-group>
-          <mat-card-title>{{blog.PName}}</mat-card-title>
+          <mat-card-title>{{ blog.PName }}</mat-card-title>
           <mat-card-subtitle>click here to explore</mat-card-subtitle>
-          <img mat-card-sm-image [alt]="''" [src]="blog.PImage" class="rounded-full w-20 h-20 object-cover object-right" >
+          <img mat-card-sm-image [alt]="''" [src]="blog.PImage" class="blog-image">
         </mat-card-title-group>
       </mat-card-header>
       <mat-card-content>
-        {{blog.intro}}
+        {{ blog.intro }}
       </mat-card-content>
     </mat-card>
   }
-</div>
+</section>
+
 
 

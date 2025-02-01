@@ -3,6 +3,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardModule } f
 import { RouterLink } from '@angular/router';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton } from '@angular/material/button';
+import { NgFor } from '@angular/common';
 
 export interface Project {
   PName: string;
