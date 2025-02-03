@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { JssidebarComponent } from "../../jssidebar/jssidebar.component";
-import { NgClass, NgFor } from '@angular/common';
 import { JsModel, Jstopics, Topic } from './jstopics';
 import { MatIconModule } from '@angular/material/icon';
 import * as Prism from 'prismjs';
-import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
-import { JsContents } from './jscontents';
+import { JsContent, JsContents } from './jscontents';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
     selector: 'app-javascript',
     standalone: true,
-    imports: [JssidebarComponent, NgFor, MatIconModule, PrismHighlightDirective],
+    imports: [JssidebarComponent, MatIconModule],
     templateUrl: './javascript.component.html',
     styleUrl: './javascript.component.scss'
 })
@@ -27,11 +26,15 @@ export class JavascriptComponent {
     jsContents:any = new JsContents();
     jsContent: any;
     matchingTopicId: string = "";
+    projectedContent: SafeHtml = this.jsContents.topicContents[0].content;
 
     ngOnInit():void{
         this.jsContent = this.jsContents.topicContents;
     }
 
+    constructor(private sanitizer: DomSanitizer) { 
+
+    }
     receiveTopic(topic: string){
     this.jstopic = topic;
     }
@@ -42,9 +45,15 @@ export class JavascriptComponent {
         this.mainTopicAppear = true;                                                                                                                                             
     }
 
-    subTopicClicked(subTopicTitle: string, subTopic: Topic) {
-    console.log('subTopicTitle :', subTopicTitle + " " + subTopic.id);
-    this.matchingTopicId = subTopicTitle + " " + subTopic.id;
+    subTopicClicked(subTopic: string) {
+    this.matchingTopicId = subTopic;
+    const contentObj = this.jsContents.topicContents.find((topic: JsContent) => topic.articleTitle === subTopic);
+        if (contentObj) {
+            this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(contentObj.content);
+        }
+        else{
+            this.projectedContent = this.sanitizer.bypassSecurityTrustHtml("<p>No content found</p>");
+        }
     }
 
     backToMainTopic() {
