@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { CssConcept, CssMainContent } from './cssConcept';
-
+import { CssConcept, CssContent } from './cssConcept';
+import { MatMenuModule} from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-css-concepts',
-  imports: [],
+  standalone: true,
   templateUrl: './css-concepts.component.html',
-  styleUrl: './css-concepts.component.scss'
+  styleUrl: './css-concepts.component.scss',
+  imports: [MatMenuModule, MatButtonModule],
 })
 export class CssConceptsComponent extends CssConcept {
   
@@ -30,7 +32,7 @@ export class CssConceptsComponent extends CssConcept {
   projectedCSSShape: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(this.inlineCssShape);
   cssConcepts: string[] = [];
 
-  constructor(private sanitizer: DomSanitizer){
+  constructor(public sanitizer: DomSanitizer){
     super();
   }
 
@@ -48,9 +50,9 @@ export class CssConceptsComponent extends CssConcept {
     }
   }
 
-  selectSubTopic(title:string){
-  console.log('title :', title);
-    
+  selectSubTopic(contentObj:CssContent){
+  this.projectedCSSShape = this.sanitizer.bypassSecurityTrustHtml(contentObj.projectedCSSShape);
+  this.cssCode = contentObj.cssCode;
   }
 
   

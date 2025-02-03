@@ -7,15 +7,20 @@
     <aside>
         <ul>
             @for(mainList of cssMainContent; track mainList; let idx = $index){
-                <li class="side-topic" (click)="selectSubTopic(mainList)">{{mainList}}</li>
+                <li class="side-topic" [matMenuTriggerFor]="menu">{{mainList}}</li>
             }
         </ul>
+        <mat-menu #menu="matMenu" xPosition="after">
+            @for(subList of displaySquareContent; track subList; let idx = $index){
+                <button mat-menu-item (click)="selectSubTopic(subList)">{{subList.shape}}</button>
+            }
+          </mat-menu>
     </aside>
     <section>  
         <article >
-
-            <div class="simple-box">
-                <div class="shape">
+            
+                <div class="simple-box">
+                    <div class="shape">
                     <div class="shape-content" [innerHTML]="projectedCSSShape"></div>
                 </div>
                 <div class="show-code">
@@ -26,6 +31,7 @@
                     </pre>
                 </div>
             </div>
+
           
         </article>
     </section>
