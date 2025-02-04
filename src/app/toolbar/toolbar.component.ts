@@ -3,8 +3,8 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
 
@@ -17,7 +17,6 @@ import { MatToolbar } from '@angular/material/toolbar';
         MatButton,
         RouterLink,
         MatIconModule,
-        MatMenuTrigger,
         RouterLinkActive,
         MatMenu,
         MatMenuItem,

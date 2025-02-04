@@ -3,6 +3,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CssConcept, CssContent } from './cssConcept';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import Prism from 'prismjs';
+import { PrismHighlightDirective } from 'src/core/directives/highlight.directive';
 @Component({
   selector: 'app-css-concepts',
   standalone: true,
@@ -13,27 +15,17 @@ import { MatButtonModule } from '@angular/material/button';
 export class CssConceptsComponent extends CssConcept {
   
   cssMainContent: string[] = this.mainContent[0].list;
-  cssCode: string = `
-  // HTML
-     <div class="simple-box">This is a simple square.</div>
-
-  // CSS
-    .simple-box {
-      width: 100px;
-      height: 100px;
-      background-color: lightblue;
-      padding: 20px;
-      border: 2px solid navy;
-    }
-  `;
-
-  inlineCssShape: string = `<div style="width: 100px; height: 100px; background-color: lightblue; padding: 20px; border: 2px solid navy;">This is a simple square.</div>`;
-
-  projectedCSSShape: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(this.inlineCssShape);
+  
+  cssCode: string = ``;
+  inlineCssShape: string = ``;
+  
+  projectedCSSShape: SafeHtml = ``;
   cssConcepts: string[] = [];
-
+  
   constructor(public sanitizer: DomSanitizer){
     super();
+    this.cssCode = this.displaySquareContent[0].cssCode;
+    this.projectedCSSShape = this.sanitizer.bypassSecurityTrustHtml(this.displaySquareContent[0].projectedCSSShape);
   }
 
   ngOnInit(): void {
@@ -53,8 +45,13 @@ export class CssConceptsComponent extends CssConcept {
   selectSubTopic(contentObj:CssContent){
   this.projectedCSSShape = this.sanitizer.bypassSecurityTrustHtml(contentObj.projectedCSSShape);
   this.cssCode = contentObj.cssCode;
+  Prism.highlightAll();
+  
   }
-
+  ngAfterViewInit(): void {
+    Prism.highlightAll();
+    console.log(' this.cssCode :',  this.cssCode);
+     }
   
 
 }

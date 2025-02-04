@@ -23,13 +23,25 @@ nav{
 }
 aside{
     width: 14vw;
-    background-color: #f8f9fa;
+    background: repeating-linear-gradient(45deg, #04213d, #043814 10px, #440424 10px, #033b05 20px);
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #5e0909;
     overflow-y: scroll;
     height: 90vh;
+    ul li{
+        list-style: none;
+        padding: 8px 2px;
+        cursor: pointer;
+        color: white;
+        &:hover{
+            color: yellow;
+            background-color: #232928;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    }
 }
-article{
+main{
     width: 76vw;
     background-color: #f8f9fa;
     padding: 10px;
