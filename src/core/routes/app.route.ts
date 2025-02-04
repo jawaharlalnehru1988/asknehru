@@ -28,10 +28,7 @@ export const routes: Routes = [
   },
   {
     path: 'typescript',
-    loadComponent: () =>
-      import('../../app/typescript/typescript.component').then(
-        (m) => m.TypescriptComponent
-      ),
+    loadComponent: () =>import('../../app/typescript/typescript.component').then((m) => m.TypescriptComponent),
   },
   {
     path: 'tstopic/:id',

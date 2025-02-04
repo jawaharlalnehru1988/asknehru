@@ -1,53 +1,16 @@
-<!-- Toggleable Sidebar on Small Screens -->
-<div class="lg:hidden fixed top-4 left-4 z-50">
-    <button class="text-white bg-indigo-600 px-4 py-2 rounded-md" (click)="isSidebarOpen = !isSidebarOpen">
-      Menu
-    </button>
-  </div>
-<div class="flex h-screen">
-    <!-- Sidebar -->
-    <div class="hidden lg:flex lg:w-2/12 bg-gray-800 text-white p-4 flex-col">
-      <p class="text-1xl font-bold mb-4">TypeScript Blog</p>
-      <!-- <p class="text-1xl font-bold mb-4">Hear and learn TS</p> -->
-      <!-- <p class="text-1xl font-bold mb-4">Watch and learn TS</p> -->
-    </div>
-    
-    <!-- Overlay for small screen sidebar -->
-     @if (isSidebarOpen) {
-         <div class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" (click)="isSidebarOpen = false"></div>
-     }
-    
-    <!-- Sidebar content on small screens -->
-     @if (isSidebarOpen) {
+<section>
+  <nav>
+    <ul>
+      @for(topic of topics; track topic) {
+        <li (click)="selectNavTopic(topic)">{{topic}}</li>
+      }
+    </ul>
+  </nav>
+  <aside>
 
-         <div class="fixed inset-y-0 left-0 w-64 bg-gray-800 text-white p-4 z-50 lg:hidden">
-             <h1 class="text-2xl font-bold mb-4">TypeScript Tutorial</h1>
-             <p class="text-lg">Learn the essentials of TypeScript.</p>
-             <button class="mt-4 text-white bg-red-600 px-4 py-2 rounded-md" (click)="isSidebarOpen = false">
-                 Close
-                </button>
-            </div>
-        }
-  
-    <!-- Main Content -->
-    <div class="w-full lg:w-10/12 p-6 bg-white">
-      <div class="p-6">
-        @for (topic of typescriptTopics; track $index) {
-          <div class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800">{{ topic.title }}</h2>
-            <ul class="grid grid-cols-1 lg:grid-cols-2 list-disc ml-6 mt-2 gap-4">
-              @for (subtopic of topic.subtopics; track $index) {
-              <li class="mt-1">
-                <a [routerLink]="['/tstopic', subtopic.id]" class="text-blue-600 hover:underline">
-                  {{ subtopic.name }}
-                </a>
-              </li>
-              }
-            </ul>
-          </div>
-        }
-      </div>
-    </div>
-    
-  </div>
-  
+  </aside>
+  <article>
+
+  </article>
+
+</section>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 
 interface TsTopics {
@@ -9,12 +8,18 @@ interface TsTopics {
 
 @Component({
     selector: 'app-typescript',
-    imports: [RouterLink],
+    imports: [],
     templateUrl: './typescript.component.html',
     styleUrl: './typescript.component.scss'
 })
 export class TypescriptComponent {
   isSidebarOpen: boolean = false;
+  topics: string[] = [
+    'Basics', 'Functions', 'Interfaces', 'Classes', 'Generics', 
+    'OOP Concepts', 'Decorators', 'Modules', 'Enums', 
+    'Type Assertions', 'Type Aliases', 'Namespaces', 'Type Guards', 
+    'Declaration Files'
+  ];
 
   typescriptTopics: TsTopics[] = [
     {
@@ -143,4 +148,8 @@ export class TypescriptComponent {
     },
     
   ];
+
+  selectNavTopic(topic:string){
+    console.log(topic);
+  }
 }
