@@ -243,6 +243,13 @@ topicsClassified: Topics[] = [
             "Notification",
         ]
     },
+    {
+        title: 'Videos',
+        list: [
+            "Basic",
+            "Creation"
+        ]
+    }
 ];
 
 videoObject: Video[] = [

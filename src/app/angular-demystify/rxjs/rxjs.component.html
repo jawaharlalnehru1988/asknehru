@@ -18,28 +18,19 @@
 </main>
  
  
- <section class="flex flex-col md:flex-row">
-  
-  <div class="w-full md:w-3/4 p-4">
-    @if(selectedVideo){
-      <div class="video-container">
+ <section class="video-container">
       <youtube-player
       [width]="screenWidth"
       [height]="screenHeight"
       [videoId]="selectedVideo.videoId"
       suggestedQuality="hd1080">
     </youtube-player>
-      </div>
-      <div>
-        <p>{{screenWidth}}</p>
-        <p>{{screenHeight}}</p>
-      </div>
     <div >
       <p class="mt-4 text-xl font-bold">{{selectedVideo.title}}</p>
       <p class="mt-2">{{selectedVideo.description}}</p>
     </div>
-  }
-  </div>
+  
+  
   <div class="w-full md:w-1/4 h-auto md:h-screen overflow-y-auto border-t md:border-t-0 md:border-l border-gray-200">
     @for(topicObj of videoObject; track topicObj) {
       <div  (click)="selectVideo(topicObj)" 

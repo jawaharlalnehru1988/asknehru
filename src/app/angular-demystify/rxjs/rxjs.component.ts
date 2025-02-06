@@ -16,38 +16,38 @@ export class RxjsComponent extends RxjsSupport{
 
 selectedVideo:Video = this.videoObject[0];
 isMobile = false;
-screenWidth: number = 0;
-screenHeight: number = 0;
+screenWidth: number = window.innerWidth;
+screenHeight: number = window.innerHeight;
 subTopicArray!: string[];
 subToSubTopic!: Subtopic[];
 constructor(private screenService: ScreenSizeService){
   super();
-  this.checkScreenSize();
 }
 selectVideo(video:Video) {
   this.selectedVideo = video;
 }
 
-  ngAfterViewInit() {
-    this.screenService.screenWidth$.pipe(map(num => num * 0.6)).subscribe(width => {
-      this.screenWidth = width;
-    });
-  
-    this.screenService.screenHeight$.pipe(map(num => num * 0.7)).subscribe(height => {
-      this.screenHeight = height;
-    });
-  }
+ngOnInit(){
+  this.updateScreenSize();
+}
 
-  ngOnDestroy() {}
+@HostListener('window:resize', [`$event`])
+onResize(event: Event){
+  this.updateScreenSize();
+}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.checkScreenSize();
+private updateScreenSize(){
+  if (window.innerWidth < 700) {
+    this.screenWidth = 300;
+    this.screenHeight = 250;
+  } else {
+    this.screenWidth = 800;
+    this.screenHeight = 550;
   }
+  console.log('this.screenWidth :', this.screenWidth);
+  console.log('this.screenHeight :', this.screenHeight);
+}
 
-  checkScreenSize() {
-    this.isMobile = window.innerWidth < 768;
-  }
   selectTopic(subTopicList: string[] | Subtopic[]){
     if (this.isStringArray(subTopicList)) {
       this.subTopicArray = subTopicList;
