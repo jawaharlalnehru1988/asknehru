@@ -2,15 +2,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px; /* Adding rounded corners */
+    border-radius: 8px; 
     overflow: hidden; /* Ensures that the corners are properly cut off */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better appearance */
     max-width: 70%;
 }
 
 .video-container {
-    // position: relative;
-    // width: 100%; /* Takes full width of the parent */
+    position: relative;
+    width: 100%; /* Takes full width of the parent */
     // padding-top: 56.25%; /* 16:9 aspect ratio (height/width * 100) */
-    // overflow: hidden;
+    overflow: hidden;
   }
+
+header{
+    background-color: antiquewhite;
+    height: 24px;
+    color: aliceblue;
+}
+  .horizontal-list {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    display: flex; /* Use flexbox to align items horizontally */
+    background-color: green;
+    li {
+        margin-right: 20px; /* Space between items */
+        cursor: pointer; /* Change cursor to pointer on hover */
+        &:hover{
+
+            text-decoration: underline; /* Underline text on hover */
+        }
+      }
+  }
+  
+  

@@ -40,6 +40,7 @@ export class AngularDemystifyComponent {
         { id: "life-cycle-hooks", name: 'Understanding Angular Component Lifecycle Hooks' },
         { id: "Angular_18_feature", name: 'Angular 18 Features: What\'s New and Improved' },
         { id: 'App-initializer', name: 'What is APP_INITIALIZER?' },
+        { id: 'Forms Modules', name: 'What are Angular Forms Modules?' },
       ]
     },
     

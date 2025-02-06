@@ -1,5 +1,24 @@
+<header>
+  <ul class="horizontal-list">
+    @for(head of topicsClassified; track head) {
+      <li (click)="selectTopic(head.list)">{{head.title}}</li>
+    }
+  </ul>
+</header>
+<nav>
 
- <div class="flex flex-col md:flex-row">
+</nav>
+<aside>
+
+</aside>
+<main>
+  <section>
+     <article></article>
+  </section>
+</main>
+ 
+ 
+ <section class="flex flex-col md:flex-row">
   
   <div class="w-full md:w-3/4 p-4">
     @if(selectedVideo){
@@ -40,7 +59,7 @@
     </div>
   }
   </div>
-</div>
+ </section>
 
 
 
