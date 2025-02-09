@@ -9,6 +9,10 @@ section{
     width: 90vw;
 }
 
+.main-menu-small{
+    display: none;
+}
+
 .side-topic{
     font-size: 1em;
     padding: 4px 8px;
@@ -80,6 +84,26 @@ aside{
     main{
         justify-content: center;
     }
+    .main-menu-small{
+        display: block;
+    }
+    .header-topic{
+        display: flex;
+        flex-direction: row;
+        overflow: scroll;
+        border: 1px solid grey;
+        li{
+            padding: 4px 8px;
+            border: 1px solid grey;
+        }
+    }
+    .shape-content{
+        padding-top: 12px;
+    }
+    .mini-screen{
+        height: 12px;
+        width: 120%;
+    }
     aside{
         width: 24vw;
         display: none;
@@ -94,6 +118,13 @@ aside{
     section{
         padding: 8px 4px;
     }
+    .side-topic{
+        width: 48vw !important;
+    }
+    article{
+        position: relative;
+        top: 50px;
+    }
   }
 
 @media screen and (min-width: 600px) and (max-width: 768px){
@@ -104,6 +135,10 @@ aside{
     section{
         padding: 8px 8px;
     }
+
+    .show-code{
+      
+    }
 }
 
 .show-code{
@@ -112,6 +147,7 @@ aside{
     background-color: #1f2022;
     color: #fff;
     padding: 8px;
+    max-width: -webkit-fill-available;
     max-height: 250px;
     overflow-y: scroll;
 }

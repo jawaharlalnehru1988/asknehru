@@ -1,7 +1,20 @@
 <nav>
         @for(topic of cssConcepts; track topic; let idx = $index){
-            <div class="nav-topic" (click)="selectSideTopic(topic)">{{topic}}</div>
+            <div class="nav-topic" [matMenuTriggerFor]="mainMenu" (click)="selectSideTopic(topic)">{{topic}}</div>
         }
+
+        <mat-menu #mainMenu="matMenu" class="main-menu-small">
+            <ul>
+                @for(mainList of cssMainContent; track mainList; let idx = $index){
+                    <li class="side-topic" [matMenuTriggerFor]="subMenu">{{mainList}}</li>
+                }
+            </ul>
+        </mat-menu>
+        <mat-menu #subMenu="matMenu">
+            @for(subList of displaySquareContent; track subList; let idx = $index){
+                <button mat-menu-item (click)="selectSubTopic(subList)">{{subList.shape}}</button>
+            }
+          </mat-menu>
 </nav>
 <main>
     <aside>
@@ -17,22 +30,26 @@
           </mat-menu>
     </aside>
     <section>  
-        <article >
-            
-                <div class="simple-box">
-                    <div class="shape">
+        <nav class="mini-screen">
+            <ul  class="header-topic">
+                @for(mainList of cssMainContent; track mainList; let idx = $index){
+                    <li>{{mainList}}</li>
+                }
+            </ul>
+        </nav>
+        <article>
+            <div class="simple-box">
+                <div class="shape">
                     <div class="shape-content" [innerHTML]="projectedCSSShape"></div>
                 </div>
                 <div class="show-code">
                     <pre>
-                        <code >
-                            {{cssCode}}
-                        </code>
-                    </pre>
+                                <code >
+                                    {{cssCode}}
+                                </code>
+                            </pre>
                 </div>
             </div>
-
-          
         </article>
     </section>
 </main>
