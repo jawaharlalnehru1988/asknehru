@@ -1,15 +1,15 @@
 <nav>
         @for(topic of cssConcepts; track topic; let idx = $index){
-            <div class="nav-topic" [matMenuTriggerFor]="mainMenu" (click)="selectSideTopic(topic)">{{topic}}</div>
+            <div class="nav-topic"  (click)="selectSideTopic(topic)">{{topic}}</div>
         }
 
-        <mat-menu #mainMenu="matMenu" class="main-menu-small">
+        <div class="main-menu-small">
             <ul>
                 @for(mainList of cssMainContent; track mainList; let idx = $index){
                     <li class="side-topic" [matMenuTriggerFor]="subMenu">{{mainList}}</li>
                 }
             </ul>
-        </mat-menu>
+        </div>
         <mat-menu #subMenu="matMenu">
             @for(subList of displaySquareContent; track subList; let idx = $index){
                 <button mat-menu-item (click)="selectSubTopic(subList)">{{subList.shape}}</button>
@@ -33,9 +33,14 @@
         <nav class="mini-screen">
             <ul  class="header-topic">
                 @for(mainList of cssMainContent; track mainList; let idx = $index){
-                    <li>{{mainList}}</li>
+                    <li [matMenuTriggerFor]="menu">{{mainList}}</li>
                 }
             </ul>
+            <mat-menu #menu="matMenu" xPosition="after">
+                @for(subList of displaySquareContent; track subList; let idx = $index){
+                    <button mat-menu-item (click)="selectSubTopic(subList)">{{subList.shape}}</button>
+                }
+              </mat-menu>
         </nav>
         <article>
             <div class="simple-box">

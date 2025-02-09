@@ -12,7 +12,9 @@ section{
 .main-menu-small{
     display: none;
 }
-
+.mini-screen{
+    display: none;
+}
 .side-topic{
     font-size: 1em;
     padding: 4px 8px;
@@ -68,6 +70,12 @@ aside{
     overflow-y: scroll;
 }
 
+.main-menu-small{
+    display: none;
+}
+
+
+
 .simple-box {
   display: flex;
   justify-content: space-around;
@@ -76,7 +84,20 @@ aside{
   height: 100%;
   border: 1px solid #000;
 }
-
+.header-topic{
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    border: 1px solid grey;
+    li{
+        padding: 4px 8px;
+        border: 1px solid grey;
+        min-width: fit-content;
+    }
+}
+article{
+   height: 72vh;
+}
 @media screen and (max-width: 600px) {
     .simple-box {
       flex-direction: column;
@@ -85,18 +106,12 @@ aside{
         justify-content: center;
     }
     .main-menu-small{
+        display: none;
+    }
+    .mini-screen{
         display: block;
     }
-    .header-topic{
-        display: flex;
-        flex-direction: row;
-        overflow: scroll;
-        border: 1px solid grey;
-        li{
-            padding: 4px 8px;
-            border: 1px solid grey;
-        }
-    }
+   
     .shape-content{
         padding-top: 12px;
     }
@@ -143,12 +158,12 @@ aside{
 
 .show-code{
     margin: 8px 0px;
+    max-height: -webkit-fill-available;
     border: 8px solid #3d4212;
     background-color: #1f2022;
     color: #fff;
     padding: 8px;
     max-width: -webkit-fill-available;
-    max-height: 250px;
     overflow-y: scroll;
 }
   
