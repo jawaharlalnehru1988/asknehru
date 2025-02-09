@@ -1259,104 +1259,150 @@ export class SpringContent {
 `
 },
 {
-  title:`Cross-Origin (CORS)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
-  <h2 style="color: #2c3e50;">Introduction to Cross-Origin Resource Sharing (CORS)</h2>
+  title:`Controller Security`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Controller Security in Spring Boot</h2>
   <p style="font-size: 16px; color: #34495e;">
-    Cross-Origin Resource Sharing (CORS) is a security feature implemented by web browsers to allow or restrict web pages from making requests to a different domain than the one that served the web page. It is a mechanism that enables servers to specify who can access their resources and how, ensuring secure communication between clients and servers.
+    Controller Security is a critical aspect of building secure web applications in Spring Boot. It involves protecting your application's endpoints from unauthorized access, ensuring that only authenticated and authorized users can perform specific actions. Spring Boot, combined with Spring Security, provides robust tools to implement security at the controller level.
   </p>
 
-  <h3 style="color: #16a085;">Why is CORS Important?</h3>
+  <h3 style="color: #16a085;">Why is Controller Security Important?</h3>
   <p style="color: #2c3e50;">
-    CORS is essential for modern web applications that rely on APIs hosted on different domains. Without CORS, browsers enforce the <strong>Same-Origin Policy</strong>, which prevents web pages from making requests to a different domain for security reasons. CORS allows developers to bypass this restriction in a controlled manner, enabling secure cross-domain communication.
+    In modern web applications, controllers handle sensitive data and business logic. Without proper security measures, attackers can exploit vulnerabilities to gain unauthorized access, manipulate data, or disrupt services. Controller Security ensures that:
   </p>
-
-  <h3 style="color: #e67e22;">How CORS Works</h3>
-  <p style="color: #2c3e50;">
-    When a web page makes a cross-origin request, the browser sends an <strong>OPTIONS</strong> preflight request to the server to check if the actual request is allowed. The server responds with CORS headers that specify which origins, methods, and headers are permitted. If the request is allowed, the browser proceeds with the actual request.
-  </p>
-
-  <h3 style="color: #2980b9;">Key CORS Headers</h3>
   <ul style="color: #2c3e50; padding-left: 20px;">
-    <li><strong>Access-Control-Allow-Origin</strong>: Specifies which origins are allowed to access the resource.</li>
-    <li><strong>Access-Control-Allow-Methods</strong>: Lists the HTTP methods (e.g., GET, POST) allowed for cross-origin requests.</li>
-    <li><strong>Access-Control-Allow-Headers</strong>: Indicates which headers can be used in the actual request.</li>
-    <li><strong>Access-Control-Allow-Credentials</strong>: Determines whether credentials (e.g., cookies) can be included in the request.</li>
-    <li><strong>Access-Control-Max-Age</strong>: Specifies how long the results of a preflight request can be cached.</li>
+    <li>Only authenticated users can access protected endpoints.</li>
+    <li>Users have the necessary permissions (roles) to perform specific actions.</li>
+    <li>Sensitive data is protected from unauthorized access.</li>
+    <li>Common security vulnerabilities (e.g., CSRF, XSS) are mitigated.</li>
   </ul>
 
-  <h3 style="color: #8e44ad;">Implementing CORS in Spring Boot</h3>
+  <h3 style="color: #e67e22;">Key Concepts in Controller Security</h3>
   <p style="color: #2c3e50;">
-    Spring Boot provides built-in support for configuring CORS at both the global and controller levels. Below are examples of how to enable CORS in a Spring Boot application.
+    Spring Security provides several features to secure controllers effectively:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Authentication</strong>: Verifying the identity of a user (e.g., via username/password, OAuth2, or JWT).</li>
+    <li><strong>Authorization</strong>: Granting or denying access to resources based on user roles or permissions.</li>
+    <li><strong>CSRF Protection</strong>: Preventing Cross-Site Request Forgery attacks.</li>
+    <li><strong>Method-Level Security</strong>: Applying security rules directly to controller methods.</li>
+    <li><strong>Endpoint Filtering</strong>: Restricting access to specific endpoints based on security rules.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Implementing Controller Security in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below are examples of how to implement Controller Security in a Spring Boot application using Spring Security.
   </p>
 
-  <h4 style="color: #27ae60;">Global CORS Configuration</h4>
+  <h4 style="color: #8e44ad;">1. Securing Endpoints with <code>HttpSecurity</code></h4>
   <p style="color: #2c3e50;">
-    You can configure CORS globally by overriding the <code>addCorsMappings</code> method in a <code>WebMvcConfigurer</code> bean.
+    You can configure security rules for your controllers using the <code>HttpSecurity</code> class in a <code>SecurityConfig</code> class.
   </p>
 
   <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
     <code codeHighlight class="language-java">
-      import org.springframework.context.annotation.Configuration;
-      import org.springframework.web.servlet.config.annotation.CorsRegistry;
-      import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
 
-      @Configuration
-      public class CorsConfig implements WebMvcConfigurer {
+      @EnableWebSecurity
+      public class SecurityConfig {
 
-          @Override
-          public void addCorsMappings(CorsRegistry registry) {
-              registry.addMapping("/api/**")
-                      .allowedOrigins("https://example.com")
-                      .allowedMethods("GET", "POST", "PUT", "DELETE")
-                      .allowedHeaders("*")
-                      .allowCredentials(true)
-                      .maxAge(3600);
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .authorizeHttpRequests(auth -> auth
+                      .requestMatchers("/public/**").permitAll() // Allow public access
+                      .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict to ADMIN role
+                      .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN") // Allow USER and ADMIN roles
+                      .anyRequest().authenticated() // Require authentication for all other requests
+                  )
+                  .formLogin(form -> form
+                      .loginPage("/login") // Custom login page
+                      .permitAll()
+                  )
+                  .logout(logout -> logout
+                      .logoutSuccessUrl("/login?logout") // Redirect after logout
+                      .permitAll()
+                  )
+                  .csrf(csrf -> csrf.disable()); // Disable CSRF for simplicity (not recommended for production)
+              return http.build();
           }
       }
     </code>
   </pre>
 
   <p style="color: #2c3e50;">
-    In this example, CORS is enabled for all endpoints under <code>/api/**</code>. Requests from <code>https://example.com</code> are allowed, and specific HTTP methods and headers are permitted.
+    In this example, the <code>HttpSecurity</code> configuration ensures that:
   </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Public endpoints under <code>/public/**</code> are accessible to everyone.</li>
+    <li>Endpoints under <code>/admin/**</code> are restricted to users with the <code>ADMIN</code> role.</li>
+    <li>Endpoints under <code>/user/**</code> are accessible to users with either the <code>USER</code> or <code>ADMIN</code> role.</li>
+    <li>All other endpoints require authentication.</li>
+  </ul>
 
-  <h4 style="color: #27ae60;">Controller-Level CORS Configuration</h4>
+  <h4 style="color: #8e44ad;">2. Method-Level Security with <code>@PreAuthorize</code></h4>
   <p style="color: #2c3e50;">
-    You can also enable CORS for specific controllers or methods using the <code>@CrossOrigin</code> annotation.
+    You can also secure individual controller methods using annotations like <code>@PreAuthorize</code>, <code>@PostAuthorize</code>, and <code>@Secured</code>.
   </p>
 
   <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
     <code codeHighlight class="language-java">
-      import org.springframework.web.bind.annotation.CrossOrigin;
+      import org.springframework.security.access.prepost.PreAuthorize;
       import org.springframework.web.bind.annotation.GetMapping;
       import org.springframework.web.bind.annotation.RequestMapping;
       import org.springframework.web.bind.annotation.RestController;
 
       @RestController
       @RequestMapping("/api")
-      @CrossOrigin(origins = "https://example.com", methods = {RequestMethod.GET, RequestMethod.POST})
-      public class MyController {
+      public class SecureController {
 
-          @GetMapping("/data")
-          public String getData() {
-              return "CORS-enabled response";
+          @GetMapping("/admin")
+          @PreAuthorize("hasRole('ADMIN')") // Only ADMIN role can access
+          public String adminEndpoint() {
+              return "Welcome, Admin!";
+          }
+
+          @GetMapping("/user")
+          @PreAuthorize("hasAnyRole('USER', 'ADMIN')") // USER or ADMIN roles can access
+          public String userEndpoint() {
+              return "Welcome, User!";
           }
       }
     </code>
   </pre>
 
   <p style="color: #2c3e50;">
-    In this example, the <code>@CrossOrigin</code> annotation is used to enable CORS for the <code>/api/data</code> endpoint. Only requests from <code>https://example.com</code> using the GET or POST methods are allowed.
+    In this example, the <code>@PreAuthorize</code> annotation is used to enforce role-based access control at the method level.
   </p>
 
-  <h3 style="color: #d35400;">Handling CORS in RESTful APIs</h3>
+  <h4 style="color: #8e44ad;">3. Enabling CSRF Protection</h4>
   <p style="color: #2c3e50;">
-    For RESTful APIs, it is crucial to configure CORS properly to ensure that only trusted clients can access the resources. You can also use Spring Security to enforce stricter CORS policies and protect your APIs from unauthorized access.
+    CSRF (Cross-Site Request Forgery) protection is enabled by default in Spring Security. You can customize it as follows:
   </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      http
+          .csrf(csrf -> csrf
+              .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Store CSRF token in a cookie
+          );
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Controller Security</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use HTTPS to encrypt communication between the client and server.</li>
+    <li>Always validate and sanitize user inputs to prevent injection attacks.</li>
+    <li>Use strong password hashing algorithms (e.g., bcrypt) for storing credentials.</li>
+    <li>Regularly update dependencies to patch known vulnerabilities.</li>
+    <li>Implement logging and monitoring to detect suspicious activities.</li>
+  </ul>
 
   <h3 style="color: #2c3e50;">Conclusion</h3>
   <p style="color: #2c3e50;">
-    CORS is a vital mechanism for enabling secure cross-origin communication in web applications. By configuring CORS in Spring Boot, developers can control which clients can access their APIs and ensure that their applications remain secure and scalable. Whether you use global or controller-level configurations, CORS provides the flexibility needed to build modern, interoperable web applications.
+    Controller Security is a fundamental aspect of building secure Spring Boot applications. By leveraging Spring Security's features, such as endpoint filtering, method-level security, and CSRF protection, developers can ensure that their applications are protected from unauthorized access and common vulnerabilities. Implementing these best practices will help you build robust and secure web applications.
   </p>
 </div>
 `
