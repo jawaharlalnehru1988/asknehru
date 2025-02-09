@@ -300,6 +300,173 @@ export class SpringContent {
   </pre>
 </div>
 `
+},
+{
+  title: `Request Mapping`, content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Request Mapping in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Request Mapping in Spring Boot is used to map HTTP requests to specific handler methods 
+    within a controller. It allows developers to define URL patterns and handle different 
+    HTTP methods like GET, POST, PUT, DELETE, etc., efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Annotations for Request Mapping:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@RequestMapping</strong> - Generic mapping for all HTTP methods.</li>
+    <li><strong>@GetMapping</strong> - Handles HTTP GET requests.</li>
+    <li><strong>@PostMapping</strong> - Handles HTTP POST requests.</li>
+    <li><strong>@PutMapping</strong> - Handles HTTP PUT requests.</li>
+    <li><strong>@DeleteMapping</strong> - Handles HTTP DELETE requests.</li>
+    <li><strong>@PatchMapping</strong> - Handles HTTP PATCH requests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using @RequestMapping</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      
+      @RestController
+      @RequestMapping("/api")
+      public class RequestMappingController {
+          
+          @GetMapping("/hello")
+          public String sayHello() {
+              return "Hello, Spring Boot!";
+          }
+      }
+    </code>
+  </pre>
+  
+  <p style="color: #2c3e50;">
+    In this example, the <code>@RequestMapping("/api")</code> annotation maps all requests under 
+    <code>/api</code>, while <code>@GetMapping("/hello")</code> specifically handles GET requests 
+    to <code>/api/hello</code>.
+  </p>
+
+  <h3 style="color: #2980b9;">Advanced Request Mapping Features</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Path Variables:</strong> Use <code>@PathVariable</code> to capture values from the URL.</li>
+    <li><strong>Request Parameters:</strong> Use <code>@RequestParam</code> to handle query parameters.</li>
+    <li><strong>Consumes and Produces:</strong> Define supported content types with <code>consumes</code> and <code>produces</code>.</li>
+    <li><strong>Multiple URL Patterns:</strong> A method can handle multiple endpoints.</li>
+  </ul>
+
+  <h3 style="color: #c0392b;">Example: Using Path Variables</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.PathVariable;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      
+      @RestController
+      @RequestMapping("/user")
+      public class UserController {
+          
+          @GetMapping("/{id}")
+          public String getUserById(@PathVariable("id") int userId) {
+              return "User ID: " + userId;
+          }
+      }
+    </code>
+  </pre>
+  
+  <p style="color: #2c3e50;">
+    Here, the <code>@PathVariable</code> annotation captures the user ID from the URL, allowing dynamic mapping.
+  </p>
+</div>
+`
+},
+{
+  title: `GetMapping`, content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @GetMapping in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@GetMapping</code> annotation in Spring Boot is a specialized version of <code>@RequestMapping</code> 
+    used to handle HTTP GET requests. It simplifies the process of defining endpoints for retrieving data from the server.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @GetMapping?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Specifically designed for handling GET requests.</li>
+    <li>More readable and concise than <code>@RequestMapping</code>.</li>
+    <li>Can be combined with <code>@RequestParam</code> and <code>@PathVariable</code> for dynamic request handling.</li>
+    <li>Supports response customization using <code>produces</code> attribute.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Basic @GetMapping Usage</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      
+      @RestController
+      @RequestMapping("/api")
+      public class GetMappingController {
+          
+          @GetMapping("/message")
+          public String getMessage() {
+              return "Welcome to Spring Boot!";
+          }
+      }
+    </code>
+  </pre>
+  
+  <p style="color: #2c3e50;">
+    In this example, the <code>@GetMapping("/message")</code> annotation maps HTTP GET requests to the <code>/api/message</code> endpoint.
+  </p>
+
+  <h3 style="color: #2980b9;">Using @GetMapping with @PathVariable</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.PathVariable;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          
+          @GetMapping("/{id}")
+          public String getUserById(@PathVariable("id") int userId) {
+              return "User ID: " + userId;
+          }
+      }
+    </code>
+  </pre>
+  
+  <p style="color: #2c3e50;">
+    Here, <code>@PathVariable</code> is used to capture a dynamic value from the URL and return user details based on the provided ID.
+  </p>
+
+  <h3 style="color: #c0392b;">Using @GetMapping with @RequestParam</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RequestParam;
+      import org.springframework.web.bind.annotation.RestController;
+      
+      @RestController
+      @RequestMapping("/search")
+      public class SearchController {
+          
+          @GetMapping("/product")
+          public String searchProduct(@RequestParam("name") String productName) {
+              return "Searching for product: " + productName;
+          }
+      }
+    </code>
+  </pre>
+  
+  <p style="color: #2c3e50;">
+    In this case, <code>@RequestParam</code> is used to extract query parameters from the URL, making it useful for search functionalities.
+  </p>
+</div>
+`
 }
     ]
 

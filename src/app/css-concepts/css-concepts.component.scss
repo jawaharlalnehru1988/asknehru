@@ -76,10 +76,13 @@ aside{
 @media screen and (max-width: 600px) {
     .simple-box {
       flex-direction: column;
-
+    }
+    main{
+        justify-content: center;
     }
     aside{
         width: 24vw;
+        display: none;
         ul li{
             font-size: 0.8em;
             padding: unset;
@@ -96,6 +99,7 @@ aside{
 @media screen and (min-width: 600px) and (max-width: 768px){
     aside{
         width: 18vw;
+       
     }
     section{
         padding: 8px 8px;
