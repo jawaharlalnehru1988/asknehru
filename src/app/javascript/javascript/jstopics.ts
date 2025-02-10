@@ -10,6 +10,69 @@ export interface JsModel {
   }
 
 export class Jstopics{
+
+    dsaTopics: JsModel[] = [
+        { title: "Data Structures", topics: [
+            {id: 1, subTopic: "Arrays"},
+            {id: 2, subTopic: "Objects"},
+            {id: 3, subTopic: "Linked Lists"},
+            {id: 4, subTopic: "Stacks"},
+            {id: 5, subTopic: "Queues"},
+            {id: 6, subTopic: "Trees"},
+            {id: 7, subTopic: "Graphs"},
+            {id: 8, subTopic: "Heaps"},
+            {id: 9, subTopic: "Hash Tables"},
+            {id: 10, subTopic: "Tries"},
+            {id: 11, subTopic: "Bit Arrays"},
+            {id: 12, subTopic: "Disjoint Sets"},
+            {id: 13, subTopic: "Segment Trees"},
+            {id: 14, subTopic: "Trie"},
+            {id: 15, subTopic: "Binary Search Trees"},
+            {id: 16, subTopic: "Red-Black Trees"},
+            {id: 17, subTopic: "Splay Trees"},
+            {id: 18, subTopic: "AVL Trees"},
+            {id: 19, subTopic: "B-Trees"},
+        ]
+        },
+        { title: "Algorithms", topics: [
+            {id: 1, subTopic: "Sorting"},
+            {id: 2, subTopic: "Searching"},
+            {id: 3, subTopic: "Graph"},
+            {id: 4, subTopic: "Dynamic Programming"},
+            {id: 5, subTopic: "Greedy"},
+            {id: 6, subTopic: "Backtracking"},
+            {id: 7, subTopic: "Divide and Conquer"},
+            {id: 8, subTopic: "Recursion"},
+            {id: 9, subTopic: "Hashing"},
+            {id: 10, subTopic: "Bit Manipulation"},
+            {id: 11, subTopic: "Mathematical"},
+            {id: 12, subTopic: "Probability and Statistics"},
+            {id: 13, subTopic: "Machine Learning"},
+            {id: 14, subTopic: "Natural Language Processing"},
+            {id: 15, subTopic: "Computer Vision"},
+            {id: 16, subTopic: "Audio Processing"},
+            {id: 17, subTopic: "Image Processing"},
+            {id: 18, subTopic: "Video Processing"},
+            {id: 19, subTopic: "Robotics"},
+            {id: 20, subTopic: "Artificial Intelligence"},
+            {id: 21, subTopic: "Machine Learning"},
+            {id: 22, subTopic: "Deep Learning"},
+            {id: 23, subTopic: "Reinforcement Learning"},
+            {id: 24, subTopic: "Neural Networks"},
+            {id: 25, subTopic: "Convolutional Neural Networks"},
+            {id: 26, subTopic: "Recurrent Neural Networks"},
+            {id: 27, subTopic: "Long Short-Term Memory Networks"},
+            {id: 28, subTopic: "Generative Adversarial Networks"},
+            {id: 29, subTopic: "Self-Organizing Maps"},
+            {id: 30, subTopic: "Evolutionary"},
+            {id: 31, subTopic: "Genetic"},
+            {id: 32, subTopic: "Particle Swarm Optimization"},
+            {id: 33, subTopic: "Ant Colony Optimization"},
+            {id: 34, subTopic: "Genetic"},
+            {id: 35, subTopic: "Particle Swarm Optimization"},
+        ]}
+    ]
+
  
       categorisedTopics: JsModel[] = [
         { title: "Data types", topics: [

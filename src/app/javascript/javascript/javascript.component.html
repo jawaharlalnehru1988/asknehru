@@ -8,7 +8,7 @@
                 <div class="topic-content-space">
                     @if(!mainTopicAppear){
                         <div class="topics-container">
-                            @for(topic of topics; track topic; let idx = $index){
+                            @for(topic of dsaTopics; track topic; let idx = $index){
                                 <div class="topic" (click)="clickTopic(topic)" >
                                     {{idx + 1}}. {{topic.title}}  <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
                                 </div>
@@ -18,14 +18,20 @@
                         <div class="topics-container">
                             <div class="sub-title" (click)="backToMainTopic()" > <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon> <span> {{subTopicTitle}} </span> </div>
                             @for(subTopic of subTopicArray; track subTopic; let idx = $index){
-                                <div class="sub-topic"  >
+                                <div class="sub-topic" (click)="subDSATopicClicked(subTopic.subTopic)" >
                                     {{idx + 1}}. {{subTopic.subTopic}}  
                                 </div>
                             }
                         </div>  
                     }
                     <div class="topic-detail">
-                        <p>Main content</p>
+                        <div class="article-container">
+                
+                            <main class="content-container">
+                                <article [innerHTML]="projectedDSAContent"></article>
+                            </main>                                                                       
+                       
+                  </div>
                     </div>
                 </div>
             }           

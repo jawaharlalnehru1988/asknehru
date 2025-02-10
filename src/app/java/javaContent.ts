@@ -10,7 +10,7 @@ export class JavaContent {
                 'Implementation of abstraction.',
                 'Support for polymorphism.'
             ],
-            javaClassExample: `<pre><code>    public class Car {
+            javaClassExample: `<pre><code class="language-java" codeHighlight>  public class Car {
         // Properties
         String brand;
         int speed;

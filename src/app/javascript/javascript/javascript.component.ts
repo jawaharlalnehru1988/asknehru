@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import * as Prism from 'prismjs';
 import { JsContent, JsContents } from './jscontents';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { JsDsaContent } from 'src/app/javascript/javascript/jsdsaContent';
 
 
 @Component({
@@ -14,37 +15,52 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     templateUrl: './javascript.component.html',
     styleUrl: './javascript.component.scss'
 })
-export class JavascriptComponent {
+export class JavascriptComponent extends JsDsaContent {
     isArrowActive = false;
     jstopic: string = "";
     mainTopicAppear: boolean = false;
     jstopics = new Jstopics();
+ 
     topics = this.jstopics.categorisedTopics;
+    dsaTopics = this.jstopics.dsaTopics;
     subTopicTitle: string = "";
     subTopicArray: Topic[] = [];
-
     jsContents:any = new JsContents();
     jsContent: any;
     matchingTopicId: string = "";
     projectedContent: SafeHtml = this.jsContents.topicContents[0].content;
-
+    projectedDSAContent: SafeHtml = '';
+    
     ngOnInit():void{
         this.jsContent = this.jsContents.topicContents;
+       
+        this.projectedDSAContent = this.dsaContents[0].content;
     }
-
+    
     constructor(private sanitizer: DomSanitizer) { 
-
+        super()
     }
     receiveTopic(topic: string){
+    console.log('topic :', topic);
     this.jstopic = topic;
+    const selectedTopic = topic === 'Javascript DSA' ? this.dsaTopics[0] : this.topics[0];
+    this.clickTopic(selectedTopic);
     }
-
     clickTopic(topic: JsModel){
         this.subTopicTitle = topic.title;
         this.subTopicArray = topic.topics;     
         this.mainTopicAppear = true;                                                                                                                                             
     }
-
+    subDSATopicClicked(subTopic:string){
+    console.log('subTopic :', subTopic.length);
+        const dsaContentObj = this.dsaContents.find((topic: JsContent)=> topic.articleTitle === subTopic);
+        console.log('dsaContentObj :', dsaContentObj);
+        if(dsaContentObj){
+            this.projectedDSAContent = this.sanitizer.bypassSecurityTrustHtml(dsaContentObj.content);
+        } else{
+            this.projectedDSAContent = this.sanitizer.bypassSecurityTrustHtml("<p>No content found</p>")
+        }
+    }
     subTopicClicked(subTopic: string) {
     this.matchingTopicId = subTopic;
     const contentObj = this.jsContents.topicContents.find((topic: JsContent) => topic.articleTitle === subTopic);

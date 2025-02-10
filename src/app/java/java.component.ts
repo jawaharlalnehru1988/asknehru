@@ -4,6 +4,7 @@ import { JsModel, Topic } from '../javascript/javascript/jstopics';
 import { MatIconModule } from '@angular/material/icon';
 import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { JavaContent } from './javaContent';
+import Prism from 'prismjs';
 
 @Component({
   selector: 'app-java',
@@ -33,7 +34,13 @@ event: string|undefined;
     this.javaArray = this.javaTopics.javaConcept;
   }
 
+  ngAfterViewChecked(): void {
+    Prism.highlightAll();
+  }
 
+  ngAfterViewInit(): void {
+    Prism.highlightAll();
+  }
   openMainDetails(){
     this.openTopic = true;
   }
