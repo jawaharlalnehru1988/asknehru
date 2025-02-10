@@ -47,12 +47,7 @@
                 <div class="shape">
                     <div class="shape-content" [innerHTML]="projectedCSSShape"></div>
                 </div>
-                <div class="show-code">
-                    <pre>
-                                <code >
-                                    {{cssCode}}
-                                </code>
-                            </pre>
+                <div class="show-code" [innerHTML]="cssCode">
                 </div>
             </div>
         </article>

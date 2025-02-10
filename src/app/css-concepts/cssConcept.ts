@@ -162,7 +162,7 @@ export class CssConcept {
         {
             shape: 'simple square',
             projectedCSSShape: `<div style="width: 100px; height: 100px; background-color: lightblue; padding: 20px; border: 2px solid navy;">This is a simple square.</div>`,
-            cssCode: `
+            cssCode: `<pre><code class="language-css" codeHighlight>
   // HTML
      <div class="simple-box">This is a simple square.</div>
 
@@ -173,12 +173,13 @@ export class CssConcept {
       background-color: lightblue;
       padding: 20px;
       border: 2px solid navy;
-    }`
+    } 
+  </code></pre>`,
 },
 {
         shape: 'Rounded Box',
         projectedCSSShape: `<div style="border-radius: 10px; background-color: lightgreen; padding: 20px; border: 2px solid green; width: 100px; height: 100px;" >Rounded Box</div>`,
-        cssCode: `
+        cssCode: `<pre><code class="language-css" codeHighlight>
         // HTML
         <div class="rounded-box">Rounded Box</div>
 
@@ -191,12 +192,13 @@ export class CssConcept {
             width: 100px;
             height: 100px;
         }
+            </code></pre>
         `
 },
 {
     shape: 'Shadow Box',
     projectedCSSShape: `<div style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: lightgray; padding: 20px; border: 2px solid gray; width: 100px; height: 100px;" >Shadow Box</div>`,  
-    cssCode: `
+    cssCode: `<pre><code class="language-css" codeHighlight>
     // HTML
     <div class="shadow-box">Shadow Box</div>
 
@@ -209,12 +211,12 @@ export class CssConcept {
         width: 100px;
         height: 100px;
     }
-    `
+    </code></pre> `
 },
 {
     shape: 'Gradient Box',
     projectedCSSShape: `<div style="background: linear-gradient(45deg, #ff0000, #0000ff); padding: 20px; border: 2px solid navy; width: 100px; height: 100px;" >Gradient Box</div>`,
-    cssCode: `
+    cssCode: ` <pre><code class="language-css" codeHighlight>
     // HTML
     <div class="gradient-box">Gradient Box</div>
 
@@ -226,12 +228,12 @@ export class CssConcept {
         width: 100px;
         height: 100px;
     }    
-    `
+    </code></pre> `
 },
 {
     shape: 'Transparent(Opacity) Box',
     projectedCSSShape: `<div style="background-color: rgba(255, 0, 0, 0.5); padding: 20px; border: 2px solid navy; width: 100px; height: 100px;" >Transparent Box</div>`,
-    cssCode: `
+    cssCode: `<pre><code class="language-css" codeHighlight>
     // HTML
     <div class="transparent-box">Transparent Box</div>
 
@@ -243,12 +245,12 @@ export class CssConcept {
         width: 100px;
         height: 100px;
         opacity: 0.5;
-    }`
+    } </code></pre> `
 },
 {
     shape: `Bordered Box`,
     projectedCSSShape: `<div style="border: 2px dashed navy; background-color: lightyellow; padding: 20px; width: 100px; height: 100px;" >Bordered Box</div>`,
-    cssCode: `
+    cssCode: ` <pre><code class="language-css" codeHighlight>
     // HTML
     <div class="bordered-box">Bordered Box</div>
 
@@ -260,14 +262,14 @@ export class CssConcept {
         width: 100px;
         height: 100px;
     }    
-    `
+    </code></pre> `
 },
 {
     shape: `Hover Effect Box`,
     projectedCSSShape: `<div style="width: 200px; height: 100px; background-color: lightgreen; padding: 20px; text-align: center; transition: background 0.3s ease-in-out;" 
      onmouseover="this.style.backgroundColor='darkgreen'; this.style.color='white';" 
      onmouseout="this.style.backgroundColor='lightgreen'; this.style.color='black';">Hover Effect Box</div>`,
-    cssCode: `
+    cssCode: `<pre><code class="language-css" codeHighlight>
     // HTML
     <div class="hover-box">Hover Effect Box</div>
 
@@ -285,12 +287,12 @@ export class CssConcept {
   background-color: darkgreen;
   color: white;
 }
-    `
+    </code></pre> `
 },
 {
     shape: `Image Background Box`,
     projectedCSSShape: `<div style="background-image: url('assets/image/css.png'); border: 2px solid navy; background-size: cover; padding: 20px; width: 100px; height: 100px;" >Image Background Box</div>`,
-    cssCode: `
+    cssCode: `<pre><code class="language-css" codeHighlight>
     // HTML
     <div class="image-box">Image Background Box</div>
 
@@ -302,12 +304,13 @@ export class CssConcept {
         width: 100px;
         height: 100px;
         border: 2px solid navy;
-    }`
+    }    
+    </code></pre> `
 },
 {
     shape: `Float Box`,
     projectedCSSShape: `<div style="float: right; width: 100px; height: 100px; background-color: lightblue; padding: 20px; border: 2px solid navy;" >Float Box</div>`,
-    cssCode: `
+    cssCode: `<pre><code class="language-css" codeHighlight>
     // HTML
     <div class="float-box">Float Box</div>
 
@@ -319,13 +322,13 @@ export class CssConcept {
         background-color: lightblue;
         padding: 20px;
         border: 2px solid navy;
-    }`
+    } </code></pre> `
 },
 {
     shape: `Animated Box`,
     projectedCSSShape: `<div style="width: 100px; height: 100px; background-color: orange; padding: 20px; text-align: center; transition: transform 0.3s ease-in-out; " onmouseover="this.style.transform='scale(1.1)';" 
      onmouseout="this.style.transform='scale(1)';" >Animated Box</div>`,
-    cssCode: `
+    cssCode: `<pre><code class="language-css" codeHighlight>
     // HTML
     <div class="animated-box">Animated Box</div>
 
@@ -341,7 +344,8 @@ export class CssConcept {
 
 .animated-box:hover {
   transform: scale(1.1);
-}`
+}    
+    </code></pre> `
 }
     ];
 

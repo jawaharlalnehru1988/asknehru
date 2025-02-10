@@ -44,14 +44,11 @@ export class CssConceptsComponent extends CssConcept {
 
   selectSubTopic(contentObj:CssContent){
   this.projectedCSSShape = this.sanitizer.bypassSecurityTrustHtml(contentObj.projectedCSSShape);
-  this.cssCode = contentObj.cssCode;
-  Prism.highlightAll();
-  
+  this.cssCode = contentObj.cssCode;  
   }
-  ngAfterViewInit(): void {
+
+  ngAfterViewChecked(): void {
     Prism.highlightAll();
-    console.log(' this.cssCode :',  this.cssCode);
-     }
-  
+  }
 
 }

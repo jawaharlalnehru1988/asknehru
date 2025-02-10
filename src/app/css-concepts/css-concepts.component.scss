@@ -102,6 +102,9 @@ article{
     .simple-box {
       flex-direction: column;
     }
+    .show-code{
+      width: 100% !important;
+    }
     main{
         justify-content: center;
     }
@@ -152,7 +155,7 @@ article{
     }
 
     .show-code{
-      
+      width: 50%;
     }
 }
 
@@ -163,7 +166,7 @@ article{
     background-color: #1f2022;
     color: #fff;
     padding: 8px;
-    max-width: -webkit-fill-available;
+    width: 50%;
     overflow-y: scroll;
 }
   
