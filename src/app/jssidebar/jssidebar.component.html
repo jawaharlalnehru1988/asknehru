@@ -1,8 +1,0 @@
-<ul>
-    <li *ngFor="let topic of topics" (click)="onTopicClick(topic)">
-        <div [ngClass]="toggleValue ? 'title-big' : 'title-small'">
-            <div [ngClass]="toggleValue? 'icon-small' : 'icon-big'">{{ getIconForTopic(topic) }}</div>
-             <div class="topic"> {{ topic }}</div>
-        </div>
-    </li>
-</ul>

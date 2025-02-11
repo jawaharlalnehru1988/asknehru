@@ -1,7 +1,9 @@
+<header class="js-sidebar-small">
+    @for(head of headers; track head){
+        <button mat-stroked-button (click)="selectHeader(head)">{{head}}</button>
+    }
+</header>
 <div class="main-container">
-    <div class="js-sidebar-small">
-        <app-jssidebar (passTopic)="receiveTopic($event)" [toggleValue]="isArrowActive"></app-jssidebar>
-    </div>
        
     <div class="content">
             @if(jstopic == 'Javascript DSA'){

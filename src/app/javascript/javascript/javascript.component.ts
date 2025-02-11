@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { JssidebarComponent } from "../../jssidebar/jssidebar.component";
 import { JsModel, Jstopics, Topic } from './jstopics';
 import { MatIconModule } from '@angular/material/icon';
 import * as Prism from 'prismjs';
 import { JsContent, JsContents } from './jscontents';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { JsDsaContent } from 'src/app/javascript/javascript/jsdsaContent';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
     selector: 'app-javascript',
     standalone: true,
-    imports: [JssidebarComponent, MatIconModule],
+    imports: [ MatIconModule, MatButtonModule],
     templateUrl: './javascript.component.html',
     styleUrl: './javascript.component.scss'
 })
@@ -27,6 +27,7 @@ export class JavascriptComponent extends JsDsaContent {
     subTopicArray: Topic[] = [];
     jsContents:any = new JsContents();
     jsContent: any;
+    headers: string[] = ['JS Core', 'JS DSA', "JS MCQ"];
     matchingTopicId: string = "";
     projectedContent: SafeHtml = this.jsContents.topicContents[0].content;
     projectedDSAContent: SafeHtml = '';
@@ -40,10 +41,10 @@ export class JavascriptComponent extends JsDsaContent {
     constructor(private sanitizer: DomSanitizer) { 
         super()
     }
-    receiveTopic(topic: string){
-    console.log('topic :', topic);
+    selectHeader(topic: string){
+    
     this.jstopic = topic;
-    const selectedTopic = topic === 'Javascript DSA' ? this.dsaTopics[0] : this.topics[0];
+    const selectedTopic = topic === 'JS DSA' ? this.dsaTopics[0] : this.topics[0];
     this.clickTopic(selectedTopic);
     }
     clickTopic(topic: JsModel){
