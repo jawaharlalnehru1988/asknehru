@@ -1409,318 +1409,78 @@ export class SpringContent {
 },
 {
   title:`Cross-Origin (CORS)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
-  <h2 style="color: #2c3e50;">Introduction to Controller Security in Spring Boot</h2>
+  <h2 style="color: #2c3e50;">Cross-Origin Resource Sharing (CORS) in Spring Boot</h2>
   <p style="font-size: 16px; color: #34495e;">
-    Controller Security is a critical aspect of building secure web applications in Spring Boot. It involves protecting your application's endpoints from unauthorized access, ensuring that only authenticated and authorized users can perform specific actions. Spring Boot, combined with Spring Security, provides robust tools to implement security at the controller level.
+    Cross-Origin Resource Sharing (CORS) is a security feature implemented by web browsers to prevent unauthorized
+    access to resources from a different domain. By default, web browsers block cross-origin requests for security reasons.
+    Spring Boot provides flexible ways to configure CORS policies to allow or restrict access from different domains.
   </p>
 
-  <h3 style="color: #16a085;">Why is Controller Security Important?</h3>
-  <p style="color: #2c3e50;">
-    In modern web applications, controllers handle sensitive data and business logic. Without proper security measures, attackers can exploit vulnerabilities to gain unauthorized access, manipulate data, or disrupt services. Controller Security ensures that:
-  </p>
+  <h3 style="color: #16a085;">Key Features of CORS in Spring Boot:</h3>
   <ul style="color: #2c3e50; padding-left: 20px;">
-    <li>Only authenticated users can access protected endpoints.</li>
-    <li>Users have the necessary permissions (roles) to perform specific actions.</li>
-    <li>Sensitive data is protected from unauthorized access.</li>
-    <li>Common security vulnerabilities (e.g., CSRF, XSS) are mitigated.</li>
+    <li>Configurable CORS policies using <code>@CrossOrigin</code> annotation.</li>
+    <li>Global CORS configuration using <code>WebMvcConfigurer</code>.</li>
+    <li>Fine-grained control over allowed origins, methods, headers, and credentials.</li>
+    <li>Support for preflight requests using HTTP OPTIONS method.</li>
+    <li>Integration with security frameworks for enhanced protection.</li>
   </ul>
 
-  <h3 style="color: #e67e22;">Key Concepts in Controller Security</h3>
+  <h3 style="color: #e67e22;">Why Use CORS?</h3>
   <p style="color: #2c3e50;">
-    Spring Security provides several features to secure controllers effectively:
-  </p>
-  <ul style="color: #2c3e50; padding-left: 20px;">
-    <li><strong>Authentication</strong>: Verifying the identity of a user (e.g., via username/password, OAuth2, or JWT).</li>
-    <li><strong>Authorization</strong>: Granting or denying access to resources based on user roles or permissions.</li>
-    <li><strong>CSRF Protection</strong>: Preventing Cross-Site Request Forgery attacks.</li>
-    <li><strong>Method-Level Security</strong>: Applying security rules directly to controller methods.</li>
-    <li><strong>Endpoint Filtering</strong>: Restricting access to specific endpoints based on security rules.</li>
-  </ul>
-
-  <h3 style="color: #2980b9;">Implementing Controller Security in Spring Boot</h3>
-  <p style="color: #2c3e50;">
-    Below are examples of how to implement Controller Security in a Spring Boot application using Spring Security.
+    CORS is essential for enabling communication between different domains, such as allowing frontend applications
+    hosted on one domain to interact with APIs hosted on another. Properly configuring CORS helps prevent security
+    risks while maintaining cross-origin accessibility.
   </p>
 
-  <h4 style="color: #8e44ad;">1. Securing Endpoints with <code>HttpSecurity</code></h4>
-  <p style="color: #2c3e50;">
-    You can configure security rules for your controllers using the <code>HttpSecurity</code> class in a <code>SecurityConfig</code> class.
-  </p>
-
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <h3 style="color: #2980b9;">Example: Enabling CORS with @CrossOrigin</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
     <code codeHighlight class="language-java">
-      import org.springframework.context.annotation.Bean;
-      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-      import org.springframework.security.web.SecurityFilterChain;
-
-      @EnableWebSecurity
-      public class SecurityConfig {
-
-          @Bean
-          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-              http
-                  .authorizeHttpRequests(auth -> auth
-                      .requestMatchers("/public/**").permitAll() // Allow public access
-                      .requestMatchers("/admin/**").hasRole("ADMIN") // Restrict to ADMIN role
-                      .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN") // Allow USER and ADMIN roles
-                      .anyRequest().authenticated() // Require authentication for all other requests
-                  )
-                  .formLogin(form -> form
-                      .loginPage("/login") // Custom login page
-                      .permitAll()
-                  )
-                  .logout(logout -> logout
-                      .logoutSuccessUrl("/login?logout") // Redirect after logout
-                      .permitAll()
-                  )
-                  .csrf(csrf -> csrf.disable()); // Disable CSRF for simplicity (not recommended for production)
-              return http.build();
-          }
-      }
-    </code>
-  </pre>
-
-  <p style="color: #2c3e50;">
-    In this example, the <code>HttpSecurity</code> configuration ensures that:
-  </p>
-  <ul style="color: #2c3e50; padding-left: 20px;">
-    <li>Public endpoints under <code>/public/**</code> are accessible to everyone.</li>
-    <li>Endpoints under <code>/admin/**</code> are restricted to users with the <code>ADMIN</code> role.</li>
-    <li>Endpoints under <code>/user/**</code> are accessible to users with either the <code>USER</code> or <code>ADMIN</code> role.</li>
-    <li>All other endpoints require authentication.</li>
-  </ul>
-
-  <h4 style="color: #8e44ad;">2. Method-Level Security with <code>@PreAuthorize</code></h4>
-  <p style="color: #2c3e50;">
-    You can also secure individual controller methods using annotations like <code>@PreAuthorize</code>, <code>@PostAuthorize</code>, and <code>@Secured</code>.
-  </p>
-
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
-    <code codeHighlight class="language-java">
-      import org.springframework.security.access.prepost.PreAuthorize;
-      import org.springframework.web.bind.annotation.GetMapping;
-      import org.springframework.web.bind.annotation.RequestMapping;
-      import org.springframework.web.bind.annotation.RestController;
+      import org.springframework.web.bind.annotation.*;
+      import java.util.*;
 
       @RestController
       @RequestMapping("/api")
-      public class SecureController {
+      @CrossOrigin(origins = "http://example.com")
+      public class ApiController {
 
-          @GetMapping("/admin")
-          @PreAuthorize("hasRole('ADMIN')") // Only ADMIN role can access
-          public String adminEndpoint() {
-              return "Welcome, Admin!";
-          }
-
-          @GetMapping("/user")
-          @PreAuthorize("hasAnyRole('USER', 'ADMIN')") // USER or ADMIN roles can access
-          public String userEndpoint() {
-              return "Welcome, User!";
+          @GetMapping("/data")
+          public List<String> getData() {
+              return Arrays.asList("Item 1", "Item 2", "Item 3");
           }
       }
     </code>
   </pre>
 
   <p style="color: #2c3e50;">
-    In this example, the <code>@PreAuthorize</code> annotation is used to enforce role-based access control at the method level.
+    In this example, the <code>@CrossOrigin</code> annotation allows requests from <code>http://example.com</code>.
+    You can specify multiple origins, HTTP methods, and headers.
   </p>
 
-  <h4 style="color: #8e44ad;">3. Enabling CSRF Protection</h4>
-  <p style="color: #2c3e50;">
-    CSRF (Cross-Site Request Forgery) protection is enabled by default in Spring Security. You can customize it as follows:
-  </p>
-
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <h3 style="color: #9b59b6;">Example: Global CORS Configuration</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
     <code codeHighlight class="language-java">
-      http
-          .csrf(csrf -> csrf
-              .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Store CSRF token in a cookie
-          );
-    </code>
-  </pre>
+      import org.springframework.context.annotation.*;
+      import org.springframework.web.servlet.config.annotation.*;
 
-  <h3 style="color: #d35400;">Best Practices for Controller Security</h3>
-  <ul style="color: #2c3e50; padding-left: 20px;">
-    <li>Use HTTPS to encrypt communication between the client and server.</li>
-    <li>Always validate and sanitize user inputs to prevent injection attacks.</li>
-    <li>Use strong password hashing algorithms (e.g., bcrypt) for storing credentials.</li>
-    <li>Regularly update dependencies to patch known vulnerabilities.</li>
-    <li>Implement logging and monitoring to detect suspicious activities.</li>
-  </ul>
-
-  <h3 style="color: #2c3e50;">Conclusion</h3>
-  <p style="color: #2c3e50;">
-    Controller Security is a fundamental aspect of building secure Spring Boot applications. By leveraging Spring Security's features, such as endpoint filtering, method-level security, and CSRF protection, developers can ensure that their applications are protected from unauthorized access and common vulnerabilities. Implementing these best practices will help you build robust and secure web applications.
-  </p>
-</div>` 
-},
-{
-  title:`DTO in Controllers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
-  <h2 style="color: #2c3e50;">Introduction to DTOs in Controllers</h2>
-  <p style="font-size: 16px; color: #34495e;">
-    Data Transfer Objects (DTOs) are a design pattern used to encapsulate and transfer data between different layers of an application, particularly between controllers and services. In Spring Boot, DTOs are commonly used to decouple the internal data model (entities) from the data exposed by the API, ensuring better security, flexibility, and maintainability.
-  </p>
-
-  <h3 style="color: #16a085;">Why Use DTOs in Controllers?</h3>
-  <p style="color: #2c3e50;">
-    Using DTOs in controllers offers several advantages:
-  </p>
-  <ul style="color: #2c3e50; padding-left: 20px;">
-    <li><strong>Separation of Concerns</strong>: DTOs decouple the API layer from the persistence layer, ensuring that changes in the database schema do not directly affect the API.</li>
-    <li><strong>Security</strong>: By exposing only the necessary data, DTOs prevent sensitive information from being leaked through the API.</li>
-    <li><strong>Performance Optimization</strong>: DTOs allow you to fetch only the required data, reducing unnecessary data transfer and improving performance.</li>
-    <li><strong>Validation</strong>: DTOs can include validation annotations to ensure that incoming data meets specific criteria before processing.</li>
-    <li><strong>Versioning</strong>: DTOs make it easier to manage API versioning by providing a clear separation between the API contract and the internal data model.</li>
-  </ul>
-
-  <h3 style="color: #e67e22;">Key Concepts of DTOs</h3>
-  <p style="color: #2c3e50;">
-    When working with DTOs in Spring Boot, it is essential to understand the following concepts:
-  </p>
-  <ul style="color: #2c3e50; padding-left: 20px;">
-    <li><strong>Entity-DTO Mapping</strong>: Converting between entities (database models) and DTOs (API models) using tools like <code>ModelMapper</code> or manual mapping.</li>
-    <li><strong>Validation</strong>: Using annotations like <code>@NotNull</code>, <code>@Size</code>, and <code>@Email</code> to validate incoming data.</li>
-    <li><strong>Layered Architecture</strong>: Ensuring that DTOs are used only in the controller and service layers, while entities are used in the persistence layer.</li>
-  </ul>
-
-  <h3 style="color: #2980b9;">Example: Using DTOs in a Spring Boot Controller</h3>
-  <p style="color: #2c3e50;">
-    Below is an example of how to use DTOs in a Spring Boot controller to handle user data.
-  </p>
-
-  <h4 style="color: #8e44ad;">1. Define the Entity and DTO</h4>
-  <p style="color: #2c3e50;">
-    First, define the entity (database model) and the DTO (API model).
-  </p>
-
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
-    <code codeHighlight class="language-java">
-      // Entity (Database Model)
-      import jakarta.persistence.Entity;
-      import jakarta.persistence.GeneratedValue;
-      import jakarta.persistence.GenerationType;
-      import jakarta.persistence.Id;
-
-      @Entity
-      public class User {
-          @Id
-          @GeneratedValue(strategy = GenerationType.IDENTITY)
-          private Long id;
-          private String name;
-          private String email;
-          private String password;
-
-          // Getters and Setters
-      }
-
-      // DTO (API Model)
-      import jakarta.validation.constraints.Email;
-      import jakarta.validation.constraints.NotBlank;
-      import jakarta.validation.constraints.Size;
-
-      public class UserDTO {
-          private Long id;
-
-          @NotBlank(message = "Name is required")
-          private String name;
-
-          @NotBlank(message = "Email is required")
-          @Email(message = "Invalid email format")
-          private String email;
-
-          @NotBlank(message = "Password is required")
-          @Size(min = 6, message = "Password must be at least 6 characters")
-          private String password;
-
-          // Getters and Setters
-      }
-    </code>
-  </pre>
-
-  <h4 style="color: #8e44ad;">2. Create a Controller with DTOs</h4>
-  <p style="color: #2c3e50;">
-    Next, create a controller that uses the DTO to handle incoming requests and responses.
-  </p>
-
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
-    <code codeHighlight class="language-java">
-      import org.springframework.beans.factory.annotation.Autowired;
-      import org.springframework.http.ResponseEntity;
-      import org.springframework.validation.annotation.Validated;
-      import org.springframework.web.bind.annotation.*;
-
-      @RestController
-      @RequestMapping("/users")
-      public class UserController {
-
-          @Autowired
-          private UserService userService;
-
-          @PostMapping
-          public ResponseEntity&lt;UserDTO&gt; createUser(@Validated @RequestBody UserDTO userDTO) {
-              UserDTO savedUser = userService.createUser(userDTO);
-              return ResponseEntity.ok(savedUser);
-          }
-
-          @GetMapping("/{id}")
-          public ResponseEntity&lt;UserDTO&gt; getUserById(@PathVariable Long id) {
-              UserDTO userDTO = userService.getUserById(id);
-              return ResponseEntity.ok(userDTO);
+      @Configuration
+      public class CorsConfig implements WebMvcConfigurer {
+          @Override
+          public void addCorsMappings(CorsRegistry registry) {
+              registry.addMapping("/**")
+                      .allowedOrigins("http://example.com")
+                      .allowedMethods("GET", "POST", "PUT", "DELETE")
+                      .allowedHeaders("Content-Type");
           }
       }
     </code>
   </pre>
 
-  <h4 style="color: #8e44ad;">3. Implement the Service Layer</h4>
   <p style="color: #2c3e50;">
-    The service layer handles the conversion between entities and DTOs and performs business logic.
+    This approach applies CORS settings globally, allowing requests from <code>http://example.com</code>
+    with specified methods and headers.
   </p>
-
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
-    <code codeHighlight class="language-java">
-      import org.springframework.beans.factory.annotation.Autowired;
-      import org.springframework.stereotype.Service;
-      import org.modelmapper.ModelMapper;
-
-      @Service
-      public class UserService {
-
-          @Autowired
-          private UserRepository userRepository;
-
-          @Autowired
-          private ModelMapper modelMapper;
-
-          public UserDTO createUser(UserDTO userDTO) {
-              User user = modelMapper.map(userDTO, User.class);
-              User savedUser = userRepository.save(user);
-              return modelMapper.map(savedUser, UserDTO.class);
-          }
-
-          public UserDTO getUserById(Long id) {
-              User user = userRepository.findById(id)
-                  .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-              return modelMapper.map(user, UserDTO.class);
-          }
-      }
-    </code>
-  </pre>
-
-  <h3 style="color: #d35400;">Best Practices for Using DTOs</h3>
-  <ul style="color: #2c3e50; padding-left: 20px;">
-    <li>Use DTOs to expose only the necessary data to the API clients.</li>
-    <li>Leverage validation annotations to ensure data integrity.</li>
-    <li>Use tools like <code>ModelMapper</code> or <code>MapStruct</code> to simplify entity-DTO mapping.</li>
-    <li>Avoid exposing sensitive information (e.g., passwords) in DTOs.</li>
-    <li>Keep DTOs lightweight and focused on their purpose.</li>
-  </ul>
-
-  <h3 style="color: #2c3e50;">Conclusion</h3>
-  <p style="color: #2c3e50;">
-    DTOs play a crucial role in building secure, maintainable, and scalable Spring Boot applications. By decoupling the API layer from the persistence layer, DTOs ensure that your application remains flexible and adheres to best practices. Whether you're building RESTful APIs or complex web applications, using DTOs in controllers is a proven approach to managing data transfer effectively.
-  </p>
-</div>`
+</div>
+`
 },
 {
   title:`Validation in Controllers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -2197,7 +1957,334 @@ export class SpringContent {
 `
 },
 {
-  title:`Controller Testing`, content:``
+  title:`Controller Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Controller Testing in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Controller testing in Spring Boot is essential for verifying the behavior of RESTful APIs.
+    It ensures that endpoints return the expected responses based on different request inputs.
+    Spring Boot provides several ways to test controllers, including unit tests using <code>MockMvc</code>
+    and integration tests with a real application context.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Controller Testing:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Unit testing with <code>MockMvc</code> for isolating controllers.</li>
+    <li>Integration testing with the actual application context.</li>
+    <li>Verifying response status, headers, and body.</li>
+    <li>Mocking dependencies with <code>@MockBean</code>.</li>
+    <li>Using <code>@WebMvcTest</code> for focused controller testing.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Test Controllers?</h3>
+  <p style="color: #2c3e50;">
+    Testing controllers ensures that API endpoints work correctly before deployment.
+    It helps catch issues early, improves code reliability, and ensures correct request handling.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Unit Test with MockMvc</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.test.web.servlet.MockMvc;
+
+      @WebMvcTest(controllers = ApiController.class)
+      public class ApiControllerTest {
+          @Autowired
+          private MockMvc mockMvc;
+
+          @Test
+          public void testGetData() throws Exception {
+              mockMvc.perform(get("/api/data"))
+                     .andExpect(status().isOk())
+                     .andExpect(content().json("[\"Item 1\", \"Item 2\", \"Item 3\"]"));
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    This example tests a controller method using <code>MockMvc</code>. It verifies the status and expected JSON response.
+  </p>
+
+  <h3 style="color: #9b59b6;">Example: Integration Test</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.springframework.boot.test.web.client.TestRestTemplate;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.http.ResponseEntity;
+      import static org.assertj.core.api.Assertions.assertThat;
+
+      @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+      public class ApiControllerIT {
+          @Autowired
+          private TestRestTemplate restTemplate;
+
+          @Test
+          public void testGetData() {
+              ResponseEntity<String> response = restTemplate.getForEntity("/api/data", String.class);
+              assertThat(response.getStatusCodeValue()).isEqualTo(200);
+              assertThat(response.getBody()).contains("Item 1", "Item 2", "Item 3");
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    This example uses <code>TestRestTemplate</code> for integration testing with a running Spring Boot application.
+  </p>
+</div>
+`
+},
+{
+  title:`MockMvc Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">MockMvc Testing in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    MockMvc is a powerful testing tool in Spring Boot that allows developers to test controllers without
+    starting a full HTTP server. It provides a way to simulate HTTP requests and validate responses,
+    ensuring that controllers function correctly.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of MockMvc:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Allows testing controllers without a running server.</li>
+    <li>Provides fluent API for making requests and asserting responses.</li>
+    <li>Supports request validation and content verification.</li>
+    <li>Integrates well with JUnit and Spring Boot testing frameworks.</li>
+    <li>Facilitates unit testing and behavior-driven development.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use MockMvc?</h3>
+  <p style="color: #2c3e50;">
+    MockMvc simplifies testing by eliminating the need for an actual HTTP server. It enables developers
+    to test endpoints in isolation, reducing complexity and execution time.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Basic MockMvc Test</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.test.web.servlet.MockMvc;
+
+      @WebMvcTest(controllers = MyController.class)
+      public class MyControllerTest {
+          @Autowired
+          private MockMvc mockMvc;
+
+          @Test
+          public void testHelloEndpoint() throws Exception {
+              mockMvc.perform(get("/hello"))
+                     .andExpect(status().isOk())
+                     .andExpect(content().string("Hello, World!"));
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    This example tests a simple endpoint using <code>MockMvc</code>. It verifies the response status and body content.
+  </p>
+
+  <h3 style="color: #9b59b6;">Example: Mocking Service Layer</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.mockito.Mockito.*;
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.boot.test.mock.mockito.MockBean;
+      import org.springframework.test.web.servlet.MockMvc;
+
+      @WebMvcTest(controllers = MyController.class)
+      public class MyControllerMockServiceTest {
+          @Autowired
+          private MockMvc mockMvc;
+
+          @MockBean
+          private MyService myService;
+
+          @Test
+          public void testServiceMocking() throws Exception {
+              when(myService.getMessage()).thenReturn("Mocked Response");
+
+              mockMvc.perform(get("/message"))
+                     .andExpect(status().isOk())
+                     .andExpect(content().string("Mocked Response"));
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    This example mocks a service layer dependency using <code>@MockBean</code> to isolate controller behavior.
+  </p>
+</div>
+`
+},
+{
+  title:`MockMvc Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Controller Best Practices in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, controllers handle HTTP requests and define application endpoints. Following best practices
+    ensures maintainability, scalability, and efficient performance.
+  </p>
+
+  <h3 style="color: #16a085;">Key Best Practices:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@RestController</code> instead of <code>@Controller</code> when working with REST APIs.</li>
+    <li>Keep controller methods small and focused on request handling.</li>
+    <li>Use <code>@RequestMapping</code> at the class level for consistency.</li>
+    <li>Leverage <code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, <code>@DeleteMapping</code>, and <code>@PatchMapping</code> for clarity.</li>
+    <li>Use DTOs (Data Transfer Objects) to encapsulate request and response data.</li>
+    <li>Implement proper validation using <code>@Valid</code> and <code>@RequestBody</code>.</li>
+    <li>Handle exceptions globally using <code>@ControllerAdvice</code>.</li>
+    <li>Avoid business logic inside controllers; delegate it to services.</li>
+    <li>Use meaningful endpoint naming for clarity (e.g., <code>/api/users</code> instead of <code>/getUsers</code>).</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Well-Structured Controller</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.http.ResponseEntity;
+      import org.springframework.web.bind.annotation.*;
+      import javax.validation.Valid;
+      import java.util.List;
+
+      @RestController
+      @RequestMapping("/api/users")
+      public class UserController {
+
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @GetMapping
+          public ResponseEntity<List<UserDTO>> getAllUsers() {
+              return ResponseEntity.ok(userService.getAllUsers());
+          }
+
+          @PostMapping
+          public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
+              return ResponseEntity.ok(userService.createUser(userDTO));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Example: Global Exception Handling</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.http.ResponseEntity;
+      import org.springframework.web.bind.annotation.*;
+      import org.springframework.web.bind.MethodArgumentNotValidException;
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @ControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+              Map<String, String> errors = new HashMap<>();
+              ex.getBindingResult().getFieldErrors().forEach(error ->
+                  errors.put(error.getField(), error.getDefaultMessage()));
+              return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    By following these best practices, you can create maintainable, scalable, and efficient Spring Boot controllers.
+  </p>
+</div>
+`
+},
+{
+  title:`MockMvc Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Controller Anti-Patterns in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, controllers serve as the entry point for handling HTTP requests. However, following anti-patterns can lead to poor maintainability, performance issues, and unscalable code. Avoiding these common pitfalls is crucial for building robust applications.
+  </p>
+
+  <h3 style="color: #16a085;">Common Controller Anti-Patterns:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Fat Controllers:</strong> Placing business logic directly in controllers instead of delegating it to service layers.</li>
+    <li><strong>Incorrect HTTP Methods:</strong> Using <code>@PostMapping</code> for data retrieval instead of <code>@GetMapping</code>.</li>
+    <li><strong>Hardcoded Responses:</strong> Returning hardcoded values instead of using dynamic data from services or databases.</li>
+    <li><strong>Ignoring Exception Handling:</strong> Not implementing centralized exception handling using <code>@ControllerAdvice</code>.</li>
+    <li><strong>Lack of Validation:</strong> Failing to validate request data with <code>@Valid</code> and proper constraints.</li>
+    <li><strong>Overuse of @RequestMapping:</strong> Using <code>@RequestMapping</code> for all methods instead of specific annotations like <code>@GetMapping</code>, <code>@PostMapping</code>, etc.</li>
+    <li><strong>Returning Entity Objects:</strong> Exposing database entities directly instead of using DTOs (Data Transfer Objects).</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Anti-Pattern (Fat Controller)</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/api/users")
+      public class UserController {
+
+          @PostMapping
+          public ResponseEntity<User> createUser(@RequestBody User user) {
+              // Business logic directly inside the controller (Anti-Pattern)
+              user.setId(UUID.randomUUID().toString());
+              user.setCreatedAt(LocalDateTime.now());
+              return ResponseEntity.ok(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Refactored Example (Using Service Layer)</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/api/users")
+      public class UserController {
+
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @PostMapping
+          public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
+              return ResponseEntity.ok(userService.createUser(userDTO));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">How to Avoid Controller Anti-Patterns?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Delegate business logic to service and repository layers.</li>
+    <li>Use proper request validation with <code>@Valid</code> and DTOs.</li>
+    <li>Handle exceptions globally using <code>@ControllerAdvice</code>.</li>
+    <li>Use the correct HTTP method mappings.</li>
+    <li>Structure the code into layers for better maintainability.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    By avoiding these controller anti-patterns, you can ensure your Spring Boot applications are clean, scalable, and maintainable.
+  </p>
+</div>
+`
 }
 
     ]
