@@ -1,13 +1,63 @@
-<header class="js-sidebar-small">
+<header class="js-sidebar-big">
     @for(head of headers; track head){
-        <button mat-stroked-button (click)="selectHeader(head)">{{head}}</button>
+        <button mat-flat-button (click)="selectHeader(head)">{{head}}</button>
     }
+</header>
+<header class="js-sidebar-small">
+    <div class="menu">
+            @for(head of headers; track head){
+            <button class="menu-trigger" (click)="selectHeader(head)" >{{head}}</button>
+            @if (isTopicSelected) {
+
+                <div class="menu-content">
+                    <div class="menu-item">
+                        @for(topic of topics; track topic; let idx = $index){
+                        <nav class="topic" (click)="clickTopic(topic)" >
+                            <span> {{idx + 1}}. {{topic.title}} </span> <span> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon></span>
+                        </nav>
+                    }
+                    <div class="submenu">
+                        @for(subTopic of subTopicArray; track subTopic; let idx = $index){
+                            <div class="submenu-item" (click)="subTopicClicked(subTopic.subTopic)">{{subTopic.subTopic}}</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        }
+    </div>
+    <!-- <div class="menu">
+        <button class="menu-trigger">Menu</button>
+        <div class="menu-content">
+          <div class="menu-item">
+            Data Structures
+            <div class="submenu">
+              <div class="submenu-item">Arrays</div>
+              <div class="submenu-item">Objects</div>
+              <div class="submenu-item">Linked Lists</div>
+              <div class="submenu-item">Stacks</div>
+            </div>
+          </div>
+          <div class="menu-item">
+            Algorithms
+            <div class="submenu">
+              <div class="submenu-item">Sorting</div>
+              <div class="submenu-item">Searching</div>
+              <div class="submenu-item">Graph</div>
+              <div class="submenu-item">Dynamic Programming</div>
+              <div class="submenu-item">Greedy</div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      
+
 </header>
 <div class="main-container">
        
     <div class="content">
             @if(jstopic == 'Javascript DSA'){
-                <div class="topic-content-space">
+                <aside class="topic-content-space">
                     @if(!mainTopicAppear){
                         <div class="topics-container">
                             @for(topic of dsaTopics; track topic; let idx = $index){
@@ -35,28 +85,28 @@
                        
                   </div>
                     </div>
-                </div>
+                </aside>
             }           
 
             @else {
-                <div class="topic-content-space">
+                <section class="topic-content-space">
                     @if(!mainTopicAppear){
-                        <div class="topics-container">
+                        <aside class="topics-container">
                             @for(topic of topics; track topic; let idx = $index){
-                                <div class="topic" (click)="clickTopic(topic)" >
+                                <nav class="topic" (click)="clickTopic(topic)" >
                                     {{idx + 1}}. {{topic.title}}  <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon>
-                                </div>
+                                </nav>
                             }
-                        </div>  
+                        </aside>  
                     } @else if(mainTopicAppear){
-                        <div class="topics-container">
+                        <aside class="topics-container">
                             <div class="sub-title" (click)="backToMainTopic()" > <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon> <span> {{subTopicTitle}} </span> </div>
                             @for(subTopic of subTopicArray; track subTopic; let idx = $index){
                                 <div class="sub-topic" (click)="subTopicClicked(subTopic.subTopic)" >
                                     {{idx + 1}}. {{subTopic.subTopic}}  
                                 </div>
                             }
-                        </div>  
+                        </aside>  
                     }
 
                     <div class="topic-detail">
@@ -68,7 +118,7 @@
                                
                           </div>
                     </div>
-                </div>
+                </section>
             }
     </div>
   </div>
