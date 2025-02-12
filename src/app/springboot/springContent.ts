@@ -1424,6 +1424,73 @@ export class SpringContent {
 `
 },
 {
+  title:`DTO in Controllers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding DTO in Controllers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A Data Transfer Object (DTO) is a simple Java object used to transfer data between layers in a Spring Boot application. DTOs help improve security, reduce unnecessary data exposure, and ensure cleaner code in controllers by separating domain models from API responses.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTOs?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prevents overexposure of domain models.</li>
+    <li>Encapsulates only required data for API responses.</li>
+    <li>Improves maintainability and separation of concerns.</li>
+    <li>Ensures flexibility by transforming data before sending it to the client.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using DTO in a Controller</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+
+      @RestController
+      @RequestMapping("/api/users")
+      public class UserController {
+
+          @PostMapping
+          public ResponseEntity<String> createUser(@RequestBody UserDTO userDTO) {
+              return ResponseEntity.ok("User created: " + userDTO.getName());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Mapping Entity to DTO</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserMapper {
+          public static UserDTO toDTO(User user) {
+              UserDTO dto = new UserDTO();
+              dto.setId(user.getId());
+              dto.setName(user.getName());
+              dto.setEmail(user.getEmail());
+              return dto;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Best Practices for Using DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use DTOs only for external API communication.</li>
+    <li>Keep DTOs lightweight and include only necessary fields.</li>
+    <li>Use mapping libraries like MapStruct for automatic conversion.</li>
+    <li>Separate DTOs for request and response to maintain flexibility.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Using DTOs in controllers enhances maintainability, security, and performance by structuring data transfer efficiently while keeping domain models separate from API layers.
+  </p>
+</div>
+`
+},
+{
   title:`Cross-Origin (CORS)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
   <h2 style="color: #2c3e50;">Cross-Origin Resource Sharing (CORS) in Spring Boot</h2>
   <p style="font-size: 16px; color: #34495e;">
@@ -2149,7 +2216,7 @@ export class SpringContent {
 `
 },
 {
-  title:`MockMvc Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  title:`Controller Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
   <h2 style="color: #2c3e50;">Controller Best Practices in Spring Boot</h2>
   <p style="font-size: 16px; color: #34495e;">
     In Spring Boot, controllers handle HTTP requests and define application endpoints. Following best practices
@@ -2231,42 +2298,24 @@ export class SpringContent {
 `
 },
 {
-  title:`MockMvc Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+title:`Controller Anti-Patterns`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
   <h2 style="color: #2c3e50;">Controller Anti-Patterns in Spring Boot</h2>
   <p style="font-size: 16px; color: #34495e;">
-    In Spring Boot, controllers serve as the entry point for handling HTTP requests. However, following anti-patterns can lead to poor maintainability, performance issues, and unscalable code. Avoiding these common pitfalls is crucial for building robust applications.
+    While building Spring Boot applications, avoiding common controller anti-patterns is crucial to maintain clean, efficient, and scalable code. Controllers should be well-structured and free from unnecessary complexity.
   </p>
 
-  <h3 style="color: #16a085;">Common Controller Anti-Patterns:</h3>
+  <h3 style="color: #16a085;">Common Controller Anti-Patterns</h3>
   <ul style="color: #2c3e50; padding-left: 20px;">
-    <li><strong>Fat Controllers:</strong> Placing business logic directly in controllers instead of delegating it to service layers.</li>
-    <li><strong>Incorrect HTTP Methods:</strong> Using <code>@PostMapping</code> for data retrieval instead of <code>@GetMapping</code>.</li>
-    <li><strong>Hardcoded Responses:</strong> Returning hardcoded values instead of using dynamic data from services or databases.</li>
-    <li><strong>Ignoring Exception Handling:</strong> Not implementing centralized exception handling using <code>@ControllerAdvice</code>.</li>
-    <li><strong>Lack of Validation:</strong> Failing to validate request data with <code>@Valid</code> and proper constraints.</li>
-    <li><strong>Overuse of @RequestMapping:</strong> Using <code>@RequestMapping</code> for all methods instead of specific annotations like <code>@GetMapping</code>, <code>@PostMapping</code>, etc.</li>
-    <li><strong>Returning Entity Objects:</strong> Exposing database entities directly instead of using DTOs (Data Transfer Objects).</li>
+    <li><strong>Fat Controllers:</strong> Placing too much business logic inside controllers instead of delegating it to service layers.</li>
+    <li><strong>Improper Exception Handling:</strong> Handling exceptions within controller methods instead of using <code>@ControllerAdvice</code>.</li>
+    <li><strong>Using Entity Objects as DTOs:</strong> Exposing database entities directly in APIs instead of using separate DTOs.</li>
+    <li><strong>Lack of Validation:</strong> Not validating request data properly, leading to security and data integrity issues.</li>
+    <li><strong>Poor Naming Conventions:</strong> Using vague or inconsistent endpoint names that do not follow RESTful conventions.</li>
+    <li><strong>Hardcoding Values:</strong> Hardcoding URLs, configurations, or response values instead of externalizing them.</li>
+    <li><strong>Ignoring Response Status Codes:</strong> Always returning HTTP 200 status, even for errors, making debugging difficult.</li>
   </ul>
 
-  <h3 style="color: #e67e22;">Example: Anti-Pattern (Fat Controller)</h3>
-  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
-    <code codeHighlight class="language-java">
-      @RestController
-      @RequestMapping("/api/users")
-      public class UserController {
-
-          @PostMapping
-          public ResponseEntity<User> createUser(@RequestBody User user) {
-              // Business logic directly inside the controller (Anti-Pattern)
-              user.setId(UUID.randomUUID().toString());
-              user.setCreatedAt(LocalDateTime.now());
-              return ResponseEntity.ok(user);
-          }
-      }
-    </code>
-  </pre>
-
-  <h3 style="color: #9b59b6;">Refactored Example (Using Service Layer)</h3>
+  <h3 style="color: #e67e22;">Example: Avoiding a Fat Controller</h3>
   <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
     <code codeHighlight class="language-java">
       @RestController
@@ -2281,28 +2330,33 @@ export class SpringContent {
 
           @PostMapping
           public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO userDTO) {
-              return ResponseEntity.ok(userService.createUser(userDTO));
+              UserDTO savedUser = userService.createUser(userDTO);
+              return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+          }
+
+          @GetMapping("/{id}")
+          public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+              return ResponseEntity.ok(userService.getUserById(id));
           }
       }
     </code>
   </pre>
 
-  <h3 style="color: #2980b9;">How to Avoid Controller Anti-Patterns?</h3>
+  <h3 style="color: #9b59b6;">Best Practices to Avoid Anti-Patterns</h3>
   <ul style="color: #2c3e50; padding-left: 20px;">
-    <li>Delegate business logic to service and repository layers.</li>
-    <li>Use proper request validation with <code>@Valid</code> and DTOs.</li>
-    <li>Handle exceptions globally using <code>@ControllerAdvice</code>.</li>
-    <li>Use the correct HTTP method mappings.</li>
-    <li>Structure the code into layers for better maintainability.</li>
+    <li>Keep controllers thin by moving business logic to service layers.</li>
+    <li>Use DTOs for request and response objects to separate concerns.</li>
+    <li>Implement proper validation using <code>@Valid</code> and <code>@Validated</code>.</li>
+    <li>Handle exceptions using <code>@ControllerAdvice</code> and return meaningful error responses.</li>
+    <li>Follow RESTful conventions for endpoint naming and response status codes.</li>
   </ul>
 
   <p style="color: #2c3e50;">
-    By avoiding these controller anti-patterns, you can ensure your Spring Boot applications are clean, scalable, and maintainable.
+    Avoiding these anti-patterns will ensure better maintainability, performance, and security in your Spring Boot application.
   </p>
 </div>
 `
 }
-
     ]
 
 }
