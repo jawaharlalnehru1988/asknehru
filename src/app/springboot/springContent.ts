@@ -719,66 +719,82 @@ export class SpringContent {
 `
 },
 {
-  title: `PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  title: `PathVariable`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
   <h2 style="color: #2c3e50;">Understanding @PathVariable in Spring Boot</h2>
   <p style="font-size: 16px; color: #34495e;">
-    In Spring Boot, <code>@PathVariable</code> is an annotation used to extract values from URL placeholders.
-    It helps in mapping dynamic parts of the URL to method parameters in RESTful web services.
+    The <code>@PathVariable</code> annotation in Spring Boot is used to extract values from URI paths. It helps map dynamic values in the URL to method parameters in a controller, making RESTful APIs more flexible and intuitive.
   </p>
 
   <h3 style="color: #16a085;">Key Features of @PathVariable:</h3>
   <ul style="color: #2c3e50; padding-left: 20px;">
-    <li>Extracts values from URL segments.</li>
-    <li>Allows dynamic URL handling in RESTful APIs.</li>
-    <li>Supports optional and default values.</li>
-    <li>Works seamlessly with <code>@GetMapping</code>, <code>@PostMapping</code>, <code>@PutMapping</code>, and <code>@DeleteMapping</code>.</li>
-    <li>Can be used with multiple path variables.</li>
+    <li>Extracts dynamic values from URI paths.</li>
+    <li>Supports multiple path variables in a single endpoint.</li>
+    <li>Can be made optional using default values.</li>
+    <li>Works seamlessly with RESTful APIs.</li>
   </ul>
 
-  <h3 style="color: #e67e22;">Why Use @PathVariable?</h3>
-  <p style="color: #2c3e50;">
-    The <code>@PathVariable</code> annotation makes it easy to extract dynamic values from the URL,
-    simplifying the implementation of RESTful web services by providing clear and readable API endpoints.
-  </p>
-
-  <h3 style="color: #2980b9;">Example: Using @PathVariable in a Spring Boot Application</h3>
+  <h3 style="color: #e67e22;">Example: Using @PathVariable</h3>
   <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
     <code codeHighlight class="language-java">
-      import org.springframework.web.bind.annotation.*;
-      import org.springframework.http.ResponseEntity;
-
       @RestController
-      @RequestMapping("/users")
+      @RequestMapping("/api/users")
       public class UserController {
 
           @GetMapping("/{id}")
-          public ResponseEntity<String> getUserById(@PathVariable Long id) {
-              return ResponseEntity.ok("User with ID: " + id);
+          public ResponseEntity<String> getUserById(@PathVariable("id") Long userId) {
+              return ResponseEntity.ok("User ID: " + userId);
           }
       }
     </code>
   </pre>
 
-  <p style="color: #2c3e50;">
-    In this example, the <code>getUserById</code> method extracts the <code>id</code> from the URL path
-    and returns a response containing the user ID.
-  </p>
-
-  <h3 style="color: #9b59b6;">Using Multiple @PathVariable Parameters</h3>
+  <h3 style="color: #9b59b6;">Handling Multiple @PathVariable</h3>
   <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
     <code codeHighlight class="language-java">
-      @GetMapping("/{userId}/posts/{postId}")
-      public ResponseEntity<String> getUserPost(@PathVariable Long userId, @PathVariable Long postId) {
-          return ResponseEntity.ok("User ID: " + userId + ", Post ID: " + postId);
+      @RestController
+      @RequestMapping("/api/orders")
+      public class OrderController {
+
+          @GetMapping("/{userId}/orders/{orderId}")
+          public ResponseEntity<String> getOrderDetails(
+              @PathVariable Long userId, @PathVariable Long orderId) {
+              return ResponseEntity.ok("User " + userId + " ordered item " + orderId);
+          }
       }
     </code>
   </pre>
 
+  <h3 style="color: #2980b9;">Optional @PathVariable with Default Values</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/api/products")
+      public class ProductController {
+
+          @GetMapping({"", "/{id}"})
+          public ResponseEntity<String> getProduct(@PathVariable(name = "id", required = false) Long productId) {
+              if (productId == null) {
+                  return ResponseEntity.ok("Fetching all products");
+              }
+              return ResponseEntity.ok("Product ID: " + productId);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Best Practices for Using @PathVariable</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use descriptive names for path variables to improve readability.</li>
+    <li>Ensure paths are structured consistently for better API design.</li>
+    <li>Use <code>@PathVariable</code> only when the variable is a required part of the path; otherwise, prefer <code>@RequestParam</code>.</li>
+    <li>Handle exceptions for invalid path variables using <code>@ControllerAdvice</code>.</li>
+  </ul>
+
   <p style="color: #2c3e50;">
-    This example shows how multiple <code>@PathVariable</code> annotations can be used
-    to extract multiple values from the URL.
+    The <code>@PathVariable</code> annotation enhances RESTful APIs by allowing dynamic values in URLs, making applications more interactive and scalable.
   </p>
 </div>
+
 `
 },
 {
