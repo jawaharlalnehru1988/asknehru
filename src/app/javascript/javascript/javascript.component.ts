@@ -70,9 +70,7 @@ export class JavascriptComponent extends JsDsaContent {
   
     
     subDSATopicClicked(subTopic:string){
-    console.log('subTopic :', subTopic.length);
         const dsaContentObj = this.dsaContents.find((topic: JsContent)=> topic.articleTitle === subTopic);
-        console.log('dsaContentObj :', dsaContentObj);
         if(dsaContentObj){
             this.projectedDSAContent = this.sanitizer.bypassSecurityTrustHtml(dsaContentObj.content);
         } else{
