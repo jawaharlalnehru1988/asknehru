@@ -2356,6 +2356,1925 @@ title:`Controller Anti-Patterns`, content:`<div style="font-family: Arial, sans-
   </p>
 </div>
 `
+},
+{
+title:`DTO Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO Basics in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) are simple objects used to encapsulate data and transfer it between layers in an application. They help in separating domain models from API contracts, ensuring better maintainability and security.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTOs?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prevents direct exposure of entity objects.</li>
+    <li>Improves API security by limiting exposed data fields.</li>
+    <li>Allows transformation and validation of data before processing.</li>
+    <li>Facilitates API versioning and backward compatibility.</li>
+    <li>Enhances separation of concerns between persistence and presentation layers.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Implementing a DTO</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private String email;
+
+          public UserDTO() {}
+
+          public UserDTO(Long id, String name, String email) {
+              this.id = id;
+              this.name = name;
+              this.email = email;
+          }
+
+          public Long getId() {
+              return id;
+          }
+
+          public void setId(Long id) {
+              this.id = id;
+          }
+
+          public String getName() {
+              return name;
+          }
+
+          public void setName(String name) {
+              this.name = name;
+          }
+
+          public String getEmail() {
+              return email;
+          }
+
+          public void setEmail(String email) {
+              this.email = email;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Mapping DTOs with Entity Objects</h3>
+  <p style="color: #2c3e50;">
+    DTOs are typically mapped to entity objects using tools like <code>ModelMapper</code> or manual conversion methods. Example using ModelMapper:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      ModelMapper modelMapper = new ModelMapper();
+      UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
+    </code>
+  </pre>
+
+  <h3 style="color: #3498db;">Best Practices for Using DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use DTOs only for API requests and responses.</li>
+    <li>Keep DTOs lightweight by including only necessary fields.</li>
+    <li>Validate DTOs using annotations like <code>@Valid</code> and <code>@NotNull</code>.</li>
+    <li>Convert between DTOs and entities in the service layer, not in controllers.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Implementing DTOs correctly enhances application security, maintainability, and scalability.
+  </p>
+</div>
+`
+},
+{
+  title:`DTO vs Entity`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO vs Entity in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot applications, Data Transfer Objects (DTOs) and Entities serve different purposes. While entities represent database objects and are managed by JPA, DTOs act as data carriers between layers, improving performance and security.
+  </p>
+
+  <h3 style="color: #16a085;">Key Differences Between DTO and Entity</h3>
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr style="background: #16a085; color: white;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Aspect</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">DTO</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Entity</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Purpose</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Transfers data between layers</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Represents database table</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Persistence</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Not managed by JPA</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Managed by JPA and Hibernate</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Fields</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Contains only necessary fields</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Maps to all table columns</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Usage</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Used in API responses and requests</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Used for database operations</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #e67e22;">Example: Entity vs DTO</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The entity is mapped directly to a database table and is managed by JPA.</p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserDTO {
+          private String name;
+          private String email;
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The DTO contains only relevant fields for API responses.</p>
+
+  <h3 style="color: #3498db;">Best Practices for Using DTOs and Entities</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep entities only in the persistence layer.</li>
+    <li>Use DTOs to expose minimal necessary data in API responses.</li>
+    <li>Convert between DTOs and entities in the service layer, not in controllers.</li>
+    <li>Leverage tools like <code>ModelMapper</code> or <code>MapStruct</code> for conversion.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Understanding the distinction between DTOs and Entities ensures a clean architecture and enhances security by preventing direct entity exposure.
+  </p>
+</div>
+`
+},
+{
+  title:`DTO in MVC`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in MVC Architecture</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a Spring Boot MVC (Model-View-Controller) architecture, a Data Transfer Object (DTO) plays a crucial role in handling data flow between different layers. DTOs help decouple the domain model from the API layer, enhancing security, performance, and maintainability.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTO in MVC?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prevents direct exposure of entity classes in API responses.</li>
+    <li>Improves performance by reducing unnecessary data transfer.</li>
+    <li>Enhances security by hiding sensitive database fields.</li>
+    <li>Keeps domain models focused on database operations.</li>
+    <li>Facilitates API versioning and transformation of data.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using DTO in a Spring MVC Controller</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserDTO {
+          private String name;
+          private String email;
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The DTO is a simple Java class that contains only the necessary fields.</p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @GetMapping("/{id}")
+          public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
+              UserDTO userDTO = userService.getUserById(id);
+              return ResponseEntity.ok(userDTO);
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The controller only interacts with the DTO instead of directly using entity objects.</p>
+
+  <h3 style="color: #3498db;">Best Practices for DTO in MVC</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep DTOs lightweight with only necessary fields.</li>
+    <li>Use a service layer for converting entities to DTOs and vice versa.</li>
+    <li>Leverage tools like <code>ModelMapper</code> or <code>MapStruct</code> for automated mapping.</li>
+    <li>Ensure DTOs are immutable where possible.</li>
+    <li>Follow REST API best practices when designing DTOs.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Using DTOs in MVC helps in structuring a clean, scalable, and maintainable application by ensuring a clear separation of concerns between the controller, service, and persistence layers.
+  </p>
+</div>
+`
+},
+{
+  title:`DTO in Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a Spring Boot application, a Data Transfer Object (DTO) is used to transfer data between different layers of the application. DTOs help in structuring APIs, improving performance, and maintaining a clean separation of concerns.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTO in Spring Boot?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulates only required data, avoiding unnecessary exposure of entities.</li>
+    <li>Improves security by restricting sensitive data in API responses.</li>
+    <li>Enhances performance by reducing the size of data transferred.</li>
+    <li>Facilitates API versioning by modifying DTOs without changing entity models.</li>
+    <li>Maintains separation of concerns between persistence and API layers.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Implementing DTO in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserDTO {
+          private String name;
+          private String email;
+          // Constructors, Getters, and Setters
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The DTO class contains only necessary fields without exposing the full entity.</p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @GetMapping("/{id}")
+          public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
+              UserDTO userDTO = userService.getUserById(id);
+              return ResponseEntity.ok(userDTO);
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The controller uses the DTO to send only necessary data to the client.</p>
+
+  <h3 style="color: #3498db;">Best Practices for Using DTO in Spring Boot</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use DTOs only for API communication, not for persistence.</li>
+    <li>Keep DTOs lightweight and focus on necessary fields.</li>
+    <li>Use a service layer to handle conversions between DTOs and entities.</li>
+    <li>Automate DTO mapping using <code>ModelMapper</code> or <code>MapStruct</code>.</li>
+    <li>Ensure immutability of DTOs where possible.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Using DTOs in Spring Boot ensures a well-structured, secure, and maintainable application, enhancing both API efficiency and data protection.
+  </p>
+</div>
+`
+},
+{
+title:`Lombok with DTO`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Lombok with DTO</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Lombok is a Java library that helps reduce boilerplate code by automatically generating getter, setter, constructor, and other methods. When used with Data Transfer Objects (DTOs) in Spring Boot, Lombok simplifies the development process and improves code readability.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Lombok with DTO?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Reduces boilerplate code by eliminating manual getters, setters, and constructors.</li>
+    <li>Enhances code readability and maintainability.</li>
+    <li>Improves development efficiency by reducing repetitive tasks.</li>
+    <li>Works seamlessly with Spring Boot applications.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using Lombok in a DTO</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import lombok.AllArgsConstructor;
+      import lombok.Data;
+      import lombok.NoArgsConstructor;
+
+      @Data
+      @NoArgsConstructor
+      @AllArgsConstructor
+      public class UserDTO {
+          private String name;
+          private String email;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">With Lombok annotations, getters, setters, and constructors are automatically generated.</p>
+
+  <h3 style="color: #3498db;">Integrating DTO with a Controller</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @GetMapping("/{id}")
+          public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
+              UserDTO userDTO = userService.getUserById(id);
+              return ResponseEntity.ok(userDTO);
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The controller efficiently returns DTOs, ensuring only necessary data is exposed.</p>
+
+  <h3 style="color: #e74c3c;">Best Practices for Using Lombok with DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Data</code> for automatic generation of getters, setters, and toString.</li>
+    <li>Use <code>@NoArgsConstructor</code> and <code>@AllArgsConstructor</code> for constructor generation.</li>
+    <li>Ensure DTOs remain lightweight and only contain necessary fields.</li>
+    <li>Keep DTOs separate from entity classes to maintain clean architecture.</li>
+    <li>Consider using <code>@Builder</code> for better object creation flexibility.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    By integrating Lombok with DTOs, Spring Boot applications become more efficient, reducing boilerplate code and improving maintainability.
+  </p>
+</div>
+`
+},
+{
+  title:`Mapping DTOs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Mapping DTOs</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Mapping Data Transfer Objects (DTOs) is essential for separating business logic from data representation. In Spring Boot, DTOs help ensure that only relevant data is exposed in APIs, improving security and maintainability.
+  </p>
+
+  <h3 style="color: #16a085;">Why Map DTOs?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Decouples domain models from API responses.</li>
+    <li>Improves security by exposing only required fields.</li>
+    <li>Enhances maintainability and reusability.</li>
+    <li>Facilitates easier data transformation and validation.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Methods for Mapping DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Manual Mapping (explicit setters/getters).</li>
+    <li>Using ModelMapper library.</li>
+    <li>Using MapStruct for compile-time mapping.</li>
+  </ul>
+
+  <h3 style="color: #3498db;">Example: Manual DTO Mapping</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserMapper {
+          public static UserDTO toDTO(User user) {
+              UserDTO dto = new UserDTO();
+              dto.setName(user.getName());
+              dto.setEmail(user.getEmail());
+              return dto;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Example: Mapping DTOs with ModelMapper</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      ModelMapper modelMapper = new ModelMapper();
+      UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">ModelMapper automates the conversion process with minimal configuration.</p>
+
+  <h3 style="color: #e74c3c;">Example: Using MapStruct</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Mapper
+      public interface UserMapper {
+          UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+          UserDTO userToUserDTO(User user);
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">MapStruct provides a powerful and efficient compile-time mapping mechanism.</p>
+
+  <h3 style="color: #e74c3c;">Best Practices for Mapping DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep DTOs lightweight and focused on specific use cases.</li>
+    <li>Use libraries like ModelMapper or MapStruct for consistency.</li>
+    <li>Ensure mappings are properly tested.</li>
+    <li>Avoid overuse of DTOs that duplicate entity structures.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Mapping DTOs properly improves the structure and security of Spring Boot applications. Choosing the right approach depends on project needs and complexity.
+  </p>
+</div>
+`
+},
+{
+  title:`ModelMapper`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">ModelMapper in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    ModelMapper is a powerful Java library used for object mapping, simplifying the conversion between DTOs and entities. It provides an intuitive API to eliminate manual mapping code and improves code maintainability.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use ModelMapper?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Reduces boilerplate mapping code.</li>
+    <li>Improves code readability and maintainability.</li>
+    <li>Automatically maps object properties based on matching names.</li>
+    <li>Supports complex object mapping and custom configurations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Adding ModelMapper to a Spring Boot Project</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.modelmapper&lt;/groupId&gt;
+          &lt;artifactId&gt;modelmapper&lt;/artifactId&gt;
+          &lt;version&gt;2.4.4&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #3498db;">Configuring ModelMapper in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Configuration
+      public class ModelMapperConfig {
+          @Bean
+          public ModelMapper modelMapper() {
+              return new ModelMapper();
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">This configuration registers ModelMapper as a Spring bean, making it available for dependency injection.</p>
+
+  <h3 style="color: #e74c3c;">Example: Mapping DTOs with ModelMapper</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      public class UserController {
+          @Autowired
+          private ModelMapper modelMapper;
+
+          @GetMapping("/user")
+          public UserDTO getUser() {
+              User user = new User("John Doe", "john@example.com");
+              return modelMapper.map(user, UserDTO.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Best Practices for Using ModelMapper</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use ModelMapper for simple and automated mapping.</li>
+    <li>Customize mappings when needed using property mappings.</li>
+    <li>Optimize performance by configuring lazy loading for deep object graphs.</li>
+    <li>Test mappings to ensure data integrity.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    ModelMapper simplifies the conversion between DTOs and entities, making data transformation more efficient in Spring Boot applications.
+  </p>
+</div>
+`
+},
+{
+  title:`MapStruct`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">MapStruct in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    MapStruct is a Java annotation-based code generator that simplifies the mapping between Java objects, particularly DTOs and entities. It provides a type-safe and efficient way to perform object transformations without requiring reflection.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use MapStruct?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Generates mapping code at compile time, ensuring high performance.</li>
+    <li>Eliminates manual mapping code, reducing boilerplate.</li>
+    <li>Provides strong type safety, catching errors at compile time.</li>
+    <li>Supports complex object mappings with minimal configuration.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Adding MapStruct to a Spring Boot Project</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;
+          &lt;artifactId&gt;mapstruct&lt;/artifactId&gt;
+          &lt;version&gt;1.5.5.Final&lt;/version&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;
+          &lt;artifactId&gt;mapstruct-processor&lt;/artifactId&gt;
+          &lt;version&gt;1.5.5.Final&lt;/version&gt;
+          &lt;scope&gt;provided&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #3498db;">Creating a MapStruct Mapper</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.mapstruct.Mapper;
+      import org.mapstruct.Mapping;
+      import org.mapstruct.factory.Mappers;
+
+      @Mapper
+      public interface UserMapper {
+          UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
+          @Mapping(source = "email", target = "contactEmail")
+          UserDTO userToUserDTO(User user);
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The above code defines a MapStruct mapper that converts a User entity to a UserDTO.</p>
+
+  <h3 style="color: #e74c3c;">Using MapStruct in a Controller</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      public class UserController {
+          @GetMapping("/user")
+          public UserDTO getUser() {
+              User user = new User("John Doe", "john@example.com");
+              return UserMapper.INSTANCE.userToUserDTO(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Best Practices for Using MapStruct</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use MapStruct for high-performance, compile-time object mapping.</li>
+    <li>Define mapping rules explicitly using annotations for clarity.</li>
+    <li>Ensure that the processor dependency is added to generate mapping code.</li>
+    <li>Test mappings thoroughly to verify correct data transformation.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    MapStruct provides an efficient and type-safe approach to object mapping in Spring Boot applications, significantly improving development speed and code maintainability.
+  </p>
+</div>
+`
+},
+{
+  title:`Jackson and DTO`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Jackson and DTO in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Jackson is a widely used Java library for handling JSON data. In Spring Boot applications, it is commonly used to serialize and deserialize Data Transfer Objects (DTOs) when exchanging data between the client and the server.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Jackson with DTOs?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Simplifies JSON serialization and deserialization.</li>
+    <li>Reduces boilerplate code using annotations.</li>
+    <li>Supports custom configurations for handling JSON properties.</li>
+    <li>Ensures structured and readable JSON responses.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Adding Jackson to a Spring Boot Project</h3>
+  <p style="color: #2c3e50;">Spring Boot includes Jackson by default, but you can explicitly add it to your project using the following dependency:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+          &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+          &lt;version&gt;2.15.0&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #3498db;">Defining a DTO with Jackson Annotations</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import com.fasterxml.jackson.annotation.JsonProperty;
+
+      public class UserDTO {
+          @JsonProperty("user_name")
+          private String name;
+
+          @JsonProperty("user_email")
+          private String email;
+
+          // Constructors, Getters, and Setters
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">Here, the <code>@JsonProperty</code> annotation customizes the JSON field names.</p>
+
+  <h3 style="color: #e74c3c;">Using Jackson in a Controller</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      public class UserController {
+          @PostMapping("/user")
+          public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+              return ResponseEntity.ok(userDTO);
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">This example demonstrates how Jackson automatically converts JSON to a Java object using <code>@RequestBody</code>.</p>
+
+  <h3 style="color: #e74c3c;">Best Practices for Using Jackson with DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@JsonProperty</code> to customize JSON field names.</li>
+    <li>Apply <code>@JsonIgnore</code> to exclude sensitive fields.</li>
+    <li>Use <code>@JsonFormat</code> for date/time formatting.</li>
+    <li>Ensure DTOs have proper getters and setters for serialization.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Jackson simplifies data exchange in Spring Boot applications by automating JSON serialization and deserialization of DTOs. Using its annotations, developers can control JSON structure efficiently.
+  </p>
+</div>
+`
+},
+{
+  title:`Serialization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Serialization in Java</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Serialization is the process of converting a Java object into a byte stream so that it can be easily stored or transmitted. It is used to persist data, send objects over a network, and perform deep copies of objects.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Serialization?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Allows object persistence by saving objects to files or databases.</li>
+    <li>Facilitates communication by sending objects over a network.</li>
+    <li>Supports deep cloning of objects.</li>
+    <li>Helps in caching complex objects.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Serialization in Java</h3>
+  <p style="color: #2c3e50;">To make a class serializable, it must implement the <code>Serializable</code> interface:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import java.io.Serializable;
+
+      public class Person implements Serializable {
+          private static final long serialVersionUID = 1L;
+          private String name;
+          private int age;
+          
+          // Constructors, Getters, and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #3498db;">Saving and Retrieving Serialized Objects</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import java.io.*;
+
+      public class SerializationDemo {
+          public static void main(String[] args) throws IOException, ClassNotFoundException {
+              Person person = new Person("John Doe", 30);
+              
+              // Serialize object
+              FileOutputStream fileOut = new FileOutputStream("person.ser");
+              ObjectOutputStream out = new ObjectOutputStream(fileOut);
+              out.writeObject(person);
+              out.close();
+              fileOut.close();
+              
+              // Deserialize object
+              FileInputStream fileIn = new FileInputStream("person.ser");
+              ObjectInputStream in = new ObjectInputStream(fileIn);
+              Person deserializedPerson = (Person) in.readObject();
+              in.close();
+              fileIn.close();
+              
+              System.out.println("Deserialized Person: " + deserializedPerson.getName());
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">The above code demonstrates how to serialize and deserialize an object in Java.</p>
+
+  <h3 style="color: #e74c3c;">Best Practices for Serialization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always define <code>serialVersionUID</code> to maintain version control.</li>
+    <li>Use <code>transient</code> keyword for sensitive data that should not be serialized.</li>
+    <li>Consider using <code>Externalizable</code> for custom serialization logic.</li>
+    <li>Avoid serializing large objects to improve performance.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Serialization is a powerful feature in Java that enables object persistence and data exchange. By following best practices, developers can ensure efficient and secure serialization in their applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Deserialization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Deserialization in Java</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Deserialization is the process of converting a byte stream back into a Java object. It allows restoring previously serialized objects, making it useful for data storage, network communication, and caching mechanisms.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Deserialization?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Restores object states from a file or database.</li>
+    <li>Facilitates data transfer between applications.</li>
+    <li>Supports distributed computing by enabling object sharing.</li>
+    <li>Enhances performance in caching mechanisms.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Deserialization in Java</h3>
+  <p style="color: #2c3e50;">To deserialize an object, read it from a file using <code>ObjectInputStream</code>:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import java.io.*;
+
+      public class DeserializationDemo {
+          public static void main(String[] args) throws IOException, ClassNotFoundException {
+              FileInputStream fileIn = new FileInputStream("person.ser");
+              ObjectInputStream in = new ObjectInputStream(fileIn);
+              Person deserializedPerson = (Person) in.readObject();
+              in.close();
+              fileIn.close();
+              
+              System.out.println("Deserialized Person: " + deserializedPerson.getName());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #3498db;">Handling Deserialization Issues</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>ClassNotFoundException:</strong> Ensure the class definition is available during deserialization.</li>
+    <li><strong>InvalidClassException:</strong> Maintain a consistent <code>serialVersionUID</code> to prevent incompatibility issues.</li>
+    <li><strong>EOFException:</strong> Verify that the file or stream contains valid serialized data.</li>
+    <li><strong>Security Concerns:</strong> Avoid deserializing untrusted data to prevent exploits.</li>
+  </ul>
+
+  <h3 style="color: #e74c3c;">Best Practices for Deserialization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always define a <code>serialVersionUID</code> to handle version changes.</li>
+    <li>Use <code>transient</code> for sensitive data that should not be deserialized.</li>
+    <li>Implement <code>readObject</code> method for custom validation and security.</li>
+    <li>Prefer JSON or XML serialization for safer data handling in distributed applications.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Deserialization is a crucial aspect of Java programming, enabling object restoration and data exchange. However, careful implementation is necessary to ensure security and maintain application integrity.
+  </p>
+</div>
+`
+},
+{
+  title:`Nested DTOs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Nested DTOs in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Nested Data Transfer Objects (DTOs) are a design pattern used to represent complex data structures in a hierarchical manner. In Spring Boot, nested DTOs are particularly useful when dealing with APIs that require sending or receiving data with multiple levels of relationships, such as a user with an address, an order with items, or a department with employees. By using nested DTOs, you can encapsulate related data into a single object, making your API contracts cleaner and more intuitive.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Nested DTOs?</h3>
+  <p style="color: #2c3e50;">
+    Nested DTOs offer several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Structured Data</strong>: Represent complex data relationships in a clear and organized way.</li>
+    <li><strong>Improved Readability</strong>: Make API contracts easier to understand by grouping related fields.</li>
+    <li><strong>Reusability</strong>: Reuse nested DTOs across multiple endpoints or services.</li>
+    <li><strong>Validation</strong>: Apply validation rules to nested objects for better data integrity.</li>
+    <li><strong>Separation of Concerns</strong>: Keep the API layer decoupled from the internal data model.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Nested DTOs</h3>
+  <p style="color: #2c3e50;">
+    When working with nested DTOs in Spring Boot, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Composition</strong>: Nesting one DTO inside another to represent relationships (e.g., a user with an address).</li>
+    <li><strong>Validation</strong>: Applying validation annotations to nested objects to ensure data integrity.</li>
+    <li><strong>Serialization</strong>: Converting nested DTOs to and from JSON or other formats using libraries like Jackson.</li>
+    <li><strong>Mapping</strong>: Mapping nested DTOs to entities and vice versa using tools like <code>ModelMapper</code> or manual mapping.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Nested DTOs in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to implement nested DTOs in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define Nested DTOs</h4>
+  <p style="color: #2c3e50;">
+    Create a parent DTO and a nested DTO to represent a user with an address.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.validation.constraints.NotBlank;
+      import jakarta.validation.constraints.NotNull;
+
+      public class UserDTO {
+          private Long id;
+
+          @NotBlank(message = "Name is required")
+          private String name;
+
+          @NotBlank(message = "Email is required")
+          private String email;
+
+          @NotNull(message = "Address is required")
+          private AddressDTO address;
+
+          // Getters and Setters
+      }
+
+      public class AddressDTO {
+          @NotBlank(message = "Street is required")
+          private String street;
+
+          @NotBlank(message = "City is required")
+          private String city;
+
+          @NotBlank(message = "State is required")
+          private String state;
+
+          @NotBlank(message = "Zip code is required")
+          private String zipCode;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Use Nested DTOs in a Controller</h4>
+  <p style="color: #2c3e50;">
+    Use the nested DTOs in a controller to handle incoming and outgoing data.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/api")
+      public class UserController {
+
+          @PostMapping("/user")
+          public String createUser(@RequestBody UserDTO userDTO) {
+              System.out.println("User created: " + userDTO.getName());
+              System.out.println("Address: " + userDTO.getAddress().getCity());
+              return "User created successfully";
+          }
+
+          @GetMapping("/user")
+          public UserDTO getUser() {
+              AddressDTO address = new AddressDTO("123 Main St", "Springfield", "IL", "62701");
+              return new UserDTO(1L, "John Doe", "john.doe@example.com", address);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Map Nested DTOs to Entities</h4>
+  <p style="color: #2c3e50;">
+    Use a mapping library like <code>ModelMapper</code> to convert between nested DTOs and entities.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.modelmapper.ModelMapper;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          private final ModelMapper modelMapper = new ModelMapper();
+
+          public UserDTO createUser(UserDTO userDTO) {
+              // Map DTO to entity
+              User user = modelMapper.map(userDTO, User.class);
+              // Save entity to database
+              User savedUser = userRepository.save(user);
+              // Map entity back to DTO
+              return modelMapper.map(savedUser, UserDTO.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Nested DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep nested DTOs focused and avoid excessive nesting to prevent complexity.</li>
+    <li>Use validation annotations to ensure data integrity at all levels.</li>
+    <li>Leverage mapping libraries to simplify conversions between DTOs and entities.</li>
+    <li>Document your API contracts clearly to help consumers understand the structure of nested DTOs.</li>
+    <li>Avoid exposing sensitive information in nested DTOs.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Nested DTOs are a powerful tool for representing complex data structures in Spring Boot applications. By encapsulating related data into a single object, you can create cleaner, more intuitive APIs that are easier to maintain and extend. Whether you're building RESTful APIs or integrating with external systems, nested DTOs provide a flexible and efficient way to manage hierarchical data.
+  </p>
+</div>`
+},
+{
+  title:`DTO Validation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to DTO Validation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) are commonly used in Spring Boot applications to encapsulate data sent between the client and server. Validating DTOs ensures that the data received by your application meets specific criteria, such as required fields, correct formats, and business rules. Spring Boot provides robust support for DTO validation through the <strong>Bean Validation API (JSR 380)</strong>, which allows you to define validation rules using annotations and handle validation errors gracefully.
+  </p>
+
+  <h3 style="color: #16a085;">Why is DTO Validation Important?</h3>
+  <p style="color: #2c3e50;">
+    DTO validation is essential for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Integrity</strong>: Ensures that the data conforms to expected formats and constraints.</li>
+    <li><strong>Security</strong>: Prevents injection attacks and other malicious inputs.</li>
+    <li><strong>User Experience</strong>: Provides meaningful error messages to users when input is invalid.</li>
+    <li><strong>Business Logic</strong>: Ensures that only valid data is processed by the application, reducing the risk of runtime errors.</li>
+    <li><strong>API Consistency</strong>: Maintains consistent data standards across your application.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of DTO Validation</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot leverages the Bean Validation API (JSR 380) to perform DTO validation. Key concepts include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Validation Annotations</strong>: Annotations like <code>@NotNull</code>, <code>@Size</code>, <code>@Email</code>, and <code>@Pattern</code> are used to define validation rules.</li>
+    <li><strong>Validation Groups</strong>: Allows you to apply different validation rules for different scenarios (e.g., create vs. update).</li>
+    <li><strong>Custom Validators</strong>: Enables you to create custom validation logic for complex use cases.</li>
+    <li><strong>Error Handling</strong>: Spring Boot provides mechanisms to handle validation errors and return meaningful responses to clients.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing DTO Validation in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to implement DTO validation in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define a DTO with Validation Annotations</h4>
+  <p style="color: #2c3e50;">
+    Create a DTO with validation annotations to enforce constraints on the data.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.validation.constraints.*;
+
+      public class UserDTO {
+
+          @NotNull(message = "ID is required")
+          private Long id;
+
+          @NotBlank(message = "Name is required")
+          @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
+          private String name;
+
+          @Email(message = "Invalid email format")
+          @NotBlank(message = "Email is required")
+          private String email;
+
+          @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", 
+                   message = "Password must be at least 8 characters and contain at least one letter and one number")
+          private String password;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Enable Validation in the Controller</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Valid</code> annotation to enable validation for the incoming request body.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.http.ResponseEntity;
+      import org.springframework.validation.annotation.Validated;
+      import org.springframework.web.bind.annotation.*;
+
+      import jakarta.validation.Valid;
+
+      @RestController
+      @RequestMapping("/users")
+      @Validated
+      public class UserController {
+
+          @PostMapping
+          public ResponseEntity&lt;String&gt; createUser(@Valid @RequestBody UserDTO userDTO) {
+              // Process the validated userDTO
+              return ResponseEntity.ok("User created successfully");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Handle Validation Errors</h4>
+  <p style="color: #2c3e50;">
+    Use <code>@ExceptionHandler</code> to handle validation errors and return meaningful error messages.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.http.ResponseEntity;
+      import org.springframework.web.bind.MethodArgumentNotValidException;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {
+              Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+              ex.getBindingResult().getFieldErrors().forEach(error -&gt;
+                  errors.put(error.getField(), error.getDefaultMessage())
+              );
+              return new ResponseEntity&lt;&gt;(errors, HttpStatus.BAD_REQUEST);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Custom Validators</h3>
+  <p style="color: #2c3e50;">
+    For complex validation logic, you can create custom validators by implementing the <code>ConstraintValidator</code> interface.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.validation.Constraint;
+      import jakarta.validation.ConstraintValidator;
+      import jakarta.validation.ConstraintValidatorContext;
+      import jakarta.validation.Payload;
+      import java.lang.annotation.*;
+
+      @Target({ ElementType.FIELD })
+      @Retention(RetentionPolicy.RUNTIME)
+      @Constraint(validatedBy = CustomEmailValidator.class)
+      public @interface CustomEmail {
+          String message() default "Invalid email format";
+          Class&lt;?&gt;[] groups() default {};
+          Class&lt;? extends Payload&gt;[] payload() default {};
+      }
+
+      public class CustomEmailValidator implements ConstraintValidator&lt;CustomEmail, String&gt; {
+          @Override
+          public boolean isValid(String email, ConstraintValidatorContext context) {
+              return email != null && email.endsWith("@example.com");
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    You can then use the custom annotation in your DTO:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserDTO {
+          @CustomEmail(message = "Email must end with @example.com")
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    DTO validation is a fundamental aspect of building secure and reliable Spring Boot applications. By leveraging the Bean Validation API and Spring's validation support, you can ensure that your application processes only valid and safe data. Whether you're using built-in annotations or custom validators, proper validation practices will enhance the quality and security of your application.
+  </p>
+</div>`
+},
+{
+  title:`Custom Validators`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Custom Validators in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Custom validators in Spring Boot allow developers to implement their own validation logic beyond the standard constraints like <code>@NotNull</code> and <code>@Size</code>. These validators help ensure data integrity and enforce business rules in applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Custom Validators?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Handles complex validation scenarios.</li>
+    <li>Encapsulates business logic within reusable components.</li>
+    <li>Improves code readability and maintainability.</li>
+    <li>Ensures consistency in data validation across the application.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Creating a Custom Validator in Spring Boot</h3>
+  <p style="color: #2c3e50;">A custom validator requires two main components: an annotation and a validation class.</p>
+
+  <h4 style="color: #2980b9;">Step 1: Define a Custom Annotation</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.validation.Constraint;
+      import javax.validation.Payload;
+      import java.lang.annotation.ElementType;
+      import java.lang.annotation.Retention;
+      import java.lang.annotation.RetentionPolicy;
+      import java.lang.annotation.Target;
+
+      @Target({ElementType.FIELD})
+      @Retention(RetentionPolicy.RUNTIME)
+      @Constraint(validatedBy = AgeValidator.class)
+      public @interface ValidAge {
+          String message() default "Age must be between 18 and 60";
+          Class<?>[] groups() default {};
+          Class<? extends Payload>[] payload() default {};
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Step 2: Implement the Validator</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.validation.ConstraintValidator;
+      import javax.validation.ConstraintValidatorContext;
+
+      public class AgeValidator implements ConstraintValidator<ValidAge, Integer> {
+          @Override
+          public void initialize(ValidAge constraintAnnotation) {}
+          
+          @Override
+          public boolean isValid(Integer age, ConstraintValidatorContext context) {
+              return age != null && age >= 18 && age <= 60;
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Step 3: Apply the Validator</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.validation.Valid;
+      import javax.validation.constraints.NotNull;
+
+      public class User {
+          @NotNull
+          private String name;
+          
+          @ValidAge
+          private Integer age;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #3498db;">Validating Custom Constraints in a Controller</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.validation.annotation.Validated;
+      import org.springframework.web.bind.annotation.*;
+      import javax.validation.Valid;
+
+      @RestController
+      @RequestMapping("/users")
+      @Validated
+      public class UserController {
+          @PostMapping("/create")
+          public String createUser(@Valid @RequestBody User user) {
+              return "User created successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Best Practices for Custom Validators</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep validation logic simple and reusable.</li>
+    <li>Use meaningful error messages for better debugging.</li>
+    <li>Combine multiple validators for complex scenarios.</li>
+    <li>Test validators thoroughly to ensure correctness.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Custom validators in Spring Boot provide a robust way to enforce business rules and ensure data consistency. By implementing custom annotations and validation logic, developers can create more reliable and maintainable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`DTO in REST APIs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in REST APIs</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) play a crucial role in REST APIs by ensuring a structured and efficient way to exchange data 
+    between clients and servers. They help decouple the internal domain models from the API's response/request structure, 
+    improving maintainability and security.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTOs in REST APIs?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulation of data to prevent exposing internal domain models.</li>
+    <li>Flexibility in modifying API responses without affecting internal logic.</li>
+    <li>Better control over serialization and deserialization.</li>
+    <li>Improved security by preventing over-posting vulnerabilities.</li>
+    <li>Facilitates API versioning by structuring data independently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using DTO in a Spring Boot REST API</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserDTO {
+          private String name;
+          private String email;
+          
+          public UserDTO(String name, String email) {
+              this.name = name;
+              this.email = email;
+          }
+
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+
+          public String getEmail() { return email; }
+          public void setEmail(String email) { this.email = email; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Mapping Entity to DTO</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @GetMapping("/{id}")
+          public ResponseEntity<UserDTO> getUser(@PathVariable Long id) {
+              User user = userService.findUserById(id);
+              UserDTO userDTO = new UserDTO(user.getName(), user.getEmail());
+              return ResponseEntity.ok(userDTO);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for Using DTOs in REST APIs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use DTOs for both request and response payloads.</li>
+    <li>Leverage libraries like ModelMapper or MapStruct for automatic mapping.</li>
+    <li>Keep DTOs lightweight and avoid adding business logic.</li>
+    <li>Use separate DTOs for different use cases (e.g., UserResponseDTO, UserRequestDTO).</li>
+    <li>Ensure proper validation on DTO fields using annotations like <code>@Valid</code>.</li>
+  </ul>
+</div>
+`
+},
+{
+title:`DTO in Microservices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in Microservices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a microservices architecture, Data Transfer Objects (DTOs) help streamline communication between services
+    by structuring data efficiently and reducing unnecessary exposure of internal domain models.
+    DTOs enhance security, maintainability, and consistency across different microservices.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTOs in Microservices?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prevents direct exposure of database entities.</li>
+    <li>Ensures a consistent data format across microservices.</li>
+    <li>Reduces coupling between services by defining a clear contract.</li>
+    <li>Improves security by preventing over-fetching and under-fetching of data.</li>
+    <li>Enables easy versioning of APIs.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using DTOs in a Microservice</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class OrderDTO {
+          private Long id;
+          private String productName;
+          private int quantity;
+          
+          public OrderDTO(Long id, String productName, int quantity) {
+              this.id = id;
+              this.productName = productName;
+              this.quantity = quantity;
+          }
+
+          public Long getId() { return id; }
+          public void setId(Long id) { this.id = id; }
+
+          public String getProductName() { return productName; }
+          public void setProductName(String productName) { this.productName = productName; }
+
+          public int getQuantity() { return quantity; }
+          public void setQuantity(int quantity) { this.quantity = quantity; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Mapping DTOs Between Microservices</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @RestController
+      @RequestMapping("/orders")
+      public class OrderController {
+          private final OrderService orderService;
+
+          public OrderController(OrderService orderService) {
+              this.orderService = orderService;
+          }
+
+          @GetMapping("/{id}")
+          public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
+              Order order = orderService.findOrderById(id);
+              OrderDTO orderDTO = new OrderDTO(order.getId(), order.getProductName(), order.getQuantity());
+              return ResponseEntity.ok(orderDTO);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for DTOs in Microservices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use DTOs for both request and response payloads.</li>
+    <li>Leverage libraries like ModelMapper or MapStruct for automatic mapping.</li>
+    <li>Ensure DTOs are versioned properly to avoid breaking changes.</li>
+    <li>Keep DTOs minimal and avoid adding unnecessary data fields.</li>
+    <li>Utilize DTOs to maintain API contracts between microservices.</li>
+  </ul>
+</div>
+`
+},
+{
+  title:`DTO in GraphQL`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in GraphQL</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) play a crucial role in GraphQL by structuring the data exchanged between
+    clients and the server. Unlike REST, GraphQL enables clients to request specific fields, making DTOs
+    essential for optimizing data transfer and maintaining a clear schema.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTOs in GraphQL?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prevents over-fetching and under-fetching of data.</li>
+    <li>Improves API response performance by limiting returned fields.</li>
+    <li>Encapsulates business logic and ensures API consistency.</li>
+    <li>Provides a structured contract for GraphQL queries and mutations.</li>
+    <li>Enhances security by restricting exposed fields.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using DTOs in GraphQL</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Data
+      public class UserDTO {
+          private Long id;
+          private String username;
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Implementing DTOs in a GraphQL Query</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Component
+      public class UserGraphQLResolver implements GraphQLQueryResolver {
+          private final UserService userService;
+
+          public UserGraphQLResolver(UserService userService) {
+              this.userService = userService;
+          }
+
+          public UserDTO getUser(Long id) {
+              User user = userService.findById(id);
+              return new UserDTO(user.getId(), user.getUsername(), user.getEmail());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for DTOs in GraphQL</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use DTOs to structure responses and avoid exposing internal entities.</li>
+    <li>Define GraphQL schema clearly with mapped DTOs.</li>
+    <li>Use libraries like MapStruct to automate DTO conversion.</li>
+    <li>Ensure DTOs contain only necessary fields for a specific GraphQL query.</li>
+    <li>Keep DTOs versioned to support backward compatibility.</li>
+  </ul>
+</div>
+`
+},
+{
+  title:`DTO in Kafka/RabbitMQ`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in Kafka/RabbitMQ</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In event-driven architectures, Data Transfer Objects (DTOs) facilitate seamless communication between
+    microservices using messaging systems like Apache Kafka and RabbitMQ. They help structure and standardize
+    message payloads, ensuring consistency and reducing dependencies on internal entity structures.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTOs in Kafka/RabbitMQ?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensures message payloads are well-structured and version-controlled.</li>
+    <li>Decouples internal domain models from external consumers.</li>
+    <li>Enhances compatibility between different microservices.</li>
+    <li>Improves serialization and deserialization of messages.</li>
+    <li>Facilitates schema evolution with minimal impact on services.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using DTOs in Kafka</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Data
+      @AllArgsConstructor
+      @NoArgsConstructor
+      public class OrderDTO {
+          private String orderId;
+          private String product;
+          private int quantity;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Publishing DTO Messages to Kafka</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Service
+      public class OrderProducer {
+          private final KafkaTemplate<String, OrderDTO> kafkaTemplate;
+
+          public OrderProducer(KafkaTemplate<String, OrderDTO> kafkaTemplate) {
+              this.kafkaTemplate = kafkaTemplate;
+          }
+
+          public void sendOrder(OrderDTO order) {
+              kafkaTemplate.send("order-topic", order);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Consuming DTO Messages in RabbitMQ</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Service
+      public class OrderConsumer {
+          @RabbitListener(queues = "order-queue")
+          public void receiveOrder(OrderDTO order) {
+              System.out.println("Received order: " + order);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for DTOs in Kafka/RabbitMQ</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use versioning in DTOs to support backward compatibility.</li>
+    <li>Keep DTOs lightweight and only include necessary fields.</li>
+    <li>Utilize serialization formats like JSON or Avro for interoperability.</li>
+    <li>Ensure DTOs are immutable to maintain data integrity.</li>
+    <li>Validate DTOs before sending or processing messages.</li>
+  </ul>
+</div>
+`
+},
+{
+  title:`DTO in Security`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In security implementations, Data Transfer Objects (DTOs) play a crucial role in handling authentication,
+    authorization, and secure data exchange. By encapsulating user credentials, roles, and permissions, DTOs help
+    prevent direct exposure of sensitive domain models.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use DTOs in Security?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prevents exposure of internal domain entities.</li>
+    <li>Enhances security by enforcing validation before processing.</li>
+    <li>Separates authentication logic from business logic.</li>
+    <li>Standardizes data exchange in secure APIs.</li>
+    <li>Improves compliance with security best practices.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Authentication Request DTO</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Data
+      @AllArgsConstructor
+      @NoArgsConstructor
+      public class AuthRequestDTO {
+          private String username;
+          private String password;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Example: Authentication Response DTO</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Data
+      @AllArgsConstructor
+      @NoArgsConstructor
+      public class AuthResponseDTO {
+          private String token;
+          private String role;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Using DTOs in Security Service</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Service
+      public class AuthService {
+          public AuthResponseDTO authenticate(AuthRequestDTO authRequest) {
+              // Simulated authentication logic
+              String token = generateToken(authRequest.getUsername());
+              return new AuthResponseDTO(token, "USER");
+          }
+
+          private String generateToken(String username) {
+              return Base64.getEncoder().encodeToString((username + "-token").getBytes());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for Secure DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use validation annotations to prevent malicious inputs.</li>
+    <li>Ensure passwords are never included in response DTOs.</li>
+    <li>Utilize JWT for secure authentication responses.</li>
+    <li>Implement role-based access control (RBAC) within DTOs.</li>
+    <li>Keep DTOs lightweight and only include necessary fields.</li>
+  </ul>
+</div>
+`
+},
+{
+  title:`DTO Performance`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO Performance</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) play a crucial role in optimizing the performance of applications by reducing data
+    redundancy and ensuring efficient communication between different layers of an application. Well-structured DTOs
+    improve serialization, minimize unnecessary data transfer, and enhance overall application responsiveness.
+  </p>
+
+  <h3 style="color: #16a085;">Why DTOs Impact Performance?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Reduces data size by excluding unnecessary fields.</li>
+    <li>Optimizes serialization and deserialization processes.</li>
+    <li>Minimizes database queries by aggregating required data.</li>
+    <li>Improves caching by structuring frequently used data.</li>
+    <li>Enhances response time in microservices and REST APIs.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Optimized DTO for Performance</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Data
+      @AllArgsConstructor
+      @NoArgsConstructor
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Best Practices for DTO Performance</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use selective field inclusion to reduce payload size.</li>
+    <li>Utilize caching mechanisms for frequently used DTOs.</li>
+    <li>Ensure proper indexing in the database to support DTO queries.</li>
+    <li>Leverage lazy loading for DTO-related entity fetching.</li>
+    <li>Use efficient mapping frameworks like MapStruct or ModelMapper.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Benchmarking DTO Performance</h3>
+  <p style="color: #2c3e50;">
+    Performance benchmarking helps measure the efficiency of DTOs in data transfer. Tools such as JMH (Java
+    Microbenchmark Harness) and profiling utilities like YourKit or VisualVM can be used to analyze serialization,
+    deserialization, and network transmission times.
+  </p>
+</div>
+`
+},
+{
+  title:`DTO Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO Best Practices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) are essential for efficient communication between different layers of an application. 
+    Following best practices in DTO design improves maintainability, performance, and scalability while preventing 
+    unnecessary data exposure.
+  </p>
+
+  <h3 style="color: #16a085;">Key Best Practices for DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure DTOs contain only necessary fields to minimize payload size.</li>
+    <li>Keep DTOs immutable whenever possible to prevent unintended modifications.</li>
+    <li>Use DTOs to decouple entity models from external exposure.</li>
+    <li>Leverage mapping frameworks like MapStruct for efficient object transformation.</li>
+    <li>Validate input data at the DTO level using annotations like <code>@Valid</code> and <code>@NotNull</code>.</li>
+    <li>Implement versioning in DTOs to ensure backward compatibility.</li>
+    <li>Group related DTOs in packages for better project structure.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Well-Structured DTO</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Data
+      @AllArgsConstructor
+      @NoArgsConstructor
+      public class ProductDTO {
+          private Long id;
+          private String name;
+          private BigDecimal price;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Common Mistakes to Avoid</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Exposing entity models instead of using DTOs.</li>
+    <li>Including unnecessary fields, leading to bloated DTOs.</li>
+    <li>Using DTOs for database transactions instead of proper entity models.</li>
+    <li>Ignoring proper serialization techniques, which can impact performance.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Well-designed DTOs improve the efficiency and security of an application by optimizing data transfer and 
+    maintaining separation between different layers. Following these best practices ensures scalable and maintainable 
+    software architecture.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing DTOs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing DTOs</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) play a critical role in transferring data between layers of an application. 
+    Proper testing of DTOs ensures data integrity, correctness, and compliance with business rules.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test DTOs?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensures DTOs correctly serialize and deserialize data.</li>
+    <li>Validates object mapping and transformations.</li>
+    <li>Confirms that validation constraints function properly.</li>
+    <li>Prevents unintended modifications by ensuring immutability.</li>
+    <li>Enhances maintainability by catching issues early.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Testing a DTO with JUnit</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      import java.math.BigDecimal;
+
+      class ProductDTOTest {
+          @Test
+          void testDTOCreation() {
+              ProductDTO productDTO = new ProductDTO(1L, "Laptop", new BigDecimal("999.99"));
+              assertEquals(1L, productDTO.getId());
+              assertEquals("Laptop", productDTO.getName());
+              assertEquals(new BigDecimal("999.99"), productDTO.getPrice());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Testing DTO Serialization</h3>
+  <p style="color: #2c3e50;">
+    It is crucial to test if DTOs can correctly serialize and deserialize JSON data.
+    Tools like Jackson's ObjectMapper can be used for this purpose.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import com.fasterxml.jackson.databind.ObjectMapper;
+      import org.junit.jupiter.api.Test;
+      import static org.junit.jupiter.api.Assertions.*;
+
+      class ProductDTOSerializationTest {
+          @Test
+          void testSerialization() throws Exception {
+              ObjectMapper objectMapper = new ObjectMapper();
+              ProductDTO productDTO = new ProductDTO(1L, "Laptop", new BigDecimal("999.99"));
+              String json = objectMapper.writeValueAsString(productDTO);
+              ProductDTO deserializedDTO = objectMapper.readValue(json, ProductDTO.class);
+              assertEquals(productDTO, deserializedDTO);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Proper testing of DTOs ensures they function correctly in serialization, validation, and data transformation. 
+    Using frameworks like JUnit and Jackson can help automate these tests and improve software quality.
+  </p>
+</div>
+`
+},
+{
+  title:`DTO Anti-Patterns`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to DTO Anti-Patterns</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data Transfer Objects (DTOs) are widely used in Spring Boot applications to encapsulate data sent between the client and server. While DTOs provide many benefits, such as decoupling the API layer from the persistence layer and improving security, they can also be misused. DTO anti-patterns are common mistakes or poor practices that can lead to bloated, inefficient, or hard-to-maintain code. Recognizing and avoiding these anti-patterns is crucial for building clean, scalable, and maintainable applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Avoid DTO Anti-Patterns?</h3>
+  <p style="color: #2c3e50;">
+    Avoiding DTO anti-patterns is important for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Code Maintainability</strong>: Poorly designed DTOs can make the codebase harder to understand and maintain.</li>
+    <li><strong>Performance</strong>: Inefficient DTOs can lead to unnecessary data transfer and processing overhead.</li>
+    <li><strong>Security</strong>: Exposing sensitive data through DTOs can lead to security vulnerabilities.</li>
+    <li><strong>Scalability</strong>: Bloated or overly complex DTOs can hinder the scalability of your application.</li>
+    <li><strong>Consistency</strong>: Inconsistent use of DTOs can lead to confusion and errors in the application.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Common DTO Anti-Patterns</h3>
+  <p style="color: #2c3e50;">
+    Below are some common DTO anti-patterns and how to avoid them:
+  </p>
+
+  <h4 style="color: #2980b9;">1. Exposing Sensitive Data</h4>
+  <p style="color: #2c3e50;">
+    <strong>Anti-Pattern</strong>: Including sensitive information like passwords, credit card numbers, or personal identification numbers (PINs) in DTOs.
+  </p>
+  <p style="color: #2c3e50;">
+    <strong>Solution</strong>: Exclude sensitive fields from DTOs or use masking techniques to hide sensitive data.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      // Bad: Exposing sensitive data
+      public class UserDTO {
+          private String username;
+          private String password; // Sensitive data
+      }
+
+      // Good: Exclude sensitive data
+      public class UserDTO {
+          private String username;
+          // Password is excluded
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">2. Overloading DTOs with Unnecessary Data</h4>
+  <p style="color: #2c3e50;">
+    <strong>Anti-Pattern</strong>: Including fields in DTOs that are not required by the client, leading to bloated payloads.
+  </p>
+  <p style="color: #2c3e50;">
+    <strong>Solution</strong>: Design DTOs to include only the fields needed for a specific use case.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      // Bad: Overloaded DTO
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private String email;
+          private String address;
+          private String phoneNumber;
+          private String socialSecurityNumber; // Unnecessary field
+      }
+
+      // Good: Minimal DTO
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">3. Ignoring Validation</h4>
+  <p style="color: #2c3e50;">
+    <strong>Anti-Pattern</strong>: Failing to validate data in DTOs, leading to potential security vulnerabilities or data integrity issues.
+  </p>
+  <p style="color: #2c3e50;">
+    <strong>Solution</strong>: Use validation annotations like <code>@NotNull</code>, <code>@Size</code>, and <code>@Email</code> to enforce data integrity.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      // Bad: No validation
+      public class UserDTO {
+          private String name;
+          private String email;
+      }
+
+      // Good: With validation
+      public class UserDTO {
+          @NotBlank(message = "Name is required")
+          private String name;
+
+          @Email(message = "Invalid email format")
+          @NotBlank(message = "Email is required")
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">4. Using Entities as DTOs</h4>
+  <p style="color: #2c3e50;">
+    <strong>Anti-Pattern</strong>: Using entity classes directly as DTOs, which tightly couples the API layer to the persistence layer.
+  </p>
+  <p style="color: #2c3e50;">
+    <strong>Solution</strong>: Create separate DTO classes to decouple the API layer from the persistence layer.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      // Bad: Using entity as DTO
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+      }
+
+      // Good: Separate DTO
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">5. Overusing Nested DTOs</h4>
+  <p style="color: #2c3e50;">
+    <strong>Anti-Pattern</strong>: Creating deeply nested DTOs that are difficult to understand and maintain.
+  </p>
+  <p style="color: #2c3e50;">
+    <strong>Solution</strong>: Limit the depth of nested DTOs and ensure they are logically structured.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      // Bad: Deeply nested DTOs
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private AddressDTO address;
+          private List<OrderDTO> orders;
+      }
+
+      public class OrderDTO {
+          private Long id;
+          private List<ItemDTO> items;
+      }
+
+      // Good: Flattened structure
+      public class UserDTO {
+          private Long id;
+          private String name;
+          private String address;
+          private List<String> orders; // Simplified
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using DTOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep DTOs focused and minimal, including only the necessary fields.</li>
+    <li>Use validation annotations to enforce data integrity.</li>
+    <li>Separate DTOs from entities to decouple the API layer from the persistence layer.</li>
+    <li>Avoid exposing sensitive data in DTOs.</li>
+    <li>Limit the depth of nested DTOs to maintain simplicity.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    DTOs are a powerful tool for managing data transfer in Spring Boot applications, but they must be used correctly to avoid common anti-patterns. By following best practices and avoiding pitfalls like exposing sensitive data, overloading DTOs, and ignoring validation, you can ensure that your application remains clean, secure, and maintainable. Proper use of DTOs will enhance the scalability and reliability of your application while providing a clear and consistent API contract.
+  </p>
+</div>`
 }
     ]
 
