@@ -2,7 +2,12 @@
     display: flex;
     height: 88vh;
 }
-
+header ul{
+    display: flex;
+    border-top: 2px solid rgb(58, 2, 10);
+    border-bottom: 2px solid rgb(58, 2, 10);
+    overflow-x: scroll;
+}
 .side-topic{
     padding: 4px 10px;
     cursor: pointer;
@@ -11,14 +16,34 @@
     margin: 4px 0px;
     color: rgb(43, 15, 143);
 }
+
+.side-topic-header{
+    @extend .side-topic;
+    background-color: unset !important;
+    display: flex;
+}
 .side-topic:hover{
     background-color: #91eae4;
     padding: 4px 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 .main-div{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.main-div-header{
+    @extend .main-div;
+    gap: 12px;
+    font-size: 16px;
+
+}
+.drop-down-icon{
+    display: flex;
+    align-items: center;
 }
 .title-big{
     background-color: #183d3a;
@@ -27,6 +52,7 @@
     padding: 4px 10px;
     margin-left: -10px;  
 }
+
 .side-nav{
     padding: 2px 0px;
     width: 12vw;
@@ -37,7 +63,50 @@
     overflow-y: scroll;
     align-items: stretch;
 }
-
+header{
+    display: none ;
+}
+@media screen and (max-width: 600px) {
+    .sub-topics-header{
+        padding: 4px 0px;
+        display: flex;
+        justify-content: center;
+        background-color: #04635b;
+        flex-wrap: wrap;
+        gap: 4px;
+        .topic{
+            width: 10rem;
+            border: 1px solid #f2bdff;
+            font-weight: 900;
+            background-color: #171d21;
+            color: #ffffff;
+            box-shadow: 0px 0px 2px 1px white;
+            border-radius: 4px;
+        }
+    } 
+    header{
+        display: block;
+       
+    }
+    .side-nav{
+        display: none;
+    }
+    .topic-list{
+        display: none !important;
+    }
+    .body-container{
+        justify-content: center;
+    }
+    .content-container{
+        width: 100% !important;
+    }
+    article{
+        width: 100%;
+    }
+    .topic div{
+        width: max-content;
+    }
+}
 .topic-list{
     padding: 8px 0px;
     width: 18vw;
@@ -51,6 +120,10 @@
     overflow-y: scroll;
 }
 
+article{
+    background-color: cornsilk;
+}
+
 .selected{
     background-color: #1c2020;
     padding: 0px 0px;
@@ -62,7 +135,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 0px;
     cursor: pointer;
     background-color: aliceblue;
     width: 70vw;

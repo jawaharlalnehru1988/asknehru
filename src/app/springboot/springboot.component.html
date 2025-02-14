@@ -1,3 +1,28 @@
+<header>
+    <ul>
+        @for(titles of sideTopics; track titles; let idx = $index){
+            <li class="side-topic-header" (click)="selectSideTopic(titles)">
+            <div class="main-div-header" [ngClass]="titles.title === mainTitle? 'title-big':''">
+                <div> {{titles.title}} </div>
+                <div class="drop-down-icon">
+                    <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon"
+                        fontIcon="expand_circle_down"></mat-icon>
+                </div>
+            </div>
+            </li>
+        }
+    </ul>
+    <nav>
+        <ul class="sub-topics-header">
+            @for(topic of topics; track topic; let idx = $index){
+                <li class="topic" [class.selected]="subtopics === topic" (click)="selectTopic(topic)">
+                   <div>{{idx + 1}}. {{topic}} </div>
+                </li>
+            }
+        </ul>
+    </nav>
+</header>
+
 <div class="body-container">
     <nav class="side-nav">
         <ul>
