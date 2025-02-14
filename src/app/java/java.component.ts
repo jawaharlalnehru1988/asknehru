@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { Javacore } from './javacore';
 import { JsModel, Topic } from '../javascript/javascript/jstopics';
 import { MatIconModule } from '@angular/material/icon';
-import { NgFor, NgIf, NgStyle } from '@angular/common';
+import { NgIf, NgStyle } from '@angular/common';
 import { JavaContent } from './javaContent';
 import Prism from 'prismjs';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-java',
-  imports: [MatIconModule, NgFor, NgIf, NgStyle],
+  imports: [MatIconModule, NgIf, NgStyle],
   templateUrl: './java.component.html',
   styleUrl: './java.component.scss'
 })
@@ -18,7 +19,7 @@ export class JavaComponent {
   javaArray: JsModel[] = [];
   subTopicArray: Topic[] = [];
   subTopicTitle: string = "";
-  specificTopic!: string;
+  specificTopic: string = "";
   sideTopicAppear: boolean =true;
 
   javaArticleObj = new JavaContent();
@@ -29,6 +30,12 @@ export class JavaComponent {
   showMessage: boolean = false;
   messagePosition = {top: '0px', left: '0px'};
 event: string|undefined;
+
+projectedContent:SafeHtml = ``;
+
+constructor(private sanitizer: DomSanitizer){
+this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(this.javaArticleArr[0].content);
+}
 
   ngOnInit() {
     this.javaArray = this.javaTopics.javaConcept;
@@ -50,9 +57,19 @@ event: string|undefined;
     this.subTopicArray = jTopic.topics;
     this.selectedMainTopic = jTopic.title;
   }
-  javaSubTopicClicked(subTopicTitle: string | undefined, subTopic: number){
-    this.specificTopic = subTopicTitle + " " + subTopic;
+  javaSubTopicClicked(subTopicTitle: string, subTopic: number){
+    this.specificTopic = subTopicTitle;
     this.selectedSubTopic = subTopic;
+    if(this.specificTopic){
+      const projected = this.javaArticleArr.find(content => content.articleTitle === subTopicTitle);
+      if(projected){
+        this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(projected.content); 
+      }
+     }
+     else{
+       this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(this.javaArticleArr[0].content);
+   }
+
     
   }
   backToMainTopic(){
