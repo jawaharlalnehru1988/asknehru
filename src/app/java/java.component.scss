@@ -1,3 +1,29 @@
+.header-list{
+  display: flex;
+  overflow-x: scroll;
+  .header-java-topic{
+      width: max-content;
+  }
+}
+
+@media screen and (max-width: 600px) {
+ 
+  .side-nav, .topics-list{
+    display: none !important;
+  }
+  .sub-header-topic-list{
+    display: flex;
+    flex-wrap: wrap;
+    li{
+      width: 80px;
+    }
+  }
+  .main{
+    padding: 4px !important;
+    width: 80vw;
+  }
+
+}
 .java-container{
     display: flex;
     min-height: 94vh;

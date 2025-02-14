@@ -1,4 +1,23 @@
-
+<header>
+    <nav>
+        <ul class="header-list">
+            @for(jTopic of javaArray; track jTopic; let idx = $index){
+                <li class="java-topic" [class.selected]="selectedMainTopic === jTopic.title" (click)="javaTopicClicked(jTopic)"> <div class="header-java-topic">{{idx + 1}}.{{jTopic.title}}</div> 
+                <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon> </div> </li>
+            }
+        </ul>
+    </nav>
+    <nav>
+        <ul class="sub-header-topic-list">
+            @for(jSubTopic of subTopicArray; track jSubTopic; let idx = $index){
+            <li class="java-topic" [class.selected]="selectedSubTopic === jSubTopic.id"
+                (click)="javaSubTopicClicked(jSubTopic.subTopic, jSubTopic.id)">
+                <div>{{idx + 1}}.{{jSubTopic.subTopic}}</div>
+            </li>
+            }
+        </ul>
+    </nav>
+</header>
 <div class="java-container">
     <div class="side-nav">
             <div class="content-container" (click)="openMainDetails()">
@@ -30,26 +49,30 @@
 }
     @if(!sideTopicAppear){
     <div class="sub-topic-list">
-            <div class="sub-topic-title" (click)="backToMainTopic()">
-                <div>
-                    <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_left"></mat-icon>
-                </div>
-                <div>
-                    {{subTopicTitle}}
-                </div>
+        <div class="sub-topic-title" (click)="backToMainTopic()">
+            <div>
+                <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon"
+                    fontIcon="chevron_left"></mat-icon>
             </div>
             <div>
-                <ul>
-                    @for(jSubTopic of subTopicArray; track jSubTopic; let idx = $index){
-                        <li class="java-topic" [class.selected]="selectedSubTopic === jSubTopic.id" (click)="javaSubTopicClicked(jSubTopic.subTopic, jSubTopic.id)">
-                            <div>{{idx + 1}}.{{jSubTopic.subTopic}}</div>
-                            <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon"
-                                fontIcon="chevron_right"></mat-icon> </div>
-                        </li>
-                        }
-                    </ul>
-                </div>
+                {{subTopicTitle}}
             </div>
+        </div>
+        <div>
+            <ul>
+                @for(jSubTopic of subTopicArray; track jSubTopic; let idx = $index){
+                <li class="java-topic" [class.selected]="selectedSubTopic === jSubTopic.id"
+                    (click)="javaSubTopicClicked(jSubTopic.subTopic, jSubTopic.id)">
+                    <div>{{idx + 1}}.{{jSubTopic.subTopic}}</div>
+                    <div> 
+                        <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon"
+                        fontIcon="chevron_right"></mat-icon> 
+                    </div>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
         }
     <div class="main">
         <div class="floating-message" *ngIf="showMessage" [ngStyle]="{ top: messagePosition.top, left: messagePosition.left }">
