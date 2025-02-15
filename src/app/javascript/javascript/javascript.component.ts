@@ -26,7 +26,7 @@ export class JavascriptComponent extends JsDsaContent {
     subTopicArray: Topic[] = [];
     jsContents:any = new JsContents();
     jsContent: any;
-    headers: string[] = ['JS Core', 'JS DSA', "JS MCQ"];
+    headers: string[] = ['JS Core', 'JS DSA'];
     matchingTopicId: string = "";
     projectedContent: SafeHtml = this.jsContents.topicContents[0].content;
     projectedDSAContent: SafeHtml = '';

@@ -21,7 +21,7 @@ export class JsDsaContent{
   </ul>
 
   <h3 style="color: #e67e22;">Number Array</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre">
     <code class="language-javascript">
       let numbers = [10, 20, 30, 40, 50];
       console.log(numbers[0]); // Output: 10
@@ -29,7 +29,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #2980b9;">String Array</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre>
     <code class="language-javascript">
       let fruits = ["Apple", "Banana", "Cherry"];
       console.log(fruits[1]); // Output: Banana
@@ -37,7 +37,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #c0392b;">Boolean Array</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       let statusArray = [true, false, true, false];
       console.log(statusArray[2]); // Output: true
@@ -45,7 +45,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #8e44ad;">Mixed Type Array</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       let mixedArray = ["Hello", 100, true, { name: "John" }];
       console.log(mixedArray[3].name); // Output: John
@@ -53,7 +53,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #27ae60;">Array of Objects</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       let users = [
         { id: 1, name: "Alice" },
@@ -74,7 +74,7 @@ export class JsDsaContent{
   </p>
 
   <h3 style="color: #16a085;">Creating an Object</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       let person = {
         name: "Alice",
@@ -85,7 +85,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #2980b9;">Accessing Property Values</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       console.log(person.name); // Output: Alice
       console.log(person["age"]); // Output: 25
@@ -93,7 +93,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #c0392b;">Adding New Key-Value Pairs</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       person.country = "USA";
       console.log(person);
@@ -101,7 +101,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #8e44ad;">Removing a Property</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       delete person.city;
       console.log(person);
@@ -109,7 +109,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #27ae60;">Freezing an Object</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       Object.freeze(person);
       person.age = 30; // This will not change the age property
@@ -118,7 +118,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #f39c12;">Copying an Object</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       let copiedPerson = { ...person };
       console.log(copiedPerson);
@@ -126,7 +126,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #d35400;">Destructuring an Object</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       let { name, age } = person;
       console.log(name); // Output: Alice
@@ -145,7 +145,7 @@ export class JsDsaContent{
   </p>
 
   <h3 style="color: #16a085;">Creating a Node</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       class Node {
         constructor(value) {
@@ -157,7 +157,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #2980b9;">Creating a Linked List</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       class LinkedList {
         constructor() {
@@ -168,7 +168,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #c0392b;">Adding a Node to the End</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       add(value) {
         let newNode = new Node(value);
@@ -186,7 +186,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #8e44ad;">Removing a Node</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       remove(value) {
         if (!this.head) return;
@@ -206,7 +206,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #27ae60;">Searching for a Node</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       find(value) {
         let current = this.head;
@@ -220,7 +220,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #f39c12;">Printing the Linked List</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       print() {
         let current = this.head;
@@ -245,7 +245,7 @@ export class JsDsaContent{
   </p>
 
   <h3 style="color: #16a085;">Creating a Stack</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       class Stack {
         constructor() {
@@ -256,7 +256,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #2980b9;">Adding (Pushing) an Element</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       push(element) {
         this.items.push(element);
@@ -265,7 +265,7 @@ export class JsDsaContent{
   </pre>
   
   <h3 style="color: #c0392b;">Removing (Popping) an Element</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       pop() {
         if (this.items.length === 0) return "Underflow";
@@ -275,7 +275,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #8e44ad;">Peeking at the Top Element</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       peek() {
         return this.items[this.items.length - 1];
@@ -284,7 +284,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #27ae60;">Checking if Stack is Empty</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       isEmpty() {
         return this.items.length === 0;
@@ -293,7 +293,7 @@ export class JsDsaContent{
   </pre>
 
   <h3 style="color: #f39c12;">Printing the Stack</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       printStack() {
         console.log(this.items.join(" -> "));
@@ -301,7 +301,7 @@ export class JsDsaContent{
     </code>
   </pre>
    <h3 style="color: #16a085;">Example 1: Stack with Object</h3>
-    <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <pre >
     <code class="language-javascript">
     class ObjectStack {
   constructor() {
@@ -361,7 +361,7 @@ console.log(objectStack.peek()); // Outputs { id: 2, name: "Bob" }
   </p>
 
   <h3 style="color: #16a085;">Creating a Queue</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       class Queue {
         constructor() {
@@ -372,7 +372,7 @@ console.log(objectStack.peek()); // Outputs { id: 2, name: "Bob" }
   </pre>
   
   <h3 style="color: #2980b9;">Enqueue (Adding an Element)</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       enqueue(element) {
         this.items.push(element);
@@ -381,7 +381,7 @@ console.log(objectStack.peek()); // Outputs { id: 2, name: "Bob" }
   </pre>
   
   <h3 style="color: #c0392b;">Dequeue (Removing an Element)</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       dequeue() {
         if (this.items.length === 0) return "Underflow";
@@ -391,7 +391,7 @@ console.log(objectStack.peek()); // Outputs { id: 2, name: "Bob" }
   </pre>
 
   <h3 style="color: #8e44ad;">Front (Peeking at the First Element)</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       front() {
         return this.items[0];
@@ -400,7 +400,7 @@ console.log(objectStack.peek()); // Outputs { id: 2, name: "Bob" }
   </pre>
 
   <h3 style="color: #27ae60;">Checking if Queue is Empty</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       isEmpty() {
         return this.items.length === 0;
@@ -409,7 +409,7 @@ console.log(objectStack.peek()); // Outputs { id: 2, name: "Bob" }
   </pre>
 
   <h3 style="color: #f39c12;">Printing the Queue</h3>
-  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+  <pre >
     <code class="language-javascript">
       printQueue() {
         console.log(this.items.join(" <- "));

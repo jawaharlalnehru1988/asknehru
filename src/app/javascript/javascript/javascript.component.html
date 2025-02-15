@@ -6,25 +6,43 @@
 <header class="js-sidebar-small">
     <div class="menu">
             @for(head of headers; track head){
-            <button class="menu-trigger" (click)="selectHeader(head)" >{{head}}</button>
-            @if (isTopicSelected) {
-
+            <button class="menu-trigger" (click)="selectHeader(head)">{{head}}</button>
+        }
+            @if (jstopic === "JS DSA"){
                 <div class="menu-content">
                     <div class="menu-item">
-                        @for(topic of topics; track topic; let idx = $index){
-                        <nav class="topic" (click)="clickTopic(topic)" >
-                            <span> {{idx + 1}}. {{topic.title}} </span> <span> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon></span>
+                        @for(topic of dsaTopics; track topic; let idx = $index){
+                        <nav class="topic" (click)="clickTopic(topic)">
+                            <span> {{idx + 1}}. {{topic.title}} </span> <span> <mat-icon aria-hidden="false" class="mat-icon"
+                                    aria-label="Example home icon" fontIcon="chevron_right"></mat-icon></span>
                         </nav>
+                        }
+                        <div class="submenu">
+                            @for(subTopic of subTopicArray; track subTopic; let idx = $index){
+                            <div class="submenu-item" (click)="subDSATopicClicked(subTopic.subTopic)">{{subTopic.subTopic}}</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            } @else{
+            <div class="menu-content">
+                <div class="menu-item">
+                    @for(topic of topics; track topic; let idx = $index){
+                    <nav class="topic" (click)="clickTopic(topic)">
+                        <span> {{idx + 1}}. {{topic.title}} </span> <span> <mat-icon aria-hidden="false" class="mat-icon"
+                                aria-label="Example home icon" fontIcon="chevron_right"></mat-icon></span>
+                    </nav>
                     }
                     <div class="submenu">
                         @for(subTopic of subTopicArray; track subTopic; let idx = $index){
-                            <div class="submenu-item" (click)="subTopicClicked(subTopic.subTopic)">{{subTopic.subTopic}}</div>
+                        <div class="submenu-item" (click)="subTopicClicked(subTopic.subTopic)">{{subTopic.subTopic}}</div>
                         }
                     </div>
                 </div>
             </div>
-        }
-        }
+            
+         
+            }
     </div>
         
 

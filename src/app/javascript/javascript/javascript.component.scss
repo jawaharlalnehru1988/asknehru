@@ -25,10 +25,17 @@
     display: none !important;
   }
   .article-container{
-    max-width: 98vw !important;
+    padding: 0px !important;
   }
   .content-container{
-    width: 92vw !important;
+    width: 98vw !important;
+  }
+  .topic-content-space{
+    
+  }
+  article{
+    width: -webkit-fill-available !important;
+    padding-inline: 12px !important;   
   }
 }
 
