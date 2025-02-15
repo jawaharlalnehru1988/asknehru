@@ -2,30 +2,42 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Jasmine, TestTopic } from './jasmine';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
   selector: 'app-jasmine',
-  imports: [NgFor, NgIf, MatIconModule],
+  imports: [NgFor, MatIconModule],
   templateUrl: './jasmine.component.html',
   styleUrl: './jasmine.component.scss'
 })
 export class JasmineComponent {
 
-  jasmine = new Jasmine();
+
+
+
+jasmine = new Jasmine();
 testing = this.jasmine.testingTopic;
 
-  topics = [
-    { title: 'Introduction to Jasmine', content: 'Jasmine is a behavior-driven testing framework for JavaScript.' },
-    { title: 'Matchers in Jasmine', content: 'Jasmine provides various matchers like toBe, toEqual, toContain, etc.' },
-    { title: 'Spies in Jasmine', content: 'Spies help track function calls and parameters in tests.' }
-  ];
+
+
   isSidebarOpen = true;
-  selectedTopic = this.topics[0];
-  selectedSubTopic: TestTopic = this.testing[0];
+
+  selectedSubTopic: string[] = [];
+  selectedTopic: any;
+  projectedContent: SafeHtml = ``;
+
+  constructor(private sanitizer: DomSanitizer) {
+    this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(this.jasmine.topicsExplained[0].content);
+  }
 
   selectTopic(topic: any) {
     this.selectedTopic = topic;
+    const selectedTopic = this.jasmine.testingTopic.find((t: TestTopic) => t.title === topic);
+    if (selectedTopic) {
+      this.selectedSubTopic = selectedTopic.subTopic;
+      
+    }
   }
   toggleSidebar() {
     this.isSidebarOpen = true;
@@ -34,7 +46,8 @@ testing = this.jasmine.testingTopic;
   closeSidebar() {
     this.isSidebarOpen = false;
   }
-  selectSubTopic(topic: TestTopic) {
-    this.selectedSubTopic = topic;  
+  selectSubTopic(subTopic: string) {
+  console.log('subTopic :', subTopic);
+
   }
 }

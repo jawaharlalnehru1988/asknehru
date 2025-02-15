@@ -1,9 +1,6 @@
 .jasmine-container {
     display: flex;
-    height: 0vh;
-    position: relative;
-
-  
+   
     .sidebar {
       width: 250px;
       background: #2c3e50;
@@ -26,13 +23,12 @@
     padding: 0.5rem;
     background-color: #042834;
     transition: background-color 0.3s ease;
-    // height: 84vh;
   }
   .sidebar-item:hover {
     background-color: #ff6f61;
   }
   // Responsive for smaller screens
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
   
     .sidebar {
       position: fixed;
@@ -46,6 +42,14 @@
     .sidebar.show {
       transform: translateX(0);
       box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.5);
+    }
+    .main-sidebar-content{
+      display: flex;
+      height: 3rem !important;
+      overflow-x: scroll;
+    }
+    .jasmine-container{
+      flex-direction: column;
     }
   }
   
