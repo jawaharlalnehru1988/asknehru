@@ -7,7 +7,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-jasmine',
-  imports: [NgFor, MatIconModule],
+  imports: [ MatIconModule],
   templateUrl: './jasmine.component.html',
   styleUrl: './jasmine.component.scss'
 })

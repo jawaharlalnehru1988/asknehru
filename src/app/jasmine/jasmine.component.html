@@ -2,7 +2,11 @@
    <header class="main-sidebar-content">
 
        @for(topic of testing; track topic; let idx = $index){
-            <button class="topic-btn" (click)="selectTopic(topic.title)">{{topic.title}}</button>
+            <button class="topic-btn" (click)="selectTopic(topic.title)">
+               <span> {{topic.title}}</span>
+                <span> <mat-icon aria-hidden="false" class="mat-icon"
+                    aria-label="Example home icon" fontIcon="chevron_right"></mat-icon> </span>
+            </button>
         }
    </header>
         <aside class="sidebar">
