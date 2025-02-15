@@ -4275,6 +4275,2640 @@ title:`DTO in Microservices`, content:`<div style="font-family: Arial, sans-seri
     DTOs are a powerful tool for managing data transfer in Spring Boot applications, but they must be used correctly to avoid common anti-patterns. By following best practices and avoiding pitfalls like exposing sensitive data, overloading DTOs, and ignoring validation, you can ensure that your application remains clean, secure, and maintainable. Proper use of DTOs will enhance the scalability and reliability of your application while providing a clear and consistent API contract.
   </p>
 </div>`
+},
+{
+  title:`Service Layer Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Service Layer Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The service layer is a crucial component in a layered application architecture. It acts as an intermediary between the controller and repository layers, ensuring business logic is centralized and reusable. 
+  </p>
+
+  <h3 style="color: #16a085;">Key Responsibilities of the Service Layer</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulating business logic and preventing it from being scattered across controllers.</li>
+    <li>Coordinating between the controller and data access layers.</li>
+    <li>Handling transactions and enforcing security constraints.</li>
+    <li>Supporting service reusability and maintainability.</li>
+    <li>Facilitating unit testing and separation of concerns.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Implementing a Service Layer in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class ProductService {
+          private final ProductRepository productRepository;
+
+          public ProductService(ProductRepository productRepository) {
+              this.productRepository = productRepository;
+          }
+
+          public List<Product> getAllProducts() {
+              return productRepository.findAll();
+          }
+
+          public Product getProductById(Long id) {
+              return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+          }
+
+          public Product saveProduct(Product product) {
+              return productRepository.save(product);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Advantages of Using a Service Layer</h3>
+  <p style="color: #2c3e50;">
+    Implementing a service layer provides several advantages, such as:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Better organization and separation of concerns.</li>
+    <li>Easier unit testing by isolating business logic.</li>
+    <li>Enhanced maintainability and scalability of applications.</li>
+    <li>Centralized error handling and transaction management.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The service layer in a Spring Boot application acts as a bridge between controllers and data layers, ensuring business logic is well-structured and reusable. 
+    By adopting a service layer, developers can build scalable, maintainable, and testable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`MVC & Service Layer`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">MVC & Service Layer</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The Model-View-Controller (MVC) pattern is a widely used architectural pattern for designing web applications. The service layer plays a critical role in this architecture by separating business logic from the controller and data access layers. This enhances modularity, maintainability, and testability.
+  </p>
+
+  <h3 style="color: #16a085;">Role of Service Layer in MVC</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Acts as an intermediary between controllers and repositories.</li>
+    <li>Encapsulates business logic to keep controllers lightweight.</li>
+    <li>Manages transactions and security aspects.</li>
+    <li>Improves reusability and maintainability of code.</li>
+    <li>Facilitates unit testing by isolating business logic from controllers.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Implementing Service Layer in MVC</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List<User> getAllUsers() {
+              return userRepository.findAll();
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Advantages of MVC with a Service Layer</h3>
+  <p style="color: #2c3e50;">
+    Using a service layer within the MVC pattern provides multiple benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Improves application structure by enforcing separation of concerns.</li>
+    <li>Enhances code maintainability and modularity.</li>
+    <li>Makes business logic reusable across different parts of the application.</li>
+    <li>Simplifies debugging and unit testing.</li>
+    <li>Provides a centralized point for handling business rules.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The combination of MVC and a well-structured service layer helps in designing scalable and maintainable applications. By keeping controllers clean and delegating business logic to the service layer, developers can achieve better code organization and reusability.
+  </p>
+</div>
+`
+},
+{
+  title:`Service Layer in Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Service Layer in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a Spring Boot application, the service layer plays a crucial role in separating business logic from controllers and repositories. This enhances modularity, maintainability, and testability, making it a core part of a well-structured application.
+  </p>
+
+  <h3 style="color: #16a085;">Purpose of Service Layer in Spring Boot</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulates business logic and computations.</li>
+    <li>Decouples controllers from direct database access.</li>
+    <li>Facilitates unit testing by isolating business logic.</li>
+    <li>Improves code organization and maintainability.</li>
+    <li>Handles transactions, security, and validation.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Implementing a Service Layer in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List<User> getAllUsers() {
+              return userRepository.findAll();
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id)
+                  .orElseThrow(() -> new RuntimeException("User not found"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Advantages of Using a Service Layer</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keeps controllers clean and focused on handling requests.</li>
+    <li>Improves separation of concerns, making code more modular.</li>
+    <li>Facilitates unit testing and debugging.</li>
+    <li>Enhances scalability and maintainability.</li>
+    <li>Provides a central place for managing business logic.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The service layer in Spring Boot applications is essential for maintaining clean architecture and ensuring scalability. By separating business logic from controllers, developers can create robust, maintainable, and testable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`@Service Annotation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Service Annotation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@Service</code> annotation in Spring Boot is a specialization of the <code>@Component</code> annotation that marks a class as a service component. It is typically used to define service-layer beans that contain business logic and interact with repositories.
+  </p>
+
+  <h3 style="color: #16a085;">Purpose of @Service Annotation</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Indicates that a class is a service component in the application.</li>
+    <li>Helps in automatic component scanning and dependency injection.</li>
+    <li>Enhances code readability and modularity.</li>
+    <li>Encapsulates business logic separate from the controller and repository layers.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using @Service Annotation</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List<User> getAllUsers() {
+              return userRepository.findAll();
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id)
+                  .orElseThrow(() -> new RuntimeException("User not found"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Advantages of Using @Service Annotation</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Makes service classes easily identifiable and manageable.</li>
+    <li>Ensures separation of concerns by keeping business logic isolated.</li>
+    <li>Supports Spring's dependency injection mechanism.</li>
+    <li>Improves application modularity and maintainability.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Service</code> annotation in Spring Boot is a key component in defining the service layer of an application. It helps structure code effectively, improves testability, and simplifies dependency management through Spring's built-in capabilities.
+  </p>
+</div>
+`
+},
+{
+  title:`Dependency Injection`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Dependency Injection in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Dependency Injection (DI) is a fundamental design pattern in Spring Boot that promotes loose coupling and enhances modularity. It allows dependencies to be injected into components, rather than being manually instantiated within them, making the application more flexible and testable.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Dependency Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Constructor Injection:</strong> Dependencies are passed via a constructor.</li>
+    <li><strong>Setter Injection:</strong> Dependencies are assigned through setter methods.</li>
+    <li><strong>Field Injection:</strong> Dependencies are injected directly into fields using <code>@Autowired</code>.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Constructor-Based Dependency Injection</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          @Autowired
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List<User> getAllUsers() {
+              return userRepository.findAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Benefits of Dependency Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Reduces tight coupling between components.</li>
+    <li>Enhances code reusability and maintainability.</li>
+    <li>Improves testability by allowing dependencies to be mocked easily.</li>
+    <li>Promotes better separation of concerns in the application architecture.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection in Spring Boot simplifies application development by managing component dependencies automatically. By using DI, developers can build more scalable, maintainable, and testable applications efficiently.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Service vs Repository`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Service vs Repository in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <strong>Service</strong> and <strong>Repository</strong> layers play distinct roles in structuring an application. Understanding their responsibilities and differences is crucial for designing scalable and maintainable applications.
+  </p>
+
+  <h3 style="color: #16a085;">What is a Service?</h3>
+  <p style="color: #2c3e50;">
+    The <strong>Service Layer</strong> contains business logic and acts as a bridge between the Controller and Repository layers. It is annotated with <code>@Service</code> to indicate that it holds core business functionalities.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List<User> getAllUsers() {
+              return userRepository.findAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">What is a Repository?</h3>
+  <p style="color: #2c3e50;">
+    The <strong>Repository Layer</strong> is responsible for database operations and is typically annotated with <code>@Repository</code>. It interacts with the database to perform CRUD operations using Spring Data JPA.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.stereotype.Repository;
+
+      @Repository
+      public interface UserRepository extends JpaRepository<User, Long> {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Key Differences</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Service Layer:</strong> Handles business logic and acts as a middle layer between controllers and repositories.</li>
+    <li><strong>Repository Layer:</strong> Directly interacts with the database to fetch and store data.</li>
+    <li><strong>Separation of Concerns:</strong> Keeping business logic separate from database operations improves maintainability.</li>
+  </ul>
+
+  <h3 style="color: #27ae60;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    In a well-structured Spring Boot application, the <strong>Service Layer</strong> should contain business rules, while the <strong>Repository Layer</strong> should handle data persistence. This separation improves modularity, scalability, and maintainability of the application.
+  </p>
+</div>
+`
+},
+{
+  title:`Database Interaction`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Database Interaction in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Database interaction is a crucial part of any application, enabling data persistence and retrieval. 
+    Spring Boot simplifies database interactions by providing built-in support for JPA, JDBC, and NoSQL databases.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Database Interaction:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Spring Data JPA for ORM-based interaction.</li>
+    <li>Spring JDBC for direct SQL execution.</li>
+    <li>Transaction management for data consistency.</li>
+    <li>Connection pooling for efficient database connections.</li>
+    <li>Support for NoSQL databases like MongoDB and Redis.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use Spring Boot for Database Interaction?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot abstracts database complexities and provides easy-to-use configurations 
+    for integrating relational and NoSQL databases. It also supports declarative transaction management 
+    and simplifies repository creation through Spring Data JPA.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Spring Boot with JPA</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.stereotype.Repository;
+
+      @Repository
+      public interface UserRepository extends JpaRepository<User, Long> {
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The above code defines a repository interface for database interaction, 
+    allowing CRUD operations without writing SQL queries.
+  </p>
+</div>
+`
+},
+{
+  title:`DTO in Service Layer`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DTO in Service Layer</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot applications, the service layer acts as a bridge between the controller and the repository layers. 
+    Using Data Transfer Objects (DTOs) in the service layer helps in structuring data efficiently, improving security, 
+    and ensuring loose coupling between different layers.
+  </p>
+
+  <h3 style="color: #16a085;">Key Benefits of Using DTOs in the Service Layer:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulates business logic and prevents exposing domain models directly.</li>
+    <li>Enhances security by controlling exposed data fields.</li>
+    <li>Reduces dependency on database structures in the controller layer.</li>
+    <li>Improves performance by transferring only required data fields.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use DTOs in the Service Layer?</h3>
+  <p style="color: #2c3e50;">
+    DTOs allow developers to separate business logic from the database entities. This ensures that 
+    changes in the database model do not directly affect the API responses. DTOs also help with 
+    mapping complex objects and filtering unnecessary fields.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Using DTO in Service Layer</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+      import java.util.stream.Collectors;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List<UserDTO> getAllUsers() {
+              return userRepository.findAll()
+                                   .stream()
+                                   .map(user -> new UserDTO(user.getId(), user.getName(), user.getEmail()))
+                                   .collect(Collectors.toList());
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The above code demonstrates how a service layer retrieves user data and converts it into a DTO 
+    before passing it to the controller. This approach improves maintainability and scalability.
+  </p>
+</div>
+`
+},
+{
+  title:`Exception Handling`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Exception Handling in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Exception handling is a crucial aspect of building robust and user-friendly applications. 
+    Spring Boot provides various mechanisms to handle exceptions gracefully, ensuring proper error 
+    responses and logging.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Exception Handling Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prevents application crashes and improves stability.</li>
+    <li>Provides meaningful error messages to clients.</li>
+    <li>Helps in debugging by logging detailed error information.</li>
+    <li>Enhances user experience by handling errors gracefully.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Handle Exceptions in Spring Boot?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides multiple ways to handle exceptions, including using 
+    <code>@ExceptionHandler</code>, <code>@ControllerAdvice</code>, and 
+    <code>ResponseStatusException</code>. Below is an example of handling a custom exception.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Custom Exception Handling</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+          
+          @ExceptionHandler(ResourceNotFoundException.class)
+          @ResponseStatus(HttpStatus.NOT_FOUND)
+          public ErrorResponse handleResourceNotFoundException(ResourceNotFoundException ex) {
+              return new ErrorResponse("NOT_FOUND", ex.getMessage());
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The above code demonstrates a global exception handler using <code>@RestControllerAdvice</code>. 
+    It catches <code>ResourceNotFoundException</code> and returns a meaningful error response with an HTTP status.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Management`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Transaction Management in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction management is a critical aspect of building reliable and consistent applications, especially when dealing with databases. In Spring Boot, transaction management ensures that a series of database operations either complete successfully as a single unit of work or are rolled back entirely in case of an error. This guarantees data integrity and consistency, even in the face of failures or concurrent access.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Transaction Management Important?</h3>
+  <p style="color: #2c3e50;">
+    Transaction management is essential for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Integrity</strong>: Ensures that database operations are atomic, consistent, isolated, and durable (ACID properties).</li>
+    <li><strong>Error Handling</strong>: Automatically rolls back changes if an error occurs, preventing partial updates.</li>
+    <li><strong>Concurrency Control</strong>: Manages concurrent access to data, preventing issues like dirty reads or lost updates.</li>
+    <li><strong>Simplified Code</strong>: Reduces boilerplate code by handling transaction boundaries declaratively.</li>
+    <li><strong>Scalability</strong>: Supports distributed transactions in microservices architectures.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Transaction Management</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides robust support for transaction management through the <strong>Spring Framework's transaction abstraction</strong>. Key concepts include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Programmatic vs. Declarative Transactions</strong>: Programmatic transactions are managed manually in code, while declarative transactions are managed using annotations or configuration.</li>
+    <li><strong>Transaction Propagation</strong>: Defines how transactions behave when multiple methods are called (e.g., REQUIRED, REQUIRES_NEW).</li>
+    <li><strong>Isolation Levels</strong>: Controls the visibility of changes made by one transaction to other transactions (e.g., READ_COMMITTED, SERIALIZABLE).</li>
+    <li><strong>Rollback Rules</strong>: Specifies which exceptions trigger a rollback.</li>
+    <li><strong>Distributed Transactions</strong>: Manages transactions across multiple data sources or services.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Transaction Management in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to implement transaction management in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Enable Transaction Management</h4>
+  <p style="color: #2c3e50;">
+    Spring Boot automatically configures transaction management if you include a data source and Spring Data JPA. You can enable it explicitly using the <code>@EnableTransactionManagement</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+      @Configuration
+      @EnableTransactionManagement
+      public class TransactionConfig {
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Use Declarative Transactions</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Transactional</code> annotation to manage transactions declaratively.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class UserService {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          @Transactional
+          public void createUser(User user) {
+              userRepository.save(user);
+              // Simulate an error
+              if (user.getName() == null) {
+                  throw new RuntimeException("User name cannot be null");
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Configure Transaction Propagation</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>propagation</code> attribute to define how transactions propagate.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Transactional(propagation = Propagation.REQUIRED)
+      public void updateUser(User user) {
+          userRepository.save(user);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Configure Isolation Levels</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>isolation</code> attribute to control transaction isolation levels.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Transactional(isolation = Isolation.READ_COMMITTED)
+      public User getUserById(Long id) {
+          return userRepository.findById(id).orElse(null);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">5. Handle Rollbacks</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>rollbackFor</code> and <code>noRollbackFor</code> attributes to customize rollback behavior.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Transactional(rollbackFor = RuntimeException.class, noRollbackFor = IllegalArgumentException.class)
+      public void deleteUser(Long id) {
+          userRepository.deleteById(id);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Transaction Management</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use declarative transactions (<code>@Transactional</code>) for simplicity and readability.</li>
+    <li>Keep transactions short and focused to minimize locking and improve performance.</li>
+    <li>Choose appropriate propagation and isolation levels based on your application's requirements.</li>
+    <li>Handle exceptions properly to ensure transactions are rolled back when necessary.</li>
+    <li>Avoid long-running transactions, as they can lead to deadlocks and performance issues.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Transaction management is a fundamental aspect of building reliable and consistent Spring Boot applications. By leveraging Spring's transaction abstraction, you can ensure that your database operations are atomic, consistent, isolated, and durable. Whether you're working with a single database or distributed systems, proper transaction management practices will enhance the integrity, performance, and scalability of your application.
+  </p>
+</div>`
+},
+{
+  title:`Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Best Practices in Spring Boot Development</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Developing robust and scalable Spring Boot applications requires following best practices. These guidelines ensure maintainability, performance, and security while simplifying development. Let's explore the key best practices for Spring Boot development.
+  </p>
+
+  <h3 style="color: #16a085;">1. Project Structure and Organization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Follow Layered Architecture</strong>: Organize code into Controller, Service, Repository, and Model layers for better maintainability.</li>
+    <li><strong>Use a Proper Package Structure</strong>: Follow a standard package structure like <code>com.example.project</code> to ensure clarity.</li>
+    <li><strong>Modularize Code</strong>: Divide large applications into smaller modules or microservices for scalability.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">2. Configuration Management</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Externalize Configuration</strong>: Use <code>application.properties</code> or <code>application.yml</code> to keep configurations separate from code.</li>
+    <li><strong>Use Profiles</strong>: Define separate profiles (e.g., <code>dev</code>, <code>prod</code>, <code>test</code>) for different environments.</li>
+    <li><strong>Secure Sensitive Data</strong>: Avoid hardcoding passwords or API keys; use environment variables or encrypted secrets.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">3. REST API Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Follow RESTful Principles</strong>: Use proper HTTP methods (GET, POST, PUT, DELETE) for API operations.</li>
+    <li><strong>Return Proper HTTP Status Codes</strong>: Ensure APIs return appropriate status codes (e.g., 200 OK, 400 Bad Request, 404 Not Found).</li>
+    <li><strong>Handle Errors Gracefully</strong>: Implement global exception handling using <code>@ControllerAdvice</code>.</li>
+    <li><strong>Use Pagination</strong>: Implement pagination for large datasets using Spring Data JPA.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">4. Database and Transaction Management</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use JPA and Hibernate Effectively</strong>: Follow proper entity mapping and avoid unnecessary queries.</li>
+    <li><strong>Enable Connection Pooling</strong>: Use HikariCP for better database connection management.</li>
+    <li><strong>Use Transactions</strong>: Apply <code>@Transactional</code> to ensure atomicity and consistency.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">5. Security Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Enable Authentication and Authorization</strong>: Use Spring Security for role-based access control.</li>
+    <li><strong>Protect APIs</strong>: Use OAuth2, JWT, or API keys for securing REST APIs.</li>
+    <li><strong>Prevent SQL Injection</strong>: Use parameterized queries and avoid dynamic queries.</li>
+    <li><strong>Validate Input</strong>: Implement data validation to prevent XSS and CSRF attacks.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">6. Performance Optimization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use Caching</strong>: Implement caching with Redis or Ehcache to improve response times.</li>
+    <li><strong>Optimize Queries</strong>: Use indexing, fetch joins, and batch processing to optimize database performance.</li>
+    <li><strong>Reduce Startup Time</strong>: Use lazy initialization and exclude unnecessary dependencies.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">7. Logging and Monitoring</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use SLF4J and Logback</strong>: Follow structured logging practices for better debugging.</li>
+    <li><strong>Enable Actuator</strong>: Monitor application health and performance with Spring Boot Actuator.</li>
+    <li><strong>Integrate with Monitoring Tools</strong>: Use Prometheus, Grafana, or ELK Stack for observability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Following best practices in Spring Boot development helps build scalable, secure, and high-performance applications. By structuring projects well, managing configurations efficiently, optimizing performance, and ensuring security, developers can create maintainable and robust applications that meet modern software requirements.
+  </p>
+</div>
+  `
+},
+{
+  title:`Business Logic`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Business Logic in Software Development</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Business logic is the core of any software application. It represents the rules and operations that define how data is processed and decisions are made within a system. Effective business logic ensures that an application functions correctly and delivers the expected outcomes to users.
+  </p>
+
+  <h3 style="color: #16a085;">What is Business Logic?</h3>
+  <p style="color: #2c3e50;">
+    Business logic refers to the part of a software application that encodes real-world business rules and operations. It governs how data flows through the application and dictates the interactions between various system components.
+  </p>
+
+  <h3 style="color: #e67e22;">Why is Business Logic Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Accuracy:</strong> Enforces correct processing of data based on business rules.</li>
+    <li><strong>Maintains Consistency:</strong> Provides a single source of truth for decision-making processes.</li>
+    <li><strong>Enhances Maintainability:</strong> Separates business rules from UI and database logic, making the code easier to manage.</li>
+    <li><strong>Supports Scalability:</strong> Allows for modifications and extensions without impacting other components.</li>
+    <li><strong>Improves Security:</strong> Controls access to data and prevents unauthorized actions.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Best Practices for Implementing Business Logic</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use a Layered Architecture:</strong> Separate business logic from UI and data layers.</li>
+    <li><strong>Leverage Design Patterns:</strong> Apply patterns like MVC, Service Layer, or Repository to structure your logic effectively.</li>
+    <li><strong>Keep Logic Modular:</strong> Break down complex logic into smaller, reusable components.</li>
+    <li><strong>Write Unit Tests:</strong> Ensure the reliability of business rules by testing edge cases and expected behaviors.</li>
+    <li><strong>Use Domain-Driven Design (DDD):</strong> Model business entities and processes based on real-world scenarios.</li>
+    <li><strong>Minimize Duplication:</strong> Avoid redundant logic by centralizing common business rules.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Example: Implementing Business Logic in a Spring Boot Service</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a well-structured business logic implementation in a Spring Boot service class.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.Optional;
+
+      @Service
+      public class OrderService {
+          private final OrderRepository orderRepository;
+          
+          public OrderService(OrderRepository orderRepository) {
+              this.orderRepository = orderRepository;
+          }
+          
+          public String processOrder(Long orderId) {
+              Optional<Order> order = orderRepository.findById(orderId);
+              
+              if (order.isEmpty()) {
+                  throw new RuntimeException("Order not found");
+              }
+              
+              if (!order.get().isPaymentComplete()) {
+                  return "Payment pending. Order cannot be processed.";
+              }
+              
+              order.get().setStatus("Processed");
+              orderRepository.save(order.get());
+              return "Order processed successfully";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Business logic is the backbone of any software application, ensuring that processes follow predefined rules and deliver the expected outcomes. By applying best practices such as separation of concerns, modular design, and thorough testing, developers can create maintainable, scalable, and robust applications. A well-structured business logic layer enhances the overall quality of software and ensures smooth functionality across different components.
+  </p>
+</div>
+`
+},
+{
+  title:`Unit Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Unit Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Unit testing is a fundamental aspect of software development that ensures individual components of an application work as expected. By testing each unit of code independently, developers can catch bugs early, maintain code quality, and simplify debugging. Unit testing is widely used in agile development, continuous integration, and test-driven development (TDD) methodologies.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Unit Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    Unit testing plays a crucial role in software development for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Early Bug Detection</strong>: Catches errors at the initial stages, reducing debugging efforts later.</li>
+    <li><strong>Code Maintainability</strong>: Makes it easier to refactor and update code without breaking existing functionality.</li>
+    <li><strong>Improved Code Quality</strong>: Encourages writing modular and testable code.</li>
+    <li><strong>Faster Development</strong>: Reduces time spent on fixing production issues.</li>
+    <li><strong>Supports Continuous Integration</strong>: Helps automate testing in CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Unit Testing</h3>
+  <p style="color: #2c3e50;">
+    Unit testing revolves around the following principles:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Isolation</strong>: Tests should focus on a single unit (method or function) and not depend on external systems.</li>
+    <li><strong>Assertions</strong>: Validates the expected output of a unit against actual results.</li>
+    <li><strong>Mocks & Stubs</strong>: Simulates dependencies to isolate the test scope.</li>
+    <li><strong>Code Coverage</strong>: Measures how much of the code is tested.</li>
+    <li><strong>Automated Execution</strong>: Enables running tests frequently without manual intervention.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Writing Unit Tests in Java with JUnit</h3>
+  <p style="color: #2c3e50;">
+    JUnit is a popular testing framework for Java applications. Below is an example of a simple unit test using JUnit.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add JUnit Dependency</h4>
+  <p style="color: #2c3e50;">
+    If you're using Maven, include the following dependency in your <code>pom.xml</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;junit&lt;/groupId&gt;
+          &lt;artifactId&gt;junit&lt;/artifactId&gt;
+          &lt;version&gt;4.13.2&lt;/version&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Simple Java Class</h4>
+  <p style="color: #2c3e50;">
+    Here’s a simple calculator class that we will test.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class Calculator {
+          public int add(int a, int b) {
+              return a + b;
+          }
+
+          public int subtract(int a, int b) {
+              return a - b;
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Write a JUnit Test</h4>
+  <p style="color: #2c3e50;">
+    Now, let’s write a JUnit test for the <code>Calculator</code> class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.Test;
+      import static org.junit.Assert.*;
+
+      public class CalculatorTest {
+
+          @Test
+          public void testAddition() {
+              Calculator calculator = new Calculator();
+              assertEquals(10, calculator.add(5, 5));
+          }
+
+          @Test
+          public void testSubtraction() {
+              Calculator calculator = new Calculator();
+              assertEquals(3, calculator.subtract(8, 5));
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Run the Test</h4>
+  <p style="color: #2c3e50;">
+    You can run the test using the following command in the terminal:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      mvn test
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Unit Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write tests for every function with meaningful test cases.</li>
+    <li>Ensure tests run independently without dependencies.</li>
+    <li>Use mocks to isolate units and avoid external dependencies.</li>
+    <li>Follow naming conventions like <code>testMethodName_shouldExpectedBehavior</code>.</li>
+    <li>Keep tests simple, clear, and well-documented.</li>
+    <li>Run tests frequently in CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Unit testing is a crucial practice for developing robust, error-free software. By writing effective unit tests, developers can improve code quality, enhance maintainability, and accelerate the development process. Whether you’re using JUnit, Mockito, or other testing frameworks, adopting a test-first approach will lead to better and more reliable applications.
+  </p>
+</div>
+`
+},
+{
+title:`Logging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Logging</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Logging is an essential aspect of software development that helps track application behavior, debug issues, and monitor performance. It provides a structured way to record events, errors, and informational messages during application execution. Effective logging improves system reliability, security, and troubleshooting efficiency.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Logging Important?</h3>
+  <p style="color: #2c3e50;">
+    Logging plays a crucial role in software development for various reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Debugging</strong>: Helps identify and resolve issues in code by analyzing log entries.</li>
+    <li><strong>Performance Monitoring</strong>: Tracks system performance and detects bottlenecks.</li>
+    <li><strong>Error Tracking</strong>: Logs errors and exceptions for quick diagnosis.</li>
+    <li><strong>Security Auditing</strong>: Records user actions and security-related events.</li>
+    <li><strong>Compliance</strong>: Provides logs required for regulatory and security compliance.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Logging</h3>
+  <p style="color: #2c3e50;">
+    Different types of logs serve various purposes in software applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Error Logs</strong>: Captures errors and exceptions for troubleshooting.</li>
+    <li><strong>Debug Logs</strong>: Provides detailed information for developers during debugging.</li>
+    <li><strong>Audit Logs</strong>: Records security and access-related events.</li>
+    <li><strong>Transaction Logs</strong>: Logs database transactions for consistency tracking.</li>
+    <li><strong>Performance Logs</strong>: Tracks system metrics and resource utilization.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Logging Levels</h3>
+  <p style="color: #2c3e50;">
+    Logging levels determine the severity of log messages. Common logging levels include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>DEBUG</strong>: Detailed information for debugging.</li>
+    <li><strong>INFO</strong>: General operational messages.</li>
+    <li><strong>WARN</strong>: Potential issues that require attention.</li>
+    <li><strong>ERROR</strong>: Errors that need immediate investigation.</li>
+    <li><strong>FATAL</strong>: Critical errors causing system failure.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example: Logging in Java with Log4j</h3>
+  <p style="color: #2c3e50;">
+    Log4j is a popular logging framework for Java applications. Below is an example of how to set up and use Log4j.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Log4j Dependency</h4>
+  <p style="color: #2c3e50;">
+    If you're using Maven, include the following dependency in your <code>pom.xml</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+          &lt;artifactId&gt;log4j-core&lt;/artifactId&gt;
+          &lt;version&gt;2.17.1&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Configure Log4j</h4>
+  <p style="color: #2c3e50;">
+    Create a Log4j configuration file named <code>log4j2.xml</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;Configuration status="WARN"&gt;
+          &lt;Appenders&gt;
+              &lt;Console name="Console" target="SYSTEM_OUT"&gt;
+                  &lt;PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %c{1} - %msg%n"/&gt;
+              &lt;/Console&gt;
+          &lt;/Appenders&gt;
+          &lt;Loggers&gt;
+              &lt;Root level="info"&gt;
+                  &lt;AppenderRef ref="Console"/&gt;
+              &lt;/Root&gt;
+          &lt;/Loggers&gt;
+      &lt;/Configuration&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Implement Logging in Java</h4>
+  <p style="color: #2c3e50;">
+    Use Log4j in a Java application.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.apache.logging.log4j.LogManager;
+      import org.apache.logging.log4j.Logger;
+
+      public class LoggingExample {
+          private static final Logger logger = LogManager.getLogger(LoggingExample.class);
+
+          public static void main(String[] args) {
+              logger.debug("This is a DEBUG message.");
+              logger.info("This is an INFO message.");
+              logger.warn("This is a WARNING message.");
+              logger.error("This is an ERROR message.");
+              logger.fatal("This is a FATAL message.");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Run the Application</h4>
+  <p style="color: #2c3e50;">
+    When executed, the program outputs log messages based on the configured log level.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for Logging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use appropriate log levels to filter relevant information.</li>
+    <li>Avoid logging sensitive data such as passwords and user credentials.</li>
+    <li>Implement structured logging to make logs more readable and searchable.</li>
+    <li>Use log rotation to manage log file size.</li>
+    <li>Integrate logging with monitoring tools like ELK Stack or Splunk.</li>
+    <li>Ensure logs are stored securely and accessible only to authorized users.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Logging is a critical component of software development that provides visibility into an application’s behavior. By using structured logging frameworks like Log4j, developers can track system performance, diagnose issues, and enhance security. Implementing effective logging strategies ensures robust, maintainable, and secure applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Integration Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Integration Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Integration Testing is a crucial phase of software testing where individual units or components are combined and tested as a group. The goal is to verify the interaction between different modules and ensure they work together as expected. It helps identify issues related to data flow, communication, and functionality across integrated components.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Integration Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    Integration Testing plays a vital role in ensuring software reliability and smooth functionality across modules. Its key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Detects Interface Issues</strong>: Ensures seamless communication between different components.</li>
+    <li><strong>Improves System Reliability</strong>: Helps in early detection of data flow errors.</li>
+    <li><strong>Enhances Functional Accuracy</strong>: Validates whether integrated modules function as expected.</li>
+    <li><strong>Reduces Debugging Complexity</strong>: Identifies issues at an early stage, reducing cost and effort in debugging.</li>
+    <li><strong>Ensures Data Consistency</strong>: Tests data exchange between modules for correctness.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Integration Testing</h3>
+  <p style="color: #2c3e50;">
+    There are several approaches to performing Integration Testing:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Big Bang Integration Testing</strong>: All modules are integrated and tested together at once.</li>
+    <li><strong>Incremental Integration Testing</strong>: Modules are tested step by step as they are integrated.</li>
+    <li><strong>Top-Down Integration Testing</strong>: Testing starts from the top-level modules and progresses downward.</li>
+    <li><strong>Bottom-Up Integration Testing</strong>: Testing begins with lower-level modules and moves upward.</li>
+    <li><strong>Hybrid (Sandwich) Integration Testing</strong>: A combination of top-down and bottom-up approaches.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Integration Testing Techniques</h3>
+  <p style="color: #2c3e50;">
+    Different techniques are used to perform integration testing efficiently:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Interface Testing</strong>: Ensures data exchange between modules is correct.</li>
+    <li><strong>Data Flow Testing</strong>: Verifies data input and output between integrated units.</li>
+    <li><strong>API Testing</strong>: Tests communication between services using APIs.</li>
+    <li><strong>Middleware Testing</strong>: Examines the interaction between databases and applications.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example: Integration Testing in Java with JUnit</h3>
+  <p style="color: #2c3e50;">
+    JUnit is a popular framework for writing integration tests in Java applications. Below is an example demonstrating an integration test for a user authentication service.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add JUnit and Spring Boot Dependencies</h4>
+  <p style="color: #2c3e50;">
+    If you're using Maven, include the following dependencies in your <code>pom.xml</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Sample Authentication Service</h4>
+  <p style="color: #2c3e50;">
+    Below is a simple authentication service that checks if a user exists.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.Arrays;
+      import java.util.List;
+
+      @Service
+      public class AuthService {
+          private List&lt;String&gt; users = Arrays.asList("admin", "user", "test");
+
+          public boolean authenticate(String username) {
+              return users.contains(username);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Write an Integration Test</h4>
+  <p style="color: #2c3e50;">
+    The integration test checks if the authentication service works correctly.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.context.SpringBootTest;
+
+      @SpringBootTest
+      public class AuthServiceTest {
+
+          @Autowired
+          private AuthService authService;
+
+          @Test
+          public void testAuthentication() {
+              assertTrue(authService.authenticate("admin"));
+              assertFalse(authService.authenticate("unknownUser"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Run the Test</h4>
+  <p style="color: #2c3e50;">
+    Execute the test using JUnit, and it will validate the authentication service.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for Integration Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use mock data to simulate real-world scenarios.</li>
+    <li>Ensure database integrity by cleaning up test data after execution.</li>
+    <li>Automate integration tests to catch issues early.</li>
+    <li>Use logging to track test execution and failures.</li>
+    <li>Test error handling and exception scenarios.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Integration Testing ensures that different modules of an application work together seamlessly. By using techniques like top-down, bottom-up, and API testing, developers can identify interface issues early. With tools like JUnit and Spring Boot Test, integration tests can be automated for efficient debugging and reliable application performance.
+  </p>
+</div>
+`
+},
+{
+  title:`Security`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Security is the practice of protecting systems, networks, and data from cyber threats, unauthorized access, and attacks. In the digital world, security plays a critical role in ensuring confidentiality, integrity, and availability of information. Organizations and individuals must implement strong security measures to safeguard their sensitive data from hackers, malware, and other cyber threats.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Security Important?</h3>
+  <p style="color: #2c3e50;">
+    Security is essential in preventing data breaches, cyber attacks, and financial losses. Here are key reasons why security is crucial:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Protects Sensitive Data</strong>: Prevents unauthorized access to personal and business information.</li>
+    <li><strong>Ensures Business Continuity</strong>: Helps prevent downtime and data loss due to cyber threats.</li>
+    <li><strong>Maintains Customer Trust</strong>: Secure systems build customer confidence in businesses.</li>
+    <li><strong>Prevents Financial Loss</strong>: Reduces risks of cyber fraud and ransomware attacks.</li>
+    <li><strong>Complies with Regulations</strong>: Organizations must follow security laws like GDPR and HIPAA.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Security</h3>
+  <p style="color: #2c3e50;">
+    Security is categorized into different types based on protection areas:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Network Security</strong>: Protects networks from cyber threats using firewalls, intrusion detection, and encryption.</li>
+    <li><strong>Application Security</strong>: Secures software applications from vulnerabilities like SQL injection and XSS attacks.</li>
+    <li><strong>Information Security</strong>: Protects sensitive data from unauthorized access and leaks.</li>
+    <li><strong>Endpoint Security</strong>: Safeguards devices like computers, mobile phones, and IoT devices.</li>
+    <li><strong>Cloud Security</strong>: Ensures the safety of data and services stored in cloud environments.</li>
+    <li><strong>Physical Security</strong>: Protects hardware and infrastructure from theft or damage.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Common Cyber Threats</h3>
+  <p style="color: #2c3e50;">
+    Organizations and individuals face various cyber threats, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Malware</strong>: Malicious software like viruses, ransomware, and spyware that disrupt systems.</li>
+    <li><strong>Phishing</strong>: Deceptive emails or messages trick users into revealing personal information.</li>
+    <li><strong>Denial-of-Service (DoS) Attacks</strong>: Overloads systems to make them unavailable.</li>
+    <li><strong>SQL Injection</strong>: Attackers manipulate databases by injecting malicious SQL queries.</li>
+    <li><strong>Man-in-the-Middle (MitM) Attacks</strong>: Intercepts communication between two parties.</li>
+    <li><strong>Password Attacks</strong>: Hackers attempt to crack passwords using brute force or dictionary attacks.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Security Best Practices</h3>
+  <p style="color: #2c3e50;">
+    To ensure robust security, organizations and individuals should follow best practices:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use Strong Passwords</strong>: Implement complex passwords and enable multi-factor authentication (MFA).</li>
+    <li><strong>Regular Software Updates</strong>: Keep software and systems updated to patch vulnerabilities.</li>
+    <li><strong>Implement Firewalls</strong>: Use firewalls to monitor and filter network traffic.</li>
+    <li><strong>Encrypt Sensitive Data</strong>: Protect data using encryption to prevent unauthorized access.</li>
+    <li><strong>Backup Data Regularly</strong>: Maintain backups to restore data in case of cyber attacks.</li>
+    <li><strong>Employee Training</strong>: Educate employees on security threats and safe online practices.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example: Secure Login System in Java</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a secure user authentication system using Java and BCrypt password hashing.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Include the following dependency in <code>pom.xml</code> for password hashing.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-security-crypto&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Hash Passwords Using BCrypt</h4>
+  <p style="color: #2c3e50;">
+    BCrypt is a secure way to hash passwords before storing them.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+      public class SecurityDemo {
+          public static void main(String[] args) {
+              BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+              String rawPassword = "securePassword123";
+              String hashedPassword = encoder.encode(rawPassword);
+              System.out.println("Hashed Password: " + hashedPassword);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Verify Passwords</h4>
+  <p style="color: #2c3e50;">
+    The hashed password can be verified using the <code>matches()</code> method.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String rawPassword = "securePassword123";
+      boolean isMatch = encoder.matches(rawPassword, hashedPassword);
+      System.out.println("Password Match: " + isMatch);
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Security is an essential aspect of modern technology, protecting data, systems, and users from cyber threats. By following best practices like strong authentication, encryption, and regular updates, individuals and organizations can enhance their security posture. Implementing secure coding techniques, such as hashing passwords with BCrypt, helps in reducing vulnerabilities and improving overall system security.
+  </p>
+</div>
+`
+},
+{
+  title:`Caching`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Caching</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching is a technique used to store frequently accessed data temporarily to reduce response time and improve performance. By keeping a copy of data in a faster-access storage layer, caching minimizes redundant computations, network requests, and database queries, enhancing the overall efficiency of applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Caching Important?</h3>
+  <p style="color: #2c3e50;">
+    Caching improves system performance and scalability by:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reducing Latency</strong>: Speeds up data retrieval by storing frequently used data in memory.</li>
+    <li><strong>Minimizing Database Load</strong>: Reduces the number of database queries, preventing performance bottlenecks.</li>
+    <li><strong>Improving Scalability</strong>: Helps applications handle increased user loads efficiently.</li>
+    <li><strong>Enhancing User Experience</strong>: Faster responses lead to a smoother experience for end users.</li>
+    <li><strong>Optimizing Bandwidth Usage</strong>: Reduces redundant network requests by caching API responses.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Caching</h3>
+  <p style="color: #2c3e50;">
+    Caching can be implemented at different levels, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Client-Side Caching</strong>: Stores data on the client, such as browser cache and local storage.</li>
+    <li><strong>Server-Side Caching</strong>: Caches data at the server level to optimize backend performance.</li>
+    <li><strong>Database Caching</strong>: Stores frequently queried results in memory to reduce database load.</li>
+    <li><strong>Application Caching</strong>: Temporarily stores processed data in memory (e.g., using in-memory stores like Redis or Memcached).</li>
+    <li><strong>CDN (Content Delivery Network) Caching</strong>: Distributes cached content across multiple servers worldwide for faster access.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Common Caching Strategies</h3>
+  <p style="color: #2c3e50;">
+    Different caching strategies help balance performance and data accuracy:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Write-Through Cache</strong>: Data is written to both the cache and the database simultaneously.</li>
+    <li><strong>Write-Back Cache</strong>: Data is written to the cache first and later updated in the database.</li>
+    <li><strong>Cache-aside (Lazy Loading)</strong>: Data is loaded into the cache only when requested.</li>
+    <li><strong>Time-to-Live (TTL)</strong>: Cached data expires after a predefined time to ensure freshness.</li>
+    <li><strong>Least Recently Used (LRU)</strong>: The oldest unused data is removed when the cache reaches its limit.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example: Caching in Java Using Redis</h3>
+  <p style="color: #2c3e50;">
+    Redis is a popular in-memory data store used for caching. Below is an example of how to integrate Redis caching in a Java application using Spring Boot.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Include the following dependencies in <code>pom.xml</code> for Redis integration.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-data-redis&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Enable Caching</h4>
+  <p style="color: #2c3e50;">
+    Enable caching in the Spring Boot application by adding the <code>@EnableCaching</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.EnableCaching;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      @EnableCaching
+      public class CacheConfig {
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Implement Redis Caching</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Cacheable</code> annotation to cache method results.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          
+          @Cacheable(value = "products", key = "#id")
+          public Product getProductById(String id) {
+              // Simulating a database call
+              return new Product(id, "Sample Product", 100.0);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Caching is a powerful technique for optimizing application performance and scalability. By using caching strategies like write-through, lazy loading, and TTL, applications can improve response times and reduce server load. Tools like Redis and Memcached provide efficient caching mechanisms, helping developers build high-performance applications.
+  </p>
+</div>
+`
+},
+{
+  title:`External API Calls`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding External API Calls</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    External API calls refer to requests made from an application to third-party services or external servers to retrieve or send data. These APIs (Application Programming Interfaces) enable seamless integration with external systems, allowing applications to access functionalities like weather updates, payment processing, authentication, and more.
+  </p>
+
+  <h3 style="color: #16a085;">Why Are External API Calls Important?</h3>
+  <p style="color: #2c3e50;">
+    External API calls play a crucial role in modern software development by:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Enhancing Functionality</strong>: Applications can integrate features like maps, payments, or social logins without building them from scratch.</li>
+    <li><strong>Data Exchange</strong>: Enables communication between different applications and services.</li>
+    <li><strong>Scalability</strong>: Reduces development effort by leveraging third-party services.</li>
+    <li><strong>Real-Time Data</strong>: Provides access to up-to-date information from external sources.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of External API Calls</h3>
+  <p style="color: #2c3e50;">
+    APIs can be categorized based on their architecture and communication methods:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>REST API (Representational State Transfer)</strong>: Uses HTTP methods like GET, POST, PUT, DELETE.</li>
+    <li><strong>SOAP API (Simple Object Access Protocol)</strong>: Uses XML-based communication.</li>
+    <li><strong>GraphQL API</strong>: Allows clients to request specific data fields, reducing over-fetching.</li>
+    <li><strong>Webhooks</strong>: Event-driven API calls that send data when a specific action occurs.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Common Challenges in External API Calls</h3>
+  <p style="color: #2c3e50;">
+    While API calls improve functionality, they also come with challenges:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Network Latency</strong>: API response time depends on internet speed and server performance.</li>
+    <li><strong>Rate Limits</strong>: Many APIs impose limits on the number of requests per second/minute.</li>
+    <li><strong>Authentication</strong>: APIs often require authentication using API keys, OAuth, or tokens.</li>
+    <li><strong>Error Handling</strong>: APIs may return errors like 404 (Not Found) or 500 (Server Error).</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example: Making an External API Call in Java Using RestTemplate</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of calling an external API in a Java Spring Boot application using <code>RestTemplate</code>.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Add the required Spring Boot dependencies in <code>pom.xml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Service for API Calls</h4>
+  <p style="color: #2c3e50;">
+    Implement a service to fetch data from an external API.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.web.client.RestTemplate;
+
+      @Service
+      public class ApiService {
+          private final RestTemplate restTemplate = new RestTemplate();
+
+          public String getWeatherData() {
+              String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=your_api_key";
+              return restTemplate.getForObject(apiUrl, String.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Create a Controller to Call the API</h4>
+  <p style="color: #2c3e50;">
+    Define an endpoint that fetches and returns data from the external API.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class ApiController {
+          private final ApiService apiService;
+
+          public ApiController(ApiService apiService) {
+              this.apiService = apiService;
+          }
+
+          @GetMapping("/weather")
+          public String getWeather() {
+              return apiService.getWeatherData();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for External API Calls</h3>
+  <p style="color: #2c3e50;">
+    To ensure reliability and efficiency, follow these best practices:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use Caching</strong>: Reduce unnecessary API calls by storing responses temporarily.</li>
+    <li><strong>Implement Rate Limiting</strong>: Avoid exceeding API request limits to prevent being blocked.</li>
+    <li><strong>Use Circuit Breakers</strong>: Handle failures gracefully using tools like <code>Resilience4j</code>.</li>
+    <li><strong>Secure API Keys</strong>: Never expose API keys in the frontend; store them in environment variables.</li>
+    <li><strong>Handle Errors Properly</strong>: Implement robust error handling for API failures.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    External API calls allow applications to integrate with third-party services efficiently. By understanding different types of APIs, handling potential challenges, and following best practices, developers can ensure seamless API communication in their applications. Whether fetching weather data, processing payments, or integrating authentication, external APIs are a crucial part of modern software development.
+  </p>
+</div>
+`
+},
+{
+  title:`Feign Client`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Feign Client in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Feign Client is a declarative web service client in Spring Boot that simplifies calling REST APIs by reducing boilerplate code. Instead of manually creating HTTP requests, Feign provides a way to define an interface and automatically map it to an external service.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Feign Client?</h3>
+  <p style="color: #2c3e50;">
+    Feign Client is widely used in microservices architecture due to its benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Declarative Syntax</strong>: API calls are defined as interfaces, making the code more readable.</li>
+    <li><strong>Integration with Spring Boot</strong>: Works seamlessly with <code>Spring Cloud</code> and <code>Load Balancer</code>.</li>
+    <li><strong>Built-in Error Handling</strong>: Reduces the need for manual exception handling.</li>
+    <li><strong>Support for Load Balancing</strong>: Works with Ribbon and Eureka for service discovery.</li>
+    <li><strong>Interceptors and Logging</strong>: Allows customization of request headers and response handling.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use Feign Client in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Follow these steps to integrate Feign Client into a Spring Boot application.
+  </p>
+
+  <h4 style="color: #e67e22;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Include the required dependencies in <code>pom.xml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">2. Enable Feign Client</h4>
+  <p style="color: #2c3e50;">
+    In your main application class, enable Feign Client using the <code>@EnableFeignClients</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cloud.openfeign.EnableFeignClients;
+
+      @SpringBootApplication
+      @EnableFeignClients
+      public class FeignClientApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(FeignClientApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">3. Create a Feign Client Interface</h4>
+  <p style="color: #2c3e50;">
+    Define an interface with <code>@FeignClient</code> annotation to specify the external API.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cloud.openfeign.FeignClient;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.PathVariable;
+
+      @FeignClient(name = "weather-service", url = "https://api.openweathermap.org/data/2.5")
+      public interface WeatherClient {
+          @GetMapping("/weather?q={city}&appid={apiKey}")
+          String getWeather(@PathVariable("city") String city, @PathVariable("apiKey") String apiKey);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">4. Use the Feign Client in a Service</h4>
+  <p style="color: #2c3e50;">
+    Inject the Feign Client into a service and use it to make API calls.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class WeatherService {
+          private final WeatherClient weatherClient;
+
+          public WeatherService(WeatherClient weatherClient) {
+              this.weatherClient = weatherClient;
+          }
+
+          public String getWeather(String city) {
+              String apiKey = "your_api_key";
+              return weatherClient.getWeather(city, apiKey);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">5. Create a Controller</h4>
+  <p style="color: #2c3e50;">
+    Define a REST controller that calls the Feign Client.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.PathVariable;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      public class WeatherController {
+          private final WeatherService weatherService;
+
+          public WeatherController(WeatherService weatherService) {
+              this.weatherService = weatherService;
+          }
+
+          @GetMapping("/weather/{city}")
+          public String getWeather(@PathVariable String city) {
+              return weatherService.getWeather(city);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Best Practices for Using Feign Client</h3>
+  <p style="color: #2c3e50;">
+    To ensure efficiency and security, follow these best practices:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use Load Balancing</strong>: Enable Ribbon or Spring Cloud LoadBalancer for better performance.</li>
+    <li><strong>Handle Timeouts</strong>: Configure timeouts using <code>feign.client.config.default.connectTimeout</code>.</li>
+    <li><strong>Implement Circuit Breakers</strong>: Use <code>Resilience4j</code> or <code>Hystrix</code> to handle failures.</li>
+    <li><strong>Secure API Calls</strong>: Store API keys in environment variables or configuration files.</li>
+    <li><strong>Enable Logging</strong>: Use <code>logging.level.feign=DEBUG</code> for debugging API requests.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Feign Client simplifies external API calls in Spring Boot applications by providing a declarative approach. It reduces boilerplate code, improves readability, and integrates well with microservices. By following best practices like load balancing, circuit breaking, and logging, developers can enhance API performance and reliability.
+  </p>
+</div>
+`
+},
+{
+  title:`Asynchronous Processing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Asynchronous Processing in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Asynchronous processing allows applications to execute tasks in the background without blocking the main thread. In Spring Boot, this is achieved using the <code>@Async</code> annotation, which helps improve performance, scalability, and responsiveness in web applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Asynchronous Processing?</h3>
+  <p style="color: #2c3e50;">
+    Asynchronous processing is beneficial in many scenarios, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Performance</strong>: Tasks are executed in parallel, reducing response time.</li>
+    <li><strong>Non-Blocking Operations</strong>: The main thread is free to handle other requests.</li>
+    <li><strong>Better User Experience</strong>: Ensures that long-running tasks do not slow down the application.</li>
+    <li><strong>Efficient Resource Utilization</strong>: Reduces CPU and memory bottlenecks.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Asynchronous Processing in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Follow these steps to enable and use asynchronous processing in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #e67e22;">1. Enable Async Support</h4>
+  <p style="color: #2c3e50;">
+    First, enable async support by adding the <code>@EnableAsync</code> annotation in the main application class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.scheduling.annotation.EnableAsync;
+
+      @SpringBootApplication
+      @EnableAsync
+      public class AsyncApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(AsyncApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">2. Create an Asynchronous Method</h4>
+  <p style="color: #2c3e50;">
+    Mark methods with the <code>@Async</code> annotation to make them run asynchronously.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class EmailService {
+          @Async
+          public void sendEmail(String recipient) {
+              System.out.println("Sending email to " + recipient + " - " + Thread.currentThread().getName());
+              try {
+                  Thread.sleep(3000); // Simulate email sending delay
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+              System.out.println("Email sent to " + recipient);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">3. Call the Asynchronous Method</h4>
+  <p style="color: #2c3e50;">
+    Inject the async-enabled service into a controller and call the method.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestParam;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      public class EmailController {
+          private final EmailService emailService;
+
+          public EmailController(EmailService emailService) {
+              this.emailService = emailService;
+          }
+
+          @GetMapping("/send-email")
+          public String sendEmail(@RequestParam String recipient) {
+              emailService.sendEmail(recipient);
+              return "Email is being sent asynchronously to " + recipient;
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">4. Using CompletableFuture for Async Processing</h4>
+  <p style="color: #2c3e50;">
+    The <code>CompletableFuture</code> class allows handling async results.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+      import java.util.concurrent.CompletableFuture;
+
+      @Service
+      public class DataService {
+          @Async
+          public CompletableFuture<String> fetchData() {
+              try {
+                  Thread.sleep(2000); // Simulate delay
+              } catch (InterruptedException e) {
+                  e.printStackTrace();
+              }
+              return CompletableFuture.completedFuture("Data processed");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">5. Calling an Async Method with CompletableFuture</h4>
+  <p style="color: #2c3e50;">
+    Fetching async data in a controller:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      import java.util.concurrent.CompletableFuture;
+
+      @RestController
+      public class DataController {
+          private final DataService dataService;
+
+          public DataController(DataService dataService) {
+              this.dataService = dataService;
+          }
+
+          @GetMapping("/fetch-data")
+          public CompletableFuture<String> fetchData() {
+              return dataService.fetchData();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Best Practices for Asynchronous Processing</h3>
+  <p style="color: #2c3e50;">
+    To ensure efficient async execution, follow these best practices:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Define Thread Pool</strong>: Use <code>TaskExecutor</code> to manage concurrent threads.</li>
+    <li><strong>Handle Exceptions</strong>: Use <code>CompletableFuture.exceptionally()</code> to catch errors.</li>
+    <li><strong>Avoid Overloading Threads</strong>: Use proper thread pool configurations.</li>
+    <li><strong>Use Asynchronous Logging</strong>: Ensure logging does not block the main thread.</li>
+    <li><strong>Monitor Async Tasks</strong>: Use monitoring tools to track async task performance.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Asynchronous processing in Spring Boot allows better performance, responsiveness, and resource utilization. By using the <code>@Async</code> annotation and <code>CompletableFuture</code>, developers can efficiently handle background tasks without blocking the main thread.
+  </p>
+</div>
+`
+},
+{
+title:`Event-Driven Communication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Event-Driven Communication in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Event-driven communication is an architectural pattern where components communicate by producing and consuming events. Instead of direct method calls, services react to changes asynchronously, making the system more scalable and loosely coupled.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Event-Driven Communication?</h3>
+  <p style="color: #2c3e50;">
+    Event-driven communication offers several benefits, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Loose Coupling</strong>: Services interact without being tightly dependent on each other.</li>
+    <li><strong>Scalability</strong>: Events allow horizontal scaling as multiple services handle different concerns.</li>
+    <li><strong>Asynchronous Processing</strong>: Events can be processed in the background, improving system performance.</li>
+    <li><strong>Resilience</strong>: If an event listener fails, it can retry processing later without affecting other services.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Event-Driven Communication in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides a built-in event publishing mechanism using <code>ApplicationEvent</code> and <code>ApplicationListener</code>.
+  </p>
+
+  <h4 style="color: #e67e22;">1. Create a Custom Event</h4>
+  <p style="color: #2c3e50;">
+    Define a custom event class that extends <code>ApplicationEvent</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.ApplicationEvent;
+
+      public class OrderCreatedEvent extends ApplicationEvent {
+          private final String orderId;
+
+          public OrderCreatedEvent(Object source, String orderId) {
+              super(source);
+              this.orderId = orderId;
+          }
+
+          public String getOrderId() {
+              return orderId;
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">2. Publish an Event</h4>
+  <p style="color: #2c3e50;">
+    Use <code>ApplicationEventPublisher</code> to publish the event.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.ApplicationEventPublisher;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class OrderService {
+          private final ApplicationEventPublisher eventPublisher;
+
+          public OrderService(ApplicationEventPublisher eventPublisher) {
+              this.eventPublisher = eventPublisher;
+          }
+
+          public void createOrder(String orderId) {
+              System.out.println("Order Created: " + orderId);
+              eventPublisher.publishEvent(new OrderCreatedEvent(this, orderId));
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">3. Listen for Events</h4>
+  <p style="color: #2c3e50;">
+    Create an event listener using <code>@EventListener</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.event.EventListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class OrderEventListener {
+          @EventListener
+          public void handleOrderCreatedEvent(OrderCreatedEvent event) {
+              System.out.println("Processing order: " + event.getOrderId());
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">4. Trigger the Event from a Controller</h4>
+  <p style="color: #2c3e50;">
+    Expose an endpoint to create orders and trigger the event.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestParam;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      public class OrderController {
+          private final OrderService orderService;
+
+          public OrderController(OrderService orderService) {
+              this.orderService = orderService;
+          }
+
+          @GetMapping("/create-order")
+          public String createOrder(@RequestParam String orderId) {
+              orderService.createOrder(orderId);
+              return "Order creation event published!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Event-Driven Communication with Message Brokers</h3>
+  <p style="color: #2c3e50;">
+    In microservices architectures, events are often handled using message brokers like Kafka or RabbitMQ instead of in-memory events.
+  </p>
+
+  <h4 style="color: #e67e22;">1. Kafka Event Publishing</h4>
+  <p style="color: #2c3e50;">
+    You can publish events to Apache Kafka using the <code>KafkaTemplate</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.kafka.core.KafkaTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class OrderEventProducer {
+          private final KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+
+          public OrderEventProducer(KafkaTemplate&lt;String, String&gt; kafkaTemplate) {
+              this.kafkaTemplate = kafkaTemplate;
+          }
+
+          public void sendEvent(String orderId) {
+              kafkaTemplate.send("order-events", orderId);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">2. Kafka Event Consumption</h4>
+  <p style="color: #2c3e50;">
+    Consumers listen for events on a Kafka topic.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.apache.kafka.clients.consumer.ConsumerRecord;
+      import org.springframework.kafka.annotation.KafkaListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class OrderEventConsumer {
+          @KafkaListener(topics = "order-events", groupId = "order-group")
+          public void listen(ConsumerRecord&lt;String, String&gt; record) {
+              System.out.println("Received Order Event: " + record.value());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Event-driven communication makes applications more scalable and responsive by enabling asynchronous processing. Whether using Spring's built-in event system or integrating with Kafka/RabbitMQ, implementing event-driven architecture enhances the flexibility and resilience of modern applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Microservices Communication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Microservices Communication in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Microservices architecture involves breaking down a monolithic application into smaller, independent services that communicate with each other. These services must exchange data effectively while maintaining loose coupling and scalability.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Microservices Communication</h3>
+  <p style="color: #2c3e50;">
+    Microservices communicate using either synchronous or asynchronous methods:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Synchronous Communication</strong>: The caller waits for a response (e.g., REST, gRPC).</li>
+    <li><strong>Asynchronous Communication</strong>: The caller does not wait for an immediate response (e.g., Messaging, Event-Driven Architecture).</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Synchronous Communication (REST APIs)</h3>
+  <p style="color: #2c3e50;">
+    The most common way microservices communicate is through RESTful APIs using HTTP.
+  </p>
+
+  <h4 style="color: #e67e22;">Using RestTemplate (Deprecated in Spring Boot 3)</h4>
+  <p style="color: #2c3e50;">
+    <code>RestTemplate</code> was used for synchronous communication but is now replaced by <code>WebClient</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.web.client.RestTemplate;
+
+      @Service
+      public class OrderService {
+          private final RestTemplate restTemplate = new RestTemplate();
+
+          public String getCustomerDetails(String customerId) {
+              return restTemplate.getForObject("http://customer-service/customers/" + customerId, String.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Using WebClient (Recommended)</h4>
+  <p style="color: #2c3e50;">
+    Spring WebFlux <code>WebClient</code> is a non-blocking alternative to RestTemplate.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.web.reactive.function.client.WebClient;
+
+      @Service
+      public class OrderService {
+          private final WebClient webClient = WebClient.create("http://customer-service");
+
+          public String getCustomerDetails(String customerId) {
+              return webClient.get()
+                      .uri("/customers/{id}", customerId)
+                      .retrieve()
+                      .bodyToMono(String.class)
+                      .block();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Asynchronous Communication (Message Queues)</h3>
+  <p style="color: #2c3e50;">
+    Asynchronous messaging allows microservices to communicate without waiting for a direct response.
+  </p>
+
+  <h4 style="color: #e67e22;">Using RabbitMQ</h4>
+  <p style="color: #2c3e50;">
+    RabbitMQ is a message broker used for asynchronous communication.
+  </p>
+
+  <h5 style="color: #e67e22;">Producer</h5>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.amqp.rabbit.core.RabbitTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class OrderEventPublisher {
+          private final RabbitTemplate rabbitTemplate;
+
+          public OrderEventPublisher(RabbitTemplate rabbitTemplate) {
+              this.rabbitTemplate = rabbitTemplate;
+          }
+
+          public void sendOrderCreatedEvent(String orderId) {
+              rabbitTemplate.convertAndSend("order-exchange", "order.created", orderId);
+          }
+      }
+    </code>
+  </pre>
+
+  <h5 style="color: #e67e22;">Consumer</h5>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.amqp.rabbit.annotation.RabbitListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class OrderEventListener {
+          @RabbitListener(queues = "order-queue")
+          public void handleOrderCreatedEvent(String orderId) {
+              System.out.println("Processing order: " + orderId);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Using Apache Kafka</h4>
+  <p style="color: #2c3e50;">
+    Kafka is a distributed streaming platform used for event-driven communication.
+  </p>
+
+  <h5 style="color: #e67e22;">Kafka Producer</h5>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.kafka.core.KafkaTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class OrderEventProducer {
+          private final KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+
+          public OrderEventProducer(KafkaTemplate&lt;String, String&gt; kafkaTemplate) {
+              this.kafkaTemplate = kafkaTemplate;
+          }
+
+          public void sendOrderEvent(String orderId) {
+              kafkaTemplate.send("order-events", orderId);
+          }
+      }
+    </code>
+  </pre>
+
+  <h5 style="color: #e67e22;">Kafka Consumer</h5>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.apache.kafka.clients.consumer.ConsumerRecord;
+      import org.springframework.kafka.annotation.KafkaListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class OrderEventConsumer {
+          @KafkaListener(topics = "order-events", groupId = "order-group")
+          public void listen(ConsumerRecord&lt;String, String&gt; record) {
+              System.out.println("Received Order Event: " + record.value());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Choosing the Right Communication Strategy</h3>
+  <p style="color: #2c3e50;">
+    - Use **REST APIs** for synchronous interactions when real-time responses are needed.<br>
+    - Use **RabbitMQ/Kafka** for asynchronous event-driven communication to improve scalability.<br>
+    - Use **gRPC** for high-performance, low-latency calls between microservices.
+  </p>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Effective microservices communication is crucial for building scalable applications. By using REST APIs for synchronous calls and message brokers like Kafka or RabbitMQ for asynchronous events, developers can design resilient and efficient systems.
+  </p>
+</div>
+`
+},
+{
+  title:`Large Data Handling`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Efficient Large Data Handling in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Handling large datasets efficiently is crucial for building high-performance applications. In Spring Boot, proper data management techniques help prevent memory overload, improve response times, and ensure scalability.
+  </p>
+
+  <h3 style="color: #16a085;">Challenges in Large Data Handling</h3>
+  <p style="color: #2c3e50;">
+    When dealing with large datasets, applications may face the following issues:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>High memory consumption due to loading large datasets at once.</li>
+    <li>Slow response times due to inefficient database queries.</li>
+    <li>Network congestion when transferring large payloads.</li>
+    <li>Scalability issues in monolithic architectures.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Pagination for Large Data Queries</h3>
+  <p style="color: #2c3e50;">
+    Instead of fetching all records at once, use pagination to retrieve data in smaller chunks.
+  </p>
+
+  <h4 style="color: #e67e22;">Using Spring Data JPA Pagination</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.domain.Page;
+      import org.springframework.data.domain.Pageable;
+      import org.springframework.data.jpa.repository.JpaRepository;
+
+      public interface ProductRepository extends JpaRepository<Product, Long> {
+          Page<Product> findAll(Pageable pageable);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Service Method for Pagination</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.domain.Page;
+      import org.springframework.data.domain.PageRequest;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          private final ProductRepository productRepository;
+
+          public ProductService(ProductRepository productRepository) {
+              this.productRepository = productRepository;
+          }
+
+          public Page<Product> getProducts(int page, int size) {
+              return productRepository.findAll(PageRequest.of(page, size));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Streaming Large Data Using Spring Data JPA</h3>
+  <p style="color: #2c3e50;">
+    Streaming is useful when dealing with millions of records to avoid memory overload.
+  </p>
+
+  <h4 style="color: #e67e22;">Using Java Streams for Efficient Query Execution</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.Query;
+      import org.springframework.data.repository.CrudRepository;
+      import java.util.stream.Stream;
+
+      public interface ProductRepository extends CrudRepository<Product, Long> {
+          @Query("SELECT p FROM Product p")
+          Stream<Product> streamAllProducts();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">3. Batch Processing for Large Data</h3>
+  <p style="color: #2c3e50;">
+    Instead of inserting or updating records one by one, use batch processing to optimize performance.
+  </p>
+
+  <h4 style="color: #e67e22;">Using JDBC Batch Update</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.jdbc.core.JdbcTemplate;
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class ProductService {
+          private final JdbcTemplate jdbcTemplate;
+
+          public ProductService(JdbcTemplate jdbcTemplate) {
+              this.jdbcTemplate = jdbcTemplate;
+          }
+
+          public void batchInsert(List<Product> products) {
+              String sql = "INSERT INTO products (name, price) VALUES (?, ?)";
+              jdbcTemplate.batchUpdate(sql, products, 1000, (ps, product) -> {
+                  ps.setString(1, product.getName());
+                  ps.setBigDecimal(2, product.getPrice());
+              });
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">4. Asynchronous Data Processing</h3>
+  <p style="color: #2c3e50;">
+    When dealing with heavy computations, using asynchronous processing improves efficiency.
+  </p>
+
+  <h4 style="color: #e67e22;">Using @Async in Spring Boot</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class DataProcessingService {
+          @Async
+          public void processLargeData() {
+              // Perform heavy computations here
+              System.out.println("Processing data asynchronously...");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Using Caching to Improve Performance</h3>
+  <p style="color: #2c3e50;">
+    Caching helps reduce repeated queries by storing frequently accessed data in memory.
+  </p>
+
+  <h4 style="color: #e67e22;">Using Spring Boot Cache</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          @Cacheable("products")
+          public List<Product> getAllProducts() {
+              return productRepository.findAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Choosing the Right Strategy</h3>
+  <p style="color: #2c3e50;">
+    - Use **pagination** to limit query results.<br>
+    - Use **streaming** for processing large datasets efficiently.<br>
+    - Use **batch processing** for bulk inserts and updates.<br>
+    - Use **asynchronous processing** for long-running tasks.<br>
+    - Use **caching** to store frequently accessed data.
+  </p>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Efficient handling of large data is essential for high-performance applications. By leveraging pagination, batch processing, asynchronous execution, and caching, developers can ensure scalability and responsiveness in Spring Boot applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Performance Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Performance Optimization in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Performance optimization in Spring Boot applications is essential for ensuring scalability, responsiveness, and efficient resource utilization. By applying various techniques, developers can enhance speed and reduce latency.
+  </p>
+
+  <h3 style="color: #16a085;">Key Performance Challenges</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Slow database queries leading to high response times.</li>
+    <li>Excessive memory consumption due to inefficient data handling.</li>
+    <li>Poor concurrency handling affecting scalability.</li>
+    <li>Blocking I/O operations causing delays.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Optimizing Database Queries</h3>
+  <p style="color: #2c3e50;">
+    Efficient database interactions play a critical role in improving application speed.
+  </p>
+
+  <h4 style="color: #e67e22;">Using Indexes for Faster Queries</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-sql">
+      CREATE INDEX idx_product_name ON products(name);
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Using Lazy Loading</h4>
+  <p style="color: #2c3e50;">
+    Instead of fetching all related data, use lazy loading for better performance.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Order {
+          @OneToMany(fetch = FetchType.LAZY)
+          private List<Item> items;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Caching Frequently Accessed Data</h3>
+  <p style="color: #2c3e50;">
+    Reduce database load by caching commonly requested data.
+  </p>
+
+  <h4 style="color: #e67e22;">Using Spring Boot Cache</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          @Cacheable("products")
+          public List<Product> getAllProducts() {
+              return productRepository.findAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">3. Asynchronous Processing</h3>
+  <p style="color: #2c3e50;">
+    Prevent blocking operations by using asynchronous execution.
+  </p>
+
+  <h4 style="color: #e67e22;">Using @Async for Background Tasks</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class NotificationService {
+          @Async
+          public void sendEmail(String email) {
+              // Simulate email sending
+              System.out.println("Sending email to " + email);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">4. Connection Pooling</h3>
+  <p style="color: #2c3e50;">
+    Reduce the overhead of creating database connections by using connection pooling.
+  </p>
+
+  <h4 style="color: #e67e22;">Configuring HikariCP in application.properties</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.datasource.hikari.maximum-pool-size=10
+      spring.datasource.hikari.minimum-idle=5
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Reducing Memory Footprint</h3>
+  <p style="color: #2c3e50;">
+    Optimize memory usage to prevent application crashes.
+  </p>
+
+  <h4 style="color: #e67e22;">Using Java 17 Compact Strings</h4>
+  <p style="color: #2c3e50;">
+    Java 17's Compact Strings feature helps reduce memory consumption.
+  </p>
+
+  <h3 style="color: #e67e22;">6. Profiling and Monitoring</h3>
+  <p style="color: #2c3e50;">
+    Regularly monitor application performance to detect bottlenecks.
+  </p>
+
+  <h4 style="color: #e67e22;">Using Actuator for Health Checks</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      management.endpoints.web.exposure.include=health,metrics
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Optimize database queries and use indexing.</li>
+    <li>Use caching for frequently accessed data.</li>
+    <li>Leverage asynchronous processing for non-blocking operations.</li>
+    <li>Use connection pooling for efficient database interactions.</li>
+    <li>Regularly profile and monitor the application.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Performance optimization is essential for maintaining a fast and scalable Spring Boot application. By applying caching, database optimizations, asynchronous execution, and monitoring, developers can ensure efficient resource utilization and better user experience.
+  </p>
+</div>
+`
+},
+{
+  title:`Anti-Patterns`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Anti-Patterns in Software Development</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In software development, an anti-pattern is a common but ineffective or counterproductive way of solving a problem. Unlike best practices, anti-patterns often introduce technical debt, inefficiencies, and maintenance difficulties.
+  </p>
+
+  <h3 style="color: #16a085;">Common Software Anti-Patterns</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Spaghetti Code</li>
+    <li>God Object</li>
+    <li>Hardcoding</li>
+    <li>Magic Numbers</li>
+    <li>Golden Hammer</li>
+    <li>Copy-Paste Programming</li>
+    <li>Dead Code</li>
+    <li>Premature Optimization</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Spaghetti Code</h3>
+  <p style="color: #2c3e50;">
+    Spaghetti code is unstructured, hard-to-read code with no clear separation of concerns, making it difficult to maintain and debug.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class Order {
+          public void processOrder() {
+              if (user.isLoggedIn()) {
+                  if (cart.isNotEmpty()) {
+                      if (payment.isValid()) {
+                          // Order processing logic
+                      }
+                  }
+              }
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Follow modular design principles such as SOLID and use well-structured functions.</p>
+
+  <h3 style="color: #e67e22;">2. God Object</h3>
+  <p style="color: #2c3e50;">
+    A "God Object" is a class that does too much and holds excessive responsibilities, leading to poor maintainability.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class OrderManager {
+          public void createOrder() { /* ... */ }
+          public void validatePayment() { /* ... */ }
+          public void generateInvoice() { /* ... */ }
+          public void sendEmailNotification() { /* ... */ }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Follow the Single Responsibility Principle (SRP) and break down large classes into smaller, focused components.</p>
+
+  <h3 style="color: #e67e22;">3. Hardcoding</h3>
+  <p style="color: #2c3e50;">
+    Hardcoding values directly into code reduces flexibility and makes future updates difficult.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class Config {
+          public static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mydb";
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Use configuration files or environment variables for better maintainability.</p>
+
+  <h3 style="color: #e67e22;">4. Magic Numbers</h3>
+  <p style="color: #2c3e50;">
+    Magic numbers are hardcoded numeric values that lack meaning, making the code difficult to understand.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      if (userAge > 18) {
+          // Allow access
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Use named constants to improve readability.</p>
+
+  <h3 style="color: #e67e22;">5. Golden Hammer</h3>
+  <p style="color: #2c3e50;">
+    The "Golden Hammer" anti-pattern occurs when a developer uses the same tool or technology for every problem, even when it's not the best fit.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <p style="color: #2c3e50;">
+    Always using relational databases even when a NoSQL database might be a better choice.
+  </p>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Choose technologies based on the problem at hand rather than familiarity.</p>
+
+  <h3 style="color: #e67e22;">6. Copy-Paste Programming</h3>
+  <p style="color: #2c3e50;">
+    Repeating the same code in multiple places instead of reusing functions leads to redundant and hard-to-maintain code.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public void processPayment() { /* Same logic */ }
+      public void validateTransaction() { /* Same logic */ }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Follow the DRY (Don't Repeat Yourself) principle and use reusable functions or classes.</p>
+
+  <h3 style="color: #e67e22;">7. Dead Code</h3>
+  <p style="color: #2c3e50;">
+    Dead code is code that is never executed but still exists in the codebase, leading to unnecessary complexity.
+  </p>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Regularly refactor and remove unused code.</p>
+
+  <h3 style="color: #e67e22;">8. Premature Optimization</h3>
+  <p style="color: #2c3e50;">
+    Optimizing code too early can make it more complex than necessary, without real performance benefits.
+  </p>
+  <p style="color: #2c3e50;"><strong>Solution:</strong> Follow the "optimize later" approach and prioritize maintainability.</p>
+
+  <h3 style="color: #2980b9;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Follow SOLID principles for maintainable code.</li>
+    <li>Avoid excessive class responsibilities (God Object).</li>
+    <li>Use proper configuration management instead of hardcoding.</li>
+    <li>Refactor code regularly to remove dead or redundant logic.</li>
+    <li>Choose the right tool for the job instead of a "one-size-fits-all" approach.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Identifying and avoiding anti-patterns helps maintain cleaner, more efficient, and scalable software. By following best practices, developers can reduce technical debt and improve code quality.
+  </p>
+</div>
+`
 }
     ]
 
