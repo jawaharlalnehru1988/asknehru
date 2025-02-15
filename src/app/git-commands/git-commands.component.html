@@ -1,9 +1,9 @@
 <header>
     <ul>
-        @for(head of gitContent; track head){
-            <li [ngClass]="selectedTopic === head.title? 'selected' : ''"  (click)="selectHeader(head.title)">
+        @for(head of topicExplained; track head){
+            <li [ngClass]="selectedTopic === head.topic? 'selected' : ''"  (click)="selectHeader(head.topic)">
                 <span>
-                    {{head.title}} 
+                    {{head.topic}} 
                 </span>
                 <span>
                     <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="expand_circle_down"></mat-icon>
@@ -11,18 +11,7 @@
             </li>
         }
     </ul>
-    <nav>
-        <ul>
-            @for(sub of gitSubContent; track sub){
-                <li (click)="selectSubHeader(sub)">
-                    <span>
-                        {{sub}}
-                    </span>
-                    <span>
-                        <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="expand_circle_down"></mat-icon>
-                    </span>
-                </li>
-            }
-        </ul>
-    </nav>
 </header>
+<main class="content-container">
+    <article [innerHTML]="projectedContent"></article>
+</main>
