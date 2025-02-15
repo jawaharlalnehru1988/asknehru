@@ -1437,43 +1437,780 @@ export class GitContent{
         },
         {
             topic: "git push",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #e74c3c; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🚀 Git Push - Sending Local Changes to Remote Repositories
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #e74c3c; border-radius: 6px;">
+        The \`git push\` command uploads your local commits to a **remote repository** like GitHub, GitLab, or Bitbucket. This ensures that your changes are accessible to other collaborators.
+    </p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📌 Basic Git Push Command</h2>
+    <p>Push your changes to the remote repository:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push origin branch-name
+    </code>
+    </pre>
+
+    <p><strong>Example:</strong> Push changes in the \`main\` branch to the remote:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push origin main
+    </code>
+    </pre>
+
+    <h2 style="color: #3498db; background: #d6eaf8; padding: 10px; border-radius: 6px;">📌 Pushing a New Branch to Remote</h2>
+    <p>If you created a new branch locally and want to push it to the remote repository:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push -u origin new-branch-name
+    </code>
+    </pre>
+
+    <p><strong>Example:</strong> Push a newly created branch \`feature-login\`:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push -u origin feature-login
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Force Pushing Changes (Use with Caution)</h2>
+    <p>If you've rewritten history and need to force push:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push --force origin branch-name
+    </code>
+    </pre>
+
+    <p><strong>⚠️ Warning:</strong> This will overwrite the remote branch and can lead to data loss.</p>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Pushing All Branches at Once</h2>
+    <p>To push all local branches to the remote repository:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push --all origin
+    </code>
+    </pre>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git push origin branch-name\`</strong> - Pushes the branch to the remote repository.</li>
+        <li><strong>\`git push -u origin branch-name\`</strong> - Pushes a new branch and sets upstream.</li>
+        <li><strong>\`git push --force origin branch-name\`</strong> - Force push (be careful!).</li>
+        <li><strong>\`git push --all origin\`</strong> - Push all branches at once.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🚀 Use \`git push\` to share your work with others and keep your remote repository up to date! 🎯
+    </p>
+</div>
+`
         },
         {
             topic: "git pull",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #3498db; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🔄 Git Pull - Fetch & Merge Remote Changes
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #3498db; border-radius: 6px;">
+        The \`git pull\` command updates your local branch with the latest changes from a **remote repository**. It is a combination of \`git fetch\` (fetching remote changes) and \`git merge\` (merging them into your local branch).
+    </p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📌 Basic Git Pull Command</h2>
+    <p>To pull the latest changes from a remote repository:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git pull origin branch-name
+    </code>
+    </pre>
+
+    <p><strong>Example:</strong> Pull changes from the \`main\` branch:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git pull origin main
+    </code>
+    </pre>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Understanding How Git Pull Works</h2>
+    <p>Git Pull performs **two** operations:</p>
+    <ol>
+        <li><strong>\`git fetch\`</strong> - Downloads the latest changes from the remote repository.</li>
+        <li><strong>\`git merge\`</strong> - Merges the fetched changes into your current branch.</li>
+    </ol>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Pulling Without Merging</h2>
+    <p>If you want to fetch changes **without automatically merging**, use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git fetch origin
+    </code>
+    </pre>
+
+    <p>Then manually merge the branch:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git merge origin/branch-name
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Pull with Rebase</h2>
+    <p>If you prefer **rebase** over merge (to avoid extra merge commits), use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git pull --rebase origin branch-name
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Handling Merge Conflicts</h2>
+    <p>If there are conflicts during <strong>\`git pull\`, resolve them manually:</strong></p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git status
+    git add .
+    git commit -m "Resolved merge conflicts"
+    </code>
+    </pre>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git pull origin branch-name\`</strong> - Fetches and merges changes from the remote repository.</li>
+        <li><strong>\`git fetch origin\`</strong> - Fetches changes but does NOT merge them.</li>
+        <li><strong>\`git pull --rebase origin branch-name\`</strong> - Rebases instead of merging.</li>
+        <li><strong>Handle merge conflicts manually if needed!</strong></li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🔄 Use \`git pull\` regularly to stay updated with the latest remote changes! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git restore",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #27ae60; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🔄 Git Restore - Undo Local Changes
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #27ae60; border-radius: 6px;">
+        The \`git restore\` command allows you to **undo changes** in your working directory before committing them. It is useful when you want to discard modifications and restore files to their last committed state.
+    </p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📌 Basic Git Restore Command</h2>
+    <p>To restore a modified file back to its last committed version:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git restore file-name
+    </code>
+    </pre>
+
+    <p><strong>Example:</strong> Discard changes made to \`index.html\`:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git restore index.html
+    </code>
+    </pre>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Restoring Multiple Files</h2>
+    <p>If you want to restore multiple files at once:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git restore file1 file2 file3
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Restore All Changes</h2>
+    <p>If you want to discard **all changes** in your working directory:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git restore .
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Restoring Staged Changes</h2>
+    <p>If you have already staged changes using \`git add\` and want to unstage them, use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git restore --staged file-name
+    </code>
+    </pre>
+
+    <p><strong>Example:</strong> Unstage \`app.js\` from the staging area:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git restore --staged app.js
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Important Notes</h2>
+    <ul>
+        <li>Restoring a file **cannot be undone** unless you have committed your changes.</li>
+        <li>Use \`git status\` to check changes before restoring them.</li>
+        <li>For resetting committed changes, use \`git reset\` instead.</li>
+    </ul>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git restore file-name\`</strong> - Discards changes to a specific file.</li>
+        <li><strong>\`git restore .\`</strong> - Discards all local changes.</li>
+        <li><strong>\`git restore --staged file-name\`</strong> - Unstages a file without deleting changes.</li>
+        <li><strong>⚠️ Be careful! Restoring files cannot be undone unless committed.</strong></li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🔄 Use \`git restore\` when you need to undo unwanted changes and keep your workspace clean! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git Diff",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #3498db; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🔍 Git Diff - Compare Changes in Git
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #3498db; border-radius: 6px;">
+        The \`git diff\` command is used to **compare changes** in Git. It helps developers see differences between files, unstaged changes, staged changes, and changes between commits.
+    </p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📌 Basic Usage of Git Diff</h2>
+    <p>To see changes in your working directory that are not staged yet:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git diff
+    </code>
+    </pre>
+
+    <p><strong>Example Output:</strong></p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    diff --git a/index.html b/index.html
+    index 83db48d..bf6a8c3 100644
+    --- a/index.html
+    +++ b/index.html
+    @@ -5,7 +5,7 @@
+        &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    -   &lt;p&gt;Hello, World!&lt;/p&gt;
+    +   &lt;p&gt;Hello, Git!&lt;/p&gt;
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Viewing Staged Changes</h2>
+    <p>To see changes that have been staged but not committed:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git diff --staged
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Comparing Changes Between Commits</h2>
+    <p>To compare changes between two commits:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git diff commit1 commit2
+    </code>
+    </pre>
+    <p><strong>Example:</strong> Compare the last commit with the one before:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git diff HEAD HEAD~1
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Important Notes</h2>
+    <ul>
+        <li>Changes shown by \`git diff\` are **not yet staged**.</li>
+        <li>Use \`git diff --staged\` to check **staged** changes.</li>
+        <li>Use \`git diff branch1 branch2\` to compare two branches.</li>
+    </ul>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git diff\`</strong> - Shows unstaged changes.</li>
+        <li><strong>\`git diff --staged\`</strong> - Shows staged changes.</li>
+        <li><strong>\`git diff commit1 commit2\`</strong> - Compares changes between commits.</li>
+        <li><strong>\`git diff branch1 branch2\`</strong> - Compares changes between branches.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🔍 Use \`git diff\` to track changes before committing and ensure your modifications are correct! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git Show",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #e67e22; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🔍 Git Show - View Detailed Commit Information
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #e67e22; border-radius: 6px;">
+        The \`git show\` command displays **detailed information about a commit**. It provides the commit hash, author details, date, commit message, and changes introduced by that commit.
+    </p>
+
+    <h2 style="color: #3498db; background: #d4edfa; padding: 10px; border-radius: 6px;">📌 Basic Usage of Git Show</h2>
+    <p>To view the details of the latest commit:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git show
+    </code>
+    </pre>
+
+    <p><strong>Example Output:</strong></p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    commit a1b2c3d4e5f6g7h8i9j0
+    Author: Nehru &lt;nehru@example.com&gt;
+    Date:   Mon Feb 12 10:30:00 2025 +0530
+
+        Fixed navbar responsiveness issue
+
+    diff --git a/style.css b/style.css
+    --- a/style.css
+    +++ b/style.css
+    @@ -15,6 +15,8 @@
+        .navbar {
+            background-color: #333;
+            color: white;
+    +       padding: 10px;
+    +       border-radius: 6px;
+        }
+    </code>
+    </pre>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📌 Viewing a Specific Commit</h2>
+    <p>To see details of a specific commit using its commit hash:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git show a1b2c3d4
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Showing Changes for a File</h2>
+    <p>To see what changes were made to a specific file in the latest commit:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git show HEAD -- style.css
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Comparing Commits</h2>
+    <p>To compare two commits and see what changed between them:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git show old_commit_hash..new_commit_hash
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Important Notes</h2>
+    <ul>
+        <li>\`git show\` is useful for reviewing commit details before pushing changes.</li>
+        <li>It shows a **diff** of what has changed in that commit.</li>
+        <li>You can specify a file to narrow down the output.</li>
+    </ul>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git show\`</strong> - Shows details of the latest commit.</li>
+        <li><strong>\`git show commit_hash\`</strong> - Displays details of a specific commit.</li>
+        <li><strong>\`git show HEAD -- file.txt\`</strong> - Shows changes made to a specific file.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🔍 Use \`git show\` to inspect commits and understand your project's history in detail! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git tag",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #e74c3c; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🏷️ Git Tag - Marking Important Points in History
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #e74c3c; border-radius: 6px;">
+        The \`git tag\` command is used to **mark specific points in your repository’s history**, typically used for **releases (v1.0, v2.0, etc.)**. Tags make it easy to reference significant commits without remembering commit hashes.
+    </p>
+
+    <h2 style="color: #3498db; background: #d4edfa; padding: 10px; border-radius: 6px;">🔖 Creating a Tag</h2>
+    <p>To create a simple lightweight tag:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git tag v1.0
+    </code>
+    </pre>
+    <p>This creates a tag named **v1.0** pointing to the latest commit.</p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📝 Creating an Annotated Tag</h2>
+    <p>Annotated tags contain metadata like author, date, and a message:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git tag -a v1.0 -m "Version 1.0 release"
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Listing All Tags</h2>
+    <p>To see all existing tags:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git tag
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">🔍 Viewing Tag Details</h2>
+    <p>To view details of an annotated tag:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git show v1.0
+    </code>
+    </pre>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">🚀 Pushing Tags to Remote</h2>
+    <p>Tags are not pushed automatically with commits. To push a specific tag:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push origin v1.0
+    </code>
+    </pre>
+    <p>To push all local tags:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push --tags
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Deleting Tags</h2>
+    <p>To delete a tag locally:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git tag -d v1.0
+    </code>
+    </pre>
+    <p>To delete a remote tag:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git push --delete origin v1.0
+    </code>
+    </pre>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git tag v1.0\`</strong> - Creates a lightweight tag.</li>
+        <li><strong>\`git tag -a v1.0 -m "Message"\`</strong> - Creates an annotated tag.</li>
+        <li><strong>\`git tag\`</strong> - Lists all tags.</li>
+        <li><strong>\`git push --tags\`</strong> - Pushes all local tags to remote.</li>
+        <li><strong>\`git tag -d v1.0\`</strong> - Deletes a local tag.</li>
+        <li><strong>\`git push --delete origin v1.0\`</strong> - Deletes a remote tag.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🏷️ Use \`git tag\` to mark important milestones and releases in your project! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git blame",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #2c3e50; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🔍 Git Blame - Finding Who Changed What!
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #2c3e50; border-radius: 6px;">
+        The \`git blame\` command helps you **track down who last modified each line** of a file, along with the commit hash and timestamp. It’s useful for debugging, code reviews, and understanding project history.
+    </p>
+
+    <h2 style="color: #3498db; background: #d4edfa; padding: 10px; border-radius: 6px;">🔎 Basic Usage</h2>
+    <p>To see the author, commit hash, and timestamp for each line in a file:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git blame filename.js
+    </code>
+    </pre>
+    <p>Example Output:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code>
+    a1b2c3d4 (Nehru 2024-02-13 10:00:00) console.log("Hello, World!");
+    e5f6g7h8 (Nehru 2024-02-14 12:30:00) let name = "John";
+    </code>
+    </pre>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">🎯 Blaming a Specific Line</h2>
+    <p>To check blame for specific lines (e.g., lines 10-20):</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git blame -L 10,20 filename.js
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">📝 Ignore Whitespace Changes</h2>
+    <p>If whitespace changes make \`git blame\` hard to read, use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git blame -w filename.js
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Find Author by Email</h2>
+    <p>If you need detailed author info, use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git blame filename.js --show-email
+    </code>
+    </pre>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">🚀 Tracking a Line Across History</h2>
+    <p>To see changes for a specific line over time:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git log -L 10,10:filename.js
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ When to Use (and Not Use) Git Blame</h2>
+    <ul>
+        <li>✅ <strong>Debugging</strong> - Find out who wrote or changed a piece of code.</li>
+        <li>✅ <strong>Code Reviews</strong> - Identify authors of changes.</li>
+        <li>✅ <strong>Understanding History</strong> - See why a change was made.</li>
+        <li>❌ <strong>Not for Blaming People</strong> - It’s about finding history, not pointing fingers! 😃</li>
+    </ul>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git blame filename.js\`</strong> - Shows authorship of each line.</li>
+        <li><strong>\`git blame -L 10,20 filename.js\`</strong> - Shows blame for lines 10-20.</li>
+        <li><strong>\`git blame -w filename.js\`</strong> - Ignores whitespace changes.</li>
+        <li><strong>\`git blame filename.js --show-email\`</strong> - Shows email of authors.</li>
+        <li><strong>\`git log -L 10,10:filename.js\`</strong> - Tracks a line’s history.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🔍 Use \`git blame\` to track changes and understand the history of your code! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git grep",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f2f2f2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #34495e; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🔍 Git Grep - Searching for Text in Repositories
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #34495e; border-radius: 6px;">
+        The \`git grep\` command is used to **search for specific text patterns** within a Git repository. It is faster than standard Unix \`grep\` because it works within Git’s versioned files.
+    </p>
+
+    <h2 style="color: #3498db; background: #d4edfa; padding: 10px; border-radius: 6px;">🔎 Basic Usage</h2>
+    <p>To search for a word inside your repository:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git grep "search-term"
+    </code>
+    </pre>
+    <p>Example Output:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code>
+    src/app.js:42: console.log("Hello, World!");
+    src/utils/helper.js:10: return "search-term found";
+    </code>
+    </pre>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">🎯 Searching with Case Insensitivity</h2>
+    <p>To make the search **case-insensitive**, use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git grep -i "search-term"
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">🔄 Searching in a Specific Branch</h2>
+    <p>To search within a different branch (e.g., \`develop\`):</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git grep "search-term" origin/develop
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Search in a Specific Directory</h2>
+    <p>To limit the search to a specific directory (\`src/\`):</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git grep "search-term" -- src/
+    </code>
+    </pre>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">🚀 Searching for a Regular Expression</h2>
+    <p>To use a **regular expression** search (e.g., finding function definitions):</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git grep "function [a-zA-Z_]+"
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Excluding Binary Files</h2>
+    <p>By default, \`git grep\` avoids binary files, but you can enforce it:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git grep -I "search-term"
+    </code>
+    </pre>
+
+    <h2 style="color: #8e44ad; background: #f5e6ff; padding: 10px; border-radius: 6px;">📝 Summary</h2>
+    <ul>
+        <li><strong>\`git grep "text"\`</strong> - Searches for a string in all files.</li>
+        <li><strong>\`git grep -i "text"\`</strong> - Case-insensitive search.</li>
+        <li><strong>\`git grep "text" origin/main\`</strong> - Search in a specific branch.</li>
+        <li><strong>\`git grep "text" -- src/\`</strong> - Limit search to a directory.</li>
+        <li><strong>\`git grep -I "text"\`</strong> - Ignore binary files.</li>
+        <li><strong>\`git grep "regex"\`</strong> - Search using regex.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🔍 Use \`git grep\` to quickly find text inside your repository! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git archive",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f7f7f7); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #2c3e50; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        📦 Git Archive - Exporting a Repository as an Archive
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #2c3e50; border-radius: 6px;">
+        The \`git archive\` command is used to **create an archive (ZIP, TAR, etc.)** of a repository without the \`.git\` history. It is useful when you need a clean copy of your code without version control metadata.
+    </p>
+
+    <h2 style="color: #3498db; background: #d4edfa; padding: 10px; border-radius: 6px;">📁 Creating a ZIP Archive</h2>
+    <p>To create a **ZIP archive** of the latest commit in the \`main\` branch:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git archive -o project.zip HEAD
+    </code>
+    </pre>
+    <p>🔹 This will create \`project.zip\` containing all files from the latest commit.</p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">🗂️ Creating a TAR Archive</h2>
+    <p>To create a **TAR archive** instead:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git archive -o project.tar HEAD
+    </code>
+    </pre>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">🎯 Archiving a Specific Branch</h2>
+    <p>If you want to export a specific branch (\`develop\`), use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git archive -o develop.zip develop
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Exporting a Specific Folder</h2>
+    <p>To archive only a specific folder (\`src/\`) from the repository:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git archive -o src.zip HEAD src/
+    </code>
+    </pre>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">🚀 Remote Export (Without Cloning)</h2>
+    <p>You can create an archive from a **remote repository** without cloning it:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git archive --remote=git@github.com:user/repo.git HEAD | tar -x
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Things to Remember</h2>
+    <ul>
+        <li>🔹 \`git archive\` does not include the \`.git\` folder (no history).</li>
+        <li>🔹 Useful for sharing a clean copy of the repository.</li>
+        <li>🔹 Can be used with \`tar\` and \`zip\` formats.</li>
+        <li>🔹 Can extract a single folder instead of the whole repo.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🎉 Use \`git archive\` when you need a snapshot of your repository without version control! 🚀
+    </p>
+</div>
+`
         },
         {
             topic: "git clean",
-            explain: ``
+            explain: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f7f7f7); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #2c3e50; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🧹 Git Clean - Removing Untracked Files
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #2c3e50; border-radius: 6px;">
+        The \`git clean\` command is used to **remove untracked files and directories** from your working directory. It helps you get rid of unnecessary files that are not part of your version control.
+    </p>
+
+    <h2 style="color: #3498db; background: #d4edfa; padding: 10px; border-radius: 6px;">🧐 Checking Before Cleaning</h2>
+    <p>Before deleting anything, always check what will be removed using:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git clean -n
+    </code>
+    </pre>
+    <p>🔹 This will **preview** the files that would be deleted.</p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">🚀 Removing Untracked Files</h2>
+    <p>To delete **untracked files** safely:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git clean -f
+    </code>
+    </pre>
+    <p>🔹 This will remove all **untracked files** but **not directories**.</p>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">🗂️ Removing Untracked Files & Directories</h2>
+    <p>If you want to remove **both files and directories**, use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git clean -df
+    </code>
+    </pre>
+    <p>🔹 This deletes **both** untracked files and directories.</p>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">⚡ Cleaning Ignored Files</h2>
+    <p>To remove **ignored files** (listed in \`.gitignore\`), use:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git clean -fx
+    </code>
+    </pre>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">📌 Cleaning Only Ignored Files</h2>
+    <p>If you want to clean **only ignored files** and keep other untracked files:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-bash" codeHighlight>
+    git clean -Xf
+    </code>
+    </pre>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Things to Remember</h2>
+    <ul>
+        <li>🔹 \`git clean\` removes **untracked files**, not committed ones.</li>
+        <li>🔹 Always use \`-n\` first to preview before cleaning.</li>
+        <li>🔹 Use \`-d\` to remove directories and \`-x\` to remove ignored files.</li>
+        <li>🔹 Be careful! Deleted files **cannot be recovered** unless backed up.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🎉 Use \`git clean\` to keep your workspace neat and free of clutter! 🚀
+    </p>
+</div>
+`
         }
         
     ]
