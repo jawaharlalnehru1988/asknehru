@@ -4,7 +4,7 @@ export class JavaContent {
     javacontent: JsContent[] = [
         {
           articleTitle: "Intro",
-          content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+          content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Introduction to Java</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Java is a high-level, object-oriented programming language known for its platform independence, robustness, and wide usage in software development. It follows the "Write Once, Run Anywhere" (WORA) principle, making it one of the most popular programming languages.
@@ -50,7 +50,7 @@ export class JavaContent {
         },
         {
           articleTitle: `Class`,
-          content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+          content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Introduction to Java Class</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         In Java, a class is a fundamental building block that defines the structure and behavior of objects. It acts as a blueprint for creating instances (objects) with specific properties and methods.
@@ -58,11 +58,13 @@ export class JavaContent {
     
     <h2 style="color: #2980b9;">What is a Java Class?</h2>
     <p>A Java class is a user-defined template that encapsulates data (fields) and methods to operate on that data.</p>
+    <pre>
     <code class="language-java" codeHighlight>public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, Java!");
     }
 }</code>
+</pre>
     
     <h2 style="color: #2980b9;">Key Features of Java Classes</h2>
     <ul>

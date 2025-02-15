@@ -3,7 +3,7 @@
         <ul class="header-list">
             @for(jTopic of javaArray; track jTopic; let idx = $index){
                 <li class="java-topic" [class.selected]="selectedMainTopic === jTopic.title" (click)="javaTopicClicked(jTopic)"> <div class="header-java-topic">{{idx + 1}}.{{jTopic.title}}</div> 
-                <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="chevron_right"></mat-icon> </div> </li>
+                <div> <mat-icon aria-hidden="false" class="mat-icon" aria-label="Example home icon" fontIcon="expand_circle_down"></mat-icon> </div> </li>
             }
         </ul>
     </nav>
@@ -12,7 +12,7 @@
             @for(jSubTopic of subTopicArray; track jSubTopic; let idx = $index){
             <li class="java-topic" [class.selected]="selectedSubTopic === jSubTopic.id"
                 (click)="javaSubTopicClicked(jSubTopic.subTopic, jSubTopic.id)">
-                <div>{{idx + 1}}.{{jSubTopic.subTopic}}</div>
+                <div>{{jSubTopic.subTopic}}</div>
             </li>
             }
         </ul>

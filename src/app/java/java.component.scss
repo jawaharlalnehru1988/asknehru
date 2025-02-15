@@ -1,26 +1,43 @@
-.header-list{
-  display: flex;
-  overflow-x: scroll;
-  .header-java-topic{
-      width: max-content;
-  }
+header{
+  display: none;
 }
-
+article{
+  background-color: antiquewhite !important;
+}
+.main{
+  overflow-y: scroll;
+  max-height: 90vh;
+}
 @media screen and (max-width: 600px) {
- 
+  header{
+    display: block;
+  }
+  .header-list{
+    display: flex;
+    overflow-x: scroll;
+    .header-java-topic{
+        width: max-content;
+    }
+  }
   .side-nav, .topics-list{
     display: none !important;
   }
   .sub-header-topic-list{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    background-color: #252503;
+    color: #f0f0f0;
+    gap: 4px;
+    border: 1px solid;
     li{
-      width: 80px;
+      width: 12rem;
+      border: 1px dotted green;
     }
   }
   .main{
     padding: 4px !important;
-    width: 80vw;
+    width: 100vw;
   }
 
 }
