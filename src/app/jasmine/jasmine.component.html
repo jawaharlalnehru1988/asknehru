@@ -7,10 +7,12 @@
    </header>
         <aside class="sidebar">
             <ul>
-                <li *ngFor="let subtopic of selectedSubTopic; track subtopic;" (click)="selectTopic(subtopic)"
+                @for(subtopic of selectedSubTopic; track subtopic){
+                    <li (click)="selectTopic(subtopic)"
                     class="sidebar-item">
                     {{ subtopic }}
                 </li>
+            }
             </ul>
         </aside>
 

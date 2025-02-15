@@ -31,12 +31,19 @@
   @media (max-width: 600px) {
   
     .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      transform: translateX(-100%);
-      z-index: 1000;
+      width: 100% !important;
+      height: auto !important;
+      padding: 0.5rem !important;
+      ul{
+        
+        li{
+          width: 11.5rem;
+        }
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+      }
     }
   
     .sidebar.show {
