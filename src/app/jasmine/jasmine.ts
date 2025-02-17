@@ -1034,6 +1034,86 @@ export class Jasmine {
     </p>
 </div>
 `
+    },
+    {
+      topic: `CompileComponent`,
+      content: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #fdfbfb, #e2e2e2); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #ffffff; text-align: center; background: #34495e; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+        🧪 Understanding <code>TestBed.compileComponents()</code> in Angular Testing
+    </h1>
+
+    <p style="font-size: 17px; line-height: 1.8; color: #333; padding: 10px; background: #ffffff; border-left: 5px solid #34495e; border-radius: 6px;">
+        In **Angular unit testing**, the <code>TestBed.compileComponents()</code> method ensures that **components with external templates and stylesheets** are compiled asynchronously before executing tests.
+    </p>
+
+    <h2 style="color: #3498db; background: #d4edfa; padding: 10px; border-radius: 6px;">🎯 What is <code>compileComponents()</code>?</h2>
+    <p>When testing Angular components that use external HTML templates or styles, they must be compiled before rendering. The <code>compileComponents()</code> method forces this compilation to happen asynchronously.</p>
+
+    <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📦 Why Do We Need <code>compileComponents()</code>?</h2>
+    <p>By default, Angular's **Just-in-Time (JIT) compiler** compiles components **dynamically**. If a component has an external template, the test needs to wait until the compilation completes before proceeding.</p>
+
+    <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">🛠️ How to Use <code>compileComponents()</code></h2>
+    <p>Consider the following **UserComponent**:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-javascript" codeHighlight>
+    @Component({
+      selector: 'app-user',
+      templateUrl: './user.component.html',
+      styleUrls: ['./user.component.css']
+    })
+    export class UserComponent {
+      title = 'User Component';
+    }
+    </code>
+    </pre>
+
+    <p>Since this component **has an external template**, we need to use <code>compileComponents()</code> in our test:</p>
+    <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
+    <code class="language-javascript" codeHighlight>
+    describe('UserComponent', () => {
+      let component: UserComponent;
+      let fixture: ComponentFixture&lt;UserComponent&gt;;
+
+      beforeEach(async () => {
+        await TestBed.configureTestingModule({
+          declarations: [UserComponent]
+        }).compileComponents(); // Ensures async compilation
+
+        fixture = TestBed.createComponent(UserComponent);
+        component = fixture.componentInstance;
+      });
+
+      it('should create the component', () => {
+        expect(component).toBeTruthy();
+      });
+    });
+    </code>
+    </pre>
+
+    <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 When to Use <code>compileComponents()</code></h2>
+    <ul>
+        <li>✅ When testing components with **external HTML templates**.</li>
+        <li>✅ When testing components with **external CSS/SCSS files**.</li>
+        <li>✅ When running tests in **JIT mode** (default for Karma tests).</li>
+    </ul>
+
+    <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">🔥 When <b>NOT</b> to Use <code>compileComponents()</code></h2>
+    <ul>
+        <li>❌ If the component **has an inline template and styles**, <code>compileComponents()</code> is unnecessary.</li>
+        <li>❌ If running tests in **Ahead-of-Time (AOT) compilation mode**, as components are already precompiled.</li>
+    </ul>
+
+    <h2 style="color: #e74c3c; background: #f8d7da; padding: 10px; border-radius: 6px;">⚠️ Common Mistakes</h2>
+    <ul>
+        <li>❌ Forgetting to use <code>await</code> before <code>compileComponents()</code>, which may cause tests to run before compilation finishes.</li>
+        <li>❌ Using <code>compileComponents()</code> for components **without external templates**, leading to unnecessary delays.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold; color: #2c3e50; background: #f1f1f1; padding: 15px; border-radius: 6px;">
+        🚀 <code>TestBed.compileComponents()</code> ensures that **components with external templates are properly compiled** before testing. Use it wisely to avoid unnecessary delays and errors! ✅
+    </p>
+</div>
+`
     }
   ]
 }
