@@ -27,7 +27,7 @@ export class Jasmine {
   topicsExplained = [
     {
       topic: "Intro",
-      content: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f7f7f7); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+      content: `<div style="font-family: 'Arial', sans-serif; padding: 8px; background: linear-gradient(135deg, #ffffff, #f7f7f7); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
     <h1 style="color: #ffffff; text-align: center; background: #2c3e50; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
         ✅ Introduction to Unit Testing in Angular
     </h1>
@@ -51,7 +51,7 @@ export class Jasmine {
     <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">🛠️ Writing a Simple Test</h2>
     <p>Let's write a simple **unit test for a service** in Angular.</p>
     <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
-    <code class="language-typescript" codeHighlight>
+    <code class="language-javascript" codeHighlight>
     import { TestBed } from '@angular/core/testing';
     import { MyService } from './my-service.service';
 
@@ -80,7 +80,7 @@ export class Jasmine {
     <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Testing Components</h2>
     <p>Unit testing components in Angular requires setting up a **TestBed** environment:</p>
     <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
-    <code class="language-typescript" codeHighlight>
+    <code class="language-javascript" codeHighlight>
     import { ComponentFixture, TestBed } from '@angular/core/testing';
     import { MyComponent } from './my-component.component';
 
@@ -127,7 +127,7 @@ export class Jasmine {
     },
     {
       topic: `describe`,
-      content: `<div style="font-family: 'Arial', sans-serif; padding: 20px; background: linear-gradient(135deg, #ffffff, #f7f7f7); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
+      content: `<div style="font-family: 'Arial', sans-serif; padding: 8px; background: linear-gradient(135deg, #ffffff, #f7f7f7); border-radius: 12px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
     <h1 style="color: #ffffff; text-align: center; background: #2c3e50; padding: 15px; border-radius: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
         📝 Understanding <code>describe</code> in Unit Testing (Jasmine)
     </h1>
@@ -142,7 +142,7 @@ export class Jasmine {
     <h2 style="color: #2ecc71; background: #d4edda; padding: 10px; border-radius: 6px;">📦 Basic Syntax</h2>
     <p>Here’s how a simple \`describe\` block looks:</p>
     <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
-    <code class="language-typescript" codeHighlight>
+    <code class="language-javascript" codeHighlight>
     describe('MyService Tests', () => {
       it('should return true', () => {
         expect(true).toBe(true);
@@ -154,7 +154,7 @@ export class Jasmine {
     <h2 style="color: #f39c12; background: #fce8d3; padding: 10px; border-radius: 6px;">🛠️ Grouping Related Tests</h2>
     <p>We can use \`describe\` to logically group multiple tests related to a particular feature or function.</p>
     <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
-    <code class="language-typescript" codeHighlight>
+    <code class="language-javascript" codeHighlight>
     describe('Calculator Service', () => {
       let calculator: CalculatorService;
 
@@ -176,7 +176,7 @@ export class Jasmine {
     <h2 style="color: #9b59b6; background: #f5e6ff; padding: 10px; border-radius: 6px;">📌 Nesting <code>describe</code> Blocks</h2>
     <p>We can **nest** \`describe\` blocks for better test organization.</p>
     <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
-    <code class="language-typescript" codeHighlight>
+    <code class="language-javascript" codeHighlight>
     describe('User Service', () => {
       describe('getUser() method', () => {
         it('should return user data', () => {
@@ -196,7 +196,7 @@ export class Jasmine {
     <h2 style="color: #e67e22; background: #fce8d3; padding: 10px; border-radius: 6px;">🔥 Using <code>beforeEach</code> Inside <code>describe</code></h2>
     <p>The \`beforeEach\` function inside \`describe\` runs **before each test** inside that block.</p>
     <pre style="background: #272822; color: #f8f8f2; padding: 10px; border-radius: 6px;">
-    <code class="language-typescript" codeHighlight>
+    <code class="language-javascript" codeHighlight>
     describe('String Manipulation Service', () => {
       let service: StringService;
 

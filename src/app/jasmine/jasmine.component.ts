@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Jasmine, TestTopic } from './jasmine';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import Prism from 'prismjs';
 
 
 @Component({
@@ -49,5 +50,13 @@ testing = this.jasmine.testingTopic;
   selectSubTopic(subTopic: string) {
   console.log('subTopic :', subTopic);
 
+  }
+
+  ngAfterViewInit(): void {
+          Prism.highlightAll();
+   }
+  
+  ngAfterViewChecked(): void {
+          Prism.highlightAll();
   }
 }

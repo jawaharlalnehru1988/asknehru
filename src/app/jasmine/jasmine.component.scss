@@ -2,12 +2,14 @@
     display: flex;
    
     .sidebar {
-      width: 250px;
+      width: 24rem;
       background: #2c3e50;
       color: white;
-      padding: 1rem;
+      padding: 0.5rem;
       height: 92vh;
       overflow-y: auto;
+      font-size: 12px;
+      overflow-x: scroll;
       transition: transform 0.5s ease;
     }
   
@@ -20,14 +22,47 @@
   
   .sidebar-item {
     cursor: pointer;  
-    padding: 0.5rem;
+    font-size: 12px;
     background-color: #042834;
     transition: background-color 0.3s ease;
   }
   .sidebar-item:hover {
     background-color: #ff6f61;
   }
-  // Responsive for smaller screens
+
+  .drop-down-icon{
+    display: flex;
+    align-items: center;
+  }
+
+  .topic-btn{
+    background-color: #3a052a;
+    color: white;
+    text-align: start;
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .topic-btn:hover{
+    background-color: #ff3b2f;
+  }
+
+  .main-sidebar-content{
+    height: 88vh;
+    overflow-y: scroll;
+    width: 22rem;
+  }
+
+  article{
+    overflow-y: scroll;
+    height: 90vh;
+  }
+
   @media (max-width: 600px) {
   
     .sidebar {
@@ -37,12 +72,13 @@
       ul{
         
         li{
-          width: 11.5rem;
+          width: 9.8rem;
+          text-align: center;
         }
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 4px;
+        justify-content: space-evenly;
+        gap: 8px;
       }
     }
   
@@ -54,27 +90,17 @@
       display: flex;
       height: 3rem !important;
       overflow-x: scroll;
+      width: 100vw;
     }
     .jasmine-container{
       flex-direction: column;
     }
+    :host ::ng-deep article{
+      div{
+        width: 100vw !important;
+      }
+    }
   }
   
-  .topic-btn{
-    background-color: #3a052a;
-    color: white;
-    text-align: start;
-    border: none;
-    padding: 8px 16px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .topic-btn:hover{
-    background-color: #ff3b2f;
-  }
-
-  .main-sidebar-content{
-    height: 88vh;
-  }
+ 
 
