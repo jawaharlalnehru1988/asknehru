@@ -6909,7 +6909,2577 @@ title:`Event-Driven Communication`, content:`<div style="font-family: Arial, san
   </p>
 </div>
 `
-}
+},
+{
+  title:`JPA Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Persistence API (JPA) is a standard specification for object-relational mapping (ORM) in Java applications. It simplifies database interactions by allowing developers to work with Java objects instead of SQL queries.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts in JPA</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Entities</li>
+    <li>EntityManager</li>
+    <li>Persistence Context</li>
+    <li>Persistence Unit</li>
+    <li>JPQL (Java Persistence Query Language)</li>
+    <li>Annotations in JPA</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Entity in JPA</h3>
+  <p style="color: #2c3e50;">
+    An entity represents a table in a database, and each instance of the entity represents a row in the table.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          
+          @Column(name = "username", nullable = false)
+          private String username;
+          
+          @Column(name = "email", nullable = false)
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. EntityManager</h3>
+  <p style="color: #2c3e50;">
+    The <strong>EntityManager</strong> is the primary interface for interacting with the database in JPA.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      public class UserService {
+          private EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+          private EntityManager em = emf.createEntityManager();
+
+          public void saveUser(User user) {
+              em.getTransaction().begin();
+              em.persist(user);
+              em.getTransaction().commit();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">3. Persistence Context</h3>
+  <p style="color: #2c3e50;">
+    The Persistence Context is the set of managed entity instances in JPA. It ensures that changes to entities are automatically synchronized with the database.
+  </p>
+
+  <h3 style="color: #e67e22;">4. JPQL (Java Persistence Query Language)</h3>
+  <p style="color: #2c3e50;">
+    JPQL is used to query entities using object-oriented syntax instead of raw SQL.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public List<User> getUsers() {
+          return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Common JPA Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@Entity</code> - Marks a class as an entity.</li>
+    <li><code>@Table(name = "table_name")</code> - Maps the entity to a specific table.</li>
+    <li><code>@Id</code> - Specifies the primary key.</li>
+    <li><code>@GeneratedValue(strategy = GenerationType.IDENTITY)</code> - Auto-generates primary key values.</li>
+    <li><code>@Column(name = "column_name")</code> - Maps a field to a specific column.</li>
+    <li><code>@OneToOne, @OneToMany, @ManyToOne, @ManyToMany</code> - Defines relationships between entities.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Entity</code> and define proper primary keys.</li>
+    <li>Use <code>@Transactional</code> for atomic operations.</li>
+    <li>Avoid unnecessary queries by using fetch strategies.</li>
+    <li>Use batch processing for bulk operations.</li>
+    <li>Enable caching for performance optimization.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPA simplifies database operations in Java applications, reducing the need for complex SQL queries. By using JPA effectively, developers can create scalable and maintainable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Mapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Mapping in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity mapping in JPA (Java Persistence API) is the process of defining how Java objects (entities) relate to database tables. It uses annotations or XML configuration to specify table relationships, column mappings, and constraints.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Entity Mapping</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Basic Mapping</li>
+    <li>One-to-One Mapping</li>
+    <li>One-to-Many Mapping</li>
+    <li>Many-to-One Mapping</li>
+    <li>Many-to-Many Mapping</li>
+    <li>Embedded Mapping</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Basic Entity Mapping</h3>
+  <p style="color: #2c3e50;">
+    The simplest mapping is between an entity class and a database table using the <code>@Entity</code> and <code>@Table</code> annotations.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      @Table(name = "employees")
+      public class Employee {
+
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(name = "name", nullable = false)
+          private String name;
+
+          @Column(name = "salary")
+          private Double salary;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. One-to-One Mapping</h3>
+  <p style="color: #2c3e50;">
+    A one-to-one relationship means that one entity is associated with exactly one other entity.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          
+          @OneToOne
+          @JoinColumn(name = "address_id")
+          private Address address;
+      }
+
+      @Entity
+      public class Address {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(name = "city")
+          private String city;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">3. One-to-Many Mapping</h3>
+  <p style="color: #2c3e50;">
+    A one-to-many relationship means that one entity is related to multiple instances of another entity.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Department {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+          private List<Employee> employees = new ArrayList<>();
+      }
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id")
+          private Department department;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">4. Many-to-One Mapping</h3>
+  <p style="color: #2c3e50;">
+    This is the inverse of one-to-many, where multiple entities are related to a single entity.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id")
+          private Department department;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Many-to-Many Mapping</h3>
+  <p style="color: #2c3e50;">
+    In a many-to-many relationship, multiple entities are associated with multiple other entities.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Student {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @ManyToMany
+          @JoinTable(
+              name = "student_course",
+              joinColumns = @JoinColumn(name = "student_id"),
+              inverseJoinColumns = @JoinColumn(name = "course_id")
+          )
+          private List<Course> courses = new ArrayList<>();
+      }
+
+      @Entity
+      public class Course {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. Embedded Mapping</h3>
+  <p style="color: #2c3e50;">
+    Embedded mapping allows an entity to contain another class as an embedded object.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Embeddable
+      public class Address {
+          private String city;
+          private String street;
+      }
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Embedded
+          private Address address;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use appropriate mapping annotations to reflect real-world relationships.</li>
+    <li>Always define <code>mappedBy</code> in bidirectional relationships to avoid extra tables.</li>
+    <li>Use <code>cascade</code> options carefully to avoid unintended deletes or updates.</li>
+    <li>Use <code>fetch</code> types properly to optimize performance.</li>
+    <li>Normalize relationships to avoid redundancy and improve maintainability.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity mapping in JPA enables efficient database operations by defining relationships between objects. Proper mapping techniques improve application performance and maintainability.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Lifecycle`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Lifecycle in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In JPA (Java Persistence API), an entity goes through different lifecycle states during its interaction with the persistence context. Understanding these lifecycle states is crucial for managing database operations efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">JPA Entity Lifecycle States</h3>
+  <p style="color: #2c3e50;">
+    The JPA entity lifecycle consists of four main states:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Transient</strong></li>
+    <li><strong>Persistent</strong></li>
+    <li><strong>Detached</strong></li>
+    <li><strong>Removed</strong></li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Transient State</h3>
+  <p style="color: #2c3e50;">
+    When an entity object is created but not yet associated with any persistence context, it is in the <strong>Transient</strong> state. At this stage:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>It does not exist in the database.</li>
+    <li>JPA does not manage it.</li>
+    <li>Changes to it will not be persisted.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Employee emp = new Employee(); // Transient state
+      emp.setName("John Doe");
+      emp.setSalary(50000.0);
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Persistent State</h3>
+  <p style="color: #2c3e50;">
+    When an entity is managed by the persistence context, it enters the <strong>Persistent</strong> state. This happens when:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>It is saved using <code>EntityManager.persist()</code>.</li>
+    <li>It is retrieved from the database using <code>EntityManager.find()</code> or <code>EntityManager.merge()</code>.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      EntityManager em = emf.createEntityManager();
+      em.getTransaction().begin();
+
+      Employee emp = new Employee();
+      emp.setName("John Doe");
+      emp.setSalary(50000.0);
+      em.persist(emp); // Now in Persistent state
+
+      em.getTransaction().commit();
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">3. Detached State</h3>
+  <p style="color: #2c3e50;">
+    An entity becomes <strong>Detached</strong> when it is no longer managed by the persistence context. This happens when:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>The persistence context is closed.</li>
+    <li>The entity is manually detached using <code>EntityManager.detach()</code>.</li>
+    <li>The transaction is committed.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      EntityManager em = emf.createEntityManager();
+      Employee emp = em.find(Employee.class, 1L); // Persistent state
+
+      em.detach(emp); // Now in Detached state
+      emp.setSalary(60000.0); // Change won't be persisted
+
+      em.merge(emp); // Merges back to Persistent state
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">4. Removed State</h3>
+  <p style="color: #2c3e50;">
+    An entity enters the <strong>Removed</strong> state when it is scheduled for deletion using <code>EntityManager.remove()</code>.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      EntityManager em = emf.createEntityManager();
+      em.getTransaction().begin();
+
+      Employee emp = em.find(Employee.class, 1L);
+      em.remove(emp); // Now in Removed state
+
+      em.getTransaction().commit();
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Entity Lifecycle Events</h3>
+  <p style="color: #2c3e50;">
+    JPA provides lifecycle callback annotations to execute logic at different lifecycle stages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@PrePersist</code> - Before entity is inserted.</li>
+    <li><code>@PostPersist</code> - After entity is inserted.</li>
+    <li><code>@PreUpdate</code> - Before entity is updated.</li>
+    <li><code>@PostUpdate</code> - After entity is updated.</li>
+    <li><code>@PreRemove</code> - Before entity is removed.</li>
+    <li><code>@PostRemove</code> - After entity is removed.</li>
+    <li><code>@PostLoad</code> - After entity is loaded.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="backg
+`
+},
+{
+  title:`Primary Keys & Generation Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Primary Keys & Generation Strategies in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In JPA (Java Persistence API), the primary key uniquely identifies each entity in the database. It is essential for database operations such as retrieval, updates, and deletions. JPA provides different strategies to generate primary keys automatically.
+  </p>
+
+  <h3 style="color: #16a085;">Defining Primary Keys in JPA</h3>
+  <p style="color: #2c3e50;">
+    In JPA, we use the <code>@Id</code> annotation to mark a field as the primary key. A primary key can be a simple field (single column) or a composite key (multiple columns).
+  </p>
+
+  <h4 style="color: #e67e22;">Example of a Simple Primary Key:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Primary Key Generation Strategies</h3>
+  <p style="color: #2c3e50;">
+    JPA provides different ways to generate primary keys automatically using the <code>@GeneratedValue</code> annotation. The available strategies are:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>IDENTITY</strong> - Uses database auto-increment columns.</li>
+    <li><strong>SEQUENCE</strong> - Uses a database sequence.</li>
+    <li><strong>TABLE</strong> - Uses a separate table to maintain primary key values.</li>
+    <li><strong>AUTO</strong> - Automatically selects a strategy based on the database.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">1. IDENTITY Strategy</h3>
+  <p style="color: #2c3e50;">
+    The <strong>IDENTITY</strong> strategy relies on the database’s auto-increment feature to generate unique primary key values.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Works well with MySQL, PostgreSQL, and SQL Server.<br>
+    - Does not require extra queries to fetch the next ID.<br>
+    - Not recommended for batch inserts.
+  </p>
+
+  <h3 style="color: #2980b9;">2. SEQUENCE Strategy</h3>
+  <p style="color: #2c3e50;">
+    The <strong>SEQUENCE</strong> strategy uses a database sequence to generate primary keys. It is commonly used in databases like Oracle and PostgreSQL.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @SequenceGenerator(name = "employee_seq", sequenceName = "EMPLOYEE_SEQUENCE", allocationSize = 1)
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Better performance for batch inserts.<br>
+    - Requires defining a sequence in the database.
+  </p>
+
+  <h3 style="color: #2980b9;">3. TABLE Strategy</h3>
+  <p style="color: #2c3e50;">
+    The <strong>TABLE</strong> strategy stores primary key values in a separate table. It is useful when sequences or auto-increment are not available.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @TableGenerator(name = "employee_table", table = "ID_GENERATOR", pkColumnName = "GEN_NAME",
+                      valueColumnName = "GEN_VALUE", pkColumnValue = "EMP_ID", allocationSize = 1)
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.TABLE, generator = "employee_table")
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Works with all databases.<br>
+    - Slower than IDENTITY and SEQUENCE.<br>
+    - Requires a dedicated key-generation table.
+  </p>
+
+  <h3 style="color: #2980b9;">4. AUTO Strategy</h3>
+  <p style="color: #2c3e50;">
+    The <strong>AUTO</strong> strategy allows JPA to choose the best strategy based on the database being used.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.AUTO)
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Default strategy in JPA.<br>
+    - Uses IDENTITY, SEQUENCE, or TABLE depending on the database.
+  </p>
+
+  <h3 style="color: #d35400;">Choosing the Right Strategy</h3>
+  <p style="color: #2c3e50;">
+    The choice of primary key strategy depends on database type, performance needs, and scalability requirements.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use IDENTITY</strong> if the database supports auto-increment.</li>
+    <li><strong>Use SEQUENCE</strong> for better batch insert performance.</li>
+    <li><strong>Use TABLE</strong> when sequences or auto-increment are not available.</li>
+    <li><strong>Use AUTO</strong> for database-independent applications.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Primary keys are essential for uniquely identifying entities in JPA. Understanding different generation strategies helps in optimizing performance and ensuring compatibility across databases.
+  </p>
+</div>
+`
+},
+{
+  title:`JPA Annotations (@Entity, @Table, @Id, @Column)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA Annotations: @Entity, @Table, @Id, @Column</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    JPA (Java Persistence API) provides several annotations to map Java objects to database tables. The most commonly used annotations include <strong>@Entity</strong>, <strong>@Table</strong>, <strong>@Id</strong>, and <strong>@Column</strong>. These annotations help define how an entity class interacts with the database.
+  </p>
+
+  <h3 style="color: #16a085;">1. @Entity Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <strong>@Entity</strong> annotation marks a Java class as a JPA entity, meaning it is mapped to a table in the database.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+
+      @Entity
+      public class Employee {
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Every entity class must have a primary key.<br>
+    - The class must have a no-argument constructor.<br>
+    - Entities should not be final or contain final fields.
+  </p>
+
+  <h3 style="color: #2980b9;">2. @Table Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <strong>@Table</strong> annotation specifies the database table name for the entity. If omitted, the default table name is the class name.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.Table;
+
+      @Entity
+      @Table(name = "EMPLOYEES")
+      public class Employee {
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Allows specifying a custom table name.<br>
+    - Can define unique constraints using <code>uniqueConstraints</code>.<br>
+    - Can set schema using <code>schema</code> attribute.
+  </p>
+
+  <h3 style="color: #2980b9;">3. @Id Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <strong>@Id</strong> annotation marks a field as the primary key of the entity.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class Employee {
+          @Id
+          private Long id;
+          private String name;
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Every entity must have a primary key.<br>
+    - Can be used with <code>@GeneratedValue</code> for auto-generated IDs.<br>
+    - Supports composite keys when used with <code>@EmbeddedId</code> or <code>@IdClass</code>.
+  </p>
+
+  <h3 style="color: #2980b9;">4. @Column Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <strong>@Column</strong> annotation customizes the mapping of a field to a database column.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.Id;
+      import jakarta.persistence.Column;
+
+      @Entity
+      public class Employee {
+          @Id
+          private Long id;
+
+          @Column(name = "EMPLOYEE_NAME", length = 50, nullable = false)
+          private String name;
+
+          @Column(name = "EMPLOYEE_SALARY", precision = 10, scale = 2)
+          private Double salary;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - <code>name</code>: Specifies the column name in the table.<br>
+    - <code>length</code>: Defines the maximum length (for String fields).<br>
+    - <code>nullable</code>: Determines whether the column allows null values.<br>
+    - <code>precision</code> and <code>scale</code>: Define decimal precision for numeric fields.
+  </p>
+
+  <h3 style="color: #d35400;">Key Takeaways</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@Entity</strong>: Marks a class as a JPA entity.</li>
+    <li><strong>@Table</strong>: Specifies the database table name.</li>
+    <li><strong>@Id</strong>: Defines the primary key field.</li>
+    <li><strong>@Column</strong>: Customizes column properties in the table.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPA annotations help define how Java objects are mapped to database tables. Using <strong>@Entity</strong>, <strong>@Table</strong>, <strong>@Id</strong>, and <strong>@Column</strong>, developers can effectively control database interactions and structure their entities efficiently.
+  </p>
+</div>
+`
+},
+{
+  title:`Relationships (OneToOne, OneToMany, ManyToOne, ManyToMany)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA Relationships: OneToOne, OneToMany, ManyToOne, ManyToMany</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In JPA (Java Persistence API), relationships define how entities are connected in a database. JPA provides four types of relationships: <strong>OneToOne</strong>, <strong>OneToMany</strong>, <strong>ManyToOne</strong>, and <strong>ManyToMany</strong>. These relationships help establish meaningful connections between entities while ensuring efficient data management.
+  </p>
+
+  <h3 style="color: #16a085;">1. OneToOne Relationship</h3>
+  <p style="color: #2c3e50;">
+    A <strong>OneToOne</strong> relationship means one entity is associated with only one other entity.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      public class Employee {
+          @Id @GeneratedValue
+          private Long id;
+          private String name;
+
+          @OneToOne
+          @JoinColumn(name = "address_id")
+          private Address address;
+      }
+
+      @Entity
+      public class Address {
+          @Id @GeneratedValue
+          private Long id;
+          private String street;
+          private String city;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Each employee has exactly one address.<br>
+    - <code>@JoinColumn</code> creates a foreign key <strong>address_id</strong> in the <strong>Employee</strong> table.
+  </p>
+
+  <h3 style="color: #2980b9;">2. OneToMany Relationship</h3>
+  <p style="color: #2c3e50;">
+    A <strong>OneToMany</strong> relationship means one entity is related to multiple entities.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class Department {
+          @Id @GeneratedValue
+          private Long id;
+          private String name;
+
+          @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+          private List<Employee> employees;
+      }
+
+      @Entity
+      public class Employee {
+          @Id @GeneratedValue
+          private Long id;
+          private String name;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id")
+          private Department department;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - A <strong>Department</strong> can have multiple employees.<br>
+    - The <code>mappedBy</code> attribute in <strong>OneToMany</strong> tells JPA that the relationship is managed by the <code>department</code> field in <strong>Employee</strong>.
+  </p>
+
+  <h3 style="color: #2980b9;">3. ManyToOne Relationship</h3>
+  <p style="color: #2c3e50;">
+    A <strong>ManyToOne</strong> relationship means multiple entities are linked to a single entity.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id @GeneratedValue
+          private Long id;
+          private String name;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id")
+          private Department department;
+      }
+
+      @Entity
+      public class Department {
+          @Id @GeneratedValue
+          private Long id;
+          private String name;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - Multiple employees belong to the same department.<br>
+    - The <code>@ManyToOne</code> annotation is placed in the entity that holds the foreign key.
+  </p>
+
+  <h3 style="color: #2980b9;">4. ManyToMany Relationship</h3>
+  <p style="color: #2c3e50;">
+    A <strong>ManyToMany</strong> relationship means multiple entities can be related to multiple entities.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class Student {
+          @Id @GeneratedValue
+          private Long id;
+          private String name;
+
+          @ManyToMany
+          @JoinTable(
+              name = "student_course",
+              joinColumns = @JoinColumn(name = "student_id"),
+              inverseJoinColumns = @JoinColumn(name = "course_id")
+          )
+          private List<Course> courses;
+      }
+
+      @Entity
+      public class Course {
+          @Id @GeneratedValue
+          private Long id;
+          private String name;
+
+          @ManyToMany(mappedBy = "courses")
+          private List<Student> students;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    - A <strong>Student</strong> can enroll in multiple courses, and a <strong>Course</strong> can have multiple students.<br>
+    - A join table <strong>student_course</strong> is created with <code>student_id</code> and <code>course_id</code> as foreign keys.
+  </p>
+
+  <h3 style="color: #d35400;">Key Takeaways</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>OneToOne</strong>: One entity is linked to exactly one other entity.</li>
+    <li><strong>OneToMany</strong>: One entity is linked to multiple entities.</li>
+    <li><strong>ManyToOne</strong>: Multiple entities are linked to a single entity.</li>
+    <li><strong>ManyToMany</strong>: Multiple entities are linked to multiple entities.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPA relationships help in structuring database interactions efficiently. By using <strong>@OneToOne</strong>, <strong>@OneToMany</strong>, <strong>@ManyToOne</strong>, and <strong>@ManyToMany</strong>, developers can ensure clear and optimized entity connections in their applications.
+  </p>
+</div>
+`
+},
+{
+  title:`JPQL (Java Persistence Query Language)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to JPQL (Java Persistence Query Language)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Persistence Query Language (JPQL) is a platform-independent object-oriented query language defined as part of the Java Persistence API (JPA) specification. It is used to perform database operations on entities and their persistent state, rather than directly on database tables. JPQL is similar to SQL but operates on entity objects instead of tables, making it a powerful tool for working with JPA in Spring Boot applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use JPQL?</h3>
+  <p style="color: #2c3e50;">
+    JPQL offers several advantages for working with JPA entities:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Database Independence</strong>: JPQL queries are database-agnostic, allowing you to write queries that work across different databases.</li>
+    <li><strong>Object-Oriented</strong>: JPQL operates on entities and their relationships, making it easier to work with object-oriented data models.</li>
+    <li><strong>Type Safety</strong>: JPQL queries are type-safe, reducing the risk of runtime errors.</li>
+    <li><strong>Integration with JPA</strong>: JPQL integrates seamlessly with JPA, enabling features like lazy loading, caching, and pagination.</li>
+    <li><strong>Flexibility</strong>: JPQL supports complex queries, including joins, aggregations, and subqueries.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of JPQL</h3>
+  <p style="color: #2c3e50;">
+    When working with JPQL, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Entities</strong>: JPQL queries operate on JPA entities, which represent database tables.</li>
+    <li><strong>Query Structure</strong>: JPQL queries are similar to SQL but use entity and field names instead of table and column names.</li>
+    <li><strong>Named Queries</strong>: JPQL queries can be predefined and reused using named queries.</li>
+    <li><strong>Parameters</strong>: JPQL supports both positional and named parameters for dynamic queries.</li>
+    <li><strong>Pagination</strong>: JPQL queries can be paginated using the <code>setFirstResult</code> and <code>setMaxResults</code> methods.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using JPQL in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use JPQL in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity</h4>
+  <p style="color: #2c3e50;">
+    Create a JPA entity to represent a database table.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Repository with JPQL Queries</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Query</code> annotation to define JPQL queries in a repository.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.data.jpa.repository.Query;
+      import org.springframework.data.repository.query.Param;
+
+      import java.util.List;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+
+          // Simple JPQL query
+          @Query("SELECT u FROM User u WHERE u.email = :email")
+          User findByEmail(@Param("email") String email);
+
+          // JPQL query with join
+          @Query("SELECT u FROM User u JOIN u.orders o WHERE o.status = :status")
+          List&lt;User&gt; findUsersByOrderStatus(@Param("status") String status);
+
+          // JPQL query with pagination
+          @Query("SELECT u FROM User u ORDER BY u.name")
+          List&lt;User&gt; findAllUsersWithPagination(Pageable pageable);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Repository in a Service</h4>
+  <p style="color: #2c3e50;">
+    Use the repository methods in a service to perform database operations.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      import java.util.List;
+
+      @Service
+      public class UserService {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          public User getUserByEmail(String email) {
+              return userRepository.findByEmail(email);
+          }
+
+          public List&lt;User&gt; getUsersByOrderStatus(String status) {
+              return userRepository.findUsersByOrderStatus(status);
+          }
+
+          public List&lt;User&gt; getAllUsers(int page, int size) {
+              return userRepository.findAllUsersWithPagination(PageRequest.of(page, size));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using JPQL</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use named queries for frequently used queries to improve readability and maintainability.</li>
+    <li>Leverage pagination for large datasets to improve performance.</li>
+    <li>Use parameters to make queries dynamic and reusable.</li>
+    <li>Test JPQL queries thoroughly to ensure they work as expected.</li>
+    <li>Optimize queries to minimize database load and improve performance.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPQL is a powerful tool for working with JPA entities in Spring Boot applications. By leveraging JPQL, you can write database-agnostic, object-oriented queries that integrate seamlessly with JPA. Whether you're performing simple queries or complex joins, JPQL provides the flexibility and functionality needed to work with your data effectively. By following best practices, you can ensure that your JPQL queries are efficient, maintainable, and scalable.
+  </p>
+</div>
+`
+},
+{
+  title:`Criteria API`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Criteria API in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The Criteria API is a type-safe and programmatic way to construct database queries using the Java Persistence API (JPA). Unlike JPQL, which is a string-based query language, the Criteria API allows developers to build queries dynamically using Java objects, providing flexibility and reducing the risk of syntax errors.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Criteria API?</h3>
+  <p style="color: #2c3e50;">
+    The Criteria API provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Type Safety</strong>: Prevents runtime errors by ensuring type correctness at compile time.</li>
+    <li><strong>Dynamic Querying</strong>: Allows dynamic query creation based on runtime conditions.</li>
+    <li><strong>Readable and Maintainable</strong>: Queries are constructed using Java methods, making them easier to read and modify.</li>
+    <li><strong>Integration with JPA</strong>: Works seamlessly with JPA entity management and persistence context.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components of the Criteria API</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>CriteriaBuilder</strong>: Used to create query objects and define query conditions.</li>
+    <li><strong>CriteriaQuery</strong>: Represents the actual query that will be executed.</li>
+    <li><strong>Root</strong>: Defines the entity being queried.</li>
+    <li><strong>Predicate</strong>: Represents filter conditions applied to queries.</li>
+    <li><strong>TypedQuery</strong>: Executes the query and retrieves results.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Criteria API in Spring Boot</h3>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Implement a Repository with Criteria API</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import jakarta.persistence.EntityManager;
+      import jakarta.persistence.criteria.CriteriaBuilder;
+      import jakarta.persistence.criteria.CriteriaQuery;
+      import jakarta.persistence.criteria.Predicate;
+      import jakarta.persistence.criteria.Root;
+      import org.springframework.stereotype.Repository;
+      import java.util.List;
+
+      @Repository
+      public class UserRepository {
+          private final EntityManager entityManager;
+
+          public UserRepository(EntityManager entityManager) {
+              this.entityManager = entityManager;
+          }
+
+          public List<User> findUsersByEmail(String email) {
+              CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+              CriteriaQuery<User> cq = cb.createQuery(User.class);
+              Root<User> user = cq.from(User.class);
+              Predicate emailPredicate = cb.equal(user.get("email"), email);
+              cq.where(emailPredicate);
+
+              return entityManager.createQuery(cq).getResultList();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Repository in a Service</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          
+          @Autowired
+          private UserRepository userRepository;
+
+          public List<User> getUsersByEmail(String email) {
+              return userRepository.findUsersByEmail(email);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Criteria API</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use Criteria API for dynamic queries instead of string-based JPQL.</li>
+    <li>Combine multiple predicates using CriteriaBuilder for complex conditions.</li>
+    <li>Use pagination to limit large query results and improve performance.</li>
+    <li>Ensure queries are optimized to avoid performance bottlenecks.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The Criteria API is a powerful tool in JPA that allows developers to construct type-safe and dynamic queries. By leveraging the Criteria API, you can build queries programmatically while ensuring flexibility, maintainability, and performance optimization in Spring Boot applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Native SQL Queries`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Native SQL Queries in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Native SQL queries allow developers to execute raw SQL statements directly in Java Persistence API (JPA). Unlike JPQL or Criteria API, native queries give complete control over SQL execution, making them useful for complex queries, database-specific operations, or when performance tuning is necessary.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Native SQL Queries?</h3>
+  <p style="color: #2c3e50;">
+    Native SQL queries offer several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Direct SQL Execution</strong>: Enables the execution of complex SQL queries, including joins and stored procedures.</li>
+    <li><strong>Database-Specific Features</strong>: Allows the use of vendor-specific SQL functions and optimizations.</li>
+    <li><strong>Performance Optimization</strong>: Can be used for performance tuning when JPQL or Criteria API falls short.</li>
+    <li><strong>Flexibility</strong>: Ideal for queries that cannot be easily represented in JPQL.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components of Native SQL Queries</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@Query Annotation</strong>: Used in Spring Data JPA to execute native SQL queries.</li>
+    <li><strong>EntityManager.createNativeQuery</strong>: Manually executes native SQL queries.</li>
+    <li><strong>Result Mapping</strong>: Maps SQL query results to entity objects.</li>
+    <li><strong>Parameter Binding</strong>: Allows safe injection of parameters to prevent SQL injection.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Native SQL Queries in Spring Boot</h3>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String department;
+          private double salary;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Using @Query Annotation in a Repository</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.data.jpa.repository.Query;
+      import org.springframework.data.repository.query.Param;
+      import java.util.List;
+
+      public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
+          @Query(value = "SELECT * FROM Employee WHERE department = :department", nativeQuery = true)
+          List<Employee> findByDepartment(@Param("department") String department);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Using EntityManager for Native Queries</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import jakarta.persistence.EntityManager;
+      import jakarta.persistence.PersistenceContext;
+      import jakarta.persistence.Query;
+      import org.springframework.stereotype.Repository;
+      import java.util.List;
+
+      @Repository
+      public class EmployeeNativeRepository {
+          
+          @PersistenceContext
+          private EntityManager entityManager;
+
+          public List<Object[]> getEmployeesWithHighSalary(double salary) {
+              String sql = "SELECT id, name, salary FROM Employee WHERE salary > :salary";
+              Query query = entityManager.createNativeQuery(sql);
+              query.setParameter("salary", salary);
+              return query.getResultList();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Calling the Repository in a Service</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class EmployeeService {
+          
+          @Autowired
+          private EmployeeRepository employeeRepository;
+          
+          @Autowired
+          private EmployeeNativeRepository employeeNativeRepository;
+
+          public List<Employee> getEmployeesByDepartment(String department) {
+              return employeeRepository.findByDepartment(department);
+          }
+
+          public List<Object[]> getHighSalaryEmployees(double salary) {
+              return employeeNativeRepository.getEmployeesWithHighSalary(salary);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Native SQL Queries</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use native queries only when necessary; prefer JPQL or Criteria API for portability.</li>
+    <li>Always use parameterized queries to prevent SQL injection.</li>
+    <li>Ensure result mappings are correct to avoid data integrity issues.</li>
+    <li>Optimize queries with proper indexing and performance tuning techniques.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Native SQL queries in JPA provide developers with the flexibility to execute complex database operations while leveraging the power of SQL. When used wisely, they can enhance performance and handle advanced query scenarios efficiently in Spring Boot applications.
+  </p>
+</div>
+ `
+
+},
+{
+  title:`Named Queries`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Named Queries in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Named Queries in JPA allow developers to define queries statically using annotations or XML configurations. These pre-defined queries improve performance and maintainability by enabling the reuse of queries throughout the application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Named Queries?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulates query logic within entity classes, improving modularity.</li>
+    <li>Optimized by the persistence provider at startup, leading to better performance.</li>
+    <li>Enhances code readability and reduces duplication.</li>
+    <li>Easy to maintain and modify in large-scale applications.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Defining Named Queries</h3>
+  <p style="color: #2c3e50;">Named Queries can be defined using the <code>@NamedQuery</code> annotation or XML configuration.</p>
+
+  <h4 style="color: #8e44ad;">1. Using @NamedQuery Annotation</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import jakarta.persistence.*;
+
+      @Entity
+      @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Executing Named Query</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import jakarta.persistence.*;
+      import java.util.List;
+
+      public class UserRepository {
+          private final EntityManager entityManager;
+
+          public UserRepository(EntityManager entityManager) {
+              this.entityManager = entityManager;
+          }
+
+          public List<User> findUsersByEmail(String email) {
+              return entityManager.createNamedQuery("User.findByEmail", User.class)
+                  .setParameter("email", email)
+                  .getResultList();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Defining Named Queries in XML (Optional)</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      &lt;named-query name="User.findByEmail"&gt;
+          &lt;query&gt;SELECT u FROM User u WHERE u.email = :email&lt;/query&gt;
+      &lt;/named-query&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Best Practices for Named Queries</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful query names for clarity and maintainability.</li>
+    <li>Leverage indexed parameters (<code>?1, ?2</code>) for simplicity in complex queries.</li>
+    <li>Use <code>@NamedNativeQuery</code> for raw SQL queries when needed.</li>
+    <li>Ensure queries are optimized to avoid performance bottlenecks.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Named Queries in JPA provide a structured way to define and reuse database queries efficiently. By implementing them correctly, developers can achieve cleaner, more maintainable, and performant code in their Spring Boot applications.
+  </p>
+</div>
+
+ `
+},
+{
+  title:`Transaction Management`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Management in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction management ensures data consistency and integrity in Spring Boot applications, especially when multiple database operations need to be executed as a single unit of work.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Transaction Management:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>A transaction groups multiple database operations into a single unit.</li>
+    <li>Spring provides declarative transaction management using <code>@Transactional</code>.</li>
+    <li>Transactions follow ACID properties: Atomicity, Consistency, Isolation, and Durability.</li>
+    <li>Propagation behavior controls how transactions interact with each other.</li>
+    <li>Rollback policies determine when to revert changes due to errors.</li>
+    <li>Spring supports programmatic and declarative transaction management.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Declarative Transaction Management Example</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class BankService {
+
+          private final AccountRepository accountRepository;
+
+          public BankService(AccountRepository accountRepository) {
+              this.accountRepository = accountRepository;
+          }
+
+          @Transactional
+          public void transferMoney(Long fromAccountId, Long toAccountId, double amount) {
+              Account fromAccount = accountRepository.findById(fromAccountId).orElseThrow();
+              Account toAccount = accountRepository.findById(toAccountId).orElseThrow();
+              
+              fromAccount.debit(amount);
+              toAccount.credit(amount);
+              
+              accountRepository.save(fromAccount);
+              accountRepository.save(toAccount);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Propagation and Isolation Levels</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Propagation:</b> Defines how a transaction should behave when a method is called within an existing transaction.</li>
+    <ul>
+      <li><code>REQUIRED</code>: Uses the existing transaction or creates a new one.</li>
+      <li><code>REQUIRES_NEW</code>: Always creates a new transaction.</li>
+      <li><code>SUPPORTS</code>: Runs within a transaction if available.</li>
+    </ul>
+    <li><b>Isolation Levels:</b> Determines how transaction operations are isolated from each other.</li>
+    <ul>
+      <li><code>READ_COMMITTED</code>: Prevents dirty reads.</li>
+      <li><code>REPEATABLE_READ</code>: Prevents non-repeatable reads.</li>
+      <li><code>SERIALIZABLE</code>: Ensures full isolation but reduces concurrency.</li>
+    </ul>
+  </ul>
+
+  <h3 style="color: #e74c3c;">Handling Rollbacks</h3>
+  <p style="color: #2c3e50;">
+    Transactions can be rolled back automatically when an exception occurs. By default, Spring rolls back for unchecked exceptions (<code>RuntimeException</code>), but you can customize rollback behavior:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Transactional(rollbackFor = Exception.class)
+      public void processTransaction() throws Exception {
+          // Transactional operations
+          if (someCondition) {
+              throw new Exception("Force rollback");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Effective transaction management in Spring Boot enhances data integrity and consistency. By understanding propagation, isolation, and rollback strategies, developers can build robust applications with efficient database operations.
+  </p>
+</div>
+`
+},
+{
+  title:`Lazy vs Eager Loading`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Lazy Loading vs Eager Loading in JPA/Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In JPA and Hibernate, lazy and eager loading determine how related entities are fetched from the database.
+    Choosing the right strategy can impact performance and resource utilization.
+  </p>
+
+  <h3 style="color: #16a085;">Lazy Loading</h3>
+  <p style="color: #2c3e50;">
+    Lazy loading means that related entities are not fetched immediately from the database but only when they are explicitly accessed.
+    This improves performance by reducing unnecessary data retrieval but can lead to the "LazyInitializationException" if not handled properly.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Default behavior in JPA relationships (<code>@OneToMany</code>, <code>@ManyToOne</code>, <code>@ManyToMany</code>).</li>
+    <li>Loads associated entities only when accessed.</li>
+    <li>Reduces initial query load but can cause multiple queries later.</li>
+    <li>Risk of <code>LazyInitializationException</code> outside of a transaction.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Eager Loading</h3>
+  <p style="color: #2c3e50;">
+    Eager loading retrieves all related entities immediately, avoiding additional queries later but potentially fetching unnecessary data.
+    This strategy is useful when related entities are always required together.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Explicitly defined using <code>fetch = FetchType.EAGER</code>.</li>
+    <li>All related entities are retrieved in a single query.</li>
+    <li>May lead to performance issues due to excessive data retrieval.</li>
+    <li>Increased memory usage if fetching large datasets.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Example: Lazy vs Eager Loading</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class Department {
+
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @OneToMany(mappedBy = "department", fetch = FetchType.LAZY) // Lazy Loading
+          private List<Employee> employees;
+      }
+
+      @Entity
+      public class Employee {
+
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+
+          @ManyToOne(fetch = FetchType.EAGER) // Eager Loading
+          private Department department;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **Lazy Loading** for collections to optimize performance.</li>
+    <li>Use **Eager Loading** when related data is always required.</li>
+    <li>Leverage <code>JOIN FETCH</code> in JPQL to avoid multiple queries.</li>
+    <li>Use DTOs (Data Transfer Objects) to fetch only required fields.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Choosing between lazy and eager loading depends on the use case. A well-balanced approach ensures optimized performance and efficient data retrieval.
+  </p>
+</div>
+
+`
+},
+{
+title:`Caching (First-Level & Second-Level)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Caching in Hibernate: First-Level & Second-Level</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching in Hibernate improves performance by reducing database access. Hibernate provides two levels of caching:
+    <strong>First-Level Cache</strong> and <strong>Second-Level Cache</strong>. Understanding their differences and how they work is crucial for efficient data retrieval.
+  </p>
+
+  <h3 style="color: #16a085;">1. First-Level Cache (Session Cache)</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Enabled by default and tied to the Hibernate <code>Session</code>.</li>
+    <li>Stores entities within the same session, avoiding redundant database queries.</li>
+    <li>Cache is cleared when the session is closed.</li>
+    <li>No special configuration is required.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: First-Level Caching</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Session session = sessionFactory.openSession();
+      Transaction tx = session.beginTransaction();
+      
+      User user1 = session.get(User.class, 1); // Fetches from DB
+      User user2 = session.get(User.class, 1); // Fetches from Cache
+      
+      tx.commit();
+      session.close();
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">2. Second-Level Cache</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Not enabled by default; needs explicit configuration.</li>
+    <li>Stores entities beyond a single session, making them accessible across multiple sessions.</li>
+    <li>Requires a caching provider such as EhCache, Hazelcast, or Infinispan.</li>
+    <li>Configured using annotations like <code>@Cacheable</code> and <code>@Cache</code>.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Second-Level Caching Configuration</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @Cacheable
+      @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Enabling Second-Level Cache in Hibernate</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      hibernate.cache.use_second_level_cache=true
+      hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    By implementing both caching levels efficiently, you can significantly reduce database load and enhance application performance.
+  </p>
+</div>
+`
+},
+{
+  title:`JPA with Spring Data`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to JPA with Spring Data</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Persistence API (JPA) is a standard specification for object-relational mapping (ORM) in Java, enabling developers to manage relational data in applications using object-oriented principles. Spring Data JPA, a part of the larger Spring Data family, simplifies the implementation of JPA-based repositories by reducing boilerplate code and providing powerful features like query methods, pagination, and auditing. Together, JPA and Spring Data JPA make it easier to build data access layers in Spring Boot applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use JPA with Spring Data?</h3>
+  <p style="color: #2c3e50;">
+    Using JPA with Spring Data offers several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduced Boilerplate Code</strong>: Spring Data JPA eliminates the need for manual implementation of common CRUD operations.</li>
+    <li><strong>Query Methods</strong>: Automatically generates queries based on method names, reducing the need for writing JPQL or SQL.</li>
+    <li><strong>Pagination and Sorting</strong>: Provides built-in support for pagination and sorting, making it easier to handle large datasets.</li>
+    <li><strong>Auditing</strong>: Automatically tracks entity creation and modification timestamps.</li>
+    <li><strong>Integration with Spring Ecosystem</strong>: Seamlessly integrates with other Spring components like Spring Boot, Spring Security, and Spring MVC.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of JPA with Spring Data</h3>
+  <p style="color: #2c3e50;">
+    When working with JPA and Spring Data, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Entities</strong>: Represent database tables as Java objects using JPA annotations like <code>@Entity</code>, <code>@Id</code>, and <code>@GeneratedValue</code>.</li>
+    <li><strong>Repositories</strong>: Interfaces that extend <code>JpaRepository</code> to provide CRUD operations and custom query methods.</li>
+    <li><strong>Query Methods</strong>: Methods in repositories that automatically generate queries based on their names.</li>
+    <li><strong>Pagination</strong>: Supports paginated queries using the <code>Pageable</code> interface.</li>
+    <li><strong>Auditing</strong>: Automatically tracks entity creation and modification using annotations like <code>@CreatedDate</code> and <code>@LastModifiedDate</code>.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using JPA with Spring Data in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use JPA with Spring Data in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity</h4>
+  <p style="color: #2c3e50;">
+    Create a JPA entity to represent a database table.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Repository</h4>
+  <p style="color: #2c3e50;">
+    Extend <code>JpaRepository</code> to create a repository for the entity.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          // Custom query method
+          User findByEmail(String email);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Repository in a Service</h4>
+  <p style="color: #2c3e50;">
+    Use the repository methods in a service to perform database operations.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          public User getUserByEmail(String email) {
+              return userRepository.findByEmail(email);
+          }
+
+          public User createUser(User user) {
+              return userRepository.save(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Enable JPA Auditing</h4>
+  <p style="color: #2c3e50;">
+    Enable JPA auditing to automatically track entity creation and modification timestamps.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+      @Configuration
+      @EnableJpaAuditing
+      public class JpaConfig {
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">5. Add Auditing Fields to the Entity</h4>
+  <p style="color: #2c3e50;">
+    Add fields to the entity to track creation and modification timestamps.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+      import org.springframework.data.annotation.CreatedDate;
+      import org.springframework.data.annotation.LastModifiedDate;
+
+      import java.time.LocalDateTime;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          @CreatedDate
+          private LocalDateTime createdAt;
+
+          @LastModifiedDate
+          private LocalDateTime updatedAt;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using JPA with Spring Data</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use query methods for simple queries to reduce boilerplate code.</li>
+    <li>Leverage pagination and sorting for large datasets to improve performance.</li>
+    <li>Enable JPA auditing to automatically track entity changes.</li>
+    <li>Use <code>@Query</code> for complex queries that cannot be expressed using query methods.</li>
+    <li>Optimize entity relationships (e.g., lazy loading) to avoid performance issues.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPA with Spring Data is a powerful combination for building data access layers in Spring Boot applications. By leveraging Spring Data JPA, you can reduce boilerplate code, simplify query creation, and enhance the functionality of your repositories. Whether you're performing basic CRUD operations or complex queries, JPA and Spring Data provide the tools and features needed to work with your data efficiently and effectively. By following best practices, you can ensure that your application is scalable, maintainable, and performant.
+  </p>
+</div>`
+},
+{
+  title:`Repository Pattern`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding the Repository Pattern in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The Repository Pattern is a design pattern that helps abstract data access logic, promoting separation of concerns.
+    In Spring Boot, it is commonly implemented using Spring Data JPA, making data operations easier and more structured.
+  </p>
+
+  <h3 style="color: #16a085;">Key Benefits of Repository Pattern:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulates database logic for better maintainability.</li>
+    <li>Reduces boilerplate code when using Spring Data JPA.</li>
+    <li>Improves testability by allowing mocking of repositories.</li>
+    <li>Enhances scalability by abstracting persistence logic.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Implementing Repository Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.stereotype.Repository;
+
+      @Repository
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          User findByEmail(String email);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Service Layer Using Repository</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List&lt;User&gt; getAllUsers() {
+              return userRepository.findAll();
+          }
+
+          public User getUserByEmail(String email) {
+              return userRepository.findByEmail(email);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful method names in repositories.</li>
+    <li>Leverage Spring Data JPA’s built-in query methods.</li>
+    <li>Avoid placing business logic inside repository classes.</li>
+    <li>Use pagination and sorting to optimize performance.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    The Repository Pattern simplifies database interactions, making applications more modular, testable, and maintainable.
+  </p>
+</div>
+
+ `
+},
+{
+  title:`Spring Data JPA Repositories`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Data JPA Repositories</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Data JPA simplifies database access by providing a standard way to define repositories.
+    It abstracts the persistence layer, reducing boilerplate code and enhancing maintainability.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Spring Data JPA Repositories:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Eliminates boilerplate DAO code.</li>
+    <li>Provides built-in CRUD operations.</li>
+    <li>Supports derived query methods.</li>
+    <li>Allows the use of custom JPQL and native queries.</li>
+    <li>Integrates seamlessly with Spring Boot and Hibernate.</li>
+    <li>Offers pagination and sorting functionalities.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Defining a JPA Repository</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.stereotype.Repository;
+
+      @Repository
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          User findByUsername(String username);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Example: Using the Repository in a Service</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public List&lt;User&gt; getAllUsers() {
+              return userRepository.findAll();
+          }
+
+          public User getUserByUsername(String username) {
+              return userRepository.findByUsername(username);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Example: Custom Query with @Query Annotation</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.Query;
+      import org.springframework.data.repository.query.Param;
+
+      @Repository
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          @Query("SELECT u FROM User u WHERE u.email = :email")
+          User findUserByEmail(@Param("email") String email);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example: Pagination and Sorting</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.domain.Page;
+      import org.springframework.data.domain.Pageable;
+
+      @Repository
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          Page&lt;User&gt; findByRole(String role, Pageable pageable);
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    By leveraging Spring Data JPA repositories, developers can streamline database interactions
+    while maintaining clean, modular, and efficient code.
+  </p>
+</div>
+`
+},
+{ 
+  title:`Paging & Sorting`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Paging and Sorting in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Paging and sorting are essential features for handling large datasets in Spring Boot applications. Paging allows you to retrieve data in smaller, manageable chunks (pages), while sorting enables you to order the data based on specific criteria. Together, these features improve performance, reduce memory usage, and enhance the user experience by providing structured and organized data. Spring Data JPA provides built-in support for paging and sorting, making it easy to implement these features in your application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Paging and Sorting?</h3>
+  <p style="color: #2c3e50;">
+    Paging and sorting offer several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Performance</strong>: Retrieving smaller subsets of data reduces the load on the database and improves response times.</li>
+    <li><strong>Reduced Memory Usage</strong>: Processing smaller datasets minimizes memory consumption on the server and client sides.</li>
+    <li><strong>Enhanced User Experience</strong>: Users can navigate through data more efficiently with paginated and sorted results.</li>
+    <li><strong>Scalability</strong>: Paging and sorting make it easier to handle large datasets as your application grows.</li>
+    <li><strong>Flexibility</strong>: Allows users to customize how data is displayed based on their preferences.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Paging and Sorting</h3>
+  <p style="color: #2c3e50;">
+    When working with paging and sorting in Spring Boot, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Pageable</strong>: An interface in Spring Data that represents a request for a specific page of data, including page number, page size, and sorting criteria.</li>
+    <li><strong>Page</strong>: A Spring Data class that represents a single page of data, including the content, total number of pages, and total number of elements.</li>
+    <li><strong>Sort</strong>: A class that defines the sorting criteria, such as the field to sort by and the direction (ascending or descending).</li>
+    <li><strong>Repository Methods</strong>: Methods in Spring Data repositories that accept <code>Pageable</code> or <code>Sort</code> parameters to return paginated or sorted results.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Paging and Sorting in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to implement paging and sorting in a Spring Boot application using Spring Data JPA.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity</h4>
+  <p style="color: #2c3e50;">
+    Create a JPA entity to represent a database table.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Repository</h4>
+  <p style="color: #2c3e50;">
+    Extend <code>JpaRepository</code> to create a repository for the entity.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.domain.Page;
+      import org.springframework.data.domain.Pageable;
+      import org.springframework.data.jpa.repository.JpaRepository;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          // Paginated query
+          Page&lt;User&gt; findAll(Pageable pageable);
+
+          // Paginated and sorted query
+          Page&lt;User&gt; findByNameContaining(String name, Pageable pageable);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Repository in a Service</h4>
+  <p style="color: #2c3e50;">
+    Use the repository methods in a service to perform paginated and sorted queries.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.data.domain.Page;
+      import org.springframework.data.domain.PageRequest;
+      import org.springframework.data.domain.Sort;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          public Page&lt;User&gt; getAllUsers(int page, int size, String sortBy, String sortDir) {
+              Sort sort = Sort.by(Sort.Direction.fromString(sortDir), sortBy);
+              PageRequest pageRequest = PageRequest.of(page, size, sort);
+              return userRepository.findAll(pageRequest);
+          }
+
+          public Page&lt;User&gt; searchUsersByName(String name, int page, int size, String sortBy, String sortDir) {
+              Sort sort = Sort.by(Sort.Direction.fromString(sortDir), sortBy);
+              PageRequest pageRequest = PageRequest.of(page, size, sort);
+              return userRepository.findByNameContaining(name, pageRequest);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Create a Controller</h4>
+  <p style="color: #2c3e50;">
+    Expose the paginated and sorted data through a REST controller.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.data.domain.Page;
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+
+          @Autowired
+          private UserService userService;
+
+          @GetMapping
+          public Page&lt;User&gt; getAllUsers(
+                  @RequestParam(defaultValue = "0") int page,
+                  @RequestParam(defaultValue = "10") int size,
+                  @RequestParam(defaultValue = "name") String sortBy,
+                  @RequestParam(defaultValue = "asc") String sortDir) {
+              return userService.getAllUsers(page, size, sortBy, sortDir);
+          }
+
+          @GetMapping("/search")
+          public Page&lt;User&gt; searchUsersByName(
+                  @RequestParam String name,
+                  @RequestParam(defaultValue = "0") int page,
+                  @RequestParam(defaultValue = "10") int size,
+                  @RequestParam(defaultValue = "name") String sortBy,
+                  @RequestParam(defaultValue = "asc") String sortDir) {
+              return userService.searchUsersByName(name, page, size, sortBy, sortDir);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Paging and Sorting</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use sensible default values for page size and sorting criteria to improve usability.</li>
+    <li>Limit the maximum page size to prevent performance issues.</li>
+    <li>Cache frequently accessed pages to reduce database load.</li>
+    <li>Use indexes on sorted fields to improve query performance.</li>
+    <li>Provide clear documentation for paginated and sorted endpoints.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Paging and sorting are essential features for handling large datasets in Spring Boot applications. By leveraging Spring Data JPA's built-in support for paging and sorting, you can improve performance, reduce memory usage, and enhance the user experience. Whether you're building RESTful APIs or complex web applications, paging and sorting provide the tools and flexibility needed to work with your data efficiently and effectively. By following best practices, you can ensure that your application is scalable, maintainable, and performant.
+  </p>
+</div>`
+
+},
+{
+  title:`JPA Performance Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA Performance Optimization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Optimizing JPA performance is crucial for efficient database interactions and scalable applications.
+    Following best practices ensures reduced query execution time, lower memory consumption, and better responsiveness.
+  </p>
+
+  <h3 style="color: #16a085;">Key Performance Optimization Techniques:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>FetchType.LAZY</code> for collections to avoid unnecessary data loading.</li>
+    <li>Leverage <code>@BatchSize</code> for optimized lazy loading.</li>
+    <li>Optimize queries using <code>@Query</code> and native queries.</li>
+    <li>Use indexing on frequently searched columns.</li>
+    <li>Avoid N+1 query problems with <code>JOIN FETCH</code>.</li>
+    <li>Use the second-level cache (<code>@Cacheable</code>) for frequently accessed entities.</li>
+    <li>Use projections (<code>DTO Projections</code>) for fetching only required fields.</li>
+    <li>Limit query results with <code>setMaxResults()</code> or <code>Pageable</code>.</li>
+    <li>Optimize bulk inserts and updates using batch processing.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using FetchType.LAZY to Avoid Overloading</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class User {
+          @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+
+          @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+          private List<Order> orders;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Example: Solving N+1 Problem with JOIN FETCH</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.data.jpa.repository.Query;
+      import org.springframework.data.repository.CrudRepository;
+      import java.util.List;
+
+      public interface UserRepository extends CrudRepository<User, Long> {
+          @Query("SELECT u FROM User u JOIN FETCH u.orders WHERE u.id = :userId")
+          User findUserWithOrders(Long userId);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Example: Using DTO Projections for Performance</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      public interface UserDTO {
+          String getName();
+          int getOrderCount();
+      }
+
+      @Query("SELECT new com.example.dto.UserDTO(u.name, COUNT(o)) FROM User u LEFT JOIN u.orders o GROUP BY u.id")
+      List<UserDTO> findUserSummary();
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Implementing these optimizations ensures high performance and scalability in JPA-based applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Auditing in JPA (Envers)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Auditing in JPA (Envers)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate Envers is a powerful auditing framework for JPA that allows tracking entity changes over time.
+    It enables versioning of entity data and provides a way to retrieve historical records efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use JPA Envers?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Tracks changes to entity records automatically.</li>
+    <li>Stores historical data in audit tables.</li>
+    <li>Provides a simple way to retrieve previous versions of entities.</li>
+    <li>Works seamlessly with Spring Data JPA.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Adding Envers to a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">To enable Envers, add the following dependency in your <code>pom.xml</code>:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+          &lt;artifactId&gt;hibernate-envers&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Configuring an Auditable Entity</h3>
+  <p style="color: #2c3e50;">Use the <code>@Audited</code> annotation to enable auditing on an entity:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.hibernate.envers.Audited;
+      import javax.persistence.*;
+
+      @Entity
+      @Audited
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String department;
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Retrieving Historical Data</h3>
+  <p style="color: #2c3e50;">Use the <code>AuditReader</code> to fetch historical entity versions:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.hibernate.envers.AuditReader;
+      import org.hibernate.envers.AuditReaderFactory;
+      import org.hibernate.Session;
+      import javax.persistence.EntityManager;
+      import javax.persistence.PersistenceContext;
+      import java.util.List;
+
+      public class AuditService {
+
+          @PersistenceContext
+          private EntityManager entityManager;
+
+          public List<Employee> getEmployeeRevisions(Long id) {
+              AuditReader auditReader = AuditReaderFactory.get(entityManager.unwrap(Session.class));
+              return auditReader.createQuery()
+                      .forRevisionsOfEntity(Employee.class, false, true)
+                      .add(org.hibernate.envers.query.criteria.Restrictions.idEq(id))
+                      .getResultList();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Hibernate Envers simplifies auditing in JPA, making it easy to track and retrieve historical data.
+    By integrating Envers into your Spring Boot application, you can maintain an audit trail effortlessly.
+  </p>
+</div>
+`
+},
+{
+  title:`JPA Query Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA Query Optimization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Optimizing JPA queries is crucial for enhancing application performance and reducing database load. 
+    Poorly optimized queries can lead to performance bottlenecks, excessive memory usage, and slow response times.
+  </p>
+
+  <h3 style="color: #16a085;">Key Techniques for JPA Query Optimization:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **pagination** with <code>setMaxResults()</code> and <code>setFirstResult()</code> for large datasets.</li>
+    <li>Prefer **JPQL or Criteria API** over native queries for better maintainability.</li>
+    <li>Optimize **SELECT queries** by fetching only required columns using **projections**.</li>
+    <li>Leverage **@NamedQuery** and **@NamedNativeQuery** for precompiled queries.</li>
+    <li>Use **batch fetching** and **JOIN FETCH** to prevent the N+1 problem.</li>
+    <li>Enable **second-level cache** using Hibernate caching strategies.</li>
+    <li>Index frequently queried columns in the database.</li>
+    <li>Use **query hints** for fine-tuning execution plans.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using JOIN FETCH to Prevent N+1 Problem</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Query("SELECT u FROM User u JOIN FETCH u.roles WHERE u.id = :id")
+      User findUserWithRoles(@Param("id") Long id);
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Example: Pagination in JPA</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Pageable pageable = PageRequest.of(0, 10, Sort.by("name"));
+      Page<User> users = userRepository.findAll(pageable);
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Example: Using Query Hints</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @QueryHints({ @QueryHint(name = "org.hibernate.readOnly", value = "true") })
+      @Query("SELECT u FROM User u WHERE u.email = :email")
+      User findByEmail(@Param("email") String email);
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    By implementing these optimization techniques, you can significantly improve JPA query performance, 
+    reduce database load, and ensure a smoother user experience.
+  </p>
+</div>
+`
+},
+{
+  title:`JPA Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA Best Practices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Persistence API (JPA) is a powerful framework for managing relational data in Java applications.
+    Following best practices ensures efficiency, maintainability, and optimal performance.
+  </p>
+
+  <h3 style="color: #16a085;">Key JPA Best Practices:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Entity</code> annotations correctly to map classes to database tables.</li>
+    <li>Define a proper <code>@Id</code> with <code>@GeneratedValue</code> for primary keys.</li>
+    <li>Use **DTOs (Data Transfer Objects)** to avoid exposing entity classes directly.</li>
+    <li>Leverage **lazy loading** for associations to prevent unnecessary data fetching.</li>
+    <li>Optimize queries using **JPQL, Criteria API, or native SQL** where needed.</li>
+    <li>Use **batch processing** for bulk inserts and updates.</li>
+    <li>Apply caching mechanisms like **Hibernate's second-level cache** for better performance.</li>
+    <li>Manage transactions effectively with **@Transactional** annotation.</li>
+    <li>Use **connection pooling** to optimize database connections.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Proper Entity Mapping</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String name;
+
+          @Column(unique = true, nullable = false)
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Example: Optimized Querying</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.data.jpa.repository.Query;
+      import org.springframework.stereotype.Repository;
+
+      @Repository
+      public interface UserRepository extends JpaRepository<User, Long> {
+          @Query("SELECT u FROM User u WHERE u.email = :email")
+          User findByEmail(String email);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Example: Using Transactions</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class UserService {
+
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          @Transactional
+          public void registerUser(User user) {
+              userRepository.save(user);
+              // Additional logic can be added here
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    By following these best practices, you can ensure that your JPA-based applications are efficient, scalable, and maintainable.
+  </p>
+</div>
+`
+},
+{
+title:`Testing JPA with Spring`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Testing JPA with Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing is a critical part of developing robust and reliable Spring Boot applications. When working with JPA (Java Persistence API), it is essential to test your data access layer to ensure that your entities, repositories, and queries behave as expected. Spring Boot provides excellent support for testing JPA components, including in-memory databases, test annotations, and utilities to simplify the testing process. This article explores how to effectively test JPA components in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test JPA Components?</h3>
+  <p style="color: #2c3e50;">
+    Testing JPA components is important for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensure Data Integrity</strong>: Verify that your entities and repositories correctly persist and retrieve data.</li>
+    <li><strong>Validate Queries</strong>: Ensure that your JPQL or native queries return the expected results.</li>
+    <li><strong>Catch Bugs Early</strong>: Identify and fix issues in the data access layer before they reach production.</li>
+    <li><strong>Improve Code Quality</strong>: Writing tests encourages better design and maintainability of your code.</li>
+    <li><strong>Support Refactoring</strong>: Tests provide a safety net when making changes to your data access logic.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Testing JPA with Spring</h3>
+  <p style="color: #2c3e50;">
+    When testing JPA components in Spring Boot, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>In-Memory Databases</strong>: Use databases like H2 for fast and isolated testing.</li>
+    <li><strong>Test Annotations</strong>: Annotations like <code>@DataJpaTest</code>, <code>@SpringBootTest</code>, and <code>@Transactional</code> simplify testing.</li>
+    <li><strong>Test Data Setup</strong>: Use tools like <code>TestEntityManager</code> or SQL scripts to populate test data.</li>
+    <li><strong>Assertions</strong>: Use assertions to verify the expected behavior of your JPA components.</li>
+    <li><strong>Integration vs. Unit Testing</strong>: Decide whether to test individual components in isolation or as part of a larger system.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Testing JPA Components in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to test JPA components in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity and Repository</h4>
+  <p style="color: #2c3e50;">
+    Create a JPA entity and a repository to test.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+
+      import org.springframework.data.jpa.repository.JpaRepository;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          User findByEmail(String email);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Write a Test Class</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@DataJpaTest</code> annotation to test the repository with an in-memory database.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+      import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+
+      import static org.assertj.core.api.Assertions.assertThat;
+
+      @DataJpaTest
+      public class UserRepositoryTest {
+
+          @Autowired
+          private TestEntityManager entityManager;
+
+          @Autowired
+          private UserRepository userRepository;
+
+          @Test
+          public void testFindByEmail() {
+              // Arrange
+              User user = new User();
+              user.setName("John Doe");
+              user.setEmail("john.doe@example.com");
+              entityManager.persist(user);
+              entityManager.flush();
+
+              // Act
+              User found = userRepository.findByEmail(user.getEmail());
+
+              // Assert
+              assertThat(found.getEmail()).isEqualTo(user.getEmail());
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Test Query Methods</h4>
+  <p style="color: #2c3e50;">
+    Test custom query methods in the repository.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Test
+      public void testFindByName() {
+          // Arrange
+          User user = new User();
+          user.setName("Jane Doe");
+          user.setEmail("jane.doe@example.com");
+          entityManager.persist(user);
+          entityManager.flush();
+
+          // Act
+          User found = userRepository.findByName(user.getName());
+
+          // Assert
+          assertThat(found.getName()).isEqualTo(user.getName());
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Test Transactions</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Transactional</code> annotation to test transactional behavior.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Test
+      @Transactional
+      public void testTransactionalBehavior() {
+          // Arrange
+          User user = new User();
+          user.setName("Alice");
+          user.setEmail("alice@example.com");
+          entityManager.persist(user);
+          entityManager.flush();
+
+          // Act
+          User found = userRepository.findByEmail(user.getEmail());
+
+          // Assert
+          assertThat(found).isNotNull();
+          assertThat(found.getEmail()).isEqualTo(user.getEmail());
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing JPA with Spring</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use in-memory databases like H2 for fast and isolated testing.</li>
+    <li>Leverage <code>@DataJpaTest</code> for repository testing and <code>@SpringBootTest</code> for integration testing.</li>
+    <li>Use <code>TestEntityManager</code> to set up test data and verify persistence behavior.</li>
+    <li>Test both positive and negative scenarios to ensure robustness.</li>
+    <li>Keep tests independent and avoid relying on the state of other tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing JPA components is a crucial part of building reliable Spring Boot applications. By leveraging Spring Boot's testing support, you can ensure that your entities, repositories, and queries behave as expected. Whether you're writing unit tests for individual components or integration tests for the entire data access layer, following best practices will help you build a robust and maintainable application. Proper testing ensures data integrity, catches bugs early, and provides confidence when refactoring or extending your code.
+  </p>
+</div>
+`},
+
     ]
 
 }
