@@ -2,17 +2,25 @@
    <header class="main-sidebar-content">
 
        @for(topic of testing; track topic; let idx = $index){
-            <button class="topic-btn" (click)="selectTopic(topic.title)">
+            <button class="topic-btn"  (click)="selectTopic(topic.title)">
                <span> {{topic.title}}</span>
-                <span class="drop-down-icon"> <mat-icon aria-hidden="false" class="mat-icon"
-                    aria-label="Example home icon" fontIcon="expand_circle_down"></mat-icon> </span>
+                <span class="drop-down-icon"> 
+
+                <mat-icon aria-hidden="false" class="mat-icon-down"
+                    aria-label="Example home icon" fontIcon="expand_circle_down">
+                </mat-icon> 
+                <mat-icon aria-hidden="false" class="mat-icon-chevron"
+                    aria-label="Example home icon" fontIcon="chevron_right">
+                </mat-icon> 
+            
+            </span>
             </button>
         }
    </header>
         <aside class="sidebar">
             <ul>
                 @for(subtopic of selectedSubTopic; track subtopic){
-                    <li (click)="selectTopic(subtopic)"
+                    <li (click)="selectSubTopic(subtopic)"
                     class="sidebar-item">
                     {{ subtopic }}
                 </li>

@@ -1,7 +1,6 @@
-import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Jasmine, TestTopic } from './jasmine';
+import { Jasmine, TestTopic, TopicsExplained } from './jasmine';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import Prism from 'prismjs';
 
@@ -24,7 +23,7 @@ testing = this.jasmine.testingTopic;
 
   isSidebarOpen = true;
 
-  selectedSubTopic: string[] = [];
+  selectedSubTopic: string[] = this.jasmine.testingTopic[0].subTopic;
   selectedTopic: any;
   projectedContent: SafeHtml = ``;
 
@@ -49,7 +48,10 @@ testing = this.jasmine.testingTopic;
   }
   selectSubTopic(subTopic: string) {
   console.log('subTopic :', subTopic);
-
+    const selectedExplainedObj = this.jasmine.topicsExplained.find((obj:TopicsExplained)=> obj.topic === subTopic);
+      if (selectedExplainedObj) {
+      this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(selectedExplainedObj.content);
+    }
   }
 
   ngAfterViewInit(): void {

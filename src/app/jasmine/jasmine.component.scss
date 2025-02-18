@@ -62,9 +62,20 @@
     overflow-y: scroll;
     height: 90vh;
   }
+  .mat-icon-down{
+    display: none;
+  }
+  .mat-icon-chevron{
+    display: block;
+  }
 
   @media (max-width: 600px) {
-  
+    .mat-icon-down{
+      display: block;
+    }
+    .mat-icon-chevron{
+      display: none;
+    }
     .sidebar {
       width: 100% !important;
       height: auto !important;
