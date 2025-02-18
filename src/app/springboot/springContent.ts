@@ -9480,6 +9480,2990 @@ title:`Testing JPA with Spring`, content:`<div style="font-family: Arial, sans-s
 </div>
 `},
 
+  {
+    title:`Testing JPA with Spring`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Hibernate Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate is an Object-Relational Mapping (ORM) framework for Java applications, simplifying database interactions
+    by mapping Java objects to database tables. It provides a powerful abstraction layer over JDBC and allows developers
+    to work with databases using Java objects rather than SQL queries.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Hibernate:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Eliminates boilerplate JDBC code and manages database connections.</li>
+    <li>Supports automatic table generation and schema validation.</li>
+    <li>Provides a powerful query language known as HQL (Hibernate Query Language).</li>
+    <li>Ensures database portability with minimal changes.</li>
+    <li>Supports caching mechanisms to improve performance.</li>
+    <li>Manages transactions efficiently with ACID compliance.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Hibernate Architecture</h3>
+  <p style="color: #34495e;">Hibernate consists of several core components:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>SessionFactory:</b> Provides factory methods to create Hibernate sessions.</li>
+    <li><b>Session:</b> Represents a unit of work and handles database interactions.</li>
+    <li><b>Transaction:</b> Manages atomic operations in Hibernate.</li>
+    <li><b>Query:</b> Helps execute HQL or SQL queries.</li>
+    <li><b>Configuration:</b> Defines database connection properties.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Example: Hibernate Entity and Configuration</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Basic Hibernate Configuration (hibernate.cfg.xml)</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;hibernate-configuration&gt;
+          &lt;session-factory&gt;
+              &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.cj.jdbc.Driver&lt;/property&gt;
+              &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/mydb&lt;/property&gt;
+              &lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt;
+              &lt;property name="hibernate.connection.password"&gt;password&lt;/property&gt;
+              &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+              &lt;property name="hibernate.hbm2ddl.auto"&gt;update&lt;/property&gt;
+          &lt;/session-factory&gt;
+      &lt;/hibernate-configuration&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Basic CRUD Operations in Hibernate</h3>
+  <p style="color: #34495e;">Below is an example of performing basic CRUD operations using Hibernate:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.Session;
+      import org.hibernate.SessionFactory;
+      import org.hibernate.Transaction;
+      import org.hibernate.cfg.Configuration;
+
+      public class HibernateExample {
+          public static void main(String[] args) {
+              SessionFactory factory = new Configuration().configure().buildSessionFactory();
+              Session session = factory.openSession();
+              Transaction tx = session.beginTransaction();
+
+              User user = new User();
+              user.setName("John Doe");
+              user.setEmail("john@example.com");
+
+              session.save(user);
+              tx.commit();
+              session.close();
+              factory.close();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Hibernate simplifies database interactions by providing an ORM framework that eliminates the need for complex SQL queries.
+    By leveraging Hibernate, developers can efficiently manage database operations, ensuring maintainability and performance
+    in Java applications.
+  </p>
+</div>
+`
+},
+{
+title:`Hibernate Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Hibernate Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate is an Object-Relational Mapping (ORM) framework for Java applications, simplifying database interactions
+    by mapping Java objects to database tables. It provides a powerful abstraction layer over JDBC and allows developers
+    to work with databases using Java objects rather than SQL queries.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Hibernate:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Eliminates boilerplate JDBC code and manages database connections.</li>
+    <li>Supports automatic table generation and schema validation.</li>
+    <li>Provides a powerful query language known as HQL (Hibernate Query Language).</li>
+    <li>Ensures database portability with minimal changes.</li>
+    <li>Supports caching mechanisms to improve performance.</li>
+    <li>Manages transactions efficiently with ACID compliance.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Hibernate Architecture</h3>
+  <p style="color: #34495e;">Hibernate consists of several core components:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>SessionFactory:</b> Provides factory methods to create Hibernate sessions.</li>
+    <li><b>Session:</b> Represents a unit of work and handles database interactions.</li>
+    <li><b>Transaction:</b> Manages atomic operations in Hibernate.</li>
+    <li><b>Query:</b> Helps execute HQL or SQL queries.</li>
+    <li><b>Configuration:</b> Defines database connection properties.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Example: Hibernate Entity and Configuration</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Basic Hibernate Configuration (hibernate.cfg.xml)</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;hibernate-configuration&gt;
+          &lt;session-factory&gt;
+              &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.cj.jdbc.Driver&lt;/property&gt;
+              &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/mydb&lt;/property&gt;
+              &lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt;
+              &lt;property name="hibernate.connection.password"&gt;password&lt;/property&gt;
+              &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+              &lt;property name="hibernate.hbm2ddl.auto"&gt;update&lt;/property&gt;
+          &lt;/session-factory&gt;
+      &lt;/hibernate-configuration&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Basic CRUD Operations in Hibernate</h3>
+  <p style="color: #34495e;">Below is an example of performing basic CRUD operations using Hibernate:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.Session;
+      import org.hibernate.SessionFactory;
+      import org.hibernate.Transaction;
+      import org.hibernate.cfg.Configuration;
+
+      public class HibernateExample {
+          public static void main(String[] args) {
+              SessionFactory factory = new Configuration().configure().buildSessionFactory();
+              Session session = factory.openSession();
+              Transaction tx = session.beginTransaction();
+
+              User user = new User();
+              user.setName("John Doe");
+              user.setEmail("john@example.com");
+
+              session.save(user);
+              tx.commit();
+              session.close();
+              factory.close();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Hibernate simplifies database interactions by providing an ORM framework that eliminates the need for complex SQL queries.
+    By leveraging Hibernate, developers can efficiently manage database operations, ensuring maintainability and performance
+    in Java applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Hibernate vs JDBC`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Hibernate vs JDBC</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    When building Java applications that require interaction with databases, developers often choose between two primary approaches: Hibernate and JDBC. While both methods enable database operations, they differ significantly in terms of ease of use, flexibility, and functionality. This article explores the key differences between Hibernate and JDBC, helping developers understand which option suits their project needs.
+  </p>
+
+  <h3 style="color: #16a085;">JDBC (Java Database Connectivity) Overview</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    JDBC is a low-level API for connecting and interacting with relational databases in Java. It allows developers to execute SQL queries directly against a database using Java code. The JDBC API provides a set of interfaces and classes for working with relational databases, including establishing connections, executing queries, and processing result sets.
+  </p>
+  
+  <h3 style="color: #16a085;">Hibernate Overview</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate, on the other hand, is an Object-Relational Mapping (ORM) framework that abstracts away the complexities of interacting with relational databases. Hibernate maps Java objects to database tables and provides a high-level interface for database operations. It offers an abstraction layer over JDBC, enabling developers to work with objects instead of writing complex SQL queries.
+  </p>
+
+  <h3 style="color: #e67e22;">Key Differences Between Hibernate and JDBC</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Level of Abstraction:</b> JDBC is a low-level API that requires developers to write raw SQL queries and handle result sets manually. Hibernate, however, provides a higher level of abstraction by mapping Java objects to database tables, allowing developers to focus on business logic instead of SQL.</li>
+    <li><b>SQL Management:</b> With JDBC, developers must write and maintain SQL queries explicitly for CRUD operations. In Hibernate, queries are automatically generated based on object mapping, and developers can use Hibernate Query Language (HQL) or Criteria API to perform database operations.</li>
+    <li><b>Code Complexity:</b> JDBC often involves writing repetitive code for establishing connections, executing queries, and processing results. Hibernate reduces this complexity by managing connections, transactions, and SQL generation internally.</li>
+    <li><b>Transaction Management:</b> In JDBC, developers need to manually manage transactions, ensuring that operations are executed within a transaction context. Hibernate automatically manages transactions and provides support for declarative transaction handling.</li>
+    <li><b>Database Portability:</b> JDBC queries are database-dependent, meaning the same SQL might not work across different database systems. Hibernate abstracts database-specific details and allows applications to be more database-agnostic, making it easier to switch between different databases.</li>
+    <li><b>Performance Optimization:</b> Hibernate provides built-in caching mechanisms to optimize performance by reducing database queries. JDBC requires manual optimization techniques such as connection pooling and result set caching.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Hibernate vs JDBC - Pros and Cons</h3>
+  <h4 style="color: #e67e22;">JDBC Pros:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Offers complete control over database operations, allowing fine-grained optimization.</li>
+    <li>Direct access to SQL, making it suitable for complex queries where fine-tuned SQL is necessary.</li>
+    <li>Does not require any additional frameworks or libraries, making it a lightweight option.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">JDBC Cons:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Requires writing boilerplate code for database connections, transactions, and SQL management.</li>
+    <li>Harder to maintain as the application grows, especially with complex SQL statements.</li>
+    <li>Does not provide built-in mechanisms for caching, object-relational mapping, or transaction management.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Hibernate Pros:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Reduces the need for writing SQL and handling database connections, transactions, and object-relational mapping.</li>
+    <li>Provides automatic CRUD operations and advanced features like caching, lazy loading, and batch processing.</li>
+    <li>Ensures database portability and supports multiple database systems with minimal changes to the code.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Hibernate Cons:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Can introduce performance overhead due to additional abstraction layers and automatic operations.</li>
+    <li>Requires learning the framework and its conventions, especially for advanced features like HQL and caching.</li>
+    <li>In some scenarios, Hibernate’s automatic behavior might not be as efficient as a well-written, hand-crafted SQL query.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">When to Use JDBC?</h3>
+  <p style="color: #34495e;">
+    JDBC is suitable for applications that require fine-grained control over SQL queries and database interactions. It is ideal for performance-critical applications or scenarios where the developer needs to execute complex, custom SQL queries. JDBC is also a good choice for simple applications with limited database operations.
+  </p>
+
+  <h3 style="color: #2c3e50;">When to Use Hibernate?</h3>
+  <p style="color: #34495e;">
+    Hibernate is best for applications that require a high level of abstraction, simplified CRUD operations, and database portability. If your application has complex object models or requires automatic persistence management, Hibernate is a more efficient solution. It is also recommended when working with large-scale applications where transaction management, caching, and performance optimization are important.
+  </p>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Both JDBC and Hibernate have their place in Java development, and the decision between them depends on the specific needs of the project. JDBC provides greater control and efficiency for low-level database interactions, while Hibernate simplifies the development process by handling object-relational mapping and providing powerful abstraction features. Understanding the strengths and limitations of each will help developers choose the right tool for their application.
+  </p>
+</div>
+`
+},
+{
+  title:`Architecture & Workflow`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Hibernate Architecture & Workflow</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate is a powerful Object-Relational Mapping (ORM) framework that abstracts database interactions, allowing developers to work with Java objects instead of raw SQL queries. To better understand how Hibernate operates, it’s crucial to grasp its architecture and the overall workflow involved in managing database operations.
+  </p>
+
+  <h3 style="color: #16a085;">Hibernate Architecture Overview</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The architecture of Hibernate consists of several core components that collaborate to handle tasks such as object-relational mapping, transaction management, and query execution. Each of these components plays a vital role in simplifying database interactions within Java applications.
+  </p>
+
+  <h3 style="color: #e67e22;">Core Components of Hibernate Architecture</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>SessionFactory:</b> The SessionFactory is a central component in Hibernate. It is responsible for creating Session objects and managing the lifecycle of these objects. A SessionFactory is typically configured once per application, as it can be costly to create multiple instances.</li>
+    <li><b>Session:</b> A Session represents a single unit of work, and it is used to interact with the database. It is responsible for CRUD operations (Create, Read, Update, Delete) and the query execution. The Session is short-lived and typically tied to a single transaction.</li>
+    <li><b>Transaction:</b> Transactions ensure that database operations are atomic and consistent. Hibernate handles transaction management automatically, ensuring ACID (Atomicity, Consistency, Isolation, Durability) compliance for database operations.</li>
+    <li><b>Query:</b> Hibernate provides powerful query options, such as Hibernate Query Language (HQL) and the Criteria API, which abstract away the need for complex SQL queries. These queries are executed using the Session object.</li>
+    <li><b>Configuration:</b> The Configuration class in Hibernate is responsible for setting up Hibernate’s runtime environment, including database connection properties and mapping of Java classes to database tables.</li>
+    <li><b>Mapping:</b> Mapping is the process of associating Java objects with database tables. Hibernate uses annotations or XML files to map class properties to database columns.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Hibernate Workflow</h3>
+  <p style="color: #34495e;">
+    The Hibernate workflow revolves around several key steps, from the initialization of a session to performing CRUD operations and managing transactions. Below is an outline of the basic steps involved in the Hibernate workflow.
+  </p>
+
+  <h4 style="color: #e67e22;">Step 1: Configuration</h4>
+  <p style="color: #34495e;">
+    Before interacting with the database, Hibernate requires configuration to specify how it will connect to the database and manage sessions. This is typically done using the <code>hibernate.cfg.xml</code> configuration file, which contains properties such as database URL, username, password, and Hibernate dialect.
+  </p>
+
+  <h4 style="color: #e67e22;">Step 2: SessionFactory Creation</h4>
+  <p style="color: #34495e;">
+    Once the configuration is set up, the <b>SessionFactory</b> is created. This object is responsible for providing <b>Session</b> instances and is typically created once per application. The SessionFactory is thread-safe and can be shared across the application.
+  </p>
+
+  <h4 style="color: #e67e22;">Step 3: Open Session</h4>
+  <p style="color: #34495e;">
+    To perform database operations, a <b>Session</b> is opened. The Session object is the interface for interacting with the database. Each session represents a single unit of work and is tied to a transaction.
+  </p>
+
+  <h4 style="color: #e67e22;">Step 4: Begin Transaction</h4>
+  <p style="color: #34495e;">
+    Transactions ensure that a group of database operations are executed atomically. In Hibernate, you begin a transaction using the <code>beginTransaction()</code> method on the Session object. If the transaction is committed, all operations are saved to the database; otherwise, the operations are rolled back to maintain data consistency.
+  </p>
+
+  <h4 style="color: #e67e22;">Step 5: Perform CRUD Operations</h4>
+  <p style="color: #34495e;">
+    With the session and transaction in place, you can now perform CRUD operations on your Java objects. Hibernate automatically persists, retrieves, updates, and deletes objects from the database based on the mappings between the Java objects and database tables. These operations are carried out using the <code>save()</code>, <code>load()</code>, <code>update()</code>, and <code>delete()</code> methods on the session.
+  </p>
+
+  <h4 style="color: #e67e22;">Step 6: Commit or Rollback</h4>
+  <p style="color: #34495e;">
+    After performing the required database operations, you must commit the transaction to make the changes permanent. If an error occurs, you can roll back the transaction to undo any changes. This step ensures data consistency and integrity.
+  </p>
+
+  <h4 style="color: #
+`
+},
+{
+  title:`Configuration`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Hibernate Configuration</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate configuration is a crucial step when setting up Hibernate for Java applications. It defines the environment, the connection to the database, and the mapping between Java classes and database tables. Proper configuration is essential for the smooth operation of Hibernate, ensuring the ORM layer works efficiently and effectively with the database.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Hibernate Configuration</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate offers different ways to configure the framework, including XML-based configuration and annotation-based configuration. Both approaches are used to set up the Hibernate environment, but the XML-based configuration is the most common.
+  </p>
+
+  <h3 style="color: #e67e22;">1. XML-Based Configuration</h3>
+  <p style="color: #34495e;">
+    The <b>hibernate.cfg.xml</b> file is the most commonly used configuration file in Hibernate. It contains important configuration details, such as the database connection properties, Hibernate-specific settings, and the mapping of Java classes to database tables.
+  </p>
+
+  <h4 style="color: #e67e22;">hibernate.cfg.xml Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;hibernate-configuration&gt;
+          &lt;session-factory&gt;
+              &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.cj.jdbc.Driver&lt;/property&gt;
+              &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/mydb&lt;/property&gt;
+              &lt;property name="hibernate.connection.username"&gt;root&lt;/property&gt;
+              &lt;property name="hibernate.connection.password"&gt;password&lt;/property&gt;
+              &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;
+              &lt;property name="hibernate.hbm2ddl.auto"&gt;update&lt;/property&gt;
+              &lt;property name="hibernate.show_sql"&gt;true&lt;/property&gt;
+              &lt;property name="hibernate.format_sql"&gt;true&lt;/property&gt;
+          &lt;/session-factory&gt;
+      &lt;/hibernate-configuration&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #34495e;">Explanation of Key Properties:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>hibernate.connection.driver_class:</b> Specifies the JDBC driver class for the database (e.g., MySQL, PostgreSQL).</li>
+    <li><b>hibernate.connection.url:</b> The URL to connect to the database.</li>
+    <li><b>hibernate.connection.username:</b> The database username.</li>
+    <li><b>hibernate.connection.password:</b> The password to access the database.</li>
+    <li><b>hibernate.dialect:</b> Defines the database dialect Hibernate should use (e.g., MySQL, PostgreSQL, Oracle).</li>
+    <li><b>hibernate.hbm2ddl.auto:</b> Specifies the schema generation strategy. Common values include <code>update</code>, <code>create</code>, or <code>validate</code>.</li>
+    <li><b>hibernate.show_sql:</b> If set to <code>true</code>, Hibernate will log SQL statements to the console.</li>
+    <li><b>hibernate.format_sql:</b> If set to <code>true</code>, SQL queries will be formatted for better readability.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">2. Annotation-Based Configuration</h3>
+  <p style="color: #34495e;">
+    In addition to the XML-based configuration, Hibernate also supports annotation-based configuration, which allows developers to configure the database mappings directly in the Java code using annotations. This eliminates the need for an external configuration file.
+  </p>
+
+  <h4 style="color: #e67e22;">Annotation-Based Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(name = "user_name")
+          private String name;
+
+          @Column(name = "user_email")
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #34495e;">Explanation of Annotations:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>@Entity:</b> Marks the class as a persistent entity that Hibernate will map to a database table.</li>
+    <li><b>@Table:</b> Specifies the database table name associated with the entity.</li>
+    <li><b>@Id:</b> Denotes the primary key of the entity.</li>
+    <li><b>@GeneratedValue:</b> Defines how the primary key value is generated (e.g., auto-increment).</li>
+    <li><b>@Column:</b> Maps the class attributes to the respective database columns.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">3. Programmatic Configuration</h3>
+  <p style="color: #34495e;">
+    Hibernate can also be configured programmatically, which allows developers to set configuration properties and build the <b>SessionFactory</b> object through Java code. This approach is typically used for more complex configurations or when you need more control over the configuration process.
+  </p>
+
+  <h4 style="color: #e67e22;">Programmatic Configuration Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.SessionFactory;
+      import org.hibernate.cfg.Configuration;
+
+      public class HibernateUtil {
+          private static SessionFactory factory;
+
+          static {
+              try {
+                  // Create the SessionFactory from hibernate.cfg.xml
+                  factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+          }
+
+          public static SessionFactory getSessionFactory() {
+              return factory;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Understanding Configuration Options</h3>
+  <p style="color: #34495e;">
+    In addition to specifying connection properties and mappings, Hibernate provides several other configuration options that allow fine-tuning of behavior. These options include enabling caching, configuring transaction management, setting batch sizes for SQL operations, and more.
+  </p>
+
+  <h4 style="color: #e67e22;">Some Important Hibernate Configuration Properties:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>hibernate.cache.use_second_level_cache:</b> Enables/disables the second-level cache.</li>
+    <li><b>hibernate.cache.region.factory_class:</b> Specifies the cache provider to use (e.g., Ehcache, Infinispan).</li>
+    <li><b>hibernate.jdbc.batch_size:</b> Defines the batch size for JDBC operations, improving performance during bulk inserts/updates.</li>
+    <li><b>hibernate.current_session_context_class:</b> Defines how sessions are managed in a multi-threaded environment (e.g., <code>thread</code>, <code>jta</code>).</li>
+    <li><b>hibernate.hbm2ddl.auto:</b> Controls how Hibernate handles schema generation (e.g., <code>update</code>, <code>create</code>, <code>validate</code>).</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Proper Hibernate configuration is crucial for efficient and optimal database interaction in Java applications. By choosing the appropriate configuration method—XML-based, annotation-based, or programmatic—you can tailor Hibernate to fit your project's needs. Understanding configuration properties and how they affect Hibernate’s behavior is key to leveraging its full potential, ensuring that your database interactions are seamless, scalable, and performant.
+  </p>
+</div>
+`
+},
+{
+  title:`SessionFactory & Session`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">SessionFactory & Session</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Hibernate, <b>SessionFactory</b> and <b>Session</b> are two key components used to interact with the database. The <b>SessionFactory</b> is a factory object that creates <b>Session</b> instances, while the <b>Session</b> represents a single unit of work with the database. These components form the backbone of Hibernate’s database interaction process.
+  </p>
+
+  <h3 style="color: #16a085;">SessionFactory</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>SessionFactory</b> is a thread-safe object that is responsible for creating <b>Session</b> instances. It is an expensive object to create, and therefore, it should be instantiated once per application. It is usually created during the application startup and used throughout the application’s lifecycle to obtain <b>Session</b> objects.
+  </p>
+
+  <h4 style="color: #e67e22;">SessionFactory Initialization</h4>
+  <p style="color: #34495e;">
+    The <b>SessionFactory</b> is typically created using the <code>Configuration</code> object, which loads configuration properties (e.g., hibernate.cfg.xml) and creates the <b>SessionFactory</b> instance. Once the <b>SessionFactory</b> is created, it can be used to open multiple <b>Session</b> objects.
+  </p>
+
+  <h4 style="color: #e67e22;">SessionFactory Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.SessionFactory;
+      import org.hibernate.cfg.Configuration;
+
+      public class HibernateUtil {
+          private static SessionFactory factory;
+
+          static {
+              try {
+                  // Create the SessionFactory from hibernate.cfg.xml
+                  factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+          }
+
+          public static SessionFactory getSessionFactory() {
+              return factory;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Session</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A <b>Session</b> is a single-threaded unit of work in Hibernate that is used to interact with the database. It is the main interface for database operations like saving, updating, deleting, and querying entities. It acts as a bridge between the application and the Hibernate ORM framework.
+  </p>
+
+  <h4 style="color: #e67e22;">Creating a Session</h4>
+  <p style="color: #34495e;">
+    A <b>Session</b> is created from the <b>SessionFactory</b> using the <code>openSession()</code> method. It is essential to open a session before performing any database operations and close it once the operations are complete.
+  </p>
+
+  <h4 style="color: #e67e22;">Session Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.Session;
+      import org.hibernate.SessionFactory;
+      import org.hibernate.Transaction;
+
+      public class HibernateExample {
+          public static void main(String[] args) {
+              SessionFactory factory = HibernateUtil.getSessionFactory();
+              Session session = factory.openSession();
+              Transaction tx = session.beginTransaction();
+
+              User user = new User();
+              user.setName("John Doe");
+              user.setEmail("john@example.com");
+
+              session.save(user);
+              tx.commit();
+              session.close();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Session Methods</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>Session</b> interface provides several methods for CRUD operations, transaction management, and querying. Some commonly used methods include:
+  </p>
+
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>save():</b> Persists an object in the database (insert operation).</li>
+    <li><b>update():</b> Updates an existing object in the database.</li>
+    <li><b>delete():</b> Deletes an object from the database.</li>
+    <li><b>get():</b> Retrieves an object from the database by its identifier.</li>
+    <li><b>load():</b> Loads an object from the database based on its identifier (lazy loading).</li>
+    <li><b>beginTransaction():</b> Starts a new transaction.</li>
+    <li><b>commit():</b> Commits the current transaction.</li>
+    <li><b>rollback():</b> Rolls back the current transaction in case of an error.</li>
+    <li><b>createQuery():</b> Creates a query to retrieve data from the database using HQL (Hibernate Query Language).</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Session Lifecycle</h3>
+  <p style="color: #34495e;">
+    A <b>Session</b> follows a specific lifecycle during its usage:
+  </p>
+
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Open:</b> A session is created by calling <code>openSession()</code> on the <b>SessionFactory</b>.</li>
+    <li><b>Transactional:</b> After the session is opened, the developer can start a transaction using <code>beginTransaction()</code> to manage CRUD operations.</li>
+    <li><b>Dirty Checking:</b> During the session, Hibernate automatically tracks changes made to the entities (dirty checking) and applies the changes to the database when the transaction is committed.</li>
+    <li><b>Closed:</b> After performing the database operations, the session should be closed using <code>session.close()</code>.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Session vs SessionFactory</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    While both the <b>SessionFactory</b> and <b>Session</b> are critical for Hibernate’s database interaction, they serve different purposes:
+  </p>
+
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>SessionFactory:</b> A <b>SessionFactory</b> is a factory for creating <b>Session</b> instances. It is created once and used throughout the application.</li>
+    <li><b>Session:</b> A <b>Session</b> is used to perform CRUD operations on a single object at a time. It is created and destroyed for each unit of work (transaction).</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Session & SessionFactory in a Real-World Example</h3>
+  <p style="color: #34495e;">
+    In a real-world scenario, the <b>SessionFactory</b> is initialized when the application starts up and is reused throughout the application’s lifecycle. On the other hand, a <b>Session</b> is created for each transaction or set of related operations, and it is closed when the operations are complete.
+  </p>
+
+  <h4 style="color: #e67e22;">Example of Using Session and SessionFactory:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.Session;
+      import org.hibernate.SessionFactory;
+      import org.hibernate.Transaction;
+
+      public class HibernateExample {
+          public static void main(String[] args) {
+              SessionFactory factory = HibernateUtil.getSessionFactory();
+              Session session = factory.openSession();
+              Transaction tx = session.beginTransaction();
+
+              // Example CRUD operation
+              User user = new User();
+              user.setName("John Doe");
+              user.setEmail("john@example.com");
+
+              session.save(user); // Save the user to the database
+
+              tx.commit(); // Commit the transaction
+              session.close(); // Close the session
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>SessionFactory</b> and <b>Session</b> are central to Hibernate’s ORM functionality. The <b>SessionFactory</b> is responsible for creating <b>Session</b> instances and is typically initialized once per application, while the <b>Session</b> is used to perform individual CRUD operations within a transaction. Understanding how these components interact is key to effectively using Hibernate in Java applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Lifecycle`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Lifecycle in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot applications using JPA, entities go through a specific lifecycle. Understanding the entity lifecycle helps in managing data efficiently, improving performance, and avoiding common pitfalls.
+  </p>
+
+  <h3 style="color: #16a085;">Phases of Entity Lifecycle:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>New (Transient) State:</strong> The entity is created but not yet associated with the persistence context.</li>
+    <li><strong>Managed (Persistent) State:</strong> The entity is associated with the persistence context and synchronized with the database.</li>
+    <li><strong>Detached State:</strong> The entity is no longer associated with the persistence context but still exists in memory.</li>
+    <li><strong>Removed State:</strong> The entity is marked for deletion and will be removed from the database.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key JPA Annotations Affecting Lifecycle</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@PostLoad</code> - Invoked after an entity is loaded from the database.</li>
+    <li><code>@PrePersist</code> - Called before an entity is inserted into the database.</li>
+    <li><code>@PostPersist</code> - Called after an entity has been inserted.</li>
+    <li><code>@PreUpdate</code> - Called before an entity is updated.</li>
+    <li><code>@PostUpdate</code> - Called after an entity is updated.</li>
+    <li><code>@PreRemove</code> - Called before an entity is removed.</li>
+    <li><code>@PostRemove</code> - Called after an entity has been removed.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Example: Entity Lifecycle Callbacks</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private LocalDateTime createdAt;
+    
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+        System.out.println("PrePersist: Setting createdAt timestamp.");
+    }
+    
+    @PostLoad
+    public void postLoad() {
+        System.out.println("PostLoad: Entity has been loaded.");
+    }
+    
+    @PreUpdate
+    public void preUpdate() {
+        System.out.println("PreUpdate: Entity is about to be updated.");
+    }
+    
+    @PreRemove
+    public void preRemove() {
+        System.out.println("PreRemove: Entity is about to be removed.");
+    }
+}
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Best Practices for Managing Entity Lifecycle</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Avoid business logic inside entity lifecycle methods.</li>
+    <li>Use <code>@Transactional</code> annotations correctly to manage entity state transitions.</li>
+    <li>Detach entities when working with DTOs to prevent unwanted updates.</li>
+    <li>Be mindful of performance impacts when using lifecycle callbacks.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Understanding and managing the entity lifecycle in Spring Boot improves data integrity and enhances application performance. Proper use of JPA lifecycle events ensures efficient database operations.
+  </p>
+</div>
+
+`
+},
+
+{
+  title:`Annotations`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Annotations in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Annotations in Spring Boot play a crucial role in simplifying configuration and enabling various features. They help developers write clean and maintainable code by reducing boilerplate and providing metadata for the Spring framework to process.
+  </p>
+
+  <h3 style="color: #16a085;">Common Spring Boot Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@SpringBootApplication</code> - Marks the main class of a Spring Boot application.</li>
+    <li><code>@Component</code> - Denotes a generic Spring-managed component.</li>
+    <li><code>@Service</code> - Specialization of <code>@Component</code> for business logic services.</li>
+    <li><code>@Repository</code> - Specialization of <code>@Component</code> for data access layers.</li>
+    <li><code>@Controller</code> - Marks a class as a web controller in Spring MVC.</li>
+    <li><code>@RestController</code> - Combines <code>@Controller</code> and <code>@ResponseBody</code> to return JSON responses.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Dependency Injection Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@Autowired</code> - Automatically injects dependencies.</li>
+    <li><code>@Qualifier</code> - Specifies the exact bean to inject when multiple beans exist.</li>
+    <li><code>@Primary</code> - Indicates the primary bean to use when multiple candidates exist.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Spring Boot Configuration Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@Configuration</code> - Indicates a class with bean definitions.</li>
+    <li><code>@Bean</code> - Declares a bean explicitly in a configuration class.</li>
+    <li><code>@Value</code> - Injects values from application properties.</li>
+    <li><code>@PropertySource</code> - Loads properties from an external file.</li>
+  </ul>
+
+  <h3 style="color: #c0392b;">Spring Boot MVC and Request Handling Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@RequestMapping</code> - Maps HTTP requests to handler methods.</li>
+    <li><code>@GetMapping</code> - Maps HTTP GET requests.</li>
+    <li><code>@PostMapping</code> - Maps HTTP POST requests.</li>
+    <li><code>@PutMapping</code> - Maps HTTP PUT requests.</li>
+    <li><code>@DeleteMapping</code> - Maps HTTP DELETE requests.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Annotations in a Spring Boot Application</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.Service;
+
+@RestController
+@RequestMapping("/api")
+public class ExampleController {
+    private final ExampleService exampleService;
+    
+    @Autowired
+    public ExampleController(ExampleService exampleService) {
+        this.exampleService = exampleService;
+    }
+    
+    @GetMapping("/message")
+    public String getMessage() {
+        return exampleService.getMessage();
+    }
+}
+
+@Service
+class ExampleService {
+    public String getMessage() {
+        return "Hello from Spring Boot!";
+    }
+}
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Understanding and using annotations effectively can streamline development in Spring Boot, making applications more manageable and reducing configuration overhead.
+  </p>
+</div>
+
+
+`
+},
+{
+  title:`Primary Key Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Primary Key Strategies in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A primary key uniquely identifies each record in a database table. In JPA and Hibernate, different strategies are available to generate primary keys efficiently.
+    Choosing the right strategy ensures optimal database performance and scalability.
+  </p>
+
+  <h3 style="color: #16a085;">Available Primary Key Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>GenerationType.IDENTITY</code> – Uses auto-increment columns.</li>
+    <li><code>GenerationType.SEQUENCE</code> – Uses database sequences for key generation.</li>
+    <li><code>GenerationType.TABLE</code> – Uses a table-based key generation strategy.</li>
+    <li><code>GenerationType.AUTO</code> – Uses a default strategy based on the database dialect.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Using <code>GenerationType.IDENTITY</code></h3>
+  <p style="color: #34495e;">
+    This strategy relies on the database's auto-increment feature. The database automatically generates the ID when a new record is inserted.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    Pros: Simple and database-driven.  
+    Cons: Not suitable for batch inserts due to potential performance issues.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Using <code>GenerationType.SEQUENCE</code></h3>
+  <p style="color: #34495e;">
+    This strategy uses a database sequence to generate primary keys, improving performance over IDENTITY.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence", allocationSize = 1)
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+          private Long id;
+          private String name;
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    Pros: Better performance than IDENTITY, supports batch inserts.  
+    Cons: Requires database sequence support.
+  </p>
+
+  <h3 style="color: #e67e22;">3. Using <code>GenerationType.TABLE</code></h3>
+  <p style="color: #34495e;">
+    This strategy stores primary keys in a separate table. It is less common due to performance concerns.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @TableGenerator(name = "user_table_gen", table = "id_generator", pkColumnName = "gen_name",
+                      valueColum
+`
+},
+{
+  title:`Entity Mapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Entity Mapping in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity mapping is a fundamental concept in JPA (Java Persistence API) that defines how Java objects (entities) are mapped to database tables and how relationships between entities are represented. In Spring Boot, entity mapping is achieved using JPA annotations, which simplify the process of defining the structure of your database schema and the relationships between entities. Proper entity mapping ensures that your application can efficiently store, retrieve, and manage data in a relational database.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Entity Mapping Important?</h3>
+  <p style="color: #2c3e50;">
+    Entity mapping is crucial for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Database Schema Definition</strong>: Maps Java classes to database tables and fields to columns.</li>
+    <li><strong>Object-Relational Mapping (ORM)</strong>: Bridges the gap between object-oriented programming and relational databases.</li>
+    <li><strong>Relationship Management</strong>: Defines relationships like one-to-one, one-to-many, and many-to-many between entities.</li>
+    <li><strong>Data Integrity</strong>: Ensures that data is stored and retrieved consistently and accurately.</li>
+    <li><strong>Simplified Development</strong>: Reduces the need for manual SQL queries and boilerplate code.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Entity Mapping</h3>
+  <p style="color: #2c3e50;">
+    When working with entity mapping in Spring Boot, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Entities</strong>: Java classes annotated with <code>@Entity</code> that represent database tables.</li>
+    <li><strong>Primary Keys</strong>: Fields annotated with <code>@Id</code> that uniquely identify an entity.</li>
+    <li><strong>Column Mapping</strong>: Annotations like <code>@Column</code> to map fields to database columns.</li>
+    <li><strong>Relationships</strong>: Annotations like <code>@OneToOne</code>, <code>@OneToMany</code>, and <code>@ManyToMany</code> to define relationships between entities.</li>
+    <li><strong>Inheritance</strong>: Strategies like <code>SINGLE_TABLE</code>, <code>JOINED</code>, and <code>TABLE_PER_CLASS</code> to map inheritance hierarchies.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Entity Mapping in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to define and map entities in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define a Simple Entity</h4>
+  <p style="color: #2c3e50;">
+    Create a basic entity with a primary key and fields mapped to database columns.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+      import jakarta.persistence.Column;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String name;
+
+          @Column(unique = true, nullable = false)
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define Relationships Between Entities</h4>
+  <p style="color: #2c3e50;">
+    Create entities with relationships like one-to-many and many-to-many.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class Department {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String name;
+
+          @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+          private List&lt;Employee&gt; employees;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String name;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id", nullable = false)
+          private Department department;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Define a Many-to-Many Relationship</h4>
+  <p style="color: #2c3e50;">
+    Create entities with a many-to-many relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+      import java.util.Set;
+
+      @Entity
+      public class Student {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String name;
+
+          @ManyToMany
+          @JoinTable(
+              name = "student_course",
+              joinColumns = @JoinColumn(name = "student_id"),
+              inverseJoinColumns = @JoinColumn(name = "course_id"))
+          private Set&lt;Course&gt; courses;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Course {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String title;
+
+          @ManyToMany(mappedBy = "courses")
+          private Set&lt;Student&gt; students;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Inheritance Mapping</h4>
+  <p style="color: #2c3e50;">
+    Use inheritance mapping strategies to represent class hierarchies in the database.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+      @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+      public abstract class Vehicle {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String manufacturer;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      @DiscriminatorValue("CAR")
+      public class Car extends Vehicle {
+          private int numberOfDoors;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      @DiscriminatorValue("BIKE")
+      public class Bike extends Vehicle {
+          private int numberOfGears;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Entity Mapping</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful names for entities, fields, and database columns.</li>
+    <li>Leverage lazy loading (<code>FetchType.LAZY</code>) for relationships to improve performance.</li>
+    <li>Use cascade operations (<code>CascadeType</code>) to manage entity lifecycles.</li>
+    <li>Validate entity mappings using tools like Hibernate's schema validation.</li>
+    <li>Keep relationships bidirectional when necessary to simplify navigation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity mapping is a core aspect of building data-driven Spring Boot applications. By leveraging JPA annotations, you can define how your Java objects map to database tables and how relationships between entities are represented. Whether you're working with simple entities, complex relationships, or inheritance hierarchies, proper entity mapping ensures that your application can efficiently store, retrieve, and manage data. By following best practices, you can create a clean, maintainable, and performant data access layer.
+  </p>
+</div>`
+},
+{
+  title:`HQL & Criteria API`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">HQL & Criteria API in Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate provides two powerful ways to query databases: 
+    <strong>Hibernate Query Language (HQL)</strong> and the <strong>Criteria API</strong>. 
+    These approaches allow developers to retrieve data efficiently while keeping the application database-independent.
+  </p>
+
+  <h3 style="color: #16a085;">What is HQL (Hibernate Query Language)?</h3>
+  <p style="color: #34495e;">
+    HQL is an object-oriented query language similar to SQL but designed for Hibernate. 
+    Unlike SQL, HQL works with entity objects instead of database tables.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic HQL Query</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String hql = "FROM User WHERE name = :name";
+      Query query = session.createQuery(hql);
+      query.setParameter("name", "John");
+      List<User> users = query.list();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">HQL Query with Sorting</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String hql = "FROM User ORDER BY name ASC";
+      List<User> users = session.createQuery(hql).list();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">HQL Query with Joins</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String hql = "SELECT u FROM User u INNER JOIN u.orders o WHERE o.total > :amount";
+      Query query = session.createQuery(hql);
+      query.setParameter("amount", 1000);
+      List<User> users = query.list();
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">What is the Criteria API?</h3>
+  <p style="color: #34495e;">
+    The Criteria API provides a type-safe, programmatic way to create queries in Hibernate.
+    It is useful when dealing with dynamic queries or complex filtering conditions.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Criteria Query</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      CriteriaBuilder cb = session.getCriteriaBuilder();
+      CriteriaQuery<User> cq = cb.createQuery(User.class);
+      Root<User> root = cq.from(User.class);
+      cq.select(root);
+
+      Query<User> query = session.createQuery(cq);
+      List<User> users = query.getResultList();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Criteria Query with Filters</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      CriteriaBuilder cb = session.getCriteriaBuilder();
+      CriteriaQuery<User> cq = cb.createQuery(User.class);
+      Root<User> root = cq.from(User.class);
+      cq.select(root).where(cb.equal(root.get("name"), "John"));
+
+      Query<User> query = session.createQuery(cq);
+      List<User> users = query.getResultList();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Criteria Query with Sorting</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      CriteriaBuilder cb = session.getCriteriaBuilder();
+      CriteriaQuery<User> cq = cb.createQuery(User.class);
+      Root<User> root = cq.from(User.class);
+      cq.orderBy(cb.asc(root.get("name")));
+
+      Query<User> query = session.createQuery(cq);
+      List<User> users = query.getResultList();
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">When to Use HQL vs. Criteria API?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use HQL</strong> when writing static queries, especially with joins and aggregations.</li>
+    <li><strong>Use Criteria API</strong> when queries are dynamic and require filtering, sorting, or pagination.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Both HQL and Criteria API provide powerful ways to query data in Hibernate, each suited for different use cases.
+    Understanding these approaches helps in writing efficient and maintainable code.
+  </p>
+</div>
+`
+},
+{
+  title:`Native SQL Queries`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Native SQL Queries in Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate provides different ways to query the database, including HQL and the Criteria API. 
+    However, sometimes we need to use raw SQL queries directly. 
+    This is where <strong>Native SQL Queries</strong> come in. 
+    They allow us to execute plain SQL queries while still leveraging Hibernate’s powerful features.
+  </p>
+
+  <h3 style="color: #16a085;">What are Native SQL Queries?</h3>
+  <p style="color: #34495e;">
+    Native SQL queries allow developers to execute raw SQL statements directly on the database. 
+    Unlike HQL, which operates on entity objects, native queries work at the table level.
+  </p>
+
+  <h3 style="color: #16a085;">Executing a Simple Native Query</h3>
+  <p style="color: #34495e;">
+    The <code>createNativeQuery()</code> method in Hibernate can be used to execute SQL queries.
+  </p>
+  
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String sql = "SELECT * FROM users";
+      Query query = session.createNativeQuery(sql, User.class);
+      List<User> users = query.getResultList();
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Using Parameters in Native Queries</h3>
+  <p style="color: #34495e;">
+    To avoid SQL injection and improve performance, parameters can be used in native queries.
+  </p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String sql = "SELECT * FROM users WHERE name = :name";
+      Query query = session.createNativeQuery(sql, User.class);
+      query.setParameter("name", "John");
+      List<User> users = query.getResultList();
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Executing Insert, Update, and Delete Queries</h3>
+  <p style="color: #34495e;">
+    Native queries can also be used for modifying data.
+  </p>
+
+  <h4 style="color: #e67e22;">Insert Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String sql = "INSERT INTO users (id, name, email) VALUES (:id, :name, :email)";
+      Query query = session.createNativeQuery(sql);
+      query.setParameter("id", 101);
+      query.setParameter("name", "Alice");
+      query.setParameter("email", "alice@example.com");
+      query.executeUpdate();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Update Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String sql = "UPDATE users SET email = :email WHERE id = :id";
+      Query query = session.createNativeQuery(sql);
+      query.setParameter("email", "newemail@example.com");
+      query.setParameter("id", 101);
+      query.executeUpdate();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Delete Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String sql = "DELETE FROM users WHERE id = :id";
+      Query query = session.createNativeQuery(sql);
+      query.setParameter("id", 101);
+      query.executeUpdate();
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Mapping Native Queries to Entities</h3>
+  <p style="color: #34495e;">
+    When executing native queries, we can map the result to an entity class using <code>addEntity()</code>.
+  </p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String sql = "SELECT * FROM users";
+      Query query = session.createNativeQuery(sql).addEntity(User.class);
+      List<User> users = query.getResultList();
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Advantages of Native SQL Queries</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Performance:</strong> Can leverage database-specific optimizations.</li>
+    <li><strong>Flexibility:</strong> Allows execution of complex queries that may not be possible with HQL or Criteria API.</li>
+    <li><strong>Direct Database Access:</strong> Enables operations like stored procedure calls.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Disadvantages of Native SQL Queries</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Database Dependency:</strong> Queries may not be portable across different databases.</li>
+    <li><strong>Harder to Maintain:</strong> Changing the database structure may require rewriting queries.</li>
+    <li><strong>Manual Result Mapping:</strong> If not mapped properly, retrieving results can be tedious.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    While native queries provide great flexibility and performance benefits, they should be used only when necessary. 
+    For most use cases, HQL or Criteria API is preferred for better portability and maintainability.
+  </p>
+</div>
+`
+},
+{
+  title:`Named Queries`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Named Queries in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Named Queries are predefined, reusable queries that are defined at the entity level using annotations or XML configuration. 
+    They provide better readability, performance, and maintainability in JPA and Hibernate.
+  </p>
+
+  <h3 style="color: #16a085;">What are Named Queries?</h3>
+  <p style="color: #34495e;">
+    Named Queries allow developers to define queries once and reuse them multiple times. 
+    They are compiled and validated at application startup, reducing runtime query parsing overhead.
+  </p>
+
+  <h3 style="color: #16a085;">Defining a Named Query</h3>
+  <p style="color: #34495e;">
+    Named Queries can be defined using the <code>@NamedQuery</code> annotation in JPA or via XML configuration.
+  </p>
+
+  <h4 style="color: #e67e22;">Using @NamedQuery Annotation</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @NamedQuery(
+          name = "User.findByEmail",
+          query = "SELECT u FROM User u WHERE u.email = :email"
+      )
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Using @NamedQueries for Multiple Queries</h4>
+  <p style="color: #34495e;">
+    When defining multiple named queries, use the <code>@NamedQueries</code> annotation.
+  </p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @NamedQueries({
+          @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+          @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+      })
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Executing Named Queries</h3>
+  <p style="color: #34495e;">
+    Once a Named Query is defined, it can be executed using the <code>EntityManager</code> or <code>Session</code> in Hibernate.
+  </p>
+
+  <h4 style="color: #e67e22;">Executing a Named Query in JPA</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      EntityManager em = entityManagerFactory.createEntityManager();
+      Query query = em.createNamedQuery("User.findByEmail");
+      query.setParameter("email", "john@example.com");
+      User user = (User) query.getSingleResult();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Executing a Named Query in Hibernate</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Session session = sessionFactory.openSession();
+      Query query = session.getNamedQuery("User.findByEmail");
+      query.setParameter("email", "john@example.com");
+      User user = (User) query.uniqueResult();
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Defining Named Native Queries</h3>
+  <p style="color: #34495e;">
+    Named Queries can also be defined using native SQL by using the <code>@NamedNativeQuery</code> annotation.
+  </p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @NamedNativeQuery(
+          name = "User.findByEmailNative",
+          query = "SELECT * FROM users WHERE email = :email",
+          resultClass = User.class
+      )
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Advantages of Named Queries</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reusability:</strong> Queries can be defined once and used multiple times.</li>
+    <li><strong>Performance:</strong> Queries are parsed and validated at application startup, reducing runtime overhead.</li>
+    <li><strong>Readability:</strong> Code is cleaner and easier to maintain.</li>
+    <li><strong>Security:</strong> Helps prevent SQL injection when used with parameters.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Disadvantages of Named Queries</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Less Dynamic:</strong> Named Queries cannot be modified at runtime.</li>
+    <li><strong>Potentially Unused Queries:</strong> If defined but never used, they can add unnecessary overhead.</li>
+    <li><strong>Harder Debugging:</strong> Debugging errors in Named Queries can be more challenging than inline queries.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Named Queries are a powerful feature in JPA and Hibernate that improve performance and maintainability. 
+    While they may not be as flexible as dynamic queries, they provide significant advantages in structured query management.
+  </p>
+</div>
+`
+},
+{
+  title:`Pagination`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Pagination in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Pagination is an essential feature when dealing with large datasets in applications. Instead of retrieving all records at once, 
+    pagination allows fetching data in smaller chunks, improving performance and user experience.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Pagination?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Performance Optimization:</strong> Reduces the amount of data fetched at a time, improving response time.</li>
+    <li><strong>Efficient Database Queries:</strong> Limits the number of rows retrieved from the database.</li>
+    <li><strong>Better User Experience:</strong> Allows users to navigate through large datasets smoothly.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Pagination with JPA Query</h3>
+  <p style="color: #34495e;">
+    JPA provides the <code>setFirstResult()</code> and <code>setMaxResults()</code> methods to implement pagination.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Paginating with JPA Query</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public List<User> getUsersWithPagination(EntityManager entityManager, int pageNumber, int pageSize) {
+          Query query = entityManager.createQuery("SELECT u FROM User u");
+          query.setFirstResult((pageNumber - 1) * pageSize);
+          query.setMaxResults(pageSize);
+          return query.getResultList();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Pagination with Hibernate Query</h3>
+  <p style="color: #34495e;">
+    In Hibernate, pagination can be done using <code>setFirstResult()</code> and <code>setMaxResults()</code> on a <code>Query</code> object.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Paginating with Hibernate Query</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public List<User> getUsersWithPagination(Session session, int pageNumber, int pageSize) {
+          Query query = session.createQuery("FROM User");
+          query.setFirstResult((pageNumber - 1) * pageSize);
+          query.setMaxResults(pageSize);
+          return query.list();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Pagination with Spring Data JPA</h3>
+  <p style="color: #34495e;">
+    Spring Data JPA provides a built-in <code>Pageable</code> interface to handle pagination efficiently.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Paginating with Spring Data JPA</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Repository
+      public interface UserRepository extends JpaRepository<User, Long> {
+          Page<User> findAll(Pageable pageable);
+      }
+
+      public Page<User> getUsersWithPagination(UserRepository userRepository, int pageNumber, int pageSize) {
+          Pageable pageable = PageRequest.of(pageNumber, pageSize);
+          return userRepository.findAll(pageable);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Advantages of Pagination</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Optimized Performance:</strong> Reduces the number of records fetched at a time.</li>
+    <li><strong>Reduced Memory Usage:</strong> Loads only the required data, preventing memory overflow.</li>
+    <li><strong>Scalability:</strong> Allows handling large datasets efficiently.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Best Practices for Pagination</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>indexed columns</strong> for better query performance.</li>
+    <li>Avoid using <strong>OFFSET with large values</strong> as it can slow down query execution.</li>
+    <li>Prefer <strong>Spring Data JPA</strong> for built-in pagination support.</li>
+    <li>Use <strong>Keyset Pagination</strong> for improved efficiency with large datasets.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Pagination is a crucial technique for managing large datasets in applications. 
+    Whether using JPA, Hibernate, or Spring Data JPA, implementing efficient pagination improves performance and user experience.
+  </p>
+</div>
+`
+},
+{
+  title:`Caching`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Caching in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching is a performance optimization technique that helps reduce database access by storing frequently used data in memory. 
+    JPA and Hibernate provide different caching levels to speed up data retrieval.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Caching?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduces Database Load:</strong> Minimizes database queries for frequently accessed data.</li>
+    <li><strong>Improves Performance:</strong> Speeds up application response time.</li>
+    <li><strong>Optimizes Resource Usage:</strong> Reduces network and database overhead.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Types of Caching in Hibernate</h3>
+  <p style="color: #34495e;">
+    Hibernate supports different levels of caching to store and reuse data efficiently.
+  </p>
+
+  <h4 style="color: #e67e22;">1. First-Level Cache (L1 Cache)</h4>
+  <p style="color: #34495e;">
+    The first-level cache is associated with the Hibernate <code>Session</code>. It is enabled by default and stores entities in memory 
+    for the duration of a session.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: First-Level Cache</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Session session = sessionFactory.openSession();
+      
+      // First query - fetched from the database
+      User user1 = session.get(User.class, 1);
+      
+      // Second query - fetched from the cache (no DB hit)
+      User user2 = session.get(User.class, 1);
+
+      session.close();
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">2. Second-Level Cache (L2 Cache)</h4>
+  <p style="color: #34495e;">
+    The second-level cache is shared across multiple sessions and requires explicit configuration. 
+    Hibernate supports various providers like EhCache, Hazelcast, and Infinispan.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Enabling Second-Level Cache with EhCache</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @Cacheable
+      @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">3. Query Cache</h4>
+  <p style="color: #34495e;">
+    The query cache stores the results of frequently executed queries. It works with the second-level cache.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Enabling Query Cache</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Query query = session.createQuery("FROM User");
+      query.setCacheable(true);
+      List<User> users = query.list();
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Advantages of Caching</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduces Database Calls:</strong> Improves efficiency by fetching data from cache instead of querying the database.</li>
+    <li><strong>Speeds Up Application:</strong> Improves response time by storing frequently used data in memory.</li>
+    <li><strong>Enhances Scalability:</strong> Reduces database load, allowing more users to access the system without performance issues.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Best Practices for Caching</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>First-Level Cache</strong> whenever possible since it’s built-in and automatic.</li>
+    <li>Enable <strong>Second-Level Cache</strong> for entities that are frequently accessed.</li>
+    <li>Use <strong>Query Cache</strong> cautiously to avoid stale data issues.</li>
+    <li>Choose the right cache provider (<strong>EhCache, Hazelcast, Infinispan</strong>) based on your needs.</li>
+    <li>Set <strong>cache expiration policies</strong> to prevent outdated data from being served.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Caching is a powerful technique to enhance performance in JPA and Hibernate applications. 
+    By using first-level cache, second-level cache, and query cache effectively, developers can significantly optimize database interactions.
+  </p>
+</div>
+`
+},
+{
+  title:`Lazy vs Eager Loading`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Lazy vs. Eager Loading in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In JPA and Hibernate, loading strategies determine how related entities are fetched from the database. 
+    The two main loading types are <strong>Lazy Loading</strong> and <strong>Eager Loading</strong>.
+  </p>
+
+  <h3 style="color: #16a085;">What is Lazy Loading?</h3>
+  <p style="color: #34495e;">
+    Lazy Loading means that related entities are not fetched from the database until they are explicitly accessed. 
+    It improves performance by avoiding unnecessary data retrieval.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Lazy Loading</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Author {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+
+          @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+          private List<Book> books;
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    In this example, the <code>books</code> collection is fetched only when accessed, avoiding unnecessary queries.
+  </p>
+
+  <h3 style="color: #16a085;">What is Eager Loading?</h3>
+  <p style="color: #34495e;">
+    Eager Loading means that related entities are fetched immediately along with the main entity. 
+    It ensures that all required data is available upfront but may lead to performance issues due to large data retrieval.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Eager Loading</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Author {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+
+          @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+          private List<Book> books;
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    Here, the <code>books</code> collection is loaded immediately when the <code>Author</code> entity is fetched.
+  </p>
+
+  <h3 style="color: #9b59b6;">Key Differences: Lazy vs. Eager Loading</h3>
+  <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px; text-align: left;">Aspect</th>
+      <th style="padding: 10px; text-align: left;">Lazy Loading</th>
+      <th style="padding: 10px; text-align: left;">Eager Loading</th>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">When are related entities loaded?</td>
+      <td style="padding: 10px;">When accessed</td>
+      <td style="padding: 10px;">Immediately</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">Database Load</td>
+      <td style="padding: 10px;">Lower (only loads when needed)</td>
+      <td style="padding: 10px;">Higher (loads everything upfront)</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">Performance</td>
+      <td style="padding: 10px;">Better for large datasets</td>
+      <td style="padding: 10px;">Might slow down queries</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">Risk of Exception</td>
+      <td style="padding: 10px;">Yes (LazyInitializationException if accessed outside session)</td>
+      <td style="padding: 10px;">No</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #9b59b6;">Best Practices for Using Lazy and Eager Loading</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>Lazy Loading</strong> when dealing with large datasets to improve performance.</li>
+    <li>Use <strong>Eager Loading</strong> when related data is always required.</li>
+    <li>Be cautious of <strong>LazyInitializationException</strong> when using Lazy Loading.</li>
+    <li>Use <code>JOIN FETCH</code> in queries to optimize Lazy Loading when needed.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Example: Using JOIN FETCH</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Query query = session.createQuery("SELECT a FROM Author a JOIN FETCH a.books WHERE a.id = :id");
+      query.setParameter("id", 1);
+      Author author = (Author) query.getSingleResult();
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Choosing between Lazy and Eager Loading depends on your application's needs. 
+    Use Lazy Loading for performance and Eager Loading when necessary to prevent extra queries.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Management`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Management in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction management is a crucial aspect of database operations to ensure data consistency and integrity. 
+    JPA and Hibernate provide built-in mechanisms for handling transactions effectively.
+  </p>
+
+  <h3 style="color: #16a085;">What is a Transaction?</h3>
+  <p style="color: #34495e;">
+    A transaction is a sequence of operations performed as a single unit of work. 
+    It follows the <strong>ACID (Atomicity, Consistency, Isolation, Durability)</strong> properties to maintain data integrity.
+  </p>
+
+  <h3 style="color: #9b59b6;">Managing Transactions in JPA</h3>
+  <p style="color: #34495e;">
+    JPA uses the <code>EntityTransaction</code> API or declarative transaction management with Spring for handling transactions.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Manual Transaction Management</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      EntityManagerFactory emf = Persistence.createEntityManagerFactory("example-unit");
+      EntityManager em = emf.createEntityManager();
+      
+      em.getTransaction().begin();
+      
+      Employee emp = new Employee();
+      emp.setName("John Doe");
+      em.persist(emp);
+      
+      em.getTransaction().commit();
+      em.close();
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    Here, we manually begin and commit the transaction using <code>EntityTransaction</code>.
+  </p>
+
+  <h3 style="color: #16a085;">Transaction Management in Spring with @Transactional</h3>
+  <p style="color: #34495e;">
+    Spring provides declarative transaction management using the <code>@Transactional</code> annotation, 
+    which simplifies handling transactions.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Using @Transactional</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Service
+      public class EmployeeService {
+      
+          @PersistenceContext
+          private EntityManager entityManager;
+      
+          @Transactional
+          public void addEmployee(Employee employee) {
+              entityManager.persist(employee);
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    The <code>@Transactional</code> annotation automatically manages the transaction, 
+    committing the changes if successful or rolling them back if an exception occurs.
+  </p>
+
+  <h3 style="color: #9b59b6;">Transaction Propagation Levels</h3>
+  <p style="color: #34495e;">
+    The <code>propagation</code> property of <code>@Transactional</code> determines how transactions interact.
+  </p>
+
+  <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px; text-align: left;">Propagation Type</th>
+      <th style="padding: 10px; text-align: left;">Description</th>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">REQUIRED</td>
+      <td style="padding: 10px;">Uses the existing transaction or creates a new one.</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">REQUIRES_NEW</td>
+      <td style="padding: 10px;">Always starts a new transaction.</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">MANDATORY</td>
+      <td style="padding: 10px;">Requires an existing transaction; throws an exception if none exists.</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">SUPPORTS</td>
+      <td style="padding: 10px;">Uses the current transaction if available; otherwise, runs without one.</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">NOT_SUPPORTED</td>
+      <td style="padding: 10px;">Runs without a transaction.</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">NEVER</td>
+      <td style="padding: 10px;">Throws an exception if a transaction exists.</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">NESTED</td>
+      <td style="padding: 10px;">Creates a nested transaction within an existing one.</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #16a085;">Rollback Scenarios</h3>
+  <p style="color: #34495e;">
+    By default, Spring rolls back transactions only for unchecked exceptions (<code>RuntimeException</code>).
+    To rollback for checked exceptions, you must specify <code>rollbackFor</code>.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Rollback on a Checked Exception</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Transactional(rollbackFor = SQLException.class)
+      public void updateEmployee(Employee employee) throws SQLException {
+          entityManager.merge(employee);
+          throw new SQLException("Database error occurred");
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    In this case, the transaction will be rolled back even though <code>SQLException</code> is a checked exception.
+  </p>
+
+  <h3 style="color: #9b59b6;">Best Practices for Transaction Management</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Transactional</code> at the **service layer** to maintain a clean architecture.</li>
+    <li>Prefer **Lazy Loading** for large datasets to avoid unnecessary transactions.</li>
+    <li>Use **transaction propagation** carefully to manage nested transactions.</li>
+    <li>Rollback transactions for specific exceptions when needed.</li>
+    <li>Minimize the **transactional scope** to avoid locking resources for long durations.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Transaction management ensures data consistency in JPA and Hibernate. 
+    Using <code>@Transactional</code> simplifies handling transactions, and understanding propagation and rollback behavior 
+    helps in building robust applications. 
+  </p>
+</div>
+`
+},
+{
+  title:`Locking Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Locking Strategies in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Locking mechanisms in JPA and Hibernate help prevent data inconsistencies and concurrency issues in multi-user environments. 
+    JPA supports both **optimistic** and **pessimistic** locking strategies to ensure safe database transactions.
+  </p>
+
+  <h3 style="color: #16a085;">Why Locking is Needed?</h3>
+  <p style="color: #34495e;">
+    When multiple users access the same data, conflicts may arise. Locking strategies help:
+  </p>
+  <ul style="color: #34495e; padding-left: 20px;">
+    <li>Prevent **dirty reads, non-repeatable reads, and lost updates**.</li>
+    <li>Ensure **data integrity** in concurrent transactions.</li>
+    <li>Manage **transaction isolation levels** effectively.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Optimistic Locking</h3>
+  <p style="color: #34495e;">
+    Optimistic locking allows multiple transactions to proceed without immediate locks. It checks for conflicts only when committing the transaction.
+    This is useful when conflicts are rare and performance is a priority.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Optimistic Locking with @Version</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          
+          private String name;
+          
+          @Version
+          private int version; // Version column for optimistic locking
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    The <code>@Version</code> field ensures that if two transactions update the same row, 
+    the one with an outdated version will fail, preventing inconsistent data.
+  </p>
+
+  <h3 style="color: #16a085;">Pessimistic Locking</h3>
+  <p style="color: #34495e;">
+    Pessimistic locking prevents concurrent modifications by locking the record until a transaction is completed.
+    This ensures data integrity but can cause performance issues due to increased waiting time.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Pessimistic Locking in JPA</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Employee emp = entityManager.find(Employee.class, 1L, LockModeType.PESSIMISTIC_WRITE);
+      emp.setName("Updated Name");
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    The **PESSIMISTIC_WRITE** lock prevents other transactions from updating or reading the record until the current transaction is committed.
+  </p>
+
+  <h3 style="color: #9b59b6;">Lock Modes in JPA</h3>
+  <p style="color: #34495e;">
+    JPA provides different lock modes to control concurrency.
+  </p>
+
+  <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px; text-align: left;">Lock Mode</th>
+      <th style="padding: 10px; text-align: left;">Description</th>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">OPTIMISTIC</td>
+      <td style="padding: 10px;">Uses versioning to detect conflicts without locking the row.</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">OPTIMISTIC_FORCE_INCREMENT</td>
+      <td style="padding: 10px;">Forces version increment even if no updates are made.</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">PESSIMISTIC_READ</td>
+      <td style="padding: 10px;">Prevents updates but allows reads.</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">PESSIMISTIC_WRITE</td>
+      <td style="padding: 10px;">Locks the record for updates, preventing concurrent modifications.</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">PESSIMISTIC_FORCE_INCREMENT</td>
+      <td style="padding: 10px;">Increments version number, forcing optimistic lock conflict.</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #16a085;">Choosing the Right Locking Strategy</h3>
+  <p style="color: #34495e;">
+    The choice between **optimistic** and **pessimistic** locking depends on the use case:
+  </p>
+  <ul style="color: #34495e; padding-left: 20px;">
+    <li>Use **optimistic locking** when conflicts are **rare**, and performance is critical.</li>
+    <li>Use **pessimistic locking** when data consistency is **highly important**, and conflicts are frequent.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Best Practices for Locking</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **@Version** for optimistic locking to prevent unnecessary database locks.</li>
+    <li>Apply **pessimistic locks only when necessary** to avoid performance bottlenecks.</li>
+    <li>Choose the **appropriate lock mode** based on your application’s concurrency needs.</li>
+    <li>Ensure transactions are **short-lived** to prevent long lock durations.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Locking strategies in JPA and Hibernate help maintain **data integrity** in concurrent environments. 
+    **Optimistic locking** is preferred for performance, while **pessimistic locking** ensures strict data consistency. 
+    Choosing the right strategy helps improve application efficiency and reliability.
+  </p>
+</div>
+`
+},
+{
+  title:`Fetching Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Fetching Strategies in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Fetching strategies in JPA and Hibernate determine how related entities are loaded from the database.
+    Choosing the right fetching strategy improves performance and prevents unnecessary database queries.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Fetching Strategies</h3>
+  <p style="color: #34495e;">
+    JPA provides two primary fetching strategies:
+  </p>
+  <ul style="color: #34495e; padding-left: 20px;">
+    <li><b>Lazy Loading</b> – Loads related entities only when accessed.</li>
+    <li><b>Eager Loading</b> – Loads related entities immediately.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Lazy Loading</h3>
+  <p style="color: #34495e;">
+    Lazy loading defers the loading of related entities until they are needed, reducing the initial query overhead.
+    It is the default strategy in JPA.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Lazy Loading</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          
+          private String name;
+          
+          @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY) // Lazy fetching
+          private List<Task> tasks;
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    Here, <code>tasks</code> will not be loaded when an <code>Employee</code> entity is retrieved. 
+    They will be fetched only when accessed, avoiding unnecessary database queries.
+  </p>
+
+  <h3 style="color: #16a085;">Eager Loading</h3>
+  <p style="color: #34495e;">
+    Eager loading fetches related entities **immediately** along with the main entity.
+    This prevents additional queries but may load unnecessary data.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Eager Loading</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          
+          private String name;
+          
+          @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER) // Eager fetching
+          private List<Task> tasks;
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    Here, when fetching an <code>Employee</code>, all related <code>Task</code> entities are loaded immediately.
+  </p>
+
+  <h3 style="color: #9b59b6;">When to Use Lazy vs. Eager Loading?</h3>
+  <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px; text-align: left;">Strategy</th>
+      <th style="padding: 10px; text-align: left;">Best Used When</th>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 10px;">Lazy Loading</td>
+      <td style="padding: 10px;">Related entities are **rarely used** and can be loaded **on demand**.</td>
+    </tr>
+    <tr style="background-color: #ffffff;">
+      <td style="padding: 10px;">Eager Loading</td>
+      <td style="padding: 10px;">Related entities are **always needed**, reducing extra queries.</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #16a085;">Fetching with JOIN FETCH</h3>
+  <p style="color: #34495e;">
+    To avoid the **N+1 problem** (multiple queries for related entities), we can use **JOIN FETCH** in JPQL.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Using JOIN FETCH</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      String query = "SELECT e FROM Employee e JOIN FETCH e.tasks WHERE e.id = :id";
+      Employee emp = entityManager.createQuery(query, Employee.class)
+                                  .setParameter("id", 1L)
+                                  .getSingleResult();
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    This query fetches **Employee** along with **Task** in a single SQL query, improving performance.
+  </p>
+
+  <h3 style="color: #9b59b6;">Using Entity Graphs for Fetching</h3>
+  <p style="color: #34495e;">
+    Entity graphs allow fine-grained control over which associations to fetch dynamically.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Entity Graph</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @NamedEntityGraph(
+          name = "Employee.tasks",
+          attributeNodes = @NamedAttributeNode("tasks")
+      )
+      @Entity
+      public class Employee { ... }
+      
+      EntityGraph<Employee> graph = entityManager.getEntityGraph("Employee.tasks");
+      Map<String, Object> hints = new HashMap<>();
+      hints.put("javax.persistence.fetchgraph", graph);
+      
+      Employee emp = entityManager.find(Employee.class, 1L, hints);
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    This method provides more flexibility than **FetchType.EAGER**.
+  </p>
+
+  <h3 style="color: #16a085;">Best Practices for Fetching Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **Lazy Loading** by default for better performance.</li>
+    <li>Use **JOIN FETCH** or **Entity Graphs** instead of **Eager Fetching**.</li>
+    <li>Avoid the **N+1 problem** by using optimized queries.</li>
+    <li>Use **pagination** when fetching large datasets.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Choosing the right fetching strategy in JPA and Hibernate can **significantly improve performance**. 
+    Use **Lazy Loading** whenever possible and optimize queries using **JOIN FETCH** or **Entity Graphs** for efficient data retrieval.
+  </p>
+</div>
+`
+},
+{
+  title:`Interceptors & Listeners`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Interceptors & Listeners in Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Hibernate, <b>Interceptors</b> and <b>Listeners</b> provide a way to hook into the ORM lifecycle and perform operations before or after specific events occur. These mechanisms allow developers to customize Hibernate's behavior, enforce business rules, log changes, or audit database actions efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Interceptors</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    <b>Interceptors</b> in Hibernate are used to intercept and modify Hibernate operations such as saving, updating, deleting, and loading entities. They provide a centralized way to manipulate or monitor database interactions.
+  </p>
+
+  <h4 style="color: #e67e22;">Implementing an Interceptor</h4>
+  <p style="color: #34495e;">
+    Hibernate provides the <code>Interceptor</code> interface, which developers can implement to override default behavior. Some of the commonly used methods in the <code>Interceptor</code> interface include:
+  </p>
+  
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>onSave():</b> Called before an entity is saved to the database.</li>
+    <li><b>onFlushDirty():</b> Invoked before an entity is updated.</li>
+    <li><b>onDelete():</b> Called before an entity is deleted.</li>
+    <li><b>preFlush():</b> Executed before Hibernate flushes changes to the database.</li>
+    <li><b>postFlush():</b> Executed after Hibernate flushes changes to the database.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Interceptor Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.EmptyInterceptor;
+      import org.hibernate.type.Type;
+      import java.io.Serializable;
+      
+      public class MyInterceptor extends EmptyInterceptor {
+          @Override
+          public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
+              System.out.println("Saving entity: " + entity);
+              return super.onSave(entity, id, state, propertyNames, types);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Registering an Interceptor</h4>
+  <p style="color: #34495e;">
+    Interceptors can be applied globally at the <b>SessionFactory</b> level or individually for each session.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      SessionFactory factory = new Configuration().configure().buildSessionFactory();
+      Session session = factory.withOptions().interceptor(new MyInterceptor()).openSession();
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Listeners</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    <b>Listeners</b> in Hibernate are event-driven mechanisms that allow developers to execute logic before or after specific Hibernate events occur. They are more structured than interceptors and follow a declarative approach.
+  </p>
+
+  <h4 style="color: #e67e22;">Types of Listeners</h4>
+  <p style="color: #34495e;">
+    Hibernate provides several event types to listen for, such as:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>PreInsertEventListener:</b> Triggers before an entity is inserted.</li>
+    <li><b>PostInsertEventListener:</b> Triggers after an entity is inserted.</li>
+    <li><b>PreUpdateEventListener:</b> Triggers before an entity is updated.</li>
+    <li><b>PostUpdateEventListener:</b> Triggers after an entity is updated.</li>
+    <li><b>PreDeleteEventListener:</b> Triggers before an entity is deleted.</li>
+    <li><b>PostDeleteEventListener:</b> Triggers after an entity is deleted.</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Implementing a Listener</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.event.spi.PreInsertEvent;
+      import org.hibernate.event.spi.PreInsertEventListener;
+      
+      public class MyInsertListener implements PreInsertEventListener {
+          @Override
+          public boolean onPreInsert(PreInsertEvent event) {
+              System.out.println("Before inserting entity: " + event.getEntity());
+              return false;
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Registering a Listener</h4>
+  <p style="color: #34495e;">
+    Listeners are typically registered via the Hibernate configuration.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      Configuration config = new Configuration().configure();
+      config.getEventListenerRegistry().appendListeners(EventType.PRE_INSERT, new MyInsertListener());
+      SessionFactory factory = config.buildSessionFactory();
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Interceptors vs Listeners</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Interceptors:</b> More flexible, can modify SQL operations, and are manually attached to sessions.</li>
+    <li><b>Listeners:</b> Event-driven, automatically invoked, and are suitable for lifecycle events like insert/update/delete.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Hibernate provides <b>Interceptors</b> and <b>Listeners</b> to extend ORM behavior dynamically. While interceptors allow flexible manipulation of transactions, listeners provide structured event-driven hooks. Choosing between them depends on the specific needs of the application.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Inheritance Mapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Inheritance Mapping in Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Hibernate, <b>Inheritance Mapping</b> is a technique used to map Java class hierarchies to database tables. Since object-oriented programming supports inheritance but relational databases do not, Hibernate provides different strategies to map inheritance structures effectively.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Inheritance Mapping Strategies</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate provides three main strategies for inheritance mapping:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Table Per Hierarchy</b> (Single Table Strategy)</li>
+    <li><b>Table Per Concrete Class</b> (Concrete Table Strategy)</li>
+    <li><b>Table Per Subclass</b> (Joined Table Strategy)</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Table Per Hierarchy (Single Table Strategy)</h3>
+  <p style="color: #34495e;">
+    In this approach, a single database table is used to store all classes in the inheritance hierarchy. A discriminator column is used to differentiate between different entity types.
+  </p>
+
+  <h4 style="color: #e67e22;">Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+      @DiscriminatorColumn(name = "vehicle_type", discriminatorType = DiscriminatorType.STRING)
+      public class Vehicle {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private int id;
+          private String name;
+      }
+
+      @Entity
+      @DiscriminatorValue("Car")
+      public class Car extends Vehicle {
+          private int numberOfDoors;
+      }
+
+      @Entity
+      @DiscriminatorValue("Bike")
+      public class Bike extends Vehicle {
+          private boolean hasCarrier;
+      }
+    </code>
+  </pre>
+  <p style="color: #34495e;">
+    This method is efficient but may result in a lot of unused columns for subclasses.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Table Per Concrete Class (Concrete Table Strategy)</h3>
+  <p style="color: #34495e;">
+    In this approach, each concrete class in the hierarchy has its own separate table with all fields from the superclass copied into each subclass table.
+  </p>
+
+  <h4 style="color: #e67e22;">Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+      public class Vehicle {
+          @Id
+          @GeneratedValue(strategy = GenerationType.AUTO)
+          private int id;
+          private String name;
+      }
+
+      @Entity
+      public class Car extends Vehicle {
+          private int numberOfDoors;
+      }
+
+      @Entity
+      public class Bike extends Vehicle {
+          private boolean hasCarrier;
+      }
+    </code>
+  </pre>
+  <p style="color: #34495e;">
+    This approach avoids empty columns but can cause data redundancy and difficulty in querying parent-child relationships.
+  </p>
+
+  <h3 style="color: #e67e22;">3. Table Per Subclass (Joined Table Strategy)</h3>
+  <p style="color: #34495e;">
+    This strategy creates separate tables for the parent and each subclass, linking them with foreign keys. It maintains normalization and avoids redundancy.
+  </p>
+
+  <h4 style="color: #e67e22;">Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @Inheritance(strategy = InheritanceType.JOINED)
+      public class Vehicle {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private int id;
+          private String name;
+      }
+
+      @Entity
+      @PrimaryKeyJoinColumn(name = "vehicle_id")
+      public class Car extends Vehicle {
+          private int numberOfDoors;
+      }
+
+      @Entity
+      @PrimaryKeyJoinColumn(name = "vehicle_id")
+      public class Bike extends Vehicle {
+          private boolean hasCarrier;
+      }
+    </code>
+  </pre>
+  <p style="color: #34495e;">
+    This strategy ensures data consistency and normalization but can lead to complex queries.
+  </p>
+
+  <h3 style="color: #2c3e50;">Choosing the Right Strategy</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The choice of inheritance mapping strategy depends on several factors:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Table Per Hierarchy:</b> Best for simple hierarchies with minimal subclass differences.</li>
+    <li><b>Table Per Concrete Class:</b> Suitable when subclasses have distinct data without shared parent attributes.</li>
+    <li><b>Table Per Subclass:</b> Ideal when data normalization and structured relationships are priorities.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Hibernate provides flexible inheritance mapping strategies to accommodate different database designs. Choosing the appropriate strategy ensures optimal performance, maintainability, and consistency in database interactions.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Hibernate with Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Hibernate with Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate is one of the most popular ORM (Object-Relational Mapping) frameworks in Java, and Spring Boot provides seamless integration with Hibernate to simplify database interactions. Spring Boot eliminates the need for complex configuration and allows developers to focus on business logic while leveraging Hibernate’s ORM capabilities efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Hibernate with Spring Boot?</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Using Hibernate with Spring Boot offers several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Automatic configuration of Hibernate as the JPA provider.</li>
+    <li>Built-in support for database initialization and schema management.</li>
+    <li>Seamless integration with Spring Data JPA for repository-based data access.</li>
+    <li>Elimination of boilerplate code required for Hibernate setup.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Setting Up Hibernate in Spring Boot</h3>
+  <h4 style="color: #e67e22;">Step 1: Add Dependencies</h4>
+  <p style="color: #34495e;">
+    Include the necessary dependencies in your <code>pom.xml</code> (for Maven) or <code>build.gradle</code> (for Gradle).
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+          &lt;artifactId&gt;h2&lt;/artifactId&gt;
+          &lt;scope&gt;runtime&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Step 2: Configure Application Properties</h4>
+  <p style="color: #34495e;">
+    Define database configurations in <code>application.properties</code> or <code>application.yml</code>.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.datasource.url=jdbc:h2:mem:testdb
+      spring.datasource.driverClassName=org.h2.Driver
+      spring.datasource.username=sa
+      spring.datasource.password=
+      spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+      spring.jpa.hibernate.ddl-auto=update
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Creating an Entity</h3>
+  <p style="color: #34495e;">
+    Define a simple entity class using JPA annotations.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Creating a Repository</h3>
+  <p style="color: #34495e;">
+    Use Spring Data JPA’s <code>JpaRepository</code> to create a data repository without writing implementation code.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.stereotype.Repository;
+
+      @Repository
+      public interface UserRepository extends JpaRepository<User, Long> {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Service Layer</h3>
+  <p style="color: #34495e;">
+    Implement a service class to handle business logic.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      import java.util.List;
+
+      @Service
+      public class UserService {
+          @Autowired
+          private UserRepository repository;
+
+          public List<User> getAllUsers() {
+              return repository.findAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Controller Layer</h3>
+  <p style="color: #34495e;">
+    Expose REST APIs using Spring Boot’s controller mechanism.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.web.bind.annotation.*;
+      import java.util.List;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          @Autowired
+          private UserService service;
+
+          @GetMapping
+          public List<User> getUsers() {
+              return service.getAllUsers();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Hibernate with Spring Boot simplifies database management by integrating ORM functionality seamlessly. With automatic configuration, repository-based data access, and minimal setup, developers can focus on building business logic efficiently. By leveraging Spring Data JPA, Hibernate’s power can be fully utilized within a Spring Boot application.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Hibernate & JPA`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Hibernate & JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate and JPA (Java Persistence API) are both used for ORM (Object-Relational Mapping) in Java applications. While Hibernate is an implementation of JPA, JPA itself is a specification that defines how Java objects should be mapped to relational databases. Using Hibernate with JPA provides a standardized way to interact with databases while leveraging Hibernate’s powerful features.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Hibernate with JPA?</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Some key reasons to use Hibernate with JPA include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>JPA provides a standardized API for persistence in Java.</li>
+    <li>Hibernate, as a JPA provider, offers advanced ORM capabilities.</li>
+    <li>Supports various database management systems with minimal changes.</li>
+    <li>Improves code portability by allowing developers to switch JPA providers easily.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Setting Up Hibernate with JPA</h3>
+  <h4 style="color: #e67e22;">Step 1: Add Dependencies</h4>
+  <p style="color: #34495e;">
+    Include the necessary dependencies in your <code>pom.xml</code> (for Maven) or <code>build.gradle</code> (for Gradle).
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;javax.persistence&lt;/groupId&gt;
+          &lt;artifactId&gt;javax.persistence-api&lt;/artifactId&gt;
+          &lt;version&gt;2.2&lt;/version&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
+          &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
+          &lt;version&gt;5.6.0.Final&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Step 2: Configure Persistence</h4>
+  <p style="color: #34495e;">
+    Define the persistence configuration in <code>persistence.xml</code>.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1"&gt;
+          &lt;persistence-unit name="example-unit"&gt;
+              &lt;provider&gt;org.hibernate.jpa.HibernatePersistenceProvider&lt;/provider&gt;
+              &lt;properties&gt;
+                  &lt;property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:testdb"/&gt;
+                  &lt;property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/&gt;
+                  &lt;property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/&gt;
+              &lt;/properties&gt;
+          &lt;/persistence-unit&gt;
+      &lt;/persistence&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Creating an Entity</h3>
+  <p style="color: #34495e;">
+    Define a JPA entity using annotations.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Using EntityManager</h3>
+  <p style="color: #34495e;">
+    The <code>EntityManager</code> API is used to interact with the persistence context.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      public class UserService {
+          @PersistenceContext
+          private EntityManager entityManager;
+
+          public void saveUser(User user) {
+              entityManager.persist(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Hibernate and JPA work together to provide a powerful ORM solution in Java applications. While JPA standardizes persistence, Hibernate enhances it with additional features. Understanding their integration ensures efficient and scalable database interactions.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Spring Data JPA vs Hibernate`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Data JPA vs Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Data JPA and Hibernate are both widely used frameworks in Java applications for ORM (Object-Relational Mapping). While Hibernate is a full-fledged ORM framework, Spring Data JPA is a part of the Spring ecosystem that simplifies JPA-based data access. Understanding their differences and use cases can help in choosing the right approach for your project.
+  </p>
+
+  <h3 style="color: #16a085;">What is Hibernate?</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Hibernate is a powerful ORM framework that enables Java applications to interact with databases using object-oriented principles. It provides various features such as lazy loading, caching, and transaction management.
+  </p>
+
+  <h3 style="color: #16a085;">What is Spring Data JPA?</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Data JPA is a part of the Spring Data project that simplifies database access using JPA. It reduces the need for boilerplate code and provides built-in support for CRUD operations, query derivation, and pagination.
+  </p>
+
+  <h3 style="color: #e67e22;">Key Differences</h3>
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+    <tr style="background-color: #f4f4f4;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Aspect</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Spring Data JPA</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Hibernate</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Ease of Use</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Provides built-in repository support with less boilerplate code.</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Requires more configuration and coding for CRUD operations.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Flexibility</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Less flexible as it abstracts much of Hibernate’s functionality.</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">More control over ORM features and configurations.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Query Handling</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Supports query derivation, JPQL, and native queries.</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Uses HQL, Criteria API, and native queries.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Transaction Management</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Relies on Spring’s transaction management.</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Manages transactions natively using Hibernate API.</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #9b59b6;">Example: Spring Data JPA</h3>
+  <p style="color: #34495e;">Example of a Spring Data JPA repository.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+
+      public interface UserRepository extends JpaRepository<User, Long> {
+          User findByEmail(String email);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Example: Hibernate</h3>
+  <p style="color: #34495e;">Example of using Hibernate with EntityManager.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      public class UserService {
+          @PersistenceContext
+          private EntityManager entityManager;
+
+          public void saveUser(User user) {
+              entityManager.persist(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Both Spring Data JPA and Hibernate have their advantages and trade-offs. If you want an easy-to-use solution with minimal configuration, Spring Data JPA is a great choice. However, if you need more control over ORM features and performance tuning, Hibernate provides greater flexibility. The choice depends on the complexity and requirements of your project.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Audit Logging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Audit Logging</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Audit logging is the process of recording events, changes, or actions performed in an application. It helps in tracking user activities, debugging issues, and ensuring compliance with security and regulatory requirements.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Audit Logging Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensures security and detects unauthorized access.</li>
+    <li>Helps in compliance with legal and regulatory standards.</li>
+    <li>Provides insights into system usage and potential issues.</li>
+    <li>Facilitates debugging and troubleshooting.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Audit Logs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Authentication Logs:</b> Tracks login and logout activities.</li>
+    <li><b>Transaction Logs:</b> Records changes made to data.</li>
+    <li><b>System Logs:</b> Captures application and server-level events.</li>
+    <li><b>Access Logs:</b> Logs user interactions with resources.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Implementing Audit Logging in Spring Boot</h3>
+  <p style="color: #34495e;">Example of using Spring Boot with Hibernate Envers for audit logging.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.envers.Audited;
+      import javax.persistence.*;
+
+      @Entity
+      @Audited
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Logging Frameworks</h3>
+  <p style="color: #34495e;">Popular frameworks for audit logging:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Log4j:</b> Highly configurable and widely used.</li>
+    <li><b>SLF4J:</b> Simple facade for various logging frameworks.</li>
+    <li><b>Spring Boot Actuator:</b> Provides built-in audit logging features.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Best Practices for Audit Logging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Log only necessary information to avoid data overload.</li>
+    <li>Ensure logs are tamper-proof by using secure storage.</li>
+    <li>Regularly review and analyze audit logs.</li>
+    <li>Use structured logging formats (e.g., JSON) for easy parsing.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Audit logging is crucial for security, compliance, and system monitoring. Implementing effective logging strategies ensures better traceability and helps prevent unauthorized access and system failures.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Performance Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Performance Optimization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Performance optimization refers to the practice of enhancing the efficiency of a system, application, or process to achieve faster execution times, reduced resource consumption, and improved user experience.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Performance Optimization Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Improves system responsiveness and scalability.</li>
+    <li>Reduces costs by optimizing resource usage.</li>
+    <li>Enhances user satisfaction by minimizing delays.</li>
+    <li>Ensures smooth operation under high loads.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Areas of Performance Optimization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Code Optimization:</b> Improve algorithms, reduce redundant computations.</li>
+    <li><b>Database Optimization:</b> Use indexing, caching, and optimized queries.</li>
+    <li><b>Network Optimization:</b> Reduce latency through compression and efficient data transfer.</li>
+    <li><b>Hardware Utilization:</b> Properly allocate CPU, memory, and storage resources.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Performance Optimization in Java Applications</h3>
+  <p style="color: #34495e;">Example of optimizing Hibernate queries for better performance.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.Session;
+      import org.hibernate.query.Query;
+
+      public class HibernateOptimization {
+          public static void main(String[] args) {
+              Session session = HibernateUtil.getSessionFactory().openSession();
+              Query<User> query = session.createQuery("FROM User WHERE active = :active", User.class);
+              query.setParameter("active", true);
+              query.setCacheable(true); // Enable caching
+              List<User> users = query.list();
+              session.close();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Performance Monitoring Tools</h3>
+  <p style="color: #34495e;">Popular tools for analyzing and optimizing performance:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>JProfiler:</b> Advanced Java profiling tool.</li>
+    <li><b>VisualVM:</b> Monitors and analyzes Java applications.</li>
+    <li><b>New Relic:</b> Performance monitoring for cloud and web applications.</li>
+    <li><b>Apache JMeter:</b> Load testing tool for analyzing performance bottlenecks.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Best Practices for Performance Optimization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Minimize database queries and avoid the N+1 problem.</li>
+    <li>Use caching strategies (e.g., Redis, Ehcache).</li>
+    <li>Profile and analyze code regularly to identify bottlenecks.</li>
+    <li>Optimize frontend performance with lazy loading and efficient rendering.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Performance optimization is essential for building high-performance applications. By focusing on efficient code, database tuning, and leveraging monitoring tools, developers can ensure smooth and scalable application performance.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing is a crucial phase in software development that ensures the application functions as expected, is free from defects, and meets business requirements. It involves verifying different aspects of software, such as functionality, security, performance, and usability.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Software Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Unit Testing:</b> Tests individual components or functions in isolation.</li>
+    <li><b>Integration Testing:</b> Verifies that multiple components work together correctly.</li>
+    <li><b>Functional Testing:</b> Ensures the application meets specified functional requirements.</li>
+    <li><b>Performance Testing:</b> Assesses system performance under different loads.</li>
+    <li><b>Security Testing:</b> Identifies vulnerabilities and security risks.</li>
+    <li><b>Usability Testing:</b> Evaluates user-friendliness and ease of use.</li>
+    <li><b>Regression Testing:</b> Checks that recent changes do not break existing functionality.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Unit Testing in Java</h3>
+  <p style="color: #34495e;">Example of a JUnit test case in Java.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+
+      public class CalculatorTest {
+          @Test
+          void testAddition() {
+              Calculator calc = new Calculator();
+              assertEquals(5, calc.add(2, 3));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Testing Frameworks & Tools</h3>
+  <p style="color: #34495e;">Popular tools for software testing:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>JUnit:</b> Unit testing framework for Java.</li>
+    <li><b>Selenium:</b> Automated testing for web applications.</li>
+    <li><b>TestNG:</b> Advanced testing framework for Java.</li>
+    <li><b>Postman:</b> API testing tool.</li>
+    <li><b>JMeter:</b> Performance and load testing tool.</li>
+    <li><b>Mockito:</b> Mocking framework for unit tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Best Practices for Effective Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write clear and concise test cases covering all scenarios.</li>
+    <li>Use automated tests to speed up the testing process.</li>
+    <li>Ensure tests are independent and do not rely on external dependencies.</li>
+    <li>Regularly review and update test cases as application evolves.</li>
+    <li>Incorporate testing early in the development cycle (Shift Left Testing).</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Testing is an essential process in software development that helps deliver high-quality, reliable, and secure applications. By leveraging different testing methodologies, frameworks, and best practices, developers can ensure their software meets the expected standards and performs efficiently in real-world scenarios.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Common Issues & Debugging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Common Issues & Debugging</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Debugging is a crucial skill for software developers to identify and fix errors in their applications. Common issues arise due to syntax errors, logical mistakes, configuration problems, or unexpected runtime behaviors. Effective debugging techniques help resolve issues efficiently and improve code quality.
+  </p>
+
+  <h3 style="color: #16a085;">Common Issues in Software Development</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Null Pointer Exceptions:</b> Occur when accessing an object reference that is null.</li>
+    <li><b>Syntax Errors:</b> Result from incorrect code structure or missing elements like semicolons or brackets.</li>
+    <li><b>Logic Errors:</b> Happen when the program runs but produces incorrect results.</li>
+    <li><b>Memory Leaks:</b> Arise from improper resource management, leading to excessive memory usage.</li>
+    <li><b>Concurrency Issues:</b> Occur in multi-threaded applications due to improper synchronization.</li>
+    <li><b>Configuration Errors:</b> Happen when application settings, such as database connections, are incorrect.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Debugging Techniques</h3>
+  <p style="color: #34495e;">Effective debugging strategies to identify and fix issues:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Logging:</b> Use logging frameworks (e.g., Log4j, SLF4J) to track program execution.</li>
+    <li><b>Breakpoints:</b> Utilize breakpoints in IDEs like IntelliJ IDEA or Eclipse to pause execution.</li>
+    <li><b>Stack Traces:</b> Analyze stack traces to locate the source of an error.</li>
+    <li><b>Code Reviews:</b> Peer review code to catch potential issues early.</li>
+    <li><b>Unit Tests:</b> Write tests to validate code correctness and detect regressions.</li>
+    <li><b>Static Code Analysis:</b> Use tools like SonarQube or Checkstyle to find coding violations.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Using a Debugger</h3>
+  <p style="color: #34495e;">Example of using a debugger in Java with IntelliJ IDEA.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class DebugExample {
+          public static void main(String[] args) {
+              int a = 5;
+              int b = 0;
+              int result = divide(a, b);
+              System.out.println("Result: " + result);
+          }
+          
+          public static int divide(int x, int y) {
+              return x / y; // This will cause an exception
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #34495e;">Set a breakpoint at the division operation and use the debugger to step through the code.</p>
+
+  <h3 style="color: #e67e22;">Best Practices for Debugging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Reproduce the issue consistently before attempting to fix it.</li>
+    <li>Use version control (e.g., Git) to track changes and identify regressions.</li>
+    <li>Break down complex problems into smaller, manageable parts.</li>
+    <li>Write meaningful error messages and log entries to aid in troubleshooting.</li>
+    <li>Keep dependencies and configurations up to date to avoid compatibility issues.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Debugging is an essential skill for developers to ensure software reliability. By understanding common issues and applying effective debugging techniques, developers can efficiently identify and resolve errors, leading to robust and high-quality applications.
+  </p>
+</div>
+
+`
+}
+
     ]
 
 }
