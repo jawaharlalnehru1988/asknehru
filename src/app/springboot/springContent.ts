@@ -6,7 +6,7 @@ export interface ISpringContent {
 }
 
 export class SpringContent {
-    mainContent = [
+    mainContent: ISpringContent[] = [
         {title: "Intro", content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
   <h2 style="color: #2c3e50;">Introduction to Spring Boot</h2>
   <p style="font-size: 16px; color: #34495e;">
@@ -11196,8 +11196,7 @@ class ExampleService {
     Choosing between Lazy and Eager Loading depends on your application's needs. 
     Use Lazy Loading for performance and Eager Loading when necessary to prevent extra queries.
   </p>
-</div>
-`
+</div>`
 },
 {
   title:`Transaction Management`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -11343,8 +11342,7 @@ class ExampleService {
     Using <code>@Transactional</code> simplifies handling transactions, and understanding propagation and rollback behavior 
     helps in building robust applications. 
   </p>
-</div>
-`
+</div>`
 },
 {
   title:`Locking Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -11465,8 +11463,7 @@ class ExampleService {
     **Optimistic locking** is preferred for performance, while **pessimistic locking** ensures strict data consistency. 
     Choosing the right strategy helps improve application efficiency and reliability.
   </p>
-</div>
-`
+</div>`
 },
 {
   title:`Fetching Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -11615,8 +11612,7 @@ class ExampleService {
     Choosing the right fetching strategy in JPA and Hibernate can **significantly improve performance**. 
     Use **Lazy Loading** whenever possible and optimize queries using **JOIN FETCH** or **Entity Graphs** for efficient data retrieval.
   </p>
-</div>
-`
+</div>`
 },
 {
   title:`Interceptors & Listeners`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -11727,9 +11723,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Hibernate provides <b>Interceptors</b> and <b>Listeners</b> to extend ORM behavior dynamically. While interceptors allow flexible manipulation of transactions, listeners provide structured event-driven hooks. Choosing between them depends on the specific needs of the application.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Inheritance Mapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -11863,9 +11857,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Hibernate provides flexible inheritance mapping strategies to accommodate different database designs. Choosing the appropriate strategy ensures optimal performance, maintainability, and consistency in database interactions.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Hibernate with Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -12007,9 +11999,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Hibernate with Spring Boot simplifies database management by integrating ORM functionality seamlessly. With automatic configuration, repository-based data access, and minimal setup, developers can focus on building business logic efficiently. By leveraging Spring Data JPA, Hibernate’s power can be fully utilized within a Spring Boot application.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Hibernate & JPA`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -12114,9 +12104,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Hibernate and JPA work together to provide a powerful ORM solution in Java applications. While JPA standardizes persistence, Hibernate enhances it with additional features. Understanding their integration ensures efficient and scalable database interactions.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Spring Data JPA vs Hibernate`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -12197,9 +12185,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Both Spring Data JPA and Hibernate have their advantages and trade-offs. If you want an easy-to-use solution with minimal configuration, Spring Data JPA is a great choice. However, if you need more control over ORM features and performance tuning, Hibernate provides greater flexibility. The choice depends on the complexity and requirements of your project.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Audit Logging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -12263,9 +12249,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Audit logging is crucial for security, compliance, and system monitoring. Implementing effective logging strategies ensures better traceability and helps prevent unauthorized access and system failures.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Performance Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -12331,9 +12315,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Performance optimization is essential for building high-performance applications. By focusing on efficient code, database tuning, and leveraging monitoring tools, developers can ensure smooth and scalable application performance.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -12394,9 +12376,7 @@ class ExampleService {
   <p style="color: #34495e;">
     Testing is an essential process in software development that helps deliver high-quality, reliable, and secure applications. By leveraging different testing methodologies, frameworks, and best practices, developers can ensure their software meets the expected standards and performs efficiently in real-world scenarios.
   </p>
-</div>
-
-`
+</div>`
 },
 {
   title:`Common Issues & Debugging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
@@ -12459,8 +12439,2233 @@ class ExampleService {
   <p style="color: #34495e;">
     Debugging is an essential skill for developers to ensure software reliability. By understanding common issues and applying effective debugging techniques, developers can efficiently identify and resolve errors, leading to robust and high-quality applications.
   </p>
-</div>
+</div>`
+},
+{
+  title:`Application Properties Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Application Properties Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Application properties play a crucial role in configuring and customizing software applications. They store key-value pairs that define application behavior, such as database connections, logging settings, and external API configurations. In Java-based applications, particularly with Spring Boot, the <code>application.properties</code> or <code>application.yml</code> files are used for these configurations.
+  </p>
 
+  <h3 style="color: #16a085;">Common Application Properties</h3>
+  <p style="color: #34495e;">Some commonly used properties in Spring Boot applications include:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Server Configuration:</b> <code>server.port=8080</code> (Defines the application port)</li>
+    <li><b>Database Configuration:</b> <code>spring.datasource.url=jdbc:mysql://localhost:3306/mydb</code></li>
+    <li><b>Logging Level:</b> <code>logging.level.org.springframework=DEBUG</code></li>
+    <li><b>File Upload Limits:</b> <code>spring.servlet.multipart.max-file-size=10MB</code></li>
+    <li><b>External API Keys:</b> <code>api.key=your-api-key-here</code></li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using <code>application.properties</code> in Spring Boot</h3>
+  <p style="color: #34495e;">Spring Boot automatically loads properties from the <code>application.properties</code> or <code>application.yml</code> file located in the <code>src/main/resources</code> directory.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # Server configuration
+      server.port=8081
+
+      # Database configuration
+      spring.datasource.url=jdbc:mysql://localhost:3306/mydatabase
+      spring.datasource.username=root
+      spring.datasource.password=secret
+
+      # Logging configuration
+      logging.level.org.springframework=DEBUG
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Using <code>@Value</code> Annotation</h3>
+  <p style="color: #34495e;">Spring Boot allows you to inject property values into Java classes using the <code>@Value</code> annotation.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class ConfigExample {
+          @Value("\${server.port}")
+          private String serverPort;
+          
+          public String getServerPort() {
+              return serverPort;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using <code>@ConfigurationProperties</code></h3>
+  <p style="color: #34495e;">For handling multiple related properties, use the <code>@ConfigurationProperties</code> annotation.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.ConfigurationProperties;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      public class AppProperties {
+          private String name;
+          private String version;
+          
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+          
+          public String getVersion() { return version; }
+          public void setVersion(String version) { this.version = version; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>application.yml</code> for better readability over <code>application.properties</code>.</li>
+    <li>Store sensitive properties (e.g., passwords) in environment variables or secure vaults.</li>
+    <li>Use profiles (e.g., <code>application-dev.properties</code>) to manage different environments.</li>
+    <li>Keep property files organized and remove unused properties.</li>
+    <li>Document critical properties to aid other developers.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Application properties are essential for configuring applications effectively. Spring Boot provides a flexible way to manage these properties through property files, annotations, and externalized configurations. Following best practices ensures maintainable and secure configuration management.
+  </p>
+</div>`
+},
+{
+  title:`Spring Boot Properties`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Boot Properties</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot properties allow developers to configure various aspects of their applications using a simple key-value format. These properties are typically defined in <code>application.properties</code> or <code>application.yml</code> files and can be used to manage database connections, server settings, logging levels, and more.
+  </p>
+
+  <h3 style="color: #16a085;">Commonly Used Spring Boot Properties</h3>
+  <p style="color: #34495e;">Here are some essential properties commonly used in Spring Boot applications:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Server Configuration:</b> <code>server.port=8080</code> (Defines the port for the application)</li>
+    <li><b>Database Configuration:</b> <code>spring.datasource.url=jdbc:mysql://localhost:3306/mydb</code></li>
+    <li><b>Logging Configuration:</b> <code>logging.level.org.springframework=DEBUG</code></li>
+    <li><b>Spring Profiles:</b> <code>spring.profiles.active=dev</code></li>
+    <li><b>Thymeleaf Configuration:</b> <code>spring.thymeleaf.cache=false</code></li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Configuring <code>application.properties</code> in Spring Boot</h3>
+  <p style="color: #34495e;">Spring Boot automatically loads properties from <code>application.properties</code> or <code>application.yml</code> files placed in the <code>src/main/resources</code> directory.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # Server properties
+      server.port=8081
+
+      # Database properties
+      spring.datasource.url=jdbc:mysql://localhost:3306/mydatabase
+      spring.datasource.username=root
+      spring.datasource.password=secret
+
+      # Logging properties
+      logging.level.org.springframework=DEBUG
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Injecting Properties in Spring Boot</h3>
+  <p style="color: #34495e;">Spring Boot provides several ways to access application properties in Java classes, such as using the <code>@Value</code> annotation.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class ConfigExample {
+          @Value("\${server.port}")
+          private String serverPort;
+          
+          public String getServerPort() {
+              return serverPort;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using <code>@ConfigurationProperties</code></h3>
+  <p style="color: #34495e;">For handling multiple related properties, use <code>@ConfigurationProperties</code>.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.ConfigurationProperties;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      public class AppProperties {
+          private String name;
+          private String version;
+          
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+          
+          public String getVersion() { return version; }
+          public void setVersion(String version) { this.version = version; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices for Spring Boot Properties</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>application.yml</code> for better readability over <code>application.properties</code>.</li>
+    <li>Store sensitive information in environment variables or a secure vault.</li>
+    <li>Use Spring profiles (e.g., <code>application-dev.properties</code>) to manage different environments.</li>
+    <li>Organize properties logically and remove unused ones.</li>
+    <li>Document critical properties for maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Spring Boot properties provide a flexible way to configure applications. Using <code>application.properties</code>, <code>application.yml</code>, and annotations like <code>@Value</code> and <code>@ConfigurationProperties</code>, developers can efficiently manage configurations. Following best practices ensures secure, maintainable, and efficient property management.
+  </p>
+</div>`
+},
+{
+  title:`Common Properties`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Common Properties</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, properties allow developers to configure various aspects of their applications through key-value pairs. These properties are typically defined in <code>application.properties</code> or <code>application.yml</code> files and can manage server settings, database connections, logging, security, and more.
+  </p>
+
+  <h3 style="color: #16a085;">Commonly Used Spring Boot Properties</h3>
+  <p style="color: #34495e;">Here are some frequently used properties in Spring Boot applications:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Server Configuration:</b> <code>server.port=8080</code> (Defines the application's running port).</li>
+    <li><b>Context Path:</b> <code>server.servlet.context-path=/app</code> (Defines the base URL path).</li>
+    <li><b>Database Configuration:</b> <code>spring.datasource.url=jdbc:mysql://localhost:3306/mydb</code></li>
+    <li><b>Logging Level:</b> <code>logging.level.org.springframework=DEBUG</code></li>
+    <li><b>Spring Profiles:</b> <code>spring.profiles.active=dev</code> (Defines active profile).</li>
+    <li><b>Security Configuration:</b> <code>spring.security.user.name=admin</code>, <code>spring.security.user.password=secret</code></li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Configuring Common Properties</h3>
+  <p style="color: #34495e;">Spring Boot loads properties from <code>application.properties</code> or <code>application.yml</code> automatically.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # Server properties
+      server.port=9090
+      server.servlet.context-path=/myapp
+
+      # Database properties
+      spring.datasource.url=jdbc:postgresql://localhost:5432/mydatabase
+      spring.datasource.username=postgres
+      spring.datasource.password=secret
+      
+      # Logging properties
+      logging.level.root=INFO
+      logging.level.org.springframework.web=DEBUG
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Accessing Properties in Java</h3>
+  <p style="color: #34495e;">Spring Boot allows accessing properties using <code>@Value</code> annotation.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class AppConfig {
+          @Value("\${server.port}")
+          private String serverPort;
+          
+          public String getServerPort() {
+              return serverPort;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using <code>@ConfigurationProperties</code></h3>
+  <p style="color: #34495e;">For handling grouped properties, use <code>@ConfigurationProperties</code>.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.ConfigurationProperties;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      public class AppProperties {
+          private String name;
+          private String version;
+          
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+          
+          public String getVersion() { return version; }
+          public void setVersion(String version) { this.version = version; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices for Common Properties</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>application.yml</code> for better readability over <code>application.properties</code>.</li>
+    <li>Store sensitive information in environment variables or a secure vault.</li>
+    <li>Use Spring profiles (e.g., <code>application-dev.properties</code>) to manage different environments.</li>
+    <li>Organize properties logically and remove unused ones.</li>
+    <li>Document critical properties for maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Understanding and utilizing common properties in Spring Boot is essential for configuring and managing applications efficiently. By leveraging <code>application.properties</code>, <code>application.yml</code>, and annotations like <code>@Value</code> and <code>@ConfigurationProperties</code>, developers can achieve flexible and maintainable configurations.
+  </p>
+</div>`
+},
+{
+  title:`YAML vs Properties`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">YAML vs Properties in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot allows configuration using both <code>application.properties</code> and <code>application.yml</code>. These files define settings for the application, including server configurations, database connections, logging levels, and more. Understanding the differences between these two formats can help in choosing the best option for your project.
+  </p>
+
+  <h3 style="color: #16a085;">Properties File</h3>
+  <p style="color: #34495e;">The properties file format uses key-value pairs for configuration.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # Server properties
+      server.port=8080
+      server.servlet.context-path=/app
+      
+      # Database properties
+      spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+      spring.datasource.username=root
+      spring.datasource.password=secret
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">YAML File</h3>
+  <p style="color: #34495e;">The YAML format provides a more structured way to define configuration properties.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      server:
+        port: 8080
+        servlet:
+          context-path: /app
+      
+      spring:
+        datasource:
+          url: jdbc:mysql://localhost:3306/mydb
+          username: root
+          password: secret
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Key Differences</h3>
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Feature</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Properties</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">YAML</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Format</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Key-Value pairs</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Hierarchical structure</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Readability</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Less readable for complex configurations</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Easier to read and maintain</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Multiline Values</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Requires escaping characters</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Supports multiline natively</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Array Support</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Not intuitive</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Easy to define lists</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #9b59b6;">When to Use Properties or YAML?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>application.properties</code> for simple key-value configurations.</li>
+    <li>Use <code>application.yml</code> when dealing with structured configurations.</li>
+    <li>YAML is preferred for large projects as it offers better readability.</li>
+    <li>For environment-specific properties, both formats support Spring profiles.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Both YAML and properties files serve as configuration options in Spring Boot. YAML is more readable and structured, while properties files are simpler for smaller applications. Choosing the right format depends on project requirements and developer preference.
+  </p>
+</div>`
+},
+{
+  title:`Spring Profiles`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Profiles</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Profiles provide a way to define different configurations for different environments (e.g., development, testing, production) within a Spring Boot application. This helps in maintaining environment-specific settings without changing the core application code.
+  </p>
+
+  <h3 style="color: #16a085;">Defining Profiles</h3>
+  <p style="color: #34495e;">Spring Profiles can be defined using the <code>spring.profiles.active</code> property in <code>application.properties</code> or <code>application.yml</code>. Different profiles allow applications to load configurations dynamically based on the environment.</p>
+
+  <h4 style="color: #e67e22;">Example: Using Properties File</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # application.properties (default)
+      spring.profiles.active=dev
+      
+      # application-dev.properties
+      server.port=8081
+      spring.datasource.url=jdbc:mysql://localhost:3306/devdb
+      
+      # application-prod.properties
+      server.port=8082
+      spring.datasource.url=jdbc:mysql://localhost:3306/proddb
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Example: Using YAML</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        profiles:
+          active: dev
+      
+      ---
+      spring:
+        profiles: dev
+      server:
+        port: 8081
+      datasource:
+        url: jdbc:mysql://localhost:3306/devdb
+      
+      ---
+      spring:
+        profiles: prod
+      server:
+        port: 8082
+      datasource:
+        url: jdbc:mysql://localhost:3306/proddb
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Activating Profiles</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Profiles can be activated via command line: <code>-Dspring.profiles.active=prod</code></li>
+    <li>Profiles can be set in environment variables: <code>SPRING_PROFILES_ACTIVE=prod</code></li>
+    <li>Profiles can be specified in an application configuration file.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using @Profile Annotation</h3>
+  <p style="color: #34495e;">The <code>@Profile</code> annotation can be used to conditionally load beans based on the active profile.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.context.annotation.Profile;
+      
+      @Configuration
+      public class AppConfig {
+        
+          @Bean
+          @Profile("dev")
+          public DataSource devDataSource() {
+              return new DataSource("jdbc:mysql://localhost:3306/devdb");
+          }
+          
+          @Bean
+          @Profile("prod")
+          public DataSource prodDataSource() {
+              return new DataSource("jdbc:mysql://localhost:3306/proddb");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Advantages of Using Profiles</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Allows easy environment-specific configurations.</li>
+    <li>Improves code maintainability.</li>
+    <li>Enables automatic selection of configurations based on deployment environment.</li>
+    <li>Supports different property files or YAML sections for each profile.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Spring Profiles offer a powerful way to manage application configurations across different environments. By leveraging profiles in properties files, YAML configurations, or the <code>@Profile</code> annotation, developers can easily switch between development, testing, and production configurations without modifying the core code.
+  </p>
+</div>`
+},
+{
+  title:`Custom Properties`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Custom Properties in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot allows defining custom properties in configuration files to externalize application-specific settings. These properties can be accessed using the <code>@Value</code> annotation, <code>Environment</code> object, or by binding them to a configuration class.
+  </p>
+
+  <h3 style="color: #16a085;">Defining Custom Properties</h3>
+  <p style="color: #34495e;">Custom properties can be added to the <code>application.properties</code> or <code>application.yml</code> file.</p>
+
+  <h4 style="color: #e67e22;">Example: Using application.properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      app.name=My Spring Boot App
+      app.version=1.0.0
+      app.description=This is a sample Spring Boot application.
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Example: Using application.yml</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      app:
+        name: My Spring Boot App
+        version: 1.0.0
+        description: This is a sample Spring Boot application.
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Accessing Custom Properties</h3>
+  <h4 style="color: #e67e22;">Using @Value Annotation</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class AppConfig {
+          
+          @Value("\${app.name}")
+          private String appName;
+          
+          @Value("\${app.version}")
+          private String appVersion;
+          
+          public String getAppDetails() {
+              return appName + " - " + appVersion;
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Using @ConfigurationProperties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.ConfigurationProperties;
+      import org.springframework.context.annotation.Configuration;
+      
+      @Configuration
+      @ConfigurationProperties(prefix = "app")
+      public class AppProperties {
+          private String name;
+          private String version;
+          
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+          
+          public String getVersion() { return version; }
+          public void setVersion(String version) { this.version = version; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using Environment Object</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.core.env.Environment;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class AppEnvConfig {
+          private final Environment environment;
+          
+          public AppEnvConfig(Environment environment) {
+              this.environment = environment;
+          }
+          
+          public String getAppName() {
+              return environment.getProperty("app.name");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Advantages of Custom Properties</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Allows externalizing configuration settings.</li>
+    <li>Improves maintainability and flexibility.</li>
+    <li>Supports easy modification without changing the code.</li>
+    <li>Works seamlessly with different environments.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Custom properties in Spring Boot provide a powerful way to configure applications dynamically. By leveraging properties files, YAML configurations, or binding properties to Java classes, developers can easily manage application settings across different environments.
+  </p>
+</div>`
+},
+{
+  title:`Externalized Configuration`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Externalized Configuration in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot provides powerful support for externalized configuration, allowing developers to define application settings outside of the source code. This enables greater flexibility and easier management of different environments like development, testing, and production.
+  </p>
+
+  <h3 style="color: #16a085;">Sources of Externalized Configuration</h3>
+  <p style="color: #34495e;">Spring Boot supports multiple sources for externalized configuration, including:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Properties files (application.properties, application.yml)</li>
+    <li>Command-line arguments</li>
+    <li>Environment variables</li>
+    <li>System properties</li>
+    <li>Configuration servers (e.g., Spring Cloud Config)</li>
+    <li>JNDI attributes</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Using Properties Files</h3>
+  <p style="color: #34495e;">Application configuration is often stored in <code>application.properties</code> or <code>application.yml</code>:</p>
+
+  <h4 style="color: #e67e22;">Example: application.properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      server.port=8081
+      spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+      spring.datasource.username=root
+      spring.datasource.password=secret
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Example: application.yml</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      server:
+        port: 8081
+      spring:
+        datasource:
+          url: jdbc:mysql://localhost:3306/mydb
+          username: root
+          password: secret
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using Command-Line Arguments</h3>
+  <p style="color: #34495e;">Spring Boot allows overriding properties through command-line arguments:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      java -jar myapp.jar --server.port=9090 --spring.datasource.username=admin
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Using Environment Variables</h3>
+  <p style="color: #34495e;">Spring Boot reads environment variables using the <code>@Value</code> annotation or <code>Environment</code> object:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class ConfigExample {
+          
+          @Value("\${SERVER_PORT:8080}")
+          private String serverPort;
+          
+          public String getServerPort() {
+              return serverPort;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using Spring Cloud Config</h3>
+  <p style="color: #34495e;">Spring Cloud Config provides centralized externalized configuration for distributed applications:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.cloud.config.uri=http://config-server:8888
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Benefits of Externalized Configuration</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Separates configuration from code</li>
+    <li>Facilitates easy environment management</li>
+    <li>Supports runtime modifications without restarting</li>
+    <li>Improves maintainability and flexibility</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Externalized configuration is an essential feature of Spring Boot that enables better configurability and easier environment management. By leveraging properties files, command-line arguments, environment variables, and external configuration servers, applications become more flexible and maintainable.
+  </p>
+</div>`
+},
+{
+  title:`Binding to POJOs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Binding to POJOs in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot provides a powerful mechanism for binding externalized configuration properties to Plain Old Java Objects (POJOs). This allows for structured and type-safe access to application properties, making it easier to manage configurations.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use POJO Binding?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Encapsulates configuration properties in a structured manner</li>
+    <li>Eliminates the need for manual parsing of properties</li>
+    <li>Provides type safety and validation</li>
+    <li>Makes configuration management cleaner and more maintainable</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Using <code>@ConfigurationProperties</code></h3>
+  <p style="color: #34495e;">
+    The <code>@ConfigurationProperties</code> annotation allows mapping properties from <code>application.properties</code> or <code>application.yml</code> to a Java POJO.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: application.properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      app.name=MyApp
+      app.version=1.0.0
+      app.enabled=true
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Example: Binding to a POJO</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.ConfigurationProperties;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      public class AppProperties {
+          private String name;
+          private String version;
+          private boolean enabled;
+          
+          // Getters and Setters
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+          public String getVersion() { return version; }
+          public void setVersion(String version) { this.version = version; }
+          public boolean isEnabled() { return enabled; }
+          public void setEnabled(boolean enabled) { this.enabled = enabled; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Enabling Configuration Binding</h3>
+  <p style="color: #34495e;">Ensure that the POJO is managed as a Spring bean by adding <code>@Component</code> or using <code>@EnableConfigurationProperties</code> in a configuration class.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.EnableConfigurationProperties;
+      import org.springframework.context.annotation.Configuration;
+      
+      @Configuration
+      @EnableConfigurationProperties(AppProperties.class)
+      public class AppConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Validating Properties</h3>
+  <p style="color: #34495e;">Spring Boot allows validation of properties using JSR-303 validation annotations like <code>@NotNull</code> and <code>@Min</code>:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.validation.constraints.Min;
+      import javax.validation.constraints.NotNull;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      public class AppProperties {
+          @NotNull
+          private String name;
+          
+          @Min(1)
+          private String version;
+          
+          private boolean enabled;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Binding to POJOs in Spring Boot simplifies configuration management by providing a structured and type-safe approach. Using <code>@ConfigurationProperties</code>, developers can cleanly manage application settings while leveraging validation and externalized configuration sources.
+  </p>
+</div>`
+},
+{
+  title:`@Value Annotation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Value Annotation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@Value</code> annotation in Spring Boot is used to inject values into fields from property files, system properties, or even SpEL (Spring Expression Language). It is a simple and effective way to externalize configuration values in a Spring application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Value?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Injects values directly into fields</li>
+    <li>Supports default values</li>
+    <li>Works with system properties, environment variables, and property files</li>
+    <li>Supports Spring Expression Language (SpEL) for dynamic values</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Basic Usage of @Value</h3>
+  <p style="color: #34495e;">
+    The <code>@Value</code> annotation can be used to inject values from <code>application.properties</code> or <code>application.yml</code> into a Spring component.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: application.properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      app.name=MyApp
+      app.version=1.0.0
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Injecting Properties with @Value</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class AppConfig {
+          @Value("\${app.name}")
+          private String appName;
+          
+          @Value("\${app.version}")
+          private String appVersion;
+          
+          public String getAppName() {
+              return appName;
+          }
+          
+          public String getAppVersion() {
+              return appVersion;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using Default Values</h3>
+  <p style="color: #34495e;">If a property is missing, a default value can be specified:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Value("\${app.description:Default App Description}")
+      private String appDescription;
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Using SpEL (Spring Expression Language)</h3>
+  <p style="color: #34495e;">Spring Expression Language (SpEL) can be used to derive values dynamically:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Value("#{systemProperties['user.name']}")
+      private String systemUser;
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Injecting Lists and Maps</h3>
+  <p style="color: #34495e;">Lists and Maps can also be injected using <code>@Value</code>:</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Value("#{'\${app.supportedLanguages}'.split(',')}")
+      private List<String> supportedLanguages;
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <code>@Value</code> annotation is a powerful tool for injecting externalized properties into Spring components. It supports default values, SpEL, system properties, and more, making it a flexible choice for configuration management.
+  </p>
+</div>`
+},
+{
+  title:`Configuration Prefixes`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Configuration Prefixes in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, configuration properties are often grouped using prefixes to organize related settings and simplify property binding. This allows for better structuring and easier management of application properties.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Configuration Prefixes?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Organizes related configuration properties</li>
+    <li>Enables easy binding to POJOs</li>
+    <li>Improves readability and maintainability</li>
+    <li>Supports hierarchical property structures</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Defining Configuration Prefixes</h3>
+  <p style="color: #34495e;">
+    Configuration prefixes are used in property files such as <code>application.properties</code> or <code>application.yml</code>. Each prefix groups related properties together.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: application.properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      app.name=MyApplication
+      app.version=1.0.0
+      app.description=Spring Boot App
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Example: application.yml</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      app:
+        name: MyApplication
+        version: 1.0.0
+        description: Spring Boot App
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Binding Configuration Prefixes to POJOs</h3>
+  <p style="color: #34495e;">Spring Boot allows binding these properties to a Java class using the <code>@ConfigurationProperties</code> annotation.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.ConfigurationProperties;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      public class AppConfig {
+          private String name;
+          private String version;
+          private String description;
+          
+          // Getters and setters
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+          
+          public String getVersion() { return version; }
+          public void setVersion(String version) { this.version = version; }
+          
+          public String getDescription() { return description; }
+          public void setDescription(String description) { this.description = description; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Validating Configuration Properties</h3>
+  <p style="color: #34495e;">Spring Boot supports validation for configuration properties using <code>@Validated</code> and constraint annotations.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.validation.constraints.NotBlank;
+      import jakarta.validation.constraints.NotNull;
+      import org.springframework.validation.annotation.Validated;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      @Validated
+      public class AppConfig {
+          @NotBlank
+          private String name;
+          
+          @NotNull
+          private String version;
+          
+          private String description;
+          
+          // Getters and setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Configuration prefixes in Spring Boot allow for structured and manageable property configurations. They help in organizing related settings and make it easy to bind them to Java objects using <code>@ConfigurationProperties</code>. This enhances the maintainability and flexibility of application configurations.
+  </p>
+</div>`
+},
+{
+  title:`Property Sources`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Property Sources in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, property sources define the locations from which configuration properties are loaded. These properties play a crucial role in externalizing application configurations, making applications more flexible and manageable across different environments.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding Property Sources</h3>
+  <p style="color: #34495e;">
+    Spring Boot loads properties from multiple sources in a specific order, allowing developers to override configurations as needed. Property sources can include property files, environment variables, system properties, and command-line arguments.
+  </p>
+
+  <h3 style="color: #9b59b6;">Types of Property Sources</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>application.properties / application.yml:</b> Default configuration files loaded from <code>src/main/resources</code>.</li>
+    <li><b>System Properties:</b> Java system properties passed using <code>-Dproperty=value</code>.</li>
+    <li><b>Environment Variables:</b> Variables defined in the system environment.</li>
+    <li><b>Command-Line Arguments:</b> Properties passed when starting the application using <code>--property=value</code>.</li>
+    <li><b>PropertySource Annotations:</b> Custom properties loaded from specific locations using <code>@PropertySource</code>.</li>
+    <li><b>Profiles:</b> Environment-specific configurations using <code>application-{profile}.properties</code>.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Order of Property Sources</h3>
+  <p style="color: #34495e;">
+    Spring Boot follows a predefined order when resolving properties. The general precedence (from highest to lowest) is:
+  </p>
+  <ol style="color: #2c3e50; padding-left: 20px;">
+    <li>DevTools properties (if applicable)</li>
+    <li>Command-line arguments</li>
+    <li>Java system properties (<code>-Dproperty=value</code>)</li>
+    <li>OS environment variables</li>
+    <li><code>RandomValuePropertySource</code> (random values in configuration)</li>
+    <li>Application properties from <code>application-{profile}.properties</code> or <code>application.yml</code></li>
+    <li>Application properties from <code>@PropertySource</code> annotations</li>
+    <li>Default properties set via <code>SpringApplication.setDefaultProperties()</code></li>
+  </ol>
+
+  <h3 style="color: #9b59b6;">Using @PropertySource to Load Custom Properties</h3>
+  <p style="color: #34495e;">The <code>@PropertySource</code> annotation can be used to load properties from external files.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.context.annotation.PropertySource;
+      
+      @Configuration
+      @PropertySource("classpath:custom.properties")
+      public class CustomPropertyConfig {
+          @Value("\${custom.property}")
+          private String customProperty;
+          
+          public String getCustomProperty() {
+              return customProperty;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Binding Property Sources to POJOs</h3>
+  <p style="color: #34495e;">Property sources can be mapped directly to Java objects using <code>@ConfigurationProperties</code>.</p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.context.properties.ConfigurationProperties;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      @ConfigurationProperties(prefix = "app")
+      public class AppConfig {
+          private String name;
+          private String version;
+          
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+          
+          public String getVersion() { return version; }
+          public void setVersion(String version) { this.version = version; }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Property sources in Spring Boot allow for externalized and flexible application configurations. By leveraging multiple sources such as property files, system variables, and command-line arguments, developers can ensure their applications are adaptable and environment-friendly. Understanding how these property sources interact helps in maintaining scalable and maintainable applications.
+  </p>
+</div>`
+},
+{
+  title:`Configuration Property Types`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Configuration Property Types in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In JPA and Hibernate, configuration properties define how the persistence layer behaves.
+    These properties control database connections, entity mapping, caching, and more.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Configuration Properties</h3>
+  <p style="color: #34495e;">
+    The main types of configuration properties in JPA and Hibernate are:
+  </p>
+  <ul style="color: #34495e; padding-left: 20px;">
+    <li><b>Database Connection Properties</b> – Define how Hibernate connects to the database.</li>
+    <li><b>JPA Provider Properties</b> – Specify JPA provider behavior.</li>
+    <li><b>Hibernate-Specific Properties</b> – Fine-tune Hibernate features.</li>
+    <li><b>Caching and Performance Properties</b> – Manage caching and query optimizations.</li>
+    <li><b>Transaction Management Properties</b> – Define how transactions are handled.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">1. Database Connection Properties</h3>
+  <p style="color: #34495e;">
+    These properties define the **JDBC connection** used by Hibernate.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Database Configuration</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+      spring.datasource.username=root
+      spring.datasource.password=secret
+      spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    These properties define the **database URL**, **username**, **password**, and **JDBC driver**.
+  </p>
+
+  <h3 style="color: #16a085;">2. JPA Provider Properties</h3>
+  <p style="color: #34495e;">
+    JPA provider properties configure the **JPA implementation**, such as Hibernate.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: JPA Provider Configuration</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+      spring.jpa.show-sql=true
+      spring.jpa.hibernate.ddl-auto=update
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    - **Database Dialect**: Specifies the SQL dialect Hibernate should use.<br>
+    - **Show SQL**: Enables query logging.<br>
+    - **DDL Auto**: Controls schema generation (e.g., update, create, none).
+  </p>
+
+  <h3 style="color: #9b59b6;">3. Hibernate-Specific Properties</h3>
+  <p style="color: #34495e;">
+    Hibernate offers additional properties for fine-grained control.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Hibernate Configuration</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      hibernate.format_sql=true
+      hibernate.jdbc.batch_size=50
+      hibernate.order_inserts=true
+      hibernate.order_updates=true
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    - **Format SQL**: Pretty-prints SQL queries.<br>
+    - **Batch Size**: Controls batch processing for inserts/updates.<br>
+    - **Order Inserts/Updates**: Optimizes bulk operations.
+  </p>
+
+  <h3 style="color: #16a085;">4. Caching and Performance Properties</h3>
+  <p style="color: #34495e;">
+    These properties enable **caching** and **query optimizations**.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Caching Configuration</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      hibernate.cache.use_second_level_cache=true
+      hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
+      hibernate.cache.use_query_cache=true
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    - **Second-Level Cache**: Enables entity caching.<br>
+    - **Cache Provider**: Specifies the caching implementation.<br>
+    - **Query Cache**: Enables caching of query results.
+  </p>
+
+  <h3 style="color: #9b59b6;">5. Transaction Management Properties</h3>
+  <p style="color: #34495e;">
+    These properties control how **transactions** are managed.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Transaction Configuration</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.transaction.default-timeout=30
+      spring.transaction.rollback-on-commit-failure=true
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    - **Default Timeout**: Specifies transaction timeout in seconds.<br>
+    - **Rollback on Failure**: Ensures failed transactions are rolled back.
+  </p>
+
+  <h3 style="color: #16a085;">Best Practices for Configuration</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **environment variables** instead of hardcoding credentials.</li>
+    <li>Enable **query logging** only in development.</li>
+    <li>Optimize **batch size** for better performance.</li>
+    <li>Use **caching** to reduce database load.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Configuring JPA and Hibernate properly ensures efficient database interactions.
+    Using the right **property settings** enhances performance, security, and scalability.
+  </p>
+</div>
+`
+},
+{
+  title:`Profile-Specific Config`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Profile-Specific Configuration in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot allows you to define different configurations for different environments using 
+    <b>profile-specific properties</b>. This feature helps manage configurations for <b>development</b>, <b>testing</b>, 
+    <b>staging</b>, and <b>production</b> without modifying the codebase.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is a Profile in Spring Boot?</h3>
+  <p style="color: #34495e;">
+    A <b>profile</b> in Spring Boot is a way to separate configurations based on different environments. 
+    You can have separate property files or bean configurations for each profile.
+  </p>
+
+  <h3 style="color: #9b59b6;">2. Defining Profile-Specific Property Files</h3>
+  <p style="color: #34495e;">
+    Spring Boot allows creating <b>profile-specific property files</b> using the naming convention:
+  </p>
+
+  <ul style="color: #34495e; padding-left: 20px;">
+    <li><b>application.properties</b> (default configuration)</li>
+    <li><b>application-dev.properties</b> (for development)</li>
+    <li><b>application-test.properties</b> (for testing)</li>
+    <li><b>application-prod.properties</b> (for production)</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Example: Profile-Specific Property Files</h4>
+  
+  <p><b>application-dev.properties</b></p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      spring.datasource.url=jdbc:mysql://localhost:3306/devdb
+      spring.datasource.username=devuser
+      spring.datasource.password=devpass
+      server.port=8081
+    </code>
+  </pre>
+
+  <p><b>application-prod.properties</b></p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      spring.datasource.url=jdbc:mysql://prod-db:3306/proddb
+      spring.datasource.username=produser
+      spring.datasource.password=prodpass
+      server.port=8080
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    Here, different database configurations and ports are used for <b>development</b> and <b>production</b>.
+  </p>
+
+  <h3 style="color: #16a085;">3. Activating a Profile</h3>
+  <p style="color: #34495e;">
+    You can activate a specific profile using:
+  </p>
+  
+  <ul style="color: #34495e; padding-left: 20px;">
+    <li><b>Environment Variable</b>: Set <code>SPRING_PROFILES_ACTIVE</code></li>
+    <li><b>Command Line</b>: Use <code>--spring.profiles.active=dev</code></li>
+    <li><b>Configuration File</b>: Set in <code>application.properties</code></li>
+  </ul>
+
+  <h4 style="color: #e67e22;">Example: Setting Profile in application.properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      spring.profiles.active=dev
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Example: Setting Profile in Command Line</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      java -jar myapp.jar --spring.profiles.active=prod
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">4. Using Profiles in Java Configuration</h3>
+  <p style="color: #34495e;">
+    You can use <b>@Profile</b> annotation to define beans for specific profiles.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Profile-Based Bean Configuration</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class DataSourceConfig {
+
+          @Bean
+          @Profile("dev")
+          public DataSource devDataSource() {
+              return new HikariDataSource(); // Dev DB setup
+          }
+
+          @Bean
+          @Profile("prod")
+          public DataSource prodDataSource() {
+              return new HikariDataSource(); // Prod DB setup
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    - The **devDataSource()** bean is created only when the <b>dev</b> profile is active.<br>
+    - The **prodDataSource()** bean is used when the <b>prod</b> profile is active.
+  </p>
+
+  <h3 style="color: #16a085;">5. Best Practices for Profile-Specific Configurations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **profile-specific properties** instead of manually changing configurations.</li>
+    <li>Store **sensitive credentials** (e.g., database passwords) in **environment variables**.</li>
+    <li>Ensure **default profiles** are set for cases when no profile is active.</li>
+    <li>Use **@Profile annotation** in Java-based configurations.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Profile-specific configurations allow developers to manage settings for different environments 
+    efficiently. By using **application-{profile}.properties**, **@Profile annotations**, and 
+    **environment variables**, Spring Boot applications can dynamically adapt to different 
+    deployment scenarios.
+  </p>
+</div>
+`
+},
+{
+  title:`Profiles in application.yml`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Profiles in <code>application.yml</code></h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Profiles in Spring Boot are a powerful feature that allows you to define different configurations for different environments, such as development, testing, and production. By using profiles, you can customize properties, beans, and behavior based on the active profile. The <code>application.yml</code> file is a common way to define these configurations in a structured and readable format. This article explores how to use profiles in <code>application.yml</code> to manage environment-specific settings in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Profiles?</h3>
+  <p style="color: #2c3e50;">
+    Profiles offer several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Environment-Specific Configuration</strong>: Tailor settings for different environments without changing code.</li>
+    <li><strong>Simplified Deployment</strong>: Easily switch configurations when deploying to different environments.</li>
+    <li><strong>Improved Maintainability</strong>: Keep all configurations in one place, making it easier to manage and update.</li>
+    <li><strong>Flexibility</strong>: Override default properties for specific environments or use cases.</li>
+    <li><strong>Testing</strong>: Use different configurations for unit tests, integration tests, and end-to-end tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Profiles in <code>application.yml</code></h3>
+  <p style="color: #2c3e50;">
+    When working with profiles in <code>application.yml</code>, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Default Profile</strong>: Properties defined outside any profile block are considered default and apply to all profiles.</li>
+    <li><strong>Profile-Specific Properties</strong>: Properties defined under a specific profile block override the default properties.</li>
+    <li><strong>Activating Profiles</strong>: Profiles can be activated using environment variables, command-line arguments, or configuration files.</li>
+    <li><strong>Profile Groups</strong>: Combine multiple profiles into a group for easier management.</li>
+    <li><strong>YAML Structure</strong>: Use indentation and dashes to define profiles and properties in <code>application.yml</code>.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Profiles in <code>application.yml</code></h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to define and use profiles in a <code>application.yml</code> file.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define Default Properties</h4>
+  <p style="color: #2c3e50;">
+    Define default properties that apply to all profiles.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      # Default properties
+      app:
+        name: MySpringBootApp
+        version: 1.0.0
+
+      server:
+        port: 8080
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define Profile-Specific Properties</h4>
+  <p style="color: #2c3e50;">
+    Define properties for specific profiles like <code>dev</code>, <code>test</code>, and <code>prod</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      # Development profile
+      ---
+      spring:
+        profiles: dev
+
+      app:
+        environment: Development
+      server:
+        port: 8081
+
+      # Testing profile
+      ---
+      spring:
+        profiles: test
+
+      app:
+        environment: Testing
+      server:
+        port: 8082
+
+      # Production profile
+      ---
+      spring:
+        profiles: prod
+
+      app:
+        environment: Production
+      server:
+        port: 8080
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Activate Profiles</h4>
+  <p style="color: #2c3e50;">
+    Activate a profile using environment variables, command-line arguments, or configuration files.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      # Using environment variable
+      export SPRING_PROFILES_ACTIVE=dev
+
+      # Using command-line argument
+      java -jar myapp.jar --spring.profiles.active=test
+
+      # In application.yml (for default profile)
+      spring:
+        profiles:
+          active: prod
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Use Profile Groups</h4>
+  <p style="color: #2c3e50;">
+    Combine multiple profiles into a group for easier activation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        profiles:
+          group:
+            dev: dev,debug
+            prod: prod,secure
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Profiles</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful profile names like <code>dev</code>, <code>test</code>, and <code>prod</code>.</li>
+    <li>Keep default properties minimal and override them in profile-specific blocks.</li>
+    <li>Avoid hardcoding sensitive information (e.g., passwords) in <code>application.yml</code>; use environment variables or secrets management tools.</li>
+    <li>Use profile groups to simplify the activation of related profiles.</li>
+    <li>Test your application with all active profiles to ensure compatibility.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Profiles in <code>application.yml</code> are a powerful way to manage environment-specific configurations in Spring Boot applications. By defining default properties and overriding them for specific profiles, you can easily customize your application for different environments. Whether you're developing, testing, or deploying to production, profiles provide the flexibility and maintainability needed to manage configurations effectively. By following best practices, you can ensure that your application is well-organized, secure, and ready for any environment.
+  </p>
+</div>`
+},
+{
+  title:`Placeholder Resolution`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Placeholder Resolution in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot supports <b>placeholder resolution</b>, allowing developers to use variables in configuration files 
+    and resolve them dynamically at runtime. Placeholders are commonly used in <b>application.properties</b> or 
+    <b>application.yml</b> to improve maintainability and flexibility.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is Placeholder Resolution?</h3>
+  <p style="color: #34495e;">
+    Placeholder resolution is a mechanism that allows values in configuration files to be dynamically replaced 
+    using <b>$\{...}</b> syntax. These placeholders can reference:
+  </p>
+  <ul style="color: #34495e; padding-left: 20px;">
+    <li><b>Other property values</b> within the same file</li>
+    <li><b>Environment variables</b> set at runtime</li>
+    <li><b>System properties</b> (e.g., JVM arguments)</li>
+    <li><b>Default values</b> if the placeholder is not found</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">2. Using Placeholders in application.properties</h3>
+  <p style="color: #34495e;">
+    You can use placeholders to reference values inside your <b>application.properties</b> file.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Using Placeholders in application.properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      app.name=MySpringApp
+      app.version=1.0.0
+      app.fullname=$\{app.name} v$\{app.version}
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    The placeholder <b>$\{app.name}</b> resolves to <b>MySpringApp</b> and <b>$\{app.version}</b> resolves to <b>1.0.0</b>, 
+    so <code>app.fullname</code> will become <b>MySpringApp v1.0.0</b>.
+  </p>
+
+  <h3 style="color: #16a085;">3. Placeholder Resolution in YAML Configuration</h3>
+  <p style="color: #34495e;">
+    In YAML configuration, placeholders work the same way.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Using Placeholders in application.yml</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      app:
+        name: MySpringApp
+        version: 1.0.0
+        fullname: $\{app.name} v$\{app.version}
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">4. Using System Properties & Environment Variables</h3>
+  <p style="color: #34495e;">
+    You can also reference system properties or environment variables inside your configuration.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Resolving System Properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      server.port=$\{PORT:8080}
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    - If the <b>PORT</b> environment variable is set, it will be used.<br>
+    - If <b>PORT</b> is not set, the default value <b>8080</b> will be used.
+  </p>
+
+  <h3 style="color: #16a085;">5. Using Placeholders in Java Code</h3>
+  <p style="color: #34495e;">
+    You can use the <b>@Value</b> annotation to inject placeholder values into Spring Beans.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Injecting Placeholders in a Spring Component</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Component
+      public class AppConfig {
+          @Value("$\{app.name}")
+          private String appName;
+      
+          @Value("\${server.port:8080}")
+          private int serverPort;
+
+          public void printConfig() {
+              System.out.println("App Name: " + appName);
+              System.out.println("Server Port: " + serverPort);
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #34495e;">
+    - <b>@Value("\${app.name}")</b> injects the value from <code>application.properties</code>.<br>
+    - <b>@Value("\${server.port:8080}")</b> uses <b>8080</b> as a default if no value is found.
+  </p>
+
+  <h3 style="color: #16a085;">6. Resolving Placeholders Programmatically</h3>
+  <p style="color: #34495e;">
+    The <b>Environment</b> object in Spring can be used to resolve placeholders programmatically.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Using Environment to Resolve Placeholders</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      public class ConfigController {
+      
+          @Autowired
+          private Environment env;
+      
+          @GetMapping("/config")
+          public String getConfig() {
+              String appName = env.getProperty("app.name", "DefaultApp");
+              return "App Name: " + appName;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">7. Best Practices for Placeholder Resolution</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <b>\${property.name}</b> for referencing other properties.</li>
+    <li>Provide default values using <b>\${property.name:defaultValue}</b>.</li>
+    <li>Use <b>@Value</b> annotation for injecting properties in Spring Beans.</li>
+    <li>Use <b>Environment</b> object for programmatic access to properties.</li>
+    <li>Store sensitive data in **environment variables** instead of properties files.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Placeholder resolution in Spring Boot provides a powerful way to manage application configurations dynamically. 
+    Using **\${...} syntax**, **@Value annotations**, and **environment variables**, you can write flexible, maintainable, 
+    and scalable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Property Encryption`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Property Encryption</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Property encryption is a crucial security measure used to protect sensitive data in configuration files such as <code>application.yml</code> or <code>application.properties</code>. Encrypting properties ensures that sensitive credentials, API keys, database passwords, and other confidential information remain secure and unreadable to unauthorized users. This article explores different methods to implement property encryption in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Property Encryption?</h3>
+  <p style="color: #2c3e50;">
+    Encrypting properties offers several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Enhanced Security</strong>: Protects sensitive information from unauthorized access.</li>
+    <li><strong>Compliance</strong>: Meets security standards like GDPR, HIPAA, and PCI-DSS.</li>
+    <li><strong>Configuration Safety</strong>: Prevents exposure of credentials in version control systems.</li>
+    <li><strong>Integration</strong>: Works with various encryption mechanisms and key management systems.</li>
+    <li><strong>Flexibility</strong>: Allows decryption at runtime while keeping plaintext values hidden.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Methods for Property Encryption</h3>
+  <p style="color: #2c3e50;">
+    There are multiple ways to encrypt properties in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Jasypt Encryption</strong>: A popular library for encrypting and decrypting configuration properties.</li>
+    <li><strong>Spring Cloud Config</strong>: Provides secure storage and retrieval of encrypted values.</li>
+    <li><strong>Environment Variables</strong>: Stores sensitive data externally to avoid hardcoding.</li>
+    <li><strong>Vault Integration</strong>: Uses HashiCorp Vault for secure secrets management.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Using Jasypt for Property Encryption</h3>
+  <p style="color: #2c3e50;">
+    Jasypt (Java Simplified Encryption) is a widely used encryption library in Spring Boot.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Jasypt Dependency</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;
+          &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;
+          &lt;version&gt;3.0.4&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Encrypt a Property</h4>
+  <p style="color: #2c3e50;">
+    Encrypt the sensitive value using the Jasypt command-line tool or online Jasypt encryption tools.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      java -cp jasypt.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
+        input="mysecretpassword" password="encryptionKey" algorithm="PBEWITHHMACSHA512ANDAES_256"
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Store Encrypted Property in <code>application.yml</code></h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      spring:
+        datasource:
+          url: jdbc:mysql://localhost:3306/mydb
+          username: admin
+          password: ENC(encryptedValueHere)
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Set Encryption Password</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      export JASYPT_ENCRYPTOR_PASSWORD=encryptionKey
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Property Encryption</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Never store plaintext credentials in source code.</li>
+    <li>Use strong encryption algorithms like AES-256.</li>
+    <li>Manage encryption keys securely using a key management system.</li>
+    <li>Regularly rotate encryption keys and credentials.</li>
+    <li>Test property decryption to ensure compatibility with the application.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Property encryption is a critical security measure for protecting sensitive information in Spring Boot applications. By leveraging encryption tools like Jasypt, Spring Cloud Config, and Vault, developers can secure configuration properties and prevent unauthorized access. Following best practices ensures that encrypted data remains safe and accessible only to authorized applications and users.
+  </p>
+</div>
+`
+},
+{
+  title:`Spring Cloud Config`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Spring Cloud Config</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Cloud Config is a powerful tool for managing external configurations across multiple microservices in a distributed system. It provides a centralized configuration server that allows applications to dynamically retrieve and update configurations without the need for redeployment. This article explores the concepts, benefits, and implementation of Spring Cloud Config in a microservices architecture.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Cloud Config?</h3>
+  <p style="color: #2c3e50;">Spring Cloud Config offers several advantages:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized Configuration</strong>: Store and manage configuration properties in one place.</li>
+    <li><strong>Dynamic Updates</strong>: Modify configurations without restarting services.</li>
+    <li><strong>Consistency</strong>: Ensure uniform settings across multiple microservices.</li>
+    <li><strong>Security</strong>: Secure sensitive data using encrypted properties.</li>
+    <li><strong>Version Control</strong>: Store configurations in Git or other repositories.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components of Spring Cloud Config</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Config Server</strong>: The centralized server that stores and serves configurations.</li>
+    <li><strong>Config Client</strong>: The application that retrieves configurations from the server.</li>
+    <li><strong>Backend Storage</strong>: Configuration sources like Git, databases, or local files.</li>
+    <li><strong>Refresh Mechanism</strong>: Allows applications to update configurations dynamically.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Setting Up Spring Cloud Config</h3>
+  <p style="color: #2c3e50;">Follow these steps to set up Spring Cloud Config.</p>
+
+  <h4 style="color: #8e44ad;">1. Create a Config Server</h4>
+  <p style="color: #2c3e50;">Start by creating a Spring Boot application with the Config Server dependency.</p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @EnableConfigServer
+      @SpringBootApplication
+      public class ConfigServerApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(ConfigServerApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Configure application.yml for the Server</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      server:
+        port: 8888
+      spring:
+        cloud:
+          config:
+            server:
+              git:
+                uri: https://github.com/your-repo/config-repo
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Create a Config Client</h4>
+  <p style="color: #2c3e50;">Your microservices need to fetch configurations from the Config Server.</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        application:
+          name: my-service
+        cloud:
+          config:
+            uri: http://localhost:8888
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Spring Cloud Config</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use Git for version-controlled configuration storage.</li>
+    <li>Secure sensitive data using encryption.</li>
+    <li>Enable auto-refresh for real-time updates.</li>
+    <li>Use Spring Boot Actuator for monitoring configuration changes.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Config simplifies configuration management for distributed applications by providing a centralized, dynamic, and secure solution. By using best practices, teams can efficiently manage configurations across multiple microservices.
+  </p>
+</div>
+`
+},
+{
+  title:`Config Server`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Spring Cloud Config Server</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a microservices architecture, managing configuration centrally is crucial to ensure consistency, security, and ease of maintenance. Spring Cloud Config Server provides a centralized configuration management system that enables applications to fetch and update their configurations dynamically. This article explores how to set up and use Config Server effectively in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Config Server?</h3>
+  <p style="color: #2c3e50;">
+    Config Server offers several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized Configuration Management</strong>: Store all configuration properties in one place.</li>
+    <li><strong>Dynamic Configuration Updates</strong>: Change configurations without redeploying applications.</li>
+    <li><strong>Version Control Integration</strong>: Use Git repositories to maintain configuration history.</li>
+    <li><strong>Security</strong>: Keep sensitive data secure using encryption and environment variables.</li>
+    <li><strong>Environment-Specific Configurations</strong>: Define separate settings for dev, test, and production environments.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up a Spring Cloud Config Server</h3>
+  <p style="color: #2c3e50;">
+    Follow these steps to create a Config Server using Spring Boot:
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Include the required dependencies in your <code>pom.xml</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Enable Config Server</h4>
+  <p style="color: #2c3e50;">
+    Annotate the main Spring Boot application class with <code>@EnableConfigServer</code>.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @SpringBootApplication
+      @EnableConfigServer
+      public class ConfigServerApplication {
+        public static void main(String[] args) {
+          SpringApplication.run(ConfigServerApplication.class, args);
+        }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Configure <code>application.yml</code></h4>
+  <p style="color: #2c3e50;">
+    Set up the configuration file to define the repository where configuration files are stored.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      server:
+        port: 8888
+      spring:
+        cloud:
+          config:
+            server:
+              git:
+                uri: https://github.com/your-repo/config-files
+                default-label: main
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Accessing Configuration from a Client Application</h3>
+  <p style="color: #2c3e50;">
+    Client applications fetch configuration from the Config Server using the following URL pattern:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      http://localhost:8888/{application}/{profile}/{label}
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    Example:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      http://localhost:8888/myapp/dev/main
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Config Server</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use a version control system like Git to store configurations.</li>
+    <li>Keep sensitive data out of the repository and use environment variables.</li>
+    <li>Ensure the Config Server is highly available and replicated.</li>
+    <li>Use Spring Cloud Bus to refresh configurations dynamically across services.</li>
+    <li>Secure access to the Config Server using authentication mechanisms.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Config Server provides a powerful way to manage configuration centrally, ensuring consistency across microservices. With its integration with Git, ability to handle dynamic updates, and support for environment-specific settings, it is an essential tool for modern cloud-native applications. By following best practices, you can make your configuration management more robust and secure.
+  </p>
+</div>
+`
+},
+{
+  title:`Environment Variables`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Environment Variables in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Environment variables are a powerful way to configure Spring Boot applications dynamically. They allow you to externalize configuration settings, making your application more flexible and secure. Environment variables are particularly useful for managing sensitive information, such as API keys, database credentials, and other configuration values that may vary across different environments (e.g., development, testing, production). Spring Boot provides seamless support for environment variables, enabling you to use them in your application with minimal effort.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Environment Variables?</h3>
+  <p style="color: #2c3e50;">
+    Environment variables offer several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Security</strong>: Keep sensitive information like passwords and API keys out of your codebase.</li>
+    <li><strong>Flexibility</strong>: Easily change configuration values without modifying the application code.</li>
+    <li><strong>Environment-Specific Configuration</strong>: Use different values for different environments (e.g., dev, test, prod).</li>
+    <li><strong>Portability</strong>: Simplify deployment across different platforms and environments.</li>
+    <li><strong>Compliance</strong>: Meet security and compliance requirements by avoiding hardcoded secrets.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Environment Variables</h3>
+  <p style="color: #2c3e50;">
+    When working with environment variables in Spring Boot, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Accessing Environment Variables</strong>: Use the <code>@Value</code> annotation or the <code>Environment</code> object to access environment variables.</li>
+    <li><strong>Naming Conventions</strong>: Environment variable names are typically uppercase with underscores (e.g., <code>DATABASE_URL</code>).</li>
+    <li><strong>Default Values</strong>: Provide default values for environment variables to ensure your application runs even if the variable is not set.</li>
+    <li><strong>Spring Boot's Property Sources</strong>: Spring Boot automatically maps environment variables to properties, allowing you to use them in <code>application.properties</code> or <code>application.yml</code>.</li>
+    <li><strong>Profiles</strong>: Combine environment variables with Spring profiles for environment-specific configurations.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Environment Variables in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use environment variables in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Access Environment Variables in Code</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Value</code> annotation to inject environment variables into your application.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MyComponent {
+
+          @Value("\${DATABASE_URL}")
+          private String databaseUrl;
+
+          @Value("\${API_KEY:default_api_key}") // Default value if not set
+          private String apiKey;
+
+          public void printConfig() {
+              System.out.println("Database URL: " + databaseUrl);
+              System.out.println("API Key: " + apiKey);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Use Environment Variables in <code>application.yml</code></h4>
+  <p style="color: #2c3e50;">
+    Reference environment variables in your <code>application.yml</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      app:
+        database:
+          url: \${DATABASE_URL}
+        api:
+          key: \${API_KEY:default_api_key} # Default value if not set
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Set Environment Variables</h4>
+  <p style="color: #2c3e50;">
+    Set environment variables in your operating system or deployment environment.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      # On Linux/macOS
+      export DATABASE_URL=jdbc:mysql://localhost:3306/mydb
+      export API_KEY=my_secret_key
+
+      # On Windows
+      set DATABASE_URL=jdbc:mysql://localhost:3306/mydb
+      set API_KEY=my_secret_key
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Use Environment Variables with Profiles</h4>
+  <p style="color: #2c3e50;">
+    Combine environment variables with Spring profiles for environment-specific configurations.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      # application.yml
+      spring:
+        profiles: dev
+      app:
+        database:
+          url: \${DEV_DATABASE_URL}
+
+      ---
+      spring:
+        profiles: prod
+      app:
+        database:
+          url: \${PROD_DATABASE_URL}
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Environment Variables</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use uppercase names with underscores for environment variables (e.g., <code>DATABASE_URL</code>).</li>
+    <li>Provide default values for optional environment variables to avoid runtime errors.</li>
+    <li>Avoid hardcoding sensitive information in your codebase; use environment variables instead.</li>
+    <li>Use tools like <code>.env</code> files or secrets management services (e.g., AWS Secrets Manager) for managing environment variables in development and production.</li>
+    <li>Document all required environment variables in your project's README or configuration guide.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Environment variables are a powerful and secure way to configure Spring Boot applications. By externalizing configuration settings, you can make your application more flexible, portable, and compliant with security best practices. Whether you're managing sensitive information or customizing behavior for different environments, environment variables provide a clean and efficient solution. By following best practices, you can ensure that your application is well-configured, secure, and ready for deployment in any environment.
+  </p>
+</div>`
+},
+{
+  title:`Environment Variables`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Working with Multiple Property Files in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a Spring Boot application, managing configurations efficiently is crucial for scalability and maintainability. One effective way to achieve this is by using multiple property files. Spring Boot allows you to define multiple property files to separate configurations for different environments, modules, or external services. This article explores the benefits and best practices of using multiple property files in Spring Boot.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Multiple Property Files?</h3>
+  <p style="color: #2c3e50;">
+    Using multiple property files provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Modular Configuration</strong>: Organize configurations based on different modules or services.</li>
+    <li><strong>Environment Separation</strong>: Maintain different property files for development, testing, and production environments.</li>
+    <li><strong>Security</strong>: Store sensitive configurations in separate property files and load them securely.</li>
+    <li><strong>Flexibility</strong>: Override properties dynamically based on profiles or external sources.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Defining Multiple Property Files</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot loads properties from <code>application.properties</code> or <code>application.yml</code> by default. However, you can define additional property files as needed.
+  </p>
+  
+  <h4 style="color: #8e44ad;">1. Creating Environment-Specific Property Files</h4>
+  <p style="color: #2c3e50;">
+    You can define separate property files for different environments:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      # application-dev.properties
+      app.name=MyApp (Development)
+      server.port=8081
+
+      # application-prod.properties
+      app.name=MyApp (Production)
+      server.port=8080
+    </code>
+  </pre>
+  
+  <h4 style="color: #8e44ad;">2. Loading Additional Property Files</h4>
+  <p style="color: #2c3e50;">
+    You can explicitly load additional property files using <code>@PropertySource</code> in a Spring Boot configuration class:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      @PropertySource("classpath:custom-config.properties")
+      public class AppConfig {
+          @Value("\${custom.property}")
+          private String customProperty;
+      }
+    </code>
+  </pre>
+  
+  <h4 style="color: #8e44ad;">3. Using Profile-Specific Property Files</h4>
+  <p style="color: #2c3e50;">
+    To activate a specific profile’s property file, set the profile in <code>application.properties</code> or via environment variables:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      spring.profiles.active=dev
+    </code>
+  </pre>
+  
+  <h3 style="color: #d35400;">Best Practices for Managing Multiple Property Files</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep environment-specific properties in separate files to avoid accidental overrides.</li>
+    <li>Use <code>@PropertySource</code> to load custom configuration files when necessary.</li>
+    <li>Leverage Spring Boot’s built-in profile support for managing multiple configurations.</li>
+    <li>Use externalized configuration (e.g., environment variables) for sensitive data like passwords.</li>
+    <li>Ensure consistency and documentation of property files for maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Using multiple property files in Spring Boot helps in managing configurations efficiently for different environments and modules. By separating concerns and leveraging profiles, developers can ensure flexibility, security, and better maintainability of their applications. Following best practices ensures smooth configuration management and hassle-free deployments.
+  </p>
+</div>
+`
+},
+{
+  title:`Multiple Property Files`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Working with Multiple Property Files in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a Spring Boot application, managing configurations efficiently is crucial for scalability and maintainability. One effective way to achieve this is by using multiple property files. Spring Boot allows you to define multiple property files to separate configurations for different environments, modules, or external services. This article explores the benefits and best practices of using multiple property files in Spring Boot.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Multiple Property Files?</h3>
+  <p style="color: #2c3e50;">
+    Using multiple property files provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Modular Configuration</strong>: Organize configurations based on different modules or services.</li>
+    <li><strong>Environment Separation</strong>: Maintain different property files for development, testing, and production environments.</li>
+    <li><strong>Security</strong>: Store sensitive configurations in separate property files and load them securely.</li>
+    <li><strong>Flexibility</strong>: Override properties dynamically based on profiles or external sources.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Defining Multiple Property Files</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot loads properties from <code>application.properties</code> or <code>application.yml</code> by default. However, you can define additional property files as needed.
+  </p>
+  
+  <h4 style="color: #8e44ad;">1. Creating Environment-Specific Property Files</h4>
+  <p style="color: #2c3e50;">
+    You can define separate property files for different environments:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      # application-dev.properties
+      app.name=MyApp (Development)
+      server.port=8081
+
+      # application-prod.properties
+      app.name=MyApp (Production)
+      server.port=8080
+    </code>
+  </pre>
+  
+  <h4 style="color: #8e44ad;">2. Loading Additional Property Files</h4>
+  <p style="color: #2c3e50;">
+    You can explicitly load additional property files using <code>@PropertySource</code> in a Spring Boot configuration class:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      @PropertySource("classpath:custom-config.properties")
+      public class AppConfig {
+          @Value("\${custom.property}")
+          private String customProperty;
+      }
+    </code>
+  </pre>
+  
+  <h4 style="color: #8e44ad;">3. Using Profile-Specific Property Files</h4>
+  <p style="color: #2c3e50;">
+    To activate a specific profiles property file, set the profile in <code>application.properties</code> or via environment variables:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      spring.profiles.active=dev
+    </code>
+  </pre>
+  
+  <h3 style="color: #d35400;">Best Practices for Managing Multiple Property Files</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep environment-specific properties in separate files to avoid accidental overrides.</li>
+    <li>Use <code>@PropertySource</code> to load custom configuration files when necessary.</li>
+    <li>Leverage Spring Boots built-in profile support for managing multiple configurations.</li>
+    <li>Use externalized configuration (e.g., environment variables) for sensitive data like passwords.</li>
+    <li>Ensure consistency and documentation of property files for maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Using multiple property files in Spring Boot helps in managing configurations efficiently for different environments and modules.
+     By separating concerns and leveraging profiles, developers can ensure flexibility, security, and better maintainability of their applications. Following best practices ensures smooth configuration management and hassle-free deployments.
+  </p>
+</div>`
+},
+{
+  title:`Property Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Property Best Practices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In software development, managing properties effectively is crucial for maintaining scalable and maintainable applications. Properties refer to configuration values such as database connection strings, API keys, and application settings. Following best practices ensures security, reliability, and ease of management.
+  </p>
+
+  <h3 style="color: #16a085;">1. Use External Configuration Files</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Instead of hardcoding property values within the source code, store them in external configuration files such as <code>application.properties</code> (Spring Boot) or <code>config.yaml</code>. This approach provides flexibility and keeps the source code clean.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Using a Properties File</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      database.url=jdbc:mysql://localhost:3306/mydb
+      database.username=root
+      database.password=securePass
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">2. Secure Sensitive Data</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Sensitive properties such as API keys and passwords should never be stored in plaintext. Use encryption, environment variables, or secure vaults like AWS Secrets Manager or HashiCorp Vault.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Storing Sensitive Data Securely</h4>
+  <p style="color: #34495e;">
+    Instead of hardcoding passwords in the properties file, use environment variables:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      database.password=\${DB_PASSWORD}
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">3. Organize Properties Logically</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Group related properties together to improve readability and maintainability. Use prefixes to categorize configurations properly.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Organized Properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      server.port=8080
+      server.contextPath=/api
+      
+      database.url=jdbc:postgresql://localhost:5432/mydb
+      database.username=admin
+      database.password=\${DB_PASSWORD}
+      
+      api.key=ABCD1234XYZ
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">4. Use Profiles for Environment-Specific Configurations</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Different environments (development, testing, production) require different configurations. Use profiles to manage these variations.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Environment-Specific Properties</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      # application-dev.properties
+      database.url=jdbc:mysql://localhost:3306/devdb
+
+      # application-prod.properties
+      database.url=jdbc:mysql://prod-db-server:3306/proddb
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">5. Validate and Monitor Property Values</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Always validate property values to prevent misconfigurations. Use monitoring tools to track changes and alerts in case of incorrect values.
+  </p>
+
+  <h3 style="color: #e67e22;">6. Document Property Usage</h3>
+  <p style="color: #34495e;">
+    Maintain proper documentation for properties, explaining their purpose, expected values, and usage. This helps new developers understand the configurations easily.
+  </p>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    Following these best practices ensures that application properties are managed securely, efficiently, and in a scalable way. Proper organization, security, and documentation of properties lead to a more maintainable software system.
+  </p>
+</div>
 `
 }
 
