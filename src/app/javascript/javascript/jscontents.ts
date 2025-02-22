@@ -8,7 +8,7 @@ export class JsContents {
         {
          
             articleTitle: "Introduction to JavaScript",
-            content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Introduction to JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         JavaScript is a versatile and widely-used programming language that enables dynamic content on web pages. It is a core technology of the web, alongside HTML and CSS.
@@ -46,7 +46,7 @@ export class JsContents {
             
             articleTitle: "Primitive Data Types",
             content: `
-            <div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            <div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Primitive Data Types in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         In JavaScript, primitive data types are the most basic types of data. These types are immutable and stored directly in memory.
@@ -89,7 +89,7 @@ export class JsContents {
         {
             
             articleTitle: "Non-Primitive Data Types",
-            content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Reference Data Types in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         In JavaScript, reference data types are objects that are stored in memory and referenced by memory addresses. Unlike primitive data types, these are mutable and dynamically allocated.
@@ -135,7 +135,7 @@ export class JsContents {
          {
             
             articleTitle: "Variable Declaration",
-            content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Variable Declaration in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         In JavaScript, variables are used to store data values. There are three ways to declare a variable: <code>var</code>, <code>let</code>, and <code>const</code>.
@@ -171,7 +171,7 @@ let b = 20;</code></pre>
          },
         {
             articleTitle: "Variable Initialization",
-            content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Variable Initialization in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Variable initialization in JavaScript refers to the process of assigning a value to a declared variable. This can be done during declaration or later in the code.
@@ -209,7 +209,7 @@ console.log(a, b); // Undefined, Undefined</code></pre>
         },
         {
             articleTitle: "Variable Scope",
-            content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Variable Scope in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Variable scope in JavaScript determines the accessibility of a variable within different parts of the code. There are three main types of scope: Global Scope, Function Scope, and Block Scope.
@@ -257,7 +257,7 @@ outer();</code></pre>
 `},
 {
     articleTitle: "Variable Re-Assignment",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Variable Re-Assignment in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Variable re-assignment in JavaScript refers to updating the value of an already declared variable. The behavior depends on whether the variable is declared with <code>var</code>, <code>let</code>, or <code>const</code>.
@@ -293,7 +293,7 @@ console.log(obj.name); // Bob</code></pre>
 },
 {
     articleTitle: "Arithmetic Operators",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Arithmetic Operators in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Arithmetic operators in JavaScript are used to perform mathematical calculations. These include addition, subtraction, multiplication, division, and more.
@@ -347,7 +347,7 @@ console.log(count); // 4</code></pre>
 },
 {
     articleTitle: "Comparison Operators",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Comparison Operators in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Comparison operators in JavaScript are used to compare two values and return a boolean result: <code>true</code> or <code>false</code>. These operators are essential for decision-making in programs.
@@ -391,7 +391,7 @@ console.log(count); // 4</code></pre>
 },
 {
     articleTitle: "Logical Operators",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Logical Operators in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Logical operators in JavaScript are used to perform logical operations on boolean values. They are commonly used in conditional statements and expressions.
@@ -424,7 +424,7 @@ console.log(true || someFunction()); // true (someFunction() is never called)</c
 },
 {
     articleTitle: "Bitwise Operators",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Bitwise Operators in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Bitwise operators in JavaScript perform operations at the binary level. These operators treat numbers as 32-bit signed integers and manipulate their individual bits.
@@ -465,7 +465,7 @@ console.log(true || someFunction()); // true (someFunction() is never called)</c
 },
 {
     articleTitle: "Assignment Operators",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Assignment Operators in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Assignment operators in JavaScript are used to assign values to variables. They can also perform operations before assigning values.
@@ -518,7 +518,7 @@ console.log(x); // 8</code></pre>
 },
 {
     articleTitle: "Unary Operators",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Unary Operators in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Unary operators are operators that operate on a single operand. JavaScript provides several unary operators for different purposes.
@@ -569,7 +569,7 @@ console.log(obj); // { name: "John" }</code></pre>
 },
 {
     articleTitle: "Ternary Operator",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Ternary Operator in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The ternary operator in JavaScript is a shorthand for the <code>if-else</code> statement. It is a concise way to perform conditional checks and assign values based on a condition.
@@ -603,7 +603,7 @@ console.log(grade); // "B"</code></pre>
 },
 {
     articleTitle: "Type Conversion",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Type Conversion in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Type conversion in JavaScript refers to changing a value from one data type to another. JavaScript provides two types of conversions: implicit (type coercion) and explicit (manual conversion).
@@ -643,7 +643,7 @@ console.log(Boolean("")); // false</code></pre>
 },
 {
     articleTitle: "Type Coercion",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Type Coercion in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Type coercion is the automatic or implicit conversion of values from one data type to another in JavaScript. This happens when operations involve different types, and JavaScript converts one type to another to make the operation possible.
@@ -683,7 +683,7 @@ console.log(Boolean("")); // false</code></pre>
 },
 {
     articleTitle: "Operator Precedence",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Operator Precedence in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Operator precedence determines the order in which operations are performed in JavaScript. Operators with higher precedence execute before those with lower precedence.
@@ -722,7 +722,7 @@ console.log((5 + 10) * 2); // (5 + 10) * 2 = 30</code></pre>
 },
 {
     articleTitle: "Operator Chaining",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Operator Chaining in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         Operator chaining in JavaScript refers to combining multiple operators in a single expression. Understanding operator precedence is crucial to avoid unexpected results.
@@ -750,7 +750,7 @@ console.log(a || b || c); // true (evaluates left to right)</code></pre>
 },
 {
     articleTitle: "Nullish Coalescing Operator",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Nullish Coalescing Operator (??) in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The Nullish Coalescing Operator (<code>??</code>) in JavaScript is used to provide a default value when dealing with <code>null</code> or <code>undefined</code>. It helps in preventing unintended falsy value evaluations like <code>0</code> or an empty string.
@@ -781,7 +781,7 @@ console.log(theme); // Output: "light"</code></pre>
 },
 {
     articleTitle: "Spread Operator",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Spread Operator (...) in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The Spread Operator (<code>...</code>) in JavaScript is used to expand iterable elements like arrays, objects, and function arguments. It simplifies working with data structures by making copying and merging easier.
@@ -821,7 +821,7 @@ console.log(sum(...nums)); // Output: 6</code></pre>
 },
 {
     articleTitle: "Rest Operator",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Rest Operator (...) in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The Rest Operator (<code>...</code>) in JavaScript is used to collect multiple elements into an array. It is primarily used in function parameters and array/object destructuring.
@@ -855,7 +855,7 @@ console.log(details); // Output: { age: 30, city: "New York" }</code></pre>
 },
 {
     articleTitle: "If-Else Statements",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">If-Else Statements in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The <code>if-else</code> statement in JavaScript is used to execute a block of code based on a condition. It allows you to control the flow of your program by making decisions.
@@ -914,7 +914,7 @@ console.log(action); // Output: "Take an umbrella"</code></pre>
 },
 {
     articleTitle: "Switch Statements",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">Switch Statements in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The <code>switch</code> statement in JavaScript is used to perform different actions based on different conditions. It is a cleaner and more efficient alternative to using multiple <code>if-else</code> statements when dealing with multiple possible values of a single variable.
@@ -999,7 +999,7 @@ switch (true) {
 },
 {
     articleTitle: "While Loops",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">While Loops in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The <code>while</code> loop in JavaScript is used to repeatedly execute a block of code as long as a specified condition is true. It is ideal for situations where the number of iterations is not known in advance.
@@ -1064,7 +1064,7 @@ do {
 },
 {
     articleTitle: "For Loops",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">For Loops in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The <code>for</code> loop in JavaScript is used to repeatedly execute a block of code a specific number of times. It is ideal for situations where you know the number of iterations in advance.
@@ -1145,7 +1145,7 @@ for (let color of colors) {
 },
 {
     articleTitle: "For-In Loop",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">For-In Loops in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The <code>for-in</code> loop in JavaScript is used to iterate over the <strong>enumerable properties</strong> of an object. It is particularly useful for looping through the keys of an object or the indices of an array.
@@ -1218,7 +1218,7 @@ for (let index in arr) {
 },
 {
     articleTitle: "For-Of Loop",
-    content: `<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    content: `<div style="font-family: Arial, sans-serif;  margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">For-Of Loops in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The <code>for-of</code> loop in JavaScript is used to iterate over <strong>iterable objects</strong> such as arrays, strings, maps, sets, and more. It provides a clean and concise way to access the values of an iterable directly, without needing to deal with indices or keys.
@@ -4458,6 +4458,843 @@ content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height
 },
 {
     articleTitle: `Iterating Arrays`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Iterating Arrays in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Iterating over arrays is a fundamental operation in JavaScript, allowing you to access and manipulate each element in the array. JavaScript provides multiple methods for iterating through arrays, each with its own use cases and advantages.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Using the \`for\` Loop</h2>
+    <p>The traditional \`for\` loop is one of the most common ways to iterate through an array. It provides full control over the iteration process, including access to the index of each element.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["Apple", "Banana", "Cherry"];
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]); // Output: Apple, Banana, Cherry
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using the \`forEach\` Method</h2>
+    <p>The \`forEach\` method executes a provided function once for each array element. It is more concise and functional than the \`for\` loop but does not allow breaking out of the loop.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["Apple", "Banana", "Cherry"];
+fruits.forEach(function(fruit) {
+    console.log(fruit); // Output: Apple, Banana, Cherry
+});</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using the \`for...of\` Loop</h2>
+    <p>The \`for...of\` loop is a modern way to iterate over iterable objects like arrays. It provides a cleaner syntax and directly accesses the values of the array elements.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["Apple", "Banana", "Cherry"];
+for (let fruit of fruits) {
+    console.log(fruit); // Output: Apple, Banana, Cherry
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using the \`map\` Method</h2>
+    <p>The \`map\` method creates a new array by applying a function to each element of the original array. It is useful for transforming data without modifying the original array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3];
+let squares = numbers.map(function(number) {
+    return number * number;
+});
+console.log(squares); // Output: [1, 4, 9]</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Using the \`filter\` Method</h2>
+    <p>The \`filter\` method creates a new array with all elements that pass a test implemented by the provided function. It is useful for selecting specific elements from an array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let evens = numbers.filter(function(number) {
+    return number % 2 === 0;
+});
+console.log(evens); // Output: [2, 4]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using the \`reduce\` Method</h2>
+    <p>The \`reduce\` method executes a reducer function on each element of the array, resulting in a single output value. It is useful for accumulating values, such as summing all elements in an array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4];
+let sum = numbers.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue;
+}, 0);
+console.log(sum); // Output: 10</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>JavaScript offers a variety of methods for iterating over arrays, each suited to different scenarios. Whether you need simple iteration, transformation, filtering, or accumulation, there is a method that fits your needs.</p>
+</div>`
+},
+{
+    articleTitle: `forEach`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`forEach\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`forEach\` method in JavaScript is used to execute a provided function once for each element in an array. It is a simple and concise way to iterate over arrays without the need for manual indexing or loop constructs. Unlike other array methods like \`map\` or \`filter\`, \`forEach\` does not return a new array but is primarily used for its side effects.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`forEach\`</h2>
+    <p>The \`forEach\` method takes a callback function as an argument, which is executed for each element in the array. The callback function can accept up to three arguments: the current element, its index, and the array itself.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["Apple", "Banana", "Cherry"];
+fruits.forEach(function(fruit, index, array) {  
+    console.log(\`Element: \${fruit}, Index: \${index}, Array: \${array}\`);
+});
+// Output:
+// Element: Apple, Index: 0, Array: Apple,Banana,Cherry
+// Element: Banana, Index: 1, Array: Apple,Banana,Cherry
+// Element: Cherry, Index: 2, Array: Apple,Banana,Cherry</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using \`forEach\` for Side Effects</h2>
+    <p>\`forEach\` is commonly used to perform side effects, such as logging, updating the DOM, or modifying external variables. It does not return a value, making it ideal for operations where the result is not needed.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3];
+let sum = 0;
+numbers.forEach(function(number) {
+    sum += number;
+});
+console.log(sum); // Output: 6</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Modifying Array Elements</h2>
+    <p>While \`forEach\` does not return a new array, it can be used to modify the elements of the original array directly. This is useful when you need to update array elements in place.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3];
+numbers.forEach(function(number, index, array) {
+    array[index] = number * 2;
+});
+console.log(numbers); // Output: [2, 4, 6]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Iterating Over Objects in an Array</h2>
+    <p>\`forEach\` is particularly useful when working with arrays of objects. It allows you to access and manipulate object properties easily.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];
+users.forEach(function(user) {
+    console.log(\`\${user.name} is \${user.age} years old.\`);
+});
+// Output:
+// Alice is 25 years old.
+// Bob is 30 years old.
+// Charlie is 35 years old.</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Combining \`forEach\` with Other Methods</h2>
+    <p>\`forEach\` can be combined with other array methods like \`filter\` or \`map\` to perform more complex operations. For example, you can filter an array and then use \`forEach\` to log the results.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+numbers
+    .filter(function(number) {
+        return number % 2 === 0;
+    })
+    .forEach(function(number) {
+        console.log(number); // Output: 2, 4
+    });</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Limitations of \`forEach\`</h2>
+    <p>While \`forEach\` is powerful, it has some limitations. It cannot be used to break out of the loop early (unlike \`for\` or \`for...of\`), and it does not return a value, making it unsuitable for functional programming patterns that rely on immutability.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+numbers.forEach(function(number) {
+    if (number === 3) {
+        // Cannot break or return early
+    }
+    console.log(number); // Output: 1, 2, 3, 4, 5
+});</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`forEach\` method is a versatile and easy-to-use tool for iterating over arrays in JavaScript. It is particularly useful for performing side effects, modifying array elements, and working with arrays of objects. However, it is important to understand its limitations, such as the inability to break out of the loop early or return a value.</p>
+</div>`
+},
+{
+    articleTitle: `map`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`map\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`map\` method in JavaScript is used to create a new array by applying a function to each element of the original array. Unlike \`forEach\`, which is used for side effects, \`map\` is designed for transforming data and returning a new array. It is a powerful tool for functional programming and data manipulation.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`map\`</h2>
+    <p>The \`map\` method takes a callback function as an argument, which is executed for each element in the array. The callback function can accept up to three arguments: the current element, its index, and the array itself. The \`map\` method returns a new array containing the results of applying the callback function to each element.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3];
+let squares = numbers.map(function(number) {
+    return number * number;
+});
+console.log(squares); // Output: [1, 4, 9]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Transforming Data</h2>
+    <p>\`map\` is commonly used to transform data from one form to another. For example, you can convert an array of numbers into an array of strings or extract specific properties from an array of objects.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3];
+let strings = numbers.map(function(number) {
+    return number.toString();
+});
+console.log(strings); // Output: ["1", "2", "3"]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Extracting Properties from Objects</h2>
+    <p>When working with arrays of objects, \`map\` can be used to extract specific properties from each object and create a new array.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];
+let names = users.map(function(user) {
+    return user.name;
+});
+console.log(names); // Output: ["Alice", "Bob", "Charlie"]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Combining \`map\` with Other Methods</h2>
+    <p>\`map\` can be combined with other array methods like \`filter\` to perform more complex transformations. For example, you can filter an array and then map the remaining elements to a new format.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let evenSquares = numbers
+    .filter(function(number) {
+        return number % 2 === 0;
+    })
+    .map(function(number) {
+        return number * number;
+    });
+console.log(evenSquares); // Output: [4, 16]</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Using Arrow Functions with \`map\`</h2>
+    <p>Arrow functions provide a concise syntax for writing the callback function passed to \`map\`. This makes the code more readable and compact.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3];
+let squares = numbers.map(number => number * number);
+console.log(squares); // Output: [1, 4, 9]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Handling Asynchronous Operations</h2>
+    <p>While \`map\` is synchronous, it can be used in combination with \`Promise.all\` to handle asynchronous operations. For example, you can map an array of URLs to an array of fetch requests and wait for all promises to resolve.</p>
+    <pre><code class="language-javascript" codeHighlight>let urls = ["https://api.example.com/data1", "https://api.example.com/data2"];
+let promises = urls.map(url => fetch(url).then(response => response.json()));
+Promise.all(promises).then(data => {
+    console.log(data); // Output: Array of JSON responses
+});</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`map\`</h2>
+    <p>While \`map\` is powerful, it has some limitations. It always returns a new array of the same length as the original, which may not be desirable in all cases. Additionally, it cannot be used to filter or skip elements during iteration.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let doubled = numbers.map(function(number) {
+    if (number % 2 === 0) {
+        return number * 2;
+    }
+    // Returns \`undefined\` for odd numbers
+});
+console.log(doubled); // Output: [undefined, 4, undefined, 8, undefined]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`map\` method is a versatile and essential tool for transforming arrays in JavaScript. It is particularly useful for creating new arrays by applying a function to each element of the original array. Whether you're working with numbers, strings, objects, or asynchronous data, \`map\` provides a clean and functional approach to data manipulation.</p>
+</div>`
+},
+{
+    articleTitle: `filter`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`filter\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`filter\` method in JavaScript is used to create a new array containing only the elements that pass a specified test (provided as a callback function). It is a powerful tool for selectively extracting elements from an array based on a condition, without modifying the original array.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`filter\`</h2>
+    <p>The \`filter\` method takes a callback function as an argument, which is executed for each element in the array. The callback function should return \`true\` to include the element in the new array or \`false\` to exclude it. The \`filter\` method returns a new array containing only the elements that pass the test.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let evens = numbers.filter(function(number) {
+    return number % 2 === 0;
+});
+console.log(evens); // Output: [2, 4]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Filtering Arrays of Objects</h2>
+    <p>\`filter\` is particularly useful when working with arrays of objects. You can filter objects based on specific properties or conditions.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];
+let youngUsers = users.filter(function(user) {
+    return user.age < 30;
+});
+console.log(youngUsers); // Output: [{ name: "Alice", age: 25 }]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Combining \`filter\` with Other Methods</h2>
+    <p>\`filter\` can be combined with other array methods like \`map\` to perform more complex operations. For example, you can filter an array and then transform the remaining elements.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let doubledEvens = numbers
+    .filter(function(number) {
+        return number % 2 === 0;
+    })
+    .map(function(number) {
+        return number * 2;
+    });
+console.log(doubledEvens); // Output: [4, 8]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using Arrow Functions with \`filter\`</h2>
+    <p>Arrow functions provide a concise syntax for writing the callback function passed to \`filter\`. This makes the code more readable and compact.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let evens = numbers.filter(number => number % 2 === 0);
+console.log(evens); // Output: [2, 4]</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Filtering Unique Values</h2>
+    <p>\`filter\` can be used in combination with \`indexOf\` or \`Set\` to filter out duplicate values from an array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 2, 3, 4, 4, 5];
+let uniqueNumbers = numbers.filter((value, index, array) => array.indexOf(value) === index);
+console.log(uniqueNumbers); // Output: [1, 2, 3, 4, 5]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Filtering Based on Multiple Conditions</h2>
+    <p>You can use logical operators like \`&&\` or \`||\` to filter elements based on multiple conditions.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25, isActive: true },
+    { name: "Bob", age: 30, isActive: false },
+    { name: "Charlie", age: 35, isActive: true }
+];
+let activeYoungUsers = users.filter(function(user) {
+    return user.age < 30 && user.isActive;
+});
+console.log(activeYoungUsers); // Output: [{ name: "Alice", age: 25, isActive: true }]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`filter\`</h2>
+    <p>While \`filter\` is powerful, it has some limitations. It always returns a new array, which may not be desirable if you only need to check if at least one element meets a condition (use \`some\` instead) or if you need to stop iteration early (use a \`for\` loop).</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasEven = numbers.some(number => number % 2 === 0);
+console.log(hasEven); // Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`filter\` method is a versatile and essential tool for selectively extracting elements from an array in JavaScript. It is particularly useful for working with arrays of objects, combining with other array methods, and filtering based on multiple conditions. Whether you're filtering numbers, strings, or objects, \`filter\` provides a clean and functional approach to data manipulation.</p>
+</div>`
+},
+{
+    articleTitle: `reduce`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`reduce\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`reduce\` method in JavaScript is used to reduce an array to a single value by executing a reducer function on each element of the array. It is a powerful tool for accumulating values, such as summing numbers, flattening arrays, or grouping data. The \`reduce\` method is highly flexible and can handle a wide range of use cases.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`reduce\`</h2>
+    <p>The \`reduce\` method takes a callback function (reducer) and an optional initial value as arguments. The reducer function accepts four parameters: the accumulator (which holds the accumulated result), the current element, the current index, and the array itself. The method returns the final accumulated value.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4];
+let sum = numbers.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue;
+}, 0);
+console.log(sum); // Output: 10</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Summing Numbers in an Array</h2>
+    <p>One of the most common use cases for \`reduce\` is summing all the numbers in an array. The initial value of the accumulator is typically set to \`0\`.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40];
+let total = numbers.reduce((acc, num) => acc + num, 0);
+console.log(total); // Output: 100</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Flattening an Array of Arrays</h2>
+    <p>\`reduce\` can be used to flatten a multi-dimensional array into a single-dimensional array.</p>
+    <pre><code class="language-javascript" codeHighlight>let arrays = [[1, 2], [3, 4], [5, 6]];
+let flattened = arrays.reduce((acc, currentArray) => acc.concat(currentArray), []);
+console.log(flattened); // Output: [1, 2, 3, 4, 5, 6]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Grouping Objects by a Property</h2>
+    <p>\`reduce\` is useful for grouping objects in an array based on a specific property. For example, you can group users by their age.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 25 }
+];
+let groupedByAge = users.reduce((acc, user) => {
+    if (!acc[user.age]) {
+        acc[user.age] = [];
+    }
+    acc[user.age].push(user);
+    return acc;
+}, {});
+console.log(groupedByAge);
+// Output: { 25: [{ name: "Alice", age: 25 }, { name: "Charlie", age: 25 }], 30: [{ name: "Bob", age: 30 }] }</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Counting Occurrences of Elements</h2>
+    <p>\`reduce\` can be used to count the occurrences of each element in an array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
+let count = fruits.reduce((acc, fruit) => {
+    acc[fruit] = (acc[fruit] || 0) + 1;
+    return acc;
+}, {});
+console.log(count); // Output: { apple: 3, banana: 2, orange: 1 }</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Finding Maximum or Minimum Value</h2>
+    <p>\`reduce\` can be used to find the maximum or minimum value in an array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 5, 20, 15, 30];
+let max = numbers.reduce((acc, num) => Math.max(acc, num), numbers[0]);
+console.log(max); // Output: 30</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Combining \`reduce\` with Other Methods</h2>
+    <p>\`reduce\` can be combined with other array methods like \`filter\` or \`map\` to perform more complex operations. For example, you can filter an array and then reduce it to a single value.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let sumOfEvens = numbers
+    .filter(num => num % 2 === 0)
+    .reduce((acc, num) => acc + num, 0);
+console.log(sumOfEvens); // Output: 6</code></pre>
+    
+    <h2 style="color: #2980b9;">8. Limitations of \`reduce\`</h2>
+    <p>While \`reduce\` is powerful, it can be less intuitive for beginners and may lead to complex code if overused. It is important to use it only when necessary and ensure the logic inside the reducer function is clear and concise.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4];
+let product = numbers.reduce((acc, num) => acc * num, 1);
+console.log(product); // Output: 24</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`reduce\` method is a versatile and essential tool for accumulating values in JavaScript. It is particularly useful for summing numbers, flattening arrays, grouping data, and counting occurrences. Whether you're working with numbers, strings, or objects, \`reduce\` provides a clean and functional approach to data manipulation.</p>
+</div>`
+},
+{
+    articleTitle: `find`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`find\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`find\` method in JavaScript is used to retrieve the first element in an array that satisfies a specified condition (provided as a callback function). Unlike \`filter\`, which returns all matching elements, \`find\` stops iterating as soon as it finds the first match. This makes it efficient for locating a single element in an array.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`find\`</h2>
+    <p>The \`find\` method takes a callback function as an argument, which is executed for each element in the array. The callback function should return \`true\` if the element matches the condition, and \`false\` otherwise. The \`find\` method returns the first matching element or \`undefined\` if no match is found.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let firstEven = numbers.find(function(number) {
+    return number % 2 === 0;
+});
+console.log(firstEven); // Output: 2</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Finding Objects in an Array</h2>
+    <p>\`find\` is particularly useful when working with arrays of objects. You can search for an object based on a specific property or condition.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];
+let user = users.find(function(user) {
+    return user.age > 30;
+});
+console.log(user); // Output: { name: "Charlie", age: 35 }</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using Arrow Functions with \`find\`</h2>
+    <p>Arrow functions provide a concise syntax for writing the callback function passed to \`find\`. This makes the code more readable and compact.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let firstEven = numbers.find(number => number % 2 === 0);
+console.log(firstEven); // Output: 2</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Finding by Index</h2>
+    <p>The callback function passed to \`find\` can also access the index of the current element. This can be useful if you need to find an element based on its position in the array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40, 50];
+let found = numbers.find((number, index) => index === 2);
+console.log(found); // Output: 30</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Handling No Matches</h2>
+    <p>If no element satisfies the condition, \`find\` returns \`undefined\`. This behavior can be used to handle cases where no match is found.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 3, 5, 7];
+let firstEven = numbers.find(number => number % 2 === 0);
+console.log(firstEven); // Output: undefined</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Combining \`find\` with Other Methods</h2>
+    <p>\`find\` can be combined with other array methods like \`map\` or \`filter\` to perform more complex operations. For example, you can filter an array and then find a specific element in the filtered results.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];
+let user = users
+    .filter(user => user.age > 20)
+    .find(user => user.name === "Bob");
+console.log(user); // Output: { name: "Bob", age: 30 }</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`find\`</h2>
+    <p>While \`find\` is efficient for locating a single element, it does not work well if you need to find multiple elements or if the array is very large and the condition is complex. In such cases, \`filter\` or a \`for\` loop may be more appropriate.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let found = numbers.find(number => number > 10);
+console.log(found); // Output: undefined</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`find\` method is a powerful and efficient tool for locating the first element in an array that satisfies a condition. It is particularly useful for working with arrays of objects and handling cases where only one match is needed. Whether you're searching for numbers, strings, or objects, \`find\` provides a clean and concise approach to data retrieval.</p>
+</div>`
+},
+{
+    articleTitle: `findIndex`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`findIndex\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`findIndex\` method in JavaScript is used to retrieve the index of the first element in an array that satisfies a specified condition (provided as a callback function). Unlike \`find\`, which returns the element itself, \`findIndex\` returns the index of the element. If no element matches the condition, it returns \`-1\`. This method is particularly useful when you need the position of an element rather than the element itself.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`findIndex\`</h2>
+    <p>The \`findIndex\` method takes a callback function as an argument, which is executed for each element in the array. The callback function should return \`true\` if the element matches the condition, and \`false\` otherwise. The \`findIndex\` method returns the index of the first matching element or \`-1\` if no match is found.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let firstEvenIndex = numbers.findIndex(function(number) {
+    return number % 2 === 0;
+});
+console.log(firstEvenIndex); // Output: 1</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Finding the Index of an Object</h2>
+    <p>\`findIndex\` is particularly useful when working with arrays of objects. You can search for the index of an object based on a specific property or condition.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];
+let userIndex = users.findIndex(function(user) {
+    return user.age > 30;
+});
+console.log(userIndex); // Output: 2</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using Arrow Functions with \`findIndex\`</h2>
+    <p>Arrow functions provide a concise syntax for writing the callback function passed to \`findIndex\`. This makes the code more readable and compact.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let firstEvenIndex = numbers.findIndex(number => number % 2 === 0);
+console.log(firstEvenIndex); // Output: 1</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Handling No Matches</h2>
+    <p>If no element satisfies the condition, \`findIndex\` returns \`-1\`. This behavior can be used to handle cases where no match is found.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 3, 5, 7];
+let firstEvenIndex = numbers.findIndex(number => number % 2 === 0);
+console.log(firstEvenIndex); // Output: -1</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Combining \`findIndex\` with Other Methods</h2>
+    <p>\`findIndex\` can be combined with other array methods like \`filter\` or \`map\` to perform more complex operations. For example, you can filter an array and then find the index of a specific element in the filtered results.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 35 }
+];
+let userIndex = users
+    .filter(user => user.age > 20)
+    .findIndex(user => user.name === "Bob");
+console.log(userIndex); // Output: 1</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Finding the Index of the First Occurrence</h2>
+    <p>\`findIndex\` is particularly useful for finding the index of the first occurrence of an element that meets a condition. This is different from \`indexOf\`, which only checks for strict equality.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40, 50];
+let index = numbers.findIndex(number => number > 25);
+console.log(index); // Output: 2</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`findIndex\`</h2>
+    <p>While \`findIndex\` is efficient for locating the index of a single element, it does not work well if you need to find multiple indices or if the array is very large and the condition is complex. In such cases, \`filter\` or a \`for\` loop may be more appropriate.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let index = numbers.findIndex(number => number > 10);
+console.log(index); // Output: -1</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`findIndex\` method is a powerful and efficient tool for locating the index of the first element in an array that satisfies a condition. It is particularly useful for working with arrays of objects and handling cases where the position of an element is needed. Whether you're searching for numbers, strings, or objects, \`findIndex\` provides a clean and concise approach to index retrieval.</p>
+</div>`
+},
+{
+    articleTitle: `some`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`some\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`some\` method in JavaScript is used to check if at least one element in an array satisfies a specified condition (provided as a callback function). It returns \`true\` if the condition is met for any element, and \`false\` otherwise. This method is useful for quickly determining if an array contains any elements that meet a specific criterion.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`some\`</h2>
+    <p>The \`some\` method takes a callback function as an argument, which is executed for each element in the array. The callback function should return \`true\` if the element matches the condition, and \`false\` otherwise. The \`some\` method returns \`true\` as soon as it finds a matching element, and \`false\` if no elements match.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasEven = numbers.some(function(number) {
+    return number % 2 === 0;
+});
+console.log(hasEven); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Checking for Specific Values</h2>
+    <p>\`some\` is particularly useful for checking if an array contains specific values or meets certain conditions. For example, you can check if an array contains any negative numbers.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, -3, 4, 5];
+let hasNegative = numbers.some(number => number < 0);
+console.log(hasNegative); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using \`some\` with Arrays of Objects</h2>
+    <p>\`some\` can be used with arrays of objects to check if any object meets a specific condition. For example, you can check if any user in an array is an admin.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", role: "user" },
+    { name: "Bob", role: "admin" },
+    { name: "Charlie", role: "user" }
+];
+let hasAdmin = users.some(user => user.role === "admin");
+console.log(hasAdmin); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Combining \`some\` with Other Methods</h2>
+    <p>\`some\` can be combined with other array methods like \`map\` or \`filter\` to perform more complex checks. For example, you can filter an array and then check if any of the filtered elements meet a condition.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasEvenGreaterThanTwo = numbers
+    .filter(number => number > 2)
+    .some(number => number % 2 === 0);
+console.log(hasEvenGreaterThanTwo); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Handling No Matches</h2>
+    <p>If no element satisfies the condition, \`some\` returns \`false\`. This behavior can be used to handle cases where no match is found.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 3, 5, 7];
+let hasEven = numbers.some(number => number % 2 === 0);
+console.log(hasEven); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using Arrow Functions with \`some\`</h2>
+    <p>Arrow functions provide a concise syntax for writing the callback function passed to \`some\`. This makes the code more readable and compact.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasEven = numbers.some(number => number % 2 === 0);
+console.log(hasEven); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`some\`</h2>
+    <p>While \`some\` is efficient for checking if at least one element meets a condition, it does not provide information about which elements match or how many. For such cases, \`filter\` or a \`for\` loop may be more appropriate.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasEven = numbers.some(number => number > 10);
+console.log(hasEven); // Output: false</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`some\` method is a powerful and efficient tool for checking if at least one element in an array satisfies a condition. It is particularly useful for quick checks on arrays of numbers, strings, or objects. Whether you're validating data or searching for specific values, \`some\` provides a clean and concise approach to condition checking.</p>
+</div>`
+},
+{
+    articleTitle: `every`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`every\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`every\` method in JavaScript is used to check if **all elements** in an array satisfy a specified condition (provided as a callback function). It returns \`true\` if the condition is met for every element, and \`false\` otherwise. This method is useful for validating that all elements in an array meet a specific criterion.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`every\`</h2>
+    <p>The \`every\` method takes a callback function as an argument, which is executed for each element in the array. The callback function should return \`true\` if the element matches the condition, and \`false\` otherwise. The \`every\` method returns \`true\` only if all elements pass the condition; otherwise, it returns \`false\`.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [2, 4, 6, 8, 10];
+let allEven = numbers.every(function(number) {
+    return number % 2 === 0;
+});
+console.log(allEven); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Checking for Specific Conditions</h2>
+    <p>\`every\` is particularly useful for checking if all elements in an array meet a specific condition. For example, you can check if all numbers in an array are positive.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let allPositive = numbers.every(number => number > 0);
+console.log(allPositive); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using \`every\` with Arrays of Objects</h2>
+    <p>\`every\` can be used with arrays of objects to check if all objects meet a specific condition. For example, you can check if all users in an array are active.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", isActive: true },
+    { name: "Bob", isActive: true },
+    { name: "Charlie", isActive: false }
+];
+let allActive = users.every(user => user.isActive);
+console.log(allActive); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Combining \`every\` with Other Methods</h2>
+    <p>\`every\` can be combined with other array methods like \`map\` or \`filter\` to perform more complex checks. For example, you can filter an array and then check if all filtered elements meet a condition.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let allEvenGreaterThanTwo = numbers
+    .filter(number => number > 2)
+    .every(number => number % 2 === 0);
+console.log(allEvenGreaterThanTwo); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Handling Edge Cases</h2>
+    <p>If the array is empty, \`every\` returns \`true\` for any condition because there are no elements to fail the test. This behavior is consistent with mathematical logic (vacuous truth).</p>
+    <pre><code class="language-javascript" codeHighlight>let emptyArray = [];
+let allEven = emptyArray.every(number => number % 2 === 0);
+console.log(allEven); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using Arrow Functions with \`every\`</h2>
+    <p>Arrow functions provide a concise syntax for writing the callback function passed to \`every\`. This makes the code more readable and compact.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [2, 4, 6, 8, 10];
+let allEven = numbers.every(number => number % 2 === 0);
+console.log(allEven); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`every\`</h2>
+    <p>While \`every\` is efficient for checking if all elements meet a condition, it does not provide information about which elements fail or how many. For such cases, \`filter\` or a \`for\` loop may be more appropriate.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let allEven = numbers.every(number => number % 2 === 0);
+console.log(allEven); // Output: false</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`every\` method is a powerful and efficient tool for checking if **all elements** in an array satisfy a condition. It is particularly useful for validating data, ensuring consistency, or enforcing rules across arrays of numbers, strings, or objects. Whether you're validating inputs or checking for specific criteria, \`every\` provides a clean and concise approach to condition checking.</p>
+</div>`
+},
+{
+    articleTitle: `includes`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`includes\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`includes\` method in JavaScript is used to check if an array contains a specific element. It returns \`true\` if the element is found in the array, and \`false\` otherwise. This method is particularly useful for quickly checking the presence of an element without needing to write additional logic.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`includes\`</h2>
+    <p>The \`includes\` method takes a single argument, which is the element to search for in the array. It performs a **strict equality check** (using \`===\`) to determine if the element exists in the array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["apple", "banana", "cherry"];
+let hasBanana = fruits.includes("banana");
+console.log(hasBanana); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Checking for Primitive Values</h2>
+    <p>\`includes\` is commonly used to check for primitive values like strings, numbers, or booleans in an array. It is case-sensitive when checking strings.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasThree = numbers.includes(3);
+console.log(hasThree); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using \`includes\` with Objects</h2>
+    <p>\`includes\` does not work well with objects because it uses strict equality (\`===\`). Two objects with the same properties are considered different unless they reference the same memory location.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice" },
+    { name: "Bob" }
+];
+let hasAlice = users.includes({ name: "Alice" });
+console.log(hasAlice); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Specifying a Starting Index</h2>
+    <p>The \`includes\` method accepts an optional second argument, which is the starting index for the search. This allows you to search for an element starting from a specific position in the array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasThreeAfterIndex2 = numbers.includes(3, 3);
+console.log(hasThreeAfterIndex2); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Handling Case Sensitivity</h2>
+    <p>When working with strings, \`includes\` is case-sensitive. To perform a case-insensitive search, you can convert the array and the search term to the same case (e.g., lowercase).</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["Apple", "Banana", "Cherry"];
+let hasApple = fruits.map(fruit => fruit.toLowerCase()).includes("apple");
+console.log(hasApple); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Combining \`includes\` with Other Methods</h2>
+    <p>\`includes\` can be combined with other array methods like \`filter\` or \`map\` to perform more complex operations. For example, you can filter an array to include only elements that are present in another array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["apple", "banana", "cherry"];
+let favoriteFruits = ["banana", "cherry"];
+let filteredFruits = fruits.filter(fruit => favoriteFruits.includes(fruit));
+console.log(filteredFruits); // Output: ["banana", "cherry"]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`includes\`</h2>
+    <p>While \`includes\` is simple and efficient, it has some limitations. It cannot be used to check for complex conditions or partial matches. For such cases, methods like \`some\` or \`find\` may be more appropriate.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let hasEven = numbers.some(number => number % 2 === 0);
+console.log(hasEven); // Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`includes\` method is a simple and efficient tool for checking if an array contains a specific element. It is particularly useful for working with primitive values like strings, numbers, and booleans. Whether you're validating user input or filtering data, \`includes\` provides a clean and concise way to check for the presence of an element in an array.</p>
+</div>`
+},
+{
+    articleTitle: `indexOf`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`indexOf\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`indexOf\` method in JavaScript is used to find the **first index** of a specified element in an array. It returns the index of the element if it is found, and \`-1\` if the element is not present. This method is particularly useful for locating the position of an element in an array.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`indexOf\`</h2>
+    <p>The \`indexOf\` method takes a single argument, which is the element to search for in the array. It performs a **strict equality check** (using \`===\`) to determine if the element exists in the array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["apple", "banana", "cherry"];
+let index = fruits.indexOf("banana");
+console.log(index); // Output: 1</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Searching for Primitive Values</h2>
+    <p>\`indexOf\` is commonly used to search for primitive values like strings, numbers, or booleans in an array. It is case-sensitive when checking strings.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40, 50];
+let index = numbers.indexOf(30);
+console.log(index); // Output: 2</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using \`indexOf\` with Objects</h2>
+    <p>\`indexOf\` does not work well with objects because it uses strict equality (\`===\`). Two objects with the same properties are considered different unless they reference the same memory location.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice" },
+    { name: "Bob" }
+];
+let index = users.indexOf({ name: "Alice" });
+console.log(index); // Output: -1</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Specifying a Starting Index</h2>
+    <p>The \`indexOf\` method accepts an optional second argument, which is the starting index for the search. This allows you to search for an element starting from a specific position in the array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40, 50];
+let index = numbers.indexOf(30, 3); // Start searching from index 3
+console.log(index); // Output: -1</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Handling Case Sensitivity</h2>
+    <p>When working with strings, \`indexOf\` is case-sensitive. To perform a case-insensitive search, you can convert the array and the search term to the same case (e.g., lowercase).</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["Apple", "Banana", "Cherry"];
+let index = fruits.map(fruit => fruit.toLowerCase()).indexOf("apple");
+console.log(index); // Output: 0</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Combining \`indexOf\` with Other Methods</h2>
+    <p>\`indexOf\` can be combined with other array methods like \`filter\` or \`map\` to perform more complex operations. For example, you can filter an array to exclude elements that are present in another array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["apple", "banana", "cherry"];
+let excludeFruits = ["banana"];
+let filteredFruits = fruits.filter(fruit => excludeFruits.indexOf(fruit) === -1);
+console.log(filteredFruits); // Output: ["apple", "cherry"]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`indexOf\`</h2>
+    <p>While \`indexOf\` is simple and efficient, it has some limitations. It cannot be used to check for complex conditions or partial matches. For such cases, methods like \`findIndex\` or \`some\` may be more appropriate.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let index = numbers.findIndex(number => number > 3);
+console.log(index); // Output: 3</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`indexOf\` method is a simple and efficient tool for finding the index of a specific element in an array. It is particularly useful for working with primitive values like strings, numbers, and booleans. Whether you're locating an element or filtering data, \`indexOf\` provides a clean and concise way to determine the position of an element in an array.</p>
+</div>`
+},
+{
+    articleTitle: `lastIndexOf`,
+    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The \`lastIndexOf\` Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The \`lastIndexOf\` method in JavaScript is used to find the **last index** of a specified element in an array. It searches the array from the end to the beginning and returns the index of the last occurrence of the element. If the element is not found, it returns \`-1\`. This method is particularly useful when you need to find the position of the last occurrence of an element in an array.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of \`lastIndexOf\`</h2>
+    <p>The \`lastIndexOf\` method takes a single argument, which is the element to search for in the array. It performs a **strict equality check** (using \`===\`) to determine if the element exists in the array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["apple", "banana", "cherry", "banana"];
+let lastIndex = fruits.lastIndexOf("banana");
+console.log(lastIndex); // Output: 3</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Searching for Primitive Values</h2>
+    <p>\`lastIndexOf\` is commonly used to search for primitive values like strings, numbers, or booleans in an array. It is case-sensitive when checking strings.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 20, 50];
+let lastIndex = numbers.lastIndexOf(20);
+console.log(lastIndex); // Output: 3</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using \`lastIndexOf\` with Objects</h2>
+    <p>\`lastIndexOf\` does not work well with objects because it uses strict equality (\`===\`). Two objects with the same properties are considered different unless they reference the same memory location.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice" },
+    { name: "Bob" },
+    { name: "Alice" }
+];
+let lastIndex = users.lastIndexOf({ name: "Alice" });
+console.log(lastIndex); // Output: -1</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Specifying a Starting Index</h2>
+    <p>The \`lastIndexOf\` method accepts an optional second argument, which is the starting index for the search. This allows you to search for an element starting from a specific position in the array, moving backward.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 20, 50];
+let lastIndex = numbers.lastIndexOf(20, 2); // Start searching from index 2
+console.log(lastIndex); // Output: 1</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Handling Case Sensitivity</h2>
+    <p>When working with strings, \`lastIndexOf\` is case-sensitive. To perform a case-insensitive search, you can convert the array and the search term to the same case (e.g., lowercase).</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["Apple", "Banana", "Cherry", "banana"];
+let lastIndex = fruits.map(fruit => fruit.toLowerCase()).lastIndexOf("banana");
+console.log(lastIndex); // Output: 3</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Combining \`lastIndexOf\` with Other Methods</h2>
+    <p>\`lastIndexOf\` can be combined with other array methods like \`filter\` or \`map\` to perform more complex operations. For example, you can filter an array to exclude elements that are present in another array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["apple", "banana", "cherry", "banana"];
+let excludeFruits = ["banana"];
+let filteredFruits = fruits.filter((fruit, index) => fruits.lastIndexOf(fruit) === index);
+console.log(filteredFruits); // Output: ["apple", "cherry", "banana"]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Limitations of \`lastIndexOf\`</h2>
+    <p>While \`lastIndexOf\` is simple and efficient, it has some limitations. It cannot be used to check for complex conditions or partial matches. For such cases, methods like \`findIndex\` or \`some\` may be more appropriate.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let lastIndex = numbers.findIndex(number => number > 3);
+console.log(lastIndex); // Output: 3</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The \`lastIndexOf\` method is a simple and efficient tool for finding the last index of a specific element in an array. It is particularly useful for working with primitive values like strings, numbers, and booleans. Whether you're locating the last occurrence of an element or filtering data, \`lastIndexOf\` provides a clean and concise way to determine the position of an element in an array.</p>
+</div>`
+},
+{
+    articleTitle: `slice`,
+    content: ``
+},
+{
+    articleTitle: `splice`,
+    content: ``
+},
+{
+    articleTitle: `sort`,
+    content: ``
+},
+{
+    articleTitle: `reverse`,
+    content: ``
+},
+{
+    articleTitle: `join`,
+    content: ``
+},
+{
+    articleTitle: `toString`,
+    content: ``
+},
+{
+    articleTitle: `concat`,
+    content: ``
+},
+{
+    articleTitle: `shift`,
+    content: ``
+},
+{
+    articleTitle: `unshift`,
+    content: ``
+},
+{
+    articleTitle: `pop`,
+    content: ``
+},
+{
+    articleTitle: `push`,
     content: ``
 }
 ];
