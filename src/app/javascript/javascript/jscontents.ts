@@ -1296,10 +1296,3169 @@ for (let element of elements) {
     <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
     <p>The <code>for-of</code> loop is a modern and powerful feature in JavaScript for iterating over iterable objects like arrays, strings, maps, sets, and NodeLists. It provides a clean and readable syntax for accessing values directly, making it a preferred choice for many use cases. However, it is not suitable for plain objects, where <code>for-in</code> or other methods should be used instead.</p>
 </div>`
+},
+{
+    articleTitle: `Function Declaration`,
+    content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Declarations in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Functions are one of the fundamental building blocks in JavaScript. They allow you to encapsulate reusable code and execute it whenever needed. JavaScript provides several ways to declare functions, each with its own use cases and behavior.
+  </p>
+
+  <h3 style="color: #16a085;">Types of Function Declarations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Function Declaration</li>
+    <li>Function Expression</li>
+    <li>Arrow Function</li>
+    <li>Immediately Invoked Function Expression (IIFE)</li>
+    <li>Generator Function</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Function Declaration</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A function declaration defines a named function using the <code>function</code> keyword. It is hoisted, meaning it can be called before it is defined in the code.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function greet(name) {
+        return \`Hello, \${name}!\`;
+      }
+
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Function Expression</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A function expression assigns a function to a variable. It is not hoisted, so it cannot be called before it is defined.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = function(name) {
+        return \`Hello, \${name}!\`;
+      };
+
+      console.log(greet("Bob")); // Output: Hello, Bob!
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Arrow Function</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions provide a concise syntax for writing functions. They do not have their own <code>this</code> context and are often used for short, single-expression functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = (name) => \`Hello, \${name}!\`;
+
+      console.log(greet("Charlie")); // Output: Hello, Charlie!
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Immediately Invoked Function Expression (IIFE)</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    An IIFE is a function that is executed immediately after it is defined. It is often used to create a private scope and avoid polluting the global namespace.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      (function() {
+        const message = "Hello, World!";
+        console.log(message); // Output: Hello, World!
+      })();
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Generator Function</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A generator function allows you to define an iterative algorithm by using the <code>function*</code> syntax. It can be paused and resumed using the <code>yield</code> keyword.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* idGenerator() {
+        let id = 1;
+        while (true) {
+          yield id++;
+        }
+      }
+
+      const gen = idGenerator();
+      console.log(gen.next().value); // Output: 1
+      console.log(gen.next().value); // Output: 2
+      console.log(gen.next().value); // Output: 3
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Function Parameters and Arguments</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Functions can accept parameters, which are variables listed in the function definition. Arguments are the actual values passed to the function when it is called.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function add(a, b) {
+        return a + b;
+      }
+
+      console.log(add(2, 3)); // Output: 5
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Default Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters allow you to initialize function parameters with default values if no argument is passed or if <code>undefined</code> is passed.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function greet(name = "Guest") {
+        return \`Hello, \${name}!\`;
+      }
+
+      console.log(greet()); // Output: Hello, Guest!
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Rest Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Rest parameters allow you to represent an indefinite number of arguments as an array. They are denoted by three dots (<code>...</code>) before the parameter name.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function sum(...numbers) {
+        return numbers.reduce((acc, num) => acc + num, 0);
+      }
+
+      console.log(sum(1, 2, 3, 4)); // Output: 10
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Higher-Order Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A higher-order function is a function that takes one or more functions as arguments or returns a function as its result.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function multiplyBy(factor) {
+        return function(number) {
+          return number * factor;
+        };
+      }
+
+      const double = multiplyBy(2);
+      console.log(double(5)); // Output: 10
+    </code>
+  </pre>
+</div>`
+},
+{
+    articleTitle: `Function Expression`,
+    content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Expressions in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A <strong>function expression</strong> in JavaScript is a way to define a function by assigning it to a variable. Unlike function declarations, function expressions are not hoisted, meaning they cannot be called before they are defined in the code. Function expressions are often used for anonymous functions or when passing functions as arguments to other functions.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Function Expressions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Assigned to a variable.</li>
+    <li>Not hoisted (cannot be called before definition).</li>
+    <li>Can be anonymous (no name) or named.</li>
+    <li>Often used in callbacks and higher-order functions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Function Expression</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A basic function expression assigns an anonymous function to a variable. The function can then be called using the variable name.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = function(name) {
+        return \`Hello, \${name}!\`;
+      };
+
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Named Function Expression</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A named function expression includes a name for the function, which can be useful for debugging or recursion. However, the name is only accessible within the function itself.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = function sayHello(name) {
+        return \`Hello, \${name}!\`;
+      };
+
+      console.log(greet("Bob")); // Output: Hello, Bob!
+      // console.log(sayHello("Bob")); // Error: sayHello is not defined
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Function Expression as a Callback</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function expressions are often used as callbacks, which are functions passed as arguments to other functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [1, 2, 3, 4, 5];
+      const doubled = numbers.map(function(num) {
+        return num * 2;
+      });
+
+      console.log(doubled); // Output: [2, 4, 6, 8, 10]
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Immediately Invoked Function Expression (IIFE)</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    An IIFE is a function expression that is executed immediately after it is defined. It is often used to create a private scope and avoid polluting the global namespace.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const message = (function() {
+        const secret = "This is a secret message!";
+        return secret;
+      })();
+
+      console.log(message); // Output: This is a secret message!
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Arrow Function as a Function Expression</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions provide a concise syntax for writing function expressions. They are often used for short, single-expression functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = (name) => \`Hello, \${name}!\`;
+
+      console.log(greet("Charlie")); // Output: Hello, Charlie!
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Function Expression with Default Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function expressions can also use default parameters, which allow you to initialize parameters with default values if no argument is passed.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = function(name = "Guest") {
+        return \`Hello, \${name}!\`;
+      };
+
+      console.log(greet()); // Output: Hello, Guest!
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Function Expression with Rest Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Rest parameters allow you to represent an indefinite number of arguments as an array. They are denoted by three dots (<code>...</code>) before the parameter name.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const sum = function(...numbers) {
+        return numbers.reduce((acc, num) => acc + num, 0);
+      };
+
+      console.log(sum(1, 2, 3, 4)); // Output: 10
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Function Expression in Higher-Order Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function expressions are often used in higher-order functions, which are functions that take other functions as arguments or return functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const multiplyBy = function(factor) {
+        return function(number) {
+          return number * factor;
+        };
+      };
+
+      const double = multiplyBy(2);
+      console.log(double(5)); // Output: 10
+    </code>
+  </pre>
+</div>`
+},
+{
+    articleTitle: `Arrow Functions`,
+    content: `
+    <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Arrow Functions in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions, introduced in ES6 (ECMAScript 2015), provide a concise syntax for writing functions in JavaScript. They are particularly useful for short, single-expression functions and have some unique characteristics, such as not having their own <code>this</code> context.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Arrow Functions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Concise syntax for writing functions.</li>
+    <li>No binding of <code>this</code> (lexical <code>this</code>).</li>
+    <li>Cannot be used as constructors (no <code>new</code> keyword).</li>
+    <li>No <code>arguments</code> object (use rest parameters instead).</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Arrow Function</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A basic arrow function has a concise syntax, especially for single-expression functions. If the function body consists of a single expression, the <code>return</code> keyword is implicit.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = (name) => \`Hello, \${name}!\`;
+
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Arrow Function with Multiple Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    If an arrow function has multiple parameters, they must be enclosed in parentheses.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add = (a, b) => a + b;
+
+      console.log(add(2, 3)); // Output: 5
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Arrow Function with No Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    If an arrow function has no parameters, you must use empty parentheses.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const sayHello = () => "Hello, World!";
+
+      console.log(sayHello()); // Output: Hello, World!
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Arrow Function with Multiple Statements</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    If an arrow function has multiple statements, you must use curly braces <code>{}</code> and explicitly use the <code>return</code> keyword (if returning a value).
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = (name) => {
+        const message = \`Hello, \${name}!\`;
+        return message;
+      };
+
+      console.log(greet("Bob")); // Output: Hello, Bob!
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Lexical <code>this</code> in Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions do not have their own <code>this</code> context. Instead, they inherit <code>this</code> from the surrounding lexical scope. This makes them ideal for use in callbacks and event handlers.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const person = {
+        name: "Alice",
+        greet: function() {
+          setTimeout(() => {
+            console.log(\`Hello, \${this.name}!\`);
+          }, 1000);
+        }
+      };
+
+      person.greet(); // Output (after 1 second): Hello, Alice!
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Arrow Functions in Array Methods</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions are often used in array methods like <code>map</code>, <code>filter</code>, and <code>reduce</code> due to their concise syntax.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [1, 2, 3, 4, 5];
+      const doubled = numbers.map(num => num * 2);
+
+      console.log(doubled); // Output: [2, 4, 6, 8, 10]
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Arrow Functions and Object Literals</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    When returning an object literal from an arrow function, you must wrap the object in parentheses to avoid confusion with the function body.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const createUser = (name, age) => ({ name, age });
+
+      const user = createUser("Charlie", 30);
+      console.log(user); // Output: { name: 'Charlie', age: 30 }
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Arrow Functions as Callbacks</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions are commonly used as callbacks in asynchronous code, such as promises or event listeners.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const fetchData = () => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => resolve("Data fetched!"), 1000);
+        });
+      };
+
+      fetchData().then(data => console.log(data)); // Output (after 1 second): Data fetched!
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Arrow Functions and Rest Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions can use rest parameters to accept an indefinite number of arguments as an array.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const sum = (...numbers) => numbers.reduce((acc, num) => acc + num, 0);
+
+      console.log(sum(1, 2, 3, 4)); // Output: 10
+    </code>
+  </pre>
+</div>
+    `
+},
+{
+    articleTitle: `Default Parameters`,
+    content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Default Parameters in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters in JavaScript allow you to initialize function parameters with default values if no argument is passed or if <code>undefined</code> is passed. This feature, introduced in ES6 (ECMAScript 2015), makes functions more flexible and reduces the need for additional checks within the function body.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Default Parameters</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Initialize parameters with default values.</li>
+    <li>Default values are used when the argument is <code>undefined</code>.</li>
+    <li>Can be used with any function (declarations, expressions, arrow functions).</li>
+    <li>Default values can be expressions or function calls.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Default Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can assign default values directly in the function parameter list.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function greet(name = "Guest") {
+        return \`Hello, \${name}!\`;
+      }
+
+      console.log(greet()); // Output: Hello, Guest!
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Default Parameters with Multiple Arguments</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use default parameters for multiple arguments in a function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function createUser(name = "Anonymous", age = 18) {
+        return { name, age };
+      }
+
+      console.log(createUser()); // Output: { name: 'Anonymous', age: 18 }
+      console.log(createUser("Bob", 25)); // Output: { name: 'Bob', age: 25 }
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Default Parameters with Expressions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters can be expressions or function calls, which are evaluated at runtime.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function calculateTotal(price, tax = price * 0.1, discount = 0) {
+        return price + tax - discount;
+      }
+
+      console.log(calculateTotal(100)); // Output: 110
+      console.log(calculateTotal(100, 15, 10)); // Output: 105
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Default Parameters with Function Calls</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use the result of a function call as a default parameter.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function getDefaultAge() {
+        return 18;
+      }
+
+      function createUser(name = "Anonymous", age = getDefaultAge()) {
+        return { name, age };
+      }
+
+      console.log(createUser()); // Output: { name: 'Anonymous', age: 18 }
+      console.log(createUser("Charlie", 30)); // Output: { name: 'Charlie', age: 30 }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Default Parameters and <code>undefined</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters are only used when the argument is <code>undefined</code>. Other falsy values like <code>null</code>, <code>0</code>, or an empty string do not trigger the default value.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function greet(name = "Guest") {
+        return \`Hello, \${name}!\`;
+      }
+
+      console.log(greet(undefined)); // Output: Hello, Guest!
+      console.log(greet(null)); // Output: Hello, null!
+      console.log(greet("")); // Output: Hello, !
+      console.log(greet(0)); // Output: Hello, 0!
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Default Parameters in Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters can also be used in arrow functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = (name = "Guest") => \`Hello, \${name}!\`;
+
+      console.log(greet()); // Output: Hello, Guest!
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Default Parameters with Destructuring</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters can be combined with object or array destructuring to provide default values for nested properties.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function createUser({ name = "Anonymous", age = 18 } = {}) {
+        return { name, age };
+      }
+
+      console.log(createUser()); // Output: { name: 'Anonymous', age: 18 }
+      console.log(createUser({ name: "Bob", age: 25 })); // Output: { name: 'Bob', age: 25 }
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Default Parameters in Function Expressions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters can also be used in function expressions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const greet = function(name = "Guest") {
+        return \`Hello, \${name}!\`;
+      };
+
+      console.log(greet()); // Output: Hello, Guest!
+      console.log(greet("Alice")); // Output: Hello, Alice!
+    </code>
+  </pre>
+</div>`
+},
+{
+    articleTitle: `Function Overloading`,
+    content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Overloading in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Function overloading is a feature in some programming languages that allows multiple functions to have the same name but different parameters. JavaScript does not natively support function overloading, but you can simulate it by checking the number, type, or value of arguments passed to a function.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Simulating Function Overloading</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Check the number of arguments using <code>arguments.length</code>.</li>
+    <li>Check the type of arguments using <code>typeof</code> or <code>instanceof</code>.</li>
+    <li>Use default parameters or rest parameters for flexibility.</li>
+    <li>Combine multiple checks to handle different cases.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Simulating Function Overloading Based on Argument Count</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can simulate function overloading by checking the number of arguments passed to the function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function greet() {
+        if (arguments.length === 0) {
+          return "Hello, Guest!";
+        } else if (arguments.length === 1) {
+          return \`Hello, \${arguments[0]}!\`;
+        } else if (arguments.length === 2) {
+          return \`Hello, \${arguments[0]} and \${arguments[1]}!\`;
+        }
+      }
+
+      console.log(greet()); // Output: Hello, Guest!
+      console.log(greet("Alice")); // Output: Hello, Alice!
+      console.log(greet("Alice", "Bob")); // Output: Hello, Alice and Bob!
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Simulating Function Overloading Based on Argument Types</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can simulate function overloading by checking the type of arguments passed to the function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function processInput(input) {
+        if (typeof input === "string") {
+          return \`You entered a string: \${input}\`;
+        } else if (typeof input === "number") {
+          return \`You entered a number: \${input}\`;
+        } else if (Array.isArray(input)) {
+          return \`You entered an array: \${input.join(", ")}\`;
+        }
+      }
+
+      console.log(processInput("Hello")); // Output: You entered a string: Hello
+      console.log(processInput(42)); // Output: You entered a number: 42
+      console.log(processInput([1, 2, 3])); // Output: You entered an array: 1, 2, 3
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Simulating Function Overloading with Default Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use default parameters to simulate function overloading by providing different behaviors based on whether arguments are passed or not.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function createUser(name = "Anonymous", age = 18) {
+        if (name === "Anonymous" && age === 18) {
+          return "Creating a default user.";
+        } else {
+          return \`Creating user: \${name}, \${age} years old.\`;
+        }
+      }
+
+      console.log(createUser()); // Output: Creating a default user.
+      console.log(createUser("Alice", 25)); // Output: Creating user: Alice, 25 years old.
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Simulating Function Overloading with Rest Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use rest parameters to handle a variable number of arguments and simulate function overloading.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function sum(...numbers) {
+        if (numbers.length === 0) {
+          return "No numbers provided.";
+        } else {
+          return numbers.reduce((acc, num) => acc + num, 0);
+        }
+      }
+
+      console.log(sum()); // Output: No numbers provided.
+      console.log(sum(1, 2, 3)); // Output: 6
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Simulating Function Overloading with Object Arguments</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use an object as a single argument to simulate function overloading by checking the properties of the object.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function createUser({ name = "Anonymous", age = 18 } = {}) {
+        return \`Creating user: \${name}, \${age} years old.\`;
+      }
+
+      console.log(createUser()); // Output: Creating user: Anonymous, 18 years old.
+      console.log(createUser({ name: "Alice", age: 25 })); // Output: Creating user: Alice, 25 years old.
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Simulating Function Overloading with Multiple Checks</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can combine multiple checks (e.g., argument count, type, and value) to simulate more complex function overloading.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function process(input1, input2) {
+        if (typeof input1 === "string" && typeof input2 === "string") {
+          return \`Concatenating strings: \${input1} \${input2}\`;
+        } else if (typeof input1 === "number" && typeof input2 === "number") {
+          return \`Adding numbers: \${input1 + input2}\`;
+        } else {
+          return "Invalid input types.";
+        }
+      }
+
+      console.log(process("Hello", "World")); // Output: Concatenating strings: Hello World
+      console.log(process(5, 10)); // Output: Adding numbers: 15
+      console.log(process("Hello", 10)); // Output: Invalid input types.
+    </code>
+  </pre>
+</div>`
+},
+{
+    articleTitle: `Function Binding`,
+    content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Binding in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Function binding in JavaScript refers to explicitly setting the <code>this</code> context for a function. This is particularly useful when working with object methods, event handlers, or callbacks where the value of <code>this</code> might change unexpectedly. JavaScript provides several ways to bind functions, including <code>bind()</code>, <code>call()</code>, and <code>apply()</code>.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Function Binding</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>bind()</code>: Creates a new function with a fixed <code>this</code> value.</li>
+    <li><code>call()</code>: Calls a function with a specific <code>this</code> value and arguments passed individually.</li>
+    <li><code>apply()</code>: Calls a function with a specific <code>this</code> value and arguments passed as an array.</li>
+    <li>Arrow functions: Inherit <code>this</code> from the surrounding lexical scope.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using <code>bind()</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>bind()</code> method creates a new function with a fixed <code>this</code> value. It does not immediately invoke the function but returns a new function with the bound context.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const person = {
+        name: "Alice",
+        greet: function() {
+          console.log(\`Hello, \${this.name}!\`);
+        }
+      };
+
+      const greet = person.greet.bind(person);
+      greet(); // Output: Hello, Alice!
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Using <code>call()</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>call()</code> method calls a function with a specific <code>this</code> value and arguments passed individually.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const person = {
+        name: "Alice"
+      };
+
+      function greet(greeting) {
+        console.log(\`\${greeting}, \${this.name}!\`);
+      }
+
+      greet.call(person, "Hello"); // Output: Hello, Alice!
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Using <code>apply()</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>apply()</code> method is similar to <code>call()</code>, but it accepts arguments as an array.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const person = {
+        name: "Alice"
+      };
+
+      function greet(greeting, punctuation) {
+        console.log(\`\${greeting}, \${this.name}\${punctuation}\`);
+      }
+
+      greet.apply(person, ["Hello", "!"]); // Output: Hello, Alice!
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Arrow Functions and Lexical <code>this</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions do not have their own <code>this</code> context. Instead, they inherit <code>this</code> from the surrounding lexical scope, making them ideal for use in callbacks and event handlers.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const person = {
+        name: "Alice",
+        greet: function() {
+          setTimeout(() => {
+            console.log(\`Hello, \${this.name}!\`);
+          }, 1000);
+        }
+      };
+
+      person.greet(); // Output (after 1 second): Hello, Alice!
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Binding in Event Handlers</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Event handlers often lose their <code>this</code> context. You can use <code>bind()</code> to ensure the correct context.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const button = document.createElement("button");
+      button.textContent = "Click Me";
+
+      const handler = {
+        message: "Button clicked!",
+        handleClick: function() {
+          console.log(this.message);
+        }
+      };
+
+      button.addEventListener("click", handler.handleClick.bind(handler));
+      document.body.appendChild(button);
+      // When the button is clicked: Output: Button clicked!
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Partial Function Application with <code>bind()</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use <code>bind()</code> to create a new function with some arguments pre-filled (partial application).
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function multiply(a, b) {
+        return a * b;
+      }
+
+      const double = multiply.bind(null, 2);
+      console.log(double(5)); // Output: 10
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Binding in Class Methods</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    In class methods, you may need to bind <code>this</code> to ensure it refers to the class instance.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      class Person {
+        constructor(name) {
+          this.name = name;
+          this.greet = this.greet.bind(this); // Bind \`this\` to the instance
+        }
+
+        greet() {
+          console.log(\`Hello, \${this.name}!\`);
+        }
+      }
+
+      const person = new Person("Alice");
+      const greet = person.greet;
+      greet(); // Output: Hello, Alice!
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Binding with Arrow Functions in Classes</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use arrow functions in class methods to automatically bind <code>this</code> to the class instance.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      class Person {
+        constructor(name) {
+          this.name = name;
+        }
+
+        greet = () => {
+          console.log(\`Hello, \${this.name}!\`);
+        }
+      }
+
+      const person = new Person("Alice");
+      const greet = person.greet;
+      greet(); // Output: Hello, Alice!
+    </code>
+  </pre>
+</div>`
+},
+{
+    articleTitle: `Function Closures`,
+    content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Closures in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A closure is a function that retains access to its lexical scope, even when the function is executed outside that scope. In JavaScript, closures are created every time a function is created, at function creation time. Closures are powerful because they allow functions to "remember" the environment in which they were created.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Closures</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Lexical Scope: The scope defined at the time of function creation.</li>
+    <li>Access to Outer Variables: Closures can access variables from their outer function even after the outer function has returned.</li>
+    <li>Data Encapsulation: Closures can be used to create private variables and methods.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Closure Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of a closure is a function that returns another function, which retains access to the outer function's variables.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function outerFunction() {
+        const outerVariable = "I'm from outer scope!";
+
+        function innerFunction() {
+          console.log(outerVariable);
+        }
+
+        return innerFunction;
+      }
+
+      const closure = outerFunction();
+      closure(); // Output: I'm from outer scope!
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Closures in Callbacks</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Closures are often used in callbacks to retain access to variables from the outer scope.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function delayedGreeting(name) {
+        setTimeout(function() {
+          console.log(\`Hello, \${name}!\`);
+        }, 1000);
+      }
+
+      delayedGreeting("Alice"); // Output (after 1 second): Hello, Alice!
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Data Encapsulation with Closures</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Closures can be used to create private variables and methods, encapsulating data within a function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function createCounter() {
+        let count = 0;
+
+        return {
+          increment: function() {
+            count++;
+            console.log(count);
+          },
+          decrement: function() {
+            count--;
+            console.log(count);
+          }
+        };
+      }
+
+      const counter = createCounter();
+      counter.increment(); // Output: 1
+      counter.increment(); // Output: 2
+      counter.decrement(); // Output: 1
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Closures in Loops</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Closures are often used to capture the state of a variable in a loop. Without closures, the variable might not behave as expected.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      for (var i = 1; i <= 3; i++) {
+        setTimeout(function() {
+          console.log(i); // Output: 4, 4, 4 (due to var's function scope)
+        }, 1000);
+      }
+
+      // Fix using closures
+      for (var i = 1; i <= 3; i++) {
+        (function(i) {
+          setTimeout(function() {
+            console.log(i); // Output: 1, 2, 3
+          }, 1000);
+        })(i);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Closures with Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions can also create closures, capturing the surrounding lexical scope.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function outerFunction() {
+        const outerVariable = "I'm from outer scope!";
+
+        const innerFunction = () => {
+          console.log(outerVariable);
+        };
+
+        return innerFunction;
+      }
+
+      const closure = outerFunction();
+      closure(); // Output: I'm from outer scope!
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Closures in Event Handlers</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Closures are commonly used in event handlers to retain access to variables from the outer scope.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const buttons = document.querySelectorAll("button");
+
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function() {
+          console.log(\`Button \${i + 1} clicked!\`);
+        });
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Closures in Module Pattern</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The module pattern uses closures to create private and public members, encapsulating functionality.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const Module = (function() {
+        let privateVariable = "I'm private!";
+
+        function privateMethod() {
+          console.log(privateVariable);
+        }
+
+        return {
+          publicMethod: function() {
+            privateMethod();
+          }
+        };
+      })();
+
+      Module.publicMethod(); // Output: I'm private!
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Closures in Memoization</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Closures can be used to implement memoization, a technique for caching the results of expensive function calls.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function memoize(fn) {
+        const cache = {};
+
+        return function(...args) {
+          const key = JSON.stringify(args);
+          if (cache[key]) {
+            return cache[key];
+          }
+          const result = fn(...args);
+          cache[key] = result;
+          return result;
+        };
+      }
+
+      const factorial = memoize(function(n) {
+        if (n === 0 || n === 1) return 1;
+        return n * factorial(n - 1);
+      });
+
+      console.log(factorial(5)); // Output: 120 (calculated)
+      console.log(factorial(5)); // Output: 120 (cached)
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Currying`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Currying in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Currying is a functional programming technique where a function that takes multiple arguments is transformed into a sequence of functions, each taking a single argument. Currying allows for partial application of functions, making them more flexible and reusable.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Currying</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Transforms a multi-argument function into a series of single-argument functions.</li>
+    <li>Enables partial application of functions.</li>
+    <li>Improves code reusability and composability.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Currying Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of currying is transforming a function that takes two arguments into a sequence of functions, each taking one argument.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function add(a) {
+        return function(b) {
+          return a + b;
+        };
+      }
+
+      const add5 = add(5);
+      console.log(add5(10)); // Output: 15
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Currying with Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions provide a concise syntax for currying.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add = (a) => (b) => a + b;
+
+      const add5 = add(5);
+      console.log(add5(10)); // Output: 15
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Currying for Reusability</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Currying allows you to create reusable functions by partially applying arguments.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function multiply(a) {
+        return function(b) {
+          return a * b;
+        };
+      }
+
+      const double = multiply(2);
+      const triple = multiply(3);
+
+      console.log(double(5)); // Output: 10
+      console.log(triple(5)); // Output: 15
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Currying with Multiple Arguments</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Currying can be extended to functions with more than two arguments.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function add(a) {
+        return function(b) {
+          return function(c) {
+            return a + b + c;
+          };
+        };
+      }
+
+      console.log(add(1)(2)(3)); // Output: 6
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Currying with a Helper Function</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can create a helper function to automatically curry any function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function curry(fn) {
+        return function curried(...args) {
+          if (args.length >= fn.length) {
+            return fn(...args);
+          } else {
+            return function(...moreArgs) {
+              return curried(...args, ...moreArgs);
+            };
+          }
+        };
+      }
+
+      function sum(a, b, c) {
+        return a + b + c;
+      }
+
+      const curriedSum = curry(sum);
+      console.log(curriedSum(1)(2)(3)); // Output: 6
+      console.log(curriedSum(1, 2)(3)); // Output: 6
+      console.log(curriedSum(1)(2, 3)); // Output: 6
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Currying in Real-World Scenarios</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Currying is useful in real-world scenarios like event handling, where you can partially apply arguments to create reusable handlers.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const button = document.createElement("button");
+      button.textContent = "Click Me";
+
+      function handleClick(message) {
+        return function(event) {
+          console.log(message);
+        };
+      }
+
+      button.addEventListener("click", handleClick("Button clicked!"));
+      document.body.appendChild(button);
+      // When the button is clicked: Output: Button clicked!
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Currying with Libraries</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Libraries like Lodash provide built-in support for currying.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const _ = require("lodash");
+
+      function sum(a, b, c) {
+        return a + b + c;
+      }
+
+      const curriedSum = _.curry(sum);
+      console.log(curriedSum(1)(2)(3)); // Output: 6
+      console.log(curriedSum(1, 2)(3)); // Output: 6
+      console.log(curriedSum(1)(2, 3)); // Output: 6
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Currying for Function Composition</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Currying is often used in function composition, where multiple functions are combined to create a new function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const add5ThenMultiply2 = compose(multiply2, add5);
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Partial Application`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Partial Application in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Partial application is a functional programming technique where a function is pre-filled with some of its arguments, creating a new function that takes the remaining arguments. Unlike currying, which transforms a function into a sequence of single-argument functions, partial application allows you to fix a subset of arguments and create a new function with the remaining ones.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Partial Application</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Pre-fills some arguments of a function.</li>
+    <li>Creates a new function with the remaining arguments.</li>
+    <li>Improves code reusability and flexibility.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Partial Application Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of partial application is pre-filling the first argument of a function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function add(a, b) {
+        return a + b;
+      }
+
+      function partialApply(fn, fixedArg) {
+        return function(remainingArg) {
+          return fn(fixedArg, remainingArg);
+        };
+      }
+
+      const add5 = partialApply(add, 5);
+      console.log(add5(10)); // Output: 15
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Partial Application with <code>bind()</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>bind()</code> method can be used for partial application by fixing the <code>this</code> value and some arguments.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function add(a, b) {
+        return a + b;
+      }
+
+      const add5 = add.bind(null, 5);
+      console.log(add5(10)); // Output: 15
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Partial Application with Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions can be used to create partially applied functions in a concise way.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add = (a, b) => a + b;
+      const add5 = (b) => add(5, b);
+
+      console.log(add5(10)); // Output: 15
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Partial Application with Multiple Arguments</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Partial application can be extended to functions with more than two arguments.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function multiply(a, b, c) {
+        return a * b * c;
+      }
+
+      function partialApply(fn, ...fixedArgs) {
+        return function(...remainingArgs) {
+          return fn(...fixedArgs, ...remainingArgs);
+        };
+      }
+
+      const multiplyBy2And3 = partialApply(multiply, 2, 3);
+      console.log(multiplyBy2And3(4)); // Output: 24
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Partial Application in Real-World Scenarios</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Partial application is useful in real-world scenarios like event handling, where you can pre-fill some arguments to create reusable handlers.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const button = document.createElement("button");
+      button.textContent = "Click Me";
+
+      function handleClick(message, event) {
+        console.log(message);
+      }
+
+      const handleClickWithMessage = handleClick.bind(null, "Button clicked!");
+      button.addEventListener("click", handleClickWithMessage);
+      document.body.appendChild(button);
+      // When the button is clicked: Output: Button clicked!
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Partial Application with Libraries</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Libraries like Lodash provide built-in support for partial application.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const _ = require("lodash");
+
+      function sum(a, b, c) {
+        return a + b + c;
+      }
+
+      const add5And10 = _.partial(sum, 5, 10);
+      console.log(add5And10(15)); // Output: 30
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Partial Application for Function Composition</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Partial application is often used in function composition, where multiple functions are combined to create a new function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const add5ThenMultiply2 = compose(multiply2, add5);
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Partial Application with Default Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Default parameters can be used in conjunction with partial application to create flexible functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function greet(greeting = "Hello", name = "Guest") {
+        return \`\${greeting}, \${name}!\`;
+      }
+
+      const greetHello = greet.bind(null, "Hello");
+      console.log(greetHello("Alice")); // Output: Hello, Alice!
+      console.log(greetHello()); // Output: Hello, Guest!
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Memoization`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Memoization in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Memoization is an optimization technique used to speed up programs by caching the results of expensive function calls and reusing them when the same inputs occur again. It is particularly useful for recursive functions or functions with heavy computations.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Memoization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Caching: Storing the results of function calls.</li>
+    <li>Reuse: Returning cached results for repeated inputs.</li>
+    <li>Efficiency: Reducing redundant computations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Memoization Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of memoization is caching the results of a factorial function.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function memoize(fn) {
+        const cache = {};
+        return function(...args) {
+          const key = JSON.stringify(args);
+          if (cache[key]) {
+            return cache[key];
+          }
+          const result = fn(...args);
+          cache[key] = result;
+          return result;
+        };
+      }
+
+      function factorial(n) {
+        if (n === 0 || n === 1) return 1;
+        return n * factorial(n - 1);
+      }
+
+      const memoizedFactorial = memoize(factorial);
+      console.log(memoizedFactorial(5)); // Output: 120 (calculated)
+      console.log(memoizedFactorial(5)); // Output: 120 (cached)
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Memoization with Recursive Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Memoization is particularly useful for optimizing recursive functions, such as the Fibonacci sequence.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function memoize(fn) {
+        const cache = {};
+        return function(...args) {
+          const key = JSON.stringify(args);
+          if (cache[key]) {
+            return cache[key];
+          }
+          const result = fn(...args);
+          cache[key] = result;
+          return result;
+        };
+      }
+
+      function fibonacci(n) {
+        if (n <= 1) return n;
+        return fibonacci(n - 1) + fibonacci(n - 2);
+      }
+
+      const memoizedFibonacci = memoize(fibonacci);
+      console.log(memoizedFibonacci(10)); // Output: 55 (calculated)
+      console.log(memoizedFibonacci(10)); // Output: 55 (cached)
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Memoization with Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions can also be memoized using the same technique.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const memoize = (fn) => {
+        const cache = {};
+        return (...args) => {
+          const key = JSON.stringify(args);
+          if (cache[key]) {
+            return cache[key];
+          }
+          const result = fn(...args);
+          cache[key] = result;
+          return result;
+        };
+      };
+
+      const add = (a, b) => a + b;
+      const memoizedAdd = memoize(add);
+      console.log(memoizedAdd(2, 3)); // Output: 5 (calculated)
+      console.log(memoizedAdd(2, 3)); // Output: 5 (cached)
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Memoization with Object Arguments</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Memoization can handle functions that take objects as arguments by using a unique key for each input.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function memoize(fn) {
+        const cache = new Map();
+        return function(...args) {
+          const key = JSON.stringify(args);
+          if (cache.has(key)) {
+            return cache.get(key);
+          }
+          const result = fn(...args);
+          cache.set(key, result);
+          return result;
+        };
+      }
+
+      function complexCalculation(obj) {
+        return Object.values(obj).reduce((acc, val) => acc + val, 0);
+      }
+
+      const memoizedComplexCalculation = memoize(complexCalculation);
+      console.log(memoizedComplexCalculation({ a: 1, b: 2 })); // Output: 3 (calculated)
+      console.log(memoizedComplexCalculation({ a: 1, b: 2 })); // Output: 3 (cached)
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Memoization with Expensive Computations</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Memoization is particularly useful for functions with expensive computations, such as prime number checking.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function memoize(fn) {
+        const cache = {};
+        return function(...args) {
+          const key = JSON.stringify(args);
+          if (cache[key]) {
+            return cache[key];
+          }
+          const result = fn(...args);
+          cache[key] = result;
+          return result;
+        };
+      }
+
+      function isPrime(n) {
+        if (n <= 1) return false;
+        for (let i = 2; i * i <= n; i++) {
+          if (n % i === 0) return false;
+        }
+        return true;
+      }
+
+      const memoizedIsPrime = memoize(isPrime);
+      console.log(memoizedIsPrime(29)); // Output: true (calculated)
+      console.log(memoizedIsPrime(29)); // Output: true (cached)
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Memoization with Libraries</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Libraries like Lodash provide built-in support for memoization.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const _ = require("lodash");
+
+      function factorial(n) {
+        if (n === 0 || n === 1) return 1;
+        return n * factorial(n - 1);
+      }
+
+      const memoizedFactorial = _.memoize(factorial);
+      console.log(memoizedFactorial(5)); // Output: 120 (calculated)
+      console.log(memoizedFactorial(5)); // Output: 120 (cached)
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Memoization with Custom Cache Keys</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can customize the cache key generation for more control over memoization.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function memoize(fn, keyGenerator = JSON.stringify) {
+        const cache = new Map();
+        return function(...args) {
+          const key = keyGenerator(args);
+          if (cache.has(key)) {
+            return cache.get(key);
+          }
+          const result = fn(...args);
+          cache.set(key, result);
+          return result;
+        };
+      }
+
+      function add(a, b) {
+        return a + b;
+      }
+
+      const memoizedAdd = memoize(add, (args) => args.join("-"));
+      console.log(memoizedAdd(2, 3)); // Output: 5 (calculated)
+      console.log(memoizedAdd(2, 3)); // Output: 5 (cached)
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Composition`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Composition in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Function composition is a technique in functional programming where multiple functions are combined to create a new function. The output of one function is passed as the input to the next, allowing for the creation of complex operations by chaining simpler functions together.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Function Composition</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Combining Functions: Linking multiple functions together.</li>
+    <li>Data Flow: The output of one function becomes the input of the next.</li>
+    <li>Reusability: Encourages the creation of small, reusable functions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Function Composition</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of function composition is combining two functions, where the output of the first function is passed as the input to the second.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function add5(x) {
+        return x + 5;
+      }
+
+      function multiply2(x) {
+        return x * 2;
+      }
+
+      function compose(f, g) {
+        return function(x) {
+          return f(g(x));
+        };
+      }
+
+      const add5ThenMultiply2 = compose(multiply2, add5);
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Function Composition with Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions provide a concise syntax for function composition.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const compose = (f, g) => (x) => f(g(x));
+
+      const add5ThenMultiply2 = compose(multiply2, add5);
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Composing Multiple Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can compose more than two functions by chaining them together.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+      const subtract3 = (x) => x - 3;
+
+      const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
+
+      const complexOperation = compose(subtract3, multiply2, add5);
+      console.log(complexOperation(10)); // Output: 27
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Function Composition with Libraries</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Libraries like Lodash and Ramda provide built-in support for function composition.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const _ = require("lodash");
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const complexOperation = _.flow([add5, multiply2]);
+      console.log(complexOperation(10)); // Output: 30
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Function Composition in Real-World Scenarios</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function composition is useful in real-world scenarios like data transformation pipelines, where multiple operations are applied sequentially.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const data = [1, 2, 3, 4, 5];
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+      const filterEven = (x) => x % 2 === 0;
+
+      const transformData = (data) =>
+        data.map(add5).map(multiply2).filter(filterEven);
+
+      console.log(transformData(data)); // Output: [12, 16, 20]
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Function Composition with Promises</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function composition can also be used with asynchronous functions and promises.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const fetchData = () => Promise.resolve([1, 2, 3, 4, 5]);
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const transformData = (data) => data.map(add5).map(multiply2);
+
+      fetchData()
+        .then(transformData)
+        .then(console.log); // Output: [12, 14, 16, 18, 20]
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Function Composition with Currying</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function composition can be combined with currying to create highly reusable and flexible functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add = (a) => (b) => a + b;
+      const multiply = (a) => (b) => a * b;
+
+      const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
+
+      const add5ThenMultiply2 = compose(multiply(2), add(5));
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Function Composition with Error Handling</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can add error handling to function composition to ensure robustness.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => {
+        if (typeof x !== "number") throw new Error("Invalid input");
+        return x * 2;
+      };
+
+      const compose = (...fns) => (x) => {
+        try {
+          return fns.reduceRight((acc, fn) => fn(acc), x);
+        } catch (error) {
+          console.error(error.message);
+          return null;
+        }
+      };
+
+      const add5ThenMultiply2 = compose(multiply2, add5);
+      console.log(add5ThenMultiply2("10")); // Output: Invalid input, null
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Throttling`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Throttling in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Throttling is a technique used to control the rate at which a function is executed. It ensures that a function is called at most once in a specified time interval, even if it is triggered multiple times. This is particularly useful for optimizing performance in scenarios like event handlers (e.g., scrolling, resizing, or typing).
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Throttling</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Rate Limiting: Ensures a function is not called more than once in a specified time interval.</li>
+    <li>Performance Optimization: Reduces the frequency of function calls, improving performance.</li>
+    <li>Use Cases: Scrolling, resizing, typing, and other high-frequency events.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Throttling Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of throttling is limiting the execution of a function to once every 1000 milliseconds (1 second).
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function throttle(fn, delay) {
+        let lastCall = 0;
+        return function(...args) {
+          const now = new Date().getTime();
+          if (now - lastCall < delay) return;
+          lastCall = now;
+          return fn(...args);
+        };
+      }
+
+      const throttledFunction = throttle(() => {
+        console.log("Function executed!");
+      }, 1000);
+
+      // Simulate frequent calls
+      setInterval(throttledFunction, 100); // Output: "Function executed!" every 1 second
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Throttling with Leading Edge</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Throttling can be configured to execute the function immediately on the first call (leading edge) and then throttle subsequent calls.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function throttle(fn, delay) {
+        let lastCall = 0;
+        let timeoutId;
+        return function(...args) {
+          const now = new Date().getTime();
+          if (now - lastCall >= delay) {
+            lastCall = now;
+            fn(...args);
+          } else {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+              lastCall = now;
+              fn(...args);
+            }, delay - (now - lastCall));
+          }
+        };
+      }
+
+      const throttledFunction = throttle(() => {
+        console.log("Function executed!");
+      }, 1000);
+
+      // Simulate frequent calls
+      setInterval(throttledFunction, 100); // Output: "Function executed!" immediately, then every 1 second
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Throttling with Trailing Edge</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Throttling can also be configured to execute the function at the end of the delay period (trailing edge).
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function throttle(fn, delay) {
+        let timeoutId;
+        return function(...args) {
+          if (!timeoutId) {
+            timeoutId = setTimeout(() => {
+              fn(...args);
+              timeoutId = null;
+            }, delay);
+          }
+        };
+      }
+
+      const throttledFunction = throttle(() => {
+        console.log("Function executed!");
+      }, 1000);
+
+      // Simulate frequent calls
+      setInterval(throttledFunction, 100); // Output: "Function executed!" every 1 second
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Throttling in Event Handlers</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Throttling is commonly used in event handlers to optimize performance.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function throttle(fn, delay) {
+        let lastCall = 0;
+        return function(...args) {
+          const now = new Date().getTime();
+          if (now - lastCall < delay) return;
+          lastCall = now;
+          return fn(...args);
+        };
+      }
+
+      const handleScroll = throttle(() => {
+        console.log("Scroll event handled!");
+      }, 1000);
+
+      window.addEventListener("scroll", handleScroll);
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Throttling with Libraries</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Libraries like Lodash provide built-in support for throttling.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const _ = require("lodash");
+
+      const throttledFunction = _.throttle(() => {
+        console.log("Function executed!");
+      }, 1000);
+
+      // Simulate frequent calls
+      setInterval(throttledFunction, 100); // Output: "Function executed!" every 1 second
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Throttling with Request Animation Frame</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Throttling can be combined with <code>requestAnimationFrame</code> for smooth animations.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function throttle(fn) {
+        let isThrottled = false;
+        return function(...args) {
+          if (!isThrottled) {
+            isThrottled = true;
+            requestAnimationFrame(() => {
+              fn(...args);
+              isThrottled = false;
+            });
+          }
+        };
+      }
+
+      const animate = throttle(() => {
+        console.log("Animation frame executed!");
+      });
+
+      // Simulate frequent calls
+      setInterval(animate, 10); // Output: "Animation frame executed!" at 60 FPS
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Throttling with Debouncing</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Throttling and debouncing are often used together to optimize performance in different scenarios.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function throttle(fn, delay) {
+        let lastCall = 0;
+        return function(...args) {
+          const now = new Date().getTime();
+          if (now - lastCall < delay) return;
+          lastCall = now;
+          return fn(...args);
+        };
+      }
+
+      function debounce(fn, delay) {
+        let timeoutId;
+        return function(...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn(...args), delay);
+        };
+      }
+
+      const handleResize = throttle(debounce(() => {
+        console.log("Resize event handled!");
+      }, 100), 1000);
+
+      window.addEventListener("resize", handleResize);
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Debouncing`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Debouncing in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Debouncing is a technique used to ensure that a function is only executed after a specified period of inactivity. It is particularly useful for optimizing performance in scenarios where a function is triggered frequently, such as in event handlers for typing, resizing, or scrolling. Debouncing delays the execution of the function until a certain amount of time has passed since the last call.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Debouncing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Delay Execution: Ensures a function is executed only after a specified period of inactivity.</li>
+    <li>Performance Optimization: Reduces the number of function calls, improving performance.</li>
+    <li>Use Cases: Typing, resizing, scrolling, and other high-frequency events.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Debouncing Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of debouncing is delaying the execution of a function until 500 milliseconds have passed since the last call.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function debounce(fn, delay) {
+        let timeoutId;
+        return function(...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn(...args), delay);
+        };
+      }
+
+      const debouncedFunction = debounce(() => {
+        console.log("Function executed!");
+      }, 500);
+
+      // Simulate frequent calls
+      debouncedFunction();
+      debouncedFunction();
+      debouncedFunction(); // Output: "Function executed!" after 500ms of inactivity
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Debouncing with Immediate Execution</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Debouncing can be configured to execute the function immediately on the first call and then debounce subsequent calls.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function debounce(fn, delay, immediate = false) {
+        let timeoutId;
+        return function(...args) {
+          const callNow = immediate && !timeoutId;
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            if (!immediate) fn(...args);
+            timeoutId = null;
+          }, delay);
+          if (callNow) fn(...args);
+        };
+      }
+
+      const debouncedFunction = debounce(() => {
+        console.log("Function executed!");
+      }, 500, true);
+
+      // Simulate frequent calls
+      debouncedFunction(); // Output: "Function executed!" immediately
+      debouncedFunction();
+      debouncedFunction(); // Output: "Function executed!" after 500ms of inactivity
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Debouncing in Event Handlers</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Debouncing is commonly used in event handlers to optimize performance.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function debounce(fn, delay) {
+        let timeoutId;
+        return function(...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn(...args), delay);
+        };
+      }
+
+      const handleResize = debounce(() => {
+        console.log("Resize event handled!");
+      }, 500);
+
+      window.addEventListener("resize", handleResize);
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Debouncing with Libraries</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Libraries like Lodash provide built-in support for debouncing.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const _ = require("lodash");
+
+      const debouncedFunction = _.debounce(() => {
+        console.log("Function executed!");
+      }, 500);
+
+      // Simulate frequent calls
+      debouncedFunction();
+      debouncedFunction();
+      debouncedFunction(); // Output: "Function executed!" after 500ms of inactivity
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Debouncing with Request Animation Frame</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Debouncing can be combined with <code>requestAnimationFrame</code> for smooth animations.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function debounce(fn) {
+        let isDebounced = false;
+        return function(...args) {
+          if (!isDebounced) {
+            isDebounced = true;
+            requestAnimationFrame(() => {
+              fn(...args);
+              isDebounced = false;
+            });
+          }
+        };
+      }
+
+      const animate = debounce(() => {
+        console.log("Animation frame executed!");
+      });
+
+      // Simulate frequent calls
+      setInterval(animate, 10); // Output: "Animation frame executed!" at 60 FPS
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Debouncing with Throttling</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Debouncing and throttling are often used together to optimize performance in different scenarios.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function debounce(fn, delay) {
+        let timeoutId;
+        return function(...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn(...args), delay);
+        };
+      }
+
+      function throttle(fn, delay) {
+        let lastCall = 0;
+        return function(...args) {
+          const now = new Date().getTime();
+          if (now - lastCall < delay) return;
+          lastCall = now;
+          return fn(...args);
+        };
+      }
+
+      const handleResize = debounce(throttle(() => {
+        console.log("Resize event handled!");
+      }, 100), 500);
+
+      window.addEventListener("resize", handleResize);
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Debouncing with Custom Delay</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can customize the delay dynamically based on the input or other conditions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function debounce(fn, getDelay) {
+        let timeoutId;
+        return function(...args) {
+          const delay = getDelay(...args);
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fn(...args), delay);
+        };
+      }
+
+      const debouncedFunction = debounce(() => {
+        console.log("Function executed!");
+      }, (input) => input.length * 100);
+
+      // Simulate frequent calls
+      debouncedFunction("a"); // Output: "Function executed!" after 100ms
+      debouncedFunction("ab"); // Output: "Function executed!" after 200ms
+      debouncedFunction("abc"); // Output: "Function executed!" after 300ms
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Pipeline`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Pipeline in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A function pipeline is a technique in functional programming where multiple functions are chained together, and the output of one function is passed as the input to the next. This allows for the creation of complex operations by combining simpler functions in a readable and maintainable way.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Function Pipeline</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Chaining Functions: Linking multiple functions together.</li>
+    <li>Data Flow: The output of one function becomes the input of the next.</li>
+    <li>Reusability: Encourages the creation of small, reusable functions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Function Pipeline</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of a function pipeline is chaining two functions, where the output of the first function is passed as the input to the second.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function add5(x) {
+        return x + 5;
+      }
+
+      function multiply2(x) {
+        return x * 2;
+      }
+
+      function pipeline(...fns) {
+        return function(x) {
+          return fns.reduce((acc, fn) => fn(acc), x);
+        };
+      }
+
+      const add5ThenMultiply2 = pipeline(add5, multiply2);
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Function Pipeline with Arrow Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrow functions provide a concise syntax for creating function pipelines.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const pipeline = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x);
+
+      const add5ThenMultiply2 = pipeline(add5, multiply2);
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Function Pipeline with Multiple Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can chain more than two functions in a pipeline.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+      const subtract3 = (x) => x - 3;
+
+      const pipeline = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x);
+
+      const complexOperation = pipeline(add5, multiply2, subtract3);
+      console.log(complexOperation(10)); // Output: 27
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Function Pipeline with Libraries</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Libraries like Lodash and Ramda provide built-in support for function pipelines.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const _ = require("lodash");
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const complexOperation = _.flow([add5, multiply2]);
+      console.log(complexOperation(10)); // Output: 30
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Function Pipeline in Real-World Scenarios</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function pipelines are useful in real-world scenarios like data transformation pipelines, where multiple operations are applied sequentially.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const data = [1, 2, 3, 4, 5];
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+      const filterEven = (x) => x % 2 === 0;
+
+      const transformData = (data) =>
+        data.map(add5).map(multiply2).filter(filterEven);
+
+      console.log(transformData(data)); // Output: [12, 16, 20]
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Function Pipeline with Promises</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Function pipelines can also be used with asynchronous functions and promises.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const fetchData = () => Promise.resolve([1, 2, 3, 4, 5]);
+
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => x * 2;
+
+      const transformData = (data) => data.map(add5).map(multiply2);
+
+      fetchData()
+        .then(transformData)
+        .then(console.log); // Output: [12, 14, 16, 18, 20]
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Function Pipeline with Error Handling</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can add error handling to function pipelines to ensure robustness.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add5 = (x) => x + 5;
+      const multiply2 = (x) => {
+        if (typeof x !== "number") throw new Error("Invalid input");
+        return x * 2;
+      };
+
+      const pipeline = (...fns) => (x) => {
+        try {
+          return fns.reduce((acc, fn) => fn(acc), x);
+        } catch (error) {
+          console.error(error.message);
+          return null;
+        }
+      };
+
+      const add5ThenMultiply2 = pipeline(add5, multiply2);
+      console.log(add5ThenMultiply2("10")); // Output: Invalid input, null
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Function Pipeline with Custom Functions</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can create custom functions to use in a pipeline, making the pipeline more flexible and reusable.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const add = (a) => (b) => a + b;
+      const multiply = (a) => (b) => a * b;
+
+      const pipeline = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x);
+
+      const add5ThenMultiply2 = pipeline(add(5), multiply(2));
+      console.log(add5ThenMultiply2(10)); // Output: 30
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Recursion`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Recursion in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Recursion is a programming technique where a function calls itself to solve a problem. It is particularly useful for tasks that can be broken down into smaller, similar subproblems. Recursion involves two key components: a <strong>base case</strong> (to stop the recursion) and a <strong>recursive case</strong> (to break the problem into smaller parts).
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Recursion</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Base Case: The condition under which the recursion stops.</li>
+    <li>Recursive Case: The part of the function where it calls itself with a smaller or simpler input.</li>
+    <li>Call Stack: The mechanism that keeps track of function calls in recursion.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Factorial of a Number</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The factorial of a number <code>n</code> (denoted as <code>n!</code>) is the product of all positive integers less than or equal to <code>n</code>. It can be computed using recursion.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function factorial(n) {
+        if (n === 0 || n === 1) { // Base case
+          return 1;
+        }
+        return n * factorial(n - 1); // Recursive case
+      }
+
+      console.log(factorial(5)); // Output: 120
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Fibonacci Sequence</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, starting from 0 and 1. It can be computed using recursion.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function fibonacci(n) {
+        if (n <= 1) { // Base case
+          return n;
+        }
+        return fibonacci(n - 1) + fibonacci(n - 2); // Recursive case
+      }
+
+      console.log(fibonacci(6)); // Output: 8
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Sum of Digits</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The sum of digits of a number can be computed using recursion by repeatedly adding the last digit and reducing the number.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function sumOfDigits(n) {
+        if (n < 10) { // Base case
+          return n;
+        }
+        return (n % 10) + sumOfDigits(Math.floor(n / 10)); // Recursive case
+      }
+
+      console.log(sumOfDigits(1234)); // Output: 10
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Power of a Number</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The power of a number <code>x</code> raised to <code>n</code> can be computed using recursion.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function power(x, n) {
+        if (n === 0) { // Base case
+          return 1;
+        }
+        return x * power(x, n - 1); // Recursive case
+      }
+
+      console.log(power(2, 5)); // Output: 32
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Reverse a String</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A string can be reversed using recursion by repeatedly moving the first character to the end of the string.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function reverseString(str) {
+        if (str === "") { // Base case
+          return "";
+        }
+        return reverseString(str.slice(1)) + str[0]; // Recursive case
+      }
+
+      console.log(reverseString("hello")); // Output: "olleh"
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Tower of Hanoi</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The Tower of Hanoi is a classic problem that can be solved using recursion. The goal is to move a stack of disks from one rod to another, following specific rules.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function towerOfHanoi(n, source, destination, auxiliary) {
+        if (n === 1) { // Base case
+          console.log(\`Move disk 1 from \${source} to \${destination}\`);
+          return;
+        }
+        towerOfHanoi(n - 1, source, auxiliary, destination); // Move n-1 disks to auxiliary
+        console.log(\`Move disk \${n} from \${source} to \${destination}\`);
+        towerOfHanoi(n - 1, auxiliary, destination, source); // Move n-1 disks to destination
+      }
+
+      towerOfHanoi(3, 'A', 'C', 'B');
+      // Output:
+      // Move disk 1 from A to C
+      // Move disk 2 from A to B
+      // Move disk 1 from C to B
+      // Move disk 3 from A to C
+      // Move disk 1 from B to A
+      // Move disk 2 from B to C
+      // Move disk 1 from A to C
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Binary Search (Recursive)</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Binary Search can also be implemented using recursion. It works by repeatedly dividing the search interval in half.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function binarySearchRecursive(arr, target, left = 0, right = arr.length - 1) {
+        if (left > right) { // Base case: target not found
+          return -1;
+        }
+
+        const mid = Math.floor((left + right) / 2);
+        if (arr[mid] === target) { // Base case: target found
+          return mid;
+        } else if (arr[mid] < target) {
+          return binarySearchRecursive(arr, target, mid + 1, right); // Recursive case: search right half
+        } else {
+          return binarySearchRecursive(arr, target, left, mid - 1); // Recursive case: search left half
+        }
+      }
+
+      const arr = [1, 3, 5, 7, 9, 11];
+      console.log(binarySearchRecursive(arr, 7)); // Output: 3
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Generators`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Function Generators in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Generators are a special type of function in JavaScript that can be paused and resumed, allowing for the generation of a sequence of values over time. They are defined using the <code>function*</code> syntax and use the <code>yield</code> keyword to produce values. Generators are particularly useful for handling asynchronous operations, iterating over large datasets, and creating custom iterators.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Generators</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>function*</code>: The syntax used to define a generator function.</li>
+    <li><code>yield</code>: The keyword used to produce a value and pause the generator.</li>
+    <li><code>next()</code>: A method used to resume the generator and retrieve the next value.</li>
+    <li>Iterable: Generators are iterable and can be used with <code>for...of</code> loops.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Generator Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of a generator function that yields a sequence of numbers.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* numberGenerator() {
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+
+      const generator = numberGenerator();
+      console.log(generator.next().value); // Output: 1
+      console.log(generator.next().value); // Output: 2
+      console.log(generator.next().value); // Output: 3
+      console.log(generator.next().value); // Output: undefined
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Generator with <code>for...of</code> Loop</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Generators are iterable, so they can be used with <code>for...of</code> loops.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* numberGenerator() {
+        yield 1;
+        yield 2;
+        yield 3;
+      }
+
+      for (const number of numberGenerator()) {
+        console.log(number); // Output: 1, 2, 3
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Infinite Generator</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Generators can be used to create infinite sequences.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* infiniteSequence() {
+        let i = 0;
+        while (true) {
+          yield i++;
+        }
+      }
+
+      const generator = infiniteSequence();
+      console.log(generator.next().value); // Output: 0
+      console.log(generator.next().value); // Output: 1
+      console.log(generator.next().value); // Output: 2
+      // This can continue indefinitely
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Generator with Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Generators can accept parameters, which can be used to control their behavior.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* rangeGenerator(start, end) {
+        for (let i = start; i <= end; i++) {
+          yield i;
+        }
+      }
+
+      for (const number of rangeGenerator(5, 10)) {
+        console.log(number); // Output: 5, 6, 7, 8, 9, 10
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Generator with <code>yield*</code></h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>yield*</code> keyword can be used to delegate to another generator or iterable.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* generator1() {
+        yield 1;
+        yield 2;
+      }
+
+      function* generator2() {
+        yield* generator1();
+        yield 3;
+        yield 4;
+      }
+
+      for (const number of generator2()) {
+        console.log(number); // Output: 1, 2, 3, 4
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Generator for Asynchronous Operations</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Generators can be used to handle asynchronous operations in a synchronous-like manner.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* asyncGenerator() {
+        const result1 = yield new Promise((resolve) => setTimeout(() => resolve(1), 1000));
+        console.log(result1); // Output: 1 (after 1 second)
+        const result2 = yield new Promise((resolve) => setTimeout(() => resolve(2), 1000));
+        console.log(result2); // Output: 2 (after 1 second)
+      }
+
+      function runGenerator(generator) {
+        const iterator = generator();
+        function handle(iteratorResult) {
+          if (iteratorResult.done) return;
+          const iteratorValue = iteratorResult.value;
+          if (iteratorValue instanceof Promise) {
+            iteratorValue.then((res) => handle(iterator.next(res)));
+          }
+        }
+        handle(iterator.next());
+      }
+
+      runGenerator(asyncGenerator);
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Generator for Custom Iterators</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Generators can be used to create custom iterators for objects.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const myIterable = {
+        *[Symbol.iterator]() {
+          yield 1;
+          yield 2;
+          yield 3;
+        }
+      };
+
+      for (const value of myIterable) {
+        console.log(value); // Output: 1, 2, 3
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Generator for Lazy Evaluation</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Generators can be used for lazy evaluation, where values are computed only when needed.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function* lazyEvaluation() {
+        console.log("Starting lazy evaluation");
+        yield 1;
+        console.log("Yielding second value");
+        yield 2;
+        console.log("Yielding third value");
+        yield 3;
+      }
+
+      const generator = lazyEvaluation();
+      console.log(generator.next().value); // Output: Starting lazy evaluation, 1
+      console.log(generator.next().value); // Output: Yielding second value, 2
+      console.log(generator.next().value); // Output: Yielding third value, 3
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Function Async`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Async Functions in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Async functions are a modern JavaScript feature that simplifies working with asynchronous code. They are built on top of promises and provide a more readable and concise way to handle asynchronous operations. An async function always returns a promise, and the <code>await</code> keyword is used to pause the execution of the function until the promise is resolved.
+  </p>
+
+  <h3 style="color: #16a085;">Key Concepts of Async Functions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>async</code>: The keyword used to define an async function.</li>
+    <li><code>await</code>: The keyword used to pause the execution of an async function until a promise is resolved.</li>
+    <li>Promises: Async functions always return a promise.</li>
+    <li>Error Handling: Use <code>try...catch</code> to handle errors in async functions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Async Function Example</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    A simple example of an async function that uses <code>await</code> to handle a promise.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      async function fetchData() {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        const data = await response.json();
+        return data;
+      }
+
+      fetchData().then((data) => console.log(data));
+      // Output: { userId: 1, id: 1, title: '...', body: '...' }
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Async Function with Error Handling</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Use <code>try...catch</code> to handle errors in async functions.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      async function fetchData() {
+        try {
+          const response = await fetch("https://jsonplaceholder.typicode.com/invalid-url");
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+
+      fetchData(); // Output: Error fetching data: TypeError: Failed to fetch
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Async Function with Multiple Awaits</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use multiple <code>await</code> statements in an async function to handle sequential asynchronous operations.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      async function fetchMultipleData() {
+        const response1 = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+        const data1 = await response1.json();
+
+        const response2 = await fetch("https://jsonplaceholder.typicode.com/posts/2");
+        const data2 = await response2.json();
+
+        return [data1, data2];
+      }
+
+      fetchMultipleData().then((data) => console.log(data));
+      // Output: [{ userId: 1, id: 1, title: '...', body: '...' }, { userId: 1, id: 2, title: '...', body: '...' }]
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Async Function with Parallel Execution</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Use <code>Promise.all</code> to execute multiple asynchronous operations in parallel.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      async function fetchParallelData() {
+        const [response1, response2] = await Promise.all([
+          fetch("https://jsonplaceholder.typicode.com/posts/1"),
+          fetch("https://jsonplaceholder.typicode.com/posts/2"),
+        ]);
+
+        const data1 = await response1.json();
+        const data2 = await response2.json();
+
+        return [data1, data2];
+      }
+
+      fetchParallelData().then((data) => console.log(data));
+      // Output: [{ userId: 1, id: 1, title: '...', body: '...' }, { userId: 1, id: 2, title: '...', body: '...' }]
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Async Function in Class Methods</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Async functions can be used as methods in classes.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      class DataFetcher {
+        async fetchData(url) {
+          const response = await fetch(url);
+          const data = await response.json();
+          return data;
+        }
+      }
+
+      const fetcher = new DataFetcher();
+      fetcher.fetchData("https://jsonplaceholder.typicode.com/posts/1").then((data) => console.log(data));
+      // Output: { userId: 1, id: 1, title: '...', body: '...' }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Async Function with Generators</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Async functions can be combined with generators to handle asynchronous operations in a more flexible way.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      async function* asyncGenerator() {
+        yield await fetch("https://jsonplaceholder.typicode.com/posts/1").then((res) => res.json());
+        yield await fetch("https://jsonplaceholder.typicode.com/posts/2").then((res) => res.json());
+      }
+
+      (async () => {
+        for await (const data of asyncGenerator()) {
+          console.log(data);
+        }
+      })();
+      // Output: { userId: 1, id: 1, title: '...', body: '...' }, { userId: 1, id: 2, title: '...', body: '...' }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Async Function with Custom Promises</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can use async functions with custom promises for more control over asynchronous operations.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      async function delayedGreeting() {
+        await delay(1000);
+        console.log("Hello, World!");
+      }
+
+      delayedGreeting(); // Output: Hello, World! (after 1 second)
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Async Function with Error Propagation</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Errors in async functions can be propagated and handled using <code>try...catch</code> or by chaining <code>.catch()</code>.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      async function fetchData() {
+        const response = await fetch("https://jsonplaceholder.typicode.com/invalid-url");
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      }
+
+      fetchData()
+        .then((data) => console.log(data))
+        .catch((error) => console.error(error.message)); // Output: Failed to fetch data
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Types of Arrays`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Types of Arrays in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrays in JavaScript are versatile data structures that can store multiple values in a single variable. They can hold elements of any data type, including numbers, strings, objects, and even other arrays. JavaScript arrays are dynamic, meaning their size can change at runtime, and they come with a variety of built-in methods for manipulation.
+  </p>
+
+  <h3 style="color: #16a085;">Key Types of Arrays in JavaScript</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Number Arrays</li>
+    <li>String Arrays</li>
+    <li>Boolean Arrays</li>
+    <li>Mixed-Type Arrays</li>
+    <li>Arrays of Objects</li>
+    <li>Multidimensional Arrays</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Number Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Number arrays store numeric values. They are commonly used for mathematical operations and data processing.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [10, 20, 30, 40, 50];
+      console.log(numbers[0]); // Output: 10
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">String Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    String arrays store text values. They are often used for handling lists of names, labels, or other text-based data.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const fruits = ["Apple", "Banana", "Cherry"];
+      console.log(fruits[1]); // Output: Banana
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Boolean Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Boolean arrays store true/false values. They are useful for representing states or flags.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const statusArray = [true, false, true, false];
+      console.log(statusArray[2]); // Output: true
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Mixed-Type Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Mixed-type arrays can store elements of different data types, including numbers, strings, objects, and more.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const mixedArray = ["Hello", 100, true, { name: "John" }];
+      console.log(mixedArray[3].name); // Output: John
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Arrays of Objects</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrays of objects store multiple objects, making them ideal for handling structured data like user records or product details.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const users = [
+        { id: 1, name: "Alice" },
+        { id: 2, name: "Bob" },
+        { id: 3, name: "Charlie" }
+      ];
+      console.log(users[1].name); // Output: Bob
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Multidimensional Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Multidimensional arrays are arrays of arrays. They are used to represent matrices or tables.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const matrix = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+      ];
+      console.log(matrix[1][2]); // Output: 6
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Sparse Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Sparse arrays are arrays with "holes" or undefined values. They can be created by leaving gaps in the array indices.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const sparseArray = [1, , 3, , 5];
+      console.log(sparseArray[1]); // Output: undefined
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Typed Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Typed arrays are array-like objects that provide a mechanism for accessing raw binary data. They are useful for handling binary data like images or audio.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const buffer = new ArrayBuffer(16);
+      const int32Array = new Int32Array(buffer);
+      int32Array[0] = 42;
+      console.log(int32Array[0]); // Output: 42
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Associative Arrays (Objects)</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Although JavaScript does not have true associative arrays, objects can be used to achieve similar functionality by using key-value pairs.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const associativeArray = {
+        name: "Alice",
+        age: 25,
+        city: "New York"
+      };
+      console.log(associativeArray["name"]); // Output: Alice
+    </code>
+  </pre>
+</div>`
+},
+{
+articleTitle: `Manipulating Arrays`,
+content: `<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Manipulating Arrays in JavaScript</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrays in JavaScript are dynamic and versatile, allowing for a wide range of manipulations. JavaScript provides numerous built-in methods to add, remove, modify, and transform array elements. Understanding these methods is essential for effective array manipulation.
+  </p>
+
+  <h3 style="color: #16a085;">Key Array Manipulation Methods</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Adding Elements: <code>push()</code>, <code>unshift()</code>, <code>concat()</code></li>
+    <li>Removing Elements: <code>pop()</code>, <code>shift()</code>, <code>splice()</code></li>
+    <li>Modifying Elements: <code>splice()</code>, direct assignment</li>
+    <li>Transforming Arrays: <code>map()</code>, <code>filter()</code>, <code>reduce()</code></li>
+    <li>Searching and Sorting: <code>find()</code>, <code>sort()</code>, <code>includes()</code></li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Adding Elements to an Array</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can add elements to the end of an array using <code>push()</code> or to the beginning using <code>unshift()</code>. The <code>concat()</code> method can be used to merge arrays.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [1, 2, 3];
+      numbers.push(4); // Add to the end
+      console.log(numbers); // Output: [1, 2, 3, 4]
+
+      numbers.unshift(0); // Add to the beginning
+      console.log(numbers); // Output: [0, 1, 2, 3, 4]
+
+      const moreNumbers = numbers.concat([5, 6]); // Merge arrays
+      console.log(moreNumbers); // Output: [0, 1, 2, 3, 4, 5, 6]
+    </code>
+  </pre>
+  
+  <h3 style="color: #2980b9;">Removing Elements from an Array</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can remove elements from the end of an array using <code>pop()</code> or from the beginning using <code>shift()</code>. The <code>splice()</code> method can remove elements from any position.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [1, 2, 3, 4, 5];
+      numbers.pop(); // Remove from the end
+      console.log(numbers); // Output: [1, 2, 3, 4]
+
+      numbers.shift(); // Remove from the beginning
+      console.log(numbers); // Output: [2, 3, 4]
+
+      numbers.splice(1, 1); // Remove 1 element at index 1
+      console.log(numbers); // Output: [2, 4]
+    </code>
+  </pre>
+  
+  <h3 style="color: #c0392b;">Modifying Elements in an Array</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can modify elements in an array using direct assignment or the <code>splice()</code> method.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [1, 2, 3, 4, 5];
+      numbers[2] = 10; // Direct assignment
+      console.log(numbers); // Output: [1, 2, 10, 4, 5]
+
+      numbers.splice(3, 1, 40); // Replace 1 element at index 3 with 40
+      console.log(numbers); // Output: [1, 2, 10, 40, 5]
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Transforming Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrays can be transformed using methods like <code>map()</code>, <code>filter()</code>, and <code>reduce()</code>.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [1, 2, 3, 4, 5];
+
+      const doubled = numbers.map((num) => num * 2); // Map
+      console.log(doubled); // Output: [2, 4, 6, 8, 10]
+
+      const evens = numbers.filter((num) => num % 2 === 0); // Filter
+      console.log(evens); // Output: [2, 4]
+
+      const sum = numbers.reduce((acc, num) => acc + num, 0); // Reduce
+      console.log(sum); // Output: 15
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Searching and Sorting Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrays can be searched and sorted using methods like <code>find()</code>, <code>sort()</code>, and <code>includes()</code>.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [5, 3, 8, 1, 2];
+
+      const found = numbers.find((num) => num > 3); // Find
+      console.log(found); // Output: 5
+
+      numbers.sort((a, b) => a - b); // Sort
+      console.log(numbers); // Output: [1, 2, 3, 5, 8]
+
+      const includesFive = numbers.includes(5); // Includes
+      console.log(includesFive); // Output: true
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Flattening Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Multidimensional arrays can be flattened using the <code>flat()</code> method.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const matrix = [
+        [1, 2],
+        [3, 4],
+        [5, 6]
+      ];
+
+      const flattened = matrix.flat();
+      console.log(flattened); // Output: [1, 2, 3, 4, 5, 6]
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Copying Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrays can be copied using methods like <code>slice()</code>, the spread operator, or <code>Array.from()</code>.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const numbers = [1, 2, 3, 4, 5];
+
+      const copy1 = numbers.slice(); // Slice
+      const copy2 = [...numbers]; // Spread operator
+      const copy3 = Array.from(numbers); // Array.from
+
+      console.log(copy1); // Output: [1, 2, 3, 4, 5]
+      console.log(copy2); // Output: [1, 2, 3, 4, 5]
+      console.log(copy3); // Output: [1, 2, 3, 4, 5]
+    </code>
+  </pre>
+
+  <h3 style="color: #c0392b;">Combining Arrays</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Arrays can be combined using the spread operator or the <code>concat()</code> method.
+  </p>
+  <pre>
+    <code class="language-javascript">
+      const arr1 = [1, 2, 3];
+      const arr2 = [4, 5, 6];
+
+      const combined1 = [...arr1, ...arr2]; // Spread operator
+      const combined2 = arr1.concat(arr2); // Concat
+
+      console.log(combined1); // Output: [1, 2, 3, 4, 5, 6]
+      console.log(combined2); // Output: [1, 2, 3, 4, 5, 6]
+    </code>
+  </pre>
+</div>`
+},
+{
+    articleTitle: `Iterating Arrays`,
+    content: ``
 }
-
-    ]
-
-
-
+];
 }
