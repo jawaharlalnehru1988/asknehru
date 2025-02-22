@@ -14667,7 +14667,5668 @@ class ExampleService {
   </p>
 </div>
 `
-}
+},
+{
+  title:`@SpringBootApplication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding <code>@SpringBootApplication</code> in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@SpringBootApplication</code> annotation is a key component of Spring Boot applications. It serves as a combination of three core annotations—<code>@Configuration</code>, <code>@EnableAutoConfiguration</code>, and <code>@ComponentScan</code>—making application setup and configuration simpler. This article explores its purpose, breakdown, and best practices in detail.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>@SpringBootApplication</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@SpringBootApplication</code> annotation simplifies Spring Boot application setup by:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reducing Boilerplate Code</strong>: Combines multiple annotations into one.</li>
+    <li><strong>Enabling Auto-Configuration</strong>: Automatically configures beans based on dependencies.</li>
+    <li><strong>Component Scanning</strong>: Scans and registers components in the application package.</li>
+    <li><strong>Providing a Clean and Readable Setup</strong>: Encourages a convention-over-configuration approach.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Breakdown of <code>@SpringBootApplication</code></h3>
+  <p style="color: #2c3e50;">
+    The <code>@SpringBootApplication</code> annotation is equivalent to using these three annotations separately:
+  </p>
+  
+  <h4 style="color: #8e44ad;">1. <code>@Configuration</code></h4>
+  <p style="color: #2c3e50;">
+    Marks the class as a configuration class, allowing it to define bean methods.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class AppConfig {
+          @Bean
+          public MyService myService() {
+              return new MyService();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. <code>@EnableAutoConfiguration</code></h4>
+  <p style="color: #2c3e50;">
+    Enables Spring Boot's auto-configuration feature, which automatically configures beans based on the dependencies in the classpath.
+  </p>
+  
+  <h4 style="color: #8e44ad;">3. <code>@ComponentScan</code></h4>
+  <p style="color: #2c3e50;">
+    Scans the specified package and its sub-packages for Spring components such as controllers, services, and repositories.
+  </p>
+  
+  <h3 style="color: #d35400;">Using <code>@SpringBootApplication</code></h3>
+  <p style="color: #2c3e50;">
+    In a typical Spring Boot application, the main class is annotated with <code>@SpringBootApplication</code>:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      
+      @SpringBootApplication
+      public class MyApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(MyApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Keep the <code>@SpringBootApplication</code> annotation at the root package level to enable proper component scanning.</li>
+    <li>Avoid placing business logic inside the main application class—use separate service and controller classes.</li>
+    <li>Use <code>@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})</code> to disable specific auto-configurations.</li>
+    <li>Enable debug logs using <code>spring.main.log-startup-info=true</code> in <code>application.properties</code> for better troubleshooting.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@SpringBootApplication</code> annotation simplifies the setup of Spring Boot applications by combining essential annotations into a single declaration. By understanding its components and best practices, developers can build clean, efficient, and scalable applications with ease.
+  </p>
+</div>
+`
+},
+{
+  title:`@RestController`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @RestController in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@RestController</code> annotation is a specialized version of <code>@Controller</code> used to create RESTful web services. It simplifies the process of building REST APIs by combining the functionalities of <code>@Controller</code> and <code>@ResponseBody</code>. This article explores the purpose, working mechanism, and best practices of using <code>@RestController</code> in Spring Boot.
+  </p>
+
+  <h3 style="color: #16a085;">What is @RestController?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RestController</code> annotation is a convenience annotation that marks a class as a RESTful controller. It eliminates the need to annotate each method with <code>@ResponseBody</code>, as it is applied at the class level and automatically converts returned objects into JSON or XML responses.
+  </p>
+
+  <h3 style="color: #e67e22;">How @RestController Works</h3>
+  <p style="color: #2c3e50;">
+    When a class is annotated with <code>@RestController</code>, Spring Boot registers it as a controller that handles HTTP requests. All the methods within this class return data directly instead of resolving to a view template. By default, Spring Boot uses Jackson to convert Java objects into JSON format.
+  </p>
+
+  <h3 style="color: #8e44ad;">Example of @RestController</h3>
+  <p style="color: #2c3e50;">Here is a simple example demonstrating the usage of <code>@RestController</code>:</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      
+      @RestController
+      @RequestMapping("/api")
+      public class HelloController {
+        
+          @GetMapping("/hello")
+          public String sayHello() {
+              return "Hello, Spring Boot!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Key Features of @RestController</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Combines @Controller and @ResponseBody</strong>: Simplifies REST API development.</li>
+    <li><strong>JSON Response by Default</strong>: Automatically serializes Java objects into JSON.</li>
+    <li><strong>Works with @RequestMapping and @GetMapping</strong>: Easily handles HTTP requests.</li>
+    <li><strong>Supports Various Return Types</strong>: Can return primitive types, custom objects, or collections.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Handling Different HTTP Methods</h3>
+  <p style="color: #2c3e50;">Spring Boot provides annotations to handle different HTTP request types:</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          
+          @GetMapping("/{id}")
+          public String getUser(@PathVariable int id) {
+              return "Fetching user with ID: " + id;
+          }
+          
+          @PostMapping("/")
+          public String createUser(@RequestBody User user) {
+              return "User created: " + user.getName();
+          }
+          
+          @PutMapping("/{id}")
+          public String updateUser(@PathVariable int id, @RequestBody User user) {
+              return "User " + id + " updated with name: " + user.getName();
+          }
+          
+          @DeleteMapping("/{id}")
+          public String deleteUser(@PathVariable int id) {
+              return "User with ID " + id + " deleted.";
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #d35400;">Best Practices for Using @RestController</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@RestController</code> only for REST APIs; for traditional MVC, use <code>@Controller</code>.</li>
+    <li>Structure APIs with meaningful endpoints and HTTP methods.</li>
+    <li>Use <code>@RequestMapping</code> at the class level to define base URLs.</li>
+    <li>Ensure proper exception handling using <code>@ExceptionHandler</code> or <code>@ControllerAdvice</code>.</li>
+    <li>Utilize response entities (<code>ResponseEntity&lt;T&gt;</code>) for better control over response status codes.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RestController</code> annotation simplifies the development of RESTful web services in Spring Boot. By combining the features of <code>@Controller</code> and <code>@ResponseBody</code>, it reduces boilerplate code and enhances productivity. Following best practices ensures maintainable and scalable APIs that adhere to RESTful principles.
+  </p>
+</div>`
+},
+{
+  title:`@Controller`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding <code>@Controller</code> in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Controller</code> annotation is a fundamental part of the Model-View-Controller (MVC) pattern. It is used to define web controllers that handle HTTP requests and return views. Unlike <code>@RestController</code>, which returns JSON responses, <code>@Controller</code> is mainly used for rendering HTML pages using templates like Thymeleaf, JSP, or FreeMarker.
+  </p>
+
+  <h3 style="color: #16a085;">What is <code>@Controller</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Controller</code> annotation marks a class as a Spring MVC controller. It works with view resolvers to return appropriate HTML responses to the client.
+  </p>
+  
+  <h3 style="color: #e67e22;">Basic Usage of <code>@Controller</code></h3>
+  <p style="color: #2c3e50;">
+    A simple example of using <code>@Controller</code> to return an HTML view:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Controller
+      public class HomeController {
+          @GetMapping("/")
+          public String home() {
+              return "home"; // Returns home.html (Thymeleaf) or home.jsp
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Differences Between <code>@Controller</code> and <code>@RestController</code></h3>
+  <table style="width:100%; border-collapse: collapse; text-align: left;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px; border: 1px solid #ddd;">@Controller</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">@RestController</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Used for handling web pages</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Used for RESTful web services</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Returns HTML views</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Returns JSON or XML responses</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Works with View Resolvers (Thymeleaf, JSP)</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">By default, returns response body</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #d35400;">Using <code>@Controller</code> with <code>Model</code></h3>
+  <p style="color: #2c3e50;">
+    You can pass data to views using the <code>Model</code> object:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Controller
+      public class GreetingController {
+          @GetMapping("/greeting")
+          public String greeting(Model model) {
+              model.addAttribute("message", "Welcome to Spring Boot!");
+              return "greeting"; // Returns greeting.html
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Controller</code> annotation is essential for building traditional web applications in Spring Boot. It enables developers to handle web requests, integrate with view templates, and manage user interactions efficiently. When working with REST APIs, consider using <code>@RestController</code> instead for better JSON response handling.
+  </p>
+</div>`
+},
+{
+  title:`@Service`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Service in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Service</code> annotation is a specialization of the <code>@Component</code> annotation. It is used to mark a class as a service layer component, indicating that it contains business logic. This annotation plays a vital role in the architecture of a Spring Boot application by managing service layer beans efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">What is @Service?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Service</code> annotation is a stereotype annotation in Spring, used to indicate that a class is part of the service layer. It helps in defining business logic separately from the controller and repository layers, promoting a clean separation of concerns.
+  </p>
+
+  <h3 style="color: #e67e22;">Why Use @Service?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Encapsulation of Business Logic</strong>: Keeps business rules separate from other application layers.</li>
+    <li><strong>Automatic Bean Detection</strong>: Allows Spring to detect and register service classes as beans.</li>
+    <li><strong>Dependency Injection</strong>: Enables the use of <code>@Autowired</code> to inject dependencies into service classes.</li>
+    <li><strong>Better Maintainability</strong>: Facilitates a clean separation between data access and presentation logic.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">How to Use @Service?</h3>
+  <p style="color: #2c3e50;">
+    To define a service class in Spring Boot, simply annotate it with <code>@Service</code>.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class UserService {
+          public String getUserDetails() {
+              return "User details fetched successfully";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Injecting @Service in Other Components</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Service</code> class can be injected into controllers or other services using <code>@Autowired</code>.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      public class UserController {
+          private final UserService userService;
+  
+          @Autowired
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+  
+          @GetMapping("/user")
+          public String getUser() {
+              return userService.getUserDetails();
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #d35400;">Best Practices for Using @Service</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure business logic is placed inside service classes instead of controllers or repositories.</li>
+    <li>Use dependency injection rather than creating new instances manually.</li>
+    <li>Keep service classes focused on a single responsibility to maintain clarity.</li>
+    <li>Leverage transactional management if dealing with database operations.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Service</code> annotation in Spring Boot is essential for structuring an application’s business logic effectively. By using it correctly, developers can ensure better maintainability, modularity, and testability of their applications.
+  </p>
+</div>
+`
+},
+{
+  title:`@Repository`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Repository in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Repository</code> annotation is a crucial part of the persistence layer. It is used to indicate that a class is responsible for data access and interacts with the database. Spring recognizes classes annotated with <code>@Repository</code> as DAO (Data Access Object) components and provides exception translation to handle database errors effectively.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Repository?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Repository</code> annotation offers several advantages in Spring Boot applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Exception Translation</strong>: Converts database-specific exceptions into Spring’s <code>DataAccessException</code> hierarchy.</li>
+    <li><strong>Data Access Layer Identification</strong>: Clearly defines classes that handle database operations.</li>
+    <li><strong>Integration with Spring Data JPA</strong>: Works seamlessly with JPA repositories for CRUD operations.</li>
+    <li><strong>Code Modularity</strong>: Separates business logic from database interactions for better maintainability.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using @Repository in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@Repository</code>, annotate a class that interacts with the database. Below is an example:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Repository;
+      import org.springframework.data.jpa.repository.JpaRepository;
+
+      @Repository
+      public interface EmployeeRepository extends JpaRepository&lt;Employee, Long&gt; {
+          Employee findByEmail(String email);
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #8e44ad;">Exception Handling with @Repository</h3>
+  <p style="color: #2c3e50;">
+    Spring automatically translates database-related exceptions into <code>DataAccessException</code> when using <code>@Repository</code>. For example:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class EmployeeService {
+          @Autowired
+          private EmployeeRepository employeeRepository;
+
+          public Employee getEmployeeByEmail(String email) {
+              try {
+                  return employeeRepository.findByEmail(email);
+              } catch (DataAccessException e) {
+                  throw new RuntimeException("Error accessing database", e);
+              }
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #d35400;">Best Practices for Using @Repository</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Repository</code> for DAO classes interacting with the database.</li>
+    <li>Leverage Spring Data JPA to reduce boilerplate code for CRUD operations.</li>
+    <li>Handle database exceptions effectively using Spring’s exception translation mechanism.</li>
+    <li>Use custom query methods to optimize data retrieval.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Repository</code> annotation plays a vital role in separating the persistence layer in Spring Boot applications. It simplifies database interactions, provides exception translation, and enhances modularity. By following best practices, developers can build efficient and maintainable data access layers.
+  </p>
+</div>
+`
+},
+{
+  title:`@Component`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Component in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Component</code> annotation is a core part of the Spring Framework’s dependency injection mechanism. It is a generic stereotype annotation that marks a Java class as a Spring-managed bean, allowing the Spring container to detect and manage it automatically.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Component?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Component</code> annotation provides several advantages in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automatic Bean Detection</strong>: Spring automatically detects and registers classes annotated with <code>@Component</code>.</li>
+    <li><strong>Reusable and Maintainable Code</strong>: Reduces manual bean configuration in XML or Java-based configurations.</li>
+    <li><strong>Supports Dependency Injection</strong>: Works seamlessly with Spring’s <code>@Autowired</code> to inject dependencies.</li>
+    <li><strong>Foundation for Other Annotations</strong>: Annotations like <code>@Service</code>, <code>@Repository</code>, and <code>@Controller</code> are specialized forms of <code>@Component</code>.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using @Component in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@Component</code>, simply annotate a class that should be managed by Spring:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MyComponent {
+          public void execute() {
+              System.out.println("Executing MyComponent logic...");
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #8e44ad;">Injecting @Component into Other Beans</h3>
+  <p style="color: #2c3e50;">
+    A class annotated with <code>@Component</code> can be injected into other Spring-managed beans using <code>@Autowired</code>:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class MyService {
+          private final MyComponent myComponent;
+
+          @Autowired
+          public MyService(MyComponent myComponent) {
+              this.myComponent = myComponent;
+          }
+
+          public void performAction() {
+              myComponent.execute();
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #d35400;">Best Practices for Using @Component</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Component</code> for generic utility classes that don’t fit under <code>@Service</code> or <code>@Repository</code>.</li>
+    <li>Ensure package scanning includes the component to allow Spring to detect it.</li>
+    <li>Prefer specialized annotations like <code>@Service</code> and <code>@Repository</code> for clarity and maintainability.</li>
+    <li>Use dependency injection rather than manually instantiating <code>@Component</code> beans.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Component</code> annotation is a powerful feature in Spring Boot that enables automatic bean detection and dependency injection. It provides a simple way to manage application components while maintaining modularity and scalability. Following best practices ensures a clean and maintainable Spring application architecture.
+  </p>
+</div>
+`
+},
+{
+  title:`@Bean`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Bean in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Bean</code> annotation is used to define and configure Spring-managed beans manually. Unlike <code>@Component</code>, which relies on component scanning, <code>@Bean</code> is typically used inside a <code>@Configuration</code> class to create and customize beans programmatically. This approach is useful for integrating third-party libraries or when more control over bean creation is required.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Bean?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Bean</code> annotation provides several advantages in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Explicit Bean Definition</strong>: Allows fine-grained control over bean creation and initialization.</li>
+    <li><strong>Third-Party Integration</strong>: Useful for configuring beans that are not part of the application’s codebase.</li>
+    <li><strong>Customization</strong>: Enables setting up bean dependencies manually with specific properties.</li>
+    <li><strong>Lifecycle Management</strong>: Supports lifecycle callbacks like <code>initMethod</code> and <code>destroyMethod</code>.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using @Bean in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@Bean</code>, define it inside a <code>@Configuration</code> class:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class AppConfig {
+
+          @Bean
+          public MyBean myBean() {
+              return new MyBean();
+          }
+      }
+
+      class MyBean {
+          public void showMessage() {
+              System.out.println("Hello from MyBean!");
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #8e44ad;">Injecting @Bean into Other Components</h3>
+  <p style="color: #2c3e50;">
+    Beans created using <code>@Bean</code> can be injected into other components using <code>@Autowired</code>:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class MyService {
+          private final MyBean myBean;
+
+          @Autowired
+          public MyService(MyBean myBean) {
+              this.myBean = myBean;
+          }
+
+          public void execute() {
+              myBean.showMessage();
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #d35400;">Best Practices for Using @Bean</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Bean</code> when configuring third-party libraries or manually managing bean instantiation.</li>
+    <li>Keep all <code>@Bean</code> definitions inside a dedicated <code>@Configuration</code> class.</li>
+    <li>Leverage lifecycle methods (<code>initMethod</code> and <code>destroyMethod</code>) for proper resource management.</li>
+    <li>Avoid unnecessary <code>@Bean</code> definitions for classes that can be handled with <code>@Component</code> scanning.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Bean</code> annotation is a powerful way to define Spring beans explicitly when more control over their creation and configuration is needed. It complements the component scanning approach and is particularly useful for integrating third-party dependencies. Following best practices ensures a clean and maintainable Spring application structure.
+  </p>
+</div>
+`
+},
+{
+  title:`@Configuration`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Configuration in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Configuration</code> annotation is used to define configuration classes that contain bean definitions. It is a key part of the Java-based configuration approach in Spring, replacing traditional XML-based configuration. Classes annotated with <code>@Configuration</code> are processed by the Spring container to register beans, manage dependencies, and set up the application context efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Configuration?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Configuration</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Java-Based Configuration</strong>: Eliminates the need for complex XML configuration files.</li>
+    <li><strong>Improved Readability</strong>: Organizes configuration settings within a dedicated class.</li>
+    <li><strong>Encapsulation</strong>: Groups related bean definitions in a structured way.</li>
+    <li><strong>Explicit Bean Management</strong>: Allows manual bean creation and configuration.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @Configuration?</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@Configuration</code>, create a class annotated with it and define beans using the <code>@Bean</code> annotation:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class AppConfig {
+
+          @Bean
+          public MyService myService() {
+              return new MyService();
+          }
+      }
+
+      class MyService {
+          public void serve() {
+              System.out.println("Service is running...");
+          }
+      }
+    </code>
+  </pre>
+  
+  <h3 style="color: #8e44ad;">Injecting Beans from @Configuration</h3>
+  <p style="color: #2c3e50;">
+    Beans defined in an <code>@Configuration</code> class can be injected into other components using <code>@Autowired</code>:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MyComponent {
+          private final MyService myService;
+
+          @Autowired
+          public MyComponent(MyService myService) {
+              this.myService = myService;
+          }
+
+          public void execute() {
+              myService.serve();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using @Configuration with @ComponentScan</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ComponentScan</code> annotation can be used with <code>@Configuration</code> to specify base packages for component scanning:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.ComponentScan;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      @ComponentScan(basePackages = "com.example.services")
+      public class AppConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @Configuration</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Configuration</code> to organize and manage bean definitions systematically.</li>
+    <li>Define multiple configuration classes to separate concerns (e.g., database config, service config).</li>
+    <li>Prefer Java-based configuration over XML for better maintainability.</li>
+    <li>Use <code>@ComponentScan</code> wisely to avoid unnecessary component scanning.</li>
+    <li>Ensure bean dependencies are correctly injected to avoid circular dependencies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Configuration</code> annotation is a fundamental part of Spring Boot’s Java-based configuration, providing a clear and structured way to define beans and application settings. By leveraging <code>@Bean</code> along with <code>@Configuration</code>, developers can manage dependencies efficiently, ensuring a flexible and maintainable Spring Boot application.
+  </p>
+</div>
+`
+},
+{
+  title:`@ComponentScan`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @ComponentScan in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@ComponentScan</code> annotation is used to specify the base packages where Spring should scan for components, such as <code>@Component</code>, <code>@Service</code>, <code>@Repository</code>, and <code>@Controller</code>. By default, Spring Boot scans the package where the main application class is located and its sub-packages. However, <code>@ComponentScan</code> allows developers to customize the scanning path.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @ComponentScan?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ComponentScan</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Custom Package Scanning</strong>: Allows scanning specific packages outside the default package.</li>
+    <li><strong>Modular Code Organization</strong>: Enables separating different application layers.</li>
+    <li><strong>Improved Performance</strong>: Prevents unnecessary scanning of unused packages.</li>
+    <li><strong>Flexible Configuration</strong>: Can be used with multiple packages for better component management.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @ComponentScan?</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@ComponentScan</code>, annotate a configuration class (usually the main application class) with it and specify the packages to scan:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.context.annotation.ComponentScan;
+
+      @SpringBootApplication
+      @ComponentScan(basePackages = {"com.example.services", "com.example.repositories"})
+      public class MyApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(MyApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using @ComponentScan with Specific Classes</h3>
+  <p style="color: #2c3e50;">
+    Instead of specifying package names, you can reference specific component classes as well:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.ComponentScan;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      @ComponentScan(basePackageClasses = MyService.class)
+      public class AppConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Filtering Components in @ComponentScan</h3>
+  <p style="color: #2c3e50;">
+    You can exclude specific classes or include only certain types of components using filters:
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.ComponentScan;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.context.annotation.FilterType;
+
+      @Configuration
+      @ComponentScan(
+          basePackages = "com.example",
+          excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Deprecated.class)
+      )
+      public class AppConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @ComponentScan</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@ComponentScan</code> only when necessary, as Spring Boot already scans the main package by default.</li>
+    <li>Organize components in structured packages to avoid unnecessary scanning.</li>
+    <li>Use package-level scanning instead of scanning the entire application for better performance.</li>
+    <li>Apply filters to include or exclude specific classes where needed.</li>
+    <li>Ensure that custom package scanning does not conflict with the default component scanning behavior.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ComponentScan</code> annotation plays a crucial role in managing Spring Boot applications by specifying which packages to scan for components. It helps in modularizing applications, improving performance, and maintaining clean, organized code. Proper use of <code>@ComponentScan</code> ensures efficient dependency injection and seamless component management.
+  </p>
+</div>
+`
+},
+{
+  title:`@Autowired`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Autowired in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Autowired</code> annotation is used for automatic dependency injection. It allows Spring to resolve and inject the required bean into a class without explicitly instantiating it. <code>@Autowired</code> simplifies the process of managing dependencies and promotes loose coupling in the application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Autowired?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Autowired</code> annotation provides several advantages in Spring applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automatic Dependency Injection</strong>: Eliminates the need for manual bean initialization.</li>
+    <li><strong>Loose Coupling</strong>: Improves modularity by reducing direct dependencies between classes.</li>
+    <li><strong>Readable and Maintainable Code</strong>: Reduces boilerplate code, making the application cleaner.</li>
+    <li><strong>Supports Different Injection Types</strong>: Works with constructor, setter, and field-based injection.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @Autowired?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Autowired</code> annotation can be used in different ways, including field injection, constructor injection, and setter injection.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Field Injection (Direct Injection)</h3>
+  <p style="color: #2c3e50;">
+    The simplest way to use <code>@Autowired</code> is by directly injecting a dependency into a field.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          public void getUserDetails() {
+              userRepository.findUser();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Constructor Injection (Recommended)</h3>
+  <p style="color: #2c3e50;">
+    Constructor injection is the preferred method because it makes dependencies immutable and easier to test.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          private final UserRepository userRepository;
+
+          @Autowired
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public void getUserDetails() {
+              userRepository.findUser();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Setter Injection</h3>
+  <p style="color: #2c3e50;">
+    Setter injection is useful when dependencies are optional or can be changed at runtime.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          private UserRepository userRepository;
+
+          @Autowired
+          public void setUserRepository(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public void getUserDetails() {
+              userRepository.findUser();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using @Autowired with Multiple Beans</h3>
+  <p style="color: #2c3e50;">
+    If there are multiple beans of the same type, you can specify which one to inject using <code>@Qualifier</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.beans.factory.annotation.Qualifier;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          private final UserRepository userRepository;
+
+          @Autowired
+          public UserService(@Qualifier("myUserRepository") UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public void getUserDetails() {
+              userRepository.findUser();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @Autowired</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>constructor injection</strong> whenever possible for better testability and immutability.</li>
+    <li>Use <strong>@Qualifier</strong> to resolve conflicts when multiple beans of the same type exist.</li>
+    <li>Minimize field injection and prefer constructor-based dependency injection.</li>
+    <li>Ensure that all required beans are properly annotated with <code>@Component</code>, <code>@Service</code>, or <code>@Repository</code>.</li>
+    <li>Use setter injection for optional dependencies that can be modified dynamically.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Autowired</code> annotation is a powerful feature in Spring Boot for automatic dependency injection. By using it effectively, you can create modular, maintainable, and testable applications with minimal configuration. Understanding its different usage patterns helps in writing cleaner and more efficient code.
+  </p>
+</div>
+`
+},
+{
+  title:`@Value`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Value in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Value</code> annotation is used to inject values into fields from property files, environment variables, or system properties. This annotation is useful for configuring application settings dynamically without hardcoding values directly into the codebase.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Value?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Value</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Externalized Configuration</strong>: Allows values to be managed outside the application code.</li>
+    <li><strong>Flexibility</strong>: Supports property files, environment variables, and system properties.</li>
+    <li><strong>Default Values</strong>: Provides a way to define fallback values.</li>
+    <li><strong>SpEL Support</strong>: Enables Spring Expression Language (SpEL) for advanced expressions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @Value?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Value</code> annotation can be used in different ways to inject values from various sources.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Injecting Values from application.properties</h3>
+  <p style="color: #2c3e50;">
+    The most common usage of <code>@Value</code> is to inject values from the <code>application.properties</code> or <code>application.yml</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      app.name=MySpringApp
+      app.version=1.0.0
+    </code>
+  </pre>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class AppConfig {
+
+          @Value("\${app.name}")
+          private String appName;
+
+          @Value("\${app.version}")
+          private String appVersion;
+
+          public void printConfig() {
+              System.out.println("App Name: " + appName);
+              System.out.println("App Version: " + appVersion);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Injecting Default Values</h3>
+  <p style="color: #2c3e50;">
+    If a property is missing, a default value can be specified.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Value("\${app.description:Default App Description}")
+      private String appDescription;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Injecting Environment Variables</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Value</code> annotation can also inject values from environment variables.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Value("\${HOME}")
+      private String homeDirectory;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">4. Using SpEL (Spring Expression Language)</h3>
+  <p style="color: #2c3e50;">
+    <code>@Value</code> supports SpEL for more dynamic value injection.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Value("#{systemProperties['user.name']}")
+      private String systemUser;
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @Value</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>externalized configuration</strong> to avoid hardcoding values.</li>
+    <li>Define <strong>default values</strong> to handle missing properties.</li>
+    <li>Use <strong>environment variables</strong> where necessary for dynamic configurations.</li>
+    <li>Use <strong>SpEL</strong> for more complex expressions when required.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Value</code> annotation is a powerful feature in Spring Boot that simplifies property injection. By using it effectively, developers can create configurable and flexible applications with ease.
+  </p>
+</div>
+`
+},
+{
+  title:`@Qualifier`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Qualifier Annotation in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Framework, the <b>@Qualifier</b> annotation is used to resolve the ambiguity when multiple beans of the same type exist. It works in conjunction with <b>@Autowired</b> to specify exactly which bean should be injected when there are multiple candidates.
+  </p>
+
+  <h3 style="color: #16a085;">Why Do We Need @Qualifier?</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    When using dependency injection, if multiple beans of the same type are present in the Spring context, the framework doesn’t know which bean to inject. The <b>@Qualifier</b> annotation helps in explicitly specifying which bean should be used to avoid <b>NoUniqueBeanDefinitionException</b>.
+  </p>
+
+  <h3 style="color: #9b59b6;">Using @Qualifier with @Autowired</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Qualifier</b> annotation is used along with <b>@Autowired</b> to define the specific bean to be injected.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.beans.factory.annotation.Qualifier;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class ServiceConsumer {
+          private Service service;
+
+          @Autowired
+          public ServiceConsumer(@Qualifier("emailService") Service service) {
+              this.service = service;
+          }
+
+          public void process() {
+              service.execute();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Defining Multiple Beans</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Let’s define multiple beans implementing the same interface, and we’ll use <b>@Qualifier</b> to specify which one to inject.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Component;
+
+      public interface Service {
+          void execute();
+      }
+
+      @Component("emailService")
+      public class EmailService implements Service {
+          @Override
+          public void execute() {
+              System.out.println("Executing Email Service");
+          }
+      }
+
+      @Component("smsService")
+      public class SMSService implements Service {
+          @Override
+          public void execute() {
+              System.out.println("Executing SMS Service");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using @Qualifier in a Setter Method</h3>
+  <p style="color: #34495e;">
+    The <b>@Qualifier</b> annotation can also be used with setter methods to specify the exact bean to be injected.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.beans.factory.annotation.Qualifier;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class NotificationService {
+          private Service service;
+
+          @Autowired
+          @Qualifier("smsService")
+          public void setService(Service service) {
+              this.service = service;
+          }
+
+          public void notifyUser() {
+              service.execute();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Using @Qualifier with List of Beans</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    We can use <b>@Qualifier</b> with a list of beans to inject specific implementations.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.beans.factory.annotation.Qualifier;
+      import org.springframework.stereotype.Component;
+
+      import java.util.List;
+
+      @Component
+      public class BulkNotificationService {
+          private List<Service> services;
+
+          @Autowired
+          public BulkNotificationService(@Qualifier("emailService") List<Service> services) {
+              this.services = services;
+          }
+
+          public void notifyAllUsers() {
+              services.forEach(Service::execute);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@Qualifier</b> annotation is a powerful tool in Spring for resolving bean injection conflicts. It ensures that the correct bean is injected when multiple beans of the same type exist. By using <b>@Qualifier</b> in constructors, setter methods, or lists, developers can effectively manage dependency injection in complex Spring applications.
+  </p>
+</div>
+`
+},
+{
+  title:`@Primary`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Primary Annotation in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, the <b>@Primary</b> annotation is used to resolve ambiguity when multiple beans of the same type exist in the application context. It allows Spring to automatically choose a primary bean to be injected when no specific bean name is mentioned.
+  </p>
+
+  <h3 style="color: #16a085;">Purpose of @Primary</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    When multiple beans of the same type exist, Spring needs a way to determine which bean to inject. The <b>@Primary</b> annotation marks a particular bean as the preferred candidate, reducing the need to use the <b>@Qualifier</b> annotation explicitly.
+  </p>
+
+  <h4 style="color: #e67e22;">@Primary Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Primary;
+      import org.springframework.stereotype.Component;
+      
+      interface PaymentService {
+          void processPayment();
+      }
+      
+      @Component
+      @Primary // This bean will be the primary choice
+      class CreditCardPayment implements PaymentService {
+          public void processPayment() {
+              System.out.println("Processing payment using Credit Card");
+          }
+      }
+      
+      @Component
+      class PayPalPayment implements PaymentService {
+          public void processPayment() {
+              System.out.println("Processing payment using PayPal");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Usage in Dependency Injection</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    If multiple implementations of a bean exist, Spring injects the bean marked with <b>@Primary</b> automatically, unless another bean is explicitly specified using <b>@Qualifier</b>.
+  </p>
+
+  <h4 style="color: #e67e22;">Dependency Injection Example</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      class PaymentProcessor {
+          private final PaymentService paymentService;
+          
+          @Autowired
+          public PaymentProcessor(PaymentService paymentService) {
+              this.paymentService = paymentService;
+          }
+          
+          public void process() {
+              paymentService.processPayment();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">When to Use @Primary</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>When multiple beans of the same type exist, and one should be preferred by default.</li>
+    <li>When you want to reduce the use of <b>@Qualifier</b> in multiple places.</li>
+    <li>When you are working with autowiring and want Spring to resolve dependencies automatically.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">@Primary vs @Qualifier</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    While <b>@Primary</b> defines a default bean when multiple options exist, <b>@Qualifier</b> allows specifying a particular bean explicitly.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>@Primary:</b> Used for setting a default bean at a class level.</li>
+    <li><b>@Qualifier:</b> Used for selecting a specific bean explicitly at the injection point.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example Combining @Primary and @Qualifier</h3>
+  <p style="color: #34495e;">
+    Even if a <b>@Primary</b> bean exists, you can still override it using <b>@Qualifier</b>.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Component
+      class PaymentProcessor {
+          private final PaymentService paymentService;
+          
+          @Autowired
+          public PaymentProcessor(@Qualifier("payPalPayment") PaymentService paymentService) {
+              this.paymentService = paymentService;
+          }
+          
+          public void process() {
+              paymentService.processPayment();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@Primary</b> annotation helps in resolving bean conflicts by setting a default bean when multiple beans of the same type exist. It works well for reducing the need for explicit bean names but can be overridden using <b>@Qualifier</b> when necessary.
+  </p>
+</div>`
+},
+{
+  title:`@Lazy`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Lazy Annotation in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, the <b>@Lazy</b> annotation is used to control the initialization of beans. By default, Spring eagerly initializes beans at application startup. However, with <b>@Lazy</b>, we can defer the instantiation of a bean until it is actually needed, improving startup performance and resource efficiency.
+  </p>
+
+  <h3 style="color: #16a085;">What is @Lazy?</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Lazy</b> annotation is used to mark a bean so that it is not created at application startup but rather when it is first requested. This annotation can be applied at both the class and method levels.
+  </p>
+
+  <h4 style="color: #e67e22;">@Lazy at Class Level</h4>
+  <p style="color: #34495e;">
+    When applied at the class level, the entire bean will be lazily initialized.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Lazy;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      @Lazy
+      public class LazyService {
+          public LazyService() {
+              System.out.println("LazyService Bean Initialized");
+          }
+
+          public void performTask() {
+              System.out.println("Performing a task in LazyService");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">@Lazy at Method Level</h4>
+  <p style="color: #34495e;">
+    When applied to a method inside a configuration class, it delays the initialization of the specific bean defined in that method.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.context.annotation.Lazy;
+
+      @Configuration
+      public class AppConfig {
+          
+          @Bean
+          @Lazy
+          public LazyService lazyService() {
+              return new LazyService();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">How @Lazy Works</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    When a bean is marked with <b>@Lazy</b>, it is not instantiated during the application startup. Instead, it is created when requested for the first time. This behavior is particularly useful for optimizing application startup time.
+  </p>
+
+  <h3 style="color: #2c3e50;">@Lazy with @Autowired</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    When using <b>@Autowired</b>, we can also use <b>@Lazy</b> to ensure that dependencies are injected lazily.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.context.annotation.Lazy;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class UserService {
+          
+          @Autowired
+          @Lazy
+          private LazyService lazyService;
+          
+          public void executeService() {
+              lazyService.performTask();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Use Cases of @Lazy</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>To improve application startup time by deferring bean creation.</li>
+    <li>To avoid unnecessary initialization of beans that might not be used immediately.</li>
+    <li>To break cyclic dependencies between beans by delaying their instantiation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@Lazy</b> annotation in Spring provides an efficient way to manage bean instantiation, helping to optimize application performance. By using <b>@Lazy</b> at the class, method, or field level, developers can defer the initialization of beans until they are required, reducing resource consumption and improving startup efficiency.
+  </p>
+</div>
+`
+},
+{
+  title:`@Scope`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Scope Annotation in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, the <b>@Scope</b> annotation is used to define the scope of a Spring bean. The scope determines the lifecycle and visibility of a bean within the Spring container. By default, Spring beans are <b>singleton</b>, meaning only one instance of the bean is created per Spring container.
+  </p>
+
+  <h3 style="color: #16a085;">Available Bean Scopes</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring provides several predefined scopes for beans:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Singleton (default):</b> A single instance of the bean is created per Spring container.</li>
+    <li><b>Prototype:</b> A new instance is created every time the bean is requested.</li>
+    <li><b>Request:</b> A new bean instance is created for each HTTP request (used in web applications).</li>
+    <li><b>Session:</b> A single bean instance is created for each HTTP session.</li>
+    <li><b>Application:</b> A single bean instance is created for the entire application.</li>
+    <li><b>WebSocket:</b> A single bean instance is created for each WebSocket session.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Using @Scope Annotation</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Scope</b> annotation is used in conjunction with the <b>@Component</b> or <b>@Bean</b> annotation to specify the scope of a bean.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Singleton Scope (Default)</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class SingletonBean {
+          public SingletonBean() {
+              System.out.println("SingletonBean instance created");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Example: Prototype Scope</h4>
+  <p style="color: #34495e;">
+    The prototype scope creates a new bean instance each time it is requested.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Scope;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      @Scope("prototype")
+      public class PrototypeBean {
+          public PrototypeBean() {
+              System.out.println("PrototypeBean instance created");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Differences Between Singleton and Prototype</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Singleton:</b> A single instance is maintained in the Spring container.</li>
+    <li><b>Prototype:</b> A new instance is created each time it is requested.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Web Scopes (Request, Session, Application)</h3>
+  <p style="color: #34495e;">
+    For web applications, Spring provides additional scopes like <b>request</b> and <b>session</b>.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Scope;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      @Scope("request")
+      public class RequestScopedBean {
+          public RequestScopedBean() {
+              System.out.println("RequestScopedBean instance created");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@Scope</b> annotation is essential for defining the lifecycle of Spring beans. Understanding different scopes helps in designing scalable and efficient applications by managing bean instances appropriately.
+  </p>
+</div>
+`
+},
+{
+  title:`@RequestMapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@RequestMapping in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@RequestMapping</b> annotation in Spring is used to map HTTP requests to handler methods in a controller class. It allows developers to define request paths, HTTP methods, headers, parameters, and more for handling web requests efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Basic Usage</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@RequestMapping</b> annotation can be applied at the class level and method level. At the class level, it specifies the base URL for all methods inside the controller, while at the method level, it defines specific endpoint mappings.
+  </p>
+  
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class MyController {
+          
+          @RequestMapping("/hello")
+          public String sayHello() {
+              return "Hello, Spring!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Specifying HTTP Methods</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>method</b> attribute of <b>@RequestMapping</b> is used to specify the HTTP request type (GET, POST, PUT, DELETE, etc.).
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          
+          @RequestMapping(value = "/get", method = RequestMethod.GET)
+          public String getUser() {
+              return "Fetching User";
+          }
+          
+          @RequestMapping(value = "/create", method = RequestMethod.POST)
+          public String createUser() {
+              return "User Created";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Using Path Variables</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@PathVariable</b> annotation is used to extract values from the URL and pass them as parameters to a handler method.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/products")
+      public class ProductController {
+          
+          @RequestMapping("/{id}")
+          public String getProduct(@PathVariable("id") int productId) {
+              return "Product ID: " + productId;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using Request Parameters</h3>
+  <p style="color: #34495e;">
+    The <b>@RequestParam</b> annotation allows extracting query parameters from the URL.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/search")
+      public class SearchController {
+          
+          @RequestMapping("/query")
+          public String search(@RequestParam("keyword") String keyword) {
+              return "Searching for: " + keyword;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Combining Multiple Attributes</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can combine different attributes like <b>value</b>, <b>method</b>, <b>headers</b>, <b>params</b>, and <b>produces</b> in a single <b>@RequestMapping</b> annotation.
+  </p>
+
+  <h4 style="color: #e67e22;">Example:</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/orders")
+      public class OrderController {
+          
+          @RequestMapping(value = "/status", method = RequestMethod.GET, produces = "application/json")
+          public String getOrderStatus() {
+              return "{\"status\": \"Processed\"}";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@RequestMapping</b> annotation is a powerful tool in Spring for handling web requests. It allows defining routes, HTTP methods, path variables, query parameters, and response types efficiently, making it a cornerstone of Spring MVC development.
+  </p>
+</div>`
+},
+{
+  title:`@GetMapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@GetMapping in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <b>@GetMapping</b> annotation is a specialized version of <b>@RequestMapping</b> that is used to handle HTTP GET requests. It is commonly used in RESTful web services to fetch resources from the server.
+  </p>
+
+  <h3 style="color: #16a085;">What is @GetMapping?</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@GetMapping</b> annotation is part of Spring Web MVC and is used to map HTTP GET requests to specific handler methods in a controller. It simplifies request mappings and improves code readability compared to using <b>@RequestMapping(method = RequestMethod.GET)</b>.
+  </p>
+
+  <h3 style="color: #e67e22;">Basic Usage of @GetMapping</h3>
+  <p style="color: #34495e;">
+    The following example demonstrates a basic usage of <b>@GetMapping</b>:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class MyController {
+          
+          @GetMapping("/hello")
+          public String sayHello() {
+              return "Hello, World!";
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #34495e;">
+    In this example, when a client makes a GET request to <code>/api/hello</code>, the method <code>sayHello()</code> is invoked, and it returns "Hello, World!" as the response.
+  </p>
+
+  <h3 style="color: #9b59b6;">Using Path Variables with @GetMapping</h3>
+  <p style="color: #34495e;">
+    You can use <b>@PathVariable</b> to handle dynamic URL parameters in a GET request.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.PathVariable;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          
+          @GetMapping("/{id}")
+          public String getUserById(@PathVariable("id") int userId) {
+              return "User ID: " + userId;
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #34495e;">
+    A GET request to <code>/users/5</code> will return "User ID: 5" as the response.
+  </p>
+
+  <h3 style="color: #e67e22;">Using Request Parameters with @GetMapping</h3>
+  <p style="color: #34495e;">
+    The <b>@RequestParam</b> annotation is used to extract query parameters from the request URL.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestParam;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/search")
+      public class SearchController {
+          
+          @GetMapping("/find")
+          public String search(@RequestParam("query") String query) {
+              return "Search results for: " + query;
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #34495e;">
+    A GET request to <code>/search/find?query=spring</code> will return "Search results for: spring" as the response.
+  </p>
+
+  <h3 style="color: #2c3e50;">Comparison: @GetMapping vs. @RequestMapping</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>@GetMapping</b> is a shortcut for <b>@RequestMapping(method = RequestMethod.GET)</b>.</li>
+    <li><b>@RequestMapping</b> is more general and can handle multiple HTTP methods.</li>
+    <li>Using <b>@GetMapping</b> makes the code more concise and readable when handling GET requests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@GetMapping</b> annotation in Spring Boot is a powerful tool for handling GET requests in RESTful APIs. It simplifies request mappings, supports path variables, query parameters, and improves code readability. By understanding how to use it effectively, developers can build clean and efficient web applications.
+  </p>
+</div>`
+},
+{
+  title:`@PostMapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@PostMapping Annotation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@PostMapping</b> annotation in Spring Boot is used to map HTTP <b>POST</b> requests onto specific handler methods in a controller. It simplifies the process of handling form submissions and API requests that send data to the server.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding @PostMapping</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@PostMapping</b> annotation is a specialized version of <b>@RequestMapping</b> that is used for handling HTTP POST requests. It is commonly used in RESTful APIs where the client sends data to the server to create a new resource.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Usage of @PostMapping</h4>
+  <p style="color: #34495e;">
+    Below is an example demonstrating the use of <b>@PostMapping</b> to create a new user in a RESTful service:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import org.springframework.http.ResponseEntity;
+      import org.springframework.http.HttpStatus;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          
+          @PostMapping("/create")
+          public ResponseEntity<String> createUser(@RequestBody User user) {
+              // Logic to save user to the database
+              return new ResponseEntity<>("User created successfully", HttpStatus.CREATED);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Key Features of @PostMapping</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Handles HTTP POST requests:</b> Maps HTTP POST requests to a specific method.</li>
+    <li><b>Used for creating resources:</b> Commonly used to create new records in databases.</li>
+    <li><b>Works with @RequestBody:</b> Supports binding request body data to Java objects.</li>
+    <li><b>Can return custom HTTP responses:</b> Allows specifying response status codes and messages.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using @PostMapping with @RequestBody</h3>
+  <p style="color: #34495e;">
+    The <b>@RequestBody</b> annotation is used with <b>@PostMapping</b> to automatically convert JSON data sent in the request body into a Java object.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @PostMapping("/add")
+      public ResponseEntity<User> addUser(@RequestBody User user) {
+          userService.save(user);
+          return ResponseEntity.ok(user);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">@PostMapping with @RequestParam</h3>
+  <p style="color: #34495e;">
+    The <b>@RequestParam</b> annotation can be used to retrieve form data submitted via a POST request.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @PostMapping("/register")
+      public ResponseEntity<String> registerUser(@RequestParam String name, @RequestParam String email) {
+          return ResponseEntity.ok("User registered: " + name + " (" + email + ")");
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Handling Form Submissions with @PostMapping</h3>
+  <p style="color: #34495e;">
+    When handling form data submissions in a Spring Boot web application, <b>@PostMapping</b> works well with <b>@ModelAttribute</b>.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @PostMapping("/submit")
+      public String handleForm(@ModelAttribute User user) {
+          return "User form submitted successfully!";
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@PostMapping</b> annotation is a powerful and convenient way to handle HTTP POST requests in Spring Boot. Whether you’re handling JSON requests with <b>@RequestBody</b>, processing form data with <b>@RequestParam</b> or <b>@ModelAttribute</b>, or creating new resources in a RESTful API, <b>@PostMapping</b> makes it easy to implement POST request handling in a clean and readable way.
+  </p>
+</div>
+`
+},
+{
+  title:`@PutMapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@PutMapping in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <b>@PutMapping</b> annotation is used to map HTTP <b>PUT</b> requests to specific handler methods in a REST controller. The PUT method is typically used for updating existing resources on the server. This annotation simplifies defining endpoints that accept PUT requests in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding @PutMapping</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@PutMapping</b> annotation is a specialized shortcut for <b>@RequestMapping</b> with the HTTP method set to <b>PUT</b>. It helps developers create RESTful APIs by specifying that the method should handle PUT requests for updating resources.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Usage</h4>
+  <p style="color: #34495e;">
+    Below is a simple example demonstrating how to use <b>@PutMapping</b> in a Spring Boot REST controller to update an existing resource:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          private Map&lt;Integer, String&gt; users = new HashMap&lt;&gt;();
+
+          public UserController() {
+              users.put(1, "John Doe");
+              users.put(2, "Jane Doe");
+          }
+
+          @PutMapping("/{id}")
+          public String updateUser(@PathVariable int id, @RequestBody String name) {
+              if (users.containsKey(id)) {
+                  users.put(id, name);
+                  return "User updated successfully!";
+              } else {
+                  return "User not found!";
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Using @PutMapping with Request Parameters</h3>
+  <p style="color: #34495e;">
+    You can also use query parameters instead of a request body to update data. Here’s an example:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @PutMapping("/update")
+      public String updateUserWithParams(@RequestParam int id, @RequestParam String name) {
+          if (users.containsKey(id)) {
+              users.put(id, name);
+              return "User updated successfully!";
+          } else {
+              return "User not found!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Handling PUT Requests with DTOs</h3>
+  <p style="color: #34495e;">
+    A more structured approach to handling updates is by using Data Transfer Objects (DTOs). Here’s how you can do it:
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.web.bind.annotation.*;
+
+      class UserDTO {
+          private int id;
+          private String name;
+
+          // Getters and Setters
+          public int getId() { return id; }
+          public void setId(int id) { this.id = id; }
+          public String getName() { return name; }
+          public void setName(String name) { this.name = name; }
+      }
+
+      @PutMapping("/updateUser")
+      public String updateUserWithDTO(@RequestBody UserDTO user) {
+          if (users.containsKey(user.getId())) {
+              users.put(user.getId(), user.getName());
+              return "User updated successfully!";
+          } else {
+              return "User not found!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">@PutMapping vs @PostMapping</h3>
+  <p style="color: #34495e;">
+    Both <b>@PutMapping</b> and <b>@PostMapping</b> are used to send data to the server, but they serve different purposes:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>@PostMapping:</b> Used for creating new resources. Each request typically generates a new entity.</li>
+    <li><b>@PutMapping:</b> Used for updating existing resources. The request must contain the complete data required for updating.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #34495e;">
+    The <b>@PutMapping</b> annotation simplifies handling HTTP PUT requests in Spring Boot RESTful APIs. It is used to update existing resources using request bodies, request parameters, or DTOs. Understanding the difference between <b>@PutMapping</b> and <b>@PostMapping</b> ensures proper API design and better resource management in RESTful applications.
+  </p>
+</div>
+`
+},
+{
+  title:`@DeleteMapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@DeleteMapping in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, <b>@DeleteMapping</b> is a specialized annotation used in Spring MVC controllers to handle HTTP DELETE requests. It is primarily used to delete resources from the server based on a specified identifier. This annotation simplifies RESTful API development by clearly defining delete operations.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding @DeleteMapping</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@DeleteMapping</b> annotation is part of Spring’s RESTful framework and is used to map HTTP DELETE requests to specific handler methods in a controller. It helps in creating cleaner and more readable code by explicitly defining the delete operations.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Syntax</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @DeleteMapping("/users/{id}")
+      public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+          userService.deleteUserById(id);
+          return ResponseEntity.ok("User deleted successfully");
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Working with @DeleteMapping</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@DeleteMapping</b> annotation works similarly to other HTTP method mapping annotations like <b>@GetMapping</b> and <b>@PostMapping</b>. It is typically used in REST APIs to remove entities from the database.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Deleting a Resource</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.http.ResponseEntity;
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/api/users")
+      public class UserController {
+
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @DeleteMapping("/{id}")
+          public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+              boolean isDeleted = userService.deleteUserById(id);
+              if (isDeleted) {
+                  return ResponseEntity.ok("User deleted successfully");
+              } else {
+                  return ResponseEntity.status(404).body("User not found");
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Handling @DeleteMapping with Request Parameters</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    You can also use <b>@RequestParam</b> instead of <b>@PathVariable</b> to pass the ID as a query parameter.
+  </p>
+
+  <h4 style="color: #e67e22;">Example Using @RequestParam</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @DeleteMapping("/delete")
+      public ResponseEntity<String> deleteUserByRequestParam(@RequestParam Long id) {
+          userService.deleteUserById(id);
+          return ResponseEntity.ok("User deleted successfully");
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Key Points to Remember</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>@DeleteMapping</b> is used to map HTTP DELETE requests.</li>
+    <li>It can be combined with <b>@PathVariable</b> or <b>@RequestParam</b> to pass the ID of the resource.</li>
+    <li>It is commonly used in RESTful APIs to remove data from a database.</li>
+    <li>It returns an appropriate HTTP response code such as <code>200 OK</code> or <code>404 Not Found</code>.</li>
+    <li>Ensure that proper error handling is implemented for cases where the resource does not exist.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Conclusion</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@DeleteMapping</b> annotation is a crucial part of REST API development in Spring Boot. It allows for seamless deletion of resources using HTTP DELETE requests while maintaining clean and organized code. Proper handling of non-existent resources and response statuses ensures a robust API.
+  </p>
+</div>`
+},
+{
+title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @PatchMapping in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@PatchMapping</code> annotation is used to handle HTTP PATCH requests. It is typically used for making partial updates to a resource, allowing clients to send only the fields that need modification instead of the entire entity.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @PatchMapping?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PatchMapping</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Partial Updates</strong>: Enables updating specific fields without modifying the entire resource.</li>
+    <li><strong>Efficiency</strong>: Reduces data transfer by only sending changed fields.</li>
+    <li><strong>RESTful Compliance</strong>: Aligns with HTTP methods semantics.</li>
+    <li><strong>Flexibility</strong>: Works well with JSON Merge Patch and JSON Patch formats.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @PatchMapping?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PatchMapping</code> annotation is used in Spring Boot controllers to handle PATCH requests. It can be applied to update fields selectively.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Basic Example of @PatchMapping</h3>
+  <p style="color: #2c3e50;">
+    Consider a scenario where we have a user entity, and we want to update only some of its fields.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+
+          @Autowired
+          private UserService userService;
+
+          @PatchMapping("/{id}")
+          public ResponseEntity&lt;User&gt; updateUser(@PathVariable Long id, @RequestBody Map&lt;String, Object&gt; updates) {
+              User updatedUser = userService.updateUserFields(id, updates);
+              return ResponseEntity.ok(updatedUser);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Handling Partial Updates in Service Layer</h3>
+  <p style="color: #2c3e50;">
+    The service layer should handle updating only the specified fields without overwriting the entire entity.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      public User updateUserFields(Long id, Map&lt;String, Object&gt; updates) {
+          User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+          updates.forEach((key, value) -> {
+              Field field = ReflectionUtils.findField(User.class, key);
+              if (field != null) {
+                  field.setAccessible(true);
+                  ReflectionUtils.setField(field, user, value);
+              }
+          });
+          return userRepository.save(user);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Using @PatchMapping with JSON Merge Patch</h3>
+  <p style="color: #2c3e50;">
+    JSON Merge Patch allows clients to send only the fields they want to update. The server merges the changes into the existing entity.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @PatchMapping("/{id}")
+      public ResponseEntity&lt;User&gt; patchUser(@PathVariable Long id, @RequestBody JsonMergePatch patch) {
+          User updatedUser = userService.applyPatch(id, patch);
+          return ResponseEntity.ok(updatedUser);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @PatchMapping</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure validation of incoming data to prevent invalid updates.</li>
+    <li>Use JSON Merge Patch or JSON Patch for structured updates.</li>
+    <li>Handle exceptions gracefully for missing or incorrect fields.</li>
+    <li>Use field reflection carefully to maintain security.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PatchMapping</code> annotation in Spring Boot provides an efficient way to handle partial updates of resources. By leveraging JSON Patch and JSON Merge Patch, developers can create flexible and RESTful APIs that minimize data transfer while maintaining data integrity.
+  </p>
+</div>
+`
+},
+{
+  title:`@RequestParam`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @RequestParam in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@RequestParam</code> annotation is used to extract query parameters from HTTP requests. This annotation is particularly useful in REST APIs to handle user inputs via URL parameters efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @RequestParam?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RequestParam</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Simple Extraction</strong>: Easily retrieves values from query parameters.</li>
+    <li><strong>Flexibility</strong>: Supports default values and required/optional parameters.</li>
+    <li><strong>Type Conversion</strong>: Automatically converts string parameters into required data types.</li>
+    <li><strong>Multiple Parameters</strong>: Handles multiple request parameters seamlessly.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @RequestParam?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RequestParam</code> annotation is used in Spring Boot controller methods to bind query parameters from a URL.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Basic Usage</h3>
+  <p style="color: #2c3e50;">
+    A simple example of using <code>@RequestParam</code> in a controller method.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestParam;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      public class GreetingController {
+
+          @GetMapping("/greet")
+          public String greet(@RequestParam String name) {
+              return "Hello, " + name + "!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Using Default Values</h3>
+  <p style="color: #2c3e50;">
+    If a query parameter is missing, a default value can be specified.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @GetMapping("/greet")
+      public String greet(@RequestParam(defaultValue = "Guest") String name) {
+          return "Hello, " + name + "!";
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Making Parameters Optional</h3>
+  <p style="color: #2c3e50;">
+    You can make a query parameter optional by setting <code>required = false</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @GetMapping("/greet")
+      public String greet(@RequestParam(required = false) String name) {
+          return name != null ? "Hello, " + name + "!" : "Hello, Guest!";
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">4. Handling Multiple Parameters</h3>
+  <p style="color: #2c3e50;">
+    You can use multiple <code>@RequestParam</code> annotations in a method to handle multiple query parameters.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @GetMapping("/user")
+      public String getUser(@RequestParam String firstName, @RequestParam String lastName) {
+          return "User: " + firstName + " " + lastName;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @RequestParam</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>default values</strong> to handle missing parameters gracefully.</li>
+    <li>Make parameters <strong>optional</strong> if they are not always required.</li>
+    <li>Ensure proper <strong>type conversion</strong> for expected data types.</li>
+    <li>Use multiple <code>@RequestParam</code> annotations to handle multiple inputs efficiently.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RequestParam</code> annotation simplifies handling query parameters in Spring Boot applications. By using it effectively, developers can create clean, flexible, and efficient REST APIs.
+  </p>
+</div>
+`
+},
+
+{
+  title:`@PathVariable`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @PathVariable in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@PathVariable</code> annotation is used to extract values from the URI path of an HTTP request and bind them to method parameters. This annotation is useful for handling RESTful endpoints where values are passed dynamically through the URL.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @PathVariable?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PathVariable</code> annotation offers several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Dynamic URL Mapping</strong>: Extracts values directly from the URL path.</li>
+    <li><strong>Improved Readability</strong>: Makes RESTful APIs more intuitive and structured.</li>
+    <li><strong>Type Conversion</strong>: Automatically converts path variables to the appropriate data type.</li>
+    <li><strong>Flexible Parameter Handling</strong>: Allows single or multiple path variables.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @PathVariable?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PathVariable</code> annotation is commonly used in Spring Boot controllers to extract parameters from the URL.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Basic Usage</h3>
+  <p style="color: #2c3e50;">
+    You can use <code>@PathVariable</code> to capture values from the URL and use them in controller methods.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import org.springframework.stereotype.Controller;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+
+          @GetMapping("/{id}")
+          public String getUserById(@PathVariable("id") int userId) {
+              return "User ID: " + userId;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Multiple @PathVariable Parameters</h3>
+  <p style="color: #2c3e50;">
+    You can use multiple <code>@PathVariable</code> annotations to capture multiple values from the URL.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @GetMapping("/{category}/{id}")
+      public String getItem(@PathVariable String category, @PathVariable int id) {
+          return "Category: " + category + ", Item ID: " + id;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Optional @PathVariable Parameters</h3>
+  <p style="color: #2c3e50;">
+    You can make a path variable optional by providing a default value.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @GetMapping({"/{id}", ""})
+      public String getUser(@PathVariable(required = false) Integer id) {
+          return id != null ? "User ID: " + id : "No ID provided";
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @PathVariable</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>descriptive path variables</strong> to enhance API readability.</li>
+    <li>Ensure <strong>type conversion</strong> is handled properly to avoid runtime errors.</li>
+    <li>Make use of <strong>optional parameters</strong> where needed for flexibility.</li>
+    <li>Keep URLs <strong>RESTful</strong> by using nouns and logical endpoints.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PathVariable</code> annotation in Spring Boot is a powerful way to extract values from the URL. By using it effectively, developers can create clean, structured, and flexible RESTful APIs.
+  </p>
+</div>
+`
+},
+{
+  title:`@RequestBody`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @RequestBody in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@RequestBody</code> annotation is used to map the HTTP request body to a Java object. It is particularly useful when handling incoming JSON or XML data in RESTful APIs.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @RequestBody?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RequestBody</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automatic Conversion</strong>: Converts JSON/XML payloads to Java objects.</li>
+    <li><strong>Ease of Use</strong>: Reduces the need for manual parsing.</li>
+    <li><strong>Integration with Validation</strong>: Supports bean validation annotations.</li>
+    <li><strong>Improved Readability</strong>: Simplifies the controller method signatures.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @RequestBody?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RequestBody</code> annotation is commonly used in controller methods to process JSON payloads.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Basic Usage</h3>
+  <p style="color: #2c3e50;">
+    Here's a simple example of using <code>@RequestBody</code> in a Spring Boot REST controller.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/api")
+      public class UserController {
+          @PostMapping("/users")
+          public String createUser(@RequestBody User user) {
+              return "User " + user.getName() + " created successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Using @RequestBody with Validation</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Valid</code> annotation can be used along with <code>@RequestBody</code> to validate incoming requests.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.Valid;
+      import org.springframework.validation.annotation.Validated;
+
+      @RestController
+      @RequestMapping("/api")
+      @Validated
+      public class UserController {
+          @PostMapping("/users")
+          public String createUser(@Valid @RequestBody User user) {
+              return "User " + user.getName() + " created successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Handling Errors Gracefully</h3>
+  <p style="color: #2c3e50;">
+    If the incoming JSON is malformed or invalid, Spring Boot can handle exceptions using <code>@ExceptionHandler</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @ControllerAdvice
+      public class GlobalExceptionHandler {
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+              return new ResponseEntity<>("Invalid input data", HttpStatus.BAD_REQUEST);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @RequestBody</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>DTO (Data Transfer Objects)</strong> to encapsulate request data.</li>
+    <li>Enable <strong>validation</strong> to ensure data integrity.</li>
+    <li>Handle <strong>exceptions</strong> to provide meaningful error responses.</li>
+    <li>Use <strong>logging</strong> to track incoming request payloads for debugging.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RequestBody</code> annotation simplifies the process of handling HTTP request bodies in Spring Boot applications. By using it effectively, developers can build robust and flexible REST APIs.
+  </p>
+</div>
+`
+},
+{
+  title:`@ResponseBody`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @ResponseBody in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@ResponseBody</code> annotation is used to indicate that the return value of a method should be serialized directly into the HTTP response body instead of being resolved as a view name. This annotation is typically used in RESTful web services to send JSON or XML responses.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @ResponseBody?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseBody</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Direct Response</strong>: Returns the actual data rather than a view name.</li>
+    <li><strong>REST API Support</strong>: Essential for building RESTful web services.</li>
+    <li><strong>Automatic Serialization</strong>: Converts Java objects into JSON or XML responses.</li>
+    <li><strong>Flexible Data Handling</strong>: Can be used with various return types like strings, objects, and collections.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @ResponseBody?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseBody</code> annotation can be used in different ways within a Spring Boot controller.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Returning a Simple String</h3>
+  <p style="color: #2c3e50;">
+    A basic example of using <code>@ResponseBody</code> to return a simple string response.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.ResponseBody;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class HelloController {
+
+          @GetMapping("/hello")
+          @ResponseBody
+          public String sayHello() {
+              return "Hello, World!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Returning a JSON Response</h3>
+  <p style="color: #2c3e50;">
+    When returning an object, Spring Boot automatically converts it to JSON if Jackson is available in the classpath.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.ResponseBody;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class UserController {
+
+          @GetMapping("/user")
+          @ResponseBody
+          public User getUser() {
+              return new User("John Doe", 30);
+          }
+      }
+
+      class User {
+          private String name;
+          private int age;
+
+          public User(String name, int age) {
+              this.name = name;
+              this.age = age;
+          }
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @ResponseBody</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@RestController</code> instead of <code>@Controller</code> + <code>@ResponseBody</code> for REST APIs.</li>
+    <li>Ensure that the Jackson library is included for JSON serialization.</li>
+    <li>Use proper exception handling to return meaningful error messages.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseBody</code> annotation is a powerful feature in Spring Boot that simplifies API development by automatically serializing Java objects into JSON responses. It is an essential tool for building modern RESTful applications.
+  </p>
+</div>
+`
+},
+{
+  title:`@ResponseStatus`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @ResponseStatus in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@ResponseStatus</code> annotation is used to specify the HTTP status code that should be returned from a controller method. This annotation is particularly useful when handling exceptions and customizing responses in a REST API.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @ResponseStatus?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseStatus</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Custom HTTP Responses</strong>: Allows setting specific HTTP status codes for different controller methods.</li>
+    <li><strong>Better Exception Handling</strong>: Enables defining meaningful HTTP status codes in exception handling.</li>
+    <li><strong>Improved API Readability</strong>: Makes it clear what HTTP status a method returns without needing explicit <code>ResponseEntity</code>.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @ResponseStatus?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseStatus</code> annotation can be applied to controller methods and exception handler methods.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Using @ResponseStatus in a Controller Method</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseStatus</code> annotation can be used to define the HTTP status for a method.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class MyController {
+
+          @GetMapping("/success")
+          @ResponseStatus(HttpStatus.OK)
+          public String successResponse() {
+              return "Request was successful!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Using @ResponseStatus in Exception Handling</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseStatus</code> annotation can be used in custom exception classes to define HTTP status codes.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+
+      @ResponseStatus(HttpStatus.NOT_FOUND)
+      public class ResourceNotFoundException extends RuntimeException {
+          public ResourceNotFoundException(String message) {
+              super(message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @ResponseStatus</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>meaningful HTTP status codes</strong> to indicate the result of API calls.</li>
+    <li>Use <strong>custom exceptions</strong> with <code>@ResponseStatus</code> for better error handling.</li>
+    <li>Combine with <code>@ExceptionHandler</code> for a centralized exception-handling mechanism.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ResponseStatus</code> annotation is a useful tool for defining HTTP status codes in Spring Boot applications. By using it effectively, developers can improve API consistency and enhance error handling.
+  </p>
+</div>
+`
+},
+{
+  title:`@CrossOrigin`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @CrossOrigin in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@CrossOrigin</code> annotation in Spring Boot is used to handle Cross-Origin Resource Sharing (CORS) issues. It allows web applications running on different domains to access resources from a Spring Boot backend.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @CrossOrigin?</h3>
+  <p style="color: #2c3e50;">
+    When building REST APIs, browsers enforce the same-origin policy, restricting requests from different origins. The <code>@CrossOrigin</code> annotation helps overcome this restriction.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Enables cross-origin requests</strong>: Allows frontend applications to access backend APIs.</li>
+    <li><strong>Configurable</strong>: Can specify allowed origins, methods, and headers.</li>
+    <li><strong>Supports global and method-level configuration</strong>: Can be applied at the class or method level.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @CrossOrigin?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CrossOrigin</code> annotation can be used at both the controller and method levels.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Applying @CrossOrigin at the Class Level</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.CrossOrigin;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      @CrossOrigin(origins = "http://example.com")
+      public class ApiController {
+          
+          @GetMapping("/data")
+          public String getData() {
+              return "Cross-origin request successful!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Applying @CrossOrigin at the Method Level</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      @RequestMapping("/api")
+      public class ApiController {
+          
+          @CrossOrigin(origins = "http://anotherdomain.com")
+          @GetMapping("/info")
+          public String getInfo() {
+              return "Specific CORS configuration applied.";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Configuring Global CORS in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Instead of using <code>@CrossOrigin</code> on controllers, you can configure global CORS in a Spring Boot application.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.web.servlet.config.annotation.CorsRegistry;
+      import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+      @Configuration
+      public class CorsConfig {
+          
+          @Bean
+          public WebMvcConfigurer corsConfigurer() {
+              return new WebMvcConfigurer() {
+                  @Override
+                  public void addCorsMappings(CorsRegistry registry) {
+                      registry.addMapping("/**").allowedOrigins("http://myfrontend.com");
+                  }
+              };
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @CrossOrigin</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Specify <strong>allowed origins</strong> to restrict access.</li>
+    <li>Define <strong>allowed HTTP methods</strong> explicitly for security.</li>
+    <li>Use <strong>global CORS configuration</strong> when needed for uniformity.</li>
+    <li>Avoid using <strong>wildcard (*)</strong> origins in production for security reasons.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CrossOrigin</code> annotation is an essential feature in Spring Boot to manage CORS policies and enable secure cross-origin requests. By configuring it properly, developers can ensure seamless communication between frontend and backend services.</p>
+</div>
+`
+},
+{
+  title:`@ExceptionHandler`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @ExceptionHandler in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@ExceptionHandler</code> annotation is used to handle exceptions thrown by controller methods. It provides a centralized way to manage exceptions and return meaningful responses to clients.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @ExceptionHandler?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ExceptionHandler</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized Exception Handling</strong>: Allows handling exceptions in one place instead of multiple try-catch blocks.</li>
+    <li><strong>Custom Error Responses</strong>: Returns user-friendly error messages.</li>
+    <li><strong>Improved Code Readability</strong>: Reduces clutter in controller methods.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @ExceptionHandler?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ExceptionHandler</code> annotation can be used to define custom error handling logic for specific exception types.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Basic Example</h3>
+  <p style="color: #2c3e50;">
+    The following example demonstrates handling a specific exception in a controller.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ExceptionHandler(IllegalArgumentException.class)
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          public String handleIllegalArgumentException(IllegalArgumentException ex) {
+              return "Error: " + ex.getMessage();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Handling Multiple Exceptions</h3>
+  <p style="color: #2c3e50;">
+    You can handle multiple exception types in a single method using an array.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @ExceptionHandler({NullPointerException.class, NumberFormatException.class})
+      @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+      public String handleMultipleExceptions(Exception ex) {
+          return "Unexpected error: " + ex.getMessage();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Returning Custom Response Objects</h3>
+  <p style="color: #2c3e50;">
+    Instead of returning plain text messages, you can return custom error response objects.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      public class ErrorResponse {
+          private String message;
+          private int status;
+
+          public ErrorResponse(String message, int status) {
+              this.message = message;
+              this.status = status;
+          }
+
+          // Getters and setters
+      }
+
+      @ExceptionHandler(RuntimeException.class)
+      @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+      public ErrorResponse handleRuntimeException(RuntimeException ex) {
+          return new ErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @ExceptionHandler</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>global exception handling</strong> with <code>@RestControllerAdvice</code> for better maintainability.</li>
+    <li>Return <strong>meaningful error messages</strong> to clients.</li>
+    <li>Log exceptions properly for debugging.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ExceptionHandler</code> annotation is a powerful tool in Spring Boot for handling exceptions efficiently. By implementing proper exception handling strategies, developers can improve the user experience and application stability.
+  </p>
+</div>
+`
+},
+{
+  title:`@RestControllerAdvice`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @RestControllerAdvice in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@RestControllerAdvice</code> annotation in Spring Boot is a specialized version of <code>@ControllerAdvice</code> designed specifically for RESTful web services. It is used to handle global exceptions and apply cross-cutting concerns across multiple controllers in a centralized manner.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @RestControllerAdvice?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RestControllerAdvice</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized Exception Handling</strong>: Allows managing exceptions in one place instead of handling them in each controller separately.</li>
+    <li><strong>Code Reusability</strong>: Reduces redundancy by applying error handling across multiple controllers.</li>
+    <li><strong>Improved Readability</strong>: Makes the codebase cleaner by separating concerns.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @RestControllerAdvice?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RestControllerAdvice</code> annotation is typically used with <code>@ExceptionHandler</code> to catch and handle exceptions globally.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Basic Exception Handling</h3>
+  <p style="color: #2c3e50;">
+    A simple example of using <code>@RestControllerAdvice</code> to handle exceptions globally.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ExceptionHandler(IllegalArgumentException.class)
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          public String handleIllegalArgumentException(IllegalArgumentException ex) {
+              return "Error: " + ex.getMessage();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Handling Multiple Exceptions</h3>
+  <p style="color: #2c3e50;">
+    You can define multiple exception handlers in a single class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ExceptionHandler(NullPointerException.class)
+          @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+          public String handleNullPointerException(NullPointerException ex) {
+              return "Null value encountered!";
+          }
+
+          @ExceptionHandler(ArithmeticException.class)
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          public String handleArithmeticException(ArithmeticException ex) {
+              return "Math error: " + ex.getMessage();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Custom Error Response</h3>
+  <p style="color: #2c3e50;">
+    Instead of returning plain strings, you can create a structured error response.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      public class ErrorResponse {
+          private String message;
+          private int statusCode;
+
+          public ErrorResponse(String message, int statusCode) {
+              this.message = message;
+              this.statusCode = statusCode;
+          }
+
+          public String getMessage() { return message; }
+          public int getStatusCode() { return statusCode; }
+      }
+    </code>
+  </pre>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ExceptionHandler(Exception.class)
+          @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+          public ErrorResponse handleGenericException(Exception ex) {
+              return new ErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @RestControllerAdvice</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>specific exception handlers</strong> before a generic handler.</li>
+    <li>Return <strong>custom error responses</strong> instead of plain strings.</li>
+    <li>Combine with <code>@ResponseStatus</code> for meaningful HTTP responses.</li>
+    <li>Keep exception handlers <strong>organized</strong> to improve maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@RestControllerAdvice</code> annotation provides a powerful way to centralize exception handling in a Spring Boot REST API. By leveraging this feature, you can make your application more robust, maintainable, and user-friendly.
+  </p>
+</div>
+`
+},
+{
+  title:`@Transactional`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Transactional in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@Transactional</code> annotation in Spring is used to manage transactions declaratively. It ensures that a sequence of database operations is executed within a transaction context, providing ACID (Atomicity, Consistency, Isolation, Durability) properties.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Transactional?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Transactional</code> annotation offers several benefits in Spring applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automatic Transaction Management</strong>: Eliminates manual transaction handling.</li>
+    <li><strong>Rollback Support</strong>: Ensures consistency by rolling back on exceptions.</li>
+    <li><strong>Declarative Approach</strong>: Simplifies transaction handling without boilerplate code.</li>
+    <li><strong>Isolation and Propagation Control</strong>: Allows fine-grained control over transaction behavior.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @Transactional?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Transactional</code> annotation can be applied at the class or method level.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Applying @Transactional at Method Level</h3>
+  <p style="color: #2c3e50;">
+    The most common usage is to apply <code>@Transactional</code> on service methods that involve database operations.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class UserService {
+
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          @Transactional
+          public void registerUser(User user) {
+              userRepository.save(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Applying @Transactional at Class Level</h3>
+  <p style="color: #2c3e50;">
+    If <code>@Transactional</code> is applied at the class level, all methods within the class will be transactional by default.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      @Transactional
+      public class AccountService {
+          
+          private final AccountRepository accountRepository;
+          
+          public AccountService(AccountRepository accountRepository) {
+              this.accountRepository = accountRepository;
+          }
+          
+          public void updateAccountBalance(Long accountId, Double amount) {
+              Account account = accountRepository.findById(accountId).orElseThrow();
+              account.setBalance(account.getBalance() + amount);
+              accountRepository.save(account);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Transaction Propagation and Isolation Levels</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Propagation</strong>: Defines how transactions relate to each other (e.g., REQUIRED, REQUIRES_NEW).</li>
+    <li><strong>Isolation</strong>: Controls concurrency behavior (e.g., READ_COMMITTED, SERIALIZABLE).</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Transactional</code> annotation simplifies transaction management in Spring, ensuring data integrity and consistency. By using it effectively, developers can manage transactions declaratively with minimal effort.
+  </p>
+</div>
+`
+},
+{
+  title:`@EnableScheduling`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @EnableScheduling in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@EnableScheduling</code> annotation in Spring Boot is used to enable support for scheduled tasks. It allows developers to execute tasks at fixed intervals, specific times, or dynamically based on cron expressions.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @EnableScheduling?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@EnableScheduling</code> annotation provides several benefits in a Spring Boot application:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automated Task Execution</strong>: Runs scheduled tasks without manual intervention.</li>
+    <li><strong>Flexible Scheduling</strong>: Supports fixed rates, delays, and cron expressions.</li>
+    <li><strong>Concurrency Control</strong>: Can be configured to prevent overlapping executions.</li>
+    <li><strong>Improved Efficiency</strong>: Helps automate background tasks efficiently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @EnableScheduling?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@EnableScheduling</code> annotation is typically placed on a configuration class to activate scheduling support.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.scheduling.annotation.EnableScheduling;
+
+      @Configuration
+      @EnableScheduling
+      public class SchedulerConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Scheduling a Task</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Scheduled</code> annotation is used to define scheduled tasks.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.scheduling.annotation.Scheduled;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class ScheduledTask {
+
+          @Scheduled(fixedRate = 5000) // Runs every 5 seconds
+          public void executeTask() {
+              System.out.println("Executing scheduled task at: " + new java.util.Date());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using Cron Expressions</h3>
+  <p style="color: #2c3e50;">
+    You can use cron expressions for more precise scheduling.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Scheduled(cron = "0 0/1 * * * ?") // Runs every minute
+      public void cronTask() {
+          System.out.println("Executing cron task at: " + new java.util.Date());
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for @EnableScheduling</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>fixedRate</strong> or <strong>cron expressions</strong> wisely to avoid overlapping tasks.</li>
+    <li>Ensure tasks do not consume excessive resources.</li>
+    <li>Use <strong>asynchronous scheduling</strong> if tasks take a long time to execute.</li>
+    <li>Enable logging to monitor scheduled tasks execution.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@EnableScheduling</code> annotation is a powerful feature in Spring Boot that facilitates automated task execution. By combining it with <code>@Scheduled</code>, developers can efficiently manage periodic tasks in their applications.
+  </p>
+</div>
+`
+},
+{
+  title:`@Scheduled`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Scheduled in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Scheduled</code> annotation is used to schedule tasks to run at fixed intervals, with a delay, or at specific times using cron expressions. It enables developers to automate repetitive tasks efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Scheduled?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Scheduled</code> annotation provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automated Task Execution</strong>: Eliminates the need for manual triggers.</li>
+    <li><strong>Fixed-Rate Execution</strong>: Runs tasks at a regular interval.</li>
+    <li><strong>Fixed-Delay Execution</strong>: Ensures a delay between executions.</li>
+    <li><strong>Cron Expression Support</strong>: Allows scheduling with advanced patterns.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @Scheduled?</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@Scheduled</code>, you need to enable scheduling in your Spring Boot application.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.scheduling.annotation.EnableScheduling;
+      import org.springframework.scheduling.annotation.Scheduled;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      @EnableScheduling
+      public class ScheduledTasks {
+
+          @Scheduled(fixedRate = 5000)
+          public void runAtFixedRate() {
+              System.out.println("Task running at fixed rate of 5 seconds");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Different Scheduling Strategies</h3>
+
+  <h4 style="color: #8e44ad;">1. Fixed Rate Execution</h4>
+  <p style="color: #2c3e50;">Runs the method at a fixed interval, regardless of execution time.</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Scheduled(fixedRate = 10000) // Executes every 10 seconds
+      public void fixedRateTask() {
+          System.out.println("Fixed rate task executed");
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Fixed Delay Execution</h4>
+  <p style="color: #2c3e50;">Ensures a delay between the completion of one execution and the start of the next.</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Scheduled(fixedDelay = 7000) // Executes 7 seconds after last execution completion
+      public void fixedDelayTask() {
+          System.out.println("Fixed delay task executed");
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Using Cron Expressions</h4>
+  <p style="color: #2c3e50;">Allows precise scheduling of tasks based on a cron pattern.</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Scheduled(cron = "0 0/5 * * * ?") // Runs every 5 minutes
+      public void cronTask() {
+          System.out.println("Cron-based scheduled task executed");
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @Scheduled</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>fixed delay</strong> if tasks take variable execution time.</li>
+    <li>Prefer <strong>cron expressions</strong> for complex scheduling needs.</li>
+    <li>Ensure the method is <strong>public</strong> and resides in a Spring-managed bean.</li>
+    <li>Use <strong>asynchronous execution</strong> when necessary to avoid blocking.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Scheduled</code> annotation simplifies task scheduling in Spring Boot applications. By leveraging fixed rates, delays, or cron expressions, developers can automate repetitive processes efficiently.
+  </p>
+</div>
+`
+},
+{
+  title:`@EnableAsync`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @EnableAsync in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@EnableAsync</code> annotation in Spring Boot is used to enable asynchronous processing in an application. It allows methods to run in a separate thread without blocking the main execution flow, improving performance for tasks like I/O operations, database transactions, or background processing.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @EnableAsync?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@EnableAsync</code> annotation provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Performance</strong>: Executes tasks in parallel without blocking the main thread.</li>
+    <li><strong>Better Scalability</strong>: Allows applications to handle more requests simultaneously.</li>
+    <li><strong>Non-Blocking Execution</strong>: Useful for I/O-intensive operations like API calls, database queries, and file processing.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @EnableAsync?</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@EnableAsync</code>, follow these steps:
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Enable Async Processing</h3>
+  <p style="color: #2c3e50;">
+    Add <code>@EnableAsync</code> to your Spring Boot configuration class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.scheduling.annotation.EnableAsync;
+
+      @Configuration
+      @EnableAsync
+      public class AsyncConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Define an Asynchronous Method</h3>
+  <p style="color: #2c3e50;">
+    Use <code>@Async</code> to mark a method as asynchronous.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class AsyncService {
+
+          @Async
+          public void asyncMethod() {
+              System.out.println("Executing async method: " + Thread.currentThread().getName());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Call the Asynchronous Method</h3>
+  <p style="color: #2c3e50;">
+    The method will run in a separate thread when called from another Spring-managed bean.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class AsyncController {
+
+          @Autowired
+          private AsyncService asyncService;
+
+          @GetMapping("/execute")
+          public String executeAsync() {
+              asyncService.asyncMethod();
+              return "Async method called!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @EnableAsync</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure that async methods are called from another Spring-managed bean.</li>
+    <li>Use a custom executor if needed for better thread pool management.</li>
+    <li>Handle exceptions properly as they may not be caught in the main thread.</li>
+    <li>Avoid using <code>@Async</code> in the same class where the method is called.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@EnableAsync</code> annotation is a powerful feature in Spring Boot that allows for non-blocking method execution. When used correctly, it can greatly improve application performance and responsiveness.
+  </p>
+</div>
+`
+},
+{
+  title:`@Async`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Async in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Async</code> annotation is used to execute methods asynchronously. It enables the execution of time-consuming tasks in a separate thread, improving application performance and responsiveness.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Async?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Async</code> annotation provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improves Performance</strong>: Runs tasks in the background without blocking the main thread.</li>
+    <li><strong>Enhances Scalability</strong>: Handles multiple requests efficiently.</li>
+    <li><strong>Better User Experience</strong>: Prevents UI or API delays for users.</li>
+    <li><strong>Reduces Processing Time</strong>: Parallel execution speeds up operations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @Async?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Async</code> annotation works with <code>@EnableAsync</code> to enable asynchronous execution in Spring Boot.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Enable Asynchronous Execution</h3>
+  <p style="color: #2c3e50;">
+    Add <code>@EnableAsync</code> to a configuration class to enable async processing.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.scheduling.annotation.EnableAsync;
+
+      @Configuration
+      @EnableAsync
+      public class AsyncConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Using @Async in a Service</h3>
+  <p style="color: #2c3e50;">
+    Apply <code>@Async</code> to a method to execute it asynchronously.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class AsyncService {
+
+          @Async
+          public void asyncMethod() {
+              System.out.println("Executing task in: " + Thread.currentThread().getName());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Returning a Future</h3>
+  <p style="color: #2c3e50;">
+    You can return a <code>CompletableFuture</code> to handle the result asynchronously.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import java.util.concurrent.CompletableFuture;
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class AsyncService {
+
+          @Async
+          public CompletableFuture<String> asyncMethodWithReturn() {
+              return CompletableFuture.completedFuture("Async Task Completed");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @Async</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure <strong>@EnableAsync</strong> is present to enable async execution.</li>
+    <li>Use <strong>thread pools</strong> for better control over concurrent tasks.</li>
+    <li>Handle <strong>exceptions</strong> properly in async methods to prevent silent failures.</li>
+    <li>Use <strong>CompletableFuture</strong> for better control over async results.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Async</code> annotation is a powerful feature in Spring Boot that allows asynchronous execution of methods, enhancing performance and responsiveness. By using it effectively, developers can optimize resource usage and improve application efficiency.
+  </p>
+</div>
+`
+},
+{
+  title:`@Cacheable`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @Cacheable in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@Cacheable</code> annotation is used to enable caching for method results. It helps improve application performance by storing frequently accessed data in memory, reducing redundant method calls and database queries.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Cacheable?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Cacheable</code> annotation provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Performance Improvement</strong>: Reduces redundant method executions and database hits.</li>
+    <li><strong>Faster Response Time</strong>: Retrieves cached results instead of recomputing them.</li>
+    <li><strong>Optimized Resource Usage</strong>: Lowers CPU and memory overhead by avoiding duplicate computations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @Cacheable?</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@Cacheable</code>, first enable caching in your Spring Boot application by adding the <code>@EnableCaching</code> annotation to the main class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cache.annotation.EnableCaching;
+
+      @SpringBootApplication
+      @EnableCaching
+      public class CacheApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(CacheApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example of @Cacheable Usage</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Cacheable</code> annotation can be applied to a method to store its results in the cache.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+
+          @Cacheable("products")
+          public Product getProductById(Long id) {
+              // Simulate a slow database query
+              try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
+              return new Product(id, "Sample Product");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Customizing Cache Behavior</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Cacheable</code> annotation provides attributes to customize caching behavior.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Cacheable(value = "products", key = "#id", condition = "#id > 10")
+      public Product getProductById(Long id) {
+          return new Product(id, "Sample Product");
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @Cacheable</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>@EnableCaching</strong> to activate caching.</li>
+    <li>Ensure proper cache eviction policies to avoid stale data.</li>
+    <li>Customize caching keys to prevent unwanted cache collisions.</li>
+    <li>Monitor cache usage to optimize performance.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Cacheable</code> annotation is a powerful tool in Spring Boot that enhances application performance by storing method results in cache. By implementing caching efficiently, applications can improve response times and reduce database load significantly.
+  </p>
+</div>
+`
+},
+{
+  title:`@CachePut`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding @CachePut in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>@CachePut</code> annotation is used to update or refresh the cache with the latest method execution results. Unlike <code>@Cacheable</code>, which only caches results if they are not already in the cache, <code>@CachePut</code> always executes the method and updates the cache with the new value.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @CachePut?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CachePut</code> annotation provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Fresh Data</strong>: Updates the cache every time the method is called.</li>
+    <li><strong>Improves Performance</strong>: Reduces redundant database updates.</li>
+    <li><strong>Works Alongside @Cacheable</strong>: Helps maintain up-to-date cache while still leveraging caching benefits.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use @CachePut?</h3>
+  <p style="color: #2c3e50;">
+    To use <code>@CachePut</code>, ensure that caching is enabled in your Spring Boot application by adding <code>@EnableCaching</code> to the main class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cache.annotation.EnableCaching;
+
+      @SpringBootApplication
+      @EnableCaching
+      public class CacheApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(CacheApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example of @CachePut Usage</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CachePut</code> annotation is used to update the cache when a method is executed.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cache.annotation.CachePut;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+
+          @CachePut(value = "products", key = "#product.id")
+          public Product updateProduct(Product product) {
+              // Simulate updating product in the database
+              return product;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Customizing Cache Behavior</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CachePut</code> annotation supports attributes to customize its behavior.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @CachePut(value = "products", key = "#product.id", condition = "#product.price > 100")
+      public Product updateProduct(Product product) {
+          return product;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @CachePut</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>@EnableCaching</strong> to activate caching.</li>
+    <li>Ensure cache keys are unique to avoid unintended updates.</li>
+    <li>Combine with <code>@Cacheable</code> for better cache management.</li>
+    <li>Monitor cache performance to optimize resource usage.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CachePut</code> annotation in Spring Boot is an essential tool for updating cached data while maintaining performance. It ensures that your application always has the latest data in the cache, reducing unnecessary database calls and improving response times.
+  </p>
+</div>
+`
+},
+{
+  title:`@CacheEvict`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>@CacheEvict</code> in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching is a powerful technique to improve the performance of applications by storing frequently accessed data in memory. However, cached data can become stale when the underlying data changes. Spring Boot provides the <code>@CacheEvict</code> annotation to address this issue by allowing you to remove entries from the cache when they are no longer valid. This ensures that your application always serves up-to-date data while still benefiting from the performance advantages of caching.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>@CacheEvict</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CacheEvict</code> annotation is essential for maintaining cache consistency and ensuring that your application serves accurate data. Key reasons to use it include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Cache Consistency</strong>: Ensures that outdated or invalid data is removed from the cache.</li>
+    <li><strong>Performance Optimization</strong>: Prevents stale data from being served, improving the reliability of your application.</li>
+    <li><strong>Flexibility</strong>: Allows you to evict specific entries or clear an entire cache.</li>
+    <li><strong>Integration with Spring Cache</strong>: Works seamlessly with Spring's caching abstraction.</li>
+    <li><strong>Improved User Experience</strong>: Ensures users always see the most up-to-date information.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of <code>@CacheEvict</code></h3>
+  <p style="color: #2c3e50;">
+    When working with <code>@CacheEvict</code>, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Cache Name</strong>: Specifies the cache from which entries should be evicted.</li>
+    <li><strong>Key</strong>: Identifies the specific entry to evict. If not provided, all entries in the cache are evicted.</li>
+    <li><strong>Condition</strong>: Allows you to evict entries based on a condition.</li>
+    <li><strong>Before Invocation</strong>: Determines whether the eviction occurs before or after the method execution.</li>
+    <li><strong>All Entries</strong>: Clears the entire cache when set to <code>true</code>.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using <code>@CacheEvict</code> in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use <code>@CacheEvict</code> in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Enable Caching</h4>
+  <p style="color: #2c3e50;">
+    Enable caching in your Spring Boot application using the <code>@EnableCaching</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.EnableCaching;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      @EnableCaching
+      public class CacheConfig {
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define a Service with Caching</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Cacheable</code> annotation to cache method results and <code>@CacheEvict</code> to evict cache entries.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.CacheEvict;
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          @Cacheable("users")
+          public User getUserById(Long id) {
+              // Simulate fetching user from database
+              System.out.println("Fetching user from database: " + id);
+              return new User(id, "John Doe", "john.doe@example.com");
+          }
+
+          @CacheEvict(value = "users", key = "#id")
+          public void updateUser(Long id, String name, String email) {
+              // Simulate updating user in database
+              System.out.println("Updating user: " + id);
+          }
+
+          @CacheEvict(value = "users", allEntries = true)
+          public void clearAllUsersCache() {
+              System.out.println("Clearing all users cache");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Service in a Controller</h4>
+  <p style="color: #2c3e50;">
+    Use the service methods in a controller to demonstrate caching and cache eviction.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+
+          @Autowired
+          private UserService userService;
+
+          @GetMapping("/{id}")
+          public User getUserById(@PathVariable Long id) {
+              return userService.getUserById(id);
+          }
+
+          @PutMapping("/{id}")
+          public void updateUser(@PathVariable Long id, @RequestParam String name, @RequestParam String email) {
+              userService.updateUser(id, name, email);
+          }
+
+          @DeleteMapping("/cache")
+          public void clearCache() {
+              userService.clearAllUsersCache();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>@CacheEvict</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@CacheEvict</code> in methods that modify data to ensure cache consistency.</li>
+    <li>Specify the cache name and key to evict specific entries.</li>
+    <li>Use <code>allEntries = true</code> to clear the entire cache when necessary.</li>
+    <li>Combine <code>@CacheEvict</code> with <code>@Cacheable</code> to manage cache updates effectively.</li>
+    <li>Test your caching logic to ensure that evictions occur as expected.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@CacheEvict</code> annotation is a powerful tool for maintaining cache consistency in Spring Boot applications. By evicting stale or invalid data from the cache, you can ensure that your application always serves accurate and up-to-date information. Whether you're evicting specific entries or clearing an entire cache, <code>@CacheEvict</code> provides the flexibility and control needed to manage caching effectively. By following best practices, you can optimize performance and improve the reliability of your application.
+  </p>
+</div>`
+},
+{
+   title:`@EnableCaching`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@EnableCaching in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching is an essential technique for optimizing application performance by storing frequently accessed data in memory. Spring Boot provides built-in support for caching through the <b>@EnableCaching</b> annotation, which allows easy integration of various caching mechanisms into your application.
+  </p>
+
+  <h3 style="color: #16a085;">What is @EnableCaching?</h3>
+  <p style="color: #2c3e50;">
+    The <b>@EnableCaching</b> annotation is used to enable Spring’s annotation-driven caching mechanism. By applying this annotation to a configuration class, Spring Boot automatically detects cache-related annotations such as <b>@Cacheable</b>, <b>@CachePut</b>, and <b>@CacheEvict</b> to manage caching operations seamlessly.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Usage</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.EnableCaching;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      @EnableCaching
+      public class CacheConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">How @EnableCaching Works</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>It scans for cache-related annotations in the application.</li>
+    <li>Automatically configures a cache manager to store cached data.</li>
+    <li>Supports various cache providers such as EhCache, Caffeine, Redis, and Hazelcast.</li>
+    <li>Works seamlessly with Spring Boot’s caching abstraction.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Using Caching in a Service</h3>
+  <p style="color: #2c3e50;">
+    Here’s an example of how caching can be enabled in a Spring Boot service class.
+  </p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+
+          @Cacheable("products")
+          public Product getProductById(Long id) {
+              System.out.println("Fetching product from database: " + id);
+              return new Product(id, "Sample Product", 99.99);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Evicting Cached Data</h3>
+  <p style="color: #2c3e50;">
+    Cached data may become stale. Use <b>@CacheEvict</b> to remove old entries from the cache.
+  </p>
+
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cache.annotation.CacheEvict;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+
+          @CacheEvict(value = "products", key = "#id")
+          public void updateProduct(Long id, String name, double price) {
+              System.out.println("Updating product: " + id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <b>@EnableCaching</b> in the main configuration class.</li>
+    <li>Select an appropriate cache provider based on your needs.</li>
+    <li>Combine <b>@Cacheable</b> with <b>@CacheEvict</b> to maintain cache consistency.</li>
+    <li>Test caching logic to ensure efficiency and correctness.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <b>@EnableCaching</b> annotation is a powerful feature in Spring Boot that simplifies cache management and boosts application performance. By leveraging caching techniques, you can reduce database queries, improve response times, and enhance scalability.
+  </p>
+</div>
+`
+  },
+  {
+    title:`@Entity`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Entity in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <b>@Entity</b> annotation is a key component of the Java Persistence API (JPA). It is used to mark a class as a persistent entity, meaning that instances of this class can be stored in a database. This annotation is typically applied to model classes that map to database tables.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding @Entity</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Entity</b> annotation is used to define a class as a JPA entity, making it eligible for persistence operations using an ORM (Object-Relational Mapping) framework like Hibernate. It enables seamless interaction between Java objects and relational database tables.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Syntax</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          private Long id;
+          private String name;
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Working with @Entity</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Entity</b> annotation works in conjunction with other JPA annotations such as <b>@Table</b>, <b>@Id</b>, and <b>@Column</b> to provide more control over how entities are mapped to database tables.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Defining an Entity with Additional Annotations</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(nullable = false)
+          private String name;
+
+          @Column(unique = true, nullable = false)
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Using @Entity with Spring Data JPA</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Entity</b> annotation is often used with Spring Data JPA repositories to perform CRUD operations without writing complex queries.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Creating a Repository</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+
+      public interface UserRepository extends JpaRepository<User, Long> {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Key Points to Remember</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>@Entity</b> is used to define a JPA entity class.</li>
+    <li>It must be accompanied by an <b>@Id</b> field to specify the primary key.</li>
+    <li>It can be used with <b>@Table</b>, <b>@Column</b>, and <b>@GeneratedValue</b> for better control over entity mapping.</li>
+    <li>It enables seamless integration with Spring Data JPA for database operations.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Conclusion</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Entity</b> annotation is a fundamental part of JPA and Hibernate in Spring Boot applications. It simplifies the process of mapping Java objects to database tables, making data persistence more manageable. When combined with Spring Data JPA, it enables developers to efficiently perform CRUD operations with minimal boilerplate code.
+  </p>
+</div>
+`
+  },
+  {
+    title:`@Table`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Table Annotation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <b>@Table</b> annotation is part of the Java Persistence API (JPA) and is used to specify the name and properties of the database table that a JPA entity maps to. It provides customization options such as defining the table name, schema, and unique constraints, making it a powerful tool for managing database interactions efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding @Table</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Table</b> annotation is placed above an entity class and is used to define how the entity should be mapped to a database table. If omitted, the table name defaults to the entity class name.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Syntax</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Using @Table for Customization</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Table</b> annotation allows additional configurations, such as setting schema, unique constraints, and indexes.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Customizing Table Name, Schema, and Constraints</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @Table(
+          name = "customers",
+          schema = "public",
+          uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})}
+      )
+      public class Customer {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+          private String email;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Defining Indexes with @Table</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Table</b> annotation also allows defining indexes to improve query performance.
+  </p>
+
+  <h4 style="color: #e67e22;">Example Using Indexes</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Entity
+      @Table(
+          name = "orders",
+          indexes = {@Index(name = "idx_customer_id", columnList = "customer_id")}
+      )
+      public class Order {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(name = "customer_id")
+          private Long customerId;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Key Points to Remember</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>@Table</b> is used to define database table properties in JPA.</li>
+    <li>It allows specifying the table name, schema, constraints, and indexes.</li>
+    <li>Omitting <b>@Table</b> causes the table name to default to the entity class name.</li>
+    <li>Indexes and unique constraints improve database performance and integrity.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Conclusion</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Table</b> annotation in Spring Boot provides a way to customize database table mapping in JPA. By defining table names, schemas, constraints, and indexes, developers can optimize data management and performance in their applications. Proper usage of <b>@Table</b> ensures well-structured and efficient database interaction.
+  </p>
+</div>
+`
+  },
+  {
+    title:`@Id`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">@Id Annotation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot and JPA (Java Persistence API), the <b>@Id</b> annotation is used to specify the primary key of an entity. It is an essential part of defining entity relationships in a relational database and ensures that each record has a unique identifier.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding @Id</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Id</b> annotation is part of the <code>javax.persistence</code> package and is used in combination with <b>@Entity</b> to mark a field as the primary key. This allows JPA to uniquely identify each record in the database table.
+  </p>
+
+  <h4 style="color: #e67e22;">Basic Usage</h4>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.Entity;
+      import javax.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          private Long id;
+          private String name;
+          private String email;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #9b59b6;">Generating Primary Keys</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Id</b> annotation can be used with different strategies to generate primary key values automatically.
+  </p>
+
+  <h4 style="color: #e67e22;">Using @GeneratedValue</h4>
+  <p style="font-size: 16px; color: #34495e;">
+    To automatically generate unique IDs, you can use the <b>@GeneratedValue</b> annotation along with <b>@Id</b>.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import javax.persistence.*;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e67e22;">Different Generation Strategies</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>GenerationType.IDENTITY</b>: Uses the database’s auto-increment feature.</li>
+    <li><b>GenerationType.SEQUENCE</b>: Uses a database sequence to generate values.</li>
+    <li><b>GenerationType.TABLE</b>: Uses a separate table to store ID values.</li>
+    <li><b>GenerationType.AUTO</b>: Lets JPA decide the strategy based on the database.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always define an <b>@Id</b> field in every JPA entity.</li>
+    <li>Use <b>@GeneratedValue</b> for automatic primary key generation.</li>
+    <li>Choose the appropriate <b>GenerationType</b> based on database requirements.</li>
+    <li>Ensure that the primary key field is unique and indexed for better performance.</li>
+  </ul>
+
+  <h3 style="color: #9b59b6;">Conclusion</h3>
+  <p style="font-size: 16px; color: #34495e;">
+    The <b>@Id</b> annotation is a fundamental part of defining entities in Spring Boot with JPA. It ensures each record has a unique identifier, enabling efficient data retrieval and management. Combining it with <b>@GeneratedValue</b> provides flexibility in managing primary keys, making it easier to handle database records efficiently.
+  </p>
+</div>
+`
+  },
+  {
+    title:`@GeneratedValue`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@GeneratedValue</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot and JPA (Java Persistence API), the <code>@GeneratedValue</code> annotation is used to automatically generate
+        primary key values for entity objects. It ensures uniqueness and avoids manual ID management.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@GeneratedValue</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Used with <code>@Id</code> to mark a field as the primary key.</li>
+        <li>Supports different strategies for key generation: <code>IDENTITY</code>, <code>SEQUENCE</code>, <code>TABLE</code>, and <code>AUTO</code>.</li>
+        <li>Ensures unique primary keys across entity instances.</li>
+        <li>Works with relational databases through JPA providers like Hibernate.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Generation Strategies</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li><code>GenerationType.IDENTITY</code>: Relies on the database’s identity column (e.g., auto-increment).</li>
+        <li><code>GenerationType.SEQUENCE</code>: Uses a database sequence object for generating unique values.</li>
+        <li><code>GenerationType.TABLE</code>: Maintains a separate table for key generation (less common).</li>
+        <li><code>GenerationType.AUTO</code>: Allows JPA to choose the best strategy based on the database.</li>
+    </ul>
+    
+    <h3 style="color: #9b59b6;">Example: Using <code>@GeneratedValue</code> in an Entity</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            
+            @Entity
+            public class User {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                
+                private String name;
+                private String email;
+                
+                // Getters and Setters
+                public Long getId() { return id; }
+                public void setId(Long id) { this.id = id; }
+                public String getName() { return name; }
+                public void setName(String name) { this.name = name; }
+                public String getEmail() { return email; }
+                public void setEmail(String email) { this.email = email; }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Using <code>GenerationType.SEQUENCE</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            
+            @Entity
+            public class Product {
+                @Id
+                @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
+                @SequenceGenerator(name = "product_seq", sequenceName = "product_sequence", allocationSize = 1)
+                private Long id;
+                
+                private String name;
+                private double price;
+                
+                // Getters and Setters
+                public Long getId() { return id; }
+                public void setId(Long id) { this.id = id; }
+                public String getName() { return name; }
+                public void setName(String name) { this.name = name; }
+                public double getPrice() { return price; }
+                public void setPrice(double price) { this.price = price; }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Choosing the Right Strategy</h3>
+    <p style="color: #34495e;">
+        The choice of <code>@GeneratedValue</code> strategy depends on the database being used:
+    </p>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>For MySQL and PostgreSQL, <code>IDENTITY</code> is commonly used.</li>
+        <li>For Oracle, <code>SEQUENCE</code> is preferred.</li>
+        <li><code>AUTO</code> is a flexible choice but may lead to unexpected behaviors.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@GeneratedValue</code> annotation is crucial for managing primary keys in JPA entities efficiently. By selecting the appropriate generation strategy,
+        developers can ensure smooth database operations and scalability in their Spring Boot applications.
+    </p>
+</div>
+`
+  },
+  {
+    title:`@Column`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>@Column</code> in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@Column</code> annotation in JPA (Java Persistence API) is used to specify the mapping between a field in an entity class and a column in a database table. It allows you to customize the column's properties, such as its name, length, nullable constraint, and unique constraint. By using <code>@Column</code>, you can define how your entity fields are persisted in the database, ensuring that the database schema aligns with your application's requirements.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>@Column</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Column</code> annotation is essential for fine-tuning the database schema and ensuring that your entity fields are mapped correctly. Key reasons to use it include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Custom Column Names</strong>: Map entity fields to database columns with different names.</li>
+    <li><strong>Data Integrity</strong>: Enforce constraints like <code>nullable</code>, <code>unique</code>, and <code>length</code> to ensure data consistency.</li>
+    <li><strong>Schema Control</strong>: Define the database schema directly in your entity classes.</li>
+    <li><strong>Flexibility</strong>: Customize how fields are persisted without modifying the database manually.</li>
+    <li><strong>Improved Readability</strong>: Make the mapping between entities and database columns explicit and clear.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of <code>@Column</code></h3>
+  <p style="color: #2c3e50;">
+    When working with the <code>@Column</code> annotation, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Column Name</strong>: Specifies the name of the database column.</li>
+    <li><strong>Nullable</strong>: Determines whether the column can store <code>NULL</code> values.</li>
+    <li><strong>Unique</strong>: Ensures that all values in the column are unique.</li>
+    <li><strong>Length</strong>: Defines the maximum length of the column (for string fields).</li>
+    <li><strong>Precision and Scale</strong>: Specifies the precision and scale for numeric columns.</li>
+    <li><strong>Insertable and Updatable</strong>: Controls whether the column is included in <code>INSERT</code> and <code>UPDATE</code> statements.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using <code>@Column</code> in an Entity</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use the <code>@Column</code> annotation in a JPA entity.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity with <code>@Column</code></h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Column</code> annotation to customize the mapping of entity fields to database columns.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Column;
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          @Column(name = "user_name", nullable = false, length = 50)
+          private String name;
+
+          @Column(unique = true, nullable = false)
+          private String email;
+
+          @Column(precision = 10, scale = 2)
+          private Double salary;
+
+          @Column(insertable = false, updatable = false)
+          private String readOnlyField;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Explanation of <code>@Column</code> Attributes</h4>
+  <p style="color: #2c3e50;">
+    The <code>@Column</code> annotation in the example above uses the following attributes:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>name</strong>: Maps the <code>name</code> field to the <code>user_name</code> column in the database.</li>
+    <li><strong>nullable</strong>: Ensures that the <code>name</code> and <code>email</code> fields cannot be <code>NULL</code>.</li>
+    <li><strong>length</strong>: Limits the <code>name</code> field to 50 characters.</li>
+    <li><strong>unique</strong>: Ensures that the <code>email</code> field contains unique values.</li>
+    <li><strong>precision and scale</strong>: Defines the <code>salary</code> field as a numeric column with 10 digits, 2 of which are decimal places.</li>
+    <li><strong>insertable and updatable</strong>: Makes the <code>readOnlyField</code> read-only by excluding it from <code>INSERT</code> and <code>UPDATE</code> statements.</li>
+  </ul>
+
+  <h4 style="color: #8e44ad;">3. Generate the Database Schema</h4>
+  <p style="color: #2c3e50;">
+    When you run the application, JPA will generate the database schema based on the entity definition. For example, the <code>User</code> entity might generate the following table:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-sql">
+      CREATE TABLE User (
+          id BIGINT PRIMARY KEY AUTO_INCREMENT,
+          user_name VARCHAR(50) NOT NULL,
+          email VARCHAR(255) NOT NULL UNIQUE,
+          salary DECIMAL(10, 2),
+          readOnlyField VARCHAR(255)
+      );
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>@Column</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful column names that align with your database naming conventions.</li>
+    <li>Enforce <code>nullable</code> and <code>unique</code> constraints to ensure data integrity.</li>
+    <li>Set appropriate <code>length</code>, <code>precision</code>, and <code>scale</code> values to optimize storage and performance.</li>
+    <li>Use <code>insertable</code> and <code>updatable</code> to control which fields can be modified.</li>
+    <li>Document your entity mappings to make the schema clear for other developers.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Column</code> annotation is a powerful tool for defining how entity fields are mapped to database columns in JPA. By customizing column properties like name, length, nullable constraints, and more, you can ensure that your database schema aligns with your application's requirements. Whether you're building a new application or maintaining an existing one, using <code>@Column</code> effectively will help you create a robust and maintainable data access layer.
+  </p>
+</div>`
+  },
+  {
+    title:`@OneToOne`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>@OneToOne</code> in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@OneToOne</code> annotation in JPA (Java Persistence API) is used to define a one-to-one relationship between two entities. This means that one instance of an entity is associated with exactly one instance of another entity. For example, a <code>User</code> entity might have a one-to-one relationship with a <code>Profile</code> entity, where each user has exactly one profile. The <code>@OneToOne</code> annotation simplifies the management of such relationships and ensures that the database schema reflects the association correctly.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>@OneToOne</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@OneToOne</code> annotation is essential for modeling relationships where one entity is uniquely associated with another. Key reasons to use it include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Integrity</strong>: Ensures that the relationship between entities is maintained correctly in the database.</li>
+    <li><strong>Simplified Management</strong>: Automatically handles the creation, updating, and deletion of related entities.</li>
+    <li><strong>Flexibility</strong>: Supports both unidirectional and bidirectional relationships.</li>
+    <li><strong>Improved Readability</strong>: Makes the relationship between entities explicit and easy to understand.</li>
+    <li><strong>Efficient Queries</strong>: Allows you to fetch related entities efficiently using JPA queries.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of <code>@OneToOne</code></h3>
+  <p style="color: #2c3e50;">
+    When working with the <code>@OneToOne</code> annotation, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unidirectional vs. Bidirectional</strong>: A unidirectional relationship is defined in only one entity, while a bidirectional relationship is defined in both entities.</li>
+    <li><strong>Owner of the Relationship</strong>: In a bidirectional relationship, one entity is the owner (defined using <code>@JoinColumn</code>), and the other is the inverse side (defined using <code>mappedBy</code>).</li>
+    <li><strong>Fetch Type</strong>: Determines whether the related entity is fetched eagerly (immediately) or lazily (on-demand).</li>
+    <li><strong>Cascade Type</strong>: Specifies how operations (e.g., persist, merge, remove) are cascaded to the related entity.</li>
+    <li><strong>Optional</strong>: Indicates whether the relationship is optional (can be <code>NULL</code>) or mandatory.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using <code>@OneToOne</code> in JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use the <code>@OneToOne</code> annotation in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define Entities with a Unidirectional Relationship</h4>
+  <p style="color: #2c3e50;">
+    Create two entities with a unidirectional one-to-one relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+          @JoinColumn(name = "profile_id", referencedColumnName = "id")
+          private Profile profile;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Profile {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String bio;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define Entities with a Bidirectional Relationship</h4>
+  <p style="color: #2c3e50;">
+    Create two entities with a bidirectional one-to-one relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+          private Profile profile;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Profile {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String bio;
+
+          @OneToOne
+          @JoinColumn(name = "user_id", referencedColumnName = "id")
+          private User user;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Entities in a Service</h4>
+  <p style="color: #2c3e50;">
+    Use the entities in a service to demonstrate the one-to-one relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          public User createUserWithProfile(String name, String bio) {
+              User user = new User();
+              user.setName(name);
+
+              Profile profile = new Profile();
+              profile.setBio(bio);
+              profile.setUser(user); // Set the user in the profile
+
+              user.setProfile(profile); // Set the profile in the user
+              return userRepository.save(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>@OneToOne</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@JoinColumn</code> to specify the foreign key column in the owner entity.</li>
+    <li>Use <code>mappedBy</code> in the inverse side of a bidirectional relationship.</li>
+    <li>Choose the appropriate <code>FetchType</code> (e.g., <code>LAZY</code> for performance optimization).</li>
+    <li>Use <code>CascadeType</code> to manage the lifecycle of related entities.</li>
+    <li>Ensure that the relationship is consistent by setting both sides of a bidirectional relationship.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@OneToOne</code> annotation is a powerful tool for modeling one-to-one relationships in JPA. Whether you're working with unidirectional or bidirectional relationships, <code>@OneToOne</code> simplifies the management of entity associations and ensures that your database schema reflects the relationships accurately. By following best practices, you can create efficient, maintainable, and consistent data models for your Spring Boot applications.
+  </p>
+</div>`
+  },
+  {
+    title:`@OneToMany`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>@OneToMany</code> in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@OneToMany</code> annotation in JPA (Java Persistence API) is used to define a one-to-many relationship between two entities. This means that one instance of an entity is associated with multiple instances of another entity. For example, a <code>Department</code> entity might have a one-to-many relationship with an <code>Employee</code> entity, where one department can have many employees. The <code>@OneToMany</code> annotation simplifies the management of such relationships and ensures that the database schema reflects the association correctly.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>@OneToMany</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@OneToMany</code> annotation is essential for modeling relationships where one entity is associated with multiple instances of another entity. Key reasons to use it include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Integrity</strong>: Ensures that the relationship between entities is maintained correctly in the database.</li>
+    <li><strong>Simplified Management</strong>: Automatically handles the creation, updating, and deletion of related entities.</li>
+    <li><strong>Flexibility</strong>: Supports both unidirectional and bidirectional relationships.</li>
+    <li><strong>Improved Readability</strong>: Makes the relationship between entities explicit and easy to understand.</li>
+    <li><strong>Efficient Queries</strong>: Allows you to fetch related entities efficiently using JPA queries.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of <code>@OneToMany</code></h3>
+  <p style="color: #2c3e50;">
+    When working with the <code>@OneToMany</code> annotation, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unidirectional vs. Bidirectional</strong>: A unidirectional relationship is defined in only one entity, while a bidirectional relationship is defined in both entities.</li>
+    <li><strong>Owner of the Relationship</strong>: In a bidirectional relationship, the "many" side is typically the owner (defined using <code>@ManyToOne</code>), and the "one" side is the inverse side (defined using <code>mappedBy</code>).</li>
+    <li><strong>Fetch Type</strong>: Determines whether the related entities are fetched eagerly (immediately) or lazily (on-demand).</li>
+    <li><strong>Cascade Type</strong>: Specifies how operations (e.g., persist, merge, remove) are cascaded to the related entities.</li>
+    <li><strong>Orphan Removal</strong>: Automatically removes orphaned entities (entities that are no longer referenced).</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using <code>@OneToMany</code> in JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use the <code>@OneToMany</code> annotation in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define Entities with a Unidirectional Relationship</h4>
+  <p style="color: #2c3e50;">
+    Create two entities with a unidirectional one-to-many relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class Department {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+          @JoinColumn(name = "department_id") // Foreign key in the Employee table
+          private List&lt;Employee&gt; employees;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define Entities with a Bidirectional Relationship</h4>
+  <p style="color: #2c3e50;">
+    Create two entities with a bidirectional one-to-many relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class Department {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+          private List&lt;Employee&gt; employees;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id")
+          private Department department;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Entities in a Service</h4>
+  <p style="color: #2c3e50;">
+    Use the entities in a service to demonstrate the one-to-many relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class DepartmentService {
+
+          @Autowired
+          private DepartmentRepository departmentRepository;
+
+          public Department createDepartmentWithEmployees(String name, List&lt;String&gt; employeeNames) {
+              Department department = new Department();
+              department.setName(name);
+
+              for (String empName : employeeNames) {
+                  Employee employee = new Employee();
+                  employee.setName(empName);
+                  employee.setDepartment(department); // Set the department in the employee
+                  department.getEmployees().add(employee); // Add the employee to the department
+              }
+
+              return departmentRepository.save(department);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>@OneToMany</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>mappedBy</code> in the "one" side of a bidirectional relationship to avoid duplicate foreign keys.</li>
+    <li>Choose the appropriate <code>FetchType</code> (e.g., <code>LAZY</code> for performance optimization).</li>
+    <li>Use <code>CascadeType</code> to manage the lifecycle of related entities.</li>
+    <li>Enable <code>orphanRemoval</code> to automatically remove orphaned entities.</li>
+    <li>Ensure that the relationship is consistent by setting both sides of a bidirectional relationship.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@OneToMany</code> annotation is a powerful tool for modeling one-to-many relationships in JPA. Whether you're working with unidirectional or bidirectional relationships, <code>@OneToMany</code> simplifies the management of entity associations and ensures that your database schema reflects the relationships accurately. By following best practices, you can create efficient, maintainable, and consistent data models for your Spring Boot applications.
+  </p>
+</div>`
+  },
+  {
+    title:`@ManyToOne`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>@ManyToOne</code> in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@ManyToOne</code> annotation in JPA (Java Persistence API) is used to define a many-to-one relationship between two entities. This means that multiple instances of one entity can be associated with a single instance of another entity. For example, multiple <code>Employee</code> entities might be associated with a single <code>Department</code> entity, where many employees belong to one department. The <code>@ManyToOne</code> annotation simplifies the management of such relationships and ensures that the database schema reflects the association correctly.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>@ManyToOne</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ManyToOne</code> annotation is essential for modeling relationships where multiple instances of one entity are associated with a single instance of another entity. Key reasons to use it include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Integrity</strong>: Ensures that the relationship between entities is maintained correctly in the database.</li>
+    <li><strong>Simplified Management</strong>: Automatically handles the creation, updating, and deletion of related entities.</li>
+    <li><strong>Flexibility</strong>: Supports both unidirectional and bidirectional relationships.</li>
+    <li><strong>Improved Readability</strong>: Makes the relationship between entities explicit and easy to understand.</li>
+    <li><strong>Efficient Queries</strong>: Allows you to fetch related entities efficiently using JPA queries.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of <code>@ManyToOne</code></h3>
+  <p style="color: #2c3e50;">
+    When working with the <code>@ManyToOne</code> annotation, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unidirectional vs. Bidirectional</strong>: A unidirectional relationship is defined in only one entity, while a bidirectional relationship is defined in both entities.</li>
+    <li><strong>Owner of the Relationship</strong>: In a bidirectional relationship, the "many" side is typically the owner (defined using <code>@ManyToOne</code>), and the "one" side is the inverse side (defined using <code>mappedBy</code>).</li>
+    <li><strong>Fetch Type</strong>: Determines whether the related entity is fetched eagerly (immediately) or lazily (on-demand).</li>
+    <li><strong>Cascade Type</strong>: Specifies how operations (e.g., persist, merge, remove) are cascaded to the related entity.</li>
+    <li><strong>Join Column</strong>: Specifies the foreign key column in the database.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using <code>@ManyToOne</code> in JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use the <code>@ManyToOne</code> annotation in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define Entities with a Unidirectional Relationship</h4>
+  <p style="color: #2c3e50;">
+    Create two entities with a unidirectional many-to-one relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id")
+          private Department department;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Department {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define Entities with a Bidirectional Relationship</h4>
+  <p style="color: #2c3e50;">
+    Create two entities with a bidirectional many-to-one relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.*;
+      import java.util.List;
+
+      @Entity
+      public class Employee {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @ManyToOne
+          @JoinColumn(name = "department_id")
+          private Department department;
+
+          // Getters and Setters
+      }
+
+      @Entity
+      public class Department {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+
+          @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+          private List&lt;Employee&gt; employees;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Entities in a Service</h4>
+  <p style="color: #2c3e50;">
+    Use the entities in a service to demonstrate the many-to-one relationship.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class DepartmentService {
+
+          @Autowired
+          private DepartmentRepository departmentRepository;
+
+          public Department createDepartmentWithEmployees(String name, List&lt;String&gt; employeeNames) {
+              Department department = new Department();
+              department.setName(name);
+
+              for (String empName : employeeNames) {
+                  Employee employee = new Employee();
+                  employee.setName(empName);
+                  employee.setDepartment(department); // Set the department in the employee
+                  department.getEmployees().add(employee); // Add the employee to the department
+              }
+
+              return departmentRepository.save(department);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>@ManyToOne</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@JoinColumn</code> to specify the foreign key column in the database.</li>
+    <li>Choose the appropriate <code>FetchType</code> (e.g., <code>LAZY</code> for performance optimization).</li>
+    <li>Use <code>CascadeType</code> to manage the lifecycle of related entities.</li>
+    <li>Ensure that the relationship is consistent by setting both sides of a bidirectional relationship.</li>
+    <li>Use <code>mappedBy</code> in the "one" side of a bidirectional relationship to avoid duplicate foreign keys.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@ManyToOne</code> annotation is a powerful tool for modeling many-to-one relationships in JPA. Whether you're working with unidirectional or bidirectional relationships, <code>@ManyToOne</code> simplifies the management of entity associations and ensures that your database schema reflects the relationships accurately. By following best practices, you can create efficient, maintainable, and consistent data models for your Spring Boot applications.
+  </p>
+</div>`
+  },
+  {
+    title:`@ManyToMany`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@ManyToMany</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot and JPA (Java Persistence API), the <code>@ManyToMany</code> annotation is used to establish a many-to-many relationship
+        between two entities. It helps manage complex associations efficiently in relational databases.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@ManyToMany</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Defines a many-to-many association between two entities.</li>
+        <li>Requires a join table to store the relationship.</li>
+        <li>Can be unidirectional or bidirectional.</li>
+        <li>Uses <code>@JoinTable</code> to define the join table details.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Unidirectional <code>@ManyToMany</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            import java.util.Set;
+            
+            @Entity
+            public class Student {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                
+                private String name;
+                
+                @ManyToMany
+                @JoinTable(
+                    name = "student_course",
+                    joinColumns = @JoinColumn(name = "student_id"),
+                    inverseJoinColumns = @JoinColumn(name = "course_id")
+                )
+                private Set<Course> courses;
+                
+                // Getters and Setters
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Bidirectional <code>@ManyToMany</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            import java.util.Set;
+            
+            @Entity
+            public class Course {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                
+                private String title;
+                
+                @ManyToMany(mappedBy = "courses")
+                private Set<Student> students;
+                
+                // Getters and Setters
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Choosing Between Unidirectional and Bidirectional</h3>
+    <p style="color: #34495e;">
+        The choice depends on the use case:
+    </p>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Use unidirectional when only one side needs to access the relationship.</li>
+        <li>Use bidirectional when both entities should reference each other.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@ManyToMany</code> annotation simplifies handling many-to-many relationships in JPA.
+        Properly defining the join table and choosing the right directionality ensures a well-structured database design.
+    </p>
+</div>
+`
+  },
+  {
+    title:`@JoinColumn`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@JoinColumn</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot and JPA (Java Persistence API), the <code>@JoinColumn</code> annotation is used to specify the foreign key column 
+        for a relationship between two entities. It defines how the association is mapped in the database.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@JoinColumn</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Used to specify the foreign key column in a relationship.</li>
+        <li>Can be applied in <code>@OneToOne</code> and <code>@ManyToOne</code> associations.</li>
+        <li>Allows customization of the column name and constraints.</li>
+        <li>Defaults to using the field name with an <code>_id</code> suffix if not explicitly specified.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Using <code>@JoinColumn</code> in a <code>@ManyToOne</code> Relationship</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            
+            @Entity
+            public class Employee {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                
+                private String name;
+                
+                @ManyToOne
+                @JoinColumn(name = "department_id", nullable = false)
+                private Department department;
+                
+                // Getters and Setters
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Using <code>@JoinColumn</code> in a <code>@OneToOne</code> Relationship</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            
+            @Entity
+            public class User {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                
+                private String username;
+                
+                @OneToOne
+                @JoinColumn(name = "profile_id", unique = true)
+                private UserProfile profile;
+                
+                // Getters and Setters
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Customizing <code>@JoinColumn</code></h3>
+    <p style="color: #34495e;">
+        The <code>@JoinColumn</code> annotation provides additional options:
+    </p>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li><code>name</code>: Specifies the exact column name.</li>
+        <li><code>nullable</code>: Defines whether the foreign key column can be null.</li>
+        <li><code>unique</code>: Ensures the foreign key is unique (used in <code>@OneToOne</code>).</li>
+        <li><code>referencedColumnName</code>: Specifies the column in the target entity to reference.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@JoinColumn</code> annotation is essential for defining foreign key relationships in JPA.
+        Proper usage ensures a well-structured and efficient database design in Spring Boot applications.
+    </p>
+</div>
+`
+  },
+  {
+    title:`@JoinTable`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@JoinTable</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot and JPA (Java Persistence API), the <code>@JoinTable</code> annotation is used to define a join table for many-to-many relationships.
+        It specifies how two entities are linked in a relational database by defining the table that holds the relationship data.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@JoinTable</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Used in <code>@ManyToMany</code> relationships.</li>
+        <li>Defines a join table to map the relationship.</li>
+        <li>Specifies join columns for both associated entities.</li>
+        <li>Allows customization of table name, foreign keys, and constraints.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Using <code>@JoinTable</code> in a <code>@ManyToMany</code> Relationship</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            import java.util.Set;
+            
+            @Entity
+            public class Student {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                
+                private String name;
+                
+                @ManyToMany
+                @JoinTable(
+                    name = "student_course",
+                    joinColumns = @JoinColumn(name = "student_id"),
+                    inverseJoinColumns = @JoinColumn(name = "course_id")
+                )
+                private Set<Course> courses;
+                
+                // Getters and Setters
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Defining a Custom Join Table</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import javax.persistence.*;
+            import java.util.Set;
+            
+            @Entity
+            public class Course {
+                @Id
+                @GeneratedValue(strategy = GenerationType.IDENTITY)
+                private Long id;
+                
+                private String title;
+                
+                @ManyToMany(mappedBy = "courses")
+                private Set<Student> students;
+                
+                // Getters and Setters
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Customizing <code>@JoinTable</code></h3>
+    <p style="color: #34495e;">
+        The <code>@JoinTable</code> annotation provides additional options:
+    </p>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li><code>name</code>: Specifies the exact join table name.</li>
+        <li><code>joinColumns</code>: Defines the foreign key column of the owning entity.</li>
+        <li><code>inverseJoinColumns</code>: Defines the foreign key column of the target entity.</li>
+        <li>Allows defining unique constraints and indexes if necessary.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@JoinTable</code> annotation is essential for managing many-to-many relationships in JPA.
+        Properly structuring the join table ensures data integrity and efficient querying in Spring Boot applications.
+    </p>
+</div>
+`
+  },
+  {
+    title:`@EnableJpaRepositories`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@EnableJpaRepositories</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, the <code>@EnableJpaRepositories</code> annotation is used to enable JPA repository support.
+        It allows Spring to scan for repository interfaces and create their implementations automatically.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@EnableJpaRepositories</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Automatically scans and registers JPA repositories.</li>
+        <li>Typically used in Spring Boot applications but can be explicitly defined in configurations.</li>
+        <li>Customizes the base package for repository scanning.</li>
+        <li>Works in conjunction with Spring Data JPA to simplify database interactions.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Using <code>@EnableJpaRepositories</code> in a Configuration Class</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.context.annotation.Configuration;
+            import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+            
+            @Configuration
+            @EnableJpaRepositories(basePackages = "com.example.repository")
+            public class JpaConfig {
+                // Additional JPA-related configurations (if needed)
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Spring Boot Auto-Configuration</h3>
+    <p style="color: #34495e;">
+        In most Spring Boot applications, explicit usage of <code>@EnableJpaRepositories</code> is not required
+        because Spring Boot auto-configures repositories based on classpath scanning.
+    </p>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.data.jpa.repository.JpaRepository;
+            import org.springframework.stereotype.Repository;
+            
+            @Repository
+            public interface UserRepository extends JpaRepository<User, Long> {
+                // Custom query methods can be defined here
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Customizing <code>@EnableJpaRepositories</code></h3>
+    <p style="color: #34495e;">
+        The annotation provides additional options:
+    </p>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li><code>basePackages</code>: Defines the packages to scan for repositories.</li>
+        <li><code>repositoryFactoryBeanClass</code>: Specifies a custom factory for repository beans.</li>
+        <li><code>entityManagerFactoryRef</code>: Refers to a specific entity manager factory.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@EnableJpaRepositories</code> annotation plays a crucial role in managing JPA repositories.
+        While Spring Boot auto-configures it, manual configuration can be useful for customization and multi-database setups.
+    </p>
+</div>
+`
+  },
+  {
+    title:`@Modifying`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@Modifying</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot and Spring Data JPA, the <code>@Modifying</code> annotation is used to annotate update, delete,
+        or insert queries within a repository interface. It works alongside <code>@Query</code> to modify database records
+        in a transactional way.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@Modifying</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Used with <code>@Query</code> to perform update, delete, or insert operations.</li>
+        <li>Indicates that a query modifies data rather than selecting it.</li>
+        <li>Requires a transaction context when modifying records.</li>
+        <li>Must be used with <code>@Transactional</code> if required.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Updating Records Using <code>@Modifying</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.data.jpa.repository.Modifying;
+            import org.springframework.data.jpa.repository.Query;
+            import org.springframework.data.repository.CrudRepository;
+            import org.springframework.transaction.annotation.Transactional;
+            
+            public interface UserRepository extends CrudRepository<User, Long> {
+                
+                @Modifying
+                @Transactional
+                @Query("UPDATE User u SET u.status = 'ACTIVE' WHERE u.id = :id")
+                int activateUser(Long id);
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Deleting Records Using <code>@Modifying</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.data.jpa.repository.Modifying;
+            import org.springframework.data.jpa.repository.Query;
+            import org.springframework.data.repository.CrudRepository;
+            import org.springframework.transaction.annotation.Transactional;
+            
+            public interface UserRepository extends CrudRepository<User, Long> {
+                
+                @Modifying
+                @Transactional
+                @Query("DELETE FROM User u WHERE u.status = 'INACTIVE'")
+                int deleteInactiveUsers();
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>@Modifying</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Always use <code>@Transactional</code> to ensure consistency when modifying data.</li>
+        <li>Return an integer to get the number of affected rows.</li>
+        <li>Ensure the query correctly targets the intended records to prevent unwanted modifications.</li>
+        <li>Use parameterized queries to avoid SQL injection risks.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@Modifying</code> annotation is essential for executing update, delete, and insert queries in Spring Boot applications.
+        Proper usage ensures safe and efficient data modifications within a transactional context.
+    </p>
+</div>
+`
+  },
+  {
+    title:`@Query`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>@Query</code> in Spring Data JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>@Query</code> annotation in Spring Data JPA is a powerful feature that allows you to define custom queries directly in your repository interfaces. Instead of relying on method names to generate queries, you can write JPQL (Java Persistence Query Language) or native SQL queries to fetch or manipulate data. This provides greater flexibility and control over the queries executed by your application, especially for complex use cases that cannot be easily expressed using derived query methods.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>@Query</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Query</code> annotation is essential for scenarios where you need more control over the queries executed by your application. Key reasons to use it include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Complex Queries</strong>: Write custom queries for complex use cases that cannot be handled by derived query methods.</li>
+    <li><strong>Performance Optimization</strong>: Optimize queries for better performance by fine-tuning the SQL or JPQL.</li>
+    <li><strong>Flexibility</strong>: Use both JPQL and native SQL queries depending on your requirements.</li>
+    <li><strong>Readability</strong>: Make queries explicit and easier to understand compared to long method names.</li>
+    <li><strong>Advanced Features</strong>: Leverage advanced SQL features like joins, subqueries, and aggregations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of <code>@Query</code></h3>
+  <p style="color: #2c3e50;">
+    When working with the <code>@Query</code> annotation, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>JPQL vs. Native Queries</strong>: JPQL is database-agnostic and works with entities, while native queries are written in SQL and are database-specific.</li>
+    <li><strong>Parameters</strong>: Use named parameters (<code>:param</code>) or positional parameters (<code>?1</code>) to pass values to the query.</li>
+    <li><strong>Modifying Queries</strong>: Use <code>@Modifying</code> for queries that update or delete data.</li>
+    <li><strong>Pagination</strong>: Combine <code>@Query</code> with <code>Pageable</code> for paginated results.</li>
+    <li><strong>Result Mapping</strong>: Map query results to custom DTOs or entities.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using <code>@Query</code> in Spring Data JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use the <code>@Query</code> annotation in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define a Repository with JPQL Queries</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Query</code> annotation to define custom JPQL queries in a repository.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import org.springframework.data.jpa.repository.Query;
+      import org.springframework.data.repository.query.Param;
+
+      import java.util.List;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+
+          @Query("SELECT u FROM User u WHERE u.email = :email")
+          User findByEmail(@Param("email") String email);
+
+          @Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
+          List&lt;User&gt; findByNameContaining(@Param("name") String name);
+
+          @Query("SELECT u FROM User u ORDER BY u.name")
+          List&lt;User&gt; findAllUsersSortedByName();
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define a Repository with Native Queries</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Query</code> annotation with <code>nativeQuery = true</code> to define native SQL queries.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Query(value = "SELECT * FROM users WHERE email = :email", nativeQuery = true)
+      User findUserByEmailNative(@Param("email") String email);
+
+      @Query(value = "SELECT * FROM users WHERE name LIKE %:name%", nativeQuery = true)
+      List&lt;User&gt; findUsersByNameNative(@Param("name") String name);
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use Modifying Queries</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Modifying</code> annotation for queries that update or delete data.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.Modifying;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Modifying
+      @Transactional
+      @Query("UPDATE User u SET u.name = :name WHERE u.id = :id")
+      int updateUserName(@Param("id") Long id, @Param("name") String name);
+
+      @Modifying
+      @Transactional
+      @Query("DELETE FROM User u WHERE u.email = :email")
+      int deleteByEmail(@Param("email") String email);
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Use Pagination with <code>@Query</code></h4>
+  <p style="color: #2c3e50;">
+    Combine <code>@Query</code> with <code>Pageable</code> for paginated results.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.domain.Page;
+      import org.springframework.data.domain.Pageable;
+
+      @Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
+      Page&lt;User&gt; findUsersByName(@Param("name") String name, Pageable pageable);
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">5. Map Query Results to DTOs</h4>
+  <p style="color: #2c3e50;">
+    Use <code>@Query</code> to map query results to custom DTOs.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.data.jpa.repository.Query;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          @Query("SELECT new com.example.UserDTO(u.id, u.name, u.email) FROM User u WHERE u.id = :id")
+          UserDTO findUserDTOById(@Param("id") Long id);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>@Query</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prefer JPQL over native queries for database independence.</li>
+    <li>Use named parameters (<code>:param</code>) for better readability and maintainability.</li>
+    <li>Use <code>@Modifying</code> and <code>@Transactional</code> for update and delete queries.</li>
+    <li>Test your queries thoroughly to ensure they work as expected.</li>
+    <li>Use pagination for large datasets to improve performance.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Query</code> annotation is a powerful tool for defining custom queries in Spring Data JPA. Whether you're working with JPQL or native SQL, <code>@Query</code> provides the flexibility and control needed to handle complex use cases. By following best practices, you can write efficient, maintainable, and performant queries that meet the needs of your application. Whether you're fetching data, updating records, or mapping results to DTOs, <code>@Query</code> is an essential feature for building robust data access layers.
+  </p>
+</div>`
+  },
+  {
+       title:`@RestTemplate`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>RestTemplate</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, <code>RestTemplate</code> is a synchronous HTTP client used to make RESTful web service calls.
+        It provides various methods to interact with external APIs and handle HTTP requests and responses efficiently.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>RestTemplate</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Supports HTTP methods like GET, POST, PUT, DELETE, and PATCH.</li>
+        <li>Provides convenience methods for making API calls.</li>
+        <li>Can be customized with interceptors, error handlers, and message converters.</li>
+        <li>Being deprecated in favor of <code>WebClient</code> in Spring WebFlux for reactive applications.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Using <code>RestTemplate</code> to Make a GET Request</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.stereotype.Service;
+            import org.springframework.web.client.RestTemplate;
+            
+            @Service
+            public class ApiService {
+                private final RestTemplate restTemplate = new RestTemplate();
+                
+                public String getApiResponse() {
+                    return restTemplate.getForObject("https://api.example.com/data", String.class);
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Making a POST Request with <code>RestTemplate</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.http.ResponseEntity;
+            import org.springframework.stereotype.Service;
+            import org.springframework.web.client.RestTemplate;
+            
+            @Service
+            public class ApiService {
+                private final RestTemplate restTemplate = new RestTemplate();
+                
+                public ResponseEntity<String> createResource(Object request) {
+                    return restTemplate.postForEntity("https://api.example.com/resource", request, String.class);
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>RestTemplate</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Use a single <code>RestTemplate</code> bean instead of creating new instances.</li>
+        <li>Configure a custom error handler to manage API errors gracefully.</li>
+        <li>Use <code>exchange()</code> for more control over request and response handling.</li>
+        <li>Consider migrating to <code>WebClient</code> for non-blocking, reactive applications.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>RestTemplate</code> class provides a simple way to make synchronous REST API calls in Spring Boot applications.
+        While still widely used, it is recommended to migrate to <code>WebClient</code> for modern, reactive applications.
+    </p>
+</div>
+    `
+    },
+    {
+      title:`@FeignClient`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@FeignClient</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, <code>@FeignClient</code> is an annotation used to simplify HTTP requests to external APIs.
+        It is part of Spring Cloud OpenFeign and provides a declarative way to call RESTful services,
+        reducing the need for boilerplate code compared to <code>RestTemplate</code>.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@FeignClient</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Enables declarative REST client functionality in Spring Boot applications.</li>
+        <li>Automatically integrates with Spring Boot for service discovery and load balancing.</li>
+        <li>Supports request customization using annotations like <code>@GetMapping</code>, <code>@PostMapping</code>, etc.</li>
+        <li>Can be configured with interceptors, error handling, and logging.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Declaring a Feign Client</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.cloud.openfeign.FeignClient;
+            import org.springframework.web.bind.annotation.GetMapping;
+            import org.springframework.web.bind.annotation.PathVariable;
+            
+            @FeignClient(name = "user-service", url = "https://api.example.com")
+            public interface UserClient {
+                
+                @GetMapping("/users/{id}")
+                User getUserById(@PathVariable("id") Long id);
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Using Feign Client in a Service</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.stereotype.Service;
+            
+            @Service
+            public class UserService {
+                private final UserClient userClient;
+                
+                public UserService(UserClient userClient) {
+                    this.userClient = userClient;
+                }
+                
+                public User fetchUser(Long id) {
+                    return userClient.getUserById(id);
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>@FeignClient</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Enable Feign by adding <code>@EnableFeignClients</code> in the main Spring Boot application class.</li>
+        <li>Use <code>fallback</code> mechanisms to handle failures gracefully.</li>
+        <li>Configure Feign logging for better debugging and monitoring.</li>
+        <li>Leverage request interceptors to add headers or authentication details.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@FeignClient</code> annotation provides a powerful, declarative way to communicate with external APIs
+        in Spring Boot applications. It enhances readability, maintainability, and integration with service discovery mechanisms.
+    </p>
+</div>
+`
+    },
+    {
+      title:`@EnableFeignClients`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@EnableFeignClients</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, <code>@EnableFeignClients</code> is an annotation used to enable Feign, a declarative HTTP client
+        for making RESTful API calls. It simplifies external service communication by providing an interface-based
+        approach to defining API clients.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@EnableFeignClients</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Scans for Feign clients annotated with <code>@FeignClient</code>.</li>
+        <li>Enables declarative REST client functionality in Spring Boot applications.</li>
+        <li>Works seamlessly with Spring Boot's service discovery and load balancing mechanisms.</li>
+        <li>Integrates with Spring Cloud for distributed applications.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Enabling Feign Clients</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.boot.SpringApplication;
+            import org.springframework.boot.autoconfigure.SpringBootApplication;
+            import org.springframework.cloud.openfeign.EnableFeignClients;
+            
+            @SpringBootApplication
+            @EnableFeignClients
+            public class Application {
+                public static void main(String[] args) {
+                    SpringApplication.run(Application.class, args);
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Defining a Feign Client</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.cloud.openfeign.FeignClient;
+            import org.springframework.web.bind.annotation.GetMapping;
+            import org.springframework.web.bind.annotation.PathVariable;
+            
+            @FeignClient(name = "user-service", url = "https://api.example.com")
+            public interface UserClient {
+                
+                @GetMapping("/users/{id}")
+                User getUserById(@PathVariable("id") Long id);
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>@EnableFeignClients</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Place <code>@EnableFeignClients</code> in the main application class or a configuration class.</li>
+        <li>Use <code>fallback</code> mechanisms to handle failures gracefully.</li>
+        <li>Configure Feign logging for better debugging and monitoring.</li>
+        <li>Leverage request interceptors to add headers or authentication details.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@EnableFeignClients</code> annotation is crucial for activating Feign in Spring Boot applications.
+        It allows for a more readable and maintainable way to make HTTP requests while integrating seamlessly with
+        Spring Cloud's features.
+    </p>
+</div>
+`
+    },
+    {
+      title:`@EnableEurekaClient`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@EnableEurekaClient</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, <code>@EnableEurekaClient</code> is an annotation used to register a service with
+        a Eureka Server for service discovery. It enables Spring Boot applications to act as Eureka clients,
+        allowing them to dynamically discover and communicate with other services within a microservices architecture.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@EnableEurekaClient</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Registers the service with a Eureka Server.</li>
+        <li>Enables automatic service discovery for inter-service communication.</li>
+        <li>Works in conjunction with Spring Cloud and Netflix Eureka.</li>
+        <li>Provides high availability and load balancing when used with Ribbon.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Enabling Eureka Client</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.boot.SpringApplication;
+            import org.springframework.boot.autoconfigure.SpringBootApplication;
+            import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+            
+            @SpringBootApplication
+            @EnableEurekaClient
+            public class Application {
+                public static void main(String[] args) {
+                    SpringApplication.run(Application.class, args);
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Configuring Eureka Client in <code>application.yml</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-yaml">
+            eureka:
+              client:
+                service-url:
+                  defaultZone: http://localhost:8761/eureka/
+              instance:
+                prefer-ip-address: true
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>@EnableEurekaClient</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Ensure that the Eureka Server is running before registering services.</li>
+        <li>Use <code>prefer-ip-address</code> to avoid hostname resolution issues.</li>
+        <li>Monitor service registrations and health status in the Eureka dashboard.</li>
+        <li>Use <code>spring.application.name</code> to uniquely identify services.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@EnableEurekaClient</code> annotation is essential for enabling service discovery in Spring Boot
+        applications. It allows microservices to register with a Eureka Server and discover other services dynamically,
+        improving scalability and flexibility within a distributed system.
+    </p>
+</div>
+`
+    },
+    {
+      title:`@EnableCircuitBreaker`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@EnableCircuitBreaker</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, <code>@EnableCircuitBreaker</code> is an annotation used to enable the Circuit Breaker pattern.
+        It is part of Spring Cloud Netflix Hystrix and helps build resilient applications by preventing cascading failures
+        in microservices. Circuit breakers monitor service calls and, if failures exceed a threshold, they stop calling
+        the failing service temporarily.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@EnableCircuitBreaker</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Monitors service calls and prevents failures from propagating.</li>
+        <li>Automatically falls back to alternative responses when failures occur.</li>
+        <li>Improves application resilience and fault tolerance.</li>
+        <li>Works in conjunction with Hystrix for better service stability.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Enabling Circuit Breaker</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.boot.SpringApplication;
+            import org.springframework.boot.autoconfigure.SpringBootApplication;
+            import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+            
+            @SpringBootApplication
+            @EnableCircuitBreaker
+            public class Application {
+                public static void main(String[] args) {
+                    SpringApplication.run(Application.class, args);
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #9b59b6;">Example: Using Hystrix for Circuit Breaking</h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+            import org.springframework.stereotype.Service;
+            
+            @Service
+            public class UserService {
+                
+                @HystrixCommand(fallbackMethod = "fallbackGetUser")
+                public String getUser() {
+                    // Simulate a failing service
+                    throw new RuntimeException("Service Unavailable");
+                }
+                
+                public String fallbackGetUser() {
+                    return "Fallback User";
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>@EnableCircuitBreaker</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Always define a fallback method to handle failures gracefully.</li>
+        <li>Use timeouts and retry mechanisms for better service stability.</li>
+        <li>Monitor circuit breaker metrics using dashboards like Hystrix Dashboard.</li>
+        <li>Adjust circuit breaker thresholds based on application behavior.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@EnableCircuitBreaker</code> annotation plays a crucial role in ensuring resilience in
+        Spring Boot microservices. It helps in preventing system-wide failures by isolating faulty services
+        and providing fallback mechanisms for enhanced reliability.
+    </p>
+</div>
+`
+    },
+    {
+      title:`@Retryable`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@Retryable</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, <code>@Retryable</code> is an annotation provided by Spring Retry that allows methods
+        to be automatically retried upon failure. It is useful for handling transient errors such as network issues,
+        database connection failures, and temporary service outages.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@Retryable</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Automatically retries failed method executions.</li>
+        <li>Allows configuring the number of retry attempts and delay between retries.</li>
+        <li>Works with specific exception types to trigger retries.</li>
+        <li>Can be combined with <code>@Recover</code> to handle failures after all retries are exhausted.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Using <code>@Retryable</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.retry.annotation.Retryable;
+            import org.springframework.retry.annotation.Recover;
+            import org.springframework.stereotype.Service;
+            import java.io.IOException;
+            
+            @Service
+            public class RetryService {
+                
+                @Retryable(value = IOException.class, maxAttempts = 3, backoff = @Backoff(delay = 2000))
+                public String fetchData() throws IOException {
+                    System.out.println("Attempting to fetch data...");
+                    throw new IOException("Temporary issue, retrying...");
+                }
+                
+                @Recover
+                public String recover(IOException e) {
+                    return "Fallback response after retries failed";
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>@Retryable</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Use <code>@Retryable</code> only for transient failures, not permanent errors.</li>
+        <li>Define meaningful <code>maxAttempts</code> and <code>backoff</code> values to avoid overwhelming services.</li>
+        <li>Implement <code>@Recover</code> to handle failures gracefully after all retries are exhausted.</li>
+        <li>Log retry attempts to monitor and troubleshoot issues effectively.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@Retryable</code> annotation is a powerful feature for making Spring Boot applications
+        more resilient. It helps in handling temporary failures gracefully by retrying operations automatically,
+        reducing downtime and improving system reliability.
+    </p>
+</div>
+`
+    },
+    {
+      title:`@Recover`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+    <h2 style="color: #2c3e50;">Understanding <code>@Recover</code> in Spring Boot</h2>
+    <p style="font-size: 16px; color: #34495e;">
+        In Spring Boot, <code>@Recover</code> is an annotation used in conjunction with <code>@Retryable</code>
+        to define a fallback method when all retry attempts have been exhausted. It provides a graceful
+        recovery mechanism, ensuring the system remains stable even after repeated failures.
+    </p>
+    
+    <h3 style="color: #16a085;">Key Aspects of <code>@Recover</code>:</h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Defines a fallback method when retries fail.</li>
+        <li>Must have the same return type as the <code>@Retryable</code> method.</li>
+        <li>The first parameter must be the exception type it recovers from.</li>
+        <li>Ensures graceful degradation by returning an alternative response.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Example: Using <code>@Recover</code></h3>
+    <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+        <code codeHighlight class="language-java">
+            import org.springframework.retry.annotation.Retryable;
+            import org.springframework.retry.annotation.Recover;
+            import org.springframework.stereotype.Service;
+            import java.io.IOException;
+            
+            @Service
+            public class RetryService {
+                
+                @Retryable(value = IOException.class, maxAttempts = 3, backoff = @Backoff(delay = 2000))
+                public String fetchData() throws IOException {
+                    System.out.println("Attempting to fetch data...");
+                    throw new IOException("Temporary issue, retrying...");
+                }
+                
+                @Recover
+                public String recover(IOException e) {
+                    return "Fallback response after retries failed";
+                }
+            }
+        </code>
+    </pre>
+    
+    <h3 style="color: #2c3e50;">Best Practices for <code>@Recover</code></h3>
+    <ul style="color: #2c3e50; padding-left: 20px;">
+        <li>Ensure the fallback method has the same return type as the <code>@Retryable</code> method.</li>
+        <li>Use meaningful log messages to indicate when a recovery method is invoked.</li>
+        <li>Define multiple <code>@Recover</code> methods for different exception types if needed.</li>
+        <li>Ensure fallback responses are useful and informative for downstream processes.</li>
+    </ul>
+    
+    <h3 style="color: #e67e22;">Conclusion</h3>
+    <p style="color: #2c3e50;">
+        The <code>@Recover</code> annotation is a powerful tool for handling failures gracefully in Spring Boot.
+        It works alongside <code>@Retryable</code> to provide a reliable fallback mechanism, ensuring application
+        stability and resilience against transient errors.
+    </p>
+</div>
+`
+    }
+
+    
 
     ]
 
