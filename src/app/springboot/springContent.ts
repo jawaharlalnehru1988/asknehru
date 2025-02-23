@@ -20326,7 +20326,2208 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
     </p>
 </div>
 `
-    }
+    },
+    {
+      title:`Security Fundamentals`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Security Fundamentals</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Security is a critical aspect of any system, ensuring protection against threats, vulnerabilities, and unauthorized access. Security fundamentals cover various aspects, including authentication, authorization, encryption, network security, and best practices for maintaining a secure environment.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Security Important?</h3>
+  <p style="color: #2c3e50;">
+    Security is essential to protect sensitive data, maintain privacy, and prevent malicious attacks. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Protection</strong>: Prevents unauthorized access to confidential information.</li>
+    <li><strong>System Integrity</strong>: Ensures that systems function as intended without tampering.</li>
+    <li><strong>Compliance</strong>: Meets legal and industry security standards.</li>
+    <li><strong>Risk Mitigation</strong>: Reduces vulnerabilities and minimizes potential damage from attacks.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Security Principles</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Confidentiality</strong>: Ensuring data is only accessible to authorized individuals.</li>
+    <li><strong>Integrity</strong>: Preventing unauthorized modification or corruption of data.</li>
+    <li><strong>Availability</strong>: Ensuring that data and services are available when needed.</li>
+    <li><strong>Authentication</strong>: Verifying user identities before granting access.</li>
+    <li><strong>Authorization</strong>: Defining and enforcing access control policies.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Common Security Threats</h3>
+  <p style="color: #2c3e50;">
+    Understanding potential threats is crucial for implementing effective security measures. Common security threats include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Phishing Attacks</strong>: Deceptive attempts to steal sensitive information.</li>
+    <li><strong>Malware</strong>: Software designed to damage or disrupt systems.</li>
+    <li><strong>Man-in-the-Middle Attacks</strong>: Intercepting and altering communication between two parties.</li>
+    <li><strong>Denial of Service (DoS)</strong>: Overloading systems to make them unavailable.</li>
+    <li><strong>SQL Injection</strong>: Exploiting database vulnerabilities to manipulate data.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Security</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use Strong Passwords</strong>: Enforce complex passwords and multi-factor authentication.</li>
+    <li><strong>Keep Software Updated</strong>: Regularly patch vulnerabilities and update systems.</li>
+    <li><strong>Encrypt Sensitive Data</strong>: Use strong encryption to protect data at rest and in transit.</li>
+    <li><strong>Implement Firewalls</strong>: Restrict unauthorized access with network firewalls.</li>
+    <li><strong>Security Audits</strong>: Regularly assess and improve security measures.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Security fundamentals are crucial for protecting data, ensuring system integrity, and mitigating risks. By following best practices, organizations can create a secure environment, preventing cyber threats and unauthorized access.
+  </p>
+</div>
+`
+},
+{
+  title:`Authentication & Authorization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Authentication & Authorization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Authentication and Authorization are two fundamental concepts in security that ensure only the right users can access a system and perform allowed actions.
+  </p>
+
+  <h3 style="color: #16a085;">What is Authentication?</h3>
+  <p style="color: #2c3e50;">
+    Authentication is the process of verifying the identity of a user or system. It ensures that users are who they claim to be.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Username & Password</strong>: The most common method where users enter their credentials.</li>
+    <li><strong>Multi-Factor Authentication (MFA)</strong>: Adds an extra layer of security with OTPs or biometrics.</li>
+    <li><strong>Biometric Authentication</strong>: Uses fingerprints, facial recognition, or iris scans.</li>
+    <li><strong>Token-Based Authentication</strong>: Uses JWT, OAuth, or API keys.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">What is Authorization?</h3>
+  <p style="color: #2c3e50;">
+    Authorization determines the level of access a user has after authentication. It controls what actions a user can perform within a system.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Role-Based Access Control (RBAC)</strong>: Assigns permissions based on roles like Admin, User, or Guest.</li>
+    <li><strong>Attribute-Based Access Control (ABAC)</strong>: Uses attributes like user location or device type.</li>
+    <li><strong>Policy-Based Access Control</strong>: Uses security policies to grant or deny access.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Key Differences Between Authentication & Authorization</h3>
+  <table style="width: 100%; border-collapse: collapse; color: #2c3e50;">
+    <tr style="background: #16a085; color: #fff;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Authentication</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Authorization</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Verifies identity</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Determines permissions</td>
+    </tr>
+    <tr style="background: #ecf0f1;">
+      <td style="padding: 10px; border: 1px solid #ddd;">Usually done via passwords, biometrics, or tokens</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Managed through roles, policies, or rules</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Comes first in the security process</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Happens after authentication</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #d35400;">Best Practices for Secure Authentication & Authorization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>Multi-Factor Authentication (MFA)</strong> for added security.</li>
+    <li>Store passwords securely using <strong>hashing</strong> (e.g., bcrypt, Argon2).</li>
+    <li>Implement <strong>OAuth 2.0 or OpenID Connect</strong> for modern authentication.</li>
+    <li>Follow the <strong>Principle of Least Privilege (PoLP)</strong> to restrict access.</li>
+    <li>Regularly <strong>audit and monitor access logs</strong> to detect anomalies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Authentication and Authorization work together to secure applications. Authentication ensures the right users gain access, while authorization controls their permissions. Implementing strong security measures helps protect sensitive data and prevent unauthorized access.
+  </p>
+</div>
+`
+    },
+{
+  title:`Security Configuration`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Security Configuration in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Security configuration is a critical aspect of any application to ensure data protection, user authentication, and controlled access to resources. In Spring Boot, security is commonly managed using <code>Spring Security</code>, which provides powerful features to configure authentication and authorization.
+  </p>
+
+  <h3 style="color: #16a085;">Why Security Configuration Matters?</h3>
+  <p style="color: #2c3e50;">
+    Configuring security properly in an application offers the following benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Protection</strong>: Prevents unauthorized access to sensitive data.</li>
+    <li><strong>User Authentication</strong>: Ensures only valid users can access the system.</li>
+    <li><strong>Role-Based Access Control</strong>: Grants different permissions to different users.</li>
+    <li><strong>Threat Mitigation</strong>: Reduces the risk of security threats like SQL injection and XSS.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Configure Security in Spring Boot?</h3>
+  <p style="color: #2c3e50;">
+    To configure security in a Spring Boot application, you need to create a security configuration class using <code>@Configuration</code> and extend <code>SecurityFilterChain</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
+
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .authorizeHttpRequests(auth -> auth
+                      .requestMatchers("/admin/**").hasRole("ADMIN")
+                      .requestMatchers("/user/**").hasRole("USER")
+                      .anyRequest().authenticated()
+                  )
+                  .formLogin()
+                  .and()
+                  .logout();
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Adding User Authentication</h3>
+  <p style="color: #2c3e50;">
+    Define users with roles using <code>InMemoryUserDetailsManager</code> for simple authentication.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.security.core.userdetails.User;
+      import org.springframework.security.core.userdetails.UserDetails;
+      import org.springframework.security.core.userdetails.UserDetailsService;
+      import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+      @Bean
+      public UserDetailsService userDetailsService() {
+          UserDetails user = User.withDefaultPasswordEncoder()
+                  .username("user")
+                  .password("password")
+                  .roles("USER")
+                  .build();
+
+          UserDetails admin = User.withDefaultPasswordEncoder()
+                  .username("admin")
+                  .password("admin")
+                  .roles("ADMIN")
+                  .build();
+
+          return new InMemoryUserDetailsManager(user, admin);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Security Configuration</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always use <strong>strong password encryption</strong> (e.g., Bcrypt instead of plain text passwords).</li>
+    <li>Restrict access using <strong>role-based authentication</strong>.</li>
+    <li>Enable <strong>HTTPS</strong> to secure data transmission.</li>
+    <li>Use <strong>JWT tokens</strong> or OAuth for API authentication.</li>
+    <li>Regularly <strong>update security dependencies</strong> to prevent vulnerabilities.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Configuring security in a Spring Boot application is essential to protect sensitive data and restrict unauthorized access. By leveraging Spring Security, developers can implement robust authentication and authorization mechanisms to ensure a safe and secure application environment.
+  </p>
+</div>
+`
+    },
+    {
+      title:`UserDetailsService & Encoding`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding UserDetailsService & Encoding in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Security, <code>UserDetailsService</code> is an interface that loads user-specific data, primarily used for authentication. Password encoding is essential to store passwords securely instead of plain text. These two components work together to enhance security in authentication mechanisms.
+  </p>
+
+  <h3 style="color: #16a085;">What is UserDetailsService?</h3>
+  <p style="color: #2c3e50;">
+    <code>UserDetailsService</code> is a core Spring Security interface responsible for retrieving user-related data from various sources like databases, in-memory stores, or external identity providers.
+  </p>
+
+  <h3 style="color: #e67e22;">Implementing UserDetailsService</h3>
+  <p style="color: #2c3e50;">
+    To implement custom authentication, we need to create a class that implements <code>UserDetailsService</code> and overrides the <code>loadUserByUsername</code> method.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.core.userdetails.User;
+      import org.springframework.security.core.userdetails.UserDetails;
+      import org.springframework.security.core.userdetails.UserDetailsService;
+      import org.springframework.security.core.userdetails.UsernameNotFoundException;
+      import org.springframework.stereotype.Service;
+      import java.util.ArrayList;
+
+      @Service
+      public class CustomUserDetailsService implements UserDetailsService {
+          @Override
+          public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+              if ("admin".equals(username)) {
+                  return new User("admin", "{noop}password", new ArrayList<>());
+              } else {
+                  throw new UsernameNotFoundException("User not found!");
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Understanding Password Encoding</h3>
+  <p style="color: #2c3e50;">
+    Storing passwords as plain text is highly insecure. Spring Security provides password encoding mechanisms like <code>BCryptPasswordEncoder</code> to securely hash passwords before saving them in a database.
+  </p>
+
+  <h3 style="color: #d35400;">Using BCryptPasswordEncoder</h3>
+  <p style="color: #2c3e50;">
+    The <code>BCryptPasswordEncoder</code> generates a secure hash of the password that includes a unique salt to protect against brute-force attacks.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+      import org.springframework.security.crypto.password.PasswordEncoder;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public PasswordEncoder passwordEncoder() {
+              return new BCryptPasswordEncoder();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Storing Encoded Passwords</h3>
+  <p style="color: #2c3e50;">
+    When saving user credentials in the database, we must encode the password using the <code>BCryptPasswordEncoder</code> before storing it.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+      public class PasswordHashingExample {
+          public static void main(String[] args) {
+              BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+              String rawPassword = "mypassword";
+              String encodedPassword = encoder.encode(rawPassword);
+
+              System.out.println("Encoded Password: " + encodedPassword);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Comparing Encoded Passwords</h3>
+  <p style="color: #2c3e50;">
+    To validate passwords during authentication, we use the <code>matches()</code> method of the <code>BCryptPasswordEncoder</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      public class PasswordVerificationExample {
+          public static void main(String[] args) {
+              BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+              String encodedPassword = encoder.encode("mypassword");
+
+              boolean isMatch = encoder.matches("mypassword", encodedPassword);
+              System.out.println("Password Match: " + isMatch);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Integrating UserDetailsService and Password Encoding</h3>
+  <p style="color: #2c3e50;">
+    In a real-world application, we integrate <code>UserDetailsService</code> with password encoding in the authentication process.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.security.core.userdetails.User;
+      import org.springframework.security.core.userdetails.UserDetails;
+      import org.springframework.security.core.userdetails.UserDetailsService;
+      import org.springframework.security.core.userdetails.UsernameNotFoundException;
+      import org.springframework.security.crypto.password.PasswordEncoder;
+      import org.springframework.stereotype.Service;
+      import java.util.ArrayList;
+
+      @Service
+      public class CustomUserDetailsService implements UserDetailsService {
+
+          @Autowired
+          private PasswordEncoder passwordEncoder;
+
+          @Override
+          public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+              if ("admin".equals(username)) {
+                  return new User("admin", passwordEncoder.encode("password"), new ArrayList<>());
+              } else {
+                  throw new UsernameNotFoundException("User not found!");
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always use <strong>BCryptPasswordEncoder</strong> for password hashing.</li>
+    <li>Do not store passwords in plain text; always encode them.</li>
+    <li>Use a secure random salt to prevent rainbow table attacks.</li>
+    <li>Ensure <code>UserDetailsService</code> fetches users securely from a trusted database.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    <code>UserDetailsService</code> and password encoding are fundamental in Spring Security for managing authentication securely. By implementing a custom <code>UserDetailsService</code> and encoding passwords with <code>BCryptPasswordEncoder</code>, we can ensure robust authentication mechanisms for modern applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Security Filters & Context`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Security Filters & Context in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Security filters and context play a crucial role in handling authentication and authorization in Spring Security. Filters intercept requests, while the security context holds authentication details throughout the session.
+  </p>
+
+  <h3 style="color: #16a085;">What are Security Filters?</h3>
+  <p style="color: #2c3e50;">
+    Security filters are part of the Spring Security filter chain, responsible for processing authentication and authorization logic before requests reach the application.
+  </p>
+
+  <h3 style="color: #e67e22;">Common Security Filters</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>UsernamePasswordAuthenticationFilter</strong> - Handles form-based authentication.</li>
+    <li><strong>BasicAuthenticationFilter</strong> - Supports HTTP Basic authentication.</li>
+    <li><strong>JwtAuthenticationFilter</strong> - Manages JWT-based authentication.</li>
+    <li><strong>SecurityContextPersistenceFilter</strong> - Maintains security context across multiple requests.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing a Custom Security Filter</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import jakarta.servlet.FilterChain;
+      import jakarta.servlet.ServletException;
+      import jakarta.servlet.http.HttpServletRequest;
+      import jakarta.servlet.http.HttpServletResponse;
+      import org.springframework.web.filter.OncePerRequestFilter;
+      import java.io.IOException;
+
+      public class CustomSecurityFilter extends OncePerRequestFilter {
+          @Override
+          protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                         FilterChain filterChain) throws ServletException, IOException {
+              System.out.println("Custom Security Filter Executed");
+              filterChain.doFilter(request, response);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Understanding Security Context</h3>
+  <p style="color: #2c3e50;">
+    The <code>SecurityContext</code> stores authentication details across user sessions. It is managed by <code>SecurityContextHolder</code> in Spring Security.
+  </p>
+
+  <h3 style="color: #e67e22;">Retrieving Authentication from Security Context</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.core.Authentication;
+      import org.springframework.security.core.context.SecurityContextHolder;
+
+      public class SecurityContextExample {
+          public static void main(String[] args) {
+              Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+              System.out.println("Authenticated User: " + authentication.getName());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>JWT</strong> or <strong>OAuth2</strong> instead of session-based authentication for scalability.</li>
+    <li>Ensure <strong>SecurityContext</strong> is properly cleared after logout to prevent session hijacking.</li>
+    <li>Use <strong>custom security filters</strong> for advanced authentication requirements.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Security filters process authentication and authorization, while the security context maintains authentication details. Understanding these concepts is vital for implementing secure applications in Spring Security.
+  </p>
+</div>
+`
+},
+{
+  title:`RBAC`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding RBAC (Role-Based Access Control) in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Role-Based Access Control (RBAC) is a security model that restricts system access based on assigned roles. In Spring Security, RBAC ensures that users can only access resources that match their roles, making it a crucial component of application security.
+  </p>
+
+  <h3 style="color: #16a085;">What is RBAC?</h3>
+  <p style="color: #2c3e50;">
+    RBAC is a method for managing user permissions by assigning roles. Instead of granting individual permissions, users are assigned roles, and roles contain the required permissions.
+  </p>
+
+  <h3 style="color: #e67e22;">Configuring RBAC in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    To implement RBAC, we define roles and restrict access using Spring Security configurations.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.core.userdetails.User;
+      import org.springframework.security.core.userdetails.UserDetails;
+      import org.springframework.security.core.userdetails.UserDetailsService;
+      import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+      import org.springframework.security.web.SecurityFilterChain;
+
+      @Configuration
+      @EnableWebSecurity
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http.authorizeHttpRequests(auth -> auth
+                      .requestMatchers("/admin/**").hasRole("ADMIN")
+                      .requestMatchers("/user/**").hasRole("USER")
+                      .anyRequest().authenticated())
+                  .formLogin()
+                  .and()
+                  .logout();
+              return http.build();
+          }
+
+          @Bean
+          public UserDetailsService userDetailsService() {
+              UserDetails admin = User.withDefaultPasswordEncoder()
+                      .username("admin")
+                      .password("password")
+                      .roles("ADMIN")
+                      .build();
+
+              UserDetails user = User.withDefaultPasswordEncoder()
+                      .username("user")
+                      .password("password")
+                      .roles("USER")
+                      .build();
+
+              return new InMemoryUserDetailsManager(admin, user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Assigning Roles and Permissions</h3>
+  <p style="color: #2c3e50;">
+    Roles are assigned to users, and access is restricted based on these roles. The <code>hasRole()</code> method ensures that only users with the correct role can access certain endpoints.
+  </p>
+
+  <h3 style="color: #d35400;">Role-Based Method Security</h3>
+  <p style="color: #2c3e50;">
+    Spring Security allows method-level security using annotations like <code>@PreAuthorize</code> and <code>@Secured</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.access.prepost.PreAuthorize;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class RoleBasedController {
+          
+          @GetMapping("/admin")
+          @PreAuthorize("hasRole('ADMIN')")
+          public String adminAccess() {
+              return "Admin Access Granted";
+          }
+          
+          @GetMapping("/user")
+          @PreAuthorize("hasRole('USER')")
+          public String userAccess() {
+              return "User Access Granted";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Best Practices for RBAC</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Follow the principle of <strong>least privilege</strong>, granting only necessary permissions.</li>
+    <li>Use role hierarchies to simplify permission management.</li>
+    <li>Regularly review and update role assignments.</li>
+    <li>Store user roles securely in a database and integrate with <code>UserDetailsService</code>.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    RBAC in Spring Security is a powerful approach to managing user permissions efficiently. By implementing roles and securing endpoints with <code>hasRole()</code> and <code>@PreAuthorize</code>, we can ensure that users access only what they are authorized for, enhancing overall application security.
+  </p>
+</div>
+`
+},
+{
+  title:`Method-Level Security`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Method-Level Security in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Method-Level Security in Spring Security allows us to apply access control at the method level using annotations such as <code>@PreAuthorize</code>, <code>@PostAuthorize</code>, <code>@Secured</code>, and <code>@RolesAllowed</code>. This ensures that users can only access specific methods based on their roles or permissions.
+  </p>
+
+  <h3 style="color: #16a085;">Enabling Method Security</h3>
+  <p style="color: #2c3e50;">
+    To enable method-level security, annotate the configuration class with <code>@EnableMethodSecurity</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+
+      @Configuration
+      @EnableMethodSecurity
+      public class SecurityConfig {
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using @PreAuthorize</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PreAuthorize</code> annotation is used to evaluate expressions before the method execution. For example, restricting access to users with the role <code>ROLE_ADMIN</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.access.prepost.PreAuthorize;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          
+          @PreAuthorize("hasRole('ROLE_ADMIN')")
+          public void deleteProduct(Long productId) {
+              System.out.println("Product deleted: " + productId);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using @PostAuthorize</h3>
+  <p style="color: #2c3e50;">
+    The <code>@PostAuthorize</code> annotation allows security checks after the method execution. It is useful when we need to verify the returned object before providing access.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.access.prepost.PostAuthorize;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class OrderService {
+          
+          @PostAuthorize("returnObject.owner == authentication.name")
+          public Order getOrderDetails(Long orderId) {
+              return new Order(orderId, "john_doe");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Using @Secured</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Secured</code> annotation restricts method access based on roles. Unlike <code>@PreAuthorize</code>, it does not support SpEL expressions.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.access.annotation.Secured;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class AccountService {
+          
+          @Secured("ROLE_USER")
+          public void viewAccountDetails() {
+              System.out.println("Viewing account details");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Using @RolesAllowed</h3>
+  <p style="color: #2c3e50;">
+    Similar to <code>@Secured</code>, the <code>@RolesAllowed</code> annotation specifies role-based access control but is part of Java EE.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import jakarta.annotation.security.RolesAllowed;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class CustomerService {
+          
+          @RolesAllowed({"ROLE_ADMIN", "ROLE_MANAGER"})
+          public void manageCustomers() {
+              System.out.println("Managing customers");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@PreAuthorize</code> and <code>@PostAuthorize</code> for flexible security expressions.</li>
+    <li>Restrict access to sensitive methods using role-based annotations.</li>
+    <li>Keep security configurations centralized to simplify management.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Method-Level Security enhances application security by enforcing access control at the service layer. Using <code>@PreAuthorize</code>, <code>@PostAuthorize</code>, <code>@Secured</code>, and <code>@RolesAllowed</code>, we can ensure that users have appropriate permissions before executing critical operations.
+  </p>
+</div>`
+},
+{
+  title:`JWT Authentication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding JWT Authentication in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    JSON Web Token (JWT) is a widely used method for securing authentication and authorization in modern web applications. It enables stateless authentication by using a digitally signed token to represent user identity and claims.
+  </p>
+
+  <h3 style="color: #16a085;">What is JWT?</h3>
+  <p style="color: #2c3e50;">
+    JWT is a compact, URL-safe token format used to securely transmit information between parties as a JSON object. It consists of three parts: Header, Payload, and Signature.
+  </p>
+
+  <h3 style="color: #e67e22;">Structure of JWT</h3>
+  <p style="color: #2c3e50;">A JWT token is typically structured as follows:</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+      .eyJzdWIiOiJ1c2VyIiwiaWF0IjoxNjM0MDk0NTYwLCJleHAiOjE2MzQxMDgxNjB9
+      .HMACSHA256_signature
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Implementing JWT Authentication in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    Below is a step-by-step implementation of JWT authentication in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #d35400;">1. Adding Dependencies</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;io.jsonwebtoken&lt;/groupId&gt;
+          &lt;artifactId&gt;jjwt&lt;/artifactId&gt;
+          &lt;version&gt;0.11.2&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">2. Creating JWT Utility Class</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import io.jsonwebtoken.*;
+      import io.jsonwebtoken.security.Keys;
+      import java.util.Date;
+      import javax.crypto.SecretKey;
+
+      public class JwtUtil {
+          private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+          private static final long EXPIRATION_TIME = 86400000; // 1 day
+
+          public static String generateToken(String username) {
+              return Jwts.builder()
+                  .setSubject(username)
+                  .setIssuedAt(new Date())
+                  .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                  .signWith(SECRET_KEY)
+                  .compact();
+          }
+
+          public static String extractUsername(String token) {
+              return Jwts.parserBuilder().setSigningKey(SECRET_KEY).build()
+                  .parseClaimsJws(token).getBody().getSubject();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">3. Implementing JWT Filter</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.servlet.FilterChain;
+      import javax.servlet.ServletException;
+      import javax.servlet.http.HttpServletRequest;
+      import javax.servlet.http.HttpServletResponse;
+      import org.springframework.security.core.context.SecurityContextHolder;
+      import org.springframework.security.core.userdetails.User;
+      import org.springframework.security.web.authentication.UsernamePasswordAuthenticationToken;
+      import org.springframework.web.filter.OncePerRequestFilter;
+
+      public class JwtAuthenticationFilter extends OncePerRequestFilter {
+          @Override
+          protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                         FilterChain filterChain) throws ServletException, IOException {
+              String authorizationHeader = request.getHeader("Authorization");
+              if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+                  String token = authorizationHeader.substring(7);
+                  String username = JwtUtil.extractUsername(token);
+
+                  if (username != null) {
+                      UsernamePasswordAuthenticationToken authToken =
+                          new UsernamePasswordAuthenticationToken(new User(username, "", new ArrayList<>()),
+                          null, new ArrayList<>());
+                      SecurityContextHolder.getContext().setAuthentication(authToken);
+                  }
+              }
+              filterChain.doFilter(request, response);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Configuring Spring Security</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.config.http.SessionCreationPolicy;
+      import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+      @Configuration
+      @EnableWebSecurity
+      public class SecurityConfig {
+          protected void configure(HttpSecurity http) throws Exception {
+              http.csrf().disable()
+                  .authorizeRequests()
+                  .antMatchers("/api/login").permitAll()
+                  .anyRequest().authenticated()
+                  .and()
+                  .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                  .and()
+                  .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JWT authentication provides a secure and stateless way to handle user authentication in Spring Security. By using a token-based approach, we eliminate the need for server-side session management, making it ideal for distributed applications and microservices.
+  </p>
+</div>
+`
+},
+{
+   title:`OAuth2 & OpenID Connect`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding OAuth2 & OpenID Connect in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    OAuth2 and OpenID Connect (OIDC) are authentication and authorization protocols used in modern applications to secure access to resources. Spring Security provides built-in support for integrating these protocols efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">What is OAuth2?</h3>
+  <p style="color: #2c3e50;">
+    OAuth2 (Open Authorization) is an authorization framework that enables third-party applications to access user resources without exposing credentials. It uses Access Tokens to authorize API requests.
+  </p>
+
+  <h3 style="color: #e67e22;">What is OpenID Connect?</h3>
+  <p style="color: #2c3e50;">
+    OpenID Connect (OIDC) is an authentication protocol built on top of OAuth2. It allows users to authenticate with an identity provider (IdP) and obtain identity tokens (ID Token) along with access tokens.
+  </p>
+
+  <h3 style="color: #8e44ad;">Setting Up OAuth2 in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    To integrate OAuth2 in a Spring Boot application, we need to configure OAuth2 client properties and enable security filters.
+  </p>
+
+  <h3 style="color: #d35400;">OAuth2 Configuration</h3>
+  <p style="color: #2c3e50;">
+    Define OAuth2 properties in the <code>application.yml</code> file to specify the authentication provider.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      spring:
+        security:
+          oauth2:
+            client:
+              registration:
+                google:
+                  client-id: your-client-id
+                  client-secret: your-client-secret
+                  scope: openid, profile, email
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">OAuth2 Security Configuration</h3>
+  <p style="color: #2c3e50;">
+    Enable OAuth2 login in Spring Security by creating a security configuration class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+      @Configuration
+      @EnableWebSecurity
+      public class SecurityConfig extends WebSecurityConfigurerAdapter {
+          @Override
+          protected void configure(HttpSecurity http) throws Exception {
+              http
+                  .authorizeRequests()
+                      .antMatchers("/").permitAll()
+                      .anyRequest().authenticated()
+                  .and()
+                  .oauth2Login();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Extracting User Information</h3>
+  <p style="color: #2c3e50;">
+    After successful authentication, we can extract user details from the OAuth2 user object.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.oauth2.core.user.OAuth2User;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      import java.security.Principal;
+
+      @RestController
+      public class UserController {
+          @GetMapping("/user")
+          public Principal getUser(Principal principal) {
+              return principal;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>OAuth2</strong> for secure API authorization.</li>
+    <li>Enable <strong>OpenID Connect</strong> for identity authentication.</li>
+    <li>Store OAuth2 tokens securely and avoid exposing them in URLs.</li>
+    <li>Use secure scopes and permissions when configuring OAuth2 clients.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    OAuth2 and OpenID Connect provide a secure way to authenticate users and authorize API access. Spring Security makes integration easy with built-in OAuth2 login and identity token management. By leveraging these protocols, we can ensure seamless and secure authentication in modern applications.
+  </p>
+</div>
+`
+},
+{
+  title:`OAuth2 Authorization Server`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding OAuth2 Authorization Server in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    OAuth2 Authorization Server is a component that issues access tokens for client applications to securely access protected resources. In Spring Security, it provides authentication and authorization mechanisms following OAuth2 specifications.
+  </p>
+
+  <h3 style="color: #16a085;">What is an OAuth2 Authorization Server?</h3>
+  <p style="color: #2c3e50;">
+    The OAuth2 Authorization Server is responsible for issuing, validating, and managing access tokens. It provides endpoints such as token issuance, introspection, and revocation.
+  </p>
+
+  <h3 style="color: #e67e22;">Setting Up OAuth2 Authorization Server</h3>
+  <p style="color: #2c3e50;">
+    To create an OAuth2 Authorization Server in Spring Security, we use the <code>spring-authorization-server</code> dependency and configure its components.
+  </p>
+
+  <h3 style="color: #8e44ad;">Adding Dependencies</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-oauth2-authorization-server&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Creating the Authorization Server Configuration</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfigurer;
+      import org.springframework.security.web.SecurityFilterChain;
+      import static org.springframework.security.config.Customizer.withDefaults;
+      
+      @Configuration
+      @EnableWebSecurity
+      public class AuthorizationServerConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = 
+                  new OAuth2AuthorizationServerConfigurer();
+              http.apply(authorizationServerConfigurer);
+              return http.formLogin(withDefaults()).build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Defining Registered Clients</h3>
+  <p style="color: #2c3e50;">
+    OAuth2 requires registered clients that will be authorized to request tokens.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
+      import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
+      import org.springframework.security.oauth2.server.authorization.client.InMemoryRegisteredClientRepository;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import java.util.UUID;
+      
+      @Configuration
+      public class ClientConfig {
+          @Bean
+          public RegisteredClientRepository registeredClientRepository() {
+              RegisteredClient client = RegisteredClient.withId(UUID.randomUUID().toString())
+                      .clientId("client-id")
+                      .clientSecret("{noop}client-secret")
+                      .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                      .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+                      .build();
+              return new InMemoryRegisteredClientRepository(client);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use secure password encoding for client secrets.</li>
+    <li>Enable HTTPS to secure communication between clients and the authorization server.</li>
+    <li>Configure token expiration policies and revocation mechanisms.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Setting up an OAuth2 Authorization Server in Spring Security allows secure authentication and authorization for client applications. By correctly configuring the authorization server and its clients, we can ensure secure and efficient token-based authentication.
+  </p>
+</div>
+`
+},
+{
+  title:`OAuth2 Resource Server`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding OAuth2 Resource Server in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In an OAuth2-based authentication system, the **Resource Server** is responsible for securing APIs and validating access tokens issued by the **Authorization Server**. Spring Security provides built-in support for implementing an OAuth2 **Resource Server**, allowing applications to verify JWT (JSON Web Tokens) or opaque tokens before granting access to protected resources.
+  </p>
+
+  <h3 style="color: #16a085;">What is an OAuth2 Resource Server?</h3>
+  <p style="color: #2c3e50;">
+    The **OAuth2 Resource Server** is an application that hosts protected resources (APIs) and verifies access tokens before providing access. It works in conjunction with an **OAuth2 Authorization Server** to ensure only authorized clients can access the resources.
+  </p>
+
+  <h3 style="color: #e67e22;">Configuring an OAuth2 Resource Server in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    To set up an **OAuth2 Resource Server**, we need to configure Spring Security to validate JWT tokens.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.http.SessionCreationPolicy;
+      import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+      import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+      import org.springframework.security.web.SecurityFilterChain;
+
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .authorizeHttpRequests(auth -> auth
+                      .requestMatchers("/public/**").permitAll()
+                      .anyRequest().authenticated()
+                  )
+                  .oauth2ResourceServer(oauth2 -> oauth2
+                      .jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                  )
+                  .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+              return http.build();
+          }
+
+          @Bean
+          public JwtAuthenticationConverter jwtAuthenticationConverter() {
+              JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+              grantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
+              grantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
+
+              JwtAuthenticationConverter authenticationConverter = new JwtAuthenticationConverter();
+              authenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+              return authenticationConverter;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Adding Dependencies for OAuth2 Resource Server</h3>
+  <p style="color: #2c3e50;">
+    To use Spring Security's OAuth2 Resource Server, add the following dependency in your **pom.xml** file:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+      </dependency>
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Configuring JWT Token Validation</h3>
+  <p style="color: #2c3e50;">
+    The **OAuth2 Resource Server** needs to validate access tokens. Configure the token issuer in **application.properties**:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      spring.security.oauth2.resourceserver.jwt.issuer-uri=https://your-auth-server.com
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Protecting API Endpoints</h3>
+  <p style="color: #2c3e50;">
+    We can now secure REST API endpoints using role-based access control (RBAC) with JWT claims.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      import org.springframework.security.access.prepost.PreAuthorize;
+
+      @RestController
+      @RequestMapping("/api")
+      public class ResourceController {
+          
+          @GetMapping("/public")
+          public String publicEndpoint() {
+              return "This is a public endpoint";
+          }
+
+          @GetMapping("/user")
+          @PreAuthorize("hasRole('USER')")
+          public String userEndpoint() {
+              return "This is a protected USER endpoint";
+          }
+
+          @GetMapping("/admin")
+          @PreAuthorize("hasRole('ADMIN')")
+          public String adminEndpoint() {
+              return "This is a protected ADMIN endpoint";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **JWT tokens** for better performance and stateless authentication.</li>
+    <li>Secure API endpoints using **role-based access control (RBAC)**.</li>
+    <li>Validate tokens using the **OAuth2 Authorization Server**.</li>
+    <li>Configure CORS settings properly to prevent security vulnerabilities.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The **OAuth2 Resource Server** is a crucial component in securing APIs in a microservices or distributed system. By integrating Spring Security's OAuth2 Resource Server, we can ensure secure access control and token validation for API endpoints.
+  </p>
+</div>
+`
+},
+{
+  title:`Session Management & CSRF`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Session Management & CSRF in Spring Security</h2>
+  
+  <p style="font-size: 16px; color: #34495e;">
+    In modern web applications, security is critical. Two key aspects of securing applications are **Session Management** and **Cross-Site Request Forgery (CSRF) Protection**. Spring Security provides built-in mechanisms to manage sessions and prevent CSRF attacks effectively.
+  </p>
+  
+  <h3 style="color: #16a085;">Session Management in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    Session management is essential to control user authentication and prevent session-related vulnerabilities such as **Session Fixation** and **Session Hijacking**.
+  </p>
+
+  <h3 style="color: #e67e22;">Configuring Session Management</h3>
+  <p style="color: #2c3e50;">
+    In Spring Security, we can configure session management using the sessionManagement() method inside the security filter chain.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
+      import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+      
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .sessionManagement(session -> session
+                      .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Default session policy
+                      .maximumSessions(1) // Allows only one session per user
+                      .expiredUrl("/session-expired") // Redirects to this URL when session expires
+                  );
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Session Management Policies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>ALWAYS</strong>: Always create a session.</li>
+    <li><strong>IF_REQUIRED</strong>: Create a session only if needed (default).</li>
+    <li><strong>NEVER</strong>: Do not create a session but use one if it exists.</li>
+    <li><strong>STATELESS</strong>: Never use sessions (useful for JWT-based authentication).</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Understanding CSRF (Cross-Site Request Forgery)</h3>
+  <p style="color: #2c3e50;">
+    CSRF is an attack that forces authenticated users to perform unwanted actions on a web application. Spring Security enables CSRF protection by default to prevent such attacks.
+  </p>
+
+  <h3 style="color: #16a085;">Enabling CSRF Protection</h3>
+  <p style="color: #2c3e50;">
+    CSRF protection works by generating a unique token for each request and validating it. This ensures that requests are coming from a legitimate source.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+      
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .csrf(csrf -> csrf
+                      .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Store CSRF token in a cookie
+                  );
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Disabling CSRF Protection (For APIs)</h3>
+  <p style="color: #2c3e50;">
+    For stateless REST APIs using JWT, we can disable CSRF protection since APIs do not rely on sessions.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      http
+          .csrf(csrf -> csrf.disable());
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **stateless** sessions for APIs to improve security.</li>
+    <li>Limit the number of concurrent sessions per user to prevent session hijacking.</li>
+    <li>Always enable **CSRF protection** for web applications handling sensitive data.</li>
+    <li>Use **secure cookies** to store CSRF tokens.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Proper session management and CSRF protection are crucial for securing modern applications. By implementing these best practices, we can prevent unauthorized access and mitigate security risks effectively.
+  </p>
+</div>
+`
+},
+{
+  title:`CORS Handling`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding CORS Handling in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cross-Origin Resource Sharing (CORS) is a security feature that controls how web applications in different domains interact. By default, browsers restrict cross-origin requests for security reasons. Spring Security provides mechanisms to handle CORS effectively.
+  </p>
+
+  <h3 style="color: #16a085;">What is CORS?</h3>
+  <p style="color: #2c3e50;">
+    CORS is a browser security policy that prevents unauthorized requests from different origins. If an application running on <code>http://localhost:3000</code> tries to access an API on <code>http://localhost:8080</code>, the browser will block the request unless the API explicitly allows it.
+  </p>
+
+  <h3 style="color: #e67e22;">Enabling CORS in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    Spring Security provides flexible ways to configure CORS using global or method-level settings.
+  </p>
+
+  <h3 style="color: #8e44ad;">1. Global CORS Configuration</h3>
+  <p style="color: #2c3e50;">
+    A global configuration applies to all controllers.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.web.servlet.config.annotation.CorsRegistry;
+      import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+      @Configuration
+      public class CorsConfig {
+          @Bean
+          public WebMvcConfigurer corsConfigurer() {
+              return new WebMvcConfigurer() {
+                  @Override
+                  public void addCorsMappings(CorsRegistry registry) {
+                      registry.addMapping("/**")
+                              .allowedOrigins("http://localhost:3000")
+                              .allowedMethods("GET", "POST", "PUT", "DELETE")
+                              .allowedHeaders("Authorization", "Content-Type");
+                  }
+              };
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">2. Configuring CORS in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    If you use Spring Security, you must explicitly allow CORS in the security filter chain.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
+
+      @EnableWebSecurity
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http.cors().and().csrf().disable()
+                  .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated());
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">3. Enabling CORS in a Controller</h3>
+  <p style="color: #2c3e50;">
+    You can enable CORS on specific controllers or endpoints.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.CrossOrigin;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class TestController {
+          @CrossOrigin(origins = "http://localhost:3000")
+          @GetMapping("/data")
+          public String getData() {
+              return "CORS Enabled";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Restrict allowed origins instead of using <code>*</code> to prevent security risks.</li>
+    <li>Use secure HTTP methods and limit allowed headers.</li>
+    <li>Enable CORS on the security layer if using Spring Security.</li>
+    <li>Log CORS issues for debugging purposes.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    CORS handling is essential for allowing secure cross-origin requests in web applications. By properly configuring CORS in Spring Boot and Spring Security, we can enable controlled access while maintaining security.
+  </p>
+</div>`
+},
+{
+  title:`Database Authentication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Database Authentication in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Database authentication is a common approach in Spring Security where user credentials are stored in a relational database instead of in-memory authentication. It ensures centralized user management and scalability.
+  </p>
+
+  <h3 style="color: #16a085;">Setting Up Database Authentication</h3>
+  <p style="color: #2c3e50;">
+    In Spring Security, we can authenticate users using a database by configuring **JDBC Authentication** or implementing a custom **UserDetailsService**.
+  </p>
+
+  <h3 style="color: #e67e22;">Creating the User Table</h3>
+  <p style="color: #2c3e50;">
+    We need to create a database table to store user credentials.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-sql">
+      CREATE TABLE users (
+          id INT PRIMARY KEY AUTO_INCREMENT,
+          username VARCHAR(50) UNIQUE NOT NULL,
+          password VARCHAR(255) NOT NULL,
+          role VARCHAR(50) NOT NULL,
+          enabled BOOLEAN DEFAULT TRUE
+      );
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring JDBC Authentication</h3>
+  <p style="color: #2c3e50;">
+    Spring Security provides built-in JDBC authentication using a **DataSource**.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.sql.DataSource;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.core.userdetails.User;
+      import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+      import org.springframework.security.crypto.password.PasswordEncoder;
+      
+      @Configuration
+      @EnableWebSecurity
+      public class SecurityConfig {
+          private final DataSource dataSource;
+          
+          public SecurityConfig(DataSource dataSource) {
+              this.dataSource = dataSource;
+          }
+
+          protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+              auth.jdbcAuthentication()
+                  .dataSource(dataSource)
+                  .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?")
+                  .authoritiesByUsernameQuery("SELECT username, role FROM users WHERE username=?")
+                  .passwordEncoder(passwordEncoder());
+          }
+          
+          @Bean
+          public PasswordEncoder passwordEncoder() {
+              return new BCryptPasswordEncoder();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Using Custom UserDetailsService</h3>
+  <p style="color: #2c3e50;">
+    Instead of using JDBC authentication, we can implement a **custom UserDetailsService** for more flexibility.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.core.userdetails.User;
+      import org.springframework.security.core.userdetails.UserDetails;
+      import org.springframework.security.core.userdetails.UserDetailsService;
+      import org.springframework.security.core.userdetails.UsernameNotFoundException;
+      import org.springframework.stereotype.Service;
+      import java.util.ArrayList;
+      
+      @Service
+      public class CustomUserDetailsService implements UserDetailsService {
+          @Override
+          public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+              if ("admin".equals(username)) {
+                  return new User("admin", "{bcrypt}$2a$10$xyz", new ArrayList<>());
+              } else {
+                  throw new UsernameNotFoundException("User not found!");
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Storing and Validating Passwords</h3>
+  <p style="color: #2c3e50;">
+    To ensure security, we must encode passwords before storing them in the database.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+      public class PasswordEncoderExample {
+          public static void main(String[] args) {
+              BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+              String rawPassword = "mypassword";
+              String encodedPassword = encoder.encode(rawPassword);
+
+              System.out.println("Encoded Password: " + encodedPassword);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always use **BCryptPasswordEncoder** for password storage.</li>
+    <li>Use a strong hashing algorithm with a secure salt.</li>
+    <li>Ensure the database is properly secured against SQL injection.</li>
+    <li>Use **Prepared Statements** when querying user credentials.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Database authentication in Spring Security provides a scalable and secure way to manage user authentication. Whether using **JDBC Authentication** or a **custom UserDetailsService**, proper password encoding and best security practices are essential.
+  </p>
+</div>`
+},
+{
+  title:`Form & Basic Authentication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Form & Basic Authentication in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Authentication is a fundamental part of web security, ensuring that only legitimate users access protected resources. Spring Security supports multiple authentication mechanisms, with <strong>Form Authentication</strong> and <strong>Basic Authentication</strong> being the most commonly used.
+  </p>
+
+  <h3 style="color: #16a085;">What is Basic Authentication?</h3>
+  <p style="color: #2c3e50;">
+    Basic Authentication is a simple authentication mechanism where the client sends a request with a username and password encoded in the HTTP <code>Authorization</code> header using Base64 encoding.
+  </p>
+
+  <h3 style="color: #e67e22;">Configuring Basic Authentication in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    In Spring Boot, we can configure Basic Authentication using the security configuration class:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
+
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                  .httpBasic();
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">What is Form Authentication?</h3>
+  <p style="color: #2c3e50;">
+    Form Authentication is a user-friendly authentication method where users enter their credentials into a login form instead of using HTTP headers.
+  </p>
+
+  <h3 style="color: #d35400;">Configuring Form Authentication in Spring Security</h3>
+  <p style="color: #2c3e50;">
+    To enable form-based login, modify the security configuration as follows:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
+
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                  .formLogin();
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Differences Between Basic and Form Authentication</h3>
+  <table border="1" style="border-collapse: collapse; width: 100%; text-align: left;">
+    <tr style="background-color: #f4f4f4;">
+      <th style="padding: 8px;">Feature</th>
+      <th style="padding: 8px;">Basic Authentication</th>
+      <th style="padding: 8px;">Form Authentication</th>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Authentication Method</td>
+      <td style="padding: 8px;">HTTP Headers</td>
+      <td style="padding: 8px;">Login Form</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">Security Level</td>
+      <td style="padding: 8px;">Less Secure (credentials sent in every request)</td>
+      <td style="padding: 8px;">More Secure (session-based authentication)</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;">User Experience</td>
+      <td style="padding: 8px;">Less Friendly</td>
+      <td style="padding: 8px;">More User-Friendly</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always use HTTPS to prevent credential interception.</li>
+    <li>For API authentication, prefer OAuth2 or JWT over Basic Authentication.</li>
+    <li>Use session management and CSRF protection in Form Authentication.</li>
+    <li>Encourage password hashing and encoding using <code>BCryptPasswordEncoder</code>.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Form Authentication and Basic Authentication serve different use cases. While Basic Authentication is simple and useful for APIs, Form Authentication provides a better user experience for web applications. Choosing the right authentication mechanism depends on security requirements and usability needs.
+  </p>
+</div>
+`
+},
+{
+  title:`LDAP Authentication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to LDAP Authentication in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    LDAP (Lightweight Directory Access Protocol) is a widely used protocol for accessing and managing directory information services, such as user authentication and authorization. In Spring Boot, LDAP authentication allows you to integrate your application with an LDAP server (e.g., Active Directory, OpenLDAP) to authenticate users and manage their roles. This article explores how to configure and implement LDAP authentication in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use LDAP Authentication?</h3>
+  <p style="color: #2c3e50;">
+    LDAP authentication offers several benefits for enterprise applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized User Management</strong>: Manage users and roles in a centralized directory service.</li>
+    <li><strong>Security</strong>: Leverage LDAP's secure authentication mechanisms.</li>
+    <li><strong>Scalability</strong>: Handle large numbers of users and roles efficiently.</li>
+    <li><strong>Integration</strong>: Seamlessly integrate with existing LDAP-based systems like Active Directory.</li>
+    <li><strong>Standardization</strong>: Use a standardized protocol for directory services.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of LDAP Authentication</h3>
+  <p style="color: #2c3e50;">
+    When working with LDAP authentication in Spring Boot, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>LDAP Server</strong>: The directory server that stores user and role information (e.g., Active Directory, OpenLDAP).</li>
+    <li><strong>Bind Authentication</strong>: Authenticating a user by binding to the LDAP server with their credentials.</li>
+    <li><strong>User DN (Distinguished Name)</strong>: The unique identifier for a user in the LDAP directory.</li>
+    <li><strong>Base DN</strong>: The root of the LDAP directory tree where user searches begin.</li>
+    <li><strong>Group/Role Mapping</strong>: Mapping LDAP groups to application roles for authorization.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing LDAP Authentication in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to configure and implement LDAP authentication in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Add the necessary dependencies for LDAP and Spring Security in your <code>pom.xml</code> or <code>build.gradle</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;!-- For Maven --&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-data-ldap&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Configure LDAP in <code>application.yml</code></h4>
+  <p style="color: #2c3e50;">
+    Configure the LDAP server connection details in the <code>application.yml</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        ldap:
+          urls: ldap://localhost:389
+          base: dc=example,dc=com
+          username: cn=admin,dc=example,dc=com
+          password: adminpassword
+      security:
+        user:
+          name: user
+          password: password
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Configure Spring Security for LDAP</h4>
+  <p style="color: #2c3e50;">
+    Configure Spring Security to use LDAP for authentication and authorization.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+      import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+      import org.springframework.security.crypto.password.PasswordEncoder;
+
+      @Configuration
+      @EnableWebSecurity
+      public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+          @Override
+          protected void configure(HttpSecurity http) throws Exception {
+              http
+                  .authorizeRequests()
+                      .anyRequest().fullyAuthenticated()
+                      .and()
+                  .formLogin();
+          }
+
+          @Override
+          protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+              auth
+                  .ldapAuthentication()
+                      .userDnPatterns("uid={0},ou=people")
+                      .groupSearchBase("ou=groups")
+                      .contextSource()
+                          .url("ldap://localhost:389/dc=example,dc=com")
+                          .and()
+                      .passwordCompare()
+                          .passwordEncoder(new BCryptPasswordEncoder())
+                          .passwordAttribute("userPassword");
+          }
+
+          @Bean
+          public PasswordEncoder passwordEncoder() {
+              return new BCryptPasswordEncoder();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Test LDAP Authentication</h4>
+  <p style="color: #2c3e50;">
+    Run your application and test LDAP authentication by logging in with valid LDAP credentials.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for LDAP Authentication</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use secure LDAP (LDAPS) to encrypt communication with the LDAP server.</li>
+    <li>Store LDAP connection details (e.g., URLs, credentials) securely using environment variables or secrets management tools.</li>
+    <li>Map LDAP groups to application roles for fine-grained authorization.</li>
+    <li>Test your LDAP configuration thoroughly to ensure compatibility with your directory server.</li>
+    <li>Use a password encoder to securely store and compare passwords.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    LDAP authentication is a powerful way to integrate your Spring Boot application with an LDAP directory service for centralized user management and secure authentication. By configuring Spring Security to use LDAP, you can leverage existing user directories like Active Directory or OpenLDAP, reducing the need for custom user management solutions. Whether you're building enterprise applications or integrating with existing systems, LDAP authentication provides a scalable and secure approach to user authentication and authorization.
+  </p>
+</div>`
+},
+{
+  title:`Two-Factor Authentication`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Two-Factor Authentication (2FA) in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Two-Factor Authentication (2FA) enhances security by requiring users to verify their identity using two different factors: something they know (password) and something they have (OTP, email, or app-based authentication).
+  </p>
+
+  <h3 style="color: #16a085;">How 2FA Works</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>User enters their username and password.</li>
+    <li>If credentials are correct, the system prompts for a second authentication factor.</li>
+    <li>User provides a one-time password (OTP) from an email, SMS, or authentication app.</li>
+    <li>If the OTP is valid, access is granted.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up 2FA with Spring Security</h3>
+  <p style="color: #2c3e50;">
+    Implementing 2FA requires integrating an OTP generator, such as Google Authenticator, or sending OTPs via email/SMS.
+  </p>
+
+  <h3 style="color: #d35400;">1. User Entity with OTP</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.persistence.*;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String username;
+          private String password;
+          private String otpSecret; // For TOTP-based authentication
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Generating and Validating OTP</h3>
+  <p style="color: #2c3e50;">
+    Use the <code>Time-based One-Time Password (TOTP)</code> algorithm for generating secure OTPs.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import com.eatthepath.otp.TimeBasedOneTimePasswordGenerator;
+      import java.security.Key;
+      import javax.crypto.KeyGenerator;
+      import java.time.Instant;
+
+      public class OTPService {
+          private final TimeBasedOneTimePasswordGenerator totpGenerator = new TimeBasedOneTimePasswordGenerator();
+          private final Key key;
+
+          public OTPService() throws Exception {
+              KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA1");
+              this.key = keyGenerator.generateKey();
+          }
+
+          public int generateOTP() {
+              return totpGenerator.generateOneTimePassword(key, Instant.now());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">3. Validating OTP in Authentication</h3>
+  <p style="color: #2c3e50;">
+    Validate the OTP before granting access to the application.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      public boolean validateOTP(int providedOTP, int generatedOTP) {
+          return providedOTP == generatedOTP;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">4. Integrating 2FA with Spring Security</h3>
+  <p style="color: #2c3e50;">
+    Modify the authentication process to include OTP validation.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class CustomAuthenticationProvider implements AuthenticationProvider {
+          @Autowired
+          private OTPService otpService;
+
+          @Override
+          public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+              String username = authentication.getName();
+              String password = authentication.getCredentials().toString();
+              int providedOTP = (int) authentication.getDetails();
+              int generatedOTP = otpService.generateOTP();
+
+              if (validateOTP(providedOTP, generatedOTP)) {
+                  return new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
+              } else {
+                  throw new BadCredentialsException("Invalid OTP");
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>TOTP</strong> for enhanced security instead of SMS-based OTPs.</li>
+    <li>Enable 2FA for critical user actions like password changes and financial transactions.</li>
+    <li>Store OTP secrets securely and do not expose them in logs.</li>
+    <li>Use third-party libraries like Google Authenticator for easier integration.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Two-Factor Authentication (2FA) adds an extra layer of security to protect user accounts. By integrating OTP-based authentication with Spring Security, we can ensure a more secure authentication mechanism.
+  </p>
+</div>
+`
+},
+{
+  title:`Security for Microservices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Security for Microservices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Microservices architecture involves breaking down an application into smaller, independent services that communicate over a network. While this approach offers benefits like scalability, flexibility, and faster development cycles, it also introduces unique security challenges. Securing microservices requires a comprehensive strategy that addresses authentication, authorization, data protection, and communication security. This article explores best practices and tools for implementing security in a microservices architecture using Spring Boot and related technologies.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Security Important for Microservices?</h3>
+  <p style="color: #2c3e50;">
+    Security is critical for microservices due to the following reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Distributed Nature</strong>: Microservices communicate over a network, making them vulnerable to attacks like eavesdropping and man-in-the-middle attacks.</li>
+    <li><strong>Increased Attack Surface</strong>: Each microservice exposes its own API, increasing the number of potential entry points for attackers.</li>
+    <li><strong>Data Sensitivity</strong>: Microservices often handle sensitive data, requiring robust protection mechanisms.</li>
+    <li><strong>Compliance</strong>: Many industries have strict regulatory requirements for data security and privacy.</li>
+    <li><strong>Service-to-Service Communication</strong>: Ensuring secure communication between microservices is essential to prevent unauthorized access.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Microservices Security</h3>
+  <p style="color: #2c3e50;">
+    When securing microservices, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Authentication</strong>: Verifying the identity of users or services accessing the system.</li>
+    <li><strong>Authorization</strong>: Ensuring that authenticated users or services have the necessary permissions to access resources.</li>
+    <li><strong>Encryption</strong>: Protecting data in transit and at rest using encryption techniques.</li>
+    <li><strong>API Gateway</strong>: A centralized entry point for managing and securing API requests.</li>
+    <li><strong>Service-to-Service Security</strong>: Securing communication between microservices using mutual TLS (mTLS) or tokens.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Security for Microservices</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to implement security in a microservices architecture using Spring Boot and Spring Cloud.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Secure APIs with Spring Security</h4>
+  <p style="color: #2c3e50;">
+    Use Spring Security to secure the APIs exposed by your microservices.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+      import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+      import org.springframework.security.crypto.password.PasswordEncoder;
+
+      @Configuration
+      @EnableWebSecurity
+      public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+          @Override
+          protected void configure(HttpSecurity http) throws Exception {
+              http
+                  .authorizeRequests()
+                      .antMatchers("/public/**").permitAll()
+                      .anyRequest().authenticated()
+                      .and()
+                  .oauth2ResourceServer()
+                      .jwt();
+          }
+
+          @Bean
+          public PasswordEncoder passwordEncoder() {
+              return new BCryptPasswordEncoder();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Use OAuth2 and JWT for Authentication</h4>
+  <p style="color: #2c3e50;">
+    Implement OAuth2 and JWT (JSON Web Tokens) for secure authentication and authorization.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.security.oauth2.jwt.JwtDecoder;
+      import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+
+      @Bean
+      public JwtDecoder jwtDecoder() {
+          return NimbusJwtDecoder.withJwkSetUri("https://your-auth-server/.well-known/jwks.json").build();
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Secure Service-to-Service Communication</h4>
+  <p style="color: #2c3e50;">
+    Use mutual TLS (mTLS) or OAuth2 tokens to secure communication between microservices.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      # Example configuration for mTLS in application.yml
+      server:
+        ssl:
+          enabled: true
+          key-store: classpath:keystore.jks
+          key-store-password: changeit
+          key-password: changeit
+          trust-store: classpath:truststore.jks
+          trust-store-password: changeit
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Use an API Gateway</h4>
+  <p style="color: #2c3e50;">
+    Implement an API gateway to centralize security, rate limiting, and request routing.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.cloud.gateway.route.RouteLocator;
+      import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class GatewayConfig {
+
+          @Bean
+          public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+              return builder.routes()
+                  .route("user_service", r -> r.path("/users/**")
+                      .uri("http://localhost:8081"))
+                  .route("order_service", r -> r.path("/orders/**")
+                      .uri("http://localhost:8082"))
+                  .build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">5. Monitor and Log Security Events</h4>
+  <p style="color: #2c3e50;">
+    Implement logging and monitoring to detect and respond to security incidents.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
+      import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+      @Bean
+      public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+          http
+              .addFilterBefore(new LoggingFilter(), UsernamePasswordAuthenticationFilter.class)
+              .authorizeRequests()
+              .anyRequest().authenticated();
+          return http.build();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Microservices Security</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use OAuth2 and JWT for secure authentication and authorization.</li>
+    <li>Encrypt data in transit using HTTPS and mutual TLS (mTLS).</li>
+    <li>Implement an API gateway to centralize security and routing.</li>
+    <li>Use role-based access control (RBAC) to enforce fine-grained permissions.</li>
+    <li>Monitor and log security events to detect and respond to threats.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Securing microservices is a critical aspect of building modern, distributed applications. By implementing robust authentication, authorization, encryption, and monitoring mechanisms, you can protect your microservices from threats and ensure compliance with security standards. Whether you're using Spring Security, OAuth2, or an API gateway, following best practices will help you create a secure and resilient microservices architecture.
+  </p>
+</div>`
+},
+{
+  title:`API Gateway Security`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding API Gateway Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    API Gateway acts as a central entry point for managing and securing API requests in a microservices architecture. It handles authentication, authorization, rate limiting, request validation, and monitoring, ensuring secure API communication.
+  </p>
+
+  <h3 style="color: #16a085;">Key Security Features in API Gateway</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Authentication & Authorization</li>
+    <li>Rate Limiting & Throttling</li>
+    <li>Secure Data Transmission (HTTPS, TLS)</li>
+    <li>Request Validation & Filtering</li>
+    <li>Logging & Monitoring</li>
+    <li>Threat Protection (DDoS, SQL Injection, XSS)</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Implementing Authentication & Authorization</h3>
+  <p style="color: #2c3e50;">
+    API Gateways integrate authentication mechanisms such as JWT, OAuth2, and API keys to ensure secure access. Role-based access control (RBAC) and attribute-based access control (ABAC) enforce fine-grained authorization.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class SecurityConfig {
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .authorizeHttpRequests(auth -> auth
+                      .requestMatchers("/admin/**").hasRole("ADMIN")
+                      .requestMatchers("/user/**").authenticated()
+                  )
+                  .oauth2Login()
+                  .and()
+                  .jwt();
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Rate Limiting & Throttling</h3>
+  <p style="color: #2c3e50;">
+    To prevent API abuse, API gateways implement rate limiting strategies such as token bucket, leaky bucket, and sliding window counters.
+  </p>
+  
+  <h3 style="color: #d35400;">Enforcing HTTPS & Secure Data Transmission</h3>
+  <p style="color: #2c3e50;">
+    APIs should only be accessible over HTTPS to encrypt data transmission and prevent eavesdropping and man-in-the-middle attacks.
+  </p>
+  
+  <h3 style="color: #e67e22;">Logging, Monitoring & Threat Detection</h3>
+  <p style="color: #2c3e50;">
+    API Gateway logs request details, errors, and security incidents, helping teams monitor API traffic and detect potential threats.
+  </p>
+
+  <h3 style="color: #2c3e50;">Best Practices for API Gateway Security</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use strong authentication (JWT, OAuth2, API keys)</li>
+    <li>Implement rate limiting and throttling</li>
+    <li>Encrypt sensitive data in transit (TLS, HTTPS)</li>
+    <li>Validate and sanitize all API requests</li>
+    <li>Enable logging, monitoring, and anomaly detection</li>
+  </ul>
+  
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    API Gateway security is critical for protecting APIs and microservices from unauthorized access, attacks, and performance degradation. By implementing strong authentication, rate limiting, and encryption, organizations can secure their API ecosystem effectively.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing & Debugging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing & Debugging in Spring Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Ensuring security configurations function correctly is crucial for any application. Spring Security provides various tools for testing and debugging authentication, authorization, and security filters effectively.
+  </p>
+
+  <h3 style="color: #16a085;">Unit Testing Security Components</h3>
+  <p style="color: #2c3e50;">
+    Unit testing helps verify individual security components such as authentication, authorization, and security filters.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.security.test.context.support.WithMockUser;
+      import org.springframework.test.web.servlet.MockMvc;
+
+      @WebMvcTest
+      public class SecurityTest {
+          @Autowired
+          private MockMvc mockMvc;
+
+          @Test
+          @WithMockUser(username = "admin", roles = {"ADMIN"})
+          public void testAdminAccess() throws Exception {
+              mockMvc.perform(get("/admin"))
+                      .andExpect(status().isOk());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Integration Testing Security Configurations</h3>
+  <p style="color: #2c3e50;">
+    Integration testing validates security mechanisms across multiple layers, ensuring secure authentication and authorization workflows.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.springframework.boot.test.web.client.TestRestTemplate;
+      import org.springframework.boot.web.server.LocalServerPort;
+      import static org.assertj.core.api.Assertions.assertThat;
+
+      @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+      public class IntegrationTest {
+          @LocalServerPort
+          private int port;
+
+          private TestRestTemplate restTemplate = new TestRestTemplate();
+
+          @Test
+          public void testUnauthorizedAccess() {
+              String url = "http://localhost:" + port + "/secure-endpoint";
+              String response = restTemplate.getForObject(url, String.class);
+              assertThat(response).contains("Forbidden");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Debugging Security Issues</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Enable **debug logs** in Spring Security: <code>logging.level.org.springframework.security=DEBUG</code></li>
+    <li>Use **Spring Security’s event listeners** to track authentication failures and access denials.</li>
+    <li>Leverage **Spring Security Test** utilities to simulate various user roles.</li>
+    <li>Use **Postman** or **cURL** to manually test authentication endpoints.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Common Security Testing Tools</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>OWASP ZAP</strong> - For security vulnerability scanning.</li>
+    <li><strong>JUnit & MockMvc</strong> - For unit and integration testing.</li>
+    <li><strong>Burp Suite</strong> - For penetration testing.</li>
+    <li><strong>Spring Security Test</strong> - For security-focused tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing and debugging Spring Security configurations is essential to prevent vulnerabilities. By using unit and integration tests, enabling debug logs, and leveraging security tools, we can ensure a robust security implementation in our applications.
+  </p>
+</div>
+`
+},
+
 
     
 
