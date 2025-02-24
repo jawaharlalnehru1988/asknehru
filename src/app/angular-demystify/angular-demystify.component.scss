@@ -1,19 +1,4 @@
-.video-container {
-    position: relative;
-    width: 100%; /* Takes full width of the parent */
-    padding-top: 56.25%; /* 16:9 aspect ratio (height/width * 100) */
-    overflow: hidden;
-  }
-  
-  youtube-player {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  :host ::ng-deep  youtube-player div iframe {
-    width: -webkit-fill-available !important;
-    height: 66vh !important;
-  }
+app-blogs{
+  max-width: 100vw;
+  max-height: 100vw;
+}

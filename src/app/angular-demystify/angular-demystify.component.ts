@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ScreenSizeService } from '../services/screen-size.service';
 import { map } from 'rxjs';
+import { AngularBlogsComponent } from "./angular-blogs/angular-blogs.component";
 interface TsTopics {
   title: string;
   subtopics: { id: string; name: string }[];
@@ -21,7 +22,7 @@ interface Video{
 }
 @Component({
     selector: 'app-angular-demystify',
-    imports: [RouterLink, NgClass, YouTubePlayerModule],
+    imports: [ YouTubePlayerModule, AngularBlogsComponent],
     templateUrl: './angular-demystify.component.html',
     styleUrl: './angular-demystify.component.scss'
 })
@@ -33,19 +34,7 @@ export class AngularDemystifyComponent {
     {title: 'Blogs', titleId: 'read'},
     {title: 'Audio Tutorials', titleId: 'hear'},
   ]
-  angularTopics: TsTopics[] = [
-    {
-      title: 'Read and learn Angular',
-      subtopics: [
-        { id: "life-cycle-hooks", name: 'Understanding Angular Component Lifecycle Hooks' },
-        { id: "Angular_18_feature", name: 'Angular 18 Features: What\'s New and Improved' },
-        { id: 'App-initializer', name: 'What is APP_INITIALIZER?' },
-        { id: 'Forms Modules', name: 'What are Angular Forms Modules?' },
-      ]
-    },
-    
-    // Add more topics and subtopics as needed
-  ];
+ 
 
   videoObject: Video[] = [
     {
