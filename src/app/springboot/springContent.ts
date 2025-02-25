@@ -24896,6 +24896,1735 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
   </p>
 </div>
 `
+},
+{
+  title:`DI Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Dependency Injection (DI) Basics in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    <strong>Dependency Injection (DI)</strong> is a fundamental concept in Spring Boot that allows objects to be injected into other objects, promoting loose coupling and making applications more modular, testable, and maintainable.
+  </p>
+
+  <h3 style="color: #16a085;">What is Dependency Injection?</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection is a design pattern that allows an object to receive its dependencies from an external source rather than creating them itself. It helps separate object creation from object usage.
+  </p>
+
+  <h3 style="color: #e67e22;">Types of Dependency Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Constructor Injection:</strong> Dependencies are injected via a class constructor.</li>
+    <li><strong>Setter Injection:</strong> Dependencies are set via public setter methods.</li>
+    <li><strong>Field Injection:</strong> Dependencies are injected directly into fields using <code>@Autowired</code>.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Constructor Injection Example</h3>
+  <p style="color: #2c3e50;">
+    Constructor-based injection is recommended for mandatory dependencies.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          private final Repository repository;
+
+          public ProductService(Repository repository) {
+              this.repository = repository;
+          }
+
+          public void fetchProducts() {
+              repository.getAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Setter Injection Example</h3>
+  <p style="color: #2c3e50;">
+    Setter-based injection is useful when dependencies are optional.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          private Repository repository;
+
+          @Autowired
+          public void setRepository(Repository repository) {
+              this.repository = repository;
+          }
+
+          public void fetchProducts() {
+              repository.getAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Field Injection Example</h3>
+  <p style="color: #2c3e50;">
+    Field injection is the simplest but not recommended for complex applications.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @Service
+      public class ProductService {
+          @Autowired
+          private Repository repository;
+
+          public void fetchProducts() {
+              repository.getAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Benefits of Dependency Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Improves <strong>testability</strong> by allowing mock dependencies.</li>
+    <li>Enhances <strong>modularity</strong> and <strong>code reuse</strong>.</li>
+    <li>Promotes <strong>loose coupling</strong> between components.</li>
+    <li>Simplifies <strong>object creation</strong> and management.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection is a core concept in Spring Boot that makes applications more flexible and maintainable. By using DI effectively, developers can write cleaner, modular, and testable code.
+  </p>
+</div>
+`
+},
+{
+  title:`Types of DI (Constructor, Setter, Field)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Types of Dependency Injection (Constructor, Setter, Field) in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    <strong>Dependency Injection (DI)</strong> is a design pattern that helps in injecting dependencies into a class rather than creating them within the class. Spring Boot supports three types of DI: <strong>Constructor Injection</strong>, <strong>Setter Injection</strong>, and <strong>Field Injection</strong>.
+  </p>
+
+  <h3 style="color: #16a085;">1. Constructor Injection</h3>
+  <p style="color: #2c3e50;">
+    In Constructor Injection, dependencies are injected through the class constructor. It is the most recommended approach as it ensures <strong>mandatory dependencies</strong> are always available.
+  </p>
+
+  <h4 style="color: #2980b9;">Example of Constructor Injection</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          private final ProductRepository repository;
+
+          // Constructor Injection
+          public ProductService(ProductRepository repository) {
+              this.repository = repository;
+          }
+
+          public void fetchProducts() {
+              repository.getAll();
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    <strong>Advantages of Constructor Injection:</strong>
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensures all required dependencies are available.</li>
+    <li>Supports immutability by making dependencies <code>final</code>.</li>
+    <li>Recommended for complex applications.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">2. Setter Injection</h3>
+  <p style="color: #2c3e50;">
+    In Setter Injection, dependencies are injected through a setter method. It is useful when dependencies are <strong>optional</strong> or need to be changed dynamically.
+  </p>
+
+  <h4 style="color: #2980b9;">Example of Setter Injection</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @Service
+      public class ProductService {
+          private ProductRepository repository;
+
+          // Setter Injection
+          @Autowired
+          public void setRepository(ProductRepository repository) {
+              this.repository = repository;
+          }
+
+          public void fetchProducts() {
+              repository.getAll();
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    <strong>Advantages of Setter Injection:</strong>
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Allows optional dependencies.</li>
+    <li>Provides flexibility to modify dependencies dynamically.</li>
+    <li>Useful for testing when replacing beans.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Field Injection</h3>
+  <p style="color: #2c3e50;">
+    In Field Injection, dependencies are injected directly into fields using the <code>@Autowired</code> annotation. It is the simplest method but not recommended for large applications.
+  </p>
+
+  <h4 style="color: #2980b9;">Example of Field Injection</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @Service
+      public class ProductService {
+          // Field Injection
+          @Autowired
+          private ProductRepository repository;
+
+          public void fetchProducts() {
+              repository.getAll();
+          }
+      }
+    </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    <strong>Disadvantages of Field Injection:</strong>
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Makes unit testing difficult.</li>
+    <li>Violates the principle of dependency visibility.</li>
+    <li>Not recommended for production-level applications.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Dependency Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prefer <strong>Constructor Injection</strong> for mandatory dependencies.</li>
+    <li>Use <strong>Setter Injection</strong> for optional dependencies.</li>
+    <li>Avoid <strong>Field Injection</strong> due to its limitations in testing and maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Understanding the different types of Dependency Injection in Spring Boot helps in designing flexible and maintainable applications. Constructor Injection is the most preferred approach, while Setter Injection is useful in specific cases. Field Injection should be avoided for better testability and maintainability.
+  </p>
+</div>
+`
+},
+{
+  title:`Inversion of Control (IoC)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Inversion of Control (IoC) in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    <strong>Inversion of Control (IoC)</strong> is a fundamental principle of software design that shifts control of object creation and dependency management from the application code to a framework or container. In Spring Boot, the IoC container takes care of managing the lifecycle and dependencies of beans, making applications more modular and easier to maintain.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Inversion of Control (IoC)?</h3>
+  <p style="color: #2c3e50;">
+    The IoC principle provides several key advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Loose Coupling:</strong> Components interact through interfaces, reducing direct dependencies.</li>
+    <li><strong>Code Reusability:</strong> Promotes modular and reusable components.</li>
+    <li><strong>Easy Testing:</strong> Dependencies can be easily mocked for unit testing.</li>
+    <li><strong>Automatic Dependency Management:</strong> Spring handles object creation and injection.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How IoC Works in Spring Boot?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot implements IoC using the <strong>Spring IoC Container</strong>, which manages the lifecycle of beans (Spring components). The container instantiates, configures, and injects dependencies into beans automatically.
+  </p>
+
+  <h3 style="color: #8e44ad;">Example: IoC in Action</h3>
+  <p style="color: #2c3e50;">
+    Let’s see how Spring Boot manages dependencies using IoC.
+  </p>
+
+  <h4 style="color: #2980b9;">Step 1: Define a Service</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          public String getProduct() {
+              return "Laptop";
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Step 2: Inject the Service into a Controller</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/products")
+      public class ProductController {
+          private final ProductService productService;
+
+          // Constructor Injection (IoC in action)
+          public ProductController(ProductService productService) {
+              this.productService = productService;
+          }
+
+          @GetMapping
+          public String getProduct() {
+              return productService.getProduct();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Spring IoC Container</h3>
+  <p style="color: #2c3e50;">
+    The <strong>Spring IoC Container</strong> is responsible for managing Spring beans. It ensures that objects are created and injected where needed. The IoC Container uses:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>ApplicationContext:</strong> The main Spring container that manages the lifecycle of beans.</li>
+    <li><strong>BeanFactory:</strong> A lightweight container primarily used for simple dependency injection.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Types of Dependency Injection in IoC</h3>
+  <p style="color: #2c3e50;">
+    Spring IoC provides different ways to inject dependencies:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Constructor Injection:</strong> Recommended approach that ensures immutability.</li>
+    <li><strong>Setter Injection:</strong> Used for optional dependencies.</li>
+    <li><strong>Field Injection:</strong> Not recommended as it makes testing harder.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Inversion of Control (IoC) is a core principle in Spring Boot that enhances modularity, flexibility, and testability. By letting the IoC Container manage dependencies, developers can focus on business logic while Spring handles object creation and lifecycle management efficiently.
+  </p>
+</div>
+`
+},
+{
+  title:`Spring DI Annotations (@Autowired, @Inject)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Spring DI Annotations (@Autowired, @Inject)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, <strong>Dependency Injection (DI)</strong> is a design pattern that manages dependencies between objects. Spring provides powerful annotations such as <code>@Autowired</code> and <code>@Inject</code> to automatically inject dependencies into Spring beans, making applications modular, testable, and maintainable.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Dependency Injection (DI)?</h3>
+  <p style="color: #2c3e50;">
+    Spring DI provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Loose Coupling:</strong> Components are injected rather than manually instantiated.</li>
+    <li><strong>Code Reusability:</strong> Promotes modular design.</li>
+    <li><strong>Easy Testing:</strong> Dependencies can be easily mocked.</li>
+    <li><strong>Automatic Object Management:</strong> Spring manages object creation and lifecycle.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">What is @Autowired?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Autowired</code> annotation in Spring Boot automatically injects dependencies into Spring-managed beans. It eliminates the need for explicit object creation using the <code>new</code> keyword.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Using @Autowired</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          public String getProduct() {
+              return "Laptop";
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Injecting <code>ProductService</code> into a controller:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @RestController
+      @RequestMapping("/products")
+      public class ProductController {
+
+          @Autowired
+          private ProductService productService;
+
+          @GetMapping
+          public String getProduct() {
+              return productService.getProduct();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">What is @Inject?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Inject</code> annotation is part of the Java Dependency Injection (JSR-330) standard. It works similarly to <code>@Autowired</code> but is not Spring-specific. Spring supports <code>@Inject</code> as an alternative to <code>@Autowired</code>.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Using @Inject</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.inject.Inject;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/products")
+      public class ProductController {
+
+          @Inject
+          private ProductService productService;
+
+          @GetMapping
+          public String getProduct() {
+              return productService.getProduct();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Key Differences Between @Autowired and @Inject</h3>
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 16px; color: #2c3e50;">
+    <tr style="background: #f8f9fa;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Feature</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">@Autowired</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">@Inject</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Package</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Spring-specific (org.springframework.beans.factory.annotation)</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Java standard (javax.inject)</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Primary Usage</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Spring applications</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">General Java DI</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Required Spring Dependency</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Yes</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">No</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Supports @Primary</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Yes</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">No</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #8e44ad;">Best Practices for Using @Autowired and @Inject</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Prefer Constructor Injection</strong>: Ensures immutability and testability.</li>
+    <li><strong>Avoid Field Injection</strong>: Makes unit testing difficult.</li>
+    <li><strong>Use @Autowired for Spring Apps</strong>: It provides additional Spring features.</li>
+    <li><strong>Use @Inject for Standard Java DI</strong>: Useful for non-Spring projects.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring DI annotations like <code>@Autowired</code> and <code>@Inject</code> simplify dependency injection, making applications more modular and testable. While both annotations serve the same purpose, <code>@Autowired</code> is Spring-specific, whereas <code>@Inject</code> is part of the Java standard. Choosing the right approach depends on your project’s requirements.
+  </p>
+</div>
+`
+},
+{
+  title:`Bean Configuration (XML, Java-based, Annotations)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Bean Configuration (XML, Java-based, Annotations)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, <strong>Bean Configuration</strong> is a crucial concept that defines how beans (Spring-managed objects) are created, initialized, and managed. There are three main ways to configure beans in Spring:
+  </p>
+
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>XML Configuration</strong> – Traditional method using XML files.</li>
+    <li><strong>Java-based Configuration</strong> – Uses Java classes with <code>@Configuration</code> and <code>@Bean</code> annotations.</li>
+    <li><strong>Annotation-based Configuration</strong> – Uses annotations like <code>@Component</code>, <code>@Service</code>, and <code>@Repository</code>.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. XML-based Bean Configuration</h3>
+  <p style="color: #2c3e50;">
+    In XML-based configuration, beans are defined inside an XML file (typically <code>applicationContext.xml</code>). This method was widely used in older Spring versions.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Defining a Bean in XML</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;beans xmlns="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;
+
+          &lt;bean id="productService" class="com.example.ProductService"&gt;
+              &lt;property name="productName" value="Laptop"/&gt;
+          &lt;/bean&gt;
+
+      &lt;/beans&gt;
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The bean is retrieved in Java code using:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+      ProductService productService = (ProductService) context.getBean("productService");
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">2. Java-based Bean Configuration</h3>
+  <p style="color: #2c3e50;">
+    Java-based configuration eliminates the need for XML files. It uses <code>@Configuration</code> and <code>@Bean</code> annotations to define beans.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Defining a Bean in Java</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class AppConfig {
+
+          @Bean
+          public ProductService productService() {
+              return new ProductService("Laptop");
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The bean is retrieved using:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+      ProductService productService = context.getBean(ProductService.class);
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Annotation-based Bean Configuration</h3>
+  <p style="color: #2c3e50;">
+    Annotation-based configuration uses Spring annotations like <code>@Component</code>, <code>@Service</code>, and <code>@Repository</code> to mark classes as Spring beans.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Using @Component Annotation</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class ProductService {
+          private String productName = "Laptop";
+
+          public String getProduct() {
+              return productName;
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In the Spring configuration class, we use <code>@ComponentScan</code> to enable annotation-based scanning:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.ComponentScan;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      @ComponentScan(basePackages = "com.example")
+      public class AppConfig {
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The bean is retrieved in Java code using:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+      ProductService productService = context.getBean(ProductService.class);
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Comparison of Bean Configuration Approaches</h3>
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 16px; color: #2c3e50;">
+    <tr style="background: #f8f9fa;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Approach</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Pros</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Cons</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">XML Configuration</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Separation of configuration from code, supports legacy applications.</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Verbose, harder to maintain.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Java-based Configuration</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Type-safe, refactor-friendly, and readable.</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Configuration class must be explicitly defined.</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Annotation-based Configuration</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Less code, easy to use.</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">May lead to hidden dependencies.</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring provides multiple ways to configure beans: XML, Java-based, and Annotation-based approaches. While XML is useful for legacy projects, Java-based and annotation-based configurations are preferred for modern Spring Boot applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Bean Scopes (Singleton, Prototype)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Bean Scopes (Singleton, Prototype, and More)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, <strong>Bean Scope</strong> defines the lifecycle and visibility of a bean. It determines how many instances of a bean will be created and how they will be shared within the application context.
+  </p>
+
+  <p style="color: #2c3e50;">
+    Spring provides the following bean scopes:
+  </p>
+
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Singleton</strong> – Only one instance per Spring container.</li>
+    <li><strong>Prototype</strong> – A new instance is created each time the bean is requested.</li>
+    <li><strong>Request</strong> – A new instance per HTTP request (for web applications).</li>
+    <li><strong>Session</strong> – A new instance per HTTP session.</li>
+    <li><strong>Application</strong> – A new instance per servlet context.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Singleton Scope (Default)</h3>
+  <p style="color: #2c3e50;">
+    The <strong>singleton</strong> scope ensures that only <strong>one instance</strong> of the bean exists in the Spring container. Any request for the bean will return the same shared instance.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Singleton Scope</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Scope;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      @Scope("singleton")
+      public class SingletonBean {
+          public SingletonBean() {
+              System.out.println("Singleton Bean Created");
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    If we retrieve this bean multiple times, the same instance is returned.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+      SingletonBean bean1 = context.getBean(SingletonBean.class);
+      SingletonBean bean2 = context.getBean(SingletonBean.class);
+
+      System.out.println(bean1 == bean2); // Output: true (Same instance)
+    </code>
+  </pre>
+
+  <h3 style="color: #16a085;">2. Prototype Scope</h3>
+  <p style="color: #2c3e50;">
+    The <strong>prototype</strong> scope ensures that a <strong>new instance</strong> of the bean is created each time it is requested from the container.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Prototype Scope</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Scope;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      @Scope("prototype")
+      public class PrototypeBean {
+          public PrototypeBean() {
+              System.out.println("Prototype Bean Created");
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    When we retrieve this bean multiple times, a new instance is created each time.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+      PrototypeBean bean1 = context.getBean(PrototypeBean.class);
+      PrototypeBean bean2 = context.getBean(PrototypeBean.class);
+
+      System.out.println(bean1 == bean2); // Output: false (Different instances)
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Request Scope (For Web Applications)</h3>
+  <p style="color: #2c3e50;">
+    The <strong>request</strong> scope creates a new bean instance for each HTTP request. It is used in web applications where beans need to be request-specific.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Request Scope</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Scope;
+      import org.springframework.stereotype.Component;
+      import org.springframework.web.context.annotation.RequestScope;
+
+      @Component
+      @RequestScope
+      public class RequestBean {
+          public RequestBean() {
+              System.out.println("Request Bean Created");
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    A new instance is created for each HTTP request.
+  </p>
+
+  <h3 style="color: #d35400;">4. Session Scope</h3>
+  <p style="color: #2c3e50;">
+    The <strong>session</strong> scope creates a new bean instance for each HTTP session. The same instance is shared within the session.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Session Scope</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Component;
+      import org.springframework.web.context.annotation.SessionScope;
+
+      @Component
+      @SessionScope
+      public class SessionBean {
+          public SessionBean() {
+              System.out.println("Session Bean Created");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Comparison of Bean Scopes</h3>
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 16px; color: #2c3e50;">
+    <tr style="background: #f8f9fa;">
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Scope</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Description</th>
+      <th style="border: 1px solid #ddd; padding: 10px; text-align: left;">Instance per...</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Singleton</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">One instance per Spring container.</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Application</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Prototype</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">New instance every time requested.</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Each request</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 10px;">Request</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">New instance per HTTP request.</td>
+      <td style="border: 1px solid #ddd; padding: 10px;">Each HTTP request</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring provides multiple bean scopes for different use cases. Singleton is the default and widely used, while prototype is useful for non-shared beans. Request, session, and application scopes are designed for web applications.
+  </p>
+</div>
+`
+},
+{
+  title:`DI and Loose Coupling`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Dependency Injection (DI) and Loose Coupling</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In software development, <strong>Dependency Injection (DI)</strong> is a design pattern that promotes <em>loose coupling</em> between components by injecting dependencies rather than creating them manually. This improves maintainability, scalability, and testability.
+  </p>
+
+  <h3 style="color: #16a085;">What is Dependency Injection?</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection is a technique where one object supplies the dependencies of another object. Instead of creating dependencies manually using the <code>new</code> keyword, DI enables dependencies to be injected from an external source, such as a framework or configuration.
+  </p>
+
+  <h3 style="color: #e67e22;">Types of Dependency Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Constructor Injection</strong>: Dependencies are passed through the constructor.</li>
+    <li><strong>Setter Injection</strong>: Dependencies are provided via setter methods.</li>
+    <li><strong>Field Injection</strong>: Dependencies are assigned directly to fields (less recommended due to testability issues).</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example of Constructor Injection in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @Service
+      public class OrderService {
+          private final PaymentService paymentService;
+
+          @Autowired
+          public OrderService(PaymentService paymentService) {
+              this.paymentService = paymentService;
+          }
+
+          public void processOrder() {
+              paymentService.processPayment();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">What is Loose Coupling?</h3>
+  <p style="color: #2c3e50;">
+    Loose coupling refers to reducing dependencies between classes to improve modularity and flexibility. When components are loosely coupled, changes in one class have minimal impact on others, making the system easier to maintain and extend.
+  </p>
+
+  <h3 style="color: #d35400;">Benefits of DI and Loose Coupling</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Testability</strong>: Easily mock dependencies for unit testing.</li>
+    <li><strong>Code Reusability</strong>: Components can be reused in different contexts.</li>
+    <li><strong>Scalability</strong>: Makes it easier to extend and modify applications.</li>
+    <li><strong>Maintainability</strong>: Reduces code duplication and improves readability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection and Loose Coupling are essential concepts in modern software development. By leveraging DI, developers can build flexible, scalable, and maintainable applications. Frameworks like Spring Boot make DI implementation seamless, ensuring efficient dependency management.
+  </p>
+</div>
+`
+},
+{
+  title:`DI in Spring Framework`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Dependency Injection (DI) in Spring Framework</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Dependency Injection (DI) is a core feature of the Spring Framework that helps manage object dependencies efficiently. It allows developers to build loosely coupled and easily testable applications by injecting dependencies at runtime rather than hardcoding them.
+  </p>
+
+  <h3 style="color: #16a085;">What is Dependency Injection?</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection is a design pattern that enables objects to receive their dependencies from an external source rather than creating them internally. In the Spring Framework, DI is achieved through Spring’s Inversion of Control (IoC) container.
+  </p>
+
+  <h3 style="color: #e67e22;">Types of Dependency Injection in Spring</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Constructor Injection</strong>: Dependencies are injected through a class constructor.</li>
+    <li><strong>Setter Injection</strong>: Dependencies are injected via setter methods.</li>
+    <li><strong>Field Injection</strong>: Dependencies are directly injected into fields using annotations.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example of Constructor Injection in Spring</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @Service
+      public class UserService {
+          private final UserRepository userRepository;
+
+          @Autowired
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id).orElse(null);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using Setter Injection in Spring</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          private ProductRepository productRepository;
+
+          @Autowired
+          public void setProductRepository(ProductRepository productRepository) {
+              this.productRepository = productRepository;
+          }
+
+          public Product getProductById(Long id) {
+              return productRepository.findById(id).orElse(null);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Benefits of DI in Spring</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Loose Coupling</strong>: Makes components independent and easier to manage.</li>
+    <li><strong>Improved Testability</strong>: Allows easy mocking of dependencies in unit tests.</li>
+    <li><strong>Better Maintainability</strong>: Reduces dependency management complexity.</li>
+    <li><strong>Flexible Configuration</strong>: Supports XML, Java-based, and annotation-based configurations.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection is a powerful feature of the Spring Framework that simplifies dependency management and enhances application flexibility. By leveraging DI, developers can create scalable, maintainable, and testable applications with minimal effort.
+  </p>
+</div>
+`
+},
+{
+  title:`Autowiring Modes (ByType, ByName)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Autowiring Modes (ByType, ByName) in Spring Framework</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Autowiring in Spring Framework is a feature that allows Spring to automatically resolve and inject dependencies into beans. Spring provides different modes of autowiring to facilitate dependency injection and reduce explicit configuration.
+  </p>
+
+  <h3 style="color: #16a085;">What is Autowiring?</h3>
+  <p style="color: #2c3e50;">
+    Autowiring allows Spring to automatically inject dependencies into beans without explicit bean definitions. It helps in reducing the boilerplate code required for dependency injection.
+  </p>
+
+  <h3 style="color: #e67e22;">Types of Autowiring Modes in Spring</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>ByType</strong>: Injects dependencies based on the type of the bean.</li>
+    <li><strong>ByName</strong>: Injects dependencies based on the name of the bean.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example of Autowiring ByType</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+          private UserRepository userRepository;
+
+          @Autowired
+          public void setUserRepository(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example of Autowiring ByName</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          @Autowired
+          private ProductRepository productRepository;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Choosing the Right Autowiring Mode</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>ByType</strong> is useful when there is only one bean of a particular type.</li>
+    <li><strong>ByName</strong> is useful when multiple beans of the same type exist, and we want to inject a specific one by its name.</li>
+    <li>Both modes help reduce XML or Java configuration complexity.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Autowiring in Spring simplifies dependency injection by automatically resolving dependencies using different modes. Choosing the right mode depends on the project requirements and the structure of bean definitions.
+  </p>
+</div>
+`
+},
+{
+  title:`DI with Qualifiers (@Qualifier)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding DI with Qualifiers (@Qualifier) in Spring Framework</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Framework, dependency injection (DI) helps in managing dependencies between objects. When multiple beans of the same type exist, the <code>@Qualifier</code> annotation is used to specify which bean should be injected, ensuring precise control over dependency resolution.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use @Qualifier?</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Qualifier</code> annotation is necessary when multiple beans of the same type are available in the application context. It helps avoid ambiguity by explicitly defining which bean should be injected.
+  </p>
+
+  <h3 style="color: #e67e22;">Using @Qualifier with Autowired</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Qualifier</code> annotation works alongside <code>@Autowired</code> to resolve dependencies by bean name.
+  </p>
+
+  <h3 style="color: #8e44ad;">Example of @Qualifier Usage</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.beans.factory.annotation.Qualifier;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class PaymentService {
+
+          private PaymentProcessor paymentProcessor;
+
+          @Autowired
+          public PaymentService(@Qualifier("creditCardProcessor") PaymentProcessor paymentProcessor) {
+              this.paymentProcessor = paymentProcessor;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Defining Multiple Beans and Using @Qualifier</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class AppConfig {
+          @Bean(name = "creditCardProcessor")
+          public PaymentProcessor creditCardProcessor() {
+              return new CreditCardProcessor();
+          }
+
+          @Bean(name = "paypalProcessor")
+          public PaymentProcessor paypalProcessor() {
+              return new PayPalProcessor();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using @Qualifier</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always use <code>@Qualifier</code> when multiple beans of the same type exist to avoid ambiguity.</li>
+    <li>Ensure that the specified bean name matches exactly with the one defined in the configuration.</li>
+    <li>Use meaningful bean names to enhance code readability and maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Qualifier</code> annotation in Spring helps in precisely selecting the correct bean when multiple candidates are available. It enhances the flexibility and maintainability of dependency injection in Spring applications.
+  </p>
+</div>
+`
+},
+{
+  title:`DI in Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Dependency Injection (DI) in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Dependency Injection (DI) is a core concept in the Spring Boot framework that helps manage dependencies between different components, making applications more modular, testable, and maintainable.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Dependency Injection?</h3>
+  <p style="color: #2c3e50;">
+    DI in Spring Boot provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduces Coupling</strong>: Makes components independent and easier to replace.</li>
+    <li><strong>Improves Testability</strong>: Simplifies unit testing by allowing mock dependencies.</li>
+    <li><strong>Enhances Maintainability</strong>: Centralized control over object creation and dependency management.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Dependency Injection in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot supports three types of DI:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Constructor Injection</strong>: Preferred for mandatory dependencies.</li>
+    <li><strong>Setter Injection</strong>: Used for optional dependencies.</li>
+    <li><strong>Field Injection</strong>: Uses <code>@Autowired</code> to inject dependencies directly into fields.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example of Dependency Injection in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class OrderService {
+          private final PaymentService paymentService;
+
+          @Autowired
+          public OrderService(PaymentService paymentService) {
+              this.paymentService = paymentService;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using Setter Injection</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class OrderService {
+          private PaymentService paymentService;
+
+          @Autowired
+          public void setPaymentService(PaymentService paymentService) {
+              this.paymentService = paymentService;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Dependency Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prefer <strong>Constructor Injection</strong> for required dependencies.</li>
+    <li>Use <strong>Setter Injection</strong> for optional dependencies.</li>
+    <li>Avoid <strong>Field Injection</strong> unless necessary.</li>
+    <li>Ensure <strong>Single Responsibility</strong> by injecting only necessary dependencies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Dependency Injection is a fundamental feature of Spring Boot that simplifies component management, improves testability, and enhances application scalability. By following best practices, developers can build efficient and maintainable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Circular Dependencies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Circular Dependencies in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Circular dependencies occur when two or more Spring beans depend on each other, creating a loop that prevents proper initialization. This issue can lead to <strong>BeanCurrentlyInCreationException</strong> if not handled correctly.
+  </p>
+
+  <h3 style="color: #16a085;">Why Do Circular Dependencies Happen?</h3>
+  <p style="color: #2c3e50;">
+    Circular dependencies typically arise when:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Two beans inject each other using constructor injection.</li>
+    <li>Multiple beans indirectly depend on each other.</li>
+    <li>Field-based or setter-based injection forms a loop.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example of a Circular Dependency</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class AService {
+          private final BService bService;
+
+          public AService(BService bService) {
+              this.bService = bService;
+          }
+      }
+
+      @Service
+      public class BService {
+          private final AService aService;
+
+          public BService(AService aService) {
+              this.aService = aService;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">How to Resolve Circular Dependencies?</h3>
+  <p style="color: #2c3e50;">
+    There are multiple ways to resolve circular dependencies in Spring:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use Setter Injection</strong> instead of Constructor Injection.</li>
+    <li><strong>Apply @Lazy Annotation</strong> to delay bean initialization.</li>
+    <li><strong>Break the Dependency</strong> by restructuring the application logic.</li>
+    <li><strong>Use @PostConstruct and @PreDestroy</strong> for managing dependencies manually.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Example: Using @Lazy to Break the Loop</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Lazy;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class AService {
+          private final BService bService;
+
+          public AService(@Lazy BService bService) {
+              this.bService = bService;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Circular dependencies in Spring can cause initialization failures and make debugging difficult. By using setter injection, the @Lazy annotation, or restructuring dependencies, developers can avoid these issues and build more maintainable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Constructor Injection`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Constructor Injection in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Constructor Injection is one of the most recommended dependency injection techniques in Spring. It ensures that all required dependencies are provided at the time of object creation, making the application more stable and testable.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Constructor Injection?</h3>
+  <p style="color: #2c3e50;">
+    Constructor Injection provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Immutable Dependencies</strong>: Prevents accidental modification of dependencies.</li>
+    <li><strong>Ensures Required Dependencies</strong>: Forces all required dependencies to be provided.</li>
+    <li><strong>Better Testability</strong>: Makes unit testing easier by enabling dependency injection through constructors.</li>
+    <li><strong>Avoids Circular Dependencies</strong>: Encourages proper design patterns that prevent cyclic dependencies.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example of Constructor Injection</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          private final ProductRepository productRepository;
+
+          public ProductService(ProductRepository productRepository) {
+              this.productRepository = productRepository;
+          }
+
+          public Product getProductById(Long id) {
+              return productRepository.findById(id).orElse(null);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices for Constructor Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>final</strong> keyword to enforce immutability.</li>
+    <li>Prefer constructor injection over field injection for mandatory dependencies.</li>
+    <li>Use <strong>@Autowired</strong> on a single constructor (Spring automatically injects dependencies).</li>
+    <li>Avoid too many dependencies in a single class to maintain clean architecture.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Constructor Injection is a best practice in Spring applications. It enforces immutability, improves testability, and ensures that required dependencies are always provided. By following best practices, developers can build more maintainable and robust applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Setter Injection`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Setter Injection in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Setter Injection is another dependency injection technique in Spring. It allows dependencies to be injected into an object through setter methods, providing flexibility and better control over optional dependencies.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Setter Injection?</h3>
+  <p style="color: #2c3e50;">
+    Setter Injection provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Flexibility</strong>: Allows optional dependencies to be injected only when needed.</li>
+    <li><strong>Easy Modification</strong>: Dependencies can be modified or replaced at runtime.</li>
+    <li><strong>Better Readability</strong>: Improves code clarity by separating dependency injection from object construction.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example of Setter Injection</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          private ProductRepository productRepository;
+
+          @Autowired
+          public void setProductRepository(ProductRepository productRepository) {
+              this.productRepository = productRepository;
+          }
+
+          public Product getProductById(Long id) {
+              return productRepository.findById(id).orElse(null);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices for Setter Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use setter injection for <strong>optional dependencies</strong>.</li>
+    <li>Mark setter methods with <strong>@Autowired</strong> for automatic injection.</li>
+    <li>Ensure proper null checks to handle cases where dependencies may not be injected.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Setter Injection is a useful approach in Spring applications, particularly for optional dependencies. It provides flexibility and allows modifications at runtime. However, for mandatory dependencies, Constructor Injection is generally preferred to enforce consistency.
+  </p>
+</div>
+`
+},
+{
+  title:`Field Injection`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Field Injection in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Field Injection is a dependency injection technique in Spring where dependencies are injected directly into class fields using the <code>@Autowired</code> annotation. It simplifies dependency management by reducing boilerplate code.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Field Injection?</h3>
+  <p style="color: #2c3e50;">
+    Field Injection provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Simplicity</strong>: Eliminates the need for setter or constructor methods.</li>
+    <li><strong>Less Boilerplate</strong>: Reduces code complexity by directly injecting dependencies.</li>
+    <li><strong>Quick Implementation</strong>: Makes dependency injection straightforward.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example of Field Injection</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          @Autowired
+          private ProductRepository productRepository;
+
+          public Product getProductById(Long id) {
+              return productRepository.findById(id).orElse(null);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices for Field Injection</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use field injection for <strong>small applications</strong> or prototyping.</li>
+    <li>Avoid field injection in <strong>large applications</strong> to improve testability and maintainability.</li>
+    <li>Prefer constructor injection for mandatory dependencies to ensure immutability.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Field Injection in Spring is an easy-to-use technique for dependency injection. While it reduces boilerplate code, it can make unit testing more difficult and tightly couple dependencies. For better maintainability, constructor injection is often recommended.
+  </p>
+</div>
+`
+},
+{
+  title:`DI with Profiles`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding DI with Profiles in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, Profiles are used to define different configurations for various environments such as development, testing, and production. Dependency Injection (DI) with Profiles allows the application to load specific beans based on the active profile.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Profiles in Dependency Injection?</h3>
+  <p style="color: #2c3e50;">
+    Profiles help in managing environment-specific configurations efficiently:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Environment-Specific Beans</strong>: Load different beans for development, testing, and production.</li>
+    <li><strong>Improved Maintainability</strong>: Separates configuration logic based on deployment needs.</li>
+    <li><strong>Flexibility</strong>: Enables switching between configurations without modifying the code.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use Profiles in Spring Boot?</h3>
+  <p style="color: #2c3e50;">
+    Define beans with the <code>@Profile</code> annotation and activate the profile using application properties.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Profile;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      @Profile("dev")
+      public class DevDataService implements DataService {
+          @Override
+          public String getData() {
+              return "Development Data";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Activating Profiles</h3>
+  <p style="color: #2c3e50;">
+    You can activate a profile in the <code>application.properties</code> file:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      spring.profiles.active=dev
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Profiles</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use profiles to define <strong>environment-specific beans</strong> cleanly.</li>
+    <li>Avoid hardcoding values; instead, use externalized configuration.</li>
+    <li>Ensure the correct profile is active in production to avoid unintended behavior.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    DI with Profiles in Spring Boot is a powerful way to manage environment-specific configurations. By using <code>@Profile</code> annotations, you can seamlessly switch between different beans without modifying the core logic.
+  </p>
+</div>
+`
+},
+{
+  title:`DI and Lifecycle of Beans`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding DI and Lifecycle of Beans in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In the Spring Framework, Dependency Injection (DI) is a core concept that helps manage object dependencies. Along with DI, Spring also manages the lifecycle of beans, from creation to destruction, ensuring efficient resource management.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding Dependency Injection (DI)</h3>
+  <p style="color: #2c3e50;">
+    DI in Spring allows objects to be injected into a class rather than the class creating the dependencies itself. This promotes loose coupling and enhances testability.
+  </p>
+
+  <h3 style="color: #e67e22;">Bean Lifecycle in Spring</h3>
+  <p style="color: #2c3e50;">
+    Spring manages the lifecycle of a bean from instantiation to destruction. The key phases of the bean lifecycle are:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Instantiation</strong>: Spring creates an instance of the bean.</li>
+    <li><strong>Dependency Injection</strong>: Dependencies are injected into the bean.</li>
+    <li><strong>Initialization</strong>: Custom initialization logic is executed.</li>
+    <li><strong>Usage</strong>: The bean is ready for use.</li>
+    <li><strong>Destruction</strong>: The bean is destroyed when the application context is closed.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Bean Lifecycle Methods</h3>
+  <p style="color: #2c3e50;">
+    Spring provides multiple ways to define custom initialization and destruction methods:
+  </p>
+
+  <h4 style="color: #16a085;">Using @PostConstruct and @PreDestroy</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.annotation.PostConstruct;
+      import javax.annotation.PreDestroy;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class MyBean {
+          @PostConstruct
+          public void init() {
+              System.out.println("Bean is initialized");
+          }
+          
+          @PreDestroy
+          public void destroy() {
+              System.out.println("Bean is being destroyed");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #16a085;">Using InitializingBean and DisposableBean Interfaces</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.DisposableBean;
+      import org.springframework.beans.factory.InitializingBean;
+      import org.springframework.stereotype.Component;
+      
+      @Component
+      public class MyBean implements InitializingBean, DisposableBean {
+          @Override
+          public void afterPropertiesSet() {
+              System.out.println("Bean initialization using InitializingBean");
+          }
+          
+          @Override
+          public void destroy() {
+              System.out.println("Bean destruction using DisposableBean");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Managing Bean Lifecycle</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>@PostConstruct</strong> and <strong>@PreDestroy</strong> for clean lifecycle management.</li>
+    <li>Ensure proper <strong>dependency injection</strong> to avoid circular dependencies.</li>
+    <li>Use <strong>prototype scope</strong> for stateful beans and <strong>singleton scope</strong> for stateless beans.</li>
+    <li>Monitor resource usage and clean up resources properly in destruction methods.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Understanding DI and the lifecycle of beans in Spring is crucial for building scalable and maintainable applications. By properly managing bean initialization and destruction, developers can ensure efficient resource utilization and application performance.
+  </p>
+</div>
+`
+},
+{
+  title:`Spring Bean Post-Processors`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Spring Bean Post-Processors</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In the Spring Framework, Bean Post-Processors allow developers to modify bean properties before and after initialization. This provides flexibility in managing bean behavior dynamically.
+  </p>
+
+  <h3 style="color: #16a085;">What are Bean Post-Processors?</h3>
+  <p style="color: #2c3e50;">
+    A Bean Post-Processor is an interface in Spring that enables modifying beans during their lifecycle. Spring provides two key methods:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>postProcessBeforeInitialization</strong>: Executes before a bean's initialization.</li>
+    <li><strong>postProcessAfterInitialization</strong>: Executes after a bean's initialization.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Implementing BeanPostProcessor</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.config.BeanPostProcessor;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class CustomBeanPostProcessor implements BeanPostProcessor {
+          @Override
+          public Object postProcessBeforeInitialization(Object bean, String beanName) {
+              System.out.println("Before Initialization: " + beanName);
+              return bean;
+          }
+
+          @Override
+          public Object postProcessAfterInitialization(Object bean, String beanName) {
+              System.out.println("After Initialization: " + beanName);
+              return bean;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Use Cases for Bean Post-Processors</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Modifying bean properties dynamically.</li>
+    <li>Applying custom logic to all Spring beans.</li>
+    <li>Enforcing security rules or logging.</li>
+    <li>Injecting proxies for aspect-oriented programming (AOP).</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use BeanPostProcessor for cross-cutting concerns like logging and auditing.</li>
+    <li>Minimize complex logic inside post-processing methods.</li>
+    <li>Avoid modifying beans that could lead to circular dependencies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Bean Post-Processors provide a powerful way to manage bean behavior before and after initialization. Understanding their usage helps in building robust and maintainable Spring applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing DI`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Dependency Injection in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring applications, testing Dependency Injection (DI) ensures that the configured beans work correctly in different environments. Spring provides various tools to test DI efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test DI?</h3>
+  <p style="color: #2c3e50;">
+    Testing DI is essential for:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring correct wiring</strong>: Validates that beans are injected properly.</li>
+    <li><strong>Detecting misconfigurations</strong>: Catches errors before deployment.</li>
+    <li><strong>Maintaining modularity</strong>: Encourages loosely coupled, testable components.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Testing DI with JUnit and Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot integrates well with JUnit to test DI. Use <code>@SpringBootTest</code> to load the application context.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.context.SpringBootTest;
+      
+      @SpringBootTest
+      class DependencyInjectionTest {
+          
+          @Autowired
+          private MyService myService;
+          
+          @Test
+          void testBeanInjection() {
+              assertNotNull(myService);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using @MockBean for Testing Dependencies</h3>
+  <p style="color: #2c3e50;">
+    The <code>@MockBean</code> annotation helps mock dependencies, isolating components for testing.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.mockito.Mockito.*;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.springframework.boot.test.mock.mockito.MockBean;
+      import org.springframework.beans.factory.annotation.Autowired;
+      
+      @SpringBootTest
+      class MockingDependencyTest {
+          
+          @MockBean
+          private MyRepository myRepository;
+          
+          @Autowired
+          private MyService myService;
+          
+          @Test
+          void testMocking() {
+              when(myRepository.getData()).thenReturn("Mock Data");
+              assertEquals("Mock Data", myService.fetchData());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing DI</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>@SpringBootTest</strong> to load the full context.</li>
+    <li>Use <strong>@MockBean</strong> to isolate components.</li>
+    <li>Use <strong>@TestConfiguration</strong> for custom test beans.</li>
+    <li>Keep unit tests independent and fast.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing DI in Spring ensures that beans are wired correctly and work as expected. Using Spring Boot test utilities and mocking techniques, developers can create reliable and maintainable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`DI Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Dependency Injection Best Practices in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Dependency Injection (DI) in Spring allows for better modularity and testability. Following best practices ensures maintainability and efficiency.
+  </p>
+
+  <h3 style="color: #16a085;">Use Constructor Injection</h3>
+  <p style="color: #2c3e50;">
+    Constructor Injection is preferred over Field and Setter Injection as it ensures immutability and easier testing.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class MyService {
+          private final MyRepository myRepository;
+          
+          @Autowired
+          public MyService(MyRepository myRepository) {
+              this.myRepository = myRepository;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Avoid Field Injection</h3>
+  <p style="color: #2c3e50;">
+    Field Injection makes testing difficult and tightly couples components. Always prefer Constructor Injection.
+  </p>
+
+  <h3 style="color: #8e44ad;">Use @Qualifier for Ambiguous Dependencies</h3>
+  <p style="color: #2c3e50;">
+    When multiple beans of the same type exist, use <code>@Qualifier</code> to specify the correct one.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class MyService {
+          private final MyRepository myRepository;
+          
+          @Autowired
+          public MyService(@Qualifier("primaryRepo") MyRepository myRepository) {
+              this.myRepository = myRepository;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Use Profiles for Environment-Specific Beans</h3>
+  <p style="color: #2c3e50;">
+    Use <code>@Profile</code> to define beans specific to development, testing, or production environments.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Profile("dev")
+      @Bean
+      public DataSource devDataSource() {
+          return new H2DataSource();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Following DI best practices improves code maintainability and testability. Using Constructor Injection, avoiding Field Injection, and leveraging profiles ensure a clean and scalable Spring application.
+  </p>
+</div>
+`
 }
 
     
