@@ -22527,7 +22527,2376 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
 </div>
 `
 },
+{
+  title:`Spring Boot Actuator`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Spring Boot Actuator</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot Actuator is a powerful feature that provides production-ready capabilities to monitor and manage your Spring Boot application. It exposes a set of built-in endpoints that allow you to gather insights into the application's health, metrics, environment, and more. Actuator is particularly useful for DevOps teams, as it simplifies the process of monitoring, troubleshooting, and managing applications in production environments.
+  </p>
 
+  <h3 style="color: #16a085;">Why Use Spring Boot Actuator?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot Actuator offers several benefits for managing and monitoring applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Production-Ready Monitoring</strong>: Provides built-in endpoints for health checks, metrics, and more.</li>
+    <li><strong>Customizable</strong>: Allows you to extend and customize endpoints to suit your needs.</li>
+    <li><strong>Integration</strong>: Integrates seamlessly with monitoring tools like Prometheus, Grafana, and Micrometer.</li>
+    <li><strong>Insightful Metrics</strong>: Tracks application performance, memory usage, garbage collection, and other key metrics.</li>
+    <li><strong>Security</strong>: Supports securing actuator endpoints to prevent unauthorized access.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Spring Boot Actuator</h3>
+  <p style="color: #2c3e50;">
+    When working with Spring Boot Actuator, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Endpoints</strong>: Built-in endpoints like <code>/actuator/health</code>, <code>/actuator/metrics</code>, and <code>/actuator/env</code> provide insights into the application.</li>
+    <li><strong>Health Indicators</strong>: Checks the health of the application and its dependencies (e.g., database, disk space).</li>
+    <li><strong>Metrics</strong>: Tracks application performance and resource usage using Micrometer.</li>
+    <li><strong>Custom Endpoints</strong>: Allows you to create custom actuator endpoints for specific use cases.</li>
+    <li><strong>Security</strong>: Secures actuator endpoints using Spring Security.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Spring Boot Actuator</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to configure and use Spring Boot Actuator in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Actuator Dependency</h4>
+  <p style="color: #2c3e50;">
+    Add the Spring Boot Actuator dependency to your <code>pom.xml</code> or <code>build.gradle</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;!-- For Maven --&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Configure Actuator Endpoints</h4>
+  <p style="color: #2c3e50;">
+    Configure which actuator endpoints are enabled and exposed in the <code>application.yml</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      management:
+        endpoints:
+          web:
+            exposure:
+              include: "*" # Expose all endpoints
+        endpoint:
+          health:
+            show-details: always
+          metrics:
+            enabled: true
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Access Actuator Endpoints</h4>
+  <p style="color: #2c3e50;">
+    Access the actuator endpoints to monitor and manage your application.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      # Health check
+      curl http://localhost:8080/actuator/health
+
+      # Metrics
+      curl http://localhost:8080/actuator/metrics
+
+      # Environment details
+      curl http://localhost:8080/actuator/env
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Custom Health Indicators</h4>
+  <p style="color: #2c3e50;">
+    Create custom health indicators to monitor specific components of your application.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.actuate.health.Health;
+      import org.springframework.boot.actuate.health.HealthIndicator;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class CustomHealthIndicator implements HealthIndicator {
+
+          @Override
+          public Health health() {
+              // Custom logic to check health
+              boolean isHealthy = checkHealth();
+              if (isHealthy) {
+                  return Health.up().build();
+              } else {
+                  return Health.down().withDetail("Error", "Service is down").build();
+              }
+          }
+
+          private boolean checkHealth() {
+              // Implement health check logic
+              return true;
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">5. Secure Actuator Endpoints</h4>
+  <p style="color: #2c3e50;">
+    Secure actuator endpoints using Spring Security.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+      @Configuration
+      @EnableWebSecurity
+      public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+          @Override
+          protected void configure(HttpSecurity http) throws Exception {
+              http
+                  .authorizeRequests()
+                      .antMatchers("/actuator/**").hasRole("ADMIN")
+                      .anyRequest().permitAll()
+                      .and()
+                  .httpBasic();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Spring Boot Actuator</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Expose only necessary endpoints to minimize security risks.</li>
+    <li>Secure actuator endpoints using Spring Security or network-level restrictions.</li>
+    <li>Use custom health indicators to monitor application-specific components.</li>
+    <li>Integrate with monitoring tools like Prometheus and Grafana for advanced metrics visualization.</li>
+    <li>Regularly review and update actuator configurations to align with production needs.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot Actuator is an essential tool for monitoring and managing Spring Boot applications in production environments. By leveraging built-in endpoints, custom health indicators, and integration with monitoring tools, you can gain valuable insights into your application's performance and health. Whether you're troubleshooting issues, optimizing performance, or ensuring uptime, Spring Boot Actuator provides the features and flexibility needed to keep your application running smoothly.
+  </p>
+</div>`
+},
+{
+  title:`Spring Cloud Config`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Spring Cloud Config</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Cloud Config is a powerful tool in the Spring ecosystem that provides externalized, centralized configuration management for distributed applications. It allows applications to retrieve configurations from a central server, making it easier to manage environment-specific settings across multiple services.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Cloud Config?</h3>
+  <p style="color: #2c3e50;">
+    The benefits of using Spring Cloud Config include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized Configuration</strong>: Manage all application configurations in one place.</li>
+    <li><strong>Dynamic Updates</strong>: Reload configuration changes without restarting applications.</li>
+    <li><strong>Environment-Specific Properties</strong>: Easily manage configurations for dev, test, and production environments.</li>
+    <li><strong>Security and Version Control</strong>: Store configurations securely in Git repositories with version history.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up Spring Cloud Config Server</h3>
+  <p style="color: #2c3e50;">
+    To create a Spring Cloud Config Server, add the necessary dependencies and enable the Config Server using <code>@EnableConfigServer</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cloud.config.server.EnableConfigServer;
+
+      @SpringBootApplication
+      @EnableConfigServer
+      public class ConfigServerApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(ConfigServerApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring the Server</h3>
+  <p style="color: #2c3e50;">
+    In the <code>application.yml</code> file, specify the Git repository that holds the configuration files.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      server:
+        port: 8888
+      spring:
+        cloud:
+          config:
+            server:
+              git:
+                uri: https://github.com/your-repo/config-files
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Setting Up a Config Client</h3>
+  <p style="color: #2c3e50;">
+    To enable a Spring Boot application as a Config Client, add dependencies and specify the Config Server URL.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      spring:
+        application:
+          name: my-app
+        cloud:
+          config:
+            uri: http://localhost:8888
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Fetching Configurations from Server</h3>
+  <p style="color: #2c3e50;">
+    The client application will fetch configurations from the Config Server dynamically.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      @RefreshScope
+      public class ConfigClientController {
+          @Value("\${config.property:Default Value}")
+          private String configProperty;
+
+          @GetMapping("/config")
+          public String getConfigProperty() {
+              return configProperty;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Config simplifies configuration management for distributed applications by centralizing properties and enabling dynamic updates. It enhances maintainability, security, and scalability, making it an essential tool for cloud-native microservices architectures.
+  </p>
+</div>
+`
+},
+{
+  title:`Eureka (Service Discovery)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Eureka (Service Discovery)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Eureka is a service discovery tool from Netflix, widely used in Spring Cloud to enable dynamic service registration and lookup. It helps microservices locate each other dynamically without hardcoding service locations, improving scalability and fault tolerance.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Eureka?</h3>
+  <p style="color: #2c3e50;">
+    Eureka provides multiple advantages for microservices-based architectures:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Dynamic Service Registration</strong>: Microservices register and deregister dynamically.</li>
+    <li><strong>Load Balancing</strong>: Clients can retrieve service instances for better load distribution.</li>
+    <li><strong>High Availability</strong>: Eureka Server can run in a cluster to ensure resilience.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up Eureka Server</h3>
+  <p style="color: #2c3e50;">
+    To create a Eureka Server, add the necessary dependencies and use the <code>@EnableEurekaServer</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+      @SpringBootApplication
+      @EnableEurekaServer
+      public class EurekaServerApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(EurekaServerApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring Eureka Server</h3>
+  <p style="color: #2c3e50;">
+    Add the following properties to <code>application.yml</code> or <code>application.properties</code> to configure the Eureka server.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      server:
+        port: 8761
+      eureka:
+        instance:
+          hostname: localhost
+        client:
+          register-with-eureka: false
+          fetch-registry: false
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Registering a Microservice with Eureka</h3>
+  <p style="color: #2c3e50;">
+    A microservice can register with Eureka by adding the necessary dependencies and using <code>@EnableEurekaClient</code>.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+      @SpringBootApplication
+      @EnableDiscoveryClient
+      public class ServiceApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(ServiceApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Eureka</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Run Eureka Server in cluster mode for high availability.</li>
+    <li>Use instance metadata for service-specific configurations.</li>
+    <li>Enable service health checks to remove unhealthy instances.</li>
+    <li>Configure client timeouts and retry mechanisms for resilience.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Eureka simplifies service discovery in a microservices architecture, allowing dynamic scaling and resilience. By integrating Eureka effectively, applications gain better fault tolerance, load balancing, and streamlined communication between services.
+  </p>
+</div>
+`
+},
+{
+  title:`Load Balancer`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Spring Cloud LoadBalancer</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Cloud LoadBalancer is a client-side load-balancing library that helps distribute traffic among multiple instances of a service. It replaces Netflix Ribbon in Spring Cloud and provides an efficient way to balance service requests without relying on external load balancers.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Cloud LoadBalancer?</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud LoadBalancer offers several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Client-Side Load Balancing</strong>: Distributes requests across multiple instances of a microservice.</li>
+    <li><strong>Ribbon Replacement</strong>: A lightweight alternative to Netflix Ribbon.</li>
+    <li><strong>Integration with Service Discovery</strong>: Works seamlessly with Eureka, Consul, and other service registries.</li>
+    <li><strong>Customization</strong>: Supports custom load-balancing rules and configurations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up Spring Cloud LoadBalancer</h3>
+  <p style="color: #2c3e50;">
+    To use Spring Cloud LoadBalancer, add the necessary dependency in your <code>pom.xml</code> file:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+      </dependency>
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using Spring Cloud LoadBalancer</h3>
+  <p style="color: #2c3e50;">
+    Inject a <code>RestTemplate</code> bean with load-balancing enabled:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.web.client.RestTemplate;
+
+      @SpringBootApplication
+      public class LoadBalancerApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(LoadBalancerApplication.class, args);
+          }
+
+          @Bean
+          @LoadBalanced
+          public RestTemplate restTemplate() {
+              return new RestTemplate();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Load Balancing in Feign Clients</h3>
+  <p style="color: #2c3e50;">
+    You can also enable load balancing with Feign clients:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cloud.openfeign.FeignClient;
+      import org.springframework.web.bind.annotation.GetMapping;
+
+      @FeignClient(name = "my-service")
+      public interface MyServiceClient {
+          @GetMapping("/data")
+          String getData();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Customizing Load Balancing Strategy</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud LoadBalancer allows customization using a <code>ServiceInstanceListSupplier</code>:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cloud.client.ServiceInstance;
+      import org.springframework.cloud.client.loadbalancer.ServiceInstanceListSupplier;
+      import reactor.core.publisher.Flux;
+      import java.util.List;
+      import java.util.Random;
+
+      public class CustomLoadBalancer extends ServiceInstanceListSupplier {
+          private final List<ServiceInstance> instances;
+
+          public CustomLoadBalancer(List<ServiceInstance> instances) {
+              this.instances = instances;
+          }
+
+          @Override
+          public Flux<List<ServiceInstance>> get() {
+              return Flux.just(instances);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Spring Cloud LoadBalancer</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure proper service discovery integration (Eureka, Consul, etc.).</li>
+    <li>Use <strong>@LoadBalanced</strong> annotation for client-side load balancing.</li>
+    <li>Monitor and fine-tune the load-balancing strategy based on traffic patterns.</li>
+    <li>Implement resilience patterns like circuit breakers for better fault tolerance.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud LoadBalancer is a lightweight and efficient client-side load-balancing solution that replaces Ribbon in Spring Cloud. By integrating it with RestTemplate, Feign clients, and custom load-balancing strategies, developers can efficiently distribute traffic across microservice instances, ensuring optimal performance and resilience.
+  </p>
+</div>
+`
+},
+{
+  title:`Spring Cloud Gateway`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Spring Cloud Gateway</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Cloud Gateway is a powerful and flexible API gateway built on top of the Spring ecosystem. It is designed to provide a simple yet effective way to route requests to the appropriate microservices, apply cross-cutting concerns like security, rate limiting, and logging, and manage traffic in a microservices architecture. As a central entry point for all client requests, Spring Cloud Gateway plays a critical role in ensuring scalability, security, and reliability in distributed systems.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Cloud Gateway?</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Gateway offers several benefits for managing microservices:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized Routing</strong>: Acts as a single entry point for routing requests to multiple microservices.</li>
+    <li><strong>Cross-Cutting Concerns</strong>: Handles security, rate limiting, logging, and other concerns in a centralized manner.</li>
+    <li><strong>Dynamic Routing</strong>: Supports dynamic routing based on conditions like headers, paths, or query parameters.</li>
+    <li><strong>Scalability</strong>: Enables horizontal scaling of microservices by distributing traffic efficiently.</li>
+    <li><strong>Integration</strong>: Works seamlessly with other Spring Cloud components like Eureka, Config, and Circuit Breaker.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Spring Cloud Gateway</h3>
+  <p style="color: #2c3e50;">
+    When working with Spring Cloud Gateway, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Routes</strong>: Define how requests are routed to backend services based on conditions like path, method, or headers.</li>
+    <li><strong>Predicates</strong>: Conditions that determine whether a route should be applied to a request.</li>
+    <li><strong>Filters</strong>: Modify requests or responses before or after routing (e.g., adding headers, logging, rate limiting).</li>
+    <li><strong>Load Balancing</strong>: Integrates with Spring Cloud LoadBalancer to distribute traffic across multiple instances of a service.</li>
+    <li><strong>Circuit Breaker</strong>: Provides fault tolerance by integrating with Spring Cloud Circuit Breaker.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Spring Cloud Gateway</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to configure and use Spring Cloud Gateway in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Spring Cloud Gateway Dependency</h4>
+  <p style="color: #2c3e50;">
+    Add the Spring Cloud Gateway dependency to your <code>pom.xml</code> or <code>build.gradle</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;!-- For Maven --&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-gateway&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Configure Routes in <code>application.yml</code></h4>
+  <p style="color: #2c3e50;">
+    Define routes and predicates in the <code>application.yml</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        cloud:
+          gateway:
+            routes:
+              - id: user_service
+                uri: http://localhost:8081
+                predicates:
+                  - Path=/users/**
+              - id: order_service
+                uri: http://localhost:8082
+                predicates:
+                  - Path=/orders/**
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Add Filters to Routes</h4>
+  <p style="color: #2c3e50;">
+    Use filters to modify requests or responses.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        cloud:
+          gateway:
+            routes:
+              - id: user_service
+                uri: http://localhost:8081
+                predicates:
+                  - Path=/users/**
+                filters:
+                  - AddRequestHeader=X-Request-Id, 12345
+                  - RewritePath=/users/(?&lt;segment&gt;.*), /$\{segment}
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Enable Load Balancing</h4>
+  <p style="color: #2c3e50;">
+    Integrate with Spring Cloud LoadBalancer to distribute traffic across multiple instances of a service.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        cloud:
+          gateway:
+            routes:
+              - id: user_service
+                uri: lb://user-service
+                predicates:
+                  - Path=/users/**
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">5. Enable Circuit Breaker</h4>
+  <p style="color: #2c3e50;">
+    Use Spring Cloud Circuit Breaker to handle failures gracefully.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-yaml">
+      spring:
+        cloud:
+          gateway:
+            routes:
+              - id: user_service
+                uri: lb://user-service
+                predicates:
+                  - Path=/users/**
+                filters:
+                  - CircuitBreaker=myCircuitBreaker
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Spring Cloud Gateway</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful route IDs and predicates for better readability and maintainability.</li>
+    <li>Secure the gateway using Spring Security to prevent unauthorized access.</li>
+    <li>Monitor gateway performance and logs to detect and resolve issues quickly.</li>
+    <li>Use load balancing and circuit breakers to improve fault tolerance and scalability.</li>
+    <li>Test routes and filters thoroughly to ensure they behave as expected.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Gateway is a powerful tool for managing and routing traffic in a microservices architecture. By centralizing routing, security, and cross-cutting concerns, it simplifies the development and operation of distributed systems. Whether you're building a new microservices application or migrating an existing one, Spring Cloud Gateway provides the flexibility and features needed to ensure scalability, reliability, and security.
+  </p>
+</div>
+`
+},
+{
+   title:`OpenFeign`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding OpenFeign in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    OpenFeign is a declarative web service client in Spring Boot that simplifies API communication between microservices. It eliminates the need for manually writing REST client code and enhances readability and maintainability.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use OpenFeign?</h3>
+  <p style="color: #2c3e50;">
+    OpenFeign provides several benefits for microservices-based applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Declarative REST Client</strong>: No need to write complex HTTP client code.</li>
+    <li><strong>Built-in Load Balancing</strong>: Integrates with Spring Cloud LoadBalancer for distributing requests.</li>
+    <li><strong>Automatic Request Serialization</strong>: Converts Java objects to JSON automatically.</li>
+    <li><strong>Resilience</strong>: Works well with Circuit Breakers like Resilience4J for fault tolerance.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up OpenFeign</h3>
+  <p style="color: #2c3e50;">
+    To use OpenFeign, add the required dependencies in your <code>pom.xml</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Enabling OpenFeign in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Enable OpenFeign by adding the <code>@EnableFeignClients</code> annotation in your main Spring Boot application class.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.cloud.openfeign.EnableFeignClients;
+
+      @SpringBootApplication
+      @EnableFeignClients
+      public class OpenFeignApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(OpenFeignApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Defining a Feign Client</h3>
+  <p style="color: #2c3e50;">
+    Create an interface and annotate it with <code>@FeignClient</code> to declare a REST client.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cloud.openfeign.FeignClient;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.PathVariable;
+
+      @FeignClient(name = "user-service", url = "http://localhost:8081")
+      public interface UserClient {
+          
+          @GetMapping("/users/{id}")
+          User getUserById(@PathVariable("id") Long id);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using the Feign Client</h3>
+  <p style="color: #2c3e50;">
+    Inject the Feign client into a service class and call its methods.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          private final UserClient userClient;
+
+          public UserService(UserClient userClient) {
+              this.userClient = userClient;
+          }
+
+          public User fetchUser(Long id) {
+              return userClient.getUserById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Adding Resilience with Circuit Breakers</h3>
+  <p style="color: #2c3e50;">
+    Integrate OpenFeign with Resilience4J to handle failures gracefully.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cloud.openfeign.FallbackFactory;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class UserClientFallbackFactory implements FallbackFactory&lt;UserClient&gt; {
+          @Override
+          public UserClient create(Throwable cause) {
+              return id -> new User(id, "Fallback User");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using OpenFeign</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Enable <strong>logging</strong> to debug API calls.</li>
+    <li>Use <strong>Resilience4J</strong> for fault tolerance.</li>
+    <li>Integrate with <strong>Spring Cloud LoadBalancer</strong> for distributed requests.</li>
+    <li>Configure timeouts to prevent long request delays.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    OpenFeign simplifies REST client interactions in Spring Boot applications by offering a declarative API call approach. With built-in load balancing, resilience, and seamless integration with Spring Cloud, OpenFeign enhances microservices communication while improving performance and maintainability.
+  </p>
+</div>
+`
+},
+{
+   title:`Resilience4j (Circuit Breaker)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Resilience4j Circuit Breaker in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Resilience4j is a lightweight fault tolerance library designed for Java applications, particularly microservices. The <strong>Circuit Breaker</strong> module in Resilience4j helps prevent service failures from cascading by stopping excessive requests to failing services and allowing recovery time.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Resilience4j Circuit Breaker?</h3>
+  <p style="color: #2c3e50;">
+    The Circuit Breaker pattern provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Prevents System Overload</strong>: Stops repeated calls to a failing service, reducing resource usage.</li>
+    <li><strong>Improves Fault Tolerance</strong>: Allows services to recover instead of continuously failing.</li>
+    <li><strong>Enhances System Stability</strong>: Avoids cascading failures in distributed architectures.</li>
+    <li><strong>Automatic Recovery</strong>: Gradually allows traffic once the failing service is restored.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Adding Resilience4j to a Spring Boot Project</h3>
+  <p style="color: #2c3e50;">
+    To use Resilience4j, add the required dependencies in your <code>pom.xml</code> file.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;io.github.resilience4j&lt;/groupId&gt;
+          &lt;artifactId&gt;resilience4j-spring-boot2&lt;/artifactId&gt;
+          &lt;version&gt;1.7.1&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Enabling Circuit Breaker in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Use the <code>@CircuitBreaker</code> annotation to wrap methods that may experience failures.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+      import org.springframework.stereotype.Service;
+      import java.util.Random;
+
+      @Service
+      public class ExternalService {
+
+          @CircuitBreaker(name = "externalService", fallbackMethod = "fallbackResponse")
+          public String getData() {
+              if (new Random().nextBoolean()) {
+                  throw new RuntimeException("Service failure!");
+              }
+              return "Successful Response";
+          }
+
+          public String fallbackResponse(Exception e) {
+              return "Fallback Response: Service is temporarily unavailable.";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring Circuit Breaker Properties</h3>
+  <p style="color: #2c3e50;">
+    You can configure circuit breaker properties in <code>application.yml</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      resilience4j:
+        circuitbreaker:
+          instances:
+            externalService:
+              failureRateThreshold: 50
+              waitDurationInOpenState: 5000ms
+              permittedNumberOfCallsInHalfOpenState: 3
+              slidingWindowSize: 10
+              minimumNumberOfCalls: 5
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Circuit Breaker States</h3>
+  <p style="color: #2c3e50;">
+    A Circuit Breaker operates in three states:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Closed</strong>: Normal state; requests flow freely.</li>
+    <li><strong>Open</strong>: Failure threshold exceeded; blocks requests for a cooldown period.</li>
+    <li><strong>Half-Open</strong>: Allows limited test requests; if successful, switches back to Closed.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Combining Circuit Breaker with Retry</h3>
+  <p style="color: #2c3e50;">
+    Resilience4j allows integrating Circuit Breaker with Retry for better fault tolerance.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import io.github.resilience4j.retry.annotation.Retry;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class RetryService {
+
+          @Retry(name = "retryService", fallbackMethod = "retryFallback")
+          public String fetchData() {
+              throw new RuntimeException("Temporary Failure");
+          }
+
+          public String retryFallback(Exception e) {
+              return "Fallback after retries: Service not available.";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Monitoring Circuit Breaker Metrics</h3>
+  <p style="color: #2c3e50;">
+    Resilience4j provides actuator endpoints to monitor circuit breakers.
+  </p>
+  <p style="color: #2c3e50;">
+    Enable Actuator in <code>application.yml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      management:
+        endpoints:
+          web:
+            exposure:
+              include: resilience4j.circuitbreakers
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Access the metrics at: <code>http://localhost:8080/actuator/resilience4j/circuitbreakers</code>
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for Using Resilience4j</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Fine-tune circuit breaker thresholds based on system needs.</li>
+    <li>Integrate with <strong>Retry</strong> to handle temporary failures.</li>
+    <li>Use <strong>Actuator</strong> to monitor circuit breaker performance.</li>
+    <li>Test failure scenarios to validate resilience strategies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Resilience4j Circuit Breaker is a crucial tool for building resilient microservices. It prevents cascading failures, ensures better system stability, and improves application fault tolerance. By combining Circuit Breaker with Retry, Rate Limiting, and Actuator monitoring, Spring Boot applications can handle failures efficiently.
+  </p>
+</div>
+`
+},
+{
+   title:`Sleuth & Zipkin (Tracing)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Sleuth & Zipkin for Distributed Tracing in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In microservices architectures, it is challenging to trace requests as they travel across multiple services. <strong>Spring Cloud Sleuth</strong> and <strong>Zipkin</strong> help with distributed tracing by tagging requests with unique identifiers, allowing developers to monitor and debug service calls efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">What is Spring Cloud Sleuth?</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Sleuth automatically generates tracing information for requests passing through microservices. It adds:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Trace ID</strong>: A unique identifier for each request.</li>
+    <li><strong>Span ID</strong>: A segment within a trace, representing a specific operation.</li>
+    <li><strong>Parent-Child Relationships</strong>: Helps track service interactions.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">What is Zipkin?</h3>
+  <p style="color: #2c3e50;">
+    Zipkin is a distributed tracing system that collects timing data, visualizes request paths, and helps identify bottlenecks in microservices.
+  </p>
+
+  <h3 style="color: #e67e22;">Adding Sleuth & Zipkin to a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    To enable tracing, add the following dependencies in <code>pom.xml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-sleuth&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-zipkin&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring Zipkin in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Configure Zipkin properties in <code>application.yml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      spring:
+        zipkin:
+          base-url: http://localhost:9411
+        sleuth:
+          sampler:
+            probability: 1.0
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The <code>probability</code> value (1.0) ensures all requests are traced. Reduce it for production environments.
+  </p>
+
+  <h3 style="color: #8e44ad;">Running Zipkin</h3>
+  <p style="color: #2c3e50;">
+    You can run Zipkin using Docker:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      docker run -d -p 9411:9411 openzipkin/zipkin
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Once running, access Zipkin UI at: <a href="http://localhost:9411" target="_blank">http://localhost:9411</a>
+  </p>
+
+  <h3 style="color: #8e44ad;">Using Sleuth for Tracing in a REST Controller</h3>
+  <p style="color: #2c3e50;">
+    Example of a REST API that logs tracing information:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.slf4j.Logger;
+      import org.slf4j.LoggerFactory;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class TracingController {
+
+          private static final Logger logger = LoggerFactory.getLogger(TracingController.class);
+
+          @GetMapping("/trace")
+          public String traceRequest() {
+              logger.info("Tracing request received.");
+              return "Tracing request completed.";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Tracing Requests Across Multiple Microservices</h3>
+  <p style="color: #2c3e50;">
+    When calling another microservice, Sleuth automatically propagates trace and span IDs.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+      import org.springframework.web.client.RestTemplate;
+
+      @RestController
+      @RequestMapping("/service1")
+      public class Service1Controller {
+
+          @Autowired
+          private RestTemplate restTemplate;
+
+          @GetMapping("/callService2")
+          public String callService2() {
+              return restTemplate.getForObject("http://localhost:8081/service2/trace", String.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Viewing Tracing Data in Zipkin</h3>
+  <p style="color: #2c3e50;">
+    After making API calls, open Zipkin (<a href="http://localhost:9411" target="_blank">http://localhost:9411</a>) and:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Search for traces using the Trace ID.</li>
+    <li>View the end-to-end latency of service calls.</li>
+    <li>Identify slow microservices or failures.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Using Sleuth & Zipkin</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use Sleuth with Zipkin for real-time monitoring of request flows.</li>
+    <li>Reduce <code>sampling probability</code> in production to avoid performance overhead.</li>
+    <li>Use logging frameworks (e.g., ELK stack) to complement tracing.</li>
+    <li>Integrate with monitoring tools like Prometheus for deeper insights.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Sleuth and Zipkin provide essential tracing capabilities for microservices. They help developers diagnose performance issues, track request flows, and improve overall system reliability. Implementing distributed tracing enhances observability, making debugging and performance optimization easier.
+  </p>
+</div>
+`
+},
+{
+   title:`Spring Cloud Bus`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Spring Cloud Bus for Distributed Configuration Updates</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a microservices architecture, managing configuration updates across multiple services can be challenging. <strong>Spring Cloud Bus</strong> helps synchronize configuration changes across distributed systems using a lightweight message broker such as <strong>RabbitMQ</strong> or <strong>Kafka</strong>. This eliminates the need to restart services manually after updating configurations.
+  </p>
+
+  <h3 style="color: #16a085;">What is Spring Cloud Bus?</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Bus links microservices using a distributed messaging system to broadcast configuration updates and events dynamically. It is primarily used with <strong>Spring Cloud Config</strong> to notify all running instances when configuration changes occur.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Spring Cloud Bus</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Propagates configuration changes across multiple services.</li>
+    <li>Uses messaging systems like RabbitMQ or Kafka.</li>
+    <li>Reduces downtime by eliminating manual service restarts.</li>
+    <li>Enhances scalability in dynamic cloud environments.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Adding Spring Cloud Bus to a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    To enable Spring Cloud Bus, add the following dependencies in <code>pom.xml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-bus-amqp&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The above dependencies configure Spring Cloud Bus with <strong>RabbitMQ</strong>. If you are using <strong>Kafka</strong>, replace <code>spring-cloud-starter-bus-amqp</code> with <code>spring-cloud-starter-bus-kafka</code>.
+  </p>
+
+  <h3 style="color: #8e44ad;">Configuring Spring Cloud Bus</h3>
+  <p style="color: #2c3e50;">
+    Add the following properties in <code>application.yml</code> to configure RabbitMQ:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      spring:
+        cloud:
+          config:
+            server:
+              git:
+                uri: https://github.com/your-repo/config-repo
+        rabbitmq:
+          host: localhost
+          port: 5672
+          username: guest
+          password: guest
+        bus:
+          enabled: true
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Ensure RabbitMQ is running locally, or use a cloud-based RabbitMQ service.
+  </p>
+
+  <h3 style="color: #8e44ad;">Running RabbitMQ</h3>
+  <p style="color: #2c3e50;">
+    You can run RabbitMQ using Docker:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Access RabbitMQ Management UI at: <a href="http://localhost:15672" target="_blank">http://localhost:15672</a> (Default credentials: <code>guest/guest</code>)
+  </p>
+
+  <h3 style="color: #8e44ad;">Triggering Configuration Updates</h3>
+  <p style="color: #2c3e50;">
+    To refresh configurations dynamically across microservices, make a POST request:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      curl -X POST http://localhost:8080/actuator/bus-refresh
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    This command triggers Spring Cloud Bus to propagate the configuration changes across all connected services.
+  </p>
+
+  <h3 style="color: #8e44ad;">Using Spring Cloud Bus with Multiple Services</h3>
+  <p style="color: #2c3e50;">
+    To ensure all microservices update their configurations dynamically, enable <code>@RefreshScope</code> in your service:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Value;
+      import org.springframework.cloud.context.config.annotation.RefreshScope;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RefreshScope
+      @RequestMapping("/config")
+      public class ConfigController {
+
+          @Value("\${message}")
+          private String message;
+
+          @GetMapping("/message")
+          public String getMessage() {
+              return "Config Message: " + message;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Benefits of Using Spring Cloud Bus</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automatic Configuration Updates:</strong> No need to restart services.</li>
+    <li><strong>Scalability:</strong> Works efficiently in large-scale distributed environments.</li>
+    <li><strong>Messaging System Support:</strong> Works with RabbitMQ and Kafka.</li>
+    <li><strong>Enhanced Event Broadcasting:</strong> Useful for real-time updates across services.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Bus simplifies configuration management in microservices by dynamically propagating changes using message brokers like RabbitMQ or Kafka. It enhances scalability, reduces downtime, and improves operational efficiency. By integrating Spring Cloud Bus with Spring Cloud Config, you can achieve a highly flexible and resilient cloud-native architecture.
+  </p>
+</div>
+`
+},
+{
+   title:`Spring Security & OAuth2`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Security & OAuth2: Securing Your Microservices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In modern web applications, securing APIs and user authentication is a critical requirement. <strong>Spring Security</strong> is the most widely used authentication and authorization framework in the Spring ecosystem, while <strong>OAuth2</strong> is a powerful protocol for secure delegated access. Together, they help protect microservices by enabling authentication, authorization, and token-based security.
+  </p>
+
+  <h3 style="color: #16a085;">What is Spring Security?</h3>
+  <p style="color: #2c3e50;">
+    Spring Security is a robust framework that provides authentication, authorization, and protection against security vulnerabilities such as CSRF, session fixation, and more. It integrates seamlessly with Spring Boot and supports various authentication mechanisms, including OAuth2.
+  </p>
+
+  <h3 style="color: #16a085;">What is OAuth2?</h3>
+  <p style="color: #2c3e50;">
+    <strong>OAuth2</strong> (Open Authorization) is an industry-standard protocol for secure API access. It allows users to grant limited access to their resources without exposing credentials. OAuth2 works by issuing <strong>access tokens</strong>, which are used to authenticate and authorize API requests.
+  </p>
+
+  <h3 style="color: #e67e22;">Key Components of OAuth2</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Resource Owner:</strong> The user who owns the data.</li>
+    <li><strong>Client:</strong> The application requesting access.</li>
+    <li><strong>Authorization Server:</strong> Issues access tokens.</li>
+    <li><strong>Resource Server:</strong> Hosts the protected resources.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Adding Spring Security and OAuth2 to a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    To enable OAuth2 authentication in a Spring Boot application, add the following dependencies in <code>pom.xml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-oauth2-resource-server&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring OAuth2 Resource Server</h3>
+  <p style="color: #2c3e50;">
+    In <code>application.yml</code>, configure the resource server to validate access tokens issued by an authorization server (such as Keycloak, Okta, or Auth0):
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      spring:
+        security:
+          oauth2:
+            resourceserver:
+              jwt:
+                issuer-uri: https://your-auth-server.com
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Securing REST APIs with OAuth2</h3>
+  <p style="color: #2c3e50;">
+    To protect REST endpoints, create a security configuration class:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+      import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+      import org.springframework.security.web.SecurityFilterChain;
+
+      @EnableWebSecurity
+      public class SecurityConfig {
+
+          @Bean
+          public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+              http
+                  .authorizeHttpRequests(auth -> auth
+                      .requestMatchers("/public/**").permitAll()
+                      .anyRequest().authenticated()
+                  )
+                  .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+
+              return http.build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Testing OAuth2 Authentication</h3>
+  <p style="color: #2c3e50;">
+    Use a valid OAuth2 access token to access protected resources:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      curl -H "Authorization: Bearer YOUR_ACCESS_TOKEN" http://localhost:8080/api/secure-data
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Benefits of Using Spring Security & OAuth2</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Centralized Authentication:</strong> Manages authentication across microservices.</li>
+    <li><strong>Token-Based Security:</strong> Avoids exposing user credentials.</li>
+    <li><strong>Role-Based Access Control:</strong> Defines access levels for users.</li>
+    <li><strong>Integration with Identity Providers:</strong> Supports Okta, Keycloak, Auth0, etc.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Security and OAuth2 provide a robust and scalable approach to securing microservices. By integrating OAuth2, developers can implement authentication and authorization using token-based security. This ensures that APIs remain protected and only authorized users can access sensitive data.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Kafka/RabbitMQ (Event-Driven)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Kafka vs. RabbitMQ: Understanding Event-Driven Architecture</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In modern microservices-based applications, <strong>event-driven architecture</strong> is widely used to enable asynchronous communication between services. <strong>Kafka</strong> and <strong>RabbitMQ</strong> are two popular message brokers that facilitate real-time data streaming and event-driven processing.
+  </p>
+
+  <h3 style="color: #16a085;">What is Event-Driven Architecture?</h3>
+  <p style="color: #2c3e50;">
+    Event-driven architecture (EDA) is a design pattern where services communicate through events rather than direct API calls. When an event occurs, it is published to an event broker, which distributes it to interested subscribers.
+  </p>
+
+  <h3 style="color: #e67e22;">Why Use Kafka or RabbitMQ?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Asynchronous Communication:</strong> Services operate independently without waiting for responses.</li>
+    <li><strong>Scalability:</strong> Handles a large number of messages efficiently.</li>
+    <li><strong>Reliability:</strong> Ensures message durability and fault tolerance.</li>
+    <li><strong>Decoupled Services:</strong> Microservices remain loosely coupled, improving flexibility.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Apache Kafka Overview</h3>
+  <p style="color: #2c3e50;">
+    <strong>Kafka</strong> is a distributed event-streaming platform designed for high throughput and fault tolerance. It is widely used for real-time analytics, log aggregation, and stream processing.
+  </p>
+
+  <h4 style="color: #2980b9;">Key Features of Kafka:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Distributed and horizontally scalable.</li>
+    <li>Uses a publish-subscribe model.</li>
+    <li>Supports message retention and replay.</li>
+    <li>Works well with real-time data processing frameworks.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">RabbitMQ Overview</h3>
+  <p style="color: #2c3e50;">
+    <strong>RabbitMQ</strong> is a lightweight message broker based on the AMQP protocol, commonly used for transactional messaging and task queues.
+  </p>
+
+  <h4 style="color: #2980b9;">Key Features of RabbitMQ:</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Supports multiple messaging patterns (pub-sub, request-reply, work queues).</li>
+    <li>Ensures message delivery with acknowledgments and retries.</li>
+    <li>Lightweight and easy to configure.</li>
+    <li>Well-suited for short-lived messages and transactional systems.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Setting Up Kafka in a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    Add the following dependencies in <code>pom.xml</code> to integrate Kafka with Spring Boot:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.kafka&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-kafka&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Kafka Producer</h4>
+  <p style="color: #2c3e50;">
+    A Kafka producer sends messages to a topic.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.kafka.core.KafkaTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class KafkaProducer {
+
+          private final KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+
+          public KafkaProducer(KafkaTemplate&lt;String, String&gt; kafkaTemplate) {
+              this.kafkaTemplate = kafkaTemplate;
+          }
+
+          public void sendMessage(String topic, String message) {
+              kafkaTemplate.send(topic, message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Kafka Consumer</h4>
+  <p style="color: #2c3e50;">
+    A Kafka consumer listens for messages from a topic.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.apache.kafka.clients.consumer.ConsumerRecord;
+      import org.springframework.kafka.annotation.KafkaListener;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class KafkaConsumer {
+
+          @KafkaListener(topics = "myTopic", groupId = "group_id")
+          public void consume(ConsumerRecord&lt;String, String&gt; record) {
+              System.out.println("Received message: " + record.value());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Setting Up RabbitMQ in a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    Add the following dependencies in <code>pom.xml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-amqp&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">RabbitMQ Producer</h4>
+  <p style="color: #2c3e50;">
+    A RabbitMQ producer sends messages to a queue.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.rabbit.core.RabbitTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class RabbitMQProducer {
+
+          private final RabbitTemplate rabbitTemplate;
+
+          public RabbitMQProducer(RabbitTemplate rabbitTemplate) {
+              this.rabbitTemplate = rabbitTemplate;
+          }
+
+          public void sendMessage(String queue, String message) {
+              rabbitTemplate.convertAndSend(queue, message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Choosing Between Kafka and RabbitMQ</h3>
+  <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <tr style="background: #2c3e50; color: white;">
+      <th style="padding: 10px;">Feature</th>
+      <th style="padding: 10px;">Kafka</th>
+      <th style="padding: 10px;">RabbitMQ</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">Best For</td>
+      <td style="padding: 10px;">High-volume event streaming</td>
+      <td style="padding: 10px;">Transactional messaging</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">Persistence</td>
+      <td style="padding: 10px;">Message retention</td>
+      <td style="padding: 10px;">Messages deleted after consumption</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Kafka and RabbitMQ are powerful tools for event-driven systems. Kafka is best suited for large-scale data processing, while RabbitMQ excels at real-time messaging and transactional systems.
+  </p>
+</div>
+`
+},
+{
+  title:`Microservices Data Management`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Microservices Data Management: Strategies and Best Practices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Microservices architecture enables scalable and flexible application development by breaking down a monolithic system into smaller, independent services. However, managing data across multiple microservices presents challenges in consistency, integrity, and performance. This article explores effective strategies for handling data in microservices environments.
+  </p>
+
+  <h3 style="color: #16a085;">Challenges in Microservices Data Management</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Consistency:</strong> Ensuring consistency across distributed databases.</li>
+    <li><strong>Scalability:</strong> Managing growing data volumes efficiently.</li>
+    <li><strong>Data Integrity:</strong> Avoiding duplicate or conflicting data.</li>
+    <li><strong>Querying Across Services:</strong> Handling cross-service data retrieval.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Strategies for Data Management in Microservices</h3>
+
+  <h4 style="color: #2980b9;">1. Database Per Microservice</h4>
+  <p style="color: #2c3e50;">
+    Each microservice has its own dedicated database, ensuring loose coupling and independent scalability.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Improves service autonomy.</li>
+    <li>Prevents direct database access between microservices.</li>
+    <li>Enables technology flexibility (SQL, NoSQL, etc.).</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">2. API-Based Communication</h4>
+  <p style="color: #2c3e50;">
+    Instead of sharing databases, microservices should expose APIs for data exchange.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      @RequestMapping("/orders")
+      public class OrderController {
+          @GetMapping("/{id}")
+          public Order getOrder(@PathVariable Long id) {
+              return orderService.getOrderById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">3. Event-Driven Architecture</h4>
+  <p style="color: #2c3e50;">
+    Services communicate asynchronously using messaging systems like Kafka or RabbitMQ.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class OrderEventPublisher {
+          @Autowired
+          private KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+
+          public void publishOrderCreatedEvent(String order) {
+              kafkaTemplate.send("order-topic", order);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">4. Saga Pattern for Distributed Transactions</h4>
+  <p style="color: #2c3e50;">
+    The Saga pattern ensures data consistency across microservices without using distributed transactions.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Orchestrator-based Saga: A centralized service coordinates transactions.</li>
+    <li>Choreography-based Saga: Each service listens for events and acts accordingly.</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">5. CQRS (Command Query Responsibility Segregation)</h4>
+  <p style="color: #2c3e50;">
+    Separates read and write operations for better performance and scalability.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      public class OrderService {
+          public void createOrder(Order order) { /* Write operation */ }
+          public Order getOrder(Long id) { /* Read operation */ return orderRepository.findById(id).get(); }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Choosing the Right Database for Microservices</h3>
+  <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <tr style="background: #2c3e50; color: white;">
+      <th style="padding: 10px;">Database Type</th>
+      <th style="padding: 10px;">Best For</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">SQL (MySQL, PostgreSQL)</td>
+      <td style="padding: 10px;">Structured data and transactions</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">NoSQL (MongoDB, Cassandra)</td>
+      <td style="padding: 10px;">High availability and flexible schema</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">Event Store (Kafka, EventStoreDB)</td>
+      <td style="padding: 10px;">Event-driven data persistence</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Effective data management in microservices requires choosing the right strategies and tools. By implementing techniques like database per service, event-driven architecture, and CQRS, organizations can build scalable, reliable, and high-performance microservices applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Docker & Kubernetes`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Docker & Kubernetes: Containerization and Orchestration</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In modern software development, containerization has become a crucial approach for deploying applications efficiently. <strong>Docker</strong> is a powerful containerization platform that simplifies application packaging, while <strong>Kubernetes</strong> is an orchestration tool that manages and scales containers automatically. Together, they provide a robust solution for deploying, managing, and scaling applications.
+  </p>
+
+  <h3 style="color: #16a085;">What is Docker?</h3>
+  <p style="color: #2c3e50;">
+    Docker is a platform that enables developers to create, deploy, and run applications in isolated environments called containers. These containers package everything needed to run an application, including the code, dependencies, and runtime environment.
+  </p>
+
+  <h4 style="color: #2980b9;">Key Features of Docker</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Lightweight and fast compared to traditional virtual machines.</li>
+    <li>Ensures consistency across multiple environments (development, testing, production).</li>
+    <li>Enables easy deployment with Docker images and containers.</li>
+    <li>Supports microservices architecture by isolating services.</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">Basic Docker Commands</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      # Check Docker installation
+      docker --version 
+
+      # Pull an official Nginx image
+      docker pull nginx 
+
+      # Run a container from the Nginx image
+      docker run -d -p 8080:80 nginx 
+
+      # List running containers
+      docker ps 
+
+      # Stop a running container
+      docker stop container_id 
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">What is Kubernetes?</h3>
+  <p style="color: #2c3e50;">
+    Kubernetes (K8s) is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It is widely used for running microservices in cloud-native applications.
+  </p>
+
+  <h4 style="color: #2980b9;">Key Features of Kubernetes</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automated Deployment</strong>: Manages the deployment and rollback of applications.</li>
+    <li><strong>Scaling</strong>: Automatically scales applications up or down based on demand.</li>
+    <li><strong>Self-Healing</strong>: Detects and replaces failed containers automatically.</li>
+    <li><strong>Service Discovery</strong>: Allows communication between microservices without hardcoded IPs.</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">Basic Kubernetes Components</h4>
+  <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <tr style="background: #2c3e50; color: white;">
+      <th style="padding: 10px;">Component</th>
+      <th style="padding: 10px;">Function</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">Pod</td>
+      <td style="padding: 10px;">The smallest deployable unit in Kubernetes, containing one or more containers.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">Service</td>
+      <td style="padding: 10px;">Defines networking rules for accessing pods.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">Deployment</td>
+      <td style="padding: 10px;">Manages application replicas and updates.</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px;">ConfigMap & Secret</td>
+      <td style="padding: 10px;">Stores environment variables and sensitive data.</td>
+    </tr>
+  </table>
+
+  <h4 style="color: #2980b9;">Basic Kubernetes Commands</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-bash">
+      # Check Kubernetes installation
+      kubectl version --client 
+
+      # Get running pods
+      kubectl get pods 
+
+      # Apply a deployment configuration
+      kubectl apply -f deployment.yaml 
+
+      # Expose a deployment as a service
+      kubectl expose deployment my-app --type=LoadBalancer --port=80 
+
+      # Scale a deployment
+      kubectl scale deployment my-app --replicas=3 
+
+      # Delete a deployment
+      kubectl delete deployment my-app 
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Docker vs Kubernetes: When to Use What?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use Docker</strong> for containerizing applications and running them locally or on a single server.</li>
+    <li><strong>Use Kubernetes</strong> when managing multiple containers across distributed environments.</li>
+    <li>Docker simplifies development, while Kubernetes automates scaling and orchestration.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Docker and Kubernetes are essential tools in modern application development. While Docker makes it easy to package and deploy applications, Kubernetes ensures efficient management and scaling of containerized workloads. Together, they enable the development of highly scalable, cloud-native applications.
+  </p>
+</div>
+`
+},
+{
+  title:`API Gateway & Rate Limiting`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">API Gateway & Rate Limiting: Enhancing API Management</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a microservices architecture, an <strong>API Gateway</strong> acts as a single entry point that routes requests to various services. It enhances security, load balancing, and monitoring. <strong>Rate Limiting</strong> is a technique used to control the number of API requests a client can make within a specific time frame, preventing abuse and ensuring fair resource usage.
+  </p>
+
+  <h3 style="color: #16a085;">What is an API Gateway?</h3>
+  <p style="color: #2c3e50;">
+    An API Gateway is a server that sits between clients and backend services, managing requests, authentication, logging, and caching. It simplifies API consumption and protects internal microservices.
+  </p>
+
+  <h4 style="color: #2980b9;">Key Features of API Gateway</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Routing</strong>: Directs client requests to appropriate microservices.</li>
+    <li><strong>Authentication & Authorization</strong>: Ensures only authorized clients can access APIs.</li>
+    <li><strong>Load Balancing</strong>: Distributes traffic across multiple instances of microservices.</li>
+    <li><strong>Monitoring & Logging</strong>: Tracks API usage and detects anomalies.</li>
+    <li><strong>Caching</strong>: Improves performance by storing frequently accessed responses.</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">Popular API Gateway Solutions</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Spring Cloud Gateway</strong> - A lightweight, Java-based API Gateway.</li>
+    <li><strong>Netflix Zuul</strong> - A routing library developed by Netflix.</li>
+    <li><strong>NGINX API Gateway</strong> - A high-performance reverse proxy solution.</li>
+    <li><strong>Apigee & Kong</strong> - Enterprise-grade API management platforms.</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">Spring Cloud Gateway Example</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cloud.gateway.route.RouteLocator;
+      import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class ApiGatewayConfig {
+
+          @Bean
+          public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
+              return builder.routes()
+                  .route("user-service", r -> r.path("/users/**")
+                      .uri("http://localhost:8081"))
+                  .route("order-service", r -> r.path("/orders/**")
+                      .uri("http://localhost:8082"))
+                  .build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">What is Rate Limiting?</h3>
+  <p style="color: #2c3e50;">
+    Rate Limiting restricts the number of API requests a client can make within a certain time period. It prevents API abuse, protects backend systems from overload, and ensures fair resource distribution.
+  </p>
+
+  <h4 style="color: #2980b9;">Types of Rate Limiting</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Fixed Window</strong>: Limits requests based on fixed time intervals.</li>
+    <li><strong>Sliding Window</strong>: More flexible approach, allowing requests within overlapping windows.</li>
+    <li><strong>Token Bucket</strong>: Clients must have tokens to make requests; tokens are replenished at a set rate.</li>
+    <li><strong>Leaky Bucket</strong>: Similar to token bucket but processes requests at a constant rate.</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">Implementing Rate Limiting in Spring Cloud Gateway</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import reactor.core.publisher.Mono;
+
+      @Configuration
+      public class RateLimitingConfig {
+
+          @Bean
+          public KeyResolver userKeyResolver() {
+              return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Configuring Rate Limiting in application.yml</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      spring:
+        cloud:
+          gateway:
+            routes:
+              - id: rate_limit_route
+                uri: http://localhost:8080
+                predicates:
+                  - Path=/api/**
+                filters:
+                  - name: RequestRateLimiter
+                    args:
+                      redis-rate-limiter.replenishRate: 5
+                      redis-rate-limiter.burstCapacity: 10
+                      key-resolver: "#{@userKeyResolver}"
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for API Gateway & Rate Limiting</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>authentication and authorization</strong> to secure APIs.</li>
+    <li>Implement <strong>caching</strong> to reduce repeated API calls.</li>
+    <li>Monitor API performance and set appropriate <strong>timeouts</strong>.</li>
+    <li>Use a combination of <strong>rate limiting and throttling</strong> to prevent misuse.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    An API Gateway provides a centralized mechanism for managing requests, ensuring security, and optimizing performance. Rate Limiting enhances API reliability by preventing excessive usage. Together, they help build scalable and secure microservices-based architectures.
+  </p>
+</div>
+`
+},
+{
+  title:`Logging & Monitoring`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Logging & Monitoring in Microservices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a microservices architecture, <strong>Logging</strong> and <strong>Monitoring</strong> are crucial for tracking application health, identifying issues, and ensuring smooth operations. Logging helps capture application events, while monitoring provides real-time insights into system performance.
+  </p>
+
+  <h3 style="color: #16a085;">Why Logging & Monitoring Are Important?</h3>
+  <p style="color: #2c3e50;">
+    Managing logs and monitoring microservices ensures system reliability and quick issue resolution. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Debugging & Troubleshooting</strong>: Helps identify and resolve errors.</li>
+    <li><strong>Performance Optimization</strong>: Tracks system health and resource utilization.</li>
+    <li><strong>Security Auditing</strong>: Monitors unauthorized access and anomalies.</li>
+    <li><strong>Compliance & Reporting</strong>: Ensures compliance with regulations like GDPR.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Logging in Microservices</h3>
+  <p style="color: #2c3e50;">
+    Logging is used to capture application events such as errors, warnings, and system activities. In microservices, centralized logging is preferred to aggregate logs from multiple services.
+  </p>
+
+  <h4 style="color: #2980b9;">Best Practices for Logging</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>structured logging</strong> (JSON format) for better readability.</li>
+    <li>Implement <strong>correlation IDs</strong> to track requests across services.</li>
+    <li>Use <strong>log levels</strong> (DEBUG, INFO, WARN, ERROR) appropriately.</li>
+    <li>Store logs in <strong>centralized systems</strong> like ELK (Elasticsearch, Logstash, Kibana).</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">Logging with Spring Boot</h4>
+  <p style="color: #2c3e50;">
+    Spring Boot provides built-in logging using <strong>SLF4J</strong> and <strong>Logback</strong>. Below is an example:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.slf4j.Logger;
+      import org.slf4j.LoggerFactory;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RequestMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @RestController
+      @RequestMapping("/api")
+      public class LoggingController {
+
+          private static final Logger logger = LoggerFactory.getLogger(LoggingController.class);
+
+          @GetMapping("/log-example")
+          public String logExample() {
+              logger.info("Info Level Log");
+              logger.warn("Warning Level Log");
+              logger.error("Error Level Log");
+              return "Logging Example";
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Centralized Logging with ELK Stack</h4>
+  <p style="color: #2c3e50;">
+    The ELK stack (Elasticsearch, Logstash, Kibana) is a popular centralized logging solution:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Elasticsearch</strong>: Stores logs in a searchable format.</li>
+    <li><strong>Logstash</strong>: Processes and transforms logs before storing them.</li>
+    <li><strong>Kibana</strong>: Visualizes logs in dashboards.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Monitoring in Microservices</h3>
+  <p style="color: #2c3e50;">
+    Monitoring tracks the health and performance of microservices in real-time, helping teams respond to issues quickly.
+  </p>
+
+  <h4 style="color: #2980b9;">Key Monitoring Metrics</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Latency</strong>: Measures response time for requests.</li>
+    <li><strong>Throughput</strong>: Tracks the number of requests processed.</li>
+    <li><strong>Error Rate</strong>: Logs the percentage of failed requests.</li>
+    <li><strong>CPU & Memory Usage</strong>: Monitors resource consumption.</li>
+  </ul>
+
+  <h4 style="color: #2980b9;">Monitoring with Spring Boot Actuator</h4>
+  <p style="color: #2c3e50;">
+    Spring Boot Actuator provides built-in endpoints to monitor microservices. Add the dependency in <code>pom.xml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Enable monitoring endpoints in <code>application.yml</code>:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      management:
+        endpoints:
+          web:
+            exposure:
+              include: "health,metrics,info"
+    </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">Distributed Tracing with Sleuth & Zipkin</h4>
+  <p style="color: #2c3e50;">
+    Spring Cloud Sleuth and Zipkin help trace requests across microservices. Add Sleuth dependency:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-sleuth&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Logging & Monitoring</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use structured logs (JSON format) for better parsing.</li>
+    <li>Centralize logs using ELK, Fluentd, or Loki.</li>
+    <li>Implement log rotation and retention policies.</li>
+    <li>Monitor CPU, memory, and request latency.</li>
+    <li>Use distributed tracing to debug microservices interactions.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Logging and Monitoring are essential for maintaining microservices stability. By using tools like <strong>ELK, Spring Boot Actuator, and Zipkin</strong>, teams can gain deep insights into system performance, detect issues early, and ensure seamless operations.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Strategies in Microservices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a microservices architecture, <strong>testing</strong> is critical to ensuring the reliability, performance, and security of individual services and their interactions. Since microservices are distributed systems, traditional monolithic testing approaches do not work effectively. Instead, a layered testing strategy is needed.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Testing Important in Microservices?</h3>
+  <p style="color: #2c3e50;">
+    Testing microservices ensures that individual components work correctly and that the entire system functions as expected. The key benefits of a robust testing strategy include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring Functionality</strong>: Verifies that services behave as expected.</li>
+    <li><strong>Detecting Integration Issues</strong>: Ensures seamless communication between services.</li>
+    <li><strong>Maintaining Performance</strong>: Checks if the system performs well under load.</li>
+    <li><strong>Improving Security</strong>: Identifies vulnerabilities and protects against threats.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Testing Pyramid for Microservices</h3>
+  <p style="color: #2c3e50;">
+    Microservices testing follows a layered approach, often represented as a pyramid:
+  </p>
+
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unit Testing</strong>: Tests individual methods and functions.</li>
+    <li><strong>Component Testing</strong>: Validates microservice behavior independently.</li>
+    <li><strong>Integration Testing</strong>: Ensures microservices communicate properly.</li>
+    <li><strong>Contract Testing</strong>: Ensures API contracts between services remain unchanged.</li>
+    <li><strong>End-to-End (E2E) Testing</strong>: Tests the entire system from the user's perspective.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">1. Unit Testing</h3>
+  <p style="color: #2c3e50;">
+    Unit tests focus on testing individual components in isolation. They are fast and form the foundation of microservices testing.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: JUnit & Mockito</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      import org.mockito.Mockito;
+
+      class CalculatorServiceTest {
+
+          private CalculatorService service = new CalculatorService();
+
+          @Test
+          void testAddition() {
+              int result = service.add(5, 3);
+              assertEquals(8, result);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">2. Component Testing</h3>
+  <p style="color: #2c3e50;">
+    Component testing ensures a single microservice functions as expected, independent of other services.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Spring Boot Test</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @SpringBootTest
+      class OrderServiceTest {
+      
+          @Autowired
+          private OrderService orderService;
+      
+          @Test
+          void testOrderCreation() {
+              Order order = orderService.createOrder("Product123", 2);
+              assertNotNull(order);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">3. Integration Testing</h3>
+  <p style="color: #2c3e50;">
+    Integration tests ensure microservices can communicate correctly using APIs, databases, or messaging queues.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Testing REST API with RestTemplate</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+      class ProductServiceIntegrationTest {
+
+          @Autowired
+          private TestRestTemplate restTemplate;
+
+          @Test
+          void testGetProduct() {
+              ResponseEntity<Product> response = restTemplate.getForEntity("/api/products/1", Product.class);
+              assertEquals(HttpStatus.OK, response.getStatusCode());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">4. Contract Testing</h3>
+  <p style="color: #2c3e50;">
+    Contract tests ensure that microservices APIs maintain expected behavior when changes occur.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Using Pact for Contract Testing</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @PactTestFor(providerName = "OrderService")
+      public class OrderServiceContractTest {
+      
+          @Pact(provider = "OrderService", consumer = "PaymentService")
+          public RequestResponsePact createPact(PactDslWithProvider builder) {
+              return builder
+                  .given("Order exists")
+                  .uponReceiving("Request to fetch order")
+                  .path("/api/orders/1")
+                  .willRespondWith()
+                  .status(200)
+                  .toPact();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">5. End-to-End (E2E) Testing</h3>
+  <p style="color: #2c3e50;">
+    E2E tests validate the complete system flow from the user's perspective, ensuring that multiple microservices work together.
+  </p>
+
+  <h4 style="color: #2980b9;">Example: Selenium for UI Testing</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.openqa.selenium.WebDriver;
+      import org.openqa.selenium.chrome.ChromeDriver;
+      import org.junit.jupiter.api.Test;
+
+      class E2ETest {
+
+          @Test
+          void testLoginPage() {
+              WebDriver driver = new ChromeDriver();
+              driver.get("http://localhost:8080/login");
+              assertEquals("Login Page", driver.getTitle());
+              driver.quit();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Microservices Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Follow the testing pyramid (more unit tests, fewer E2E tests).</li>
+    <li>Use contract testing to avoid integration issues.</li>
+    <li>Mock dependencies to speed up tests.</li>
+    <li>Automate regression tests to catch breaking changes.</li>
+    <li>Monitor test coverage and fix flaky tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    A comprehensive <strong>Testing Strategy</strong> ensures that microservices remain reliable and scalable. By combining unit, integration, contract, and end-to-end testing, teams can build resilient applications with confidence.
+  </p>
+</div>
+`
+},
+{
+  title:`DevOps & CI/CD`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">DevOps & CI/CD: Automating Software Delivery</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In modern software development, <strong>DevOps</strong> and <strong>Continuous Integration/Continuous Deployment (CI/CD)</strong> play a crucial role in automating workflows, improving collaboration, and ensuring faster, reliable software delivery.
+  </p>
+
+  <h3 style="color: #16a085;">What is DevOps?</h3>
+  <p style="color: #2c3e50;">
+    DevOps is a cultural and technical movement that promotes collaboration between development (Dev) and operations (Ops) teams to improve software quality and speed up the delivery process.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Faster Releases:</strong> Automates build, test, and deployment pipelines.</li>
+    <li><strong>Improved Collaboration:</strong> Breaks down silos between Dev and Ops teams.</li>
+    <li><strong>Reliability & Stability:</strong> Reduces deployment failures and downtime.</li>
+    <li><strong>Scalability:</strong> Ensures that applications can handle increased load efficiently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">What is CI/CD?</h3>
+  <p style="color: #2c3e50;">
+    CI/CD is a set of automated processes that help integrate code changes, test them, and deploy software to production efficiently.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Continuous Integration (CI):</strong> Developers frequently merge code into a shared repository where automated builds and tests are run.</li>
+    <li><strong>Continuous Deployment (CD):</strong> Successfully tested code is automatically deployed to production.</li>
+    <li><strong>Continuous Delivery:</strong> Ensures that new changes are always in a deployable state, but manual approval may be required before deployment.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">CI/CD Pipeline Stages</h3>
+  <p style="color: #2c3e50;">
+    A typical CI/CD pipeline consists of multiple stages to automate software delivery.
+  </p>
+
+  <h4 style="color: #2980b9;">1. Source Code Management</h4>
+  <p style="color: #2c3e50;">
+    Developers push code to a version control system like GitHub, GitLab, or Bitbucket.
+  </p>
+
+  <h4 style="color: #2980b9;">2. Build</h4>
+  <p style="color: #2c3e50;">
+    The CI/CD system compiles the source code into executable artifacts.
+  </p>
+
+  <h4 style="color: #2980b9;">3. Testing</h4>
+  <p style="color: #2c3e50;">
+    Automated tests (unit, integration, and functional) validate the changes.
+  </p>
+
+  <h4 style="color: #2980b9;">4. Deployment</h4>
+  <p style="color: #2c3e50;">
+    Once the tests pass, the new version is deployed to production or a staging environment.
+  </p>
+
+  <h4 style="color: #2980b9;">5. Monitoring</h4>
+  <p style="color: #2c3e50;">
+    Logs and metrics are collected to track application performance and detect issues.
+  </p>
+
+  <h3 style="color: #16a085;">Popular CI/CD Tools</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Jenkins:</strong> Open-source automation server for building, testing, and deploying applications.</li>
+    <li><strong>GitHub Actions:</strong> CI/CD workflows integrated with GitHub repositories.</li>
+    <li><strong>GitLab CI/CD:</strong> Built-in CI/CD pipelines for GitLab projects.</li>
+    <li><strong>CircleCI:</strong> Cloud-based CI/CD service for rapid software delivery.</li>
+    <li><strong>Travis CI:</strong> Popular for testing open-source projects.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: CI/CD Pipeline with GitHub Actions</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a simple CI/CD pipeline using GitHub Actions:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      name: CI/CD Pipeline
+      
+      on:
+        push:
+          branches:
+            - main
+          
+      jobs:
+        build:
+          runs-on: ubuntu-latest
+          
+          steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+
+            - name: Set up JDK 11
+              uses: actions/setup-java@v2
+              with:
+                java-version: '11'
+                distribution: 'adopt'
+
+            - name: Build Project
+              run: mvn clean install
+
+            - name: Run Tests
+              run: mvn test
+
+            - name: Deploy
+              run: echo "Deploying to production..."
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for DevOps & CI/CD</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>Infrastructure as Code (IaC)</strong> to automate server provisioning.</li>
+    <li>Implement <strong>automated security scans</strong> in CI/CD pipelines.</li>
+    <li>Ensure <strong>rollback mechanisms</strong> in case of deployment failures.</li>
+    <li>Adopt <strong>blue-green deployments</strong> to minimize downtime.</li>
+    <li>Monitor application performance using <strong>Prometheus, Grafana, or ELK Stack</strong>.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    DevOps and CI/CD accelerate software delivery, improve code quality, and enhance system reliability. By automating build, test, and deployment workflows, teams can achieve <strong>faster and safer releases</strong>, ensuring continuous improvement in software development.
+  </p>
+</div>
+`
+},
+{
+  title:`Scaling & Performance`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Scaling & Performance: Optimizing Applications for Growth</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    As applications grow, they need to handle increased traffic, data, and computational demands. <strong>Scaling</strong> and <strong>performance optimization</strong> are critical to ensuring that applications remain fast, reliable, and efficient under heavy loads.
+  </p>
+
+  <h3 style="color: #16a085;">What is Scaling?</h3>
+  <p style="color: #2c3e50;">
+    Scaling is the ability to increase the capacity of an application to handle more users and requests efficiently.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Vertical Scaling (Scaling Up):</strong> Increasing the power (CPU, RAM) of a single server.</li>
+    <li><strong>Horizontal Scaling (Scaling Out):</strong> Adding more servers to distribute the load.</li>
+    <li><strong>Auto-Scaling:</strong> Dynamically adjusting resources based on demand.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Performance Metrics</h3>
+  <p style="color: #2c3e50;">
+    Monitoring the right performance metrics helps in optimizing an application.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Response Time:</strong> Time taken for a request to be processed.</li>
+    <li><strong>Throughput:</strong> Number of requests processed per second.</li>
+    <li><strong>Latency:</strong> Delay before a response is sent to the user.</li>
+    <li><strong>Error Rate:</strong> Percentage of failed requests.</li>
+    <li><strong>CPU & Memory Usage:</strong> System resource consumption.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Scaling Strategies</h3>
+  
+  <h4 style="color: #2980b9;">1. Load Balancing</h4>
+  <p style="color: #2c3e50;">
+    Distributes incoming traffic across multiple servers to improve availability and reliability.
+  </p>
+  
+  <h4 style="color: #2980b9;">2. Caching</h4>
+  <p style="color: #2c3e50;">
+    Stores frequently accessed data in memory to reduce database queries.
+  </p>
+
+  <h4 style="color: #2980b9;">3. Database Optimization</h4>
+  <p style="color: #2c3e50;">
+    Techniques like indexing, partitioning, and replication improve database performance.
+  </p>
+
+  <h4 style="color: #2980b9;">4. Microservices Architecture</h4>
+  <p style="color: #2c3e50;">
+    Breaking down applications into smaller, independent services for better scalability.
+  </p>
+
+  <h3 style="color: #16a085;">Performance Optimization Techniques</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Optimize Queries:</strong> Use indexes and avoid unnecessary joins.</li>
+    <li><strong>Implement Asynchronous Processing:</strong> Use queues for background tasks.</li>
+    <li><strong>Use Content Delivery Networks (CDN):</strong> Serve static assets from edge servers.</li>
+    <li><strong>Reduce Network Latency:</strong> Use HTTP/2 and compression techniques.</li>
+    <li><strong>Profile and Benchmark:</strong> Identify slow-performing code with tools like JProfiler.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Example: Using Redis for Caching</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of integrating Redis caching in a Spring Boot application:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ProductService {
+          @Cacheable(value = "products", key = "#id")
+          public Product getProductById(Long id) {
+              return new Product(id, "Sample Product");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Scaling & Performance</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>Auto-Scaling</strong> to handle dynamic traffic loads.</li>
+    <li>Implement <strong>distributed caching</strong> for reducing response times.</li>
+    <li>Optimize <strong>database queries</strong> to avoid performance bottlenecks.</li>
+    <li>Monitor performance using <strong>Prometheus, Grafana, or New Relic</strong>.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Scaling and performance optimization ensure applications remain fast, efficient, and reliable as they grow. By implementing the right strategies, businesses can provide a seamless user experience while maintaining system stability.
+  </p>
+</div>
+`
+}
 
     
 
