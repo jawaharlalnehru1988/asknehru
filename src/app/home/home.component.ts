@@ -11,7 +11,7 @@ import { Homejson } from './homejson';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [MatButton, MatCardModule, MatTooltip, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
+    imports: [MatCardModule, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
 })
 export class HomeComponent extends Homejson{
  
