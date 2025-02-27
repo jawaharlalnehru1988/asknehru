@@ -26625,9 +26625,2123 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
   </p>
 </div>
 `
-}
+},
+{
+  title:`ORM Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding ORM Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Object-Relational Mapping (ORM) is a programming technique that enables developers to interact with relational databases using object-oriented paradigms. ORM simplifies database interactions by abstracting SQL queries, allowing developers to manipulate database records as objects in their preferred programming language.
+  </p>
 
-    
+  <h3 style="color: #16a085;">Why Use ORM?</h3>
+  <p style="color: #2c3e50;">
+    ORM frameworks offer several advantages over traditional SQL-based database management:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Abstraction from SQL</strong>: Developers work with objects instead of writing complex SQL queries.</li>
+    <li><strong>Code Reusability</strong>: ORM promotes DRY (Don't Repeat Yourself) principles by managing database operations centrally.</li>
+    <li><strong>Improved Maintainability</strong>: Changes in the database schema require minimal code adjustments.</li>
+    <li><strong>Cross-Database Compatibility</strong>: ORM frameworks support multiple database engines, making migrations easier.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How ORM Works?</h3>
+  <p style="color: #2c3e50;">
+    ORM frameworks map database tables to class definitions, where each row corresponds to an instance of a class. The ORM handles conversions between objects and database records.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Entity
+      @Table(name = "users")
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Popular ORM Frameworks</h3>
+  <p style="color: #2c3e50;">
+    Several ORM frameworks are widely used across different programming languages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Hibernate</strong> (Java)</li>
+    <li><strong>Entity Framework</strong> (.NET)</li>
+    <li><strong>SQLAlchemy</strong> (Python)</li>
+    <li><strong>Active Record</strong> (Ruby on Rails)</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Basic CRUD Operations with ORM</h3>
+  <p style="color: #2c3e50;">
+    ORM frameworks simplify CRUD (Create, Read, Update, Delete) operations, reducing the need for raw SQL queries.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class UserService {
+          @Autowired
+          private UserRepository userRepository;
+
+          public User createUser(User user) {
+              return userRepository.save(user);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using ORM</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>lazy loading</strong> to optimize performance.</li>
+    <li>Define proper indexes to improve query efficiency.</li>
+    <li>Handle transactions properly to maintain data integrity.</li>
+    <li>Monitor and tune ORM queries to avoid performance bottlenecks.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    ORM simplifies database interactions by bridging the gap between object-oriented programming and relational databases. By leveraging ORM frameworks effectively, developers can enhance productivity, maintainability, and scalability in their applications.
+  </p>
+</div>
+`
+
+},
+{
+  title:`JPA vs Hibernate`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA vs Hibernate: Understanding the Differences</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Persistence API (JPA) and Hibernate are two commonly used technologies in Java applications for database interaction. While JPA is a specification that defines how ORM frameworks should function, Hibernate is a specific implementation of JPA with additional features.
+  </p>
+
+  <h3 style="color: #16a085;">What is JPA?</h3>
+  <p style="color: #2c3e50;">
+    JPA (Java Persistence API) is a Java specification that provides a set of rules and guidelines for ORM (Object-Relational Mapping). It standardizes how Java applications should interact with relational databases.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>JPA is just a specification</strong>: It does not provide an actual implementation.</li>
+    <li><strong>Defines API for ORM</strong>: It includes annotations like <code>@Entity</code>, <code>@Table</code>, <code>@Id</code>, etc.</li>
+    <li><strong>Vendor-Neutral</strong>: Works with different ORM implementations like Hibernate, EclipseLink, and OpenJPA.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">What is Hibernate?</h3>
+  <p style="color: #2c3e50;">
+    Hibernate is an ORM framework that implements the JPA specification while also providing additional functionalities beyond JPA.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>JPA Implementation</strong>: Hibernate adheres to JPA standards but includes extra features.</li>
+    <li><strong>Provides Caching</strong>: Supports first-level and second-level caching.</li>
+    <li><strong>Supports Native Query and HQL</strong>: Allows the use of Hibernate Query Language (HQL) for powerful queries.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Key Differences Between JPA and Hibernate</h3>
+  <table style="width:100%; border-collapse: collapse;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px;">Feature</th>
+      <th style="padding: 10px;">JPA</th>
+      <th style="padding: 10px;">Hibernate</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Type</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Specification</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Framework</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Caching</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">No built-in caching</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Supports first and second-level caching</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Query Language</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">JPQL</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">HQL & SQL</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Vendor Dependency</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Works with multiple vendors</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Specific to Hibernate</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #d35400;">When to Use JPA or Hibernate?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Use JPA</strong> if you need a standardized ORM approach that allows switching between different providers.</li>
+    <li><strong>Use Hibernate</strong> if you need advanced features like caching, HQL, and better performance optimizations.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPA and Hibernate both serve important roles in Java ORM. While JPA provides a standard interface for ORM operations, Hibernate extends these capabilities with additional features. Choosing between them depends on project requirements, scalability needs, and performance considerations.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Mapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Mapping in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity mapping is a crucial aspect of Object-Relational Mapping (ORM) in Java applications. JPA and Hibernate allow developers to map Java objects to database tables using annotations and XML configurations, making data persistence seamless and efficient.
+  </p>
+
+  <h3 style="color: #16a085;">What is Entity Mapping?</h3>
+  <p style="color: #2c3e50;">
+    Entity mapping is the process of linking Java objects (entities) to relational database tables. JPA and Hibernate use annotations such as <code>@Entity</code>, <code>@Table</code>, and <code>@Id</code> to define how objects should be stored and retrieved from the database.
+  </p>
+
+  <h3 style="color: #e67e22;">Basic Annotations for Entity Mapping</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@Entity</strong>: Marks a class as an entity.</li>
+    <li><strong>@Table(name = "table_name")</strong>: Specifies the table name for the entity.</li>
+    <li><strong>@Id</strong>: Identifies the primary key field.</li>
+    <li><strong>@GeneratedValue(strategy = GenerationType.IDENTITY)</strong>: Specifies how the primary key is generated.</li>
+    <li><strong>@Column(name = "column_name")</strong>: Maps a field to a specific column in the database.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Types of Entity Relationships</h3>
+  <p style="color: #2c3e50;">
+    In JPA and Hibernate, entities can have different types of relationships:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@OneToOne</strong>: Maps a one-to-one relationship between two entities.</li>
+    <li><strong>@OneToMany</strong>: Represents a one-to-many relationship where one entity is related to multiple instances of another entity.</li>
+    <li><strong>@ManyToOne</strong>: Defines a many-to-one relationship where multiple entities refer to a single parent entity.</li>
+    <li><strong>@ManyToMany</strong>: Maps a many-to-many relationship with a join table.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Example of Entity Mapping</h3>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "users")
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      
+      @Column(name = "username", nullable = false, unique = true)
+      private String username;
+      
+      @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+      private List&lt;Order&gt; orders;
+      
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity mapping in JPA and Hibernate simplifies database interactions by allowing developers to work with Java objects instead of raw SQL queries. Understanding entity relationships and annotations is key to designing efficient and scalable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`ORM Frameworks`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">ORM Frameworks</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Object-Relational Mapping (ORM) frameworks simplify database interactions by allowing developers to work with objects instead of writing complex SQL queries. These frameworks provide an abstraction layer that maps Java objects to database tables.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use ORM Frameworks?</h3>
+  <p style="color: #2c3e50;">
+    ORM frameworks offer several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduces Boilerplate Code</strong>: Eliminates the need for writing repetitive SQL queries.</li>
+    <li><strong>Improves Maintainability</strong>: Simplifies database interaction logic.</li>
+    <li><strong>Enhances Performance</strong>: Provides caching and optimization techniques.</li>
+    <li><strong>Supports Transaction Management</strong>: Ensures data consistency and integrity.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Popular ORM Frameworks</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Hibernate</strong>: The most widely used ORM framework for Java, implementing JPA specifications.</li>
+    <li><strong>JPA (Java Persistence API)</strong>: A standard specification for ORM in Java.</li>
+    <li><strong>MyBatis</strong>: A lightweight ORM framework offering flexibility with SQL queries.</li>
+    <li><strong>Doctrine</strong>: A popular ORM framework for PHP applications.</li>
+    <li><strong>Entity Framework</strong>: Microsoft's ORM framework for .NET applications.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example of ORM in Hibernate</h3>
+  <p style="color: #2c3e50;">
+    Below is a simple example demonstrating ORM with Hibernate:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "users")
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      
+      @Column(name = "username", nullable = false, unique = true)
+      private String username;
+      
+      @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+      private List&lt;Order&gt; orders;
+      
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Choosing the Right ORM Framework</h3>
+  <p style="color: #2c3e50;">
+    Selecting the right ORM framework depends on several factors:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Project requirements and complexity.</li>
+    <li>Performance considerations.</li>
+    <li>Database support and compatibility.</li>
+    <li>Community support and documentation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    ORM frameworks streamline database operations by providing a structured way to interact with databases using object-oriented principles. Choosing the right framework depends on project needs, scalability, and ease of integration.
+  </p>
+</div>
+`
+},
+{
+  title:`Primary Key Generation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Primary Key Generation</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In database design, a primary key is a unique identifier for a record in a table. In ORM frameworks, primary key generation is crucial for ensuring data integrity and uniqueness. Different strategies exist to generate primary keys automatically.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Primary Key Generation Important?</h3>
+  <p style="color: #2c3e50;">
+    Primary key generation plays a vital role in database management:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Uniqueness</strong>: Guarantees that each record is uniquely identified.</li>
+    <li><strong>Improves Performance</strong>: Optimizes indexing and query performance.</li>
+    <li><strong>Automates Key Assignment</strong>: Reduces manual effort in assigning unique values.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Primary Key Generation Strategies</h3>
+  <p style="color: #2c3e50;">
+    ORM frameworks provide different strategies for primary key generation. In JPA and Hibernate, these strategies are specified using the <code>@GeneratedValue</code> annotation.
+  </p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      
+      private String username;
+      
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Types of Primary Key Generation Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>IDENTITY</strong>: Uses auto-incremented values provided by the database.</li>
+    <li><strong>SEQUENCE</strong>: Uses a database sequence to generate unique values.</li>
+    <li><strong>TABLE</strong>: Uses a table to maintain primary key values.</li>
+    <li><strong>AUTO</strong>: Chooses the best strategy based on the database provider.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Choosing the Right Primary Key Strategy</h3>
+  <p style="color: #2c3e50;">
+    Selecting the right primary key generation strategy depends on:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Database capabilities and support.</li>
+    <li>Performance and scalability needs.</li>
+    <li>Data consistency requirements.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Primary key generation is a fundamental aspect of database design in ORM frameworks. Choosing the appropriate strategy ensures efficient record management, improves query performance, and maintains data integrity.
+  </p>
+</div>
+`
+},
+{
+  title:`Lazy vs Eager Loading`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Lazy vs Eager Loading</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In ORM frameworks like JPA and Hibernate, lazy and eager loading determine how associated entities are fetched from the database. Choosing the right loading strategy impacts performance and memory management.
+  </p>
+
+  <h3 style="color: #16a085;">What is Lazy Loading?</h3>
+  <p style="color: #2c3e50;">
+    Lazy loading defers the retrieval of related entities until they are explicitly accessed in code. It helps optimize performance by loading only necessary data.
+  </p>
+
+  <h3 style="color: #e67e22;">Example of Lazy Loading</h3>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String username;
+      
+      @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+      private List&lt;Order&gt; orders;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">What is Eager Loading?</h3>
+  <p style="color: #2c3e50;">
+    Eager loading retrieves related entities immediately along with the main entity. It simplifies data access but may lead to performance issues if too much data is loaded at once.
+  </p>
+
+  <h3 style="color: #e67e22;">Example of Eager Loading</h3>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String username;
+      
+      @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+      private List&lt;Order&gt; orders;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Lazy vs Eager Loading: Key Differences</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Performance</strong>: Lazy loading improves performance by fetching data only when needed, while eager loading may fetch unnecessary data.</li>
+    <li><strong>Memory Usage</strong>: Lazy loading consumes less memory, whereas eager loading may increase memory consumption.</li>
+    <li><strong>Code Complexity</strong>: Lazy loading requires additional handling for accessing related entities outside the transaction scope.</li>
+    <li><strong>Database Queries</strong>: Lazy loading may lead to multiple queries (N+1 problem), whereas eager loading retrieves everything in a single query.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Choosing between lazy and eager loading depends on the use case. Lazy loading is preferred for performance optimization, whereas eager loading is useful when related entities are always needed. Proper configuration and tuning are essential to avoid performance bottlenecks`
+},
+{
+  title:`Relationships (OneToOne, OneToMany, ManyToOne, ManyToMany)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Relationships in ORM (OneToOne, OneToMany, ManyToOne, ManyToMany)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In ORM frameworks like JPA and Hibernate, relationships define how entities are associated with each other. The four main types of relationships are OneToOne, OneToMany, ManyToOne, and ManyToMany.
+  </p>
+
+  <h3 style="color: #16a085;">OneToOne Relationship</h3>
+  <p style="color: #2c3e50;">
+    A OneToOne relationship means each record in one entity corresponds to exactly one record in another entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String username;
+
+      @OneToOne
+      @JoinColumn(name = "profile_id")
+      private UserProfile profile;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">OneToMany Relationship</h3>
+  <p style="color: #2c3e50;">
+    A OneToMany relationship means one entity can have multiple related records in another entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String username;
+
+      @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+      private List&lt;Order&gt; orders;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">ManyToOne Relationship</h3>
+  <p style="color: #2c3e50;">
+    A ManyToOne relationship means multiple records in one entity can be associated with a single record in another entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Order {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String product;
+
+      @ManyToOne
+      @JoinColumn(name = "user_id")
+      private User user;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">ManyToMany Relationship</h3>
+  <p style="color: #2c3e50;">
+    A ManyToMany relationship means multiple records in one entity can be associated with multiple records in another entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Student {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+
+      @ManyToMany
+      @JoinTable(
+          name = "student_course",
+          joinColumns = @JoinColumn(name = "student_id"),
+          inverseJoinColumns = @JoinColumn(name = "course_id")
+      )
+      private List&lt;Course&gt; courses;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity relationships`
+},
+{
+  title:`JPQL (Java Persistence Query Language)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPQL (Java Persistence Query Language)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Persistence Query Language (JPQL) is a query language used in JPA to interact with databases in an object-oriented manner. It allows developers to write queries using entity objects instead of database tables.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use JPQL?</h3>
+  <p style="color: #2c3e50;">
+    JPQL offers several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Database Independence</strong>: Works across different database systems.</li>
+    <li><strong>Object-Oriented Approach</strong>: Uses entity names and attributes instead of table names and columns.</li>
+    <li><strong>Flexibility</strong>: Supports complex queries with joins, aggregations, and filtering.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic JPQL Syntax</h3>
+  <p style="color: #2c3e50;">
+    JPQL queries resemble SQL but operate on entity objects.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT u FROM User u WHERE u.username = :username
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example of JPQL Query in Java</h3>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @PersistenceContext
+  private EntityManager entityManager;
+  
+  public User findUserByUsername(String username) {
+      return entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class)
+                          .setParameter("username", username)
+                          .getSingleResult();
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">JPQL Query Types</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>SELECT Queries</strong>: Retrieve data from entities.</li>
+    <li><strong>UPDATE Queries</strong>: Modify existing records.</li>
+    <li><strong>DELETE Queries</strong>: Remove records from the database.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Using JOINs in JPQL</h3>
+  <p style="color: #2c3e50;">
+    JPQL supports INNER JOIN, LEFT JOIN, and FETCH JOIN to retrieve related data efficiently.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT o FROM Order o JOIN o.user u WHERE u.username = :username
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPQL simplifies database interactions by using entity objects instead of raw SQL queries. It provides a flexible and efficient way to manage persistent data while maintaining database independence.
+  </p>
+</div>
+`
+},
+{
+  title:`Criteria API`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Criteria API in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The Criteria API in JPA (Java Persistence API) is a type-safe and programmatic way to build dynamic queries for your database. Unlike JPQL (Java Persistence Query Language), which uses string-based queries, the Criteria API allows you to construct queries using Java objects and methods. This makes it easier to build complex, dynamic queries at runtime and reduces the risk of errors caused by typos or incorrect syntax. The Criteria API is particularly useful when the structure of the query depends on runtime conditions.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use the Criteria API?</h3>
+  <p style="color: #2c3e50;">
+    The Criteria API offers several advantages for building dynamic queries:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Type Safety</strong>: Queries are built using Java objects, reducing the risk of runtime errors.</li>
+    <li><strong>Dynamic Query Building</strong>: Easily construct queries based on runtime conditions.</li>
+    <li><strong>Flexibility</strong>: Supports complex queries with joins, subqueries, and aggregations.</li>
+    <li><strong>Code Maintainability</strong>: Makes queries easier to read, write, and maintain compared to string-based JPQL.</li>
+    <li><strong>Integration</strong>: Works seamlessly with JPA and Hibernate.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of the Criteria API</h3>
+  <p style="color: #2c3e50;">
+    When working with the Criteria API, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>CriteriaBuilder</strong>: The main interface for constructing queries, predicates, and expressions.</li>
+    <li><strong>CriteriaQuery</strong>: Represents a query that can be executed against the database.</li>
+    <li><strong>Root</strong>: Represents the root entity in the query.</li>
+    <li><strong>Predicate</strong>: Represents a condition in the query (e.g., WHERE clause).</li>
+    <li><strong>Join</strong>: Represents a join between entities.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using the Criteria API in JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use the Criteria API in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity</h4>
+  <p style="color: #2c3e50;">
+    Create a JPA entity to represent a database table.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Repository with Criteria API</h4>
+  <p style="color: #2c3e50;">
+    Use the Criteria API to build dynamic queries in a repository.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.EntityManager;
+      import jakarta.persistence.PersistenceContext;
+      import jakarta.persistence.criteria.CriteriaBuilder;
+      import jakarta.persistence.criteria.CriteriaQuery;
+      import jakarta.persistence.criteria.Predicate;
+      import jakarta.persistence.criteria.Root;
+      import org.springframework.stereotype.Repository;
+
+      import java.util.List;
+
+      @Repository
+      public class UserRepository {
+
+          @PersistenceContext
+          private EntityManager entityManager;
+
+          public List&lt;User&gt; findUsersByNameAndEmail(String name, String email) {
+              CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+              CriteriaQuery&lt;User&gt; cq = cb.createQuery(User.class);
+
+              Root&lt;User&gt; user = cq.from(User.class);
+              Predicate namePredicate = cb.equal(user.get("name"), name);
+              Predicate emailPredicate = cb.equal(user.get("email"), email);
+              cq.where(cb.and(namePredicate, emailPredicate));
+
+              return entityManager.createQuery(cq).getResultList();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use the Repository in a Service</h4>
+  <p style="color: #2c3e50;">
+    Use the repository methods in a service to fetch data using the Criteria API.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+
+      import java.util.List;
+
+      @Service
+      public class UserService {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          public List&lt;User&gt; getUsersByNameAndEmail(String name, String email) {
+              return userRepository.findUsersByNameAndEmail(name, email);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Build Dynamic Queries</h4>
+  <p style="color: #2c3e50;">
+    Use the Criteria API to build dynamic queries based on runtime conditions.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public List&lt;User&gt; findUsersByCriteria(String name, String email, Integer age) {
+          CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+          CriteriaQuery&lt;User&gt; cq = cb.createQuery(User.class);
+
+          Root&lt;User&gt; user = cq.from(User.class);
+          Predicate predicate = cb.conjunction();
+
+          if (name != null) {
+              predicate = cb.and(predicate, cb.equal(user.get("name"), name));
+          }
+          if (email != null) {
+              predicate = cb.and(predicate, cb.equal(user.get("email"), email));
+          }
+          if (age != null) {
+              predicate = cb.and(predicate, cb.equal(user.get("age"), age));
+          }
+
+          cq.where(predicate);
+          return entityManager.createQuery(cq).getResultList();
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using the Criteria API</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful variable names for <code>CriteriaBuilder</code>, <code>CriteriaQuery</code>, and <code>Root</code> to improve readability.</li>
+    <li>Break down complex queries into smaller methods or predicates for better maintainability.</li>
+    <li>Use dynamic query building for runtime conditions to avoid hardcoding queries.</li>
+    <li>Test your queries thoroughly to ensure they work as expected.</li>
+    <li>Combine the Criteria API with JPQL or native queries when necessary.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The Criteria API is a powerful tool for building type-safe and dynamic queries in JPA. By leveraging its programmatic approach, you can create complex queries that adapt to runtime conditions, improving the flexibility and maintainability of your application. Whether you're building simple or complex queries, the Criteria API provides the tools and features needed to interact with your database effectively and efficiently.
+  </p>
+</div>`
+},
+{
+  title:`Native Queries`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Native Queries in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Native queries allow executing raw SQL queries in JPA. Unlike JPQL, which works with entities, native queries operate directly on database tables, providing more control and flexibility.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Native Queries?</h3>
+  <p style="color: #2c3e50;">
+    Native queries offer several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Full SQL Support</strong>: Leverage database-specific features.</li>
+    <li><strong>Complex Queries</strong>: Useful for advanced joins, stored procedures, and aggregate functions.</li>
+    <li><strong>Performance Optimization</strong>: Write optimized SQL for better performance.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Basic Syntax</h3>
+  <p style="color: #2c3e50;">
+    Native queries use the <code>@Query</code> annotation with the <code>nativeQuery = true</code> flag in Spring Data JPA.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query(value = "SELECT * FROM users WHERE username = ?1", nativeQuery = true)
+  User findByUsername(String username);
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example Using EntityManager</h3>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @PersistenceContext
+  private EntityManager entityManager;
+
+  public List<User> getAllUsers() {
+      return entityManager.createNativeQuery("SELECT * FROM users", User.class).getResultList();
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Handling Parameters</h3>
+  <p style="color: #2c3e50;">
+    Parameters can be passed using placeholders or named parameters.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query(value = "SELECT * FROM users WHERE age > :age", nativeQuery = true)
+  List<User> findUsersOlderThan(@Param("age") int age);
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Native queries in JPA provide powerful capabilities for working with raw SQL while still integrating with the JPA framework. They are useful for performance tuning, executing complex queries, and leveraging database-specific features.
+  </p>
+</div>`
+},
+{
+  title:`Named Queries`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Named Queries in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Named queries in JPA allow predefining queries with a unique name, improving reusability and maintainability. They can be written using JPQL or Native SQL.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Named Queries?</h3>
+  <p style="color: #2c3e50;">
+    Named queries provide several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Code Reusability</strong>: Defined once and used multiple times.</li>
+    <li><strong>Improved Performance</strong>: Precompiled queries optimize execution.</li>
+    <li><strong>Readability & Maintainability</strong>: Separates queries from business logic.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Defining Named Queries</h3>
+  <p style="color: #2c3e50;">
+    Named queries can be defined at the entity level using the <code>@NamedQuery</code> annotation.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+  public class User {
+      @Id
+      private Long id;
+      private String username;
+      private String email;
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using Named Queries</h3>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @PersistenceContext
+  private EntityManager entityManager;
+
+  public User getUserByUsername(String username) {
+      return entityManager.createNamedQuery("User.findByUsername", User.class)
+                          .setParameter("username", username)
+                          .getSingleResult();
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Named Native Queries</h3>
+  <p style="color: #2c3e50;">
+    Native SQL queries can also be defined using <code>@NamedNativeQuery</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @NamedNativeQuery(
+      name = "User.findAll",
+      query = "SELECT * FROM users",
+      resultClass = User.class
+  )
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Named queries help in defining reusable and optimized queries, making database interaction more efficient and structured. They improve performance and maintainability while keeping the code clean.
+  </p>
+</div>
+`
+},
+{
+  title:`ORM Caching`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">ORM Caching</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    ORM caching improves application performance by reducing the number of database queries. It stores frequently accessed data in memory, minimizing redundant database interactions.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use ORM Caching?</h3>
+  <p style="color: #2c3e50;">
+    Caching provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Performance Boost</strong>: Reduces database queries, improving response time.</li>
+    <li><strong>Scalability</strong>: Lowers database load, making the application more scalable.</li>
+    <li><strong>Reduced Latency</strong>: Retrieves data faster from memory instead of querying the database.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of ORM Caching</h3>
+  <p style="color: #2c3e50;">
+    ORM frameworks like Hibernate provide different levels of caching:
+  </p>
+
+  <h4 style="color: #2980b9;">1. First-Level Cache</h4>
+  <p style="color: #2c3e50;">
+    Enabled by default, it stores entity objects within the same session. Once a session is closed, the cache is cleared.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  Session session = sessionFactory.openSession();
+  User user1 = session.get(User.class, 1); // Fetched from DB
+  User user2 = session.get(User.class, 1); // Retrieved from cache
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">2. Second-Level Cache</h4>
+  <p style="color: #2c3e50;">
+    Stores entity data across multiple sessions. Needs to be explicitly enabled using providers like Ehcache, Hazelcast, or Infinispan.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Cacheable
+  @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+  public class User {
+      @Id
+      private Long id;
+      private String username;
+  }
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">3. Query Cache</h4>
+  <p style="color: #2c3e50;">
+    Caches the result of queries to avoid re-executing the same queries multiple times.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  Query query = session.createQuery("FROM User WHERE username = :username");
+  query.setParameter("username", "JohnDoe");
+  query.setCacheable(true);
+  List&lt;User&gt; users = query.list();
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Enabling Hibernate Caching</h3>
+  <p style="color: #2c3e50;">
+    To enable caching, configure the <code>hibernate.cfg.xml</code> file:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;property name="hibernate.cache.use_second_level_cache"&gt;true&lt;/property&gt;
+  &lt;property name="hibernate.cache.region.factory_class"&gt;org.hibernate.cache.ehcache.EhCacheRegionFactory&lt;/property&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    ORM caching significantly enhances application performance by minimizing database queries. Using first-level, second-level, and query caching effectively helps reduce latency and optimize data retrieval.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Management`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Management</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction management ensures data consistency and integrity in applications by grouping multiple database operations into a single unit of work. If any operation in the transaction fails, all changes are rolled back.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Transaction Management Important?</h3>
+  <p style="color: #2c3e50;">
+    Transaction management provides several key benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Atomicity</strong>: Ensures all operations within a transaction are completed successfully or rolled back.</li>
+    <li><strong>Consistency</strong>: Keeps the database in a valid state before and after the transaction.</li>
+    <li><strong>Isolation</strong>: Prevents transactions from interfering with each other.</li>
+    <li><strong>Durability</strong>: Ensures committed transactions persist even in case of system failure.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Transaction Management in Java</h3>
+  <p style="color: #2c3e50;">
+    Java provides transaction management using frameworks like Spring and JPA.
+  </p>
+
+  <h4 style="color: #2980b9;">1. Programmatic Transaction Management</h4>
+  <p style="color: #2c3e50;">
+    Explicitly managing transactions using <code>EntityManager</code> or <code>TransactionTemplate</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @PersistenceContext
+  private EntityManager entityManager;
+
+  public void performTransaction() {
+      EntityTransaction transaction = entityManager.getTransaction();
+      try {
+          transaction.begin();
+          User user = new User();
+          user.setUsername("JohnDoe");
+          entityManager.persist(user);
+          transaction.commit();
+      } catch (Exception e) {
+          transaction.rollback();
+      }
+  }
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">2. Declarative Transaction Management (Spring)</h4>
+  <p style="color: #2c3e50;">
+    Uses annotations to manage transactions automatically.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Service
+  public class UserService {
+
+      @Autowired
+      private UserRepository userRepository;
+
+      @Transactional
+      public void saveUser(User user) {
+          userRepository.save(user);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Transaction Propagation Types</h3>
+  <p style="color: #2c3e50;">
+    Spring provides different propagation types to control transaction behavior:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>REQUIRED</strong>: Uses the existing transaction or creates a new one if none exists.</li>
+    <li><strong>REQUIRES_NEW</strong>: Suspends the current transaction and creates a new one.</li>
+    <li><strong>NESTED</strong>: Creates a nested transaction within the existing one.</li>
+    <li><strong>MANDATORY</strong>: Throws an exception if no active transaction exists.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Rollback in Transactions</h3>
+  <p style="color: #2c3e50;">
+    By default, Spring rolls back transactions only for unchecked exceptions (<code>RuntimeException</code> or <code>Error</code>).
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Transactional(rollbackFor = Exception.class)
+  public void updateUser(User user) throws Exception {
+      userRepository.save(user);
+      if (someCondition) {
+          throw new Exception("Rollback triggered");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Transaction management is essential for maintaining data integrity in applications. Whether using programmatic or declarative approaches, effective handling of transactions ensures reliability and consistency in database operations.
+  </p>
+</div>
+`
+},
+{
+  title:`Query Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Query Optimization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Query optimization is the process of improving the efficiency of database queries to enhance performance and reduce execution time. Optimized queries consume fewer resources and provide faster results, making applications more scalable and responsive.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Query Optimization Important?</h3>
+  <p style="color: #2c3e50;">
+    Optimized queries offer several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Faster Execution</strong>: Reduces the time taken to retrieve data.</li>
+    <li><strong>Efficient Resource Usage</strong>: Uses CPU, memory, and disk I/O effectively.</li>
+    <li><strong>Scalability</strong>: Supports high loads without degrading performance.</li>
+    <li><strong>Cost Reduction</strong>: Lowers database infrastructure costs.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Techniques for Query Optimization</h3>
+
+  <h4 style="color: #2980b9;">1. Indexing</h4>
+  <p style="color: #2c3e50;">
+    Indexes speed up queries by allowing the database to find data without scanning the entire table.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  CREATE INDEX idx_user_name ON users (username);
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">2. Use SELECT Fields Instead of SELECT *</h4>
+  <p style="color: #2c3e50;">
+    Fetching only the required columns reduces memory usage and execution time.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT id, username FROM users WHERE status = 'active';
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">3. Avoiding N+1 Query Problem</h4>
+  <p style="color: #2c3e50;">
+    Fetch related entities efficiently using JOINs or batch fetching instead of multiple separate queries.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT u.name, o.order_date 
+  FROM users u 
+  JOIN orders o ON u.id = o.user_id;
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">4. Using WHERE Instead of HAVING</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>WHERE</code> clause for filtering records before aggregation instead of <code>HAVING</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  -- Inefficient
+  SELECT status, COUNT(*) FROM users GROUP BY status HAVING status = 'active';
+
+  -- Optimized
+  SELECT status, COUNT(*) FROM users WHERE status = 'active' GROUP BY status;
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">5. Query Caching</h4>
+  <p style="color: #2c3e50;">
+    Caching frequently executed queries improves response time and reduces database load.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT SQL_CACHE username FROM users WHERE id = 1;
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">6. Using LIMIT for Large Datasets</h4>
+  <p style="color: #2c3e50;">
+    Use <code>LIMIT</code> and <code>OFFSET</code> for paginating large result sets instead of fetching all data at once.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 20;
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Optimizing Queries in JPA</h3>
+  <p style="color: #2c3e50;">
+    In JPA, query optimization can be achieved using native queries, indexing, and batch fetching.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT u FROM User u WHERE u.status = :status")
+  List<User> findActiveUsers(@Param("status") String status);
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Query optimization plays a crucial role in improving application performance. Techniques like indexing, reducing data retrieval, avoiding redundant queries, and using caching help in optimizing queries for efficient database interaction.
+  </p>
+</div>
+`
+},
+{
+  title:`Query Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Query Optimization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Query optimization is the process of improving the efficiency of database queries to enhance performance and reduce execution time. Optimized queries consume fewer resources and provide faster results, making applications more scalable and responsive.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Query Optimization Important?</h3>
+  <p style="color: #2c3e50;">
+    Optimized queries offer several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Faster Execution</strong>: Reduces the time taken to retrieve data.</li>
+    <li><strong>Efficient Resource Usage</strong>: Uses CPU, memory, and disk I/O effectively.</li>
+    <li><strong>Scalability</strong>: Supports high loads without degrading performance.</li>
+    <li><strong>Cost Reduction</strong>: Lowers database infrastructure costs.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Techniques for Query Optimization</h3>
+
+  <h4 style="color: #2980b9;">1. Indexing</h4>
+  <p style="color: #2c3e50;">
+    Indexes speed up queries by allowing the database to find data without scanning the entire table.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  CREATE INDEX idx_user_name ON users (username);
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">2. Use SELECT Fields Instead of SELECT *</h4>
+  <p style="color: #2c3e50;">
+    Fetching only the required columns reduces memory usage and execution time.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT id, username FROM users WHERE status = 'active';
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">3. Avoiding N+1 Query Problem</h4>
+  <p style="color: #2c3e50;">
+    Fetch related entities efficiently using JOINs or batch fetching instead of multiple separate queries.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT u.name, o.order_date 
+  FROM users u 
+  JOIN orders o ON u.id = o.user_id;
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">4. Using WHERE Instead of HAVING</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>WHERE</code> clause for filtering records before aggregation instead of <code>HAVING</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  -- Inefficient
+  SELECT status, COUNT(*) FROM users GROUP BY status HAVING status = 'active';
+
+  -- Optimized
+  SELECT status, COUNT(*) FROM users WHERE status = 'active' GROUP BY status;
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">5. Query Caching</h4>
+  <p style="color: #2c3e50;">
+    Caching frequently executed queries improves response time and reduces database load.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT SQL_CACHE username FROM users WHERE id = 1;
+  </code>
+  </pre>
+
+  <h4 style="color: #2980b9;">6. Using LIMIT for Large Datasets</h4>
+  <p style="color: #2c3e50;">
+    Use <code>LIMIT</code> and <code>OFFSET</code> for paginating large result sets instead of fetching all data at once.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 20;
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Optimizing Queries in JPA</h3>
+  <p style="color: #2c3e50;">
+    In JPA, query optimization can be achieved using native queries, indexing, and batch fetching.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT u FROM User u WHERE u.status = :status")
+  List<User> findActiveUsers(@Param("status") String status);
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Query optimization plays a crucial role in improving application performance. Techniques like indexing, reducing data retrieval, avoiding redundant queries, and using caching help in optimizing queries for efficient database interaction.
+  </p>
+</div>
+`
+},
+{
+  title:`Inheritance Mapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Inheritance Mapping</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Inheritance Mapping is a technique in Object-Relational Mapping (ORM) that helps map Java class hierarchies to relational database tables. Since relational databases don’t support inheritance directly, JPA provides multiple strategies to handle inheritance efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Inheritance Mapping?</h3>
+  <p style="color: #2c3e50;">
+    Inheritance mapping allows:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Code Reusability</strong>: Common fields can be shared among multiple entity classes.</li>
+    <li><strong>Efficient Data Organization</strong>: Helps in structuring related entities in a meaningful way.</li>
+    <li><strong>Flexible Storage Options</strong>: Different strategies allow performance optimization based on project needs.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Inheritance Mapping Strategies</h3>
+
+  <h4 style="color: #2980b9;">1. Single Table Strategy</h4>
+  <p style="color: #2c3e50;">
+    A single table is used to store all subclass data, with a discriminator column to differentiate between entity types.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+  @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+  public class Employee {
+      @Id @GeneratedValue
+      private Long id;
+      private String name;
+  }
+
+  @Entity
+  @DiscriminatorValue("Manager")
+  public class Manager extends Employee {
+      private String department;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    <strong>Advantages:</strong> Simple schema, efficient for queries.<br>
+    <strong>Disadvantages:</strong> Wasted space due to unused columns in some rows.
+  </p>
+
+  <h4 style="color: #2980b9;">2. Table Per Class Strategy</h4>
+  <p style="color: #2c3e50;">
+    Each subclass has its own table, including inherited fields.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+  public class Employee {
+      @Id @GeneratedValue
+      private Long id;
+      private String name;
+  }
+
+  @Entity
+  public class Manager extends Employee {
+      private String department;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    <strong>Advantages:</strong> No null columns, efficient table structure.<br>
+    <strong>Disadvantages:</strong> Queries involving superclass require UNION operations.
+  </p>
+
+  <h4 style="color: #2980b9;">3. Joined Table Strategy</h4>
+  <p style="color: #2c3e50;">
+    The parent class has a separate table, and each subclass has its own table storing additional fields. A foreign key links them.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Inheritance(strategy = InheritanceType.JOINED)
+  public class Employee {
+      @Id @GeneratedValue
+      private Long id;
+      private String name;
+  }
+
+  @Entity
+  public class Manager extends Employee {
+      private String department;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    <strong>Advantages:</strong> Normalized structure, avoids redundant data.<br>
+    <strong>Disadvantages:</strong> Joins are required for querying complete records.
+  </p>
+
+  <h3 style="color: #2c3e50;">Choosing the Right Strategy</h3>
+  <p style="color: #2c3e50;">
+    The choice of inheritance mapping strategy depends on factors like:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Performance</strong>: Single Table is faster for read-heavy operations.</li>
+    <li><strong>Normalization</strong>: Joined Table is better if you prefer a structured schema.</li>
+    <li><strong>Flexibility</strong>: Table Per Class avoids null columns but can be inefficient for queries.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Inheritance mapping is an essential part of ORM that helps in structuring object-oriented data effectively in relational databases. Understanding and choosing the right strategy ensures better performance and maintainability of the application.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Lifecycle`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Lifecycle in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The Entity Lifecycle in JPA defines the different states an entity goes through while interacting with the persistence context. Understanding these states is essential for efficient database operations and transaction management.
+  </p>
+
+  <h3 style="color: #16a085;">Why Understand Entity Lifecycle?</h3>
+  <p style="color: #2c3e50;">
+    Managing entity lifecycle helps in:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Efficient Persistence</strong>: Reducing unnecessary database interactions.</li>
+    <li><strong>Better Performance</strong>: Understanding when an entity is managed or detached improves query efficiency.</li>
+    <li><strong>Proper Transaction Handling</strong>: Ensuring entities are persisted, updated, or removed correctly.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">JPA Entity Lifecycle States</h3>
+  
+  <h4 style="color: #2980b9;">1. Transient (New) State</h4>
+  <p style="color: #2c3e50;">
+    An entity is in a transient state when it is newly created but not yet associated with a persistence context. It is not stored in the database.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  Employee emp = new Employee(); // Transient state
+  emp.setName("John Doe");
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Important:</strong> If the application stops, transient objects are lost.</p>
+
+  <h4 style="color: #2980b9;">2. Managed (Persistent) State</h4>
+  <p style="color: #2c3e50;">
+    When an entity is associated with the persistence context, it becomes managed, and changes are automatically synchronized with the database.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  EntityManager em = entityManagerFactory.createEntityManager();
+  em.getTransaction().begin();
+  em.persist(emp); // Now the entity is managed
+  em.getTransaction().commit();
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Note:</strong> Managed entities are tracked, so any changes to them will be updated in the database.</p>
+
+  <h4 style="color: #2980b9;">3. Detached State</h4>
+  <p style="color: #2c3e50;">
+    When an entity is no longer associated with the persistence context, it becomes detached. Changes to a detached entity are not synchronized with the database.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  em.close(); // Persistence context is closed
+  emp.setName("Updated Name"); // Change is not reflected in the database
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Reattaching:</strong> Use <code>merge()</code> to bring a detached entity back to the managed state.</p>
+
+  <h4 style="color: #2980b9;">4. Removed State</h4>
+  <p style="color: #2c3e50;">
+    When an entity is marked for deletion, it enters the removed state. The entity is deleted when the transaction is committed.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  em.getTransaction().begin();
+  em.remove(emp); // Entity is now in removed state
+  em.getTransaction().commit();
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Important:</strong> After removal, the entity is no longer managed, but it still exists in memory.</p>
+
+  <h3 style="color: #2c3e50;">State Transitions</h3>
+  <p style="color: #2c3e50;">
+    The following operations trigger state transitions:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>persist()</strong> → Moves an entity from Transient to Managed state.</li>
+    <li><strong>merge()</strong> → Moves a Detached entity back to Managed state.</li>
+    <li><strong>remove()</strong> → Moves a Managed entity to the Removed state.</li>
+    <li><strong>clear(), close(), detach()</strong> → Moves a Managed entity to Detached state.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Understanding the JPA entity lifecycle is essential for effective data management. By leveraging different states, developers can optimize database interactions, improve perf
+`
+},
+{
+  title:`Fetching Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Fetching Strategies in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Fetching strategies in JPA determine how related entities are loaded from the database. Choosing the right strategy is essential for performance optimization and preventing unnecessary queries.
+  </p>
+
+  <h3 style="color: #16a085;">Why Are Fetching Strategies Important?</h3>
+  <p style="color: #2c3e50;">
+    Proper use of fetching strategies helps in:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reducing Database Queries</strong>: Avoiding unnecessary database hits.</li>
+    <li><strong>Improving Performance</strong>: Fetching only the required data.</li>
+    <li><strong>Managing Relationships Efficiently</strong>: Preventing issues like the N+1 problem.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Fetching Strategies</h3>
+
+  <h4 style="color: #2980b9;">1. EAGER Fetching</h4>
+  <p style="color: #2c3e50;">
+    In EAGER fetching, related entities are fetched immediately along with the main entity, even if they are not needed.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @OneToMany(fetch = FetchType.EAGER)
+      private List<Project> projects;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Drawback:</strong> Can lead to unnecessary joins, impacting performance.</p>
+
+  <h4 style="color: #2980b9;">2. LAZY Fetching</h4>
+  <p style="color: #2c3e50;">
+    In LAZY fetching, related entities are loaded only when accessed, reducing initial load time.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @OneToMany(fetch = FetchType.LAZY)
+      private List<Project> projects;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Benefit:</strong> Improves performance by delaying unnecessary loading.</p>
+
+  <h3 style="color: #2c3e50;">Fetching Using JOIN FETCH</h3>
+  <p style="color: #2c3e50;">
+    The <code>JOIN FETCH</code> keyword in JPQL forces immediate loading of related entities, avoiding multiple queries.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  SELECT e FROM Employee e JOIN FETCH e.projects WHERE e.id = :id
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Use Case:</strong> Helps avoid the N+1 query problem.</p>
+
+  <h3 style="color: #2c3e50;">Batch Fetching</h3>
+  <p style="color: #2c3e50;">
+    Instead of fetching one entity at a time, batch fetching loads multiple entities in a single query, reducing database calls.
+  </p>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Choosing the right fetching strategy is crucial for optimizing performance. LAZY fetching is preferred for large datasets, while JOIN FETCH can be used to optimize related data retrieval.
+  </p>
+</div>
+`
+},
+{
+  title:`ORM with Spring Data`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">ORM with Spring Data</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Data provides an abstraction over ORM frameworks like Hibernate and JPA, simplifying database interactions and reducing boilerplate code. It enables developers to focus on business logic while handling database operations efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Data?</h3>
+  <p style="color: #2c3e50;">
+    Spring Data offers several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Less Boilerplate Code</strong>: Eliminates the need for writing repetitive queries.</li>
+    <li><strong>Built-in CRUD Operations</strong>: Provides pre-defined methods like save(), findById(), and delete().</li>
+    <li><strong>Pagination and Sorting</strong>: Supports automatic pagination and sorting.</li>
+    <li><strong>Integration with JPA and Hibernate</strong>: Works seamlessly with ORM frameworks.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Spring Data JPA Setup</h3>
+  <p style="color: #2c3e50;">
+    To use Spring Data JPA, add the required dependencies in your <code>pom.xml</code> (for Maven).
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+      &lt;artifactId&gt;h2&lt;/artifactId&gt;
+      &lt;scope&gt;runtime&lt;/scope&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Creating an Entity</h3>
+  <p style="color: #2c3e50;">
+    Define an entity class that represents a database table.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+      private String department;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Creating a Spring Data Repository</h3>
+  <p style="color: #2c3e50;">
+    Spring Data JPA provides an interface to manage database operations without writing queries.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+      List&lt;Employee&gt; findByDepartment(String department);
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Benefits:</strong> JpaRepository provides built-in CRUD operations and custom query methods.</p>
+
+  <h3 style="color: #2c3e50;">Using the Repository in a Service</h3>
+  <p style="color: #2c3e50;">
+    Inject the repository into a service to use database operations.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Service
+  public class EmployeeService {
+      @Autowired
+      private EmployeeRepository repository;
+
+      public List<Employee> getEmployeesByDepartment(String department) {
+          return repository.findByDepartment(department);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Data JPA simplifies database interactions by reducing the need for manual query writing. It provides built-in CRUD methods, supports custom queries, and integrates seamlessly with Hibernate and JPA.
+  </p>
+</div>
+`
+},
+{
+  title:`ORM with Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">ORM with Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot simplifies the integration of ORM frameworks like Hibernate and JPA, enabling seamless database operations with minimal configuration. It eliminates boilerplate code, allowing developers to focus on business logic while handling persistence efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use ORM with Spring Boot?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Auto-Configuration</strong>: Spring Boot configures JPA and Hibernate automatically.</li>
+    <li><strong>Less Boilerplate Code</strong>: Eliminates the need for manual session management.</li>
+    <li><strong>Database Independence</strong>: Works with multiple databases like MySQL, PostgreSQL, and H2.</li>
+    <li><strong>Integrated Transaction Management</strong>: Ensures data consistency.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up ORM in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To enable ORM in Spring Boot, add the required dependencies in your <code>pom.xml</code> (for Maven).
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+      &lt;artifactId&gt;h2&lt;/artifactId&gt;
+      &lt;scope&gt;runtime&lt;/scope&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring Database in <code>application.properties</code></h3>
+  <p style="color: #2c3e50;">Set up database properties in the <code>src/main/resources/application.properties</code> file.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  spring.datasource.url=jdbc:h2:mem:testdb
+  spring.datasource.driverClassName=org.h2.Driver
+  spring.datasource.username=sa
+  spring.datasource.password=
+  spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Creating an Entity</h3>
+  <p style="color: #2c3e50;">Define an entity class to represent a database table.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+      private String department;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Creating a Repository</h3>
+  <p style="color: #2c3e50;">Spring Boot simplifies data access with JPA repositories.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+      List&lt;Employee&gt; findByDepartment(String department);
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Using ORM in a Service</h3>
+  <p style="color: #2c3e50;">Inject the repository into a service class to handle business logic.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Service
+  public class EmployeeService {
+      @Autowired
+      private EmployeeRepository repository;
+
+      public List<Employee> getEmployeesByDepartment(String department) {
+          return repository.findByDepartment(department);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Testing ORM with Spring Boot</h3>
+  <p style="color: #2c3e50;">Spring Boot provides an in-memory H2 database for quick testing.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @SpringBootTest
+  public class EmployeeServiceTest {
+
+      @Autowired
+      private EmployeeService employeeService;
+
+      @Test
+      public void testGetEmployeesByDepartment() {
+          List<Employee> employees = employeeService.getEmployeesByDepartment("HR");
+          assertEquals(1, employees.size());
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    ORM with Spring Boot simplifies database operations, automating configuration and reducing boilerplate code. It integrates seamlessly with JPA and Hibernate, making database management efficient and developer-friendly.
+  </p>
+</div>
+`
+},
+{
+  title:`Spring Data JPA`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Data JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Data JPA is a part of the Spring Data project that simplifies database access using JPA (Java Persistence API). It reduces boilerplate code and provides an abstraction layer to work with relational databases efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Data JPA?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Less Boilerplate Code</strong>: Simplifies repository implementation.</li>
+    <li><strong>Auto-Configuration</strong>: Spring Boot auto-configures JPA.</li>
+    <li><strong>Powerful Query Methods</strong>: Supports derived queries and custom queries.</li>
+    <li><strong>Transaction Management</strong>: Ensures data consistency.</li>
+    <li><strong>Integration with Spring Boot</strong>: Works seamlessly with Spring Boot applications.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up Spring Data JPA</h3>
+  <p style="color: #2c3e50;">
+    To use Spring Data JPA, add the required dependencies in your <code>pom.xml</code> file.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  &lt;dependency&gt;
+      &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+      &lt;artifactId&gt;h2&lt;/artifactId&gt;
+      &lt;scope&gt;runtime&lt;/scope&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring Database in <code>application.properties</code></h3>
+  <p style="color: #2c3e50;">Define database properties in the <code>src/main/resources/application.properties</code> file.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  spring.datasource.url=jdbc:h2:mem:testdb
+  spring.datasource.driverClassName=org.h2.Driver
+  spring.datasource.username=sa
+  spring.datasource.password=
+  spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+  spring.jpa.hibernate.ddl-auto=update
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Creating an Entity</h3>
+  <p style="color: #2c3e50;">Define an entity class to represent a database table.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+      private String department;
+
+      // Getters and Setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Creating a Repository</h3>
+  <p style="color: #2c3e50;">Spring Data JPA provides an interface to perform database operations.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+      List&lt;Employee&gt; findByDepartment(String department);
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Using the Repository in a Service</h3>
+  <p style="color: #2c3e50;">Inject the repository into a service class to handle business logic.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Service
+  public class EmployeeService {
+      @Autowired
+      private EmployeeRepository repository;
+
+      public List<Employee> getEmployeesByDepartment(String department) {
+          return repository.findByDepartment(department);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Executing Custom Queries</h3>
+  <p style="color: #2c3e50;">Spring Data JPA supports custom JPQL and native SQL queries.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT e FROM Employee e WHERE e.name = ?1")
+  Employee findByName(String name);
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Testing Spring Data JPA</h3>
+  <p style="color: #2c3e50;">Spring Boot provides an in-memory H2 database for quick testing.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @SpringBootTest
+  public class EmployeeServiceTest {
+
+      @Autowired
+      private EmployeeService employeeService;
+
+      @Test
+      public void testGetEmployeesByDepartment() {
+          List<Employee> employees = employeeService.getEmployeesByDepartment("HR");
+          assertEquals(1, employees.size());
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Data JPA simplifies database interactions, eliminating the need for complex DAO implementations. It provides powerful query capabilities, automatic transaction management, and seamless integration with Spring Boot, making it the preferred choice for modern Java applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing ORM`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing ORM</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Object-Relational Mapping (ORM) testing ensures that database interactions function correctly in an application. Testing ORM involves validating entity mappings, CRUD operations, and query execution while ensuring data integrity.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test ORM?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Verify Database Interactions</strong>: Ensures correct entity persistence and retrieval.</li>
+    <li><strong>Prevent Data Corruption</strong>: Detects incorrect mappings or failed transactions.</li>
+    <li><strong>Ensure Performance</strong>: Identifies inefficient queries or caching issues.</li>
+    <li><strong>Enhance Reliability</strong>: Improves the stability of database-driven applications.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up ORM Testing</h3>
+  <p style="color: #2c3e50;">
+    Before testing ORM, configure an in-memory database such as H2 to run tests without affecting the production database.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  spring.datasource.url=jdbc:h2:mem:testdb
+  spring.datasource.driverClassName=org.h2.Driver
+  spring.datasource.username=sa
+  spring.datasource.password=
+  spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+  spring.jpa.hibernate.ddl-auto=update
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Writing JPA Entity Tests</h3>
+  <p style="color: #2c3e50;">A basic test ensures that entity mappings and database interactions work as expected.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @SpringBootTest
+  @RunWith(SpringRunner.class)
+  @DataJpaTest
+  public class EmployeeRepositoryTest {
+
+      @Autowired
+      private TestEntityManager entityManager;
+
+      @Autowired
+      private EmployeeRepository employeeRepository;
+
+      @Test
+      public void testSaveEmployee() {
+          Employee employee = new Employee("John Doe", "IT");
+          Employee savedEmployee = entityManager.persistFlushFind(employee);
+          assertNotNull(savedEmployee.getId());
+          assertEquals("John Doe", savedEmployee.getName());
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Testing CRUD Operations</h3>
+  <p style="color: #2c3e50;">Verifying basic create, read, update, and delete operations ensures database consistency.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Test
+  public void testCRUDOperations() {
+      // Create
+      Employee emp = new Employee("Alice", "HR");
+      employeeRepository.save(emp);
+
+      // Read
+      Employee fetchedEmp = employeeRepository.findById(emp.getId()).orElse(null);
+      assertNotNull(fetchedEmp);
+      assertEquals("Alice", fetchedEmp.getName());
+
+      // Update
+      fetchedEmp.setDepartment("Finance");
+      employeeRepository.save(fetchedEmp);
+      assertEquals("Finance", employeeRepository.findById(emp.getId()).get().getDepartment());
+
+      // Delete
+      employeeRepository.delete(fetchedEmp);
+      assertFalse(employeeRepository.findById(emp.getId()).isPresent());
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Testing Custom Queries</h3>
+  <p style="color: #2c3e50;">Custom queries need verification to ensure they fetch the expected results.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Test
+  public void testFindByDepartment() {
+      Employee emp1 = new Employee("Mark", "Sales");
+      Employee emp2 = new Employee("Anna", "Sales");
+      employeeRepository.saveAll(List.of(emp1, emp2));
+
+      List<Employee> salesEmployees = employeeRepository.findByDepartment("Sales");
+      assertEquals(2, salesEmployees.size());
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Mocking ORM Tests with Mockito</h3>
+  <p style="color: #2c3e50;">When testing services, we can mock ORM interactions to avoid hitting the actual database.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @ExtendWith(MockitoExtension.class)
+  public class EmployeeServiceTest {
+
+      @Mock
+      private EmployeeRepository employeeRepository;
+
+      @InjectMocks
+      private EmployeeService employeeService;
+
+      @Test
+      public void testGetEmployeesByDepartment() {
+          List<Employee> mockEmployees = List.of(new Employee("John", "IT"));
+          when(employeeRepository.findByDepartment("IT")).thenReturn(mockEmployees);
+
+          List<Employee> employees = employeeService.getEmployeesByDepartment("IT");
+          assertEquals(1, employees.size());
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Performance Testing ORM Queries</h3>
+  <p style="color: #2c3e50;">Measuring execution time ensures queries are optimized.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Test
+  public void testQueryPerformance() {
+      long startTime = System.nanoTime();
+      List<Employee> employees = employeeRepository.findByDepartment("IT");
+      long duration = System.nanoTime() - startTime;
+
+      System.out.println("Query Execution Time: " + duration + " ns");
+      assertTrue(duration < 1000000); // Ensuring query executes under 1ms
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing ORM is crucial for ensuring data consistency, performance, and query correctness. By using in-memory databases, CRUD tests, custom query validation, and Mockito for service layer testing, developers can build reliable and efficient database-driven applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Performance Tuning in ORM`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Performance Tuning in ORM</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Object-Relational Mapping (ORM) simplifies database interactions, but improper usage can lead to performance bottlenecks. Performance tuning in ORM ensures efficient query execution, optimized memory usage, and faster data retrieval.
+  </p>
+
+  <h3 style="color: #16a085;">Why Optimize ORM Performance?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduce Query Execution Time</strong>: Avoids unnecessary database calls.</li>
+    <li><strong>Improve Scalability</strong>: Handles large datasets efficiently.</li>
+    <li><strong>Minimize Memory Usage</strong>: Prevents excessive data loading.</li>
+    <li><strong>Enhance Application Responsiveness</strong>: Optimized ORM results in faster response times.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">1. Optimize Query Fetching Strategies</h3>
+  <p style="color: #2c3e50;">Choosing the right fetching strategy prevents unnecessary data loading.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+      private List&lt;Task&gt; tasks;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Lazy Loading</strong> loads related entities only when accessed, reducing unnecessary joins.</p>
+
+  <h3 style="color: #8e44ad;">2. Use Indexing for Faster Lookups</h3>
+  <p style="color: #2c3e50;">Adding indexes improves query performance, especially for search operations.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(indexes = {@Index(name = "idx_employee_name", columnList = "name")})
+  public class Employee {
+      @Column(name = "name")
+      private String name;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">3. Minimize N+1 Query Problems</h3>
+  <p style="color: #2c3e50;">Fetching collections in a loop can cause multiple queries instead of one efficient query.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT e FROM Employee e JOIN FETCH e.tasks WHERE e.id = :id")
+  Employee findByIdWithTasks(@Param("id") Long id);
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>JOIN FETCH</strong> ensures related entities are fetched in a single query.</p>
+
+  <h3 style="color: #e74c3c;">4. Use Batching for Bulk Inserts and Updates</h3>
+  <p style="color: #2c3e50;">Batch processing reduces the number of database round trips.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Transactional
+  public void saveEmployees(List&lt;Employee&gt; employees) {
+      entityManager.unwrap(Session.class)
+                   .setJdbcBatchSize(20);
+      for (int i = 0; i < employees.size(); i++) {
+          entityManager.persist(employees.get(i));
+          if (i % 20 == 0) {
+              entityManager.flush();
+              entityManager.clear();
+          }
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">5. Enable Second-Level and Query Caching</h3>
+  <p style="color: #2c3e50;">Hibernate supports caching mechanisms to reduce repeated queries.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Cacheable
+  @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+  public class Employee { ... }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;"><strong>Second-level caching</strong> stores entities to avoid unnecessary database hits.</p>
+
+  <h3 style="color: #d35400;">6. Optimize Pagination with Native Queries</h3>
+  <p style="color: #2c3e50;">Using <strong>LIMIT</strong> and <strong>OFFSET</strong> improves pagination efficiency.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query(value = "SELECT * FROM employee ORDER BY name LIMIT :limit OFFSET :offset", nativeQuery = true)
+  List&lt;Employee&gt; getEmployeesWithPagination(@Param("limit") int limit, @Param("offset") int offset);
+  </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">7. Profile ORM Queries</h3>
+  <p style="color: #2c3e50;">Enable query logging to analyze and optimize slow queries.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  spring.jpa.show-sql=true
+  spring.jpa.properties.hibernate.format_sql=true
+  spring.jpa.properties.hibernate.generate_statistics=true
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">8. Use DTOs for Lightweight Data Transfer</h3>
+  <p style="color: #2c3e50;">Fetching only necessary fields improves performance.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT new com.example.dto.EmployeeDTO(e.name, e.department) FROM Employee e WHERE e.id = :id")
+  EmployeeDTO findEmployeeDTOById(@Param("id") Long id);
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    ORM performance tuning involves optimizing query fetching strategies, reducing database calls, and leveraging caching mechanisms. By implementing lazy loading, indexing, batch processing, and profiling queries, developers can enhance application speed and scalability.
+  </p>
+</div>
+`
+}
+ 
 
     ]
 
