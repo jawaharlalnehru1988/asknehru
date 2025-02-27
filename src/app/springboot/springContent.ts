@@ -28740,9 +28740,2037 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
   </p>
 </div>
 `
-}
- 
+},
+{
+  title:`Entity Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Object-Relational Mapping (ORM), an entity represents a table in the database, and each instance of an entity corresponds to a row in that table. Entities are the foundation of ORM frameworks like Hibernate and JPA.
+  </p>
 
-    ]
+  <h3 style="color: #16a085;">What is an Entity?</h3>
+  <p style="color: #2c3e50;">
+    An entity is a Java class that is mapped to a database table. It contains attributes representing columns and is typically annotated with <code>@Entity</code>.
+  </p>
+
+  <h3 style="color: #e67e22;">1. Defining an Entity</h3>
+  <p style="color: #2c3e50;">A basic entity class should have:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@Entity</strong> annotation to mark it as an entity.</li>
+    <li><strong>@Table</strong> (optional) to specify the table name.</li>
+    <li><strong>@Id</strong> annotation to mark the primary key.</li>
+    <li>Attributes representing database columns.</li>
+  </ul>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "employees")
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      
+      @Column(name = "name")
+      private String name;
+
+      @Column(name = "department")
+      private String department;
+
+      // Getters and Setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">2. Primary Key Strategies</h3>
+  <p style="color: #2c3e50;">Primary keys uniquely identify each row. Different strategies include:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>IDENTITY</strong>: Auto-increment in the database.</li>
+    <li><strong>SEQUENCE</strong>: Uses a database sequence.</li>
+    <li><strong>AUTO</strong>: Chooses strategy based on database.</li>
+    <li><strong>TABLE</strong>: Uses a table to manage sequences.</li>
+  </ul>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_seq")
+  @SequenceGenerator(name = "emp_seq", sequenceName = "employee_sequence", allocationSize = 1)
+  private Long id;
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">3. Column Mapping</h3>
+  <p style="color: #2c3e50;">By default, field names map to column names, but you can customize them.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Column(name = "emp_salary", nullable = false)
+  private Double salary;
+  </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">4. Relationships in Entities</h3>
+  <p style="color: #2c3e50;">Entities can have relationships like One-to-Many, Many-to-One, and Many-to-Many.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+  private List&lt;Task&gt; tasks;
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">5. Entity Lifecycle</h3>
+  <p style="color: #2c3e50;">Entities go through different states: Transient, Persistent, Detached, and Removed.</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Transient:</strong> New objects not yet persisted.</li>
+    <li><strong>Persistent:</strong> Managed by the EntityManager.</li>
+    <li><strong>Detached:</strong> No longer managed but still exists.</li>
+    <li><strong>Removed:</strong> Marked for deletion.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">6. Querying Entities</h3>
+  <p style="color: #2c3e50;">Use JPQL or native queries to retrieve entities.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT e FROM Employee e WHERE e.department = :dept")
+  List&lt;Employee&gt; findByDepartment(@Param("dept") String department);
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entities form the foundation of ORM by mapping Java objects to database tables. By defining attributes, relationships, and primary keys properly, developers can efficiently interact with the database using ORM frameworks.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Mapping`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Mapping</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity Mapping is the process of defining how Java objects (entities) are mapped to database tables using Object-Relational Mapping (ORM) frameworks like JPA and Hibernate. It involves defining attributes, primary keys, relationships, and table configurations.
+  </p>
+
+  <h3 style="color: #16a085;">1. Basic Entity Mapping</h3>
+  <p style="color: #2c3e50;">
+    Each entity is represented as a Java class annotated with <code>@Entity</code>. The class attributes correspond to table columns.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "employees")
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      
+      @Column(name = "name", nullable = false)
+      private String name;
+
+      @Column(name = "salary")
+      private Double salary;
+
+      // Getters and Setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Primary Key Mapping</h3>
+  <p style="color: #2c3e50;">Primary keys uniquely identify rows in a table. They are mapped using the <code>@Id</code> annotation.</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>IDENTITY</strong>: Auto-incremented by the database.</li>
+    <li><strong>SEQUENCE</strong>: Uses a sequence generator.</li>
+    <li><strong>AUTO</strong>: Chooses the strategy based on the database.</li>
+    <li><strong>TABLE</strong>: Uses a table to manage sequences.</li>
+  </ul>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_seq")
+  @SequenceGenerator(name = "emp_seq", sequenceName = "employee_sequence", allocationSize = 1)
+  private Long id;
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Column Mapping</h3>
+  <p style="color: #2c3e50;">Attributes are mapped to table columns using <code>@Column</code>. Constraints like <code>nullable</code> and <code>unique</code> can be applied.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Column(name = "emp_email", unique = true, nullable = false)
+  private String email;
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Relationship Mapping</h3>
+  <p style="color: #2c3e50;">Entities can have relationships such as:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>One-to-One:</strong> A single entity is associated with another entity.</li>
+    <li><strong>One-to-Many:</strong> One entity is linked to multiple entities.</li>
+    <li><strong>Many-to-One:</strong> Many entities link to a single entity.</li>
+    <li><strong>Many-to-Many:</strong> Multiple entities link to multiple entities.</li>
+  </ul>
+
+  <h4 style="color: #16a085;">One-to-Many Example:</h4>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+  private List&lt;Task&gt; tasks;
+  </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">5. Embedded and Embeddable Mapping</h3>
+  <p style="color: #2c3e50;">To map reusable components, we use <code>@Embeddable</code> and <code>@Embedded</code>.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Embeddable
+  public class Address {
+      private String city;
+      private String state;
+  }
+
+  @Entity
+  public class Employee {
+      @Embedded
+      private Address address;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Inheritance Mapping</h3>
+  <p style="color: #2c3e50;">ORM frameworks support different inheritance strategies:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Single Table:</strong> Uses a single table for all subclasses.</li>
+    <li><strong>Joined Table:</strong> Each subclass has its own table.</li>
+    <li><strong>Table per Class:</strong> Each class has a separate table.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">7. Fetching Strategies</h3>
+  <p style="color: #2c3e50;">Defines how related entities are loaded:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Lazy Loading:</strong> Loads related entities on demand.</li>
+    <li><strong>Eager Loading:</strong> Loads related entities immediately.</li>
+  </ul>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY)
+  private List&lt;Task&gt; tasks;
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">8. Querying Entities</h3>
+  <p style="color: #2c3e50;">Entities can be queried using JPQL, Criteria API, or native SQL.</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT e FROM Employee e WHERE e.department = :dept")
+  List&lt;Employee&gt; findByDepartment(@Param("dept") String department);
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity Mapping is a fundamental concept in ORM, allowing Java objects to seamlessly interact with database tables. Proper mapping techniques, relationship definitions, and fetching strategies ensure efficient and optimized database interactions.
+  </p>
+</div>
+`
+},
+{
+  title:`Primary Key Generation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Primary Key Generation in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Primary key generation is a fundamental aspect of database design and JPA (Java Persistence API) entity mapping. A primary key uniquely identifies each record in a database table, and JPA provides several strategies for generating primary keys automatically. These strategies ensure that each entity instance has a unique identifier, simplifying data management and improving performance. This article explores the different primary key generation strategies available in JPA and how to use them effectively in Spring Boot applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Primary Key Generation?</h3>
+  <p style="color: #2c3e50;">
+    Primary key generation is essential for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Uniqueness</strong>: Ensures that each record in a table has a unique identifier.</li>
+    <li><strong>Data Integrity</strong>: Prevents duplicate records and maintains consistency.</li>
+    <li><strong>Performance</strong>: Optimizes database operations like indexing and searching.</li>
+    <li><strong>Simplicity</strong>: Automates the process of assigning unique identifiers, reducing manual effort.</li>
+    <li><strong>Scalability</strong>: Supports large datasets by generating unique keys efficiently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Primary Key Generation</h3>
+  <p style="color: #2c3e50;">
+    When working with primary key generation in JPA, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@Id</strong>: Marks a field as the primary key of an entity.</li>
+    <li><strong>@GeneratedValue</strong>: Specifies the strategy for generating primary key values.</li>
+    <li><strong>Generation Strategies</strong>: Includes <code>AUTO</code>, <code>IDENTITY</code>, <code>SEQUENCE</code>, and <code>TABLE</code>.</li>
+    <li><strong>Custom Generators</strong>: Allows you to define custom primary key generation logic.</li>
+    <li><strong>Database Compatibility</strong>: Different databases support different primary key generation strategies.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Primary Key Generation in JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use primary key generation strategies in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity with Primary Key Generation</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Id</code> and <code>@GeneratedValue</code> annotations to define primary key generation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Use Different Generation Strategies</h4>
+  <p style="color: #2c3e50;">
+    JPA supports several primary key generation strategies:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      // IDENTITY: Relies on the database to generate the primary key (e.g., auto-increment in MySQL)
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+      // SEQUENCE: Uses a database sequence to generate the primary key
+      @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+      @SequenceGenerator(name = "user_seq", sequenceName = "user_sequence", allocationSize = 1)
+
+      // TABLE: Uses a database table to simulate a sequence
+      @GeneratedValue(strategy = GenerationType.TABLE, generator = "user_table")
+      @TableGenerator(name = "user_table", table = "id_generator", pkColumnName = "seq_name", valueColumnName = "seq_value", allocationSize = 1)
+
+      // AUTO: Lets the JPA provider choose the appropriate strategy
+      @GeneratedValue(strategy = GenerationType.AUTO)
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Custom Primary Key Generation</h4>
+  <p style="color: #2c3e50;">
+    Implement a custom primary key generator by extending <code>IdentifierGenerator</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.engine.spi.SharedSessionContractImplementor;
+      import org.hibernate.id.IdentifierGenerator;
+
+      import java.io.Serializable;
+      import java.util.UUID;
+
+      public class CustomIdGenerator implements IdentifierGenerator {
+          @Override
+          public Serializable generate(SharedSessionContractImplementor session, Object object) {
+              return "USER_" + UUID.randomUUID().toString();
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Use the custom generator in your entity:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.hibernate.annotations.GenericGenerator;
+
+      @Entity
+      public class User {
+          @Id
+          @GeneratedValue(generator = "custom-id")
+          @GenericGenerator(name = "custom-id", strategy = "com.example.CustomIdGenerator")
+          private String id;
+
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Primary Key Generation</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose the appropriate generation strategy based on your database and application requirements.</li>
+    <li>Use <code>IDENTITY</code> for databases that support auto-increment columns (e.g., MySQL).</li>
+    <li>Use <code>SEQUENCE</code> for databases that support sequences (e.g., PostgreSQL, Oracle).</li>
+    <li>Use <code>TABLE</code> for databases that do not support sequences or auto-increment.</li>
+    <li>Test your primary key generation strategy to ensure it works as expected in your environment.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Primary key generation is a critical aspect of database design and JPA entity mapping. By leveraging JPA's built-in strategies or implementing custom generators, you can ensure that each entity instance has a unique identifier, improving data integrity and performance. Whether you're working with auto-increment columns, sequences, or custom logic, understanding primary key generation strategies will help you build robust and scalable Spring Boot applications.
+  </p>
+</div>`
+},
+{
+  title:`Entity Annotations (@Entity, @Table, @Id, @Column)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Annotations (@Entity, @Table, @Id, @Column)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity annotations in Java Persistence API (JPA) help map Java objects to database tables. These annotations define how objects are stored and retrieved from a relational database. The key annotations include <code>@Entity</code>, <code>@Table</code>, <code>@Id</code>, and <code>@Column</code>.
+  </p>
+
+  <h3 style="color: #16a085;">1. @Entity Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Entity</code> annotation marks a class as a persistent entity. It tells the ORM framework that this class should be mapped to a database table.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      
+      private String name;
+      private Double salary;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    Without <code>@Entity</code>, the class will not be recognized as a database entity.
+  </p>
+
+  <h3 style="color: #e67e22;">2. @Table Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Table</code> annotation is used to specify the table name for an entity. If not provided, the table name defaults to the class name.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "employees")
+  public class Employee {
+      @Id
+      private Long id;
+      private String name;
+      private Double salary;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    The <code>@Table</code> annotation is optional but useful for customizing table names.
+  </p>
+
+  <h3 style="color: #8e44ad;">3. @Id Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Id</code> annotation marks a field as the primary key of the entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    The primary key is necessary for uniquely identifying records in the database.
+  </p>
+
+  <h3 style="color: #d35400;">4. @Column Annotation</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Column</code> annotation specifies column details for a field. It allows customization such as column name, uniqueness, and nullability.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Column(name = "emp_name", nullable = false, unique = true)
+  private String name;
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    If <code>@Column</code> is not provided, the field name is used as the column name by default.
+  </p>
+
+  <h3 style="color: #16a085;">5. Example: Using All Annotations</h3>
+  <p style="color: #2c3e50;">The following example demonstrates how these annotations work together:</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "employees")
+  public class Employee {
+      
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      
+      @Column(name = "emp_name", nullable = false, unique = true)
+      private String name;
+      
+      @Column(name = "emp_salary")
+      private Double salary;
+
+      // Getters and Setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity annotations like <code>@Entity</code>, <code>@Table</code>, <code>@Id</code>, and <code>@Column</code> are essential for mapping Java classes to database tables. Proper use of these annotations ensures effective ORM operations.
+  </p>
+</div>
+`
+},
+{
+  title:`Relationships (OneToOne, OneToMany, ManyToOne, ManyToMany)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Relationships in JPA (OneToOne, OneToMany, ManyToOne, ManyToMany)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In JPA (Java Persistence API), entities can have relationships with each other, just like tables in a relational database. 
+    JPA provides annotations to define these relationships efficiently.
+  </p>
+
+  <h3 style="color: #16a085;">1. One-to-One (@OneToOne)</h3>
+  <p style="color: #2c3e50;">
+    A one-to-one relationship means that one entity is associated with exactly one other entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+
+      @OneToOne(cascade = CascadeType.ALL)
+      @JoinColumn(name = "address_id", referencedColumnName = "id")
+      private Address address;
+  }
+
+  @Entity
+  public class Address {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String street;
+      private String city;
+  }
+  </code>
+  </pre>
+  <p><strong>Explanation:</strong> Each employee has exactly one address, and the <code>@JoinColumn</code> specifies the foreign key.</p>
+
+  <h3 style="color: #e67e22;">2. One-to-Many (@OneToMany)</h3>
+  <p style="color: #2c3e50;">
+    A one-to-many relationship means that one entity is related to multiple instances of another entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Department {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+
+      @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+      private List<Employee> employees;
+  }
+
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+
+      @ManyToOne
+      @JoinColumn(name = "department_id")
+      private Department department;
+  }
+  </code>
+  </pre>
+  <p><strong>Explanation:</strong> A department has many employees, but each employee belongs to only one department.</p>
+
+  <h3 style="color: #8e44ad;">3. Many-to-One (@ManyToOne)</h3>
+  <p style="color: #2c3e50;">
+    A many-to-one relationship is the inverse of one-to-many, where multiple entities are associated with a single entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+
+      @ManyToOne
+      @JoinColumn(name = "department_id")
+      private Department department;
+  }
+  </code>
+  </pre>
+  <p><strong>Explanation:</strong> Many employees belong to one department.</p>
+
+  <h3 style="color: #d35400;">4. Many-to-Many (@ManyToMany)</h3>
+  <p style="color: #2c3e50;">
+    A many-to-many relationship means that multiple entities are associated with multiple other entities.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Student {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+
+      @ManyToMany
+      @JoinTable(
+          name = "student_course",
+          joinColumns = @JoinColumn(name = "student_id"),
+          inverseJoinColumns = @JoinColumn(name = "course_id")
+      )
+      private List<Course> courses;
+  }
+
+  @Entity
+  public class Course {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String title;
+
+      @ManyToMany(mappedBy = "courses")
+      private List<Student> students;
+  }
+  </code>
+  </pre>
+  <p><strong>Explanation:</strong> A student can enroll in multiple courses, and a course can have multiple students.</p>
+
+  <h3 style="color: #16a085;">5. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPA relationships allow developers to model real-world entity associations efficiently. 
+    Understanding these relationships helps in designing a structured and optimized database model.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Lifecycle`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Lifecycle in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Java Persistence API (JPA), an entity goes through different lifecycle states as it interacts with the persistence context. Understanding these states is crucial for effective database operations and ORM management.
+  </p>
+
+  <h3 style="color: #16a085;">1. Entity Lifecycle States</h3>
+  <p style="color: #2c3e50;">
+    JPA defines four main lifecycle states for an entity:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong>Transient</strong> - The entity is not yet associated with the database.</li>
+    <li><strong>Persistent</strong> - The entity is managed by the persistence context.</li>
+    <li><strong>Detached</strong> - The entity is no longer managed but still exists in the database.</li>
+    <li><strong>Removed</strong> - The entity is marked for deletion.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">2. Transient State</h3>
+  <p style="color: #2c3e50;">
+    An entity is in the transient state when it is created using the <code>new</code> keyword but not yet associated with a persistence context.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  Employee emp = new Employee();
+  emp.setName("John Doe");
+  emp.setSalary(50000);
+  // At this point, the entity is transient.
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Persistent State</h3>
+  <p style="color: #2c3e50;">
+    When an entity is managed by an <code>EntityManager</code>, it enters the persistent state.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  EntityManager em = entityManagerFactory.createEntityManager();
+  em.getTransaction().begin();
+  
+  Employee emp = new Employee();
+  emp.setName("John Doe");
+  emp.setSalary(50000);
+  
+  em.persist(emp); // Now, the entity is in the persistent state.
+  
+  em.getTransaction().commit();
+  em.close();
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Detached State</h3>
+  <p style="color: #2c3e50;">
+    When the persistence context is closed or an entity is manually detached, it enters the detached state. Any changes made to a detached entity will not be synchronized with the database unless explicitly merged.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  em.close(); // The persistence context is closed, and emp becomes detached.
+  emp.setSalary(60000); // This change will not be persisted.
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">5. Merging a Detached Entity</h3>
+  <p style="color: #2c3e50;">
+    A detached entity can be re-attached to the persistence context using <code>merge()</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  EntityManager em2 = entityManagerFactory.createEntityManager();
+  em2.getTransaction().begin();
+  
+  Employee managedEmp = em2.merge(emp); // Now the entity is persistent again.
+  
+  em2.getTransaction().commit();
+  em2.close();
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. Removed State</h3>
+  <p style="color: #2c3e50;">
+    When an entity is deleted using <code>remove()</code>, it enters the removed state and will be deleted from the database once the transaction is committed.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  EntityManager em = entityManagerFactory.createEntityManager();
+  em.getTransaction().begin();
+  
+  Employee emp = em.find(Employee.class, 1L);
+  em.remove(emp); // Entity is now in the removed state.
+  
+  em.getTransaction().commit();
+  em.close();
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">7. Entity Lifecycle Callbacks</h3>
+  <p style="color: #2c3e50;">
+    JPA provides callback annotations to execute methods during the entity lifecycle transitions.
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><code>@PrePersist</code> - Before saving a new entity.</li>
+    <li><code>@PostPersist</code> - After saving a new entity.</li>
+    <li><code>@PreUpdate</code> - Before updating an entity.</li>
+    <li><code>@PostUpdate</code> - After updating an entity.</li>
+    <li><code>@PreRemove</code> - Before deleting an entity.</li>
+    <li><code>@PostRemove</code> - After deleting an entity.</li>
+  </ul>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+      private Double salary;
+
+      @PrePersist
+      public void beforeSave() {
+          System.out.println("Before persisting the entity");
+      }
+
+      @PostPersist
+      public void afterSave() {
+          System.out.println("Entity persisted successfully");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">8. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Understanding the entity lifecycle is essential for efficient database management in JPA. Proper handling of transient, persistent, detached, and removed states ensures smooth data operations.
+  </p>
+</div>
+`
+},
+{
+  title:`JPA vs Hibernate Entities`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">JPA vs Hibernate Entities</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Persistence API (JPA) and Hibernate are widely used for object-relational mapping (ORM) in Java applications. 
+    While JPA is a specification, Hibernate is an implementation of this specification. Understanding their differences in handling entities is crucial for making the right choice in ORM development.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is JPA?</h3>
+  <p style="color: #2c3e50;">
+    JPA (Java Persistence API) is a specification that defines a set of rules for ORM in Java. It provides a standardized way to manage relational data using Java objects. However, JPA itself does not provide an implementation; it requires a provider such as Hibernate, EclipseLink, or OpenJPA.
+  </p>
+
+  <h3 style="color: #e67e22;">2. What is Hibernate?</h3>
+  <p style="color: #2c3e50;">
+    Hibernate is an ORM framework that provides an actual implementation of JPA. It extends JPA functionality with additional features like caching, lazy loading, and native SQL support.
+  </p>
+
+  <h3 style="color: #8e44ad;">3. Entity Definition in JPA</h3>
+  <p style="color: #2c3e50;">
+    In JPA, entities are defined using annotations that map Java classes to database tables.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.*;
+
+  @Entity
+  @Table(name = "employees")
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @Column(name = "name", nullable = false)
+      private String name;
+  }
+  </code>
+  </pre>
+  <p><strong>Explanation:</strong> The <code>@Entity</code> annotation marks the class as a JPA entity, and <code>@Table</code> specifies the table mapping.</p>
+
+  <h3 style="color: #d35400;">4. Entity Definition in Hibernate</h3>
+  <p style="color: #2c3e50;">
+    Since Hibernate is a JPA implementation, it supports the same annotations. However, it also provides additional Hibernate-specific annotations.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.*;
+  import org.hibernate.annotations.DynamicUpdate;
+
+  @Entity
+  @Table(name = "employees")
+  @DynamicUpdate
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @Column(name = "name", nullable = false)
+      private String name;
+  }
+  </code>
+  </pre>
+  <p><strong>Explanation:</strong> The <code>@DynamicUpdate</code> annotation is Hibernate-specific and ensures only modified fields are updated.</p>
+
+  <h3 style="color: #16a085;">5. Key Differences Between JPA and Hibernate Entities</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+    <tr style="background-color: #16a085; color: white;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Feature</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">JPA</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Hibernate</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Type</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Specification</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Implementation</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Support for Query Language</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">JPQL (Java Persistence Query Language)</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">HQL (Hibernate Query Language) and Native SQL</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Vendor Dependency</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Works with multiple ORM providers</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Tied to Hibernate</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">Performance Features</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Standard ORM functionality</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Extra features like caching and batch processing</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #e67e22;">6. When to Use JPA vs Hibernate?</h3>
+  <ul style="color: #2c3e50;">
+    <li><strong>Use JPA</strong> if you want a vendor-independent ORM solution that can work with different implementations (e.g., Hibernate, EclipseLink).</li>
+    <li><strong>Use Hibernate</strong> if you need advanced ORM features like caching, custom SQL, or better query optimization.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">7. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JPA provides a standardized approach to ORM, whereas Hibernate extends JPA with additional features. 
+    While JPA ensures portability across ORM frameworks, Hibernate is widely used due to its robust performance enhancements.
+  </p>
+</div>
+`
+},
+{
+  title:`Cascade Operations`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cascade Operations in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cascade operations in JPA and Hibernate define how changes in one entity affect related entities. Cascading is primarily used in relationships such as <code>@OneToOne</code>, <code>@OneToMany</code>, <code>@ManyToOne</code>, and <code>@ManyToMany</code>. It automates the propagation of operations like persist, merge, remove, detach, and refresh.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is Cascade in JPA?</h3>
+  <p style="color: #2c3e50;">
+    In JPA, cascade operations are defined using the <code>cascade</code> attribute in annotations like <code>@OneToMany</code> and <code>@OneToOne</code>. It allows operations performed on a parent entity to be applied to child entities automatically.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Cascade Types in JPA</h3>
+  <p style="color: #2c3e50;">
+    JPA provides several types of cascade operations:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong><code>CascadeType.PERSIST</code></strong> - When a parent entity is persisted, its associated child entities are also persisted.</li>
+    <li><strong><code>CascadeType.MERGE</code></strong> - If a parent entity is merged, all child entities are also merged.</li>
+    <li><strong><code>CascadeType.REMOVE</code></strong> - If a parent entity is removed, all related child entities are also deleted.</li>
+    <li><strong><code>CascadeType.REFRESH</code></strong> - Refreshes all child entities when the parent is refreshed.</li>
+    <li><strong><code>CascadeType.DETACH</code></strong> - When a parent entity is detached from the persistence context, all child entities are detached as well.</li>
+    <li><strong><code>CascadeType.ALL</code></strong> - Applies all of the above cascade types.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Example of Cascade in JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of cascading in a <code>@OneToMany</code> relationship:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.*;
+  import java.util.List;
+
+  @Entity
+  @Table(name = "departments")
+  public class Department {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @Column(nullable = false)
+      private String name;
+
+      @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+      private List<Employee> employees;
+
+      // Getters and setters
+  }
+
+  @Entity
+  @Table(name = "employees")
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @Column(nullable = false)
+      private String name;
+
+      @ManyToOne
+      @JoinColumn(name = "department_id")
+      private Department department;
+
+      // Getters and setters
+  }
+  </code>
+  </pre>
+  <p><strong>Explanation:</strong> When a <code>Department</code> entity is saved, updated, or deleted, the corresponding operations are automatically applied to its related <code>Employee</code> entities.</p>
+
+  <h3 style="color: #d35400;">4. Cascading in Hibernate</h3>
+  <p style="color: #2c3e50;">
+    Hibernate supports JPA cascade types and also provides additional cascade options via the <code>org.hibernate.annotations.Cascade</code> annotation.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.hibernate.annotations.Cascade;
+  import org.hibernate.annotations.CascadeType;
+  
+  @OneToMany(mappedBy = "department")
+  @Cascade(CascadeType.SAVE_UPDATE)
+  private List<Employee> employees;
+  </code>
+  </pre>
+  <p><strong>Hibernate-Specific Cascade Types:</strong></p>
+  <ul style="color: #2c3e50;">
+    <li><strong><code>SAVE_UPDATE</code></strong> - Automatically saves or updates the child entities.</li>
+    <li><strong><code>DELETE</code></strong> - Deletes child entities when the parent is deleted.</li>
+    <li><strong><code>LOCK</code></strong> - Applies a lock to child entities when the parent entity is locked.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">5. Orphan Removal</h3>
+  <p style="color: #2c3e50;">
+    The <code>orphanRemoval = true</code> option ensures that if an entity is removed from a collection, it is deleted from the database as well.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<Employee> employees;
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. When to Use Cascade?</h3>
+  <ul style="color: #2c3e50;">
+    <li>Use <code>CascadeType.PERSIST</code> when child entities should be saved automatically with the parent.</li>
+    <li>Use <code>CascadeType.REMOVE</code> when deleting a parent entity should also delete its children.</li>
+    <li>Use <code>orphanRemoval = true</code> when removing a reference to a child entity should delete it from the database.</li>
+    <li>Avoid <code>CascadeType.ALL</code> unless necessary, as it applies all operations without distinction.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">7. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Cascade operations simplify entity management by propagating persistence actions to related entities. While JPA provides standard cascade types, Hibernate extends them with additional features for more control. Using cascading effectively improves code maintainability and reduces boilerplate code.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Validation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Validation in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity validation ensures that the data stored in the database follows specific constraints and business rules. JPA and Hibernate support validation using Java Bean Validation (JSR-380) and the <code>javax.validation</code> API, which integrates seamlessly with ORM frameworks.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is Entity Validation?</h3>
+  <p style="color: #2c3e50;">
+    Entity validation is the process of checking whether entity attributes meet certain criteria before persisting them into the database. This can be done using annotations from the <code>javax.validation</code> package.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Common Validation Annotations</h3>
+  <p style="color: #2c3e50;">
+    Java Bean Validation provides several built-in constraints to validate entity attributes:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong><code>@NotNull</code></strong> - Ensures that the field cannot be null.</li>
+    <li><strong><code>@Size(min=, max=)</code></strong> - Restricts the length of a string.</li>
+    <li><strong><code>@Min</code> / <code>@Max</code></strong> - Defines minimum and maximum values for numeric fields.</li>
+    <li><strong><code>@Pattern</code></strong> - Validates a string against a regular expression.</li>
+    <li><strong><code>@Email</code></strong> - Ensures the field contains a valid email address.</li>
+    <li><strong><code>@Past</code> / <code>@Future</code></strong> - Ensures that a date is in the past or future.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Example of Entity Validation</h3>
+  <p style="color: #2c3e50;">
+    The following example demonstrates entity validation using annotations:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.*;
+  import jakarta.validation.constraints.*;
+
+  @Entity
+  @Table(name = "users")
+  public class User {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @NotNull
+      @Size(min = 3, max = 50)
+      private String name;
+
+      @Email
+      @NotNull
+      private String email;
+
+      @Min(18)
+      @Max(100)
+      private int age;
+
+      @Pattern(regexp = "^(\\+\\d{1,3}[- ]?)?\\d{10}$")
+      private String phone;
+
+      @Past
+      private LocalDate dateOfBirth;
+
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Enabling Validation in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    In Spring Boot, validation is automatically supported if the <code>spring-boot-starter-validation</code> dependency is included in <code>pom.xml</code>:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+  <p>
+    In Spring Boot controllers, you can use <code>@Valid</code> to trigger validation:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.springframework.web.bind.annotation.*;
+  import jakarta.validation.Valid;
+
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+      @PostMapping("/create")
+      public String createUser(@Valid @RequestBody User user) {
+          return "User created successfully!";
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">5. Custom Validation</h3>
+  <p style="color: #2c3e50;">
+    If built-in constraints are not sufficient, custom validators can be created.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.validation.Constraint;
+  import jakarta.validation.Payload;
+  import java.lang.annotation.*;
+
+  @Target({ElementType.FIELD})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Constraint(validatedBy = AgeValidator.class)
+  public @interface ValidAge {
+      String message() default "Invalid age!";
+      Class&lt;?&gt;[] groups() default {};
+      Class&lt;? extends Payload&gt;[] payload() default {};
+  }
+  </code>
+  </pre>
+
+  <p>
+    The corresponding validator class:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.validation.ConstraintValidator;
+  import jakarta.validation.ConstraintValidatorContext;
+
+  public class AgeValidator implements ConstraintValidator&lt;ValidAge, Integer&gt; {
+      @Override
+      public boolean isValid(Integer age, ConstraintValidatorContext context) {
+          return age != null && age >= 18 && age <= 100;
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. When to Use Entity Validation?</h3>
+  <ul style="color: #2c3e50;">
+    <li>To enforce database constraints at the application level.</li>
+    <li>To prevent invalid data from being saved in the database.</li>
+    <li>To simplify input validation in web applications.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">7. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity validation is crucial in ORM-based applications to ensure data integrity. Using JPA and Hibernate validation annotations, along with Spring Boot's built-in support, makes validation simple and efficient.
+  </p>
+</div>
+`
+},
+{
+  title:`Versioning (Optimistic Locking)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Versioning (Optimistic Locking) in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Optimistic Locking is a concurrency control mechanism that prevents conflicts when multiple transactions attempt to update the same entity in a database. JPA and Hibernate implement Optimistic Locking using a versioning mechanism with the <code>@Version</code> annotation.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is Optimistic Locking?</h3>
+  <p style="color: #2c3e50;">
+    Optimistic Locking allows multiple users to read and update data concurrently. Instead of locking records, it detects conflicts when changes are persisted. If another transaction has modified the record, the update fails, and the application must handle the conflict.
+  </p>
+
+  <h3 style="color: #e67e22;">2. How Versioning Works</h3>
+  <p style="color: #2c3e50;">
+    - A special version field is added to an entity.<br>
+    - Each update to the entity increments the version value.<br>
+    - Before updating, Hibernate checks if the version in the database matches the entity’s version.<br>
+    - If there is a mismatch, a <code>OptimisticLockException</code> is thrown, indicating a conflict.
+  </p>
+
+  <h3 style="color: #8e44ad;">3. Implementing Optimistic Locking with @Version</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Version</code> annotation is used to enable versioning in an entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.*;
+
+  @Entity
+  @Table(name = "products")
+  public class Product {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      private String name;
+      private double price;
+
+      @Version
+      private int version;
+
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Example Scenario</h3>
+  <p style="color: #2c3e50;">
+    - User A and User B fetch the same Product entity.<br>
+    - User A updates the price and commits (version increments).<br>
+    - User B tries to update the price but gets an exception because the version has changed.
+  </p>
+
+  <h3 style="color: #16a085;">5. Handling OptimisticLockException</h3>
+  <p style="color: #2c3e50;">
+    If an update fails due to version mismatch, the application should handle the <code>OptimisticLockException</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.OptimisticLockException;
+  import org.springframework.transaction.annotation.Transactional;
+
+  @Transactional
+  public void updateProductPrice(Long productId, double newPrice) {
+      try {
+          Product product = entityManager.find(Product.class, productId);
+          product.setPrice(newPrice);
+          entityManager.merge(product);
+      } catch (OptimisticLockException e) {
+          System.out.println("Optimistic locking failed! Please try again.");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. Benefits of Optimistic Locking</h3>
+  <ul style="color: #2c3e50;">
+    <li>Allows high concurrency without blocking reads.</li>
+    <li>Detects conflicts only when an update occurs.</li>
+    <li>Works well for applications with more reads than writes.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">7. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Optimistic Locking with <code>@Version</code> is a powerful mechanism to handle concurrency in JPA and Hibernate. It is ideal for high-concurrency applications where conflicts are rare, ensuring data integrity while allowing multiple users to work simultaneously.
+  </p>
+</div>
+`
+},
+{
+  title:`Composite Keys`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Composite Keys in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A composite key is a primary key that consists of multiple columns instead of a single column. In JPA and Hibernate, composite keys are implemented using <code>@EmbeddedId</code> or <code>@IdClass</code>.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is a Composite Key?</h3>
+  <p style="color: #2c3e50;">
+    - A composite key uniquely identifies a record using multiple columns.<br>
+    - It is commonly used in situations where a single column is not enough to ensure uniqueness.<br>
+    - Example: A university enrollment system where <code>student_id</code> and <code>course_id</code> together form a primary key.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Defining a Composite Key</h3>
+  <p style="color: #2c3e50;">
+    JPA provides two ways to define a composite key:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong>@EmbeddedId</strong>: Uses an embeddable class to represent the composite key.</li>
+    <li><strong>@IdClass</strong>: Uses a separate class to define the composite key.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Using @EmbeddedId</h3>
+  <p style="color: #2c3e50;">
+    The <code>@EmbeddedId</code> annotation allows embedding a composite key object in an entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.*;
+  import java.io.Serializable;
+  
+  @Embeddable
+  public class EnrollmentId implements Serializable {
+      private Long studentId;
+      private Long courseId;
+  
+      // Default constructor, getters, setters, equals, and hashCode methods
+  }
+  </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Now, we use this composite key in our entity:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Enrollment {
+      @EmbeddedId
+      private EnrollmentId id;
+  
+      private String semester;
+  
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Using @IdClass</h3>
+  <p style="color: #2c3e50;">
+    The <code>@IdClass</code> annotation maps an entity to a composite key using a separate key class.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import java.io.Serializable;
+
+  public class EnrollmentId implements Serializable {
+      private Long studentId;
+      private Long courseId;
+
+      // Default constructor, getters, setters, equals, and hashCode methods
+  }
+  </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Now, we apply this in our entity:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @IdClass(EnrollmentId.class)
+  public class Enrollment {
+      @Id
+      private Long studentId;
+  
+      @Id
+      private Long courseId;
+  
+      private String semester;
+  
+      // Getters and setters
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Choosing Between @EmbeddedId and @IdClass</h3>
+  <ul style="color: #2c3e50;">
+    <li><strong>@EmbeddedId</strong>: Preferred when the composite key is treated as a single unit.</li>
+    <li><strong>@IdClass</strong>: Useful when working with legacy databases or when different entities share the same composite key structure.</li>
+  </ul>
+
+  <h3 style="color: #16a085;">6. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Composite keys ensure uniqueness using multiple columns. Both <code>@EmbeddedId</code> and <code>@IdClass</code> are effective ways to implement them in JPA and Hibernate, depending on the use case.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Manager`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Manager in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <code>EntityManager</code> is the core interface in JPA that manages the lifecycle of entities. It provides an API to perform database operations such as persisting, finding, updating, and removing entities.
+  </p>
+
+  <h3 style="color: #16a085;">1. What is an Entity Manager?</h3>
+  <p style="color: #2c3e50;">
+    - The <code>EntityManager</code> acts as a bridge between Java objects and the database.<br>
+    - It manages entity states: Transient, Managed, Detached, and Removed.<br>
+    - It interacts with the persistence context to track entity changes.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Obtaining an Entity Manager</h3>
+  <p style="color: #2c3e50;">
+    The <code>EntityManager</code> can be obtained from an <code>EntityManagerFactory</code> in Java applications.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import jakarta.persistence.*;
+
+  public class EntityManagerExample {
+      public static void main(String[] args) {
+          EntityManagerFactory emf = Persistence.createEntityManagerFactory("myPersistenceUnit");
+          EntityManager em = emf.createEntityManager();
+
+          em.getTransaction().begin();
+
+          // Perform database operations here
+
+          em.getTransaction().commit();
+          em.close();
+          emf.close();
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Important Entity Manager Methods</h3>
+  <p style="color: #2c3e50;">
+    The <code>EntityManager</code> provides several key methods:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong>persist(entity)</strong>: Saves a new entity to the database.</li>
+    <li><strong>find(entityClass, primaryKey)</strong>: Retrieves an entity by its ID.</li>
+    <li><strong>merge(entity)</strong>: Updates an entity and returns a managed instance.</li>
+    <li><strong>remove(entity)</strong>: Deletes an entity from the database.</li>
+    <li><strong>createQuery(query)</strong>: Executes JPQL queries.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">4. Entity States and Persistence Context</h3>
+  <p style="color: #2c3e50;">
+    Entities managed by <code>EntityManager</code> go through different states:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong>Transient</strong>: Not yet persisted.</li>
+    <li><strong>Managed</strong>: Tracked by the <code>EntityManager</code>.</li>
+    <li><strong>Detached</strong>: No longer tracked.</li>
+    <li><strong>Removed</strong>: Marked for deletion.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">5. Example of Entity Operations</h3>
+  <p style="color: #2c3e50;">
+    Below is an example demonstrating entity management:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Student {
+      @Id
+      @GeneratedValue
+      private Long id;
+      private String name;
+  
+      // Getters and setters
+  }
+
+  // Using EntityManager
+  em.getTransaction().begin();
+
+  Student student = new Student();
+  student.setName("John Doe");
+
+  em.persist(student); // Save entity
+  Student foundStudent = em.find(Student.class, student.getId()); // Retrieve entity
+  foundStudent.setName("Updated Name");
+  em.merge(foundStudent); // Update entity
+  em.remove(foundStudent); // Delete entity
+
+  em.getTransaction().commit();
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>EntityManager</code> is essential for handling database operations in JPA. It ensures entity lifecycle management, transaction control, and efficient database interactions.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Auditing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Auditing in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity Auditing is the process of tracking changes to database records. It helps maintain historical records of entity modifications such as insertions, updates, and deletions. JPA and Hibernate provide built-in support for auditing using various strategies.
+  </p>
+
+  <h3 style="color: #16a085;">1. Why Entity Auditing?</h3>
+  <p style="color: #2c3e50;">
+    - Helps track changes made to records.<br>
+    - Maintains a history of updates for compliance and debugging.<br>
+    - Enables rollback or recovery of data.<br>
+    - Improves accountability in applications.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Approaches to Entity Auditing</h3>
+  <p style="color: #2c3e50;">
+    There are multiple ways to implement entity auditing in JPA and Hibernate:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong>Manual Auditing</strong>: Using timestamps and user tracking fields.</li>
+    <li><strong>JPA Lifecycle Callbacks</strong>: Using <code>@PrePersist</code> and <code>@PreUpdate</code> annotations.</li>
+    <li><strong>Hibernate Envers</strong>: A dedicated auditing framework.</li>
+    <li><strong>Spring Data JPA Auditing</strong>: A Spring Boot-based approach.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Manual Auditing Using Timestamp Fields</h3>
+  <p style="color: #2c3e50;">
+    A simple way to track entity modifications is by adding timestamp columns:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class User {
+      @Id
+      @GeneratedValue
+      private Long id;
+      private String name;
+
+      @Column(nullable = false, updatable = false)
+      private LocalDateTime createdAt;
+
+      @Column(nullable = false)
+      private LocalDateTime updatedAt;
+
+      @PrePersist
+      protected void onCreate() {
+          createdAt = updatedAt = LocalDateTime.now();
+      }
+
+      @PreUpdate
+      protected void onUpdate() {
+          updatedAt = LocalDateTime.now();
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Using Hibernate Envers for Auditing</h3>
+  <p style="color: #2c3e50;">
+    Hibernate Envers provides an automatic way to maintain a history of entity changes.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.hibernate.envers.Audited;
+
+  @Entity
+  @Audited
+  public class Employee {
+      @Id
+      @GeneratedValue
+      private Long id;
+      private String name;
+      private String department;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    Hibernate Envers automatically stores history in a separate audit table.
+  </p>
+
+  <h3 style="color: #e67e22;">5. Spring Data JPA Auditing</h3>
+  <p style="color: #2c3e50;">
+    Spring Data JPA provides annotations to enable auditing automatically.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @EntityListeners(AuditingEntityListener.class)
+  public class Order {
+      @Id
+      @GeneratedValue
+      private Long id;
+
+      @CreatedDate
+      private LocalDateTime createdDate;
+
+      @LastModifiedDate
+      private LocalDateTime lastModifiedDate;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity auditing is a crucial feature for tracking data modifications in JPA and Hibernate. Whether using manual timestamp fields, lifecycle callbacks, Hibernate Envers, or Spring Data JPA, auditing ensures better data integrity, security, and compliance.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Performance Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Performance Optimization in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Optimizing entity performance in JPA and Hibernate is essential for ensuring efficient database interactions. Poorly optimized entities can lead to slow queries, memory issues, and unnecessary database load. By following best practices, we can significantly enhance application performance.
+  </p>
+
+  <h3 style="color: #16a085;">1. Key Challenges in Entity Performance</h3>
+  <p style="color: #2c3e50;">
+    - **N+1 Query Problem**: Too many queries due to lazy loading.<br>
+    - **Unoptimized Fetch Strategies**: Inefficient fetching of related entities.<br>
+    - **Excessive Data Loading**: Fetching unnecessary columns or records.<br>
+    - **Inefficient Caching**: Overloading the database with redundant queries.<br>
+    - **Poor Indexing**: Missing indexes on frequently searched columns.
+  </p>
+
+  <h3 style="color: #e67e22;">2. Strategies for Optimizing Entity Performance</h3>
+  <p style="color: #2c3e50;">
+    The following techniques can help improve performance:
+  </p>
+  <ul style="color: #2c3e50;">
+    <li><strong>Use Fetch Strategies Wisely</strong>: Choose between lazy and eager loading carefully.</li>
+    <li><strong>Batch Processing</strong>: Minimize the number of queries for bulk operations.</li>
+    <li><strong>Second-Level Cache</strong>: Reduce database load using caching.</li>
+    <li><strong>Indexing</strong>: Improve query performance by indexing relevant columns.</li>
+    <li><strong>Projection Queries</strong>: Fetch only necessary fields instead of entire entities.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Avoiding the N+1 Query Problem</h3>
+  <p style="color: #2c3e50;">
+    The N+1 problem occurs when a query loads an entity and then fetches related entities in multiple separate queries.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+  private List<OrderItem> items;
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    Solution: Use <code>JOIN FETCH</code> to load related entities efficiently.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Query("SELECT o FROM Order o JOIN FETCH o.items WHERE o.id = :id")
+  Order findOrderWithItems(@Param("id") Long id);
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Using Second-Level Caching</h3>
+  <p style="color: #2c3e50;">
+    Hibernate’s second-level cache helps reduce redundant queries.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Cacheable
+  @Entity
+  public class Product {
+      @Id
+      @GeneratedValue
+      private Long id;
+      private String name;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Using Indexed Columns</h3>
+  <p style="color: #2c3e50;">
+    Indexing frequently searched fields improves query performance.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(indexes = @Index(name = "idx_name", columnList = "name"))
+  public class Employee {
+      @Id
+      @GeneratedValue
+      private Long id;
+      private String name;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Optimizing entity performance in JPA and Hibernate is crucial for efficient applications. By using proper fetch strategies, caching, indexing, and projection queries, we can significantly enhance database performance and reduce unnecessary overhead.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Listeners`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Entity Listeners in JPA</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entity Listeners in JPA (Java Persistence API) are a powerful feature that allows you to define callback methods for lifecycle events of an entity. These events include actions like persisting, updating, removing, and loading entities. By using entity listeners, you can decouple business logic from entity classes and centralize common functionality, such as auditing, logging, or validation. This article explores how to implement and use entity listeners in a Spring Boot application.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Entity Listeners?</h3>
+  <p style="color: #2c3e50;">
+    Entity listeners offer several benefits for managing entity lifecycle events:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Separation of Concerns</strong>: Keeps business logic separate from entity classes.</li>
+    <li><strong>Reusability</strong>: Allows you to reuse listener logic across multiple entities.</li>
+    <li><strong>Centralized Logic</strong>: Provides a single place to handle common tasks like auditing or logging.</li>
+    <li><strong>Flexibility</strong>: Supports custom logic for different lifecycle events.</li>
+    <li><strong>Integration</strong>: Works seamlessly with JPA and Spring Data.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Entity Listeners</h3>
+  <p style="color: #2c3e50;">
+    When working with entity listeners, it is important to understand the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Callback Methods</strong>: Methods annotated with <code>@PrePersist</code>, <code>@PostPersist</code>, <code>@PreUpdate</code>, <code>@PostUpdate</code>, <code>@PreRemove</code>, <code>@PostRemove</code>, and <code>@PostLoad</code>.</li>
+    <li><strong>Entity Listener Class</strong>: A class annotated with <code>@EntityListeners</code> that contains callback methods.</li>
+    <li><strong>Lifecycle Events</strong>: Events triggered during the lifecycle of an entity, such as creation, update, or deletion.</li>
+    <li><strong>Multiple Listeners</strong>: You can assign multiple listeners to a single entity.</li>
+    <li><strong>Spring Integration</strong>: Use Spring-managed beans as entity listeners for dependency injection.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Entity Listeners in JPA</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to implement and use entity listeners in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define an Entity</h4>
+  <p style="color: #2c3e50;">
+    Create a JPA entity and associate it with an entity listener.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.EntityListeners;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      @EntityListeners(UserAuditListener.class)
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+          private String email;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create an Entity Listener</h4>
+  <p style="color: #2c3e50;">
+    Define an entity listener class with callback methods for lifecycle events.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.PrePersist;
+      import jakarta.persistence.PreUpdate;
+      import java.time.LocalDateTime;
+
+      public class UserAuditListener {
+
+          @PrePersist
+          public void beforePersist(User user) {
+              System.out.println("Before persisting user: " + user.getName());
+              user.setCreatedAt(LocalDateTime.now());
+          }
+
+          @PreUpdate
+          public void beforeUpdate(User user) {
+              System.out.println("Before updating user: " + user.getName());
+              user.setUpdatedAt(LocalDateTime.now());
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Use Spring-Managed Entity Listeners</h4>
+  <p style="color: #2c3e50;">
+    Use Spring-managed beans as entity listeners to enable dependency injection.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Component;
+      import jakarta.persistence.PrePersist;
+      import jakarta.persistence.PreUpdate;
+      import java.time.LocalDateTime;
+
+      @Component
+      public class UserAuditListener {
+
+          @PrePersist
+          public void beforePersist(User user) {
+              System.out.println("Before persisting user: " + user.getName());
+              user.setCreatedAt(LocalDateTime.now());
+          }
+
+          @PreUpdate
+          public void beforeUpdate(User user) {
+              System.out.println("Before updating user: " + user.getName());
+              user.setUpdatedAt(LocalDateTime.now());
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Register the Listener with the Entity</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@EntityListeners</code> annotation to register the listener with the entity.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import jakarta.persistence.Entity;
+      import jakarta.persistence.EntityListeners;
+      import jakarta.persistence.GeneratedValue;
+      import jakarta.persistence.GenerationType;
+      import jakarta.persistence.Id;
+
+      @Entity
+      @EntityListeners(UserAuditListener.class)
+      public class User {
+          @Id
+          @GeneratedValue(strategy = GenerationType.IDENTITY)
+          private Long id;
+
+          private String name;
+          private String email;
+          private LocalDateTime createdAt;
+          private LocalDateTime updatedAt;
+
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Entity Listeners</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use entity listeners for cross-cutting concerns like auditing, logging, and validation.</li>
+    <li>Keep listener logic simple and focused on a single responsibility.</li>
+    <li>Use Spring-managed beans as listeners to enable dependency injection.</li>
+    <li>Avoid performing heavy operations in callback methods to minimize performance impact.</li>
+    <li>Test your listeners thoroughly to ensure they work as expected.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Entity listeners are a powerful feature in JPA that allow you to handle entity lifecycle events in a clean and reusable way. By decoupling business logic from entity classes, you can centralize common functionality and improve the maintainability of your application. Whether you're implementing auditing, logging, or validation, entity listeners provide the flexibility and control needed to manage entity lifecycle events effectively in Spring Boot applications.
+  </p>
+</div>`
+},
+{
+  title:`Testing Entities`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Entities in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing entities in JPA and Hibernate ensures that database interactions function correctly and efficiently. Proper testing prevents issues like incorrect mappings, transactional failures, and performance bottlenecks.
+  </p>
+
+  <h3 style="color: #16a085;">1. Why Test Entities?</h3>
+  <p style="color: #2c3e50;">
+    - **Validate Mappings**: Ensure correct database relationships.<br>
+    - **Check Constraints**: Test validation rules like <code>@NotNull</code>, <code>@Size</code>, etc.<br>
+    - **Verify Transactions**: Ensure commit and rollback operations work as expected.<br>
+    - **Optimize Queries**: Validate custom queries for correctness and efficiency.<br>
+  </p>
+
+  <h3 style="color: #e67e22;">2. Setting Up an In-Memory Database</h3>
+  <p style="color: #2c3e50;">
+    For unit testing, we use **H2** or **HSQLDB**, which provides an in-memory database environment.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  spring.datasource.url=jdbc:h2:mem:testdb
+  spring.datasource.driverClassName=org.h2.Driver
+  spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Unit Testing with JUnit and Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    We use **JUnit 5** and **Spring Boot Test** for testing.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @SpringBootTest
+  @RunWith(SpringRunner.class)
+  @DataJpaTest
+  public class EmployeeRepositoryTest {
+      
+      @Autowired
+      private TestEntityManager entityManager;
+      
+      @Autowired
+      private EmployeeRepository employeeRepository;
+
+      @Test
+      public void testSaveEmployee() {
+          Employee emp = new Employee("John Doe", "Engineering");
+          Employee savedEmp = entityManager.persistAndFlush(emp);
+          assertNotNull(savedEmp.getId());
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Testing Entity Constraints</h3>
+  <p style="color: #2c3e50;">
+    We can use **Bean Validation (JSR-303)** and **Hibernate Validator** to test entity constraints.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  public class Employee {
+      @Id
+      @GeneratedValue
+      private Long id;
+
+      @NotNull
+      private String name;
+
+      @Size(min = 3, max = 50)
+      private String department;
+  }
+  </code>
+  </pre>
+  <p style="color: #2c3e50;">
+    Testing constraints using **Validator API**:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Test
+  public void testInvalidEmployee() {
+      Employee emp = new Employee();
+      Set<ConstraintViolation<Employee>> violations = validator.validate(emp);
+      assertFalse(violations.isEmpty());
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Testing Entity Relationships</h3>
+  <p style="color: #2c3e50;">
+    If an entity has relationships (OneToMany, ManyToOne), we should test the associations.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Test
+  public void testEmployeeWithProjects() {
+      Employee emp = new Employee("Alice", "IT");
+      Project project = new Project("Project X");
+      emp.addProject(project);
+      
+      entityManager.persistAndFlush(emp);
+      assertEquals(1, emp.getProjects().size());
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Properly testing JPA and Hibernate entities ensures correctness, performance, and data integrity. Using **JUnit, H2 Database, and validation APIs**, we can create robust entity tests that prevent runtime failures.
+  </p>
+</div>
+`
+},
+{
+  title:`Entity Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Entity Best Practices in JPA and Hibernate</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Entities are the backbone of any ORM-based application. Writing efficient, maintainable, and optimized entity classes ensures better performance, scalability, and readability. Here are some best practices to follow when designing entities in JPA and Hibernate.
+  </p>
+
+  <h3 style="color: #16a085;">1. Use Proper Annotations</h3>
+  <p style="color: #2c3e50;">
+    Always use the correct JPA annotations like <code>@Entity</code>, <code>@Table</code>, <code>@Id</code>, and <code>@Column</code> to map entities properly.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "employees")
+  public class Employee {
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @Column(nullable = false, length = 100)
+      private String name;
+
+      @Column(nullable = false)
+      private String department;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Define a Meaningful Primary Key</h3>
+  <p style="color: #2c3e50;">
+    - Use <code>@GeneratedValue</code> with **IDENTITY or SEQUENCE** for auto-generated IDs.<br>
+    - Avoid **business keys** (like email or username) as primary keys.<br>
+  </p>
+
+  <h3 style="color: #8e44ad;">3. Use Proper Relationships</h3>
+  <p style="color: #2c3e50;">
+    When dealing with relationships, always choose the correct **fetch type** and avoid unnecessary bidirectional mappings.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private List&lt;Project&gt; projects = new ArrayList<>();
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Avoid Eager Fetching</h3>
+  <p style="color: #2c3e50;">
+    - **Use Lazy Loading** (fetch  FetchType LAZY) for collections.<br>
+    - Eager fetching loads all related data immediately, causing performance issues.<br>
+  </p>
+
+  <h3 style="color: #e67e22;">5. Use DTOs for Data Transfer</h3>
+  <p style="color: #2c3e50;">
+    - **Never expose entities directly in APIs**.<br>
+    - Use **DTO (Data Transfer Object)** to return data instead of full entities.<br>
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  public class EmployeeDTO {
+      private String name;
+      private String department;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Implement Equals and HashCode Correctly</h3>
+  <p style="color: #2c3e50;">
+    - Use **only the primary key** for equals and hashCode.<br>
+    - Avoid using **collections** in these methods.<br>
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Override
+  public boolean equals(Object o) {
+      if (this == o) return true;
+      if (!(o instanceof Employee)) return false;
+      Employee employee = (Employee) o;
+      return Objects.equals(id, employee.id);
+  }
+
+  @Override
+  public int hashCode() {
+      return Objects.hash(id);
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">7. Use Caching Wisely</h3>
+  <p style="color: #2c3e50;">
+    - Use **Hibernate Second-Level Cache** to reduce database hits.<br>
+    - Mark frequently used entities with **@Cacheable**.<br>
+  </p>
+
+  <h3 style="color: #d35400;">8. Avoid Business Logic in Entities</h3>
+  <p style="color: #2c3e50;">
+    - Entities should represent **data**, not contain business logic.<br>
+    - Use **Service Layer** for business operations.<br>
+  </p>
+
+  <h3 style="color: #16a085;">9. Optimize Queries</h3>
+  <p style="color: #2c3e50;">
+    - Use **JPQL or Criteria API** for complex queries.<br>
+    - Optimize queries using **indexes and proper joins**.<br>
+  </p>
+
+  <h3 style="color: #e67e22;">10. Validate Data with Annotations</h3>
+  <p style="color: #2c3e50;">
+    - Use **@NotNull, @Size, @Pattern** for entity validation.<br>
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Column(nullable = false)
+  @NotNull
+  @Size(min = 3, max = 50)
+  private String name;
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Following these **best practices** ensures that JPA and Hibernate entities remain efficient, maintainable, and optimized for performance. Proper design leads to a robust and scalable application.
+  </p>
+</div>
+`
+}
+     ]
 
 }
