@@ -30770,6 +30770,1763 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
   </p>
 </div>
 `
+},
+{
+  title:`Validation Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Validation Basics in JPA and Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Data validation is a crucial aspect of any application to ensure data integrity and correctness. In JPA and Spring Boot, validation can be implemented using **Java Bean Validation API (JSR-303/JSR-380)**. Annotations provided by **Jakarta Validation (formerly javax.validation)** help in enforcing constraints on entity fields.
+  </p>
+
+  <h3 style="color: #16a085;">1. Adding Validation Dependencies</h3>
+  <p style="color: #2c3e50;">
+    To use validation in a Spring Boot application, add the **Hibernate Validator** dependency, which is the reference implementation of the Java Bean Validation API.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Common Validation Annotations</h3>
+  <p style="color: #2c3e50;">
+    Here are some frequently used annotations for field validation in JPA entities:
+  </p>
+  <ul>
+    <li><code>@NotNull</code> - Ensures that the field cannot be null.</li>
+    <li><code>@Size(min=, max=)</code> - Restricts the length of a string or collection.</li>
+    <li><code>@Min(value=)</code> - Sets the minimum numeric value.</li>
+    <li><code>@Max(value=)</code> - Sets the maximum numeric value.</li>
+    <li><code>@Pattern(regex="")</code> - Ensures the field matches a given regex pattern.</li>
+    <li><code>@Email</code> - Validates if the field contains a valid email format.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Applying Validation Annotations</h3>
+  <p style="color: #2c3e50;">
+    Let's see how validation annotations are used in a JPA entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "users")
+  public class User {
+
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @NotNull
+      @Size(min = 3, max = 50)
+      @Column(nullable = false)
+      private String name;
+
+      @Email
+      @NotNull
+      @Column(unique = true, nullable = false)
+      private String email;
+
+      @Min(18)
+      @Max(100)
+      @Column(nullable = false)
+      private int age;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Validating User Input in REST Controllers</h3>
+  <p style="color: #2c3e50;">
+    In Spring Boot, you can enforce validation in REST controllers using the <code>@Valid</code> annotation.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+
+      @PostMapping
+      public ResponseEntity&lt;String&gt; createUser(@Valid @RequestBody User user) {
+          return ResponseEntity.ok("User is valid and saved successfully");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Custom Validation</h3>
+  <p style="color: #2c3e50;">
+    You can create custom validators by implementing **ConstraintValidator**.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Target({ElementType.FIELD})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Constraint(validatedBy = PhoneNumberValidator.class)
+  public @interface ValidPhoneNumber {
+      String message() default "Invalid phone number";
+      Class&lt;?&gt;[] groups() default {};
+      Class&lt;? extends Payload&gt;[] payload() default {};
+  }
+
+  public class PhoneNumberValidator implements ConstraintValidator&lt;ValidPhoneNumber, String&gt; {
+      private static final String PHONE_PATTERN = "\\d{10}";
+
+      @Override
+      public boolean isValid(String value, ConstraintValidatorContext context) {
+          return value != null && value.matches(PHONE_PATTERN);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Handling Validation Errors</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides an easy way to handle validation errors using **@ExceptionHandler**.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+
+      @ExceptionHandler(MethodArgumentNotValidException.class)
+      public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {
+          Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+          ex.getBindingResult().getFieldErrors().forEach(error -> 
+              errors.put(error.getField(), error.getDefaultMessage()));
+          return new ResponseEntity&lt;&gt;(errors, HttpStatus.BAD_REQUEST);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">7. Validation in Spring Boot Services</h3>
+  <p style="color: #2c3e50;">
+    You can also validate input data in service methods using <code>@Valid</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Service
+  public class UserService {
+
+      public void registerUser(@Valid User user) {
+          // Business logic for saving user
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Using validation ensures data integrity and improves security. Spring Boot and JPA provide a powerful validation mechanism with built-in and custom constraints. Implement these techniques to ensure your application processes only valid data.
+  </p>
+</div>
+`
+},
+{
+  title:`Bean Validation (JSR 303/380)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Bean Validation (JSR 303/380) in Java</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Bean Validation is a Java specification that provides a standard way to validate objects using annotations. JSR 303 introduced the first version, and JSR 380 (Jakarta Validation) is an improved version with additional features. Spring Boot supports **Hibernate Validator**, the reference implementation of the Bean Validation API, to enforce validation constraints in Java applications.
+  </p>
+
+  <h3 style="color: #16a085;">1. Adding Bean Validation Dependencies</h3>
+  <p style="color: #2c3e50;">
+    If you are using Spring Boot, add the **Hibernate Validator** dependency in your <code>pom.xml</code> file.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Common Validation Annotations</h3>
+  <p style="color: #2c3e50;">
+    The Bean Validation API provides various annotations to enforce constraints on entity fields:
+  </p>
+  <ul>
+    <li><code>@NotNull</code> - Ensures the field cannot be null.</li>
+    <li><code>@Size(min=, max=)</code> - Restricts the length of a string or collection.</li>
+    <li><code>@Min(value=)</code> - Specifies the minimum numeric value.</li>
+    <li><code>@Max(value=)</code> - Specifies the maximum numeric value.</li>
+    <li><code>@Pattern(regex="")</code> - Validates the field against a regex pattern.</li>
+    <li><code>@Email</code> - Validates an email format.</li>
+    <li><code>@Past</code> - Ensures the date is in the past.</li>
+    <li><code>@Future</code> - Ensures the date is in the future.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Applying Bean Validation in a JPA Entity</h3>
+  <p style="color: #2c3e50;">
+    Let's see how to use validation annotations in a JPA entity.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "users")
+  public class User {
+
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @NotNull
+      @Size(min = 3, max = 50)
+      @Column(nullable = false)
+      private String name;
+
+      @Email
+      @NotNull
+      @Column(unique = true, nullable = false)
+      private String email;
+
+      @Min(18)
+      @Max(100)
+      @Column(nullable = false)
+      private int age;
+
+      @Pattern(regexp = "\\d{10}")
+      @Column(nullable = false)
+      private String phoneNumber;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Validating Data in REST Controllers</h3>
+  <p style="color: #2c3e50;">
+    In Spring Boot, you can validate request data in REST controllers using the <code>@Valid</code> annotation.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+
+      @PostMapping
+      public ResponseEntity&lt;String&gt; createUser(@Valid @RequestBody User user) {
+          return ResponseEntity.ok("User is valid and saved successfully");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Creating Custom Validation Constraints</h3>
+  <p style="color: #2c3e50;">
+    You can create custom validators using **ConstraintValidator**.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Target({ElementType.FIELD})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Constraint(validatedBy = PhoneNumberValidator.class)
+  public @interface ValidPhoneNumber {
+      String message() default "Invalid phone number";
+      Class&lt;?&gt;[] groups() default {};
+      Class&lt;? extends Payload&gt;[] payload() default {};
+  }
+
+  public class PhoneNumberValidator implements ConstraintValidator&lt;ValidPhoneNumber, String&gt; {
+      private static final String PHONE_PATTERN = "\\d{10}";
+
+      @Override
+      public boolean isValid(String value, ConstraintValidatorContext context) {
+          return value != null && value.matches(PHONE_PATTERN);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Handling Validation Errors</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides a simple way to handle validation errors using **@ExceptionHandler**.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+
+      @ExceptionHandler(MethodArgumentNotValidException.class)
+      public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {
+          Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+          ex.getBindingResult().getFieldErrors().forEach(error -> 
+              errors.put(error.getField(), error.getDefaultMessage()));
+          return new ResponseEntity&lt;&gt;(errors, HttpStatus.BAD_REQUEST);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">7. Validation in Spring Boot Services</h3>
+  <p style="color: #2c3e50;">
+    You can also validate input data in service methods using <code>@Valid</code>.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Service
+  public class UserService {
+
+      public void registerUser(@Valid User user) {
+          // Business logic for saving user
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Bean Validation (JSR 303/380) provides a robust and flexible way to enforce constraints on Java objects. Using **Hibernate Validator** in Spring Boot applications ensures data integrity and simplifies error handling. By leveraging built-in annotations and custom constraints, you can create high-quality, error-free applications.
+  </p>
+</div>
+` 
+},
+{
+  title:`Validation Annotations (@NotNull, @Size, @Email, etc.)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Validation Annotations in Java (@NotNull, @Size, @Email, etc.)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Bean Validation (JSR 303/380) provides a set of built-in annotations to enforce constraints on Java objects.
+    These annotations help validate user input, ensuring data integrity in applications. The **Hibernate Validator**
+    is the most commonly used implementation in **Spring Boot and JPA-based applications**.
+  </p>
+
+  <h3 style="color: #16a085;">1. Adding Bean Validation Dependency</h3>
+  <p style="color: #2c3e50;">
+    To use validation annotations in a Spring Boot project, add the following dependency to your <code>pom.xml</code> file:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">2. Common Validation Annotations</h3>
+  <p style="color: #2c3e50;">
+    Java Bean Validation API provides several built-in annotations to enforce validation constraints on entity fields.
+  </p>
+
+  <ul>
+    <li><code>@NotNull</code> - Ensures that a field cannot be <code>null</code>, but it allows empty values.</li>
+    <li><code>@NotEmpty</code> - Ensures that a field cannot be <code>null</code> or empty.</li>
+    <li><code>@NotBlank</code> - Ensures that a string is not <code>null</code> and contains at least one non-whitespace character.</li>
+    <li><code>@Size(min=, max=)</code> - Restricts the length of a string, array, or collection.</li>
+    <li><code>@Min(value=)</code> - Specifies the minimum value for numeric fields.</li>
+    <li><code>@Max(value=)</code> - Specifies the maximum value for numeric fields.</li>
+    <li><code>@Positive</code> - Ensures the number is strictly greater than zero.</li>
+    <li><code>@Negative</code> - Ensures the number is strictly less than zero.</li>
+    <li><code>@Email</code> - Ensures a valid email format.</li>
+    <li><code>@Pattern(regex="")</code> - Validates a field against a regular expression.</li>
+    <li><code>@Past</code> - Ensures the date is in the past.</li>
+    <li><code>@Future</code> - Ensures the date is in the future.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Using Validation Annotations in a JPA Entity</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a **User** entity with validation constraints:
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Entity
+  @Table(name = "users")
+  public class User {
+
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @NotBlank(message = "Name is required")
+      @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+      @Column(nullable = false)
+      private String name;
+
+      @Email(message = "Invalid email format")
+      @NotBlank(message = "Email is required")
+      @Column(unique = true, nullable = false)
+      private String email;
+
+      @Min(value = 18, message = "Age must be at least 18")
+      @Max(value = 100, message = "Age must be at most 100")
+      @Column(nullable = false)
+      private int age;
+
+      @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
+      @Column(nullable = false)
+      private String phoneNumber;
+
+      @Past(message = "Date of birth must be in the past")
+      private LocalDate dob;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #d35400;">4. Validating Input in REST Controllers</h3>
+  <p style="color: #2c3e50;">
+    In Spring Boot, you can validate request data using the <code>@Valid</code> annotation in **REST controllers**.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+
+      @PostMapping
+      public ResponseEntity&lt;String&gt; createUser(@Valid @RequestBody User user) {
+          return ResponseEntity.ok("User is valid and saved successfully");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Custom Validation with @Constraint</h3>
+  <p style="color: #2c3e50;">
+    You can create custom validators using **@Constraint** and **ConstraintValidator**.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Target({ElementType.FIELD})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Constraint(validatedBy = PhoneNumberValidator.class)
+  public @interface ValidPhoneNumber {
+      String message() default "Invalid phone number";
+      Class&lt;?&gt;[] groups() default {};
+      Class&lt;? extends Payload&gt;[] payload() default {};
+  }
+
+  public class PhoneNumberValidator implements ConstraintValidator&lt;ValidPhoneNumber, String&gt; {
+      private static final String PHONE_PATTERN = "\\d{10}";
+
+      @Override
+      public boolean isValid(String value, ConstraintValidatorContext context) {
+          return value != null && value.matches(PHONE_PATTERN);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">6. Handling Validation Errors</h3>
+  <p style="color: #2c3e50;">
+    Use <code>@ExceptionHandler</code> to catch validation errors in **Spring Boot**.
+  </p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+
+      @ExceptionHandler(MethodArgumentNotValidException.class)
+      public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {
+          Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+          ex.getBindingResult().getFieldErrors().forEach(error -> 
+              errors.put(error.getField(), error.getDefaultMessage()));
+          return new ResponseEntity&lt;&gt;(errors, HttpStatus.BAD_REQUEST);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Validation annotations play a crucial role in ensuring data consistency and integrity in Java applications.
+    Using built-in **JSR 303/380** annotations and custom validations, developers can enforce strict constraints
+    and improve application security. Spring Boot simplifies validation integration with Hibernate Validator.
+  </p>
+</div>
+` 
+},
+{
+  title:`Custom Validation Annotations`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Custom Validation Annotations in Java</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Bean Validation (JSR 303/380) provides built-in annotations like <code>@NotNull</code>, <code>@Size</code>, and <code>@Email</code>.
+    However, in real-world applications, we often need **custom validation** rules. Spring Boot and Hibernate Validator allow developers to create 
+    **custom validation annotations** to handle complex validation scenarios.
+  </p>
+
+  <h3 style="color: #16a085;">1. Why Use Custom Validation Annotations?</h3>
+  <p style="color: #2c3e50;">
+    Built-in annotations cover common constraints, but when we need:
+  </p>
+  <ul>
+    <li>Domain-specific rules (e.g., password complexity).</li>
+    <li>Validation based on multiple fields.</li>
+    <li>Custom error messages.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">2. Steps to Create a Custom Validation Annotation</h3>
+  <p style="color: #2c3e50;">
+    A custom validation annotation requires:
+  </p>
+  <ul>
+    <li>Annotation definition using <code>@Constraint</code>.</li>
+    <li>A validator class implementing <code>ConstraintValidator</code>.</li>
+    <li>Applying the custom annotation.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">3. Example: Custom Phone Number Validation</h3>
+  <p style="color: #2c3e50;">
+    Let’s create a custom annotation to validate **phone numbers** (must be exactly 10 digits).
+  </p>
+
+  <h4 style="color: #d35400;">Step 1: Define the Annotation</h4>
+  <p>Create a new annotation <code>@ValidPhoneNumber</code>:</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import javax.validation.Constraint;
+  import javax.validation.Payload;
+  import java.lang.annotation.ElementType;
+  import java.lang.annotation.Retention;
+  import java.lang.annotation.RetentionPolicy;
+  import java.lang.annotation.Target;
+
+  @Target({ElementType.FIELD})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Constraint(validatedBy = PhoneNumberValidator.class)
+  public @interface ValidPhoneNumber {
+      String message() default "Invalid phone number. Must be 10 digits.";
+      Class&lt;?&gt;[] groups() default {};
+      Class&lt;? extends Payload&gt;[] payload() default {};
+  }
+  </code>
+  </pre>
+
+  <h4 style="color: #d35400;">Step 2: Implement the Validator Class</h4>
+  <p>Create <code>PhoneNumberValidator</code> to implement validation logic:</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import javax.validation.ConstraintValidator;
+  import javax.validation.ConstraintValidatorContext;
+
+  public class PhoneNumberValidator implements ConstraintValidator&lt;ValidPhoneNumber, String&gt; {
+      
+      private static final String PHONE_PATTERN = "\\d{10}";
+
+      @Override
+      public boolean isValid(String value, ConstraintValidatorContext context) {
+          return value != null && value.matches(PHONE_PATTERN);
+      }
+  }
+  </code>
+  </pre>
+
+  <h4 style="color: #d35400;">Step 3: Apply Custom Annotation</h4>
+  <p>Use the annotation in an entity class:</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import javax.persistence.Entity;
+  import javax.persistence.GeneratedValue;
+  import javax.persistence.GenerationType;
+  import javax.persistence.Id;
+  import javax.persistence.Table;
+  import javax.validation.constraints.NotBlank;
+
+  @Entity
+  @Table(name = "users")
+  public class User {
+
+      @Id
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
+      private Long id;
+
+      @NotBlank(message = "Name cannot be blank")
+      private String name;
+
+      @ValidPhoneNumber
+      private String phoneNumber;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">4. Using Custom Validation in Spring Boot REST API</h3>
+  <p>In a Spring Boot controller, we validate the request body using <code>@Valid</code>:</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.springframework.http.ResponseEntity;
+  import org.springframework.web.bind.annotation.*;
+
+  import javax.validation.Valid;
+
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+
+      @PostMapping
+      public ResponseEntity&lt;String&gt; createUser(@Valid @RequestBody User user) {
+          return ResponseEntity.ok("User is valid and saved successfully.");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">5. Handling Validation Errors</h3>
+  <p>Use a global exception handler to capture validation failures:</p>
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.springframework.http.HttpStatus;
+  import org.springframework.http.ResponseEntity;
+  import org.springframework.web.bind.MethodArgumentNotValidException;
+  import org.springframework.web.bind.annotation.ExceptionHandler;
+  import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+  import java.util.HashMap;
+  import java.util.Map;
+
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+
+      @ExceptionHandler(MethodArgumentNotValidException.class)
+      public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {
+          Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+          ex.getBindingResult().getFieldErrors().forEach(error ->
+              errors.put(error.getField(), error.getDefaultMessage()));
+          return new ResponseEntity&lt;&gt;(errors, HttpStatus.BAD_REQUEST);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">6. Another Example: Custom Password Validation</h3>
+  <p>Let’s create a password validator that requires:</p>
+  <ul>
+    <li>At least 8 characters.</li>
+    <li>At least one uppercase letter.</li>
+    <li>At least one number.</li>
+  </ul>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @Target({ElementType.FIELD})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Constraint(validatedBy = PasswordValidator.class)
+  public @interface ValidPassword {
+      String message() default "Password must be at least 8 characters long, contain one uppercase letter and one number.";
+      Class&lt;?&gt;[] groups() default {};
+      Class&lt;? extends Payload&gt;[] payload() default {};
+  }
+
+  public class PasswordValidator implements ConstraintValidator&lt;ValidPassword, String&gt; {
+
+      private static final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*\\d).{8,}$";
+
+      @Override
+      public boolean isValid(String value, ConstraintValidatorContext context) {
+          return value != null && value.matches(PASSWORD_PATTERN);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Custom validation annotations in Java help enforce complex business rules that built-in annotations cannot handle.
+    By using **@Constraint** and **ConstraintValidator**, we can create reusable and maintainable validation rules.
+    This approach improves data consistency and enhances the overall security of an application.
+  </p>
+</div>
+` 
+},
+{
+  title:`Group Validation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Group Validation in Java</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Java Bean Validation (JSR 303/380), **group validation** allows us to apply different validation rules based on specific scenarios.
+    This is useful when an entity has multiple validation requirements depending on the context (e.g., user registration vs. user update).
+  </p>
+
+  <h3 style="color: #16a085;">1. Why Use Group Validation?</h3>
+  <p style="color: #2c3e50;">
+    By default, all validation constraints are applied together. However, in real-world applications, we often need:
+  </p>
+  <ul>
+    <li>Different validation rules for different **operations** (e.g., Create vs. Update).</li>
+    <li>Flexible validation execution based on **user role or state**.</li>
+    <li>Selective validation of **fields** instead of validating the entire object.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">2. Defining Validation Groups</h3>
+  <p style="color: #2c3e50;">
+    We first define **marker interfaces** to represent different validation groups.
+  </p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  public interface CreateGroup {}
+  public interface UpdateGroup {}
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Applying Groups to Entity Fields</h3>
+  <p style="color: #2c3e50;">
+    Next, we specify which constraints should be validated for each group.
+  </p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import javax.validation.constraints.*;
+
+  public class User {
+
+      @Null(groups = UpdateGroup.class)  // ID should be null when creating a new user
+      @NotNull(groups = UpdateGroup.class) // ID is required when updating a user
+      private Long id;
+
+      @NotBlank(groups = {CreateGroup.class, UpdateGroup.class})
+      private String name;
+
+      @Email(groups = CreateGroup.class)
+      @NotBlank(groups = CreateGroup.class)
+      private String email;
+
+      @Size(min = 8, groups = CreateGroup.class)
+      private String password;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">4. Using Group Validation in a Spring Boot Controller</h3>
+  <p>We specify the validation group in the **@Validated** annotation in our controller.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.springframework.http.ResponseEntity;
+  import org.springframework.validation.annotation.Validated;
+  import org.springframework.web.bind.annotation.*;
+
+  import javax.validation.Valid;
+
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+
+      @PostMapping
+      public ResponseEntity&lt;String&gt; createUser(@Validated(CreateGroup.class) @RequestBody User user) {
+          return ResponseEntity.ok("User created successfully.");
+      }
+
+      @PutMapping("/{id}")
+      public ResponseEntity&lt;String&gt; updateUser(@Validated(UpdateGroup.class) @RequestBody User user) {
+          return ResponseEntity.ok("User updated successfully.");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">5. Validating Groups Programmatically</h3>
+  <p>Sometimes, we may need to manually trigger validation in a service layer using **Validator**.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import javax.validation.ConstraintViolation;
+  import javax.validation.Validation;
+  import javax.validation.Validator;
+  import java.util.Set;
+
+  public class UserService {
+
+      private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
+      public void validateUser(User user, Class&lt;?&gt; group) {
+          Set&lt;ConstraintViolation&lt;User&gt;&gt; violations = validator.validate(user, group);
+          for (ConstraintViolation&lt;User&gt; violation : violations) {
+              System.out.println(violation.getMessage());
+          }
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. Combining Multiple Groups</h3>
+  <p>We can validate multiple groups together by specifying multiple interfaces.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @PostMapping("/validate-multiple")
+  public ResponseEntity&lt;String&gt; validateMultiple(@Validated({CreateGroup.class, UpdateGroup.class}) @RequestBody User user) {
+      return ResponseEntity.ok("Validated multiple groups successfully.");
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">7. Default Group Validation</h3>
+  <p>By default, constraints without an explicit **groups** attribute belong to the **Default group**.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  @NotNull // This belongs to Default group
+  private String address;
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">8. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Group validation allows us to apply **different validation rules** based on context (e.g., create vs. update).
+    By defining **marker interfaces** and applying them selectively, we can achieve more **flexible and maintainable validation logic**.
+  </p>
+</div>
+` 
+},
+{
+  title:`Validation in Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Validation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Validation is an essential part of any application to ensure data integrity and prevent invalid data from being processed.
+    In **Spring Boot**, we can use **JSR 303/380 Bean Validation** with **Hibernate Validator** (the default implementation) to handle validation effortlessly.
+  </p>
+
+  <h3 style="color: #16a085;">1. Why Use Validation in Spring Boot?</h3>
+  <p style="color: #2c3e50;">
+    Proper validation ensures:
+  </p>
+  <ul>
+    <li>Data is **accurate, complete, and follows business rules**.</li>
+    <li>Reduces **errors and exceptions** during processing.</li>
+    <li>Enhances **security** by preventing invalid data inputs.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">2. Adding Validation Dependencies</h3>
+  <p>To enable validation in a Spring Boot project, include the following Maven dependency:</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+  &lt;/dependency&gt;
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">3. Using Validation Annotations</h3>
+  <p>Spring Boot supports standard **JSR 303/380** validation annotations such as:</p>
+
+  <ul>
+    <li><code>@NotNull</code> – Field cannot be null.</li>
+    <li><code>@NotEmpty</code> – Field cannot be empty.</li>
+    <li><code>@NotBlank</code> – Field cannot be blank.</li>
+    <li><code>@Size(min=, max=)</code> – Limits field length.</li>
+    <li><code>@Email</code> – Ensures a valid email format.</li>
+    <li><code>@Pattern</code> – Validates against regex patterns.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">4. Example: Validating a User Entity</h3>
+  <p>Let's create a **User** model with validation constraints:</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import javax.validation.constraints.*;
+
+  public class User {
+
+      @NotNull(message = "ID cannot be null")
+      private Long id;
+
+      @NotBlank(message = "Name is required")
+      @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
+      private String name;
+
+      @Email(message = "Invalid email format")
+      @NotBlank(message = "Email is required")
+      private String email;
+
+      @Size(min = 8, message = "Password must be at least 8 characters long")
+      private String password;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">5. Validating Requests in Spring Boot Controller</h3>
+  <p>To enable validation, use the <code>@Valid</code> annotation in the controller method:</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.springframework.http.ResponseEntity;
+  import org.springframework.validation.annotation.Validated;
+  import org.springframework.web.bind.annotation.*;
+
+  import javax.validation.Valid;
+
+  @RestController
+  @RequestMapping("/users")
+  public class UserController {
+
+      @PostMapping
+      public ResponseEntity&lt;String&gt; createUser(@Valid @RequestBody User user) {
+          return ResponseEntity.ok("User created successfully!");
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">6. Handling Validation Errors with @ExceptionHandler</h3>
+  <p>When validation fails, Spring Boot returns a default error response. We can customize this using <code>@ExceptionHandler</code>.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import org.springframework.http.HttpStatus;
+  import org.springframework.http.ResponseEntity;
+  import org.springframework.web.bind.MethodArgumentNotValidException;
+  import org.springframework.web.bind.annotation.ExceptionHandler;
+  import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+  import java.util.HashMap;
+  import java.util.Map;
+
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+
+      @ExceptionHandler(MethodArgumentNotValidException.class)
+      public ResponseEntity&lt;Map&lt;String, String&gt;&gt; handleValidationExceptions(MethodArgumentNotValidException ex) {
+          Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+          ex.getBindingResult().getFieldErrors().forEach(error -> 
+              errors.put(error.getField(), error.getDefaultMessage()));
+          return new ResponseEntity&lt;&gt;(errors, HttpStatus.BAD_REQUEST);
+      }
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">7. Group Validation</h3>
+  <p>We can use **Group Validation** to apply different validation rules for different use cases.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  public interface CreateGroup {}
+  public interface UpdateGroup {}
+
+  public class User {
+
+      @NotNull(groups = UpdateGroup.class)
+      private Long id;
+
+      @NotBlank(groups = {CreateGroup.class, UpdateGroup.class})
+      private String name;
+
+      @Email(groups = CreateGroup.class)
+      @NotBlank(groups = CreateGroup.class)
+      private String email;
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">8. Custom Validation Annotation</h3>
+  <p>Spring Boot allows us to create **custom validation annotations**.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  import javax.validation.Constraint;
+  import javax.validation.Payload;
+  import java.lang.annotation.*;
+
+  @Target({ElementType.FIELD})
+  @Retention(RetentionPolicy.RUNTIME)
+  @Constraint(validatedBy = StrongPasswordValidator.class)
+  public @interface StrongPassword {
+      String message() default "Weak password";
+      Class&lt;?&gt;[] groups() default {};
+      Class&lt;? extends Payload&gt;[] payload() default {};
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">9. Validating DTOs in Spring Boot</h3>
+  <p>We can validate **DTOs** instead of validating entity objects directly.</p>
+
+  <pre style="background-color: #ecf0f1; padding: 10px; border-radius: 5px; overflow-x: auto;">
+  <code>
+  public class UserDTO {
+
+      @NotBlank
+      private String name;
+
+      @Email
+      private String email;
+  }
+
+  @PostMapping("/validate-dto")
+  public ResponseEntity&lt;String&gt; validateUserDTO(@Valid @RequestBody UserDTO userDTO) {
+      return ResponseEntity.ok("DTO validated successfully.");
+  }
+  </code>
+  </pre>
+
+  <h3 style="color: #16a085;">10. Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides powerful **JSR 303/380 validation** capabilities to enforce data constraints efficiently.
+    Using **annotations, exception handling, and custom validators**, we can build **robust and secure** applications.
+  </p>
+</div>
+` 
+},
+{
+  title:`Validator Interface`, content:`<div style="font-family: Arial, sans-serif; padding: 
+  20px; line-height: 1.6;"> <h2 style="color: #2c3e50;">Introduction to the Validator Interface in Spring</h2>
+   <p style="font-size: 16px; color: #34495e;"> The Validator interface in Spring is a fundamental component used for validating objects in a Spring application. 
+   It provides a flexible and reusable way to enforce validation rules on data objects, ensuring that they meet specific criteria before being processed further. 
+   This article explores the Validator interface in detail, including its purpose, implementation, and best practices for using it effectively in a Spring application. 
+   </p> <h3 style="color: #16a085;">Why Use the Validator Interface?</h3> <p style="color: #2c3e50;"> The Validator interface offers several advantages:
+    </p> <ul style="color: #2c3e50; padding-left: 20px;"> <li><strong>Data Integrity</strong>: Ensures that data objects adhere to predefined rules, 
+    preventing invalid data from being processed.</li> <li><strong>Reusability</strong>: Validation logic can be reused across different parts of the application.</li> 
+    <li><strong>Separation of Concerns</strong>: Keeps validation logic separate from business logic, improving code maintainability.</li> <li><strong>Customizability</strong>: 
+    Allows developers to define custom validation rules tailored to specific requirements.</li> <li><strong>Integration with Spring</strong>: Seamlessly integrates with other 
+    Spring features like data binding and form handling.</li> </ul> <h3 style="color: #e67e22;">Key Concepts of the Validator Interface</h3> <p style="color: #2c3e50;"> 
+    To effectively use the Validator interface, it is important to understand the following concepts: </p> <ul style="color: #2c3e50; padding-left: 20px;"> <li>
+    <strong>Validator Interface</strong>: A core interface in Spring that defines two methods: <code>supports()</code> and <code>validate()</code>.</li>
+     <li><strong>supports() Method</strong>: Determines whether the validator can validate a given object type.</li> <li><strong>validate() Method</strong>:
+      Performs the actual validation and populates errors if any validation rules are violated.</li> <li><strong>Errors Object</strong>: Used to collect and
+       report validation errors.</li> <li><strong>ValidationUtils</strong>: A utility class that simplifies common validation tasks.</li> </ul> <h3 style="color:
+        #2980b9;">Example: Implementing the Validator Interface</h3> <p style="color: #2c3e50;"> Below is an example of how to implement and use the Validator interface in a Spring application.
+         </p> <h4 style="color: #8e44ad;">1. Create a Data Object</h4> <p style="color: #2c3e50;"> Define a simple data object that will be validated. </p> <pre style="background:rgb(1, 16, 20);
+          color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;"> <code codeHighlight class="language-java"> public class User 
+          { private String name; private int age; // Getters and setters public String getName() { return name; } public void setName(String name) { this.name = name; }
+          //  public int getAge() { return age; } public void setAge(int age) { this.age = age; } } </code> </pre> <h4 style="color: #8e44ad;">2. Implement the Validator Interface</h4>
+          //  <p style="color: #2c3e50;"> Create a custom validator for the <code>User</code> class. </p> <pre style="background:rgb(1, 16, 20); 
+          // color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;"> <code codeHighlight class="language-java">
+          //  import org.springframework.validation.Errors; import org.springframework.validation.ValidationUtils; import org.springframework.validation.Validator;
+          //  public class UserValidator implements Validator { @Override public boolean supports(Class<?> clazz) { return User.class.equals(clazz); } 
+          // @Override public void validate(Object target, Errors errors) { ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required", 
+          // "Name is required."); User user = (User) target; if (user.getAge() < 18) { errors.rejectValue("age", "field.min.value", "Age must be at least 18."); } } } 
+          // </code> </pre> <h4 style="color: #8e44ad;">3. Use the Validator in a Spring Controller</h4> <p style="color: #2c3e50;"> Integrate the validator 
+          // into a Spring controller to validate incoming data. </p> <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; 
+          // overflow-x: auto;"> <code codeHighlight class="language-java"> import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.
+          // Controller; import org.springframework.validation.BindingResult; import org.springframework.web.bind.annotation.PostMapping; import org.springframework.web.bind.annotation.
+          // RequestBody; @Controller public class UserController { @Autowired private UserValidator userValidator; @PostMapping("/user") 
+          // public String createUser(@RequestBody User user, BindingResult result) { userValidator.validate(user, result); if (result.hasErrors()) 
+          // { return "validationError"; } // Process the user object return "success"; } } </code> </pre> <h4 style="color: #8e44ad;">4. Handle Validation Errors</h4> 
+          // <p style="color: #2c3e50;"> Handle validation errors gracefully in your application. </p> <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px;
+          //  border-radius: 5px; font-size: 14px; overflow-x: auto;"> <code codeHighlight class="language-java"> import org.springframework.ui.Model; import org.springframework.
+          // validation.FieldError; @ControllerAdvice public class GlobalExceptionHandler { @ExceptionHandler(MethodArgumentNotValidException.class) public String handleValidationErrors
+          // (MethodArgumentNotValidException ex, Model model) { BindingResult result = ex.getBindingResult(); for (FieldError error : result.getFieldErrors())
+          //  { model.addAttribute(error.getField(), error.getDefaultMessage()); } return "validationError"; } } </code> </pre> <h3 style="color: #d35400;">
+          // Best Practices for Using the Validator Interface</h3> <ul style="color: #2c3e50; padding-left: 20px;"> <li>Use meaningful error codes and messages 
+          // for better debugging and user feedback.</li> <li>Keep validation logic simple and focused on a single responsibility.</li> <li>Reuse validators 
+          // across different parts of the application to avoid duplication.</li> <li>Combine the Validator interface with annotations like <code>@Valid</code> 
+          // for comprehensive validation.</li> <li>Test validators thoroughly to ensure they handle all edge cases.</li> </ul> <h3 style="color: #2c3e50;">Conclusion
+          // </h3> <p style="color: #2c3e50;"> The Validator interface in Spring is a powerful tool for enforcing data validation rules in a structured and reusable manner. 
+          // By implementing custom validators and integrating them into your application, you can ensure data integrity and improve the overall quality of your application.
+          //  Whether you're validating user input, API requests, or business objects, the Validator interface provides the flexibility and control needed to handle validation effectively.
+  //  By following best practices, you can create robust and maintainable validation logic that scales with your application's needs. </p> </div>` 
+},
+{
+  title:`ConstraintValidator`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding ConstraintValidator in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring Boot, the <code>ConstraintValidator</code> interface is used for implementing custom validation logic.
+     It allows developers to create custom constraints beyond the built-in validation annotations provided by the Java Bean Validation API (JSR 380).
+  </p>
+
+  <h3 style="color: #16a085;">Why Use ConstraintValidator?</h3>
+  <p style="color: #2c3e50;">
+    The <code>ConstraintValidator</code> interface is useful when built-in validation annotations like <code>@NotNull</code>, 
+    <code>@Size</code>, and <code>@Pattern</code> do not meet specific validation requirements.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Custom Validation Logic</strong>: Define specific validation rules tailored to application needs.</li>
+    <li><strong>Reusability</strong>: Create reusable annotations with validation logic.</li>
+    <li><strong>Separation of Concerns</strong>: Keeps validation logic separate from business logic.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use ConstraintValidator?</h3>
+  <p style="color: #2c3e50;">
+    To create a custom validator, follow these steps:
+  </p>
+  <ol style="color: #2c3e50; padding-left: 20px;">
+    <li>Create a custom annotation.</li>
+    <li>Implement <code>ConstraintValidator</code>.</li>
+    <li>Apply the annotation to model fields.</li>
+  </ol>
+
+  <h3 style="color: #8e44ad;">Step 1: Define a Custom Annotation</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.Constraint;
+      import javax.validation.Payload;
+      import java.lang.annotation.ElementType;
+      import java.lang.annotation.Retention;
+      import java.lang.annotation.RetentionPolicy;
+      import java.lang.annotation.Target;
+      
+      @Target({ElementType.FIELD})
+      @Retention(RetentionPolicy.RUNTIME)
+      @Constraint(validatedBy = CustomValidator.class)
+      public @interface ValidCustomField {
+          String message() default "Invalid field value";
+          Class<?>[] groups() default {};
+          Class<? extends Payload>[] payload() default {};
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 2: Implement ConstraintValidator</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.ConstraintValidator;
+      import javax.validation.ConstraintValidatorContext;
+      
+      public class CustomValidator implements ConstraintValidator<ValidCustomField, String> {
+          @Override
+          public void initialize(ValidCustomField constraintAnnotation) {
+          }
+          
+          @Override
+          public boolean isValid(String value, ConstraintValidatorContext context) {
+              return value != null && value.matches("^[A-Za-z0-9]+$"); // Allows only alphanumeric values
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 3: Apply Custom Validation to a Model Class</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.constraints.NotNull;
+      
+      public class User {
+          @NotNull
+          @ValidCustomField
+          private String username;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using ConstraintValidator</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure custom validators are stateless for thread safety.</li>
+    <li>Use meaningful error messages for better user experience.</li>
+    <li>Combine multiple validations where necessary.</li>
+    <li>Test validators thoroughly to handle edge cases.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>ConstraintValidator</code> interface in Spring Boot allows developers to implement custom validation logic efficiently. By following best practices and separating validation logic, applications can ensure data integrity while maintaining clean and maintainable code.
+  </p>
+</div>` 
+
+},
+
+{
+  title:`Message Interpolation`, content:`div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;"> <h2 style="color: #2c3e50;">Understanding Message Interpolation in Spring</h2> <p style="font-size: 16px; color: #34495e;"> Message interpolation is a powerful feature in Spring that allows you to dynamically insert values into messages or templates. It is commonly used in internationalization (i18n) and validation error messages to provide context-specific information. This article explores the concept of message interpolation, its use cases, and how to implement it effectively in a Spring application. </p> <h3 style="color: #16a085;">Why Use Message Interpolation?</h3> <p style="color: #2c3e50;"> Message interpolation offers several benefits: </p> <ul style="color: #2c3e50; padding-left: 20px;"> <li><strong>Dynamic Content</strong>: Enables the insertion of dynamic values into static messages.</li> <li><strong>Internationalization</strong>: Supports localized messages by replacing placeholders with language-specific values.</li> <li><strong>Customizable Error Messages</strong>: Provides detailed and context-aware validation error messages.</li> <li><strong>Code Reusability</strong>: Allows reuse of message templates across the application.</li> <li><strong>Improved User Experience</strong>: Delivers clear and informative messages to users.</li> </ul> <h3 style="color: #e67e22;">Key Concepts of Message Interpolation</h3> <p style="color: #2c3e50;"> To effectively use message interpolation, it is important to understand the following concepts: </p> <ul style="color: #2c3e50; padding-left: 20px;"> <li><strong>Message Source</strong>: A mechanism in Spring to resolve messages from property files or other sources.</li> <li><strong>Placeholders</strong>: Markers in messages that are replaced with actual values during interpolation.</li> <li><strong>Message Format</strong>: The syntax used to define placeholders and their corresponding values.</li> <li><strong>Locale Support</strong>: The ability to resolve messages based on the user's locale for internationalization.</li> <li><strong>Validation Messages</strong>: Custom error messages that use interpolation to include dynamic values.</li> </ul> <h3 style="color: #2980b9;">Example: Implementing Message Interpolation</h3> <p style="color: #2c3e50;"> Below is an example of how to implement message interpolation in a Spring application. </p> <h4 style="color: #8e44ad;">1. Define Message Properties</h4> <p style="color: #2c3e50;"> Create a <code>messages.properties</code> file to store your messages with placeholders. </p> <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;"> <code class="language-properties"> # messages.properties greeting.message=Hello, {0}! Welcome to {1}. validation.error=The field {0} must be at least {1} characters long. </code> </pre> <h4 style="color: #8e44ad;">2. Configure Message Source</h4> <p style="color: #2c3e50;"> Configure the <code>MessageSource</code> bean in your Spring configuration. </p> <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;"> <code class="language-java"> import org.springframework.context.MessageSource; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.context.support.ReloadableResourceBundleMessageSource; @Configuration public class AppConfig { @Bean public MessageSource messageSource() { ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource(); messageSource.setBasename("classpath:messages"); messageSource.setDefaultEncoding("UTF-8"); return messageSource; } } </code> </pre> <h4 style="color: #8e44ad;">3. Use Message Interpolation in a Service</h4> <p style="color: #2c3e50;"> Use the <code>MessageSource</code> to resolve and interpolate messages in your application. </p> <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;"> <code class="language-java"> import org.springframework.beans.factory.annotation.Autowired; import org.springframework.context.MessageSource; import org.springframework.stereotype.Service; import java.util.Locale; @Service public class GreetingService { @Autowired private MessageSource messageSource; public String getGreetingMessage(String name, String appName, Locale locale) { return messageSource.getMessage("greeting.message", new Object[]{name, appName}, locale); } } </code> </pre> <h4 style="color: #8e44ad;">4. Use Message Interpolation in Validation</h4> <p style="color: #2c3e50;"> Customize validation error messages using message interpolation. </p> <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;"> <code class="language-java"> import javax.validation.constraints.Size; public class User { @Size(min = 5, message = "{validation.error}") private String username; // Getters and setters public String getUsername() { return username; } public void setUsername(String username) { this.username = username; } } </code> </pre> <h3 style="color: #d35400;">Best Practices for Using Message Interpolation</h3> <ul style="color: #2c3e50; padding-left: 20px;"> <li>Use meaningful placeholder names for better readability and maintainability.</li> <li>Externalize messages into property files for easy localization and updates.</li> <li>Test interpolated messages with different locales to ensure correctness.</li> <li>Avoid hardcoding messages in code; always use the <code>MessageSource</code>.</li> <li>Use consistent message formats across the application.</li> </ul> <h3 style="color: #2c3e50;">Conclusion</h3> <p style="color: #2c3e50;"> Message interpolation is a versatile feature in Spring that enhances the flexibility and usability of messages in your application. By leveraging placeholders and the <code>MessageSource</code>, you can create dynamic, localized, and context-aware messages for various use cases, including validation errors and user notifications. Following best practices ensures that your application remains maintainable, scalable, and user-friendly. </p> </div>`
+},
+{
+  title:`Cross-field Validation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Cross-field Validation in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cross-field validation is a powerful technique in Spring Boot that allows developers to validate multiple fields in a Java class together. It ensures that related fields follow specific rules and constraints, improving data consistency and integrity.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Cross-field Validation?</h3>
+  <p style="color: #2c3e50;">
+    Cross-field validation is essential when field values are interdependent. Some common scenarios include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Password Confirmation</strong>: Ensuring a 'password' and 'confirm password' field match.</li>
+    <li><strong>Date Range Validation</strong>: Checking that a start date is before an end date.</li>
+    <li><strong>Logical Field Dependencies</strong>: Ensuring that one field is required only if another field has a specific value.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Cross-field Validation?</h3>
+  <p style="color: #2c3e50;">
+    To implement cross-field validation, you need to create a custom annotation and a corresponding validator class using the <code>ConstraintValidator</code> interface.
+  </p>
+
+  <h3 style="color: #8e44ad;">Step 1: Create a Custom Annotation</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.Constraint;
+      import javax.validation.Payload;
+      import java.lang.annotation.ElementType;
+      import java.lang.annotation.Retention;
+      import java.lang.annotation.RetentionPolicy;
+      import java.lang.annotation.Target;
+
+      @Target(ElementType.TYPE)
+      @Retention(RetentionPolicy.RUNTIME)
+      @Constraint(validatedBy = CrossFieldValidator.class)
+      public @interface CrossFieldConstraint {
+          String message() default "Invalid field values";
+          Class<?>[] groups() default {};
+          Class<? extends Payload>[] payload() default {};
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 2: Create the Validator Class</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.ConstraintValidator;
+      import javax.validation.ConstraintValidatorContext;
+
+      public class CrossFieldValidator implements ConstraintValidator<CrossFieldConstraint, MyDTO> {
+
+          @Override
+          public boolean isValid(MyDTO dto, ConstraintValidatorContext context) {
+              if (dto.getStartDate() != null && dto.getEndDate() != null) {
+                  return dto.getStartDate().isBefore(dto.getEndDate());
+              }
+              return true;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Step 3: Apply the Annotation to a DTO</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @CrossFieldConstraint
+      public class MyDTO {
+          private LocalDate startDate;
+          private LocalDate endDate;
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Cross-field Validation</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful validation messages for better user feedback.</li>
+    <li>Ensure the validator class is stateless to maintain efficiency.</li>
+    <li>Combine cross-field validation with other constraints for robust validation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Cross-field validation is an essential feature in Spring Boot that allows developers to ensure field consistency within a DTO. By implementing custom annotations and validators, you can enforce complex validation rules and maintain data integrity effectively.
+  </p>
+</div>`
+},
+{
+  title:`Validation with DTOs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Validation with DTOs in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    DTO (Data Transfer Object) validation is essential in Spring Boot applications to ensure that incoming data meets the required constraints before processing. This helps maintain data integrity and security while reducing errors.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Validation with DTOs?</h3>
+  <p style="color: #2c3e50;">
+    Validating DTOs helps to:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensure Data Consistency</strong>: Prevents invalid data from propagating through the system.</li>
+    <li><strong>Improve Application Security</strong>: Guards against malicious or incorrect inputs.</li>
+    <li><strong>Enhance API Usability</strong>: Provides clear error messages to clients.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement DTO Validation?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot supports validation through the <code>javax.validation</code> API and Hibernate Validator.
+  </p>
+
+  <h3 style="color: #8e44ad;">Step 1: Add Validation Dependencies</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 2: Define a DTO with Validation Annotations</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.constraints.*;
+
+      public class UserDTO {
+          @NotNull(message = "Name cannot be null")
+          @Size(min = 3, message = "Name must have at least 3 characters")
+          private String name;
+
+          @Email(message = "Invalid email format")
+          private String email;
+
+          @Min(value = 18, message = "Age must be at least 18")
+          private int age;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Step 3: Validate DTOs in Controller</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.validation.annotation.Validated;
+      import org.springframework.web.bind.annotation.*;
+      import javax.validation.Valid;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          @PostMapping
+          public String createUser(@Valid @RequestBody UserDTO user) {
+              return "User created successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Handling Validation Errors</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.MethodArgumentNotValidException;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+              Map<String, String> errors = new HashMap<>();
+              ex.getBindingResult().getFieldErrors().forEach(error -> 
+                  errors.put(error.getField(), error.getDefaultMessage()));
+              return errors;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for DTO Validation</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use specific validation annotations for better accuracy.</li>
+    <li>Provide user-friendly error messages.</li>
+    <li>Use exception handling for structured error reporting.</li>
+    <li>Keep DTOs lightweight and focused on validation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Validating DTOs in Spring Boot applications is a powerful way to ensure data correctness and security. By leveraging annotation-based validation and global exception handling, developers can create robust and user-friendly APIs.
+  </p>
+</div>`
+},
+
+{
+  title:`Validation in REST APIs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Validation in REST APIs with Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Validation is a critical aspect of building RESTful APIs in Spring Boot. It ensures that the data sent by clients meets the required format and constraints before processing, improving data integrity and security.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Validation Important?</h3>
+  <p style="color: #2c3e50;">
+    Validation in REST APIs helps to:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensure Data Integrity</strong>: Prevents incorrect or malformed data from being processed.</li>
+    <li><strong>Improve API Reliability</strong>: Reduces errors by validating input before executing business logic.</li>
+    <li><strong>Enhance Security</strong>: Protects against injection attacks by sanitizing input.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Validation in REST APIs?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides built-in support for validation using the <code>javax.validation</code> API and Hibernate Validator.
+  </p>
+
+  <h3 style="color: #8e44ad;">Step 1: Add Validation Dependencies</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 2: Apply Validation Annotations</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.constraints.*;
+
+      public class UserDTO {
+          @NotNull(message = "Name cannot be null")
+          @Size(min = 3, message = "Name must have at least 3 characters")
+          private String name;
+
+          @Email(message = "Invalid email format")
+          private String email;
+
+          @Min(value = 18, message = "Age must be at least 18")
+          private int age;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Step 3: Validate Input in Controller</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.validation.annotation.Validated;
+      import org.springframework.web.bind.annotation.*;
+      import javax.validation.Valid;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          @PostMapping
+          public String createUser(@Valid @RequestBody UserDTO user) {
+              return "User created successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Handling Validation Errors</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.MethodArgumentNotValidException;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+              Map<String, String> errors = new HashMap<>();
+              ex.getBindingResult().getFieldErrors().forEach(error -> 
+                  errors.put(error.getField(), error.getDefaultMessage()));
+              return errors;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for API Validation</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful validation messages for clear client feedback.</li>
+    <li>Handle validation errors gracefully using exception handlers.</li>
+    <li>Combine different validation constraints to enforce strict data validation.</li>
+    <li>Use global exception handling for better error management.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Validation is a crucial part of building robust REST APIs in Spring Boot. By leveraging annotation-based validation, exception handling, and best practices, 
+    developers can ensure data integrity and enhance the API's reliability and security.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Global Validation (@Valid, @Validated)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Global Validation in Spring Boot (@Valid, @Validated)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Global validation ensures that data across multiple layers in a Spring Boot application meets the required constraints. Using <code>@Valid</code> and <code>@Validated</code>, we can enforce validation at the service level, controller level, and even in nested objects.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Global Validation?</h3>
+  <p style="color: #2c3e50;">
+    Global validation helps to:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensure Consistency</strong>: Applies uniform validation rules throughout the application.</li>
+    <li><strong>Reduce Boilerplate Code</strong>: Centralizes validation logic.</li>
+    <li><strong>Improve Code Maintainability</strong>: Easier debugging and updates.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Global Validation?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot supports validation via <code>@Valid</code> (from <code>javax.validation</code>) and <code>@Validated</code> (from <code>org.springframework.validation.annotation</code>).
+  </p>
+
+  <h3 style="color: #8e44ad;">Step 1: Add Validation Dependencies</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 2: Use @Valid in DTOs</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.constraints.*;
+
+      public class UserDTO {
+          @NotNull(message = "Name cannot be null")
+          @Size(min = 3, message = "Name must have at least 3 characters")
+          private String name;
+
+          @Email(message = "Invalid email format")
+          private String email;
+
+          @Min(value = 18, message = "Age must be at least 18")
+          private int age;
+          
+          // Getters and Setters
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Step 3: Apply @Valid in Controller</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import javax.validation.Valid;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          @PostMapping
+          public String createUser(@Valid @RequestBody UserDTO user) {
+              return "User created successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 4: Use @Validated in Service Layer</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.validation.annotation.Validated;
+
+      @Service
+      @Validated
+      public class UserService {
+          public void processUser(@Valid UserDTO user) {
+              // Business logic
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Step 5: Handle Global Validation Errors</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.MethodArgumentNotValidException;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+              Map<String, String> errors = new HashMap<>();
+              ex.getBindingResult().getFieldErrors().forEach(error -> 
+                  errors.put(error.getField(), error.getDefaultMessage()));
+              return errors;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Global validation using <code>@Valid</code> and <code>@Validated</code> enhances data integrity and consistency in Spring Boot applications. By leveraging annotation-based validation and centralized exception handling, developers can ensure robust and error-free data processing.
+  </p>
+</div>`
+},
+
+{
+  title:`Custom Error Messages`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Custom Error Messages in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Custom error messages in Spring Boot improve user experience by providing meaningful validation messages instead of generic errors. By leveraging <code>@Valid</code> and <code>@Validated</code> along with custom messages, developers can ensure clear feedback to users.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Custom Error Messages?</h3>
+  <p style="color: #2c3e50;">
+    Custom error messages help to:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improve User Experience</strong>: Provide meaningful feedback.</li>
+    <li><strong>Ensure Clarity</strong>: Avoid ambiguous or technical messages.</li>
+    <li><strong>Enhance Readability</strong>: Simplify debugging and logging.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Custom Error Messages?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot allows setting custom validation messages via annotations or message properties.
+  </p>
+
+  <h3 style="color: #8e44ad;">Step 1: Define Custom Messages in DTO</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.constraints.*;
+
+      public class UserDTO {
+          @NotNull(message = "Please provide a name.")
+          @Size(min = 3, message = "Name must be at least 3 characters long.")
+          private String name;
+
+          @Email(message = "Please enter a valid email address.")
+          private String email;
+
+          @Min(value = 18, message = "Age should be 18 or above.")
+          private int age;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Step 2: Handle Custom Errors in Controller</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import javax.validation.Valid;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          @PostMapping
+          public String createUser(@Valid @RequestBody UserDTO user) {
+              return "User registered successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 3: Centralized Exception Handling</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.MethodArgumentNotValidException;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+              Map<String, String> errors = new HashMap<>();
+              ex.getBindingResult().getFieldErrors().forEach(error -> 
+                  errors.put(error.getField(), error.getDefaultMessage()));
+              return errors;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Custom error messages in Spring Boot provide clear, user-friendly validation feedback. By defining specific messages in DTOs and centralizing exception handling, we can ensure a seamless experience for users.
+  </p>
+</div>`
+
+},
+
+{
+  title:`Validation on Method Parameters`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Custom Error Messages in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Custom error messages in Spring Boot improve user experience by providing meaningful validation messages instead of generic errors. By leveraging <code>@Valid</code> and <code>@Validated</code> along with custom messages, developers can ensure clear feedback to users.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Custom Error Messages?</h3>
+  <p style="color: #2c3e50;">
+    Custom error messages help to:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improve User Experience</strong>: Provide meaningful feedback.</li>
+    <li><strong>Ensure Clarity</strong>: Avoid ambiguous or technical messages.</li>
+    <li><strong>Enhance Readability</strong>: Simplify debugging and logging.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Custom Error Messages?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot allows setting custom validation messages via annotations or message properties.
+  </p>
+
+  <h3 style="color: #8e44ad;">Step 1: Define Custom Messages in DTO</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.validation.constraints.*;
+
+      public class UserDTO {
+          @NotNull(message = "Please provide a name.")
+          @Size(min = 3, message = "Name must be at least 3 characters long.")
+          private String name;
+
+          @Email(message = "Please enter a valid email address.")
+          private String email;
+
+          @Min(value = 18, message = "Age should be 18 or above.")
+          private int age;
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Step 2: Handle Custom Errors in Controller</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import javax.validation.Valid;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          @PostMapping
+          public String createUser(@Valid @RequestBody UserDTO user) {
+              return "User registered successfully!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Step 3: Centralized Exception Handling</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.http.HttpStatus;
+      import org.springframework.web.bind.MethodArgumentNotValidException;
+      import org.springframework.web.bind.annotation.ExceptionHandler;
+      import org.springframework.web.bind.annotation.ResponseStatus;
+      import org.springframework.web.bind.annotation.RestControllerAdvice;
+      import java.util.HashMap;
+      import java.util.Map;
+
+      @RestControllerAdvice
+      public class GlobalExceptionHandler {
+          @ResponseStatus(HttpStatus.BAD_REQUEST)
+          @ExceptionHandler(MethodArgumentNotValidException.class)
+          public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+              Map<String, String> errors = new HashMap<>();
+              ex.getBindingResult().getFieldErrors().forEach(error -> 
+                  errors.put(error.getField(), error.getDefaultMessage()));
+              return errors;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Custom error messages in Spring Boot provide clear, user-friendly validation feedback. By defining specific messages in DTOs and centralizing exception handling, we can ensure a seamless experience for users.
+  </p>
+</div>
+`
+},
+{
+  title:`Hibernate Validator`, content:``
+},
+
+{
+  title:`ConstraintValidator`, content:
 }
      ]
 
