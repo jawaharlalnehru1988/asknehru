@@ -4,6 +4,9 @@ import { combineLatest, interval, fromEvent, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { RxjsSupport, Subtopic, Video } from './rxjsSupport';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NgTopic } from '../angular-blogs/blog';
+import Prism from 'prismjs';
 
 @Component({
     selector: 'app-rxjs',
@@ -12,51 +15,45 @@ import { RxjsSupport, Subtopic, Video } from './rxjsSupport';
     styleUrls: ['./rxjs.component.scss']
 })
 export class RxjsComponent extends RxjsSupport{
+selectedTopic: string = '';
+  projectedContent: SafeHtml = '';
+  subTopicList: NgTopic[] = [];
+  selectedSubTopic: string = ``;
 
-
-selectedVideo:Video = this.videoObject[0];
-isMobile = false;
-screenWidth: number = window.innerWidth;
-screenHeight: number = window.innerHeight;
-subTopicArray!: string[];
-subToSubTopic!: Subtopic[];
-constructor(private screenService: ScreenSizeService){
+constructor(private screenService: ScreenSizeService, private sanitizer: DomSanitizer) {
   super();
-}
-selectVideo(video:Video) {
-  this.selectedVideo = video;
-}
-
-ngOnInit(){
-  this.updateScreenSize();
+  this.subTopicList = this.topicsClassified[0].subTopics;
+  this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(this.topicsClassified[0].subTopics[0].content);
 }
 
-@HostListener('window:resize', [`$event`])
-onResize(event: Event){
-  this.updateScreenSize();
-}
-
-private updateScreenSize(){
-  if (window.innerWidth < 700) {
-    this.screenWidth = 300;
-    this.screenHeight = 250;
+selectTopic(title: string){
+  this.selectedTopic = title;
+    const selectedOBJ = this.topicsClassified.find((obj: any) => obj.title === title);
+    console.log('selectedOBJ :', selectedOBJ);
+  if (selectedOBJ) {
+    this.subTopicList = selectedOBJ.subTopics;
   } else {
-    this.screenWidth = 800;
-    this.screenHeight = 550;
+    this.subTopicList = this.topicsClassified[0].subTopics;
   }
-  console.log('this.screenWidth :', this.screenWidth);
-  console.log('this.screenHeight :', this.screenHeight);
 }
 
-  selectTopic(subTopicList: string[] | Subtopic[]){
-    if (this.isStringArray(subTopicList)) {
-      this.subTopicArray = subTopicList;
-    } else{
-      this.subToSubTopic = subTopicList;
-    }
+selectSubTopic(topic: string) {
+  const selectedOBJ = this.subTopicList.find((obj: any) => obj.topic === topic);
+  this.selectedSubTopic = topic;
+  if (selectedOBJ) {
+    this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(selectedOBJ.content);
+  } else{
+    this.projectedContent = this.sanitizer.bypassSecurityTrustHtml(this.topicsClassified[0].subTopics[0].content);
+  }
+}
 
+
+  ngAfterViewInit(): void {
+    Prism.highlightAll();
   }
-  private isStringArray(value: any): value is string[]{
-    return Array.isArray(value) && value.every(item => typeof item === 'string');
+
+  ngAfterViewChecked(): void {
+    Prism.highlightAll();
   }
+
 }

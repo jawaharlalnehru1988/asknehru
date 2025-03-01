@@ -1,57 +1,25 @@
 <header>
-  <ul class="horizontal-list">
-    @for(head of topicsClassified; track head) {
-      <li (click)="selectTopic(head.list)">{{head.title}}</li>
-    }
-  </ul>
+  <nav>
+    <ul>
+      @for(obj of topicsClassified; track obj; let idx = $index){
+        <li class="topic" [class.selected]="obj.mainTopic === selectedTopic" (click)="selectTopic(obj.mainTopic)">
+          <div> {{obj.mainTopic}} </div>
+        </li>
+      }
+    </ul>
+  </nav>
+  <aside>
+    <ul>
+      @for(subTopic of subTopicList; track subTopic; let idx = $index){
+        <li class="topic" [class.selected]="subTopic.topic === selectedSubTopic" (click)="selectSubTopic(subTopic.topic)">
+          <div> {{subTopic.topic}} </div>
+        </li>
+      }
+    </ul>
+  </aside>
 </header>
-<nav>
-
-</nav>
-<aside>
-
-</aside>
-<main>
+<article>
   <section>
-     <article></article>
+    <div class="topic-content" [innerHTML]="projectedContent"></div>
   </section>
-</main>
- 
- 
- <section class="video-container">
-      <youtube-player
-      [width]="screenWidth"
-      [height]="screenHeight"
-      [videoId]="selectedVideo.videoId"
-      suggestedQuality="hd1080">
-    </youtube-player>
-    <div >
-      <p class="mt-4 text-xl font-bold">{{selectedVideo.title}}</p>
-      <p class="mt-2">{{selectedVideo.description}}</p>
-    </div>
-  
-  
-  <div class="w-full md:w-1/4 h-auto md:h-screen overflow-y-auto border-t md:border-t-0 md:border-l border-gray-200">
-    @for(topicObj of videoObject; track topicObj) {
-      <div  (click)="selectVideo(topicObj)" 
-      [class.selected]="selectedVideo === topicObj"
-      class="cursor-pointer p-2 hover:bg-gray-100">
-      @if(isMobile){
-        <youtube-player
-        [videoId]="selectedVideo.videoId"
-        [height]="isMobile ? 250 : 390"
-        [width]="isMobile ? 350 : 640"
-        suggestedQuality="hd1080">
-      </youtube-player>
-    } @else {
-      <img [src]="'https://img.youtube.com/vi/' + topicObj.videoId + '/maxresdefault.jpg'" alt="">
-    }
-      <p class="font-semibold">{{topicObj.title}}</p>
-    </div>
-  }
-  </div>
- </section>
-
-
-
-
+</article>

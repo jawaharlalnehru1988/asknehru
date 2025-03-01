@@ -2,12 +2,21 @@
   <nav>
     <ul>
       @for(obj of angularConcepts; track obj; let idx = $index){
-        <li class="topic" [class.selected]="obj.topic === selectedTopic" (click)="selectTopic(obj.topic)">
-          <div> {{idx + 1}}. {{obj.topic}} </div>
+        <li class="topic" [class.selected]="obj.mainTopic === selectedTopic" (click)="selectTopic(obj.mainTopic)">
+          <div> {{obj.mainTopic}} </div>
         </li>
       }
     </ul>
   </nav>
+  <aside>
+    <ul>
+      @for(subTopic of subTopicList; track subTopic; let idx = $index){
+        <li class="topic" [class.selected]="subTopic.topic === selectedSubTopic" (click)="selectSubTopic(subTopic.topic)">
+          <div> {{subTopic.topic}} </div>
+        </li>
+      }
+    </ul>
+  </aside>
 </header>
 <article>
   <section>

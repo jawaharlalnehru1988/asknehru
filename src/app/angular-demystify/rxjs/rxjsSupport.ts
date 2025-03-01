@@ -1,3 +1,5 @@
+import { NgConcepts } from "../angular-blogs/blog";
+
 export interface Video{
   title: string;
   description: string;
@@ -6,7 +8,7 @@ export interface Video{
 
 export interface Topics{
     title: string;
-    list: string[] | Subtopic[];
+    subTopics: string[] | Subtopic[];
 }
 
 export interface Subtopic{
@@ -16,241 +18,241 @@ export interface Subtopic{
 
 export class RxjsSupport {
     constructor() { }
-topicsClassified: Topics[] = [
-    {
-        title: 'Observables',
-        list: [
-            "Intro",
-            "Creating Observables",
-            "Subscription",
-            "Subscriber",
-            "Observer",
-            "Scheduler",
-        ],
+    topicsClassified: NgConcepts[] = [
+        {
+            mainTopic: 'Observables',
+            subTopics: [
+                { topic: `Intro`, content: `` },
+                { topic: `Creating Observables`, content: `` },
+                { topic: `Subscription`, content: `` },
+                { topic: `Subscriber`, content: `` },
+                { topic: `Observer`, content: `` },
+                { topic: `Scheduler`, content: `` },
+            ]
+        }, {
+            mainTopic: "Creation Operators", subTopics: [
+                { topic: `ajax`, content: `` },
+                { topic: `bindCallback`, content: `` },
+                { topic: `bindNodeCallback`, content: `` },
+                { topic: `defer`, content: `` },
+                { topic: `empty`, content: `` },
+                { topic: `from`, content: `` },
+                { topic: `fromEvent`, content: `` },
+                { topic: `fromEventPattern`, content: `` },
+                { topic: `generate`, content: `` },
+                { topic: `interval`, content: `` },
+                { topic: `of`, content: `` },
+                { topic: `range`, content: `` },
+                { topic: `throwError`, content: `` },
+                { topic: `timer`, content: `` },
+                { topic: `iif`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Join Creation Operators",
+            subTopics: [
+                { topic: `combineLatest`, content: `` },
+                { topic: `concat`, content: `` },
+                { topic: `forkJoin`, content: `` },
+                { topic: `merge`, content: `` },
+                { topic: `partition`, content: `` },
+                { topic: `race`, content: `` },
+                { topic: `zip`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Transformation Operators", subTopics: [
+                { topic: `buffer`, content: `` },
+                { topic: `bufferCount`, content: `` },
+                { topic: `bufferTime`, content: `` },
+                { topic: `bufferToggle`, content: `` },
+                { topic: `bufferWhen`, content: `` },
+                { topic: `concatMap`, content: `` },
+                { topic: `concatMapTo`, content: `` },
+                { topic: `exhaust`, content: `` },
+                { topic: `exhaustMap`, content: `` },
+                { topic: `expand`, content: `` },
+                { topic: `groupBy`, content: `` },
+                { topic: `map`, content: `` },
+                { topic: `mapTo`, content: `` },
+                { topic: `mergeMap`, content: `` },
+                { topic: `mergeMapTo`, content: `` },
+                { topic: `mergeScan`, content: `` },
+                { topic: `pairwise`, content: `` },
+                { topic: `partition`, content: `` },
+                { topic: `pluck`, content: `` },
+                { topic: `scan`, content: `` },
+                { topic: `switchScan`, content: `` },
+                { topic: `switchMap`, content: `` },
+                { topic: `switchMapTo`, content: `` },
+                { topic: `window`, content: `` },
+                { topic: `windowCount`, content: `` },
+                { topic: `windowTime`, content: `` },
+                { topic: `windowToggle`, content: `` },
+                { topic: `windowWhen`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Filtering Operators",
+            subTopics: [
+                { topic: `audit`, content: `` },
+                { topic: `auditTime`, content: `` },
+                { topic: `debounce`, content: `` },
+                { topic: `debounceTime`, content: `` },
+                { topic: `distinct`, content: `` },
+                { topic: `distinctUntilChanged`, content: `` },
+                { topic: `distinctUntilKeyChanged`, content: `` },
+                { topic: `elementAt`, content: `` },
+                { topic: `filter`, content: `` },
+                { topic: `first`, content: `` },
+                { topic: `ignoreElements`, content: `` },
+                { topic: `last`, content: `` },
+                { topic: `sample`, content: `` },
+                { topic: `sampleTime`, content: `` },
+                { topic: `single`, content: `` },
+                { topic: `skip`, content: `` },
+                { topic: `skipLast`, content: `` },
+                { topic: `skipUntil`, content: `` },
+                { topic: `skipWhile`, content: `` },
+                { topic: `take`, content: `` },
+                { topic: `takeLast`, content: `` },
+                { topic: `takeUntil`, content: `` },
+                { topic: `takeWhile`, content: `` },
+                { topic: `throttle`, content: `` },
+                { topic: `throttleTime`, content: `` }
+            ]
 
-    },
-    {
-        title: 'Operators',
-        list: [
-            {topic: "Creation Operators", subtopics: [
-                "ajax",
-                "bindCallback",
-                "bindNodeCallback",
-                "defer",
-                "empty",
-                "from",
-                "fromEvent",
-                "fromEventPattern",
-                "generate",
-                "interval",
-                "of",
-                "range",
-                "throwError",
-                "timer",
-                "iif"
-            ]},
-            {
-                topic: "Join Creation Operators", 
-                subtopics: [
-                    "combineLatest",
-                    "concat",
-                    "forkJoin",
-                    "merge",
-                    "partition",
-                    "race",
-                    "zip"
-                ]
-            },
-            {topic: "Transformation Operators", subtopics: [
-                "buffer",
-                "bufferCount",
-                "bufferTime",
-                "bufferToggle",
-                "bufferWhen",
-                "concatMap",
-                "concatMapTo",
-                "exhaust",
-                "exhaustMap",
-                "expand",
-                "groupBy",
-                "map",
-                "mapTo",
-                "mergeMap",
-                "mergeMapTo",
-                "mergeScan",
-                "pairwise",
-                "partition",
-                "pluck",
-                "scan",
-                "switchScan",
-                "switchMap",
-                "switchMapTo",
-                "window",
-                "windowCount",
-                "windowTime",
-                "windowToggle",
-                "windowWhen"
-            ]},
-            {
-                topic: "Filtering Operators",
-                subtopics: [
-                    "audit",
-                    "auditTime",
-                    "debounce",
-                    "debounceTime",
-                    "distinct",
-                    "distinctUntilChanged",
-                    "distinctUntilKeyChanged",
-                    "elementAt",
-                    "filter",
-                    "first",
-                    "ignoreElements",
-                    "last",
-                    "sample",
-                    "sampleTime",
-                    "single",
-                    "skip",
-                    "skipLast",
-                    "skipUntil",
-                    "skipWhile",
-                    "take",
-                    "takeLast",
-                    "takeUntil",
-                    "takeWhile",
-                    "throttle",
-                    "throttleTime"
-                ]
-            },
-            {
-                topic: "Join Operators",
-                subtopics: [
-                    "combineLatestAll",
-                    "combineAll",
-                    "exhaustAll",
-                    "mergeAll",
-                    "switchAll",
-                    "startWith",
-                    "withLatestFrom"
-                ]
-            },
-            {
-                topic: "Multicasting Operators",
-                subtopics: [
-                    "multicast",
-                    "publish",
-                    "publishBehavior",
-                    "publishLast",
-                    "publishReplay",
-                    "share",
-                ]
-            },
-            {
-                topic: "Error Handling Operators",
-                subtopics: [
-                    "catchError",
-                    "retry",
-                    "retryWhen"
-                ]
-            },
-            {
-                topic: "Utility Operators",
-                subtopics: [
-                    "tap",
-                    "delay",
-                    "delayWhen",
-                    "dematerialize",
-                    "materialize",
-                    "observeOn",
-                    "subscribeOn",
-                    "timeInterval",
-                    "timeout",
-                    "timeoutWith",
-                    "timestamp",
-                    "toArray"
-                ]
-            },
-            {
-                topic: "Conditional Operators",
-                subtopics: [
-                    "defaultIfEmpty",
-                    "every",
-                    "find",
-                    "findIndex",
-                    "isEmpty",
-                ]
-            },
-            {
-                topic: "Mathematical and Aggregate Operators",
-                subtopics: [
-                    "count",
-                    "max",
-                    "min",
-                    "reduce"
-                ]
-            },
-            {
-                topic: "Debugging Operators",
-                subtopics: [
-                    "do",
-                    "tap",
-                    "finalize"
-                ]
-            },
-            {
-                topic: "Custom Operators",
-                subtopics: [
-                    "let",
-                    "lift",
-                    "pipe"
-                ]
-            }
-        ]
-    },
-    {
-        title: 'Subjects',
-        list: [
-            "Subject",
-            "BehaviorSubject",
-            "ReplaySubject",
-            "AsyncSubject",
-            "void Subject"
-        ]
-    },
-    {
-        title: 'Schedulers',
-        list: [
-            "Introduction",
-            "Scheduler",
-            "AsyncScheduler",
-            "QueueScheduler",
-            "AsapScheduler",
-            "AnimationFrameScheduler",
-            "VirtualTimeScheduler",
-        ]
-    },
-    {
-        title: 'Testing',
-        list: [
-            "Introduction",
-            "TestScheduler",
-            "TestMessage",
-            "SubscriptionLog",
-            "SubscriptionLoggable",
-            "HotObservable",
-            "ColdObservable",
-            "TimeFrame",
-            "TimeInterval",
-            "Notification",
-        ]
-    },
-    {
-        title: 'Videos',
-        list: [
-            "Basic",
-            "Creation"
-        ]
-    }
-];
+        },
+        {
+            mainTopic: "Join Operators",
+            subTopics: [
+                { topic: `combineLatestAll`, content: `` },
+                { topic: `combineAll`, content: `` },
+                { topic: `exhaustAll`, content: `` },
+                { topic: `mergeAll`, content: `` },
+                { topic: `switchAll`, content: `` },
+                { topic: `startWith`, content: `` },
+                { topic: `withLatestFrom`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Multicasting Operators",
+            subTopics: [
+                { topic: `multicast`, content: `` },
+                { topic: `publish`, content: `` },
+                { topic: `publishBehavior`, content: `` },
+                { topic: `publishLast`, content: `` },
+                { topic: `publishReplay`, content: `` },
+                { topic: `share`, content: `` }
+            ]
+
+        },
+        {
+            mainTopic: "Error Handling Operators",
+            subTopics: [
+                { topic: `catchError`, content: `` },
+                { topic: `retry`, content: `` },
+                { topic: `retryWhen`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Utility Operators",
+            subTopics: [
+                { topic: `tap`, content: `` },
+                { topic: `delay`, content: `` },
+                { topic: `delayWhen`, content: `` },
+                { topic: `dematerialize`, content: `` },
+                { topic: `materialize`, content: `` },
+                { topic: `observeOn`, content: `` },
+                { topic: `subscribeOn`, content: `` },
+                { topic: `timeInterval`, content: `` },
+                { topic: `timeout`, content: `` },
+                { topic: `timeoutWith`, content: `` },
+                { topic: `timestamp`, content: `` },
+                { topic: `toArray`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Conditional Operators",
+            subTopics: [
+                { topic: `defaultIfEmpty`, content: `` },
+                { topic: `every`, content: `` },
+                { topic: `find`, content: `` },
+                { topic: `findIndex`, content: `` },
+                { topic: `isEmpty`, content: `` }
+            ]
+
+        },
+        {
+            mainTopic: "Mathematical and Aggregate Operators",
+            subTopics: [
+                { topic: `count`, content: `` },
+                { topic: `max`, content: `` },
+                { topic: `min`, content: `` },
+                { topic: `reduce`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Debugging Operators",
+            subTopics: [
+                { topic: `do`, content: `` },
+                { topic: `tap`, content: `` },
+                { topic: `finalize`, content: `` }
+            ]
+        },
+        {
+            mainTopic: "Custom Operators",
+            subTopics: [
+                { topic: `let`, content: `` },
+                { topic: `lift`, content: `` },
+                { topic: `pipe`, content: `` }
+            ]
+        },
+        {
+            mainTopic: 'Subjects',
+            subTopics: [
+                { topic: `Subject`, content: `` },
+                { topic: `BehaviorSubject`, content: `` },
+                { topic: `ReplaySubject`, content: `` },
+                { topic: `AsyncSubject`, content: `` },
+                { topic: `void Subject`, content: `` }
+            ]
+        },
+        {
+            mainTopic: 'Schedulers',
+            subTopics: [
+                { topic: `Introduction`, content: `` },
+                { topic: `Scheduler`, content: `` },
+                { topic: `AsyncScheduler`, content: `` },
+                { topic: `QueueScheduler`, content: `` },
+                { topic: `AsapScheduler`, content: `` },
+                { topic: `AnimationFrameScheduler`, content: `` },
+                { topic: `VirtualTimeScheduler`, content: `` },
+            ]
+        },
+        {
+            mainTopic: 'Testing',
+            subTopics: [
+                { topic: `Introduction`, content: `` },
+                { topic: `TestScheduler`, content: `` },
+                { topic: `TestMessage`, content: `` },
+                { topic: `SubscriptionLog`, content: `` },
+                { topic: `SubscriptionLoggable`, content: `` },
+                { topic: `HotObservable`, content: `` },
+                { topic: `ColdObservable`, content: `` },
+                { topic: `TimeFrame`, content: `` },
+                { topic: `TimeInterval`, content: `` },
+                { topic: `Notification`, content: `` },
+            ]
+        },
+        {
+            mainTopic: 'Videos',
+            subTopics: [
+                { topic: `Basic`, content: `` },
+                { topic: `Creation`, content: `` },
+            ]
+        }
+    ];
 
 videoObject: Video[] = [
     {

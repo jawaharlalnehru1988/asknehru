@@ -7,7 +7,8 @@ header nav ul{
         margin: 4px 2px;
         cursor: pointer;
         font-weight: 600;
-        background-color: #9fcdfa;
+        color: #f0f0f0;
+        background: linear-gradient(45deg, rgb(9, 56, 9), rgb(18, 18, 88), rgb(71, 29, 29));
         padding: 4px 8px;
         border: 1px solid grey;
         min-width: fit-content;
@@ -17,8 +18,30 @@ header nav ul{
     }
 }
 
+header aside ul{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid grey;
+    justify-content: space-evenly;
+    li{
+        margin: 4px 2px;
+        cursor: pointer;
+        font-weight: 600;
+        color: #260404;
+
+        background: linear-gradient(45deg, rgb(227, 248, 227), rgb(229, 229, 250), rgb(247, 227, 227));
+        padding: 4px 8px;
+        border: 1px solid grey;
+        min-width: 46%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
 .selected{
-    background-color: #041c35 !important;
+    background: radial-gradient(circle, #351c01, #232b13, #121449, #36181f);
     color: #f0f0f0;
 }
 
