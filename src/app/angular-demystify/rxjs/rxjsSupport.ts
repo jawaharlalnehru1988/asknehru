@@ -22,8 +22,216 @@ export class RxjsSupport {
         {
             mainTopic: 'Observables',
             subTopics: [
-                { topic: `Intro`, content: `` },
-                { topic: `Creating Observables`, content: `` },
+                { topic: `Intro`, content: `<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+  <h2 style="color: #007bff; text-align: center;">Introduction to RxJS</h2>
+
+  <p>
+    <strong>RxJS (Reactive Extensions for JavaScript)</strong> is a powerful library for handling asynchronous operations using observable streams. 
+    It is widely used in **Angular** for managing HTTP requests, event handling, and reactive programming.
+  </p>
+
+  <h3 style="color: #dc3545;">Why Use RxJS?</h3>
+  <ul style="padding-left: 20px;">
+    <li>Handles **asynchronous operations** like API calls, user input, and event streams.</li>
+    <li>Provides **powerful operators** for data transformation and event handling.</li>
+    <li>Helps in writing **clean and maintainable** reactive code.</li>
+    <li>Works seamlessly with **Angular's HTTPClient and Forms**.</li>
+  </ul>
+
+  <h3 style="color: #17a2b8;">Core Concepts in RxJS</h3>
+
+  <h4 style="color: #28a745;">1. Observables</h4>
+  <p>An **Observable** represents a data stream that emits values over time. It can be subscribed to receive these values.</p>
+   <pre >
+  <code class="language-javascript">
+    import { Observable } from 'rxjs';
+
+    const myObservable = new Observable(observer => {
+        observer.next('Hello');
+        observer.next('RxJS');
+        observer.complete();
+    });
+
+    myObservable.subscribe(value => console.log(value));
+  </code>
+  </pre>
+
+  <h4 style="color: #28a745;">2. Observers & Subscribers</h4>
+  <p>**Observers** consume data emitted by an observable, and **subscribers** listen to these events.</p>
+
+  <h4 style="color: #28a745;">3. Operators</h4>
+  <p>Operators help modify or transform data streams. Some commonly used operators are:</p>
+  <ul>
+    <li><strong>map()</strong> – Transforms emitted values.</li>
+    <li><strong>filter()</strong> – Filters out specific values.</li>
+    <li><strong>mergeMap()</strong> – Flattens multiple observables.</li>
+    <li><strong>debounceTime()</strong> – Limits frequent emissions.</li>
+  </ul>
+
+  <h3 style="color: #17a2b8;">Example: Using RxJS in Angular</h3>
+  <p>Here’s how you can use RxJS with Angular’s **HttpClient**:</p>
+  <pre >
+  <code class="language-javascript">
+    import { HttpClient } from '@angular/common/http';
+    import { Component } from '@angular/core';
+    import { Observable } from 'rxjs';
+
+    @Component({
+      selector: 'app-example',
+      templateUrl: './example.component.html'
+    })
+    export class ExampleComponent {
+      data$: Observable<any>;
+
+      constructor(private http: HttpClient) {
+        this.data$ = this.http.get('https://api.example.com/data');
+      }
+    }
+  </code>
+  </pre>
+
+  <h3 style="color: #6f42c1;">Conclusion</h3>
+  <p>RxJS is a fundamental part of **modern Angular development**. Understanding Observables and operators helps in writing **efficient and scalable** applications.</p>
+</div>
+` },
+                { topic: `Creating Observables`, content: `<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+  <h2 style="color: #007bff; text-align: center;">Creating Observables using RxJS</h2>
+
+  <p>
+    <strong>RxJS (Reactive Extensions for JavaScript)</strong> is a powerful library for handling asynchronous operations using observable streams. 
+    One of the core features of RxJS is the ability to create **Observables**, which are the foundation of reactive programming. 
+    In this article, we’ll explore how to create Observables in RxJS and understand their usage in real-world scenarios.
+  </p>
+
+  <h3 style="color: #dc3545;">What is an Observable?</h3>
+  <p>
+    An **Observable** is a data stream that can emit multiple values over time. It can represent anything from user input events to HTTP requests or even custom data streams. 
+    Observables are lazy, meaning they only start emitting values when you **subscribe** to them.
+  </p>
+
+  <h3 style="color: #17a2b8;">Creating Observables in RxJS</h3>
+
+  <h4 style="color: #28a745;">1. Using the \`Observable\` Constructor</h4>
+  <p>
+    The most basic way to create an Observable is by using the \`Observable\` constructor. 
+    This allows you to define a custom data stream and control how values are emitted.
+  </p>
+  <pre>
+  <code class="language-javascript">
+    import { Observable } from 'rxjs';
+
+    const customObservable = new Observable(observer => {
+      observer.next('First value');
+      observer.next('Second value');
+      observer.complete(); // Marks the end of the stream
+    });
+
+    customObservable.subscribe({
+      next: value => console.log(value),
+      complete: () => console.log('Observable completed')
+    });
+  </code>
+  </pre>
+  <p>
+    In this example, the Observable emits two values (\`'First value'\` and \`'Second value'\`) and then completes. 
+    The \`subscribe\` method is used to listen to these emissions.
+  </p>
+
+  <h4 style="color: #28a745;">2. Using RxJS Creation Functions</h4>
+  <p>
+    RxJS provides several **creation functions** to simplify the process of creating Observables. 
+    These functions are designed for common use cases like emitting a single value, a sequence of values, or values at intervals.
+  </p>
+
+  <h5 style="color: #ffc107;">a. \`of()\`</h5>
+  <p>
+    The \`of()\` function creates an Observable that emits a sequence of values and then completes.
+  </p>
+  <pre>
+  <code class="language-javascript">
+    import { of } from 'rxjs';
+
+    const observable = of(1, 2, 3);
+
+    observable.subscribe(value => console.log(value));
+    // Output: 1, 2, 3
+  </code>
+  </pre>
+
+  <h5 style="color: #ffc107;">b. \`from()\`</h5>
+  <p>
+    The \`from()\` function creates an Observable from an array, promise, or iterable.
+  </p>
+  <pre>
+  <code class="language-javascript">
+    import { from } from 'rxjs';
+
+    const arrayObservable = from([10, 20, 30]);
+    arrayObservable.subscribe(value => console.log(value));
+    // Output: 10, 20, 30
+
+    const promiseObservable = from(Promise.resolve('Hello RxJS'));
+    promiseObservable.subscribe(value => console.log(value));
+    // Output: Hello RxJS
+  </code>
+  </pre>
+
+  <h5 style="color: #ffc107;">c. \`interval()\`</h5>
+  <p>
+    The \`interval()\` function creates an Observable that emits sequential numbers at a specified interval.
+  </p>
+  <pre>
+  <code class="language-javascript">
+    import { interval } from 'rxjs';
+
+    const intervalObservable = interval(1000); // Emits a value every second
+    intervalObservable.subscribe(value => console.log(value));
+    // Output: 0, 1, 2, 3, ... (every second)
+  </code>
+  </pre>
+
+  <h5 style="color: #ffc107;">d. \`fromEvent()\`</h5>
+  <p>
+    The \`fromEvent()\` function creates an Observable from DOM events or other event sources.
+  </p>
+  <pre>
+  <code class="language-javascript">
+    import { fromEvent } from 'rxjs';
+
+    const button = document.querySelector('button');
+    const clickObservable = fromEvent(button, 'click');
+
+    clickObservable.subscribe(event => console.log('Button clicked!', event));
+  </code>
+  </pre>
+
+  <h3 style="color: #17a2b8;">Example: Combining Observables</h3>
+  <p>
+    Observables can be combined using operators like \`merge\`, \`concat\`, or \`combineLatest\` to create more complex data streams.
+  </p>
+  <pre>
+  <code class="language-javascript">
+    import { of, interval, combineLatest } from 'rxjs';
+
+    const observable1 = of('A', 'B', 'C');
+    const observable2 = interval(1000);
+
+    const combinedObservable = combineLatest([observable1, observable2]);
+
+    combinedObservable.subscribe(([value1, value2]) => 
+      console.log(\`Combined: \${value1}, \${value2}\`)
+    );
+    // Output: Combined: C, 0, Combined: C, 1, Combined: C, 2, ...
+  </code>
+  </pre>
+
+  <h3 style="color: #6f42c1;">Conclusion</h3>
+  <p>
+    Creating Observables is a fundamental skill in RxJS and reactive programming. 
+    Whether you use the \`Observable\` constructor or RxJS creation functions, Observables provide a flexible and powerful way to handle asynchronous data streams. 
+    By mastering these techniques, you can build **efficient and scalable** applications with RxJS.
+  </p>
+</div>` },
                 { topic: `Subscription`, content: `` },
                 { topic: `Subscriber`, content: `` },
                 { topic: `Observer`, content: `` },
