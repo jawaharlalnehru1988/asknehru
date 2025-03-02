@@ -49,3 +49,18 @@ header aside ul{
     overflow-y: scroll;
     max-height: 88vh;
 }
+
+article{
+    padding: 1rem;
+}
+
+header aside ul li{
+    min-width: 25% !important;
+}
+
+@media screen and (max-width: 600px) {
+    header aside ul li{
+        min-width: 46% !important;
+    }
+    
+}

@@ -1,16 +1,2 @@
 @import url('../../angular-demystify/angular-blogs/angular-blogs.component.scss');
 
-article{
-    padding: 1rem;
-}
-
-header aside ul li{
-    min-width: 25% !important;
-}
-
-@media screen and (max-width: 600px) {
-    header aside ul li{
-        min-width: 46% !important;
-    }
-    
-}
