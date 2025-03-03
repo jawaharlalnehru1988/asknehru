@@ -37244,6 +37244,1756 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
 </div>
 `
 },
+{
+  title:`Testing Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Software Testing Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Software testing is a critical process in the software development lifecycle (SDLC) that ensures the quality, reliability, and performance of an application. It involves executing software components using manual or automated tools to identify defects and verify that the software meets specified requirements.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Software Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    Software testing plays a vital role in delivering high-quality applications. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Bug Identification</strong>: Detects defects and issues early in the development process.</li>
+    <li><strong>Performance Assurance</strong>: Ensures the application runs efficiently under various conditions.</li>
+    <li><strong>Security Enhancement</strong>: Identifies vulnerabilities and protects against security threats.</li>
+    <li><strong>Improved User Experience</strong>: Helps in delivering a seamless experience for end-users.</li>
+    <li><strong>Cost Reduction</strong>: Reduces maintenance costs by preventing future issues.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Software Testing</h3>
+  <p style="color: #2c3e50;">
+    Software testing is broadly classified into two main categories:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Manual Testing</strong>: Testers execute test cases manually without automation tools.</li>
+    <li><strong>Automated Testing</strong>: Uses testing tools and scripts to automate test execution.</li>
+  </ul>
+  <p style="color: #2c3e50;">Common types of testing include:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unit Testing</strong>: Tests individual components or functions.</li>
+    <li><strong>Integration Testing</strong>: Ensures combined components work correctly.</li>
+    <li><strong>Functional Testing</strong>: Verifies application functionality as per requirements.</li>
+    <li><strong>Performance Testing</strong>: Tests system responsiveness and stability.</li>
+    <li><strong>Security Testing</strong>: Identifies security vulnerabilities.</li>
+    <li><strong>Regression Testing</strong>: Ensures recent changes don’t break existing functionality.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Software Testing Life Cycle (STLC)</h3>
+  <p style="color: #2c3e50;">
+    The Software Testing Life Cycle (STLC) consists of systematic steps to conduct testing effectively:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Requirement Analysis</strong>: Understand testing requirements.</li>
+    <li><strong>Test Planning</strong>: Define scope, approach, and resources.</li>
+    <li><strong>Test Case Design</strong>: Create test scenarios and test cases.</li>
+    <li><strong>Test Execution</strong>: Run test cases and report defects.</li>
+    <li><strong>Defect Reporting</strong>: Log defects and track their resolution.</li>
+    <li><strong>Test Closure</strong>: Evaluate test completion criteria and create reports.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Testing Tools</h3>
+  <p style="color: #2c3e50;">
+    Various testing tools help automate and streamline the testing process. Some popular tools include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Selenium</strong>: Used for automated web application testing.</li>
+    <li><strong>JMeter</strong>: Performance and load testing tool.</li>
+    <li><strong>JUnit/TestNG</strong>: Unit testing frameworks for Java applications.</li>
+    <li><strong>Postman</strong>: API testing tool.</li>
+    <li><strong>Katalon Studio</strong>: Automation testing tool for web, API, and mobile applications.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Effective Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Start testing early in the development cycle.</li>
+    <li>Use a combination of manual and automated testing.</li>
+    <li>Ensure comprehensive test coverage.</li>
+    <li>Maintain clear and detailed test cases.</li>
+    <li>Regularly update test cases based on new requirements.</li>
+    <li>Perform continuous testing in CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Software testing is a crucial aspect of application development that ensures quality, security, and performance. By following a structured approach and using appropriate testing tools, developers and testers can identify and resolve issues early, resulting in a robust and reliable application. Incorporating testing best practices can significantly enhance the efficiency and effectiveness of the software development process.
+  </p>
+</div>
+`
+},
+{
+  title:`End-to-End Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding End-to-End (E2E) Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    End-to-End (E2E) Testing is a software testing methodology that validates the entire application flow from start to finish. This ensures that all integrated components function correctly as a complete system. Unlike unit or integration testing, E2E testing simulates real user scenarios to verify the application’s behavior across multiple layers such as UI, database, network, and external dependencies.
+  </p>
+
+  <h3 style="color: #16a085;">Why is End-to-End Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    End-to-End Testing is crucial for ensuring a seamless user experience. Here are some key reasons why it is important:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Validates Complete Workflow</strong>: Ensures that the entire application, including integrations, works as expected.</li>
+    <li><strong>Detects System Dependencies</strong>: Identifies issues in APIs, databases, and third-party services.</li>
+    <li><strong>Improves Application Reliability</strong>: Reduces risks of failures in production by mimicking real user interactions.</li>
+    <li><strong>Enhances User Experience</strong>: Ensures that the final product meets user expectations.</li>
+    <li><strong>Prevents Regression Issues</strong>: Ensures that new changes do not break existing functionality.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components of End-to-End Testing</h3>
+  <p style="color: #2c3e50;">
+    An effective End-to-End Testing strategy consists of the following key components:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>User Scenarios</strong>: Define real-world user interactions and workflows.</li>
+    <li><strong>Test Environment</strong>: A production-like environment with all necessary components.</li>
+    <li><strong>Test Data</strong>: Realistic data that replicates actual use cases.</li>
+    <li><strong>Automation Framework</strong>: Tools like Selenium, Cypress, or Playwright for automating tests.</li>
+    <li><strong>Reports & Logs</strong>: Detailed logs and reports for analysis and debugging.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: End-to-End Testing Process</h3>
+  <p style="color: #2c3e50;">
+    Below is a step-by-step approach to performing End-to-End Testing.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define Test Scenarios</h4>
+  <p style="color: #2c3e50;">
+    Identify critical workflows such as user login, checkout process, or API responses.
+  </p>
+
+  <h4 style="color: #8e44ad;">2. Set Up the Test Environment</h4>
+  <p style="color: #2c3e50;">
+    Prepare a dedicated testing environment with databases, APIs, and third-party integrations.
+  </p>
+
+  <h4 style="color: #8e44ad;">3. Write and Execute Test Cases</h4>
+  <p style="color: #2c3e50;">
+    Use automation tools to write scripts for various test scenarios.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-javascript">
+      describe('User Login Test', () => {
+          it('should log in successfully', () => {
+              cy.visit('https://example.com');
+              cy.get('#username').type('testuser');
+              cy.get('#password').type('password123');
+              cy.get('#login-button').click();
+              cy.url().should('include', '/dashboard');
+          });
+      });
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Validate Results</h4>
+  <p style="color: #2c3e50;">
+    Compare the expected output with actual test results.
+  </p>
+
+  <h4 style="color: #8e44ad;">5. Report and Debug Issues</h4>
+  <p style="color: #2c3e50;">
+    Analyze logs, screenshots, and reports to fix any detected issues.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for End-to-End Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prioritize critical user workflows.</li>
+    <li>Automate repetitive and complex scenarios.</li>
+    <li>Use parallel testing to speed up execution.</li>
+    <li>Ensure test data is realistic and updated.</li>
+    <li>Integrate E2E tests into CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    End-to-End Testing is essential for ensuring application stability and a smooth user experience. By testing the entire system as a whole, it helps catch defects that other types of testing might miss. Implementing best practices and using automation tools can enhance the efficiency and reliability of your E2E tests, ensuring a flawless product for end-users.
+  </p>
+</div>
+`
+},
+{
+  title:`Test-Driven Development (TDD)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Test-Driven Development (TDD)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Test-Driven Development (TDD) is a software development methodology that emphasizes writing tests before writing the actual code. It follows a cyclical process of writing a failing test, implementing the necessary code, and then refactoring while ensuring all tests pass. This approach improves code quality, enhances maintainability, and helps prevent defects early in the development cycle.
+  </p>
+  
+  <h3 style="color: #16a085;">Why Use Test-Driven Development?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Code Quality</strong>: TDD enforces better design and modularity.</li>
+    <li><strong>Early Bug Detection</strong>: Defects are identified before production.</li>
+    <li><strong>Better Code Maintainability</strong>: Code is structured and well-tested.</li>
+    <li><strong>Confidence in Refactoring</strong>: Changes can be made with fewer risks.</li>
+    <li><strong>Faster Debugging</strong>: Tests pinpoint issues quickly.</li>
+  </ul>
+  
+  <h3 style="color: #e67e22;">The TDD Cycle</h3>
+  <p style="color: #2c3e50;">
+    TDD follows a **Red-Green-Refactor** cycle:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Red</strong>: Write a failing test case.</li>
+    <li><strong>Green</strong>: Write the minimum code required to pass the test.</li>
+    <li><strong>Refactor</strong>: Optimize the code without changing its functionality.</li>
+  </ul>
+  
+  <h3 style="color: #2980b9;">Example: Implementing TDD in Java</h3>
+  <p style="color: #2c3e50;">
+    Below is a simple demonstration of TDD using Java and JUnit.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Write a Failing Test</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      
+      class CalculatorTest {
+          @Test
+          void testAddition() {
+              Calculator calc = new Calculator();
+              assertEquals(5, calc.add(2, 3));
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Implement the Code</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      class Calculator {
+          public int add(int a, int b) {
+              return a + b;
+          }
+      }
+    </code>
+  </pre>
+  
+  <h4 style="color: #8e44ad;">3. Refactor and Optimize</h4>
+  <p style="color: #2c3e50;">
+    If necessary, refine the code while keeping the test passing.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for TDD</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write clear and concise test cases.</li>
+    <li>Ensure tests cover all possible scenarios.</li>
+    <li>Keep test execution fast and efficient.</li>
+    <li>Refactor code without modifying test logic.</li>
+    <li>Maintain a separate test suite for integration and unit tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Test-Driven Development (TDD) is a powerful methodology that enhances software quality and reliability. By following the Red-Green-Refactor cycle, developers can create robust applications with fewer defects. Adopting TDD leads to better code structure, maintainability, and confidence in software development.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Mockito`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Mockito in Java</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Mockito is a popular Java framework used for unit testing by creating mock objects. It allows developers to isolate components and verify interactions without requiring actual dependencies. By using Mockito, developers can test their code efficiently and ensure it behaves as expected under different conditions.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Mockito?</h3>
+  <p style="color: #2c3e50;">
+    Mockito helps in simplifying unit tests by allowing developers to mock dependencies instead of using real implementations. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Isolation</strong>: Tests are independent of actual database calls or API integrations.</li>
+    <li><strong>Improved Test Speed</strong>: Avoids time-consuming operations like database queries.</li>
+    <li><strong>Behavior Verification</strong>: Ensures that methods are called with the correct arguments.</li>
+    <li><strong>Flexible Testing</strong>: Supports stubbing and spying to modify behavior for different test scenarios.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Features of Mockito</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Mocking Objects</strong>: Create dummy objects to simulate dependencies.</li>
+    <li><strong>Stubbing</strong>: Define return values for mocked methods.</li>
+    <li><strong>Verifying Interactions</strong>: Ensure methods are invoked with the right parameters.</li>
+    <li><strong>Argument Matchers</strong>: Allow flexible verification of method arguments.</li>
+    <li><strong>Spying</strong>: Use real objects but override specific methods.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Mockito in Java</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use Mockito to test a service class in Java.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Adding Mockito Dependency</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.mockito&lt;/groupId&gt;
+        &lt;artifactId&gt;mockito-core&lt;/artifactId&gt;
+        &lt;version&gt;4.0.0&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Creating a Service and Repository</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id).orElse(null);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Writing a Mockito Test</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.mockito.Mockito.*;
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      import org.mockito.Mockito;
+      import java.util.Optional;
+
+      public class UserServiceTest {
+          @Test
+          void testGetUserById() {
+              UserRepository mockRepo = mock(UserRepository.class);
+              UserService userService = new UserService(mockRepo);
+
+              User user = new User(1L, "John Doe");
+              when(mockRepo.findById(1L)).thenReturn(Optional.of(user));
+
+              User result = userService.getUserById(1L);
+              assertNotNull(result);
+              assertEquals("John Doe", result.getName());
+
+              verify(mockRepo, times(1)).findById(1L);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Mockito</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>mock()</code> to create mock instances of dependencies.</li>
+    <li>Use <code>when().thenReturn()</code> for stubbing method behaviors.</li>
+    <li>Use <code>verify()</code> to check if a method was called with the correct parameters.</li>
+    <li>Use <code>spy()</code> when you need partial mocking of a real object.</li>
+    <li>Avoid mocking everything; mock only external dependencies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Mockito is a powerful framework that simplifies unit testing in Java by allowing developers to create mock objects and verify method interactions. By isolating dependencies, Mockito makes it easier to write fast, reliable, and maintainable tests. Following best practices ensures effective test coverage and enhances code quality.
+  </p>
+</div>
+
+`
+},
+{
+  title:`JUnit`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to JUnit</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    JUnit is a popular testing framework for Java that allows developers to write and run unit tests efficiently. It is an essential part of Test-Driven Development (TDD) and helps ensure code reliability and correctness. JUnit supports assertions, annotations, and test runners to facilitate automated testing.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use JUnit?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automated Testing</strong>: Allows running tests automatically with minimal effort.</li>
+    <li><strong>Code Reliability</strong>: Helps identify bugs early in development.</li>
+    <li><strong>Integration with Build Tools</strong>: Works with Maven, Gradle, and CI/CD pipelines.</li>
+    <li><strong>Assertions for Validation</strong>: Provides methods to check expected vs. actual outcomes.</li>
+    <li><strong>Test Coverage</strong>: Encourages writing more test cases to ensure code quality.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key JUnit Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@Test</code> - Marks a method as a test case.</li>
+    <li><code>@BeforeEach</code> - Runs before each test case.</li>
+    <li><code>@AfterEach</code> - Runs after each test case.</li>
+    <li><code>@BeforeAll</code> - Runs once before all tests.</li>
+    <li><code>@AfterAll</code> - Runs once after all tests.</li>
+    <li><code>@Disabled</code> - Skips a test case.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">JUnit Example</h3>
+  <p style="color: #2c3e50;">Below is a simple JUnit test case.</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.Test;
+      import static org.junit.jupiter.api.Assertions.*;
+
+      class CalculatorTest {
+          @Test
+          void testAddition() {
+              Calculator calc = new Calculator();
+              assertEquals(5, calc.add(2, 3), "2 + 3 should be 5");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for JUnit</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write independent test cases for better maintainability.</li>
+    <li>Use meaningful test method names to indicate test intent.</li>
+    <li>Test both positive and negative scenarios.</li>
+    <li>Use <code>@BeforeEach</code> and <code>@AfterEach</code> to set up and clean up test environments.</li>
+    <li>Integrate JUnit with mocking frameworks like Mockito for better test coverage.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JUnit is a powerful and widely used framework for Java unit testing. It enhances software reliability, helps detect bugs early, and integrates well with modern development workflows. By following best practices, you can make your testing more effective and efficient.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Spring Testing (@SpringBootTest, @WebMvcTest)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Spring Testing (@SpringBootTest, @WebMvcTest)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing is an essential part of any application development process to ensure correctness, reliability, and performance. Spring Boot provides powerful testing support through annotations such as <code>@SpringBootTest</code> and <code>@WebMvcTest</code>, which help developers write comprehensive and efficient tests.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Testing?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot testing provides multiple benefits, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring Application Stability</strong>: Detects bugs and issues early.</li>
+    <li><strong>Automated Testing</strong>: Helps in continuous integration and deployment.</li>
+    <li><strong>Efficient Debugging</strong>: Reduces time spent on debugging by identifying errors quickly.</li>
+    <li><strong>Improved Code Quality</strong>: Ensures maintainability and scalability.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">@SpringBootTest: Full Context Testing</h3>
+  <p style="color: #2c3e50;">
+    The <code>@SpringBootTest</code> annotation loads the full application context, allowing integration testing of the entire Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">Example: Using @SpringBootTest</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import static org.assertj.core.api.Assertions.assertThat;
+
+      @SpringBootTest
+      class ApplicationTests {
+
+          @Test
+          void contextLoads() {
+              assertThat(true).isTrue();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">@WebMvcTest: Testing Controllers</h3>
+  <p style="color: #2c3e50;">
+    The <code>@WebMvcTest</code> annotation is used for testing controllers, focusing only on the web layer without loading the entire application context.
+  </p>
+
+  <h4 style="color: #8e44ad;">Example: Using @WebMvcTest</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.test.web.servlet.MockMvc;
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+      @WebMvcTest
+      class WebLayerTest {
+
+          @Autowired
+          private MockMvc mockMvc;
+
+          @Test
+          void shouldReturnDefaultMessage() throws Exception {
+              mockMvc.perform(get("/"))
+                     .andExpect(status().isOk());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Spring Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@SpringBootTest</code> for integration testing and full context loading.</li>
+    <li>Use <code>@WebMvcTest</code> for controller testing to avoid unnecessary overhead.</li>
+    <li>Mock dependencies to isolate unit tests from external components.</li>
+    <li>Run tests in an isolated environment to prevent conflicts.</li>
+    <li>Use meaningful assertions to verify expected behaviors.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides powerful testing capabilities with <code>@SpringBootTest</code> for full application context testing and <code>@WebMvcTest</code> for lightweight controller testing. By leveraging these annotations effectively, developers can ensure the robustness and reliability of their applications.
+  </p>
+</div>
+
+`
+},
+{
+  title:`MockMvc`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>MockMvc</code> in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    <code>MockMvc</code> is a powerful testing utility in Spring Boot that allows developers to test their Spring MVC controllers without starting a full web server. By simulating HTTP requests and responses, <code>MockMvc</code> ensures that your controller logic functions correctly and meets expectations.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>MockMvc</code>?</h3>
+  <p style="color: #2c3e50;">
+    The primary advantages of using <code>MockMvc</code> in Spring Boot applications include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>No Need for a Running Server</strong>: Allows you to test controllers without deploying the application.</li>
+    <li><strong>Faster Execution</strong>: Tests execute quickly as they don’t require a full application context.</li>
+    <li><strong>Flexible Configuration</strong>: Works seamlessly with various Spring testing annotations.</li>
+    <li><strong>Precise Request Simulation</strong>: Supports GET, POST, PUT, DELETE, and other HTTP methods.</li>
+    <li><strong>Integration with JUnit and Mockito</strong>: Easily works with testing frameworks for robust test cases.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up <code>MockMvc</code> in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To use <code>MockMvc</code>, you need to set up the Spring Boot test environment properly. Below is a step-by-step guide.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Required Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Ensure your <code>pom.xml</code> (Maven) includes the necessary dependencies:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Controller</h4>
+  <p style="color: #2c3e50;">
+    Here’s an example of a simple REST controller:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/api")
+      public class SampleController {
+
+          @GetMapping("/hello")
+          public String sayHello() {
+              return "Hello, MockMvc!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Write a <code>MockMvc</code> Test</h4>
+  <p style="color: #2c3e50;">
+    Now, let’s write a test case using <code>MockMvc</code> to verify our controller response:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.test.web.servlet.MockMvc;
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+      @WebMvcTest(SampleController.class)
+      public class SampleControllerTest {
+
+          @Autowired
+          private MockMvc mockMvc;
+
+          @Test
+          public void testSayHello() throws Exception {
+              mockMvc.perform(get("/api/hello"))
+                      .andExpect(status().isOk())
+                      .andExpect(content().string("Hello, MockMvc!"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>MockMvc</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@WebMvcTest</code> to focus only on testing controllers.</li>
+    <li>Leverage <code>MockMvcRequestBuilders</code> for different HTTP methods.</li>
+    <li>Verify both HTTP status codes and response content.</li>
+    <li>Use <code>andExpect()</code> for assertions on responses.</li>
+    <li>Mock dependencies using <code>@MockBean</code> when needed.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    <code>MockMvc</code> is an essential tool for testing Spring Boot applications efficiently. It allows developers to validate controller logic, ensuring accurate HTTP responses while keeping tests lightweight and fast. By integrating <code>MockMvc</code> into your test strategy, you can improve code quality and prevent unexpected issues in production.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Testing Repositories`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Repositories in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing repositories is a crucial part of Spring Boot applications to ensure that data access logic works as expected. Spring Boot provides powerful testing utilities, including <code>@DataJpaTest</code>, which helps in testing JPA repositories efficiently by configuring only the persistence layer components.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Repositories?</h3>
+  <p style="color: #2c3e50;">
+    Repository testing ensures that database queries execute correctly and return expected results. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Validation of Query Methods</strong>: Ensures that queries defined in repositories retrieve the correct data.</li>
+    <li><strong>Database Schema Verification</strong>: Helps detect issues with entity mappings and relationships.</li>
+    <li><strong>Performance Optimization</strong>: Identifies inefficient queries before deploying to production.</li>
+    <li><strong>Ensuring Data Integrity</strong>: Helps maintain data consistency through proper CRUD operations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up Repository Testing</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides the <code>@DataJpaTest</code> annotation, which configures an in-memory database (H2 by default) and loads only the repository layer.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Required Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Ensure you have the following dependencies in your <code>pom.xml</code> (for Maven) or <code>build.gradle</code> (for Gradle).
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+          &lt;artifactId&gt;h2&lt;/artifactId&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Repository Interface</h4>
+  <p style="color: #2c3e50;">
+    Define a repository interface extending <code>JpaRepository</code> for CRUD operations.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import java.util.Optional;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          Optional&lt;User&gt; findByEmail(String email);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Write Repository Tests</h4>
+  <p style="color: #2c3e50;">
+    Use <code>@DataJpaTest</code> to test repository methods with an in-memory database.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import static org.assertj.core.api.Assertions.assertThat;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+      import java.util.Optional;
+
+      @DataJpaTest
+      public class UserRepositoryTest {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          @Test
+          public void testSaveAndFindByEmail() {
+              User user = new User(null, "John Doe", "john.doe@example.com");
+              userRepository.save(user);
+
+              Optional&lt;User&gt; foundUser = userRepository.findByEmail("john.doe@example.com");
+              assertThat(foundUser).isPresent();
+              assertThat(foundUser.get().getName()).isEqualTo("John Doe");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Repository Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@DataJpaTest</code> to load only the persistence layer components.</li>
+    <li>Leverage an in-memory database like H2 for fast and isolated testing.</li>
+    <li>Ensure each test case runs independently to avoid data inconsistencies.</li>
+    <li>Use <code>TestEntityManager</code> to verify database changes directly.</li>
+    <li>Test edge cases such as empty result sets and constraint violations.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing repositories in Spring Boot ensures that your database interactions work correctly and efficiently. The <code>@DataJpaTest</code> annotation simplifies repository testing by configuring only the persistence layer, making tests faster and more reliable. By following best practices, you can create robust and well-tested data access layers in your Spring Boot applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Services`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Services in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing services is a crucial aspect of ensuring the reliability and correctness of your Spring Boot application. Service layer tests focus on testing business logic independently, usually by mocking dependencies like repositories, external APIs, and other services. In this article, we’ll explore how to test services effectively in Spring Boot using JUnit and Mockito.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Services?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Business Logic Accuracy</strong>: Verifies that the core business logic behaves as expected.</li>
+    <li><strong>Detects Bugs Early</strong>: Identifies issues before they impact users.</li>
+    <li><strong>Improves Maintainability</strong>: Ensures that changes in logic do not introduce regressions.</li>
+    <li><strong>Enhances Confidence</strong>: Helps developers refactor code with confidence.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components in Service Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>JUnit</strong>: The primary testing framework for Java applications.</li>
+    <li><strong>Mockito</strong>: A popular mocking framework to isolate service testing from dependencies.</li>
+    <li><strong>@Mock and @InjectMocks</strong>: Used to mock dependencies and inject them into the service under test.</li>
+    <li><strong>@ExtendWith(MockitoExtension.class)</strong>: Integrates Mockito with JUnit 5.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Testing a Service in Spring Boot</h3>
+  <p style="color: #2c3e50;">Let’s consider a <code>UserService</code> that interacts with a repository to fetch user data.</p>
+
+  <h4 style="color: #8e44ad;">1. Define the Service</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.Optional;
+
+      @Service
+      public class UserService {
+
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Writing a Test for the Service</h4>
+  <p style="color: #2c3e50;">We’ll use JUnit 5 and Mockito to test the <code>UserService</code> without requiring a real database.</p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import static org.mockito.Mockito.*;
+
+      import org.junit.jupiter.api.BeforeEach;
+      import org.junit.jupiter.api.Test;
+      import org.junit.jupiter.api.extension.ExtendWith;
+      import org.mockito.InjectMocks;
+      import org.mockito.Mock;
+      import org.mockito.junit.jupiter.MockitoExtension;
+      import java.util.Optional;
+
+      @ExtendWith(MockitoExtension.class)
+      class UserServiceTest {
+
+          @Mock
+          private UserRepository userRepository;
+
+          @InjectMocks
+          private UserService userService;
+
+          @BeforeEach
+          void setUp() {
+              User user = new User(1L, "John Doe", "john@example.com");
+              when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+          }
+
+          @Test
+          void testGetUserById_Success() {
+              User user = userService.getUserById(1L);
+              assertNotNull(user);
+              assertEquals("John Doe", user.getName());
+          }
+
+          @Test
+          void testGetUserById_UserNotFound() {
+              when(userRepository.findById(2L)).thenReturn(Optional.empty());
+              Exception exception = assertThrows(RuntimeException.class, () -> userService.getUserById(2L));
+              assertEquals("User not found", exception.getMessage());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing Services</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Mock</code> to isolate the service from external dependencies.</li>
+    <li>Validate edge cases, such as missing data or invalid input.</li>
+    <li>Follow the <strong>AAA (Arrange, Act, Assert)</strong> pattern for clear test structure.</li>
+    <li>Ensure <code>assertThrows</code> is used to validate exceptions properly.</li>
+    <li>Use meaningful test names that describe the scenario.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing the service layer in Spring Boot ensures that your business logic is reliable and bug-free. Using Mockito and JUnit, you can write effective unit tests without depending on actual databases. By following best practices, you can make your service tests more maintainable, robust, and meaningful.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Controllers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Controllers in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a Spring Boot application, controllers handle incoming HTTP requests and return appropriate responses. Proper testing of controllers ensures that endpoints behave as expected. Spring Boot provides various tools like <code>MockMvc</code>, <code>@WebMvcTest</code>, and <code>@MockBean</code> for efficient testing.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Controllers?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Correct Response:</strong> Verifies that API endpoints return the expected HTTP status and response body.</li>
+    <li><strong>Validates Business Logic:</strong> Confirms that the controller processes requests correctly.</li>
+    <li><strong>Enhances API Stability:</strong> Prevents unintended changes in API behavior.</li>
+    <li><strong>Improves Maintainability:</strong> Detects issues early in the development cycle.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Tools for Controller Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>MockMvc</code>: Simulates HTTP requests to test controller endpoints.</li>
+    <li><code>@WebMvcTest</code>: Loads only the web layer for focused testing.</li>
+    <li><code>@MockBean</code>: Mocks service dependencies in controller tests.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Testing a Controller with <code>MockMvc</code></h3>
+
+  <h4 style="color: #8e44ad;">1. Define the Controller</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import java.util.*;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @GetMapping("/{id}")
+          public User getUserById(@PathVariable Long id) {
+              return userService.getUserById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Write the Test Using <code>MockMvc</code></h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.boot.test.mock.mockito.MockBean;
+      import org.springframework.test.web.servlet.MockMvc;
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+      import static org.mockito.Mockito.*;
+
+      @WebMvcTest(UserController.class)
+      public class UserControllerTest {
+
+          @Autowired
+          private MockMvc mockMvc;
+
+          @MockBean
+          private UserService userService;
+
+          @Test
+          public void testGetUserById() throws Exception {
+              User mockUser = new User(1L, "John Doe", "john@example.com");
+              when(userService.getUserById(1L)).thenReturn(mockUser);
+
+              mockMvc.perform(get("/users/1"))
+                  .andExpect(status().isOk())
+                  .andExpect(jsonPath("$.name").value("John Doe"))
+                  .andExpect(jsonPath("$.email").value("john@example.com"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing Controllers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@WebMvcTest</code> for focused testing of controllers.</li>
+    <li>Mock dependencies with <code>@MockBean</code> to isolate controller logic.</li>
+    <li>Test all HTTP methods (GET, POST, PUT, DELETE) for correctness.</li>
+    <li>Verify error handling by simulating edge cases.</li>
+    <li>Check HTTP status codes and response structures.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing controllers in Spring Boot is essential for ensuring the correctness of API endpoints. By using tools like <code>MockMvc</code> and <code>@WebMvcTest</code>, developers can simulate HTTP requests, verify responses, and handle edge cases efficiently. Well-tested controllers lead to more robust and reliable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Test Configuration & Profiles`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Test Configuration & Profiles in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot provides powerful support for configuring applications in different environments using **profiles** and **test configurations**. These features help manage application settings efficiently, allowing developers to separate production, development, and test configurations. This ensures smooth transitions between different application states and reliable testing mechanisms.
+  </p>
+
+  <h3 style="color: #16a085;">What are Spring Profiles?</h3>
+  <p style="color: #2c3e50;">
+    Spring Profiles allow you to define and group different configurations based on the environment. For example, you can have separate configurations for **development**, **testing**, and **production**. Profiles help ensure that environment-specific settings are applied automatically without manual intervention.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Modular Configuration</strong>: Helps manage different environments efficiently.</li>
+    <li><strong>Conditional Beans</strong>: Enables or disables beans based on the active profile.</li>
+    <li><strong>Environment-Specific Properties</strong>: Loads properties from profile-specific files.</li>
+    <li><strong>Seamless Testing</strong>: Allows different configurations for unit tests and integration tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Defining Profiles in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To define profiles in a Spring Boot application, create separate **application.properties** or **application.yml** files with profile-specific names.
+  </p>
+
+  <h4 style="color: #8e44ad;">Example: Profile-Specific Properties</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # application-dev.properties (for development)
+      server.port=8081
+      database.url=jdbc:mysql://localhost/dev_db
+    </code>
+  </pre>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # application-prod.properties (for production)
+      server.port=8080
+      database.url=jdbc:mysql://prod.server/prod_db
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Activating Profiles</h3>
+  <p style="color: #2c3e50;">
+    You can activate a profile by setting the **spring.profiles.active** property in the **application.properties** file or passing it as a command-line argument.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.profiles.active=dev
+    </code>
+  </pre>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      java -jar myapp.jar --spring.profiles.active=prod
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">What is Test Configuration?</h3>
+  <p style="color: #2c3e50;">
+    Test Configuration in Spring Boot helps isolate application testing from production settings. It ensures that the test environment is configured correctly without affecting the actual application.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Test-Specific Beans</strong>: Loads configurations applicable only to test cases.</li>
+    <li><strong>Mocking Dependencies</strong>: Uses mock implementations to avoid real database interactions.</li>
+    <li><strong>Database Configurations</strong>: Uses in-memory databases like H2 for testing.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Using @TestConfiguration</h3>
+  <p style="color: #2c3e50;">
+    The <code>@TestConfiguration</code> annotation is used to define configurations that should be applied only during testing.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.test.context.TestConfiguration;
+      import org.springframework.context.annotation.Bean;
+
+      @TestConfiguration
+      public class MyTestConfig {
+          @Bean
+          public MyService myService() {
+              return new MyServiceMock(); // Mocked service for testing
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices for Test Configuration & Profiles</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **@TestConfiguration** to provide test-specific beans and dependencies.</li>
+    <li>Use **@ActiveProfiles("test")** in test classes to load test profiles.</li>
+    <li>Configure **H2 in-memory database** for testing instead of real databases.</li>
+    <li>Mock external dependencies to avoid network calls during testing.</li>
+    <li>Ensure test configurations do not affect production settings.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    **Profiles** and **test configurations** are essential features in Spring Boot that help manage application settings across different environments. Using **profiles**, you can define separate configurations for development, production, and testing. With **@TestConfiguration**, you can isolate test-specific settings to ensure smooth and efficient testing. By following best practices, you can maintain a clean and scalable application setup while ensuring optimal performance in all environments.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing with TestContainers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Testing with TestContainers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Writing reliable and consistent integration tests is a crucial part of modern software development. TestContainers is a Java library that enables lightweight, throwaway instances of databases, message brokers, and other dependencies inside Docker containers. This ensures a realistic testing environment without the complexity of managing external services manually.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use TestContainers?</h3>
+  <p style="color: #2c3e50;">
+    TestContainers provide several benefits that make them ideal for integration testing:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Realistic Testing</strong>: Uses actual services instead of mocks, leading to more reliable tests.</li>
+    <li><strong>Isolated Test Environment</strong>: Each test runs in a fresh container, ensuring no conflicts between tests.</li>
+    <li><strong>Supports Various Technologies</strong>: Works with databases like PostgreSQL, MySQL, and NoSQL databases like MongoDB.</li>
+    <li><strong>Integration with Popular Frameworks</strong>: Works seamlessly with JUnit, Spring Boot, and other testing frameworks.</li>
+    <li><strong>Automation-Friendly</strong>: Containers are automatically started and stopped during tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Features of TestContainers</h3>
+  <p style="color: #2c3e50;">
+    Some of the key features of TestContainers include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>GenericContainer</strong>: Allows running any Docker container.</li>
+    <li><strong>Database Containers</strong>: Pre-configured containers for popular databases.</li>
+    <li><strong>Network Support</strong>: Enables simulating real-world network scenarios.</li>
+    <li><strong>Custom Images</strong>: Allows running tests with customized container images.</li>
+    <li><strong>Reusable Containers</strong>: Optimizes performance by keeping containers alive between tests.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using TestContainers in a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use TestContainers in a Spring Boot application to test database interactions.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add TestContainers Dependency</h4>
+  <p style="color: #2c3e50;">
+    Add the following dependency to your <code>pom.xml</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.testcontainers&lt;/groupId&gt;
+        &lt;artifactId&gt;testcontainers&lt;/artifactId&gt;
+        &lt;version&gt;1.17.6&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a TestContainer for PostgreSQL</h4>
+  <p style="color: #2c3e50;">
+    Define a test configuration using TestContainers.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.BeforeAll;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.testcontainers.containers.PostgreSQLContainer;
+      import static org.junit.jupiter.api.Assertions.*;
+
+      @SpringBootTest
+      public class DatabaseTest {
+
+          static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14-alpine");
+
+          @BeforeAll
+          static void startContainer() {
+              postgres.start();
+              System.setProperty("DB_URL", postgres.getJdbcUrl());
+              System.setProperty("DB_USERNAME", postgres.getUsername());
+              System.setProperty("DB_PASSWORD", postgres.getPassword());
+          }
+
+          @Test
+          void testDatabaseConnection() {
+              assertTrue(postgres.isRunning());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using TestContainers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>static</code> containers to prevent unnecessary container restarts between tests.</li>
+    <li>Ensure that your test dependencies are correctly scoped to avoid including TestContainers in production.</li>
+    <li>Leverage reusable containers to speed up test execution.</li>
+    <li>Use wait strategies to ensure services inside the container are ready before running tests.</li>
+    <li>Use network simulation features to test real-world scenarios.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    TestContainers is a powerful tool for writing robust integration tests by providing real, disposable environments inside Docker containers. Whether you are testing databases, message queues, or microservices, TestContainers simplifies the setup and enhances test reliability. By following best practices, you can seamlessly integrate TestContainers into your CI/CD pipeline and improve the quality of your software.
+  </p>
+</div>
+`
+},
+{
+  title:`Parameterized Tests`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Testing with TestContainers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Writing reliable and consistent integration tests is a crucial part of modern software development. TestContainers is a Java library that enables lightweight, throwaway instances of databases, message brokers, and other dependencies inside Docker containers. This ensures a realistic testing environment without the complexity of managing external services manually.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use TestContainers?</h3>
+  <p style="color: #2c3e50;">
+    TestContainers provide several benefits that make them ideal for integration testing:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Realistic Testing</strong>: Uses actual services instead of mocks, leading to more reliable tests.</li>
+    <li><strong>Isolated Test Environment</strong>: Each test runs in a fresh container, ensuring no conflicts between tests.</li>
+    <li><strong>Supports Various Technologies</strong>: Works with databases like PostgreSQL, MySQL, and NoSQL databases like MongoDB.</li>
+    <li><strong>Integration with Popular Frameworks</strong>: Works seamlessly with JUnit, Spring Boot, and other testing frameworks.</li>
+    <li><strong>Automation-Friendly</strong>: Containers are automatically started and stopped during tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Features of TestContainers</h3>
+  <p style="color: #2c3e50;">
+    Some of the key features of TestContainers include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>GenericContainer</strong>: Allows running any Docker container.</li>
+    <li><strong>Database Containers</strong>: Pre-configured containers for popular databases.</li>
+    <li><strong>Network Support</strong>: Enables simulating real-world network scenarios.</li>
+    <li><strong>Custom Images</strong>: Allows running tests with customized container images.</li>
+    <li><strong>Reusable Containers</strong>: Optimizes performance by keeping containers alive between tests.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using TestContainers in a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use TestContainers in a Spring Boot application to test database interactions.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add TestContainers Dependency</h4>
+  <p style="color: #2c3e50;">
+    Add the following dependency to your <code>pom.xml</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.testcontainers&lt;/groupId&gt;
+        &lt;artifactId&gt;testcontainers&lt;/artifactId&gt;
+        &lt;version&gt;1.17.6&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a TestContainer for PostgreSQL</h4>
+  <p style="color: #2c3e50;">
+    Define a test configuration using TestContainers.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.BeforeAll;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.testcontainers.containers.PostgreSQLContainer;
+      import static org.junit.jupiter.api.Assertions.*;
+
+      @SpringBootTest
+      public class DatabaseTest {
+
+          static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14-alpine");
+
+          @BeforeAll
+          static void startContainer() {
+              postgres.start();
+              System.setProperty("DB_URL", postgres.getJdbcUrl());
+              System.setProperty("DB_USERNAME", postgres.getUsername());
+              System.setProperty("DB_PASSWORD", postgres.getPassword());
+          }
+
+          @Test
+          void testDatabaseConnection() {
+              assertTrue(postgres.isRunning());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using TestContainers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>static</code> containers to prevent unnecessary container restarts between tests.</li>
+    <li>Ensure that your test dependencies are correctly scoped to avoid including TestContainers in production.</li>
+    <li>Leverage reusable containers to speed up test execution.</li>
+    <li>Use wait strategies to ensure services inside the container are ready before running tests.</li>
+    <li>Use network simulation features to test real-world scenarios.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    TestContainers is a powerful tool for writing robust integration tests by providing real, disposable environments inside Docker containers. Whether you are testing databases, message queues, or microservices, TestContainers simplifies the setup and enhances test reliability. By following best practices, you can seamlessly integrate TestContainers into your CI/CD pipeline and improve the quality of your software.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Asynchronous Code`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Asynchronous Code</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Asynchronous code introduces challenges in testing due to delayed execution and unpredictable timing. Proper testing ensures that async operations work as expected and handle concurrency correctly.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Asynchronous Code?</h3>
+  <p style="color: #2c3e50;">
+    Testing asynchronous code is crucial for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring Correct Execution</strong>: Verifies that async functions return expected results.</li>
+    <li><strong>Handling Edge Cases</strong>: Detects race conditions, timeouts, and deadlocks.</li>
+    <li><strong>Performance Optimization</strong>: Identifies slow operations affecting user experience.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Common Approaches to Testing Async Code</h3>
+  <p style="color: #2c3e50;">
+    There are multiple ways to test asynchronous functions depending on the language and framework used.
+  </p>
+
+  <h3 style="color: #8e44ad;">Using Promises and Async/Await in JavaScript</h3>
+  <p style="color: #2c3e50;">
+    In JavaScript, testing async functions with <code>async/await</code> ensures proper execution order.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-javascript">
+      test('fetches user data', async () => {
+        const user = await fetchUserData(1);
+        expect(user.name).toBe('John Doe');
+      });
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using CompletableFuture in Java</h3>
+  <p style="color: #2c3e50;">
+    Java's <code>CompletableFuture</code> allows asynchronous execution. It can be tested using assertions after completion.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Test
+      public void testAsyncMethod() throws Exception {
+          CompletableFuture<String> future = asyncService.getData();
+          assertEquals("Hello, World!", future.get());
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing Async Code</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>timeouts</strong> to detect hanging async operations.</li>
+    <li>Leverage <strong>mocks</strong> and <strong>spies</strong> to simulate async behavior.</li>
+    <li>Use <strong>assertions</strong> to verify async results.</li>
+    <li>Ensure proper <strong>error handling</strong> in async tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing asynchronous code is essential for maintaining robust applications. By leveraging proper techniques like promises, futures, and mocks, developers can ensure smooth async operations and prevent hidden bugs.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing REST APIs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing REST APIs</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing REST APIs is crucial to ensure reliability, security, and performance. Proper testing helps detect issues early and guarantees that the API meets business and technical requirements.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test REST APIs?</h3>
+  <p style="color: #2c3e50;">
+    Testing REST APIs provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring Correct Responses</strong>: Validates HTTP status codes, headers, and response payloads.</li>
+    <li><strong>Detecting Security Vulnerabilities</strong>: Prevents issues like SQL injection and unauthorized access.</li>
+    <li><strong>Performance Validation</strong>: Ensures APIs handle load efficiently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Approaches to REST API Testing</h3>
+  <p style="color: #2c3e50;">
+    Various methods can be used to test REST APIs:
+  </p>
+
+  <h3 style="color: #8e44ad;">Using Postman for Manual Testing</h3>
+  <p style="color: #2c3e50;">
+    Postman is a popular tool for manually testing API endpoints by sending requests and inspecting responses.
+  </p>
+
+  <h3 style="color: #8e44ad;">Automated Testing with JUnit & RestAssured</h3>
+  <p style="color: #2c3e50;">
+    In Java, RestAssured simplifies API testing by enabling fluent request validation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Test
+      public void testGetUser() {
+          given()
+              .when().get("/users/1")
+              .then().statusCode(200)
+              .body("name", equalTo("John Doe"));
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing REST APIs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Validate <strong>status codes</strong> and <strong>response structures</strong>.</li>
+    <li>Test for <strong>authentication and authorization</strong>.</li>
+    <li>Simulate <strong>error scenarios</strong> (e.g., invalid input).</li>
+    <li>Use <strong>load testing</strong> tools for performance validation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing REST APIs is essential for building reliable applications. By leveraging tools like Postman, RestAssured, and automated testing frameworks, developers can ensure their APIs function correctly under all conditions.
+  </p>
+</div>
+`
+},
+{
+  title:`Contract Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Contract Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Contract testing is a technique for ensuring that two independent systems, such as a client and a server, can communicate correctly. It verifies that API contracts are upheld, reducing integration issues.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Contract Testing?</h3>
+  <p style="color: #2c3e50;">
+    Contract testing provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Compatibility</strong>: Prevents breaking changes between services.</li>
+    <li><strong>Faster Development</strong>: Allows teams to work independently with confidence.</li>
+    <li><strong>Reduces Integration Issues</strong>: Detects mismatches before deployment.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How Contract Testing Works</h3>
+  <p style="color: #2c3e50;">
+    Contract testing typically involves two parties:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Consumer</strong>: The system that calls the API (e.g., frontend or another service).</li>
+    <li><strong>Provider</strong>: The system that serves the API (e.g., a backend service).</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Using Pact for Contract Testing</h3>
+  <p style="color: #2c3e50;">
+    Pact is a popular tool for contract testing. It allows consumers and providers to define and verify API contracts.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Test
+      @PactTestFor(providerName = "UserService")
+      public void testUserContract(MockServer mockServer) {
+          given()
+              .when().get(mockServer.getUrl() + "/users/1")
+              .then().statusCode(200)
+              .body("name", equalTo("John Doe"));
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Contract Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Define clear <strong>API contracts</strong> between consumers and providers.</li>
+    <li>Automate contract tests in the CI/CD pipeline.</li>
+    <li>Ensure both parties update their tests when API changes occur.</li>
+    <li>Use contract testing as a complement to integration and unit tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Contract testing helps ensure seamless API interactions by verifying that services conform to agreed-upon contracts. By leveraging tools like Pact, teams can improve integration reliability and streamline development workflows.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Mocking External Services`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Mocking External Services</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Mocking external services is a crucial technique in software testing that allows developers to simulate third-party APIs, databases, and services. This helps ensure reliable and efficient testing without depending on external systems.
+  </p>
+
+  <h3 style="color: #16a085;">Why Mock External Services?</h3>
+  <p style="color: #2c3e50;">
+    Mocking external services provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Isolation</strong>: Tests run independently of third-party services.</li>
+    <li><strong>Faster Execution</strong>: Reduces response time by avoiding real network calls.</li>
+    <li><strong>Cost Efficiency</strong>: Avoids fees associated with using external APIs.</li>
+    <li><strong>Reliability</strong>: Eliminates downtime risks from third-party services.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Mock External Services?</h3>
+  <p style="color: #2c3e50;">
+    Several techniques can be used to mock external services:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Using Mock Frameworks</strong>: Tools like WireMock, Mockito, and MockServer help simulate API responses.</li>
+    <li><strong>Dependency Injection</strong>: Replacing real service calls with mock implementations.</li>
+    <li><strong>Stub APIs</strong>: Creating static or dynamic responses to replicate external services.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example Using WireMock</h3>
+  <p style="color: #2c3e50;">
+    WireMock is a popular tool for mocking RESTful APIs in tests.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Rule
+      public WireMockRule wireMockRule = new WireMockRule(8080);
+      
+      @Test
+      public void testMockedService() {
+          stubFor(get(urlEqualTo("/users/1"))
+              .willReturn(aResponse()
+                  .withStatus(200)
+                  .withHeader("Content-Type", "application/json")
+                  .withBody("{\"id\": 1, \"name\": \"John Doe\"}")));
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Mocking</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>realistic test data</strong> to simulate actual API behavior.</li>
+    <li>Ensure <strong>mocked responses</strong> handle various edge cases (timeouts, errors, etc.).</li>
+    <li>Keep mocks up-to-date with API contract changes.</li>
+    <li>Combine mocks with integration tests to validate real-world behavior.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Mocking external services is an essential practice for improving test reliability, speed, and efficiency. By leveraging tools like WireMock and Mockito, developers can create stable test environments that simulate real-world interactions without external dependencies.
+  </p>
+</div>
+`
+},
+{
+  title:`Test Coverage`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Test Coverage</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Test coverage is a metric that measures the extent to which the codebase is tested. It helps ensure that critical parts of the application are validated through unit, integration, and functional tests.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Test Coverage Important?</h3>
+  <p style="color: #2c3e50;">
+    Ensuring high test coverage provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Code Quality</strong>: Helps catch bugs early in the development cycle.</li>
+    <li><strong>Better Maintainability</strong>: Ensures changes do not break existing functionality.</li>
+    <li><strong>Increased Confidence</strong>: Provides assurance that the application behaves as expected.</li>
+    <li><strong>Compliance & Standards</strong>: Helps meet industry regulations requiring thorough testing.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Measure Test Coverage?</h3>
+  <p style="color: #2c3e50;">
+    Test coverage can be measured using different techniques:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Line Coverage</strong>: Measures the percentage of executed lines of code.</li>
+    <li><strong>Branch Coverage</strong>: Ensures all conditional branches are tested.</li>
+    <li><strong>Function Coverage</strong>: Confirms that all functions/methods are called at least once.</li>
+    <li><strong>Mutation Coverage</strong>: Assesses how well tests detect modified code behaviors.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example Using JaCoCo</h3>
+  <p style="color: #2c3e50;">
+    JaCoCo is a popular tool for measuring test coverage in Java applications.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.7</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>prepare-agent</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for High Test Coverage</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write tests for critical paths and edge cases.</li>
+    <li>Ensure meaningful assertions to validate logic.</li>
+    <li>Regularly review and update test cases as code evolves.</li>
+    <li>Aim for high coverage, but prioritize quality over quantity.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Test coverage is a crucial aspect of software quality assurance. By using tools like JaCoCo and following best practices, developers can ensure robust and reliable applications that meet industry standards.
+  </p>
+</div>`
+},
+{
+  title:`Performance Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Performance Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Performance testing is a crucial process that evaluates the speed, responsiveness, and stability of a system under various conditions. It ensures that applications perform optimally, even under heavy loads.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Performance Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    Performance testing provides several key benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures System Stability</strong>: Identifies bottlenecks that may cause crashes under high traffic.</li>
+    <li><strong>Improves User Experience</strong>: Guarantees fast response times and smooth interactions.</li>
+    <li><strong>Validates Scalability</strong>: Helps determine if the application can handle expected growth.</li>
+    <li><strong>Reduces Downtime</strong>: Prevents failures before deployment by detecting weaknesses.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Performance Testing</h3>
+  <p style="color: #2c3e50;">
+    Performance testing can be categorized into different types:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Load Testing</strong>: Evaluates system behavior under expected load conditions.</li>
+    <li><strong>Stress Testing</strong>: Determines the system’s limits by testing beyond normal conditions.</li>
+    <li><strong>Spike Testing</strong>: Examines how the system reacts to sudden, extreme increases in load.</li>
+    <li><strong>Scalability Testing</strong>: Tests the system’s ability to scale up or down efficiently.</li>
+    <li><strong>Endurance Testing</strong>: Measures performance over extended periods.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example Using JMeter</h3>
+  <p style="color: #2c3e50;">
+    Apache JMeter is a popular tool for conducting performance tests.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      <testPlan>
+          <threadGroup>
+              <numThreads>100</numThreads>
+              <rampTime>10</rampTime>
+              <loopCount>10</loopCount>
+          </threadGroup>
+          <httpSampler>
+              <domain>example.com</domain>
+              <path>/api/test</path>
+              <method>GET</method>
+          </httpSampler>
+      </testPlan>
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Performance Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Define clear performance objectives before testing.</li>
+    <li>Simulate real-world scenarios to get accurate results.</li>
+    <li>Run tests in a controlled environment to minimize external factors.</li>
+    <li>Monitor system metrics such as CPU, memory, and network usage.</li>
+    <li>Analyze and optimize based on test results before deployment.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Performance testing is essential for ensuring a smooth and responsive application experience. By leveraging tools like JMeter and following best practices, developers can enhance system reliability and user satisfaction.
+  </p>
+</div>
+`
+},
+{
+  title:`CI/CD & Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding CI/CD & Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    CI/CD (Continuous Integration and Continuous Deployment) is a development practice that automates testing and deployment, ensuring software is delivered efficiently and reliably. Testing is an integral part of CI/CD to maintain quality and detect issues early.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Testing Important in CI/CD?</h3>
+  <p style="color: #2c3e50;">
+    Incorporating testing into CI/CD pipelines provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Early Bug Detection</strong>: Identifies issues before they reach production.</li>
+    <li><strong>Faster Feedback</strong>: Developers get immediate insights into code quality.</li>
+    <li><strong>Consistent Software Quality</strong>: Ensures reliability with automated tests.</li>
+    <li><strong>Efficient Deployment</strong>: Reduces manual intervention and accelerates release cycles.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Testing in CI/CD</h3>
+  <p style="color: #2c3e50;">
+    Different types of testing ensure comprehensive coverage in CI/CD pipelines:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unit Testing</strong>: Verifies individual components work correctly.</li>
+    <li><strong>Integration Testing</strong>: Ensures multiple components function together as expected.</li>
+    <li><strong>Functional Testing</strong>: Validates business logic and application behavior.</li>
+    <li><strong>Performance Testing</strong>: Measures speed, scalability, and reliability under load.</li>
+    <li><strong>Security Testing</strong>: Identifies vulnerabilities to safeguard the application.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example CI/CD Pipeline with Testing</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a simple CI/CD pipeline using GitHub Actions with automated testing.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      name: CI/CD Pipeline
+
+      on: [push, pull_request]
+
+      jobs:
+        build-test:
+          runs-on: ubuntu-latest
+          steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Set up Java
+              uses: actions/setup-java@v2
+              with:
+                java-version: '17'
+
+            - name: Build and Test
+              run: |
+                mvn clean install
+                mvn test
+
+            - name: Deploy
+              run: echo "Deploying application..."
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for CI/CD Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Run tests in parallel to reduce execution time.</li>
+    <li>Use test coverage tools to ensure comprehensive validation.</li>
+    <li>Automate rollback mechanisms in case of failures.</li>
+    <li>Regularly update test cases to match evolving business needs.</li>
+    <li>Monitor test results and logs to identify patterns and improvements.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Integrating testing into CI/CD pipelines enhances software quality, accelerates delivery, and ensures reliability. By implementing best practices, teams can achieve smooth and efficient software deployments with minimal risk.
+  </p>
+</div>
+`
+},
+{
+  title:`Test Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Test Best Practices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Implementing best practices in testing ensures software quality, maintainability, and reliability. Following structured guidelines helps prevent defects, improve performance, and enhance user experience.
+  </p>
+
+  <h3 style="color: #16a085;">Why Follow Test Best Practices?</h3>
+  <p style="color: #2c3e50;">
+    Adhering to best practices in testing provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Software Quality</strong>: Ensures code meets functional and non-functional requirements.</li>
+    <li><strong>Early Bug Detection</strong>: Identifies and fixes defects before deployment.</li>
+    <li><strong>Enhanced Maintainability</strong>: Simplifies debugging and future development.</li>
+    <li><strong>Efficient Testing Process</strong>: Reduces redundancy and improves coverage.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Test Best Practices</h3>
+  <p style="color: #2c3e50;">
+    The following best practices help establish an effective testing strategy:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Write Clear and Maintainable Tests</strong>: Use descriptive test names and structured assertions.</li>
+    <li><strong>Use Automated Testing</strong>: Automate repetitive tests to improve efficiency.</li>
+    <li><strong>Follow the Test Pyramid</strong>: Balance unit, integration, and end-to-end tests.</li>
+    <li><strong>Ensure Test Isolation</strong>: Avoid dependencies between tests to prevent false positives.</li>
+    <li><strong>Implement Continuous Testing</strong>: Integrate testing into CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example of Well-Structured Unit Test</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a structured unit test using JUnit:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+
+      class CalculatorTest {
+          @Test
+          void testAddition() {
+              Calculator calc = new Calculator();
+              assertEquals(5, calc.add(2, 3), "2 + 3 should equal 5");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Additional Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Mock external dependencies to ensure reliable test execution.</li>
+    <li>Use parameterized tests to cover multiple scenarios efficiently.</li>
+    <li>Regularly review and refactor test cases to match code changes.</li>
+    <li>Monitor test results and maintain a clean test suite.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Adopting test best practices improves software quality, accelerates development, and minimizes defects. A well-structured testing approach ensures smooth application performance and enhances user satisfaction.
+  </p>
+</div>`
+}
      ]
 
 }
