@@ -32991,7 +32991,6009 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
 </div>
 `
 },
+{
+  title:`Caching Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Caching Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching is an essential optimization technique that helps improve application performance by storing frequently accessed data in memory. It reduces database queries, minimizes latency, and enhances scalability.
+  </p>
 
+  <h3 style="color: #16a085;">Why Use Caching?</h3>
+  <p style="color: #2c3e50;">
+    Implementing caching offers several key benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Performance</strong>: Reduces data retrieval time by serving cached data.</li>
+    <li><strong>Reduced Server Load</strong>: Minimizes expensive computations and database queries.</li>
+    <li><strong>Scalability</strong>: Helps handle high traffic by reducing backend dependency.</li>
+    <li><strong>Cost Efficiency</strong>: Lowers infrastructure costs by optimizing resource utilization.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Caching</h3>
+  <p style="color: #2c3e50;">
+    Different caching strategies serve various use cases:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>In-Memory Caching</strong>: Stores data in RAM for fast access (e.g., Redis, Memcached).</li>
+    <li><strong>Database Caching</strong>: Caches query results to optimize database performance.</li>
+    <li><strong>Application-Level Caching</strong>: Stores computed results to reduce processing time.</li>
+    <li><strong>Content Delivery Network (CDN)</strong>: Caches static assets (e.g., images, scripts) closer to users.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example: Implementing Caching in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    The following example demonstrates how to use caching in a Spring Boot application with Redis.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cache.annotation.Cacheable;
+      import org.springframework.stereotype.Service;
+      
+      @Service
+      public class ProductService {
+          @Cacheable("products")
+          public Product getProductById(Long id) {
+              // Simulate database access
+              return database.findProductById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices for Caching</h3>
+  <p style="color: #2c3e50;">
+    To use caching effectively, follow these best practices:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Choose the Right Cache Strategy</strong>: Select in-memory, database, or distributed caching based on needs.</li>
+    <li><strong>Set Expiry Policies</strong>: Define time-to-live (TTL) for cache entries to avoid stale data.</li>
+    <li><strong>Monitor Cache Performance</strong>: Track hit/miss ratios to optimize caching efficiency.</li>
+    <li><strong>Use Cache Invalidation</strong>: Implement strategies to refresh outdated cache data.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Common Caching Pitfalls to Avoid</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Overcaching, which may lead to outdated data issues.</li>
+    <li>Not setting proper eviction policies, causing memory overflow.</li>
+    <li>Ignoring security considerations for sensitive cached data.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Caching is a powerful technique that significantly improves application speed and efficiency. Choosing the right caching strategy, setting appropriate expiration policies, and monitoring cache performance are crucial for maintaining a responsive and scalable system.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Annotations (@Cacheable, @CacheEvict, @CachePut)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">C Cache Annotations (@Cacheable, @CacheEvict, @CachePut)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring provides caching annotations to manage cache operations efficiently. These annotations help store, update, and remove cached data dynamically.
+  </p>
+
+  <h3 style="color: #16a085;">@Cacheable</h3>
+  <p style="color: #2c3e50;">
+    The <strong>@Cacheable</strong> annotation is used to cache method results. If the result is already cached, the method execution is skipped.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class ProductService {
+          @Cacheable("products")
+          public Product getProductById(Long id) {
+              return database.findProductById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">@CacheEvict</h3>
+  <p style="color: #2c3e50;">
+    The <strong>@CacheEvict</strong> annotation removes entries from the cache when data needs to be updated or deleted.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class ProductService {
+          @CacheEvict(value = "products", key = "#id")
+          public void deleteProduct(Long id) {
+              database.deleteProductById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">@CachePut</h3>
+  <p style="color: #2c3e50;">
+    The <strong>@CachePut</strong> annotation updates the cache with new method results while still executing the method.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class ProductService {
+          @CachePut(value = "products", key = "#product.id")
+          public Product updateProduct(Product product) {
+              return database.save(product);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>@Cacheable</strong> for frequently accessed data to improve performance.</li>
+    <li>Implement <strong>@CacheEvict</strong> to remove stale data when necessary.</li>
+    <li>Use <strong>@CachePut</strong> to ensure cache consistency after updates.</li>
+    <li>Monitor cache usage to prevent excessive memory consumption.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Caching annotations in Spring help improve application efficiency by reducing redundant computations. Using @Cacheable, @CacheEvict, and @CachePut effectively ensures optimal cache management and data consistency.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Managers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Managers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A <strong>Cache Manager</strong> in Spring Boot is responsible for managing cache operations such as storing, retrieving, and evicting cached data. It provides an abstraction over different caching implementations.
+  </p>
+
+  <h3 style="color: #16a085;">Enabling Cache Manager</h3>
+  <p style="color: #2c3e50;">
+    To enable caching in a Spring Boot application, use the <strong>@EnableCaching</strong> annotation in the main class.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @SpringBootApplication
+      @EnableCaching
+      public class CacheApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(CacheApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using Cache Manager</h3>
+  <p style="color: #2c3e50;">
+    The <strong>CacheManager</strong> interface in Spring provides various caching mechanisms, such as ConcurrentMapCacheManager, EhCacheCacheManager, and RedisCacheManager.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class CacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              return new ConcurrentMapCacheManager("products");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Customizing Cache Manager</h3>
+  <p style="color: #2c3e50;">
+    You can customize the cache manager to use other caching solutions like Redis or EhCache.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class RedisCacheConfig {
+          @Bean
+          public RedisCacheManager cacheManager(RedisConnectionFactory factory) {
+              return RedisCacheManager.builder(factory).build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose a caching solution that fits your application’s needs (e.g., Redis for distributed caching).</li>
+    <li>Monitor cache performance and memory usage.</li>
+    <li>Set appropriate expiration policies to prevent stale data.</li>
+    <li>Use <strong>CacheManager</strong> to handle multiple cache implementations efficiently.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <strong>Cache Manager</strong> in Spring Boot helps optimize performance by managing cached data effectively. Choosing the right cache implementation and configuring it properly can significantly enhance application efficiency.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Providers (EhCache, Redis, etc.)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Providers (EhCache, Redis, etc.)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Different <strong>cache providers</strong> are available in Spring Boot, offering various caching mechanisms. The most commonly used cache providers include EhCache, Redis, Caffeine, and Hazelcast.
+  </p>
+
+  <h3 style="color: #16a085;">EhCache</h3>
+  <p style="color: #2c3e50;">
+    EhCache is a widely used Java-based cache provider that supports in-memory caching with optional disk persistence.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      @EnableCaching
+      public class EhCacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              return new EhCacheCacheManager(CacheManager.newInstance("ehcache.xml"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Redis</h3>
+  <p style="color: #2c3e50;">
+    Redis is an in-memory data store that provides fast caching and supports distributed caching.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class RedisCacheConfig {
+          @Bean
+          public RedisCacheManager cacheManager(RedisConnectionFactory factory) {
+              return RedisCacheManager.builder(factory).build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Caffeine</h3>
+  <p style="color: #2c3e50;">
+    Caffeine is a high-performance Java-based caching library.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class CaffeineCacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              return new CaffeineCacheManager("products");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Hazelcast</h3>
+  <p style="color: #2c3e50;">
+    Hazelcast is a distributed caching solution that supports clustering.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class HazelcastCacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              Config config = new Config();
+              return new HazelcastCacheManager(Hazelcast.newHazelcastInstance(config));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose a cache provider based on your application requirements.</li>
+    <li>Monitor cache performance and adjust expiration policies accordingly.</li>
+    <li>Use distributed caching for scalability in microservices.</li>
+    <li>Optimize cache configurations to balance memory usage and speed.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot supports multiple <strong>cache providers</strong> such as EhCache, Redis, Caffeine, and Hazelcast. Choosing the right cache provider can enhance performance, scalability, and efficiency in an application.
+  </p>
+</div>
+`
+},
+{
+  title:`Spring Cache Abstraction`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Cache Abstraction</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <strong>Spring Cache Abstraction</strong> provides a unified approach to integrating various caching solutions in Spring applications. It allows developers to apply caching in a consistent manner without tightly coupling to a specific caching provider.
+  </p>
+
+  <h3 style="color: #16a085;">Enabling Spring Cache</h3>
+  <p style="color: #2c3e50;">
+    To enable caching in a Spring Boot application, use the <strong>@EnableCaching</strong> annotation in the main class.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @SpringBootApplication
+      @EnableCaching
+      public class CacheApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(CacheApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Using Spring Cache Abstraction</h3>
+  <p style="color: #2c3e50;">
+    The <strong>Spring Cache Abstraction</strong> supports annotations such as <strong>@Cacheable</strong>, <strong>@CachePut</strong>, and <strong>@CacheEvict</strong> to manage cache operations efficiently.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class ProductService {
+          
+          @Cacheable("products")
+          public Product getProductById(Long id) {
+              return new Product(id, "Sample Product");
+          }
+          
+          @CachePut(value = "products", key = "#product.id")
+          public Product updateProduct(Product product) {
+              return product;
+          }
+          
+          @CacheEvict(value = "products", key = "#id")
+          public void deleteProduct(Long id) {
+              // Remove from cache
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Supported Cache Providers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>ConcurrentMapCacheManager (Default in Spring Boot)</li>
+    <li>EhCache</li>
+    <li>Redis</li>
+    <li>Caffeine</li>
+    <li>Hazelcast</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose an appropriate caching provider based on application needs.</li>
+    <li>Use <strong>@CacheEvict</strong> to avoid stale data.</li>
+    <li>Ensure proper cache key management to prevent conflicts.</li>
+    <li>Monitor cache hit rates and eviction policies for optimal performance.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <strong>Spring Cache Abstraction</strong> provides a flexible and unified caching mechanism in Spring Boot applications. By leveraging different caching providers and annotations, developers can optimize performance efficiently.
+  </p>
+</div>
+`
+},
+{
+  
+  title:`Caching Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Caching Strategies</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching strategies play a crucial role in optimizing application performance by reducing redundant computations and database queries. Different strategies cater to various use cases, balancing speed, consistency, and freshness of data.
+  </p>
+
+  <h3 style="color: #16a085;">Common Caching Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Write-Through</strong>: Data is written to both the cache and the database simultaneously.</li>
+    <li><strong>Write-Behind (Write-Back)</strong>: Data is written to the cache first and asynchronously updated in the database.</li>
+    <li><strong>Read-Through</strong>: Data is fetched from the database via the cache, ensuring updated values.</li>
+    <li><strong>Cache-Aside (Lazy Loading)</strong>: The application fetches data from the database and stores it in the cache.</li>
+    <li><strong>Time-To-Live (TTL) & Expiry</strong>: Cached data is invalidated after a set duration.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Choosing the Right Caching Strategy</h3>
+  <p style="color: #2c3e50;">
+    The choice of caching strategy depends on application requirements:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>write-through</strong> for real-time consistency needs.</li>
+    <li>Use <strong>write-behind</strong> when performance is a priority and slight data lag is acceptable.</li>
+    <li>Use <strong>cache-aside</strong> for flexible cache control.</li>
+    <li>Apply <strong>TTL & expiry</strong> to prevent stale data accumulation.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Caching Strategies in Spring</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides robust caching mechanisms to support various strategies using annotations like <code>@Cacheable</code>, <code>@CacheEvict</code>, and <code>@CachePut</code>.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class ProductService {
+
+          @Cacheable(value = "products", key = "#id")
+          public Product getProductById(Long id) {
+              return new Product(id, "Sample Product");
+          }
+          
+          @CachePut(value = "products", key = "#product.id")
+          public Product updateProduct(Product product) {
+              return product;
+          }
+          
+          @CacheEvict(value = "products", key = "#id")
+          public void deleteProduct(Long id) {
+              // Remove from cache
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Monitor cache performance and adjust eviction policies accordingly.</li>
+    <li>Use <strong>cache partitioning</strong> to reduce contention.</li>
+    <li>Combine caching strategies for an optimal balance of performance and consistency.</li>
+    <li>Leverage distributed caching solutions like Redis for scalability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Selecting the right caching strategy is crucial for improving application performance and efficiency. By implementing Spring’s caching capabilities effectively, developers can achieve a balance between speed and data accuracy.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Configurations`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Configurations</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Proper cache configuration is essential for optimizing application performance. Configuring caches correctly ensures efficient memory usage, improved response times, and enhanced scalability.
+  </p>
+
+  <h3 style="color: #16a085;">Common Cache Configuration Options</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Cache Size Limits</strong>: Defines the maximum number of entries the cache can hold.</li>
+    <li><strong>Time-to-Live (TTL)</strong>: Determines how long an entry remains in the cache before being invalidated.</li>
+    <li><strong>Eviction Policies</strong>: Strategies like Least Recently Used (LRU), Least Frequently Used (LFU), and First-In-First-Out (FIFO).</li>
+    <li><strong>Concurrency Controls</strong>: Ensures data consistency when multiple threads access the cache.</li>
+    <li><strong>Persistence</strong>: Enables storing cache data to disk for recovery after restarts.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Configuring Cache in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides flexible caching configurations using properties and Java-based configuration.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      @EnableCaching
+      public class CacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              return new ConcurrentMapCacheManager("products");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Cache Configuration Properties</h3>
+  <p style="color: #2c3e50;">
+    Cache settings can also be managed through <code>application.properties</code>:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-properties">
+      spring.cache.type=redis
+      spring.cache.redis.time-to-live=60000
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose an appropriate cache provider based on application needs.</li>
+    <li>Set optimal TTL and eviction policies to balance freshness and memory usage.</li>
+    <li>Monitor cache performance using metrics and logging.</li>
+    <li>Leverage distributed caches for scalability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Proper cache configuration ensures an efficient caching system that improves application responsiveness and scalability. By leveraging Spring Boot’s caching capabilities, developers can fine-tune cache behavior to suit application requirements.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Key Generation`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Key Generation</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cache key generation is a critical aspect of caching strategies, ensuring efficient data retrieval and preventing unnecessary computations. Proper key management avoids cache collisions and optimizes performance.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Cache Key Generation Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Avoids Redundant Data</strong>: Ensures only unique data is stored in the cache.</li>
+    <li><strong>Prevents Cache Collisions</strong>: Avoids overwriting unrelated cache entries.</li>
+    <li><strong>Improves Performance</strong>: Faster lookups with well-defined keys.</li>
+    <li><strong>Supports Cache Invalidation</strong>: Helps in proper cache evictions and updates.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Cache Key Generation in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides flexibility in cache key generation using <code>@Cacheable</code> with custom key definitions.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Cacheable(value = "products", key = "#id")
+      public Product getProductById(Long id) {
+          return new Product(id, "Sample Product");
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Custom Key Generators</h3>
+  <p style="color: #2c3e50;">
+    Custom key generators can be implemented using <code>KeyGenerator</code>.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Component
+      public class CustomKeyGenerator implements KeyGenerator {
+          @Override
+          public Object generate(Object target, Method method, Object... params) {
+              return method.getName() + "_" + Arrays.toString(params);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use meaningful and unique keys to prevent conflicts.</li>
+    <li>Avoid using complex objects as keys unless properly serialized.</li>
+    <li>Consider cache eviction strategies to manage stale data.</li>
+    <li>Monitor cache efficiency to refine key strategies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Effective cache key generation is essential for an optimized caching system. By leveraging custom key generators and best practices, developers can improve cache performance, ensuring accurate and efficient data retrieval.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Eviction Strategies`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Eviction Strategies</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cache eviction strategies determine how and when cached data is removed to maintain efficiency and prevent stale data. Proper eviction policies help optimize memory usage and ensure up-to-date information retrieval.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Cache Eviction Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Prevents Stale Data</strong>: Ensures outdated or irrelevant data is removed.</li>
+    <li><strong>Optimizes Memory Usage</strong>: Frees up space for new cache entries.</li>
+    <li><strong>Improves Performance</strong>: Reduces unnecessary cache lookups and storage overhead.</li>
+    <li><strong>Maintains Data Consistency</strong>: Synchronizes cached data with the latest database updates.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Cache Eviction Strategies in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot supports various cache eviction mechanisms using the <code>@CacheEvict</code> annotation.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @CacheEvict(value = "products", key = "#id")
+      public void deleteProduct(Long id) {
+          productRepository.deleteById(id);
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Types of Cache Eviction Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Manual Eviction</strong>: Explicitly removes cache entries using <code>@CacheEvict</code>.</li>
+    <li><strong>Time-Based Expiry</strong>: Automatically removes entries after a defined time interval.</li>
+    <li><strong>Least Recently Used (LRU)</strong>: Discards the least accessed data to make space.</li>
+    <li><strong>Least Frequently Used (LFU)</strong>: Removes items accessed the least number of times.</li>
+    <li><strong>Write-Through and Write-Behind</strong>: Ensures data synchronization between cache and database.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Cache Eviction</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose an eviction policy based on application needs.</li>
+    <li>Combine cache eviction with monitoring tools for better performance insights.</li>
+    <li>Use <strong>conditional eviction</strong> to fine-tune when cache should be cleared.</li>
+    <li>Test eviction strategies in staging before deploying to production.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Implementing efficient cache eviction strategies is crucial for maintaining application performance and data accuracy. By choosing the right eviction policy and combining it with best practices, developers can ensure a balanced and optimized caching system.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache TTL (Time to Live)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache TTL (Time to Live)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cache TTL (Time to Live) defines the duration for which cached data remains valid before it is automatically removed. Setting an appropriate TTL helps balance performance, memory usage, and data freshness.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Cache TTL Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Prevents Stale Data</strong>: Ensures cached information remains fresh and relevant.</li>
+    <li><strong>Optimizes Memory Usage</strong>: Automatically removes expired data to free up resources.</li>
+    <li><strong>Enhances Performance</strong>: Reduces unnecessary database queries by keeping frequently accessed data available.</li>
+    <li><strong>Controls Cache Bloat</strong>: Avoids excessive memory consumption by discarding outdated entries.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Configuring Cache TTL in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Cache TTL can be configured using cache providers like Redis, EhCache, and Caffeine.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      public class CacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              return new ConcurrentMapCacheManager("products") {
+                  @Override
+                  protected Cache createConcurrentMapCache(String name) {
+                      return new ConcurrentMapCache(name, CacheBuilder.newBuilder()
+                          .expireAfterWrite(10, TimeUnit.MINUTES)
+                          .build().asMap(), false);
+                  }
+              };
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Cache TTL Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Fixed TTL</strong>: Cache entries expire after a pre-set duration.</li>
+    <li><strong>Sliding TTL</strong>: Resets TTL upon access to extend data lifespan.</li>
+    <li><strong>Custom Expiration</strong>: TTL varies based on application logic.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Cache TTL</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Set TTL based on data volatility and access frequency.</li>
+    <li>Use a combination of <strong>short-lived</strong> and <strong>long-lived</strong> caches to optimize performance.</li>
+    <li>Monitor cache hit/miss ratios to fine-tune TTL settings.</li>
+    <li>Consider invalidation mechanisms to force cache updates when necessary.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Configuring an appropriate Cache TTL helps maintain an efficient caching system. By selecting the right expiration strategy and continuously monitoring performance, developers can optimize cache effectiveness while ensuring data accuracy.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Synchronization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Synchronization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cache synchronization ensures that data stored in the cache remains consistent with the underlying data source. This is crucial in distributed systems where multiple instances of an application may read and write data simultaneously.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Cache Synchronization Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Maintains Data Consistency</strong>: Ensures that cached data does not become outdated or incorrect.</li>
+    <li><strong>Reduces Stale Data</strong>: Updates or invalidates cache when the underlying data changes.</li>
+    <li><strong>Improves Performance</strong>: Allows applications to use cached data confidently without frequent database queries.</li>
+    <li><strong>Ensures High Availability</strong>: Supports distributed caching systems in multi-node environments.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Strategies for Cache Synchronization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Write-Through</strong>: Data is written to both the cache and database simultaneously.</li>
+    <li><strong>Write-Behind</strong>: Data is first written to the cache and asynchronously persisted to the database.</li>
+    <li><strong>Cache Invalidation</strong>: The cache entry is removed or updated when the corresponding data changes.</li>
+    <li><strong>Event-Based Synchronization</strong>: Listeners monitor changes and update cache accordingly.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Cache Synchronization in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class ProductService {
+          @Cacheable("products")
+          public Product getProductById(Long id) {
+              return productRepository.findById(id).orElse(null);
+          }
+
+          @CachePut(value = "products", key = "#product.id")
+          public Product updateProduct(Product product) {
+              return productRepository.save(product);
+          }
+
+          @CacheEvict(value = "products", key = "#id")
+          public void deleteProduct(Long id) {
+              productRepository.deleteById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Cache Synchronization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose a synchronization strategy based on application requirements.</li>
+    <li>Use event-driven mechanisms like <strong>Redis Pub/Sub</strong> or <strong>Kafka</strong> for distributed cache updates.</li>
+    <li>Regularly monitor and fine-tune cache invalidation policies.</li>
+    <li>Leverage database triggers to notify cache changes where applicable.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Effective cache synchronization ensures high application performance while maintaining data accuracy. By selecting the right strategy and implementing proper invalidation mechanisms, developers can keep cached data up to date without compromising efficiency.
+  </p>
+</div>
+`
+},
+{
+  title:`Distributed Caching`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Distributed Caching</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Distributed caching is a technique used to store and manage cached data across multiple servers or nodes. It enhances application scalability, performance, and availability by ensuring that frequently accessed data is available closer to the users.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Distributed Caching Important?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improves Performance</strong>: Reduces database load and speeds up data retrieval.</li>
+    <li><strong>Enhances Scalability</strong>: Supports high-traffic applications by distributing cache across multiple nodes.</li>
+    <li><strong>Ensures High Availability</strong>: Provides redundancy, reducing the risk of cache failures.</li>
+    <li><strong>Minimizes Latency</strong>: Delivers cached data from the nearest available node.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Popular Distributed Caching Solutions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Redis</strong>: In-memory key-value store, supports replication and persistence.</li>
+    <li><strong>Memcached</strong>: Simple, high-performance caching system.</li>
+    <li><strong>EhCache</strong>: Java-based caching solution with strong integration in Spring Boot.</li>
+    <li><strong>Hazelcast</strong>: In-memory data grid offering distributed caching capabilities.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Distributed Caching in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      @EnableCaching
+      public class CacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+              return RedisCacheManager.builder(RedisConnectionFactory()).cacheDefaults(config).build();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Distributed Caching</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use appropriate eviction policies like <strong>LRU</strong> (Least Recently Used) to optimize cache utilization.</li>
+    <li>Ensure data consistency using cache synchronization techniques.</li>
+    <li>Leverage partitioning to distribute cache load effectively.</li>
+    <li>Monitor and optimize cache size to avoid memory overflow.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Distributed caching is a crucial component in building scalable and high-performance applications. By leveraging distributed cache solutions and best practices, developers can optimize response times, reduce database load, and enhance system resilience.
+  </p>
+</div>
+`
+},
+{
+  title:`Caching in Microservices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Caching in Microservices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching in microservices helps improve performance, reduce latency, and minimize database load by storing frequently accessed data closer to the application. Since microservices are distributed, caching strategies need to be carefully designed to ensure consistency and scalability.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Caching Important in Microservices?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduces Database Load</strong>: Minimizes direct database queries, improving efficiency.</li>
+    <li><strong>Enhances Performance</strong>: Speeds up response times by retrieving cached data.</li>
+    <li><strong>Improves Scalability</strong>: Handles increased traffic by reducing bottlenecks.</li>
+    <li><strong>Supports Fault Tolerance</strong>: Cached data can serve as a backup in case of service failures.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Caching Strategies in Microservices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Local Cache</strong>: Each microservice maintains its own cache.</li>
+    <li><strong>Distributed Cache</strong>: A shared caching layer (e.g., Redis, Hazelcast) is used across services.</li>
+    <li><strong>Hybrid Cache</strong>: Combination of local and distributed caching for optimal performance.</li>
+    <li><strong>Read-Through & Write-Through</strong>: Ensures consistency by automatically updating cache during database operations.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Caching in Spring Boot Microservices</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      @EnableCaching
+      public class CacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              return new ConcurrentMapCacheManager("items");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Caching in Microservices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Choose an appropriate caching strategy based on use cases.</li>
+    <li>Use cache expiration and eviction policies to avoid stale data.</li>
+    <li>Ensure consistency using cache synchronization mechanisms.</li>
+    <li>Monitor cache performance and fine-tune configurations.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Caching plays a vital role in optimizing microservices architecture. By adopting the right caching strategies and best practices, applications can achieve higher scalability, better performance, and improved resilience in distributed environments.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache & Performance Optimization`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache & Performance Optimization</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Efficient caching strategies play a crucial role in optimizing application performance. By reducing database calls and improving response times, caching enhances scalability and ensures smooth user experiences. 
+  </p>
+
+  <h3 style="color: #16a085;">Why is Cache Important for Performance Optimization?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reduces Latency</strong>: Serves data faster by avoiding repeated computations or database hits.</li>
+    <li><strong>Minimizes Database Load</strong>: Decreases database stress by storing frequently accessed data.</li>
+    <li><strong>Enhances Scalability</strong>: Supports high-traffic applications by reducing backend dependencies.</li>
+    <li><strong>Improves User Experience</strong>: Provides quick responses for a seamless user experience.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Effective Caching Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Local Caching</strong>: Stores cache within the application to reduce external calls.</li>
+    <li><strong>Distributed Caching</strong>: Uses external services like Redis or Memcached for scalability.</li>
+    <li><strong>Write-Through & Read-Through</strong>: Ensures data consistency with automatic updates.</li>
+    <li><strong>Cache Expiry & Eviction Policies</strong>: Removes stale data to maintain relevance.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Caching in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Configuration
+      @EnableCaching
+      public class CacheConfig {
+          @Bean
+          public CacheManager cacheManager() {
+              return new ConcurrentMapCacheManager("products");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Cache Optimization</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use the right cache type (local, distributed, hybrid) based on needs.</li>
+    <li>Set expiration times to avoid stale data issues.</li>
+    <li>Leverage cache warming techniques for better startup performance.</li>
+    <li>Monitor and tune cache settings for optimal efficiency.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Caching is a vital component of performance optimization. By strategically implementing caching mechanisms, applications can significantly enhance speed, scalability, and user experience while maintaining consistency and reliability.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Monitoring`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Monitoring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Cache monitoring is essential to ensure optimal cache performance, prevent stale data issues, and detect inefficiencies in caching mechanisms. Proper monitoring helps maintain system reliability and performance.
+  </p>
+
+  <h3 style="color: #16a085;">Why Monitor Caches?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Detect Cache Misses</strong>: Identify when requests bypass the cache, leading to unnecessary database queries.</li>
+    <li><strong>Analyze Hit Ratios</strong>: Monitor cache efficiency by tracking the ratio of cache hits to misses.</li>
+    <li><strong>Prevent Stale Data</strong>: Ensure data consistency by tracking cache expiry and eviction patterns.</li>
+    <li><strong>Optimize Cache Size</strong>: Adjust cache size based on real-time usage metrics to prevent memory overflows.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Cache Monitoring Tools</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Spring Boot Actuator</strong>: Provides cache metrics via endpoints like <code>/actuator/caches</code>.</li>
+    <li><strong>Redis CLI & Dashboard</strong>: Offers insights into cache operations and memory usage.</li>
+    <li><strong>EhCache Monitoring</strong>: Uses JMX (Java Management Extensions) for cache metrics.</li>
+    <li><strong>Prometheus & Grafana</strong>: Visualizes cache performance trends with real-time monitoring.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Cache Monitoring in Spring Boot</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @RestController
+      @RequestMapping("/cache")
+      public class CacheController {
+          @Autowired
+          private CacheManager cacheManager;
+          
+          @GetMapping("/stats")
+          public Collection&lt;String&gt; getCacheNames() {
+              return cacheManager.getCacheNames();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Cache Monitoring</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Set up alerts for high cache miss rates.</li>
+    <li>Monitor cache eviction and TTL expiration patterns.</li>
+    <li>Regularly analyze cache metrics to fine-tune performance.</li>
+    <li>Use distributed tracing to correlate cache performance with application behavior.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Monitoring caching mechanisms is crucial for maintaining application efficiency and ensuring that caching strategies align with performance goals. By leveraging proper tools and best practices, applications can maximize caching benefits while avoiding potential pitfalls.
+  </p>
+</div>
+`
+},
+{
+  title:`Caching with Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Caching with Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching in Spring Boot enhances application performance by reducing database load and response time. Spring Boot provides built-in support for caching through annotations and cache managers.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Caching in Spring Boot?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improves Performance</strong>: Reduces redundant database queries, enhancing application speed.</li>
+    <li><strong>Optimizes Resource Usage</strong>: Decreases server load and improves response time.</li>
+    <li><strong>Enhances Scalability</strong>: Helps applications handle more users efficiently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Enabling Caching in Spring Boot</h3>
+  <p style="color: #2c3e50;">To enable caching, annotate the main application class with <code>@EnableCaching</code>.</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @SpringBootApplication
+      @EnableCaching
+      public class CachingApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(CachingApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using Cache Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@Cacheable</code>: Caches method results to improve performance.</li>
+    <li><code>@CacheEvict</code>: Removes outdated cache entries.</li>
+    <li><code>@CachePut</code>: Updates the cache with the latest data.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Example: Implementing Caching</h3>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class ProductService {
+          private final ProductRepository repository;
+          
+          @Autowired
+          public ProductService(ProductRepository repository) {
+              this.repository = repository;
+          }
+          
+          @Cacheable("products")
+          public List<Product> getAllProducts() {
+              return repository.findAll();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Caching in Spring Boot is a powerful way to enhance application performance. By leveraging cache annotations and cache managers, developers can optimize resource usage and improve response times effectively.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache Best Practices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Implementing caching effectively requires adherence to best practices to ensure optimal performance and data consistency. Below are some key strategies for caching in applications.
+  </p>
+
+  <h3 style="color: #16a085;">1. Choose the Right Caching Strategy</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>In-Memory Caching</strong>: Use for fast access with limited data (e.g., EhCache, Caffeine).</li>
+    <li><strong>Distributed Caching</strong>: Required for microservices and large-scale applications (e.g., Redis, Memcached).</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">2. Use Proper Expiration Policies</h3>
+  <p style="color: #2c3e50;">Set appropriate Time-to-Live (TTL) for cache entries to avoid stale data issues.</p>
+
+  <h3 style="color: #8e44ad;">3. Implement Cache Eviction Strategies</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>LRU (Least Recently Used)</strong>: Removes the least accessed data first.</li>
+    <li><strong>LFU (Least Frequently Used)</strong>: Removes the least frequently used items.</li>
+    <li><strong>FIFO (First In, First Out)</strong>: Evicts the oldest cached items.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">4. Use Cache Warming and Preloading</h3>
+  <p style="color: #2c3e50;">Preload critical data into the cache to reduce response times during high traffic.</p>
+
+  <h3 style="color: #16a085;">5. Implement Proper Cache Invalidation</h3>
+  <p style="color: #2c3e50;">Ensure cached data is refreshed appropriately using <code>@CacheEvict</code> and other invalidation techniques.</p>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Following caching best practices ensures efficient resource utilization, improves application performance, and maintains data integrity. Choose the right cache strategy and manage expiration wisely for optimal results.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Caching`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Caching</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing caching ensures that the cache behaves as expected, improving performance while maintaining data consistency. Below are key techniques for effectively testing caching mechanisms.
+  </p>
+
+  <h3 style="color: #16a085;">1. Unit Testing with Mocks</h3>
+  <p style="color: #2c3e50;">Use mocking frameworks like Mockito to simulate caching behavior and verify method calls.</p>
+  
+  <h3 style="color: #e67e22;">2. Integration Testing</h3>
+  <p style="color: #2c3e50;">Test cache interactions with actual data sources to validate caching logic in a real environment.</p>
+
+  <h3 style="color: #8e44ad;">3. Load and Performance Testing</h3>
+  <p style="color: #2c3e50;">Simulate high traffic to measure cache hit/miss ratios and assess cache efficiency.</p>
+
+  <h3 style="color: #d35400;">4. Cache Eviction Testing</h3>
+  <p style="color: #2c3e50;">Ensure that cache eviction policies (TTL, LRU, etc.) work correctly and prevent stale data issues.</p>
+
+  <h3 style="color: #16a085;">5. Consistency and Data Integrity Testing</h3>
+  <p style="color: #2c3e50;">Verify that cached data remains synchronized with the underlying data store.</p>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Properly testing caching mechanisms helps maintain application stability, ensures expected performance improvements, and prevents data inconsistencies. Use unit, integration, and performance tests to validate cache behavior effectively.
+  </p>
+</div>
+`
+},
+{
+  title:`Conditional Caching`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Conditional Caching</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Conditional caching enables dynamic control over cache storage based on specific conditions. It helps optimize resource usage by caching only relevant data.
+  </p>
+
+  <h3 style="color: #16a085;">1. Using Conditions in @Cacheable</h3>
+  <p style="color: #2c3e50;">Spring's <code>@Cacheable</code> annotation allows conditional caching with the <code>condition</code> and <code>unless</code> attributes.</p>
+  
+  <h3 style="color: #e67e22;">2. condition Attribute</h3>
+  <p style="color: #2c3e50;">Cache only when a certain condition is met, e.g., caching only when the input ID is greater than 10.</p>
+
+  <h3 style="color: #8e44ad;">3. unless Attribute</h3>
+  <p style="color: #2c3e50;">Prevent caching based on result conditions, e.g., avoiding caching null or empty results.</p>
+
+  <h3 style="color: #d35400;">4. Conditional Eviction</h3>
+  <p style="color: #2c3e50;">Use <code>@CacheEvict</code> with conditions to remove cached data dynamically.</p>
+
+  <h3 style="color: #16a085;">5. Performance Considerations</h3>
+  <p style="color: #2c3e50;">Ensure that condition evaluation does not introduce significant overhead, negating caching benefits.</p>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Conditional caching enhances caching efficiency by allowing selective storage of results. Properly defining conditions helps maintain performance and optimize resource utilization.
+  </p>
+</div>
+`
+},
+{
+  title:`Cache & Security`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Cache & Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Caching and security go hand in hand to ensure data integrity and prevent unauthorized access to sensitive information stored in caches.
+  </p>
+
+  <h3 style="color: #16a085;">1. Risks of Caching Sensitive Data</h3>
+  <p style="color: #2c3e50;">Storing sensitive data like user credentials, tokens, or personal information in cache can lead to security vulnerabilities.</p>
+  
+  <h3 style="color: #e67e22;">2. Secure Cache Storage</h3>
+  <p style="color: #2c3e50;">Use encrypted caches and configure cache providers to prevent unauthorized access.</p>
+
+  <h3 style="color: #8e44ad;">3. Cache Expiration Policies</h3>
+  <p style="color: #2c3e50;">Implement short TTL (Time-To-Live) for sensitive data to minimize security risks.</p>
+
+  <h3 style="color: #d35400;">4. Role-Based Cache Access</h3>
+  <p style="color: #2c3e50;">Restrict access to cached data based on user roles and permissions.</p>
+
+  <h3 style="color: #16a085;">5. Preventing Cache Poisoning</h3>
+  <p style="color: #2c3e50;">Validate inputs and sanitize data before storing them in the cache to prevent malicious injections.</p>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Properly securing caches helps prevent data leaks, unauthorized access, and cache poisoning attacks. Implementing encryption, access controls, and expiration policies is crucial for a secure caching strategy.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transactions are fundamental units of work in database systems, ensuring data consistency, integrity, 
+    and reliability. A transaction groups multiple operations into a single logical unit, which must either 
+    be fully completed or entirely rolled back in case of failure.
+  </p>
+
+  <h3 style="color: #16a085;">Key Properties of Transactions (ACID):</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Atomicity:</b> Ensures that all operations within a transaction are completed successfully, 
+        or none are applied.</li>
+    <li><b>Consistency:</b> Guarantees that the database remains in a valid state before and after the transaction.</li>
+    <li><b>Isolation:</b> Ensures transactions execute independently without interference from others.</li>
+    <li><b>Durability:</b> Ensures that once a transaction is committed, it remains permanently stored.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Transactions</h3>
+  <p style="color: #2c3e50;">
+    Transactions can be classified into various types based on their execution:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Read-Only Transactions:</b> Used for retrieving data without modifying it.</li>
+    <li><b>Read-Write Transactions:</b> Involves reading and modifying data, requiring commit or rollback.</li>
+    <li><b>Distributed Transactions:</b> Spans multiple databases or systems and requires coordination.</li>
+    <li><b>Nested Transactions:</b> Contains sub-transactions that depend on the parent transaction.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Transactions in Java (Spring Boot)</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class TransactionService {
+
+          @Transactional
+          public void performTransaction() {
+              // Database operations like insert, update, delete
+              // If any operation fails, rollback occurs automatically
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In the above example, the <code>@Transactional</code> annotation ensures that all operations inside 
+    <code>performTransaction()</code> execute as a single unit, maintaining ACID properties.
+  </p>
+</div>
+`
+},
+{
+  title:`ACID Properties`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">ACID Properties</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    ACID properties define the key characteristics that ensure the reliability of database transactions. 
+    These properties—Atomicity, Consistency, Isolation, and Durability—help maintain data integrity even 
+    in cases of system failures or concurrent transactions.
+  </p>
+
+  <h3 style="color: #16a085;">Understanding ACID Properties:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Atomicity:</b> Ensures that a transaction is treated as a single unit, meaning it either completes fully or not at all.</li>
+    <li><b>Consistency:</b> Guarantees that the database transitions from one valid state to another, maintaining integrity constraints.</li>
+    <li><b>Isolation:</b> Ensures that concurrent transactions do not interfere with each other, preventing data anomalies.</li>
+    <li><b>Durability:</b> Ensures that once a transaction is committed, the changes are permanently recorded, even in case of failures.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why ACID Properties Are Important?</h3>
+  <p style="color: #2c3e50;">
+    ACID properties play a critical role in database management by ensuring data accuracy and consistency. 
+    They help prevent issues like lost updates, dirty reads, and partial transactions.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Implementing ACID Transactions in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class ACIDTransactionService {
+
+          @Transactional
+          public void executeTransaction() {
+              // Perform multiple database operations
+              // If any operation fails, rollback ensures atomicity
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The <code>@Transactional</code> annotation in the above example ensures that all operations inside 
+    <code>executeTransaction()</code> adhere to ACID properties, maintaining database reliability.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Management in Spring`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Management in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction management in Spring ensures data consistency and integrity by handling transactions efficiently. 
+    Spring provides declarative and programmatic transaction management, allowing developers to control 
+    transactional behavior with minimal effort.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Spring Transaction Management:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Declarative Transaction Management:</b> Uses annotations like <code>@Transactional</code> to manage transactions automatically.</li>
+    <li><b>Programmatic Transaction Management:</b> Provides finer control using the <code>TransactionTemplate</code> API or <code>PlatformTransactionManager</code>.</li>
+    <li><b>Rollback and Commit:</b> Supports automatic rollback on exceptions and commit on successful execution.</li>
+    <li><b>Propagation Behavior:</b> Defines how transactions interact with existing transactions.</li>
+    <li><b>Isolation Levels:</b> Controls the visibility of transaction changes to other concurrent transactions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use Transaction Management?</h3>
+  <p style="color: #2c3e50;">
+    Transaction management ensures data consistency, prevents corruption, and supports concurrent data access in a reliable manner. 
+    It is essential for enterprise applications that involve multiple database operations.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Implementing Transaction Management in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class TransactionService {
+
+          @Transactional
+          public void processTransaction() {
+              // Perform database operations
+              // If an exception occurs, rollback ensures data consistency
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The <code>@Transactional</code> annotation in the above example ensures that all operations inside 
+    <code>processTransaction()</code> are executed as a single transaction, maintaining database integrity.
+  </p>
+</div>
+`
+},
+{
+  title:`Declarative Transactions (@Transactional)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Declarative Transactions (@Transactional)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Declarative transaction management in Spring simplifies transaction handling by using the <code>@Transactional</code> annotation. 
+    This eliminates the need for manual transaction handling, allowing developers to focus on business logic while Spring manages 
+    transaction boundaries automatically.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of @Transactional:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Simplifies transaction management:</b> No need for manual transaction handling with <code>begin</code> and <code>commit</code>.</li>
+    <li><b>Automatic rollback:</b> Transactions roll back on runtime exceptions by default.</li>
+    <li><b>Supports propagation:</b> Defines how transactions behave when called within another transaction.</li>
+    <li><b>Custom isolation levels:</b> Controls visibility of transaction changes to concurrent transactions.</li>
+    <li><b>Read-only transactions:</b> Optimizes performance for non-modifying database operations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use Declarative Transactions?</h3>
+  <p style="color: #2c3e50;">
+    Declarative transactions provide a clean and maintainable way to manage transactions without cluttering the code with boilerplate logic. 
+    It ensures data integrity while reducing the risk of transaction-related bugs.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Using @Transactional in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class AccountService {
+
+          @Transactional
+          public void transferFunds(Account fromAccount, Account toAccount, double amount) {
+              fromAccount.withdraw(amount);
+              toAccount.deposit(amount);
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this example, <code>@Transactional</code> ensures that both <code>withdraw()</code> and <code>deposit()</code> 
+    operations are treated as a single transaction. If any exception occurs, all changes are rolled back to maintain consistency.
+  </p>
+</div>`
+},
+{
+  title:`Programmatic Transactions`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Programmatic Transactions</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Programmatic transaction management in Spring provides fine-grained control over transactions using the <code>TransactionTemplate</code> 
+    or <code>PlatformTransactionManager</code>. Unlike declarative transactions, where Spring handles transaction boundaries automatically, 
+    programmatic transactions allow developers to start, commit, and roll back transactions manually.
+  </p>
+
+  <h3 style="color: #16a085;">Key Features of Programmatic Transactions:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Explicit transaction management:</b> Developers manually control transaction boundaries.</li>
+    <li><b>More flexibility:</b> Suitable for complex transactional logic requiring conditional commit or rollback.</li>
+    <li><b>Works without annotations:</b> No need for <code>@Transactional</code>, making it useful for non-Spring-managed classes.</li>
+    <li><b>Supports custom rollback conditions:</b> Allows rollback based on custom logic, not just exceptions.</li>
+    <li><b>Uses TransactionTemplate or PlatformTransactionManager:</b> Provides a structured way to manage transactions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use Programmatic Transactions?</h3>
+  <p style="color: #2c3e50;">
+    While declarative transactions simplify development, programmatic transactions are useful when transactions need to be controlled 
+    dynamically based on complex conditions. It provides greater flexibility but requires more code to manage.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Using TransactionTemplate in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.support.TransactionTemplate;
+      import org.springframework.beans.factory.annotation.Autowired;
+
+      @Service
+      public class AccountService {
+
+          @Autowired
+          private TransactionTemplate transactionTemplate;
+
+          public void transferFunds(Account fromAccount, Account toAccount, double amount) {
+              transactionTemplate.execute(status -> {
+                  fromAccount.withdraw(amount);
+                  toAccount.deposit(amount);
+                  return null;
+              });
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this example, <code>transactionTemplate.execute()</code> wraps the fund transfer logic within a transaction. 
+    If an exception occurs, the transaction is rolled back automatically.
+  </p>
+</div>`
+},
+{
+  title:`Propagation Types (REQUIRED, REQUIRES_NEW, etc.)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Propagation Types in Spring Transactions</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, transaction propagation determines how a method should run within an existing transaction. 
+    Different propagation types allow developers to control whether a new transaction is created or if an existing transaction is used.
+  </p>
+
+  <h3 style="color: #16a085;">Key Propagation Types:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>REQUIRED:</b> Uses an existing transaction if available; otherwise, creates a new one.</li>
+    <li><b>REQUIRES_NEW:</b> Always creates a new transaction, suspending any existing one.</li>
+    <li><b>SUPPORTS:</b> Runs within a transaction if available; otherwise, executes non-transactionally.</li>
+    <li><b>NOT_SUPPORTED:</b> Always runs outside of a transaction, suspending any existing one.</li>
+    <li><b>MANDATORY:</b> Requires an existing transaction; throws an exception if none exists.</li>
+    <li><b>NEVER:</b> Always runs outside of a transaction and throws an exception if a transaction exists.</li>
+    <li><b>NESTED:</b> Runs within a nested transaction inside an existing one.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use Propagation Types?</h3>
+  <p style="color: #2c3e50;">
+    Propagation settings allow developers to control transaction behavior for complex scenarios. 
+    For example, <code>REQUIRES_NEW</code> ensures an independent transaction, whereas <code>NESTED</code> allows partial rollbacks.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Using Propagation Types in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Propagation;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class TransactionService {
+
+          @Transactional(propagation = Propagation.REQUIRED)
+          public void methodA() {
+              // Runs within an existing transaction or creates a new one
+          }
+
+          @Transactional(propagation = Propagation.REQUIRES_NEW)
+          public void methodB() {
+              // Always starts a new transaction
+          }
+
+          @Transactional(propagation = Propagation.NESTED)
+          public void methodC() {
+              // Runs within a nested transaction
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this example, <code>methodA()</code> uses an existing transaction or creates a new one, 
+    <code>methodB()</code> always creates a new transaction, and <code>methodC()</code> runs within a nested transaction.
+  </p>
+</div>
+`
+},
+{
+  title:`Isolation Levels`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Isolation Levels in Spring Transactions</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Isolation levels define how concurrent transactions interact with each other. In Spring, these levels help prevent issues like dirty reads, non-repeatable reads, and phantom reads.
+  </p>
+
+  <h3 style="color: #16a085;">Key Isolation Levels:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>DEFAULT:</b> Uses the default isolation level of the underlying database.</li>
+    <li><b>READ_UNCOMMITTED:</b> Allows reading uncommitted changes, leading to dirty reads.</li>
+    <li><b>READ_COMMITTED:</b> Ensures only committed data is read, preventing dirty reads.</li>
+    <li><b>REPEATABLE_READ:</b> Prevents non-repeatable reads by ensuring data remains unchanged during a transaction.</li>
+    <li><b>SERIALIZABLE:</b> The highest level, ensuring full isolation by locking rows, preventing all concurrency issues.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Why Use Isolation Levels?</h3>
+  <p style="color: #2c3e50;">
+    Choosing the right isolation level balances performance and consistency. For example, <code>READ_COMMITTED</code> is commonly used to prevent dirty reads, while <code>SERIALIZABLE</code> ensures strict data integrity at the cost of performance.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Setting Isolation Levels in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Isolation;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class TransactionService {
+
+          @Transactional(isolation = Isolation.READ_COMMITTED)
+          public void methodA() {
+              // Ensures only committed data is read
+          }
+
+          @Transactional(isolation = Isolation.REPEATABLE_READ)
+          public void methodB() {
+              // Prevents non-repeatable reads
+          }
+
+          @Transactional(isolation = Isolation.SERIALIZABLE)
+          public void methodC() {
+              // Ensures full isolation by locking rows
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this example, <code>methodA()</code> ensures only committed data is read, <code>methodB()</code> prevents non-repeatable reads, and <code>methodC()</code> ensures full isolation.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Rollback`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Rollback in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction rollback is a mechanism used to revert a transaction in case of failure or exceptions. In Spring, rollback behavior can be controlled using the <code>@Transactional</code> annotation.
+  </p>
+
+  <h3 style="color: #16a085;">Key Aspects of Transaction Rollback:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Rollback on Runtime Exceptions:</b> By default, transactions are rolled back only for unchecked exceptions (subclasses of <code>RuntimeException</code>).</li>
+    <li><b>Rollback on Checked Exceptions:</b> Spring does not roll back on checked exceptions unless explicitly specified.</li>
+    <li><b>Programmatic Rollback:</b> Transactions can be manually rolled back using <code>TransactionStatus</code>.</li>
+    <li><b>Selective Rollback Control:</b> Developers can configure rollback behavior for specific exception types.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Configuring Rollback Behavior</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Transactional</code> annotation provides options to specify rollback conditions. For example:
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Rollback in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class TransactionService {
+
+          @Transactional(rollbackFor = Exception.class)
+          public void methodA() throws Exception {
+              // Transaction will roll back for any exception
+              throw new Exception("Checked exception, but rollback enabled");
+          }
+
+          @Transactional(noRollbackFor = IllegalArgumentException.class)
+          public void methodB() {
+              // Transaction will NOT roll back for IllegalArgumentException
+              throw new IllegalArgumentException("No rollback for this exception");
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this example, <code>methodA()</code> rolls back for all exceptions, including checked exceptions, while <code>methodB()</code> prevents rollback for <code>IllegalArgumentException</code>.
+  </p>
+</div>`
+},
+{
+  title:`Transaction Timeout`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Timeout in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction timeout is a mechanism that limits the maximum duration a transaction can run. If a transaction exceeds the specified time limit, it will be automatically rolled back. Spring provides transaction timeout control using the <code>@Transactional</code> annotation.
+  </p>
+
+  <h3 style="color: #16a085;">Key Aspects of Transaction Timeout:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Preventing Long-Running Transactions:</b> Timeout settings help avoid database locks and performance issues.</li>
+    <li><b>Global vs. Local Timeout:</b> Timeout can be set globally in configuration or per method using annotations.</li>
+    <li><b>Rollback on Timeout:</b> If a transaction times out, it is automatically rolled back.</li>
+    <li><b>Custom Timeout Values:</b> Developers can specify timeout values based on business requirements.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Configuring Transaction Timeout</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Transactional</code> annotation provides an option to specify timeout in seconds. For example:
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Transaction Timeout in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class TransactionService {
+
+          @Transactional(timeout = 5)
+          public void processTransaction() {
+              try {
+                  Thread.sleep(6000); // Simulating long processing time
+              } catch (InterruptedException e) {
+                  Thread.currentThread().interrupt();
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this example, the transaction will be rolled back if it runs longer than 5 seconds due to the timeout setting.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Management in Microservices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction Management in Microservices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a microservices architecture, transaction management becomes complex due to the distributed nature of services. Unlike monolithic applications, microservices require specialized techniques to maintain data consistency across multiple services.
+  </p>
+
+  <h3 style="color: #16a085;">Challenges in Microservices Transactions:</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Distributed Transactions:</b> Data is spread across multiple services and databases.</li>
+    <li><b>Network Latency:</b> Transactions need to account for network delays.</li>
+    <li><b>Failure Handling:</b> Partial failures can cause data inconsistency.</li>
+    <li><b>Scalability:</b> Transaction handling should not degrade performance.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Approaches to Transaction Management in Microservices</h3>
+  <p style="color: #2c3e50;">
+    There are two common approaches to managing transactions in microservices:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Two-Phase Commit (2PC):</b> Ensures atomic transactions but can be slow and complex.</li>
+    <li><b>Saga Pattern:</b> A sequence of compensating transactions ensures eventual consistency.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Saga Pattern Implementation</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+
+          @Transactional
+          public void createOrder() {
+              // Step 1: Create Order
+              // Step 2: Deduct Inventory
+              // Step 3: Process Payment
+              // Step 4: Handle failure with compensating transactions
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    The Saga pattern breaks a transaction into smaller steps, each with a compensating transaction to maintain consistency in case of failures.
+  </p>
+</div>
+`
+},
+{
+  title:`Nested Transactions`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Nested Transactions</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Nested transactions allow transactions to be structured hierarchically. When a nested transaction occurs within a parent transaction, it either commits or rolls back independently while maintaining consistency with the main transaction.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Nested Transactions?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Modular Transaction Handling:</b> Each sub-transaction can be managed separately.</li>
+    <li><b>Rollback Control:</b> A failure in a nested transaction does not necessarily abort the entire parent transaction.</li>
+    <li><b>Improved Maintainability:</b> Code is more structured with clear transactional boundaries.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Nested Transactions in Spring</h3>
+  <p style="color: #2c3e50;">
+    Spring provides nested transactions through <code>PROPAGATION_NESTED</code>. This allows a sub-transaction to be executed within a parent transaction.
+  </p>
+
+  <h3 style="color: #2980b9;">Example: Implementing Nested Transactions</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Propagation;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class PaymentService {
+
+          @Transactional(propagation = Propagation.REQUIRED)
+          public void processPayment() {
+              // Parent transaction
+              deductAmount();
+              saveTransactionRecord();
+          }
+
+          @Transactional(propagation = Propagation.NESTED)
+          public void saveTransactionRecord() {
+              // Nested transaction
+              // Save transaction details
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this example, if <code>saveTransactionRecord()</code> fails, it will roll back without affecting <code>processPayment()</code>, maintaining a level of isolation.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction in Spring Boot`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transaction management in Spring Boot ensures data consistency by handling commit and rollback operations effectively. 
+    Spring Boot provides built-in support for transactions using the Spring Framework's declarative and programmatic transaction management features.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Transactions in Spring Boot?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Ensures Data Integrity:</b> Transactions help maintain consistency across multiple database operations.</li>
+    <li><b>Automatic Rollback:</b> If an operation fails, changes are undone to prevent partial updates.</li>
+    <li><b>Simplified Management:</b> Spring Boot offers annotations like <code>@Transactional</code> to manage transactions easily.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Transaction Management in Spring Boot</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Declarative Transactions:</b> Uses annotations like <code>@Transactional</code> to manage transactions automatically.</li>
+    <li><b>Programmatic Transactions:</b> Gives manual control over transactions using <code>TransactionTemplate</code> or <code>PlatformTransactionManager</code>.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Declarative Transaction Management</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+
+          @Transactional
+          public void placeOrder() {
+              // Transaction starts
+              processPayment();
+              saveOrderDetails();
+              // Transaction commits automatically
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Example: Programmatic Transaction Management</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.PlatformTransactionManager;
+      import org.springframework.transaction.TransactionDefinition;
+      import org.springframework.transaction.TransactionStatus;
+      import org.springframework.transaction.support.DefaultTransactionDefinition;
+
+      @Service
+      public class PaymentService {
+          
+          @Autowired
+          private PlatformTransactionManager transactionManager;
+
+          public void processPayment() {
+              TransactionDefinition def = new DefaultTransactionDefinition();
+              TransactionStatus status = transactionManager.getTransaction(def);
+              
+              try {
+                  // Perform transactional operations
+                  transactionManager.commit(status);
+              } catch (Exception e) {
+                  transactionManager.rollback(status);
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    Using transaction management in Spring Boot ensures data integrity and helps prevent inconsistencies in applications handling multiple database operations.
+  </p>
+</div>
+`
+},
+{
+  title:`Database Transaction Support (JPA, JDBC)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Database Transaction Support (JPA, JDBC)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot provides robust support for database transactions using JPA (Java Persistence API) and JDBC (Java Database Connectivity). 
+    These approaches ensure consistency and integrity of data across multiple operations.
+  </p>
+
+  <h3 style="color: #16a085;">Transaction Management with JPA</h3>
+  <p style="color: #2c3e50;">
+    JPA, commonly used with Hibernate, simplifies database interactions with an object-relational mapping (ORM) approach. 
+    Spring Boot supports JPA transactions using the <code>@Transactional</code> annotation.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class UserService {
+          
+          @Transactional
+          public void registerUser() {
+              // Perform multiple database operations
+              saveUserDetails();
+              sendConfirmationEmail();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e67e22;">Transaction Management with JDBC</h3>
+  <p style="color: #2c3e50;">
+    JDBC provides a lower-level approach for managing transactions, typically using the <code>PlatformTransactionManager</code> interface.
+  </p>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.jdbc.core.JdbcTemplate;
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.PlatformTransactionManager;
+      import org.springframework.transaction.TransactionDefinition;
+      import org.springframework.transaction.TransactionStatus;
+      import org.springframework.transaction.support.DefaultTransactionDefinition;
+
+      @Service
+      public class BankService {
+          
+          @Autowired
+          private PlatformTransactionManager transactionManager;
+          
+          @Autowired
+          private JdbcTemplate jdbcTemplate;
+
+          public void transferMoney() {
+              TransactionDefinition def = new DefaultTransactionDefinition();
+              TransactionStatus status = transactionManager.getTransaction(def);
+
+              try {
+                  jdbcTemplate.update("UPDATE accounts SET balance = balance - ? WHERE id = ?", 100, 1);
+                  jdbcTemplate.update("UPDATE accounts SET balance = balance + ? WHERE id = ?", 100, 2);
+                  transactionManager.commit(status);
+              } catch (Exception e) {
+                  transactionManager.rollback(status);
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Choosing Between JPA and JDBC</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Use JPA:</b> When working with ORM frameworks like Hibernate for simplified database interaction.</li>
+    <li><b>Use JDBC:</b> When performance is critical, and direct database queries are preferred.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Both JPA and JDBC offer powerful transaction management in Spring Boot, enabling robust and consistent data operations.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction in Distributed Systems`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Distributed Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, transactions span multiple databases, services, or microservices, making consistency and reliability crucial. 
+    Traditional ACID transactions may not be feasible, leading to alternative approaches like the Two-Phase Commit (2PC) and Saga Pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Two-Phase Commit (2PC)</h3>
+  <p style="color: #2c3e50;">
+    The Two-Phase Commit protocol ensures consistency in distributed transactions by coordinating multiple resource managers.
+    It consists of two phases: 
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Prepare Phase:</b> The coordinator asks all participants if they can commit.</li>
+    <li><b>Commit Phase:</b> If all agree, the transaction is committed; otherwise, it is rolled back.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Saga Pattern</h3>
+  <p style="color: #2c3e50;">
+    The Saga Pattern divides a large transaction into smaller, independent transactions with compensating actions to handle failures.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Choreography:</b> Each service triggers the next step in the saga.</li>
+    <li><b>Orchestration:</b> A central coordinator manages the transaction steps.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Saga Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+          @Transactional
+          public void createOrder() {
+              processPayment();
+              reserveInventory();
+              confirmOrder();
+          }
+
+          private void processPayment() { /* Payment logic */ }
+          private void reserveInventory() { /* Inventory logic */ }
+          private void confirmOrder() { /* Order confirmation */ }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Challenges in Distributed Transactions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Network latency and service failures.</li>
+    <li>Handling data consistency across services.</li>
+    <li>Compensating failed transactions in the Saga Pattern.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Distributed transaction management is crucial for modern microservices architectures. 
+    Choosing between 2PC and Saga depends on performance, consistency needs, and system design.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Distributed Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, transactions span multiple databases, services, or microservices, making consistency and reliability crucial. 
+    Traditional ACID transactions may not be feasible, leading to alternative approaches like the Two-Phase Commit (2PC) and Saga Pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Two-Phase Commit (2PC)</h3>
+  <p style="color: #2c3e50;">
+    The Two-Phase Commit protocol ensures consistency in distributed transactions by coordinating multiple resource managers.
+    It consists of two phases: 
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Prepare Phase:</b> The coordinator asks all participants if they can commit.</li>
+    <li><b>Commit Phase:</b> If all agree, the transaction is committed; otherwise, it is rolled back.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Saga Pattern</h3>
+  <p style="color: #2c3e50;">
+    The Saga Pattern divides a large transaction into smaller, independent transactions with compensating actions to handle failures.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Choreography:</b> Each service triggers the next step in the saga.</li>
+    <li><b>Orchestration:</b> A central coordinator manages the transaction steps.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Saga Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+          @Transactional
+          public void createOrder() {
+              processPayment();
+              reserveInventory();
+              confirmOrder();
+          }
+
+          private void processPayment() { /* Payment logic */ }
+          private void reserveInventory() { /* Inventory logic */ }
+          private void confirmOrder() { /* Order confirmation */ }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Challenges in Distributed Transactions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Network latency and service failures.</li>
+    <li>Handling data consistency across services.</li>
+    <li>Compensating failed transactions in the Saga Pattern.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Distributed transaction management is crucial for modern microservices architectures. 
+    Choosing between 2PC and Saga depends on performance, consistency needs, and system design.
+  </p>
+</div>
+`
+},
+{
+  title:`Transaction Error Handling`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Distributed Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, transactions span multiple databases, services, or microservices, making consistency and reliability crucial. 
+    Traditional ACID transactions may not be feasible, leading to alternative approaches like the Two-Phase Commit (2PC) and Saga Pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Two-Phase Commit (2PC)</h3>
+  <p style="color: #2c3e50;">
+    The Two-Phase Commit protocol ensures consistency in distributed transactions by coordinating multiple resource managers.
+    It consists of two phases: 
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Prepare Phase:</b> The coordinator asks all participants if they can commit.</li>
+    <li><b>Commit Phase:</b> If all agree, the transaction is committed; otherwise, it is rolled back.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Saga Pattern</h3>
+  <p style="color: #2c3e50;">
+    The Saga Pattern divides a large transaction into smaller, independent transactions with compensating actions to handle failures.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Choreography:</b> Each service triggers the next step in the saga.</li>
+    <li><b>Orchestration:</b> A central coordinator manages the transaction steps.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Saga Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+          @Transactional
+          public void createOrder() {
+              processPayment();
+              reserveInventory();
+              confirmOrder();
+          }
+
+          private void processPayment() { /* Payment logic */ }
+          private void reserveInventory() { /* Inventory logic */ }
+          private void confirmOrder() { /* Order confirmation */ }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Challenges in Distributed Transactions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Network latency and service failures.</li>
+    <li>Handling data consistency across services.</li>
+    <li>Compensating failed transactions in the Saga Pattern.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Distributed transaction management is crucial for modern microservices architectures. 
+    Choosing between 2PC and Saga depends on performance, consistency needs, and system design.
+  </p>
+</div> `
+},
+{
+  title:`Transaction with Multiple Data Sources`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Distributed Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, transactions span multiple databases, services, or microservices, making consistency and reliability crucial. 
+    Traditional ACID transactions may not be feasible, leading to alternative approaches like the Two-Phase Commit (2PC) and Saga Pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Two-Phase Commit (2PC)</h3>
+  <p style="color: #2c3e50;">
+    The Two-Phase Commit protocol ensures consistency in distributed transactions by coordinating multiple resource managers.
+    It consists of two phases: 
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Prepare Phase:</b> The coordinator asks all participants if they can commit.</li>
+    <li><b>Commit Phase:</b> If all agree, the transaction is committed; otherwise, it is rolled back.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Saga Pattern</h3>
+  <p style="color: #2c3e50;">
+    The Saga Pattern divides a large transaction into smaller, independent transactions with compensating actions to handle failures.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Choreography:</b> Each service triggers the next step in the saga.</li>
+    <li><b>Orchestration:</b> A central coordinator manages the transaction steps.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Saga Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+          @Transactional
+          public void createOrder() {
+              processPayment();
+              reserveInventory();
+              confirmOrder();
+          }
+
+          private void processPayment() { /* Payment logic */ }
+          private void reserveInventory() { /* Inventory logic */ }
+          private void confirmOrder() { /* Order confirmation */ }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Challenges in Distributed Transactions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Network latency and service failures.</li>
+    <li>Handling data consistency across services.</li>
+    <li>Compensating failed transactions in the Saga Pattern.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Distributed transaction management is crucial for modern microservices architectures. 
+    Choosing between 2PC and Saga depends on performance, consistency needs, and system design.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Transactions`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Distributed Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, transactions span multiple databases, services, or microservices, making consistency and reliability crucial. 
+    Traditional ACID transactions may not be feasible, leading to alternative approaches like the Two-Phase Commit (2PC) and Saga Pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Two-Phase Commit (2PC)</h3>
+  <p style="color: #2c3e50;">
+    The Two-Phase Commit protocol ensures consistency in distributed transactions by coordinating multiple resource managers.
+    It consists of two phases: 
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Prepare Phase:</b> The coordinator asks all participants if they can commit.</li>
+    <li><b>Commit Phase:</b> If all agree, the transaction is committed; otherwise, it is rolled back.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Saga Pattern</h3>
+  <p style="color: #2c3e50;">
+    The Saga Pattern divides a large transaction into smaller, independent transactions with compensating actions to handle failures.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Choreography:</b> Each service triggers the next step in the saga.</li>
+    <li><b>Orchestration:</b> A central coordinator manages the transaction steps.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Saga Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+          @Transactional
+          public void createOrder() {
+              processPayment();
+              reserveInventory();
+              confirmOrder();
+          }
+
+          private void processPayment() { /* Payment logic */ }
+          private void reserveInventory() { /* Inventory logic */ }
+          private void confirmOrder() { /* Order confirmation */ }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Challenges in Distributed Transactions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Network latency and service failures.</li>
+    <li>Handling data consistency across services.</li>
+    <li>Compensating failed transactions in the Saga Pattern.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Distributed transaction management is crucial for modern microservices architectures. 
+    Choosing between 2PC and Saga depends on performance, consistency needs, and system design.
+  </p>
+</div>
+`
+},
+{
+  title:`Event-Driven Transactions`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Distributed Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, transactions span multiple databases, services, or microservices, making consistency and reliability crucial. 
+    Traditional ACID transactions may not be feasible, leading to alternative approaches like the Two-Phase Commit (2PC) and Saga Pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Two-Phase Commit (2PC)</h3>
+  <p style="color: #2c3e50;">
+    The Two-Phase Commit protocol ensures consistency in distributed transactions by coordinating multiple resource managers.
+    It consists of two phases: 
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Prepare Phase:</b> The coordinator asks all participants if they can commit.</li>
+    <li><b>Commit Phase:</b> If all agree, the transaction is committed; otherwise, it is rolled back.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Saga Pattern</h3>
+  <p style="color: #2c3e50;">
+    The Saga Pattern divides a large transaction into smaller, independent transactions with compensating actions to handle failures.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Choreography:</b> Each service triggers the next step in the saga.</li>
+    <li><b>Orchestration:</b> A central coordinator manages the transaction steps.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Saga Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+          @Transactional
+          public void createOrder() {
+              processPayment();
+              reserveInventory();
+              confirmOrder();
+          }
+
+          private void processPayment() { /* Payment logic */ }
+          private void reserveInventory() { /* Inventory logic */ }
+          private void confirmOrder() { /* Order confirmation */ }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Challenges in Distributed Transactions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Network latency and service failures.</li>
+    <li>Handling data consistency across services.</li>
+    <li>Compensating failed transactions in the Saga Pattern.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Distributed transaction management is crucial for modern microservices architectures. 
+    Choosing between 2PC and Saga depends on performance, consistency needs, and system design.
+  </p>
+</div>
+`
+},
+{
+  title:`Optimistic vs Pessimistic Locking`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Transaction in Distributed Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, transactions span multiple databases, services, or microservices, making consistency and reliability crucial. 
+    Traditional ACID transactions may not be feasible, leading to alternative approaches like the Two-Phase Commit (2PC) and Saga Pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Two-Phase Commit (2PC)</h3>
+  <p style="color: #2c3e50;">
+    The Two-Phase Commit protocol ensures consistency in distributed transactions by coordinating multiple resource managers.
+    It consists of two phases: 
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Prepare Phase:</b> The coordinator asks all participants if they can commit.</li>
+    <li><b>Commit Phase:</b> If all agree, the transaction is committed; otherwise, it is rolled back.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Saga Pattern</h3>
+  <p style="color: #2c3e50;">
+    The Saga Pattern divides a large transaction into smaller, independent transactions with compensating actions to handle failures.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><b>Choreography:</b> Each service triggers the next step in the saga.</li>
+    <li><b>Orchestration:</b> A central coordinator manages the transaction steps.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Saga Pattern in Spring Boot</h3>
+  <pre style="background: rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+
+      @Service
+      public class OrderService {
+          @Transactional
+          public void createOrder() {
+              processPayment();
+              reserveInventory();
+              confirmOrder();
+          }
+
+          private void processPayment() { /* Payment logic */ }
+          private void reserveInventory() { /* Inventory logic */ }
+          private void confirmOrder() { /* Order confirmation */ }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #e74c3c;">Challenges in Distributed Transactions</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Network latency and service failures.</li>
+    <li>Handling data consistency across services.</li>
+    <li>Compensating failed transactions in the Saga Pattern.</li>
+  </ul>
+
+  <p style="color: #2c3e50;">
+    Distributed transaction management is crucial for modern microservices architectures. 
+    Choosing between 2PC and Saga depends on performance, consistency needs, and system design.
+  </p>
+</div> `
+},
+{
+  title:`Messaging Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Messaging Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Messaging is a fundamental concept in distributed systems that enables communication between different components or applications asynchronously. It facilitates decoupling, scalability, and reliability in modern software architectures.
+  </p>
+
+  <h3 style="color: #16a085;">What is Messaging?</h3>
+  <p style="color: #2c3e50;">
+    Messaging refers to the process of exchanging data between applications or services using message queues, topics, or streams. Messages can be textual, binary, or structured data, and they are typically used to ensure smooth communication in event-driven systems.
+  </p>
+
+  <h3 style="color: #e67e22;">Key Components of Messaging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Message</strong>: A unit of data sent from one system to another.</li>
+    <li><strong>Producer</strong>: The sender that generates and sends messages.</li>
+    <li><strong>Consumer</strong>: The receiver that processes incoming messages.</li>
+    <li><strong>Message Queue</strong>: A middleware that holds messages until they are processed.</li>
+    <li><strong>Message Broker</strong>: A service that routes messages between producers and consumers.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Types of Messaging Systems</h3>
+  <p style="color: #2c3e50;">
+    Messaging systems can be classified into different types based on how they handle message delivery and communication patterns.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Point-to-Point Messaging</strong>: A direct communication model where one producer sends a message to one consumer via a queue.</li>
+    <li><strong>Publish-Subscribe Messaging</strong>: A broadcasting model where messages are published to a topic, and multiple consumers subscribe to receive them.</li>
+    <li><strong>Request-Response Messaging</strong>: A synchronous communication model where a producer sends a request and waits for a response from the consumer.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Example: Implementing Messaging with RabbitMQ</h3>
+  <p style="color: #2c3e50;">
+    RabbitMQ is a popular message broker used to implement messaging systems. Below is an example of sending and receiving messages using Spring Boot with RabbitMQ.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.rabbit.core.RabbitTemplate;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      
+      @Service
+      public class MessageProducer {
+          @Autowired
+          private RabbitTemplate rabbitTemplate;
+          
+          public void sendMessage(String message) {
+              rabbitTemplate.convertAndSend("myQueue", message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices for Messaging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>durable queues</strong> to ensure message persistence.</li>
+    <li>Implement <strong>message retries</strong> and dead-letter queues for fault tolerance.</li>
+    <li>Use <strong>message compression</strong> to optimize bandwidth usage.</li>
+    <li>Monitor and log message processing for debugging and performance tuning.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Messaging is an essential component of modern distributed systems, enabling asynchronous communication, load balancing, and fault tolerance. Understanding messaging patterns and best practices helps in building efficient and scalable applications.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Queues (RabbitMQ, ActiveMQ)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Message Queues (RabbitMQ, ActiveMQ)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Message queues are an essential component of distributed systems, enabling asynchronous communication between services. They improve system scalability, reliability, and decoupling by ensuring messages are delivered even if the receiver is unavailable.
+  </p>
+
+  <h3 style="color: #16a085;">What are Message Queues?</h3>
+  <p style="color: #2c3e50;">
+    A message queue is a middleware that temporarily stores messages until they are retrieved and processed by consumers. This mechanism ensures smooth data flow between applications, even during network failures or system crashes.
+  </p>
+
+  <h3 style="color: #e67e22;">Key Benefits of Message Queues</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Decoupling</strong>: Enables independent development of producer and consumer services.</li>
+    <li><strong>Scalability</strong>: Supports load balancing by distributing messages among multiple consumers.</li>
+    <li><strong>Reliability</strong>: Ensures message persistence and delivery even in case of system failures.</li>
+    <li><strong>Asynchronous Processing</strong>: Improves system efficiency by allowing non-blocking message exchange.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Popular Message Queues</h3>
+  <p style="color: #2c3e50;">
+    Two widely used message queues are <strong>RabbitMQ</strong> and <strong>ActiveMQ</strong>. Both offer robust messaging capabilities but cater to different needs.
+  </p>
+
+  <h4 style="color: #2980b9;">RabbitMQ</h4>
+  <p style="color: #2c3e50;">
+    RabbitMQ is a lightweight, high-performance message broker that supports various messaging patterns and ensures reliable delivery using the AMQP (Advanced Message Queuing Protocol).
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Supports multiple messaging protocols (AMQP, MQTT, STOMP, etc.).</li>
+    <li>Ensures message durability using persistent queues.</li>
+    <li>Provides flexible routing mechanisms with exchanges.</li>
+  </ul>
+
+  <h4 style="color: #c0392b;">ActiveMQ</h4>
+  <p style="color: #2c3e50;">
+    ActiveMQ is an open-source message broker developed by Apache, supporting JMS (Java Message Service) and various communication models.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Supports both point-to-point and publish-subscribe messaging models.</li>
+    <li>Offers message persistence with database and file storage options.</li>
+    <li>Provides robust clustering and failover mechanisms.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Example: Using RabbitMQ in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is a simple example of integrating RabbitMQ with Spring Boot.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.rabbit.core.RabbitTemplate;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      
+      @Service
+      public class RabbitMQProducer {
+          @Autowired
+          private RabbitTemplate rabbitTemplate;
+          
+          public void sendMessage(String message) {
+              rabbitTemplate.convertAndSend("myQueue", message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Best Practices for Using Message Queues</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>durable queues</strong> to prevent message loss.</li>
+    <li>Implement <strong>dead-letter queues</strong> to handle failed messages.</li>
+    <li>Monitor queue performance and optimize resource allocation.</li>
+    <li>Use <strong>message acknowledgments</strong> to ensure reliable processing.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message queues like RabbitMQ and ActiveMQ play a crucial role in modern distributed systems by enabling reliable, asynchronous communication. Choosing the right message broker depends on factors such as performance requirements, scalability, and protocol support.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Publish-Subscribe Pattern`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding the Publish-Subscribe Pattern</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    The <strong>Publish-Subscribe (Pub/Sub) Pattern</strong> is a messaging architecture that enables the asynchronous exchange of messages between different components of a system. This pattern enhances scalability and decoupling by allowing publishers to send messages without knowing which subscribers will receive them.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use the Publish-Subscribe Pattern?</h3>
+  <p style="color: #2c3e50;">
+    The Pub/Sub pattern offers several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Decoupling</strong>: Publishers and subscribers are independent, leading to flexible and scalable systems.</li>
+    <li><strong>Asynchronous Communication</strong>: Improves responsiveness by enabling non-blocking message delivery.</li>
+    <li><strong>Scalability</strong>: Supports dynamic addition or removal of subscribers without affecting publishers.</li>
+    <li><strong>Multiple Subscribers</strong>: A single message can reach multiple subscribers, promoting efficient communication.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How the Publish-Subscribe Pattern Works</h3>
+  <p style="color: #2c3e50;">
+    The Pub/Sub model involves three main components:
+  </p>
+  <ol style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Publisher</strong>: Sends messages (events) without concern for who receives them.</li>
+    <li><strong>Subscriber</strong>: Listens for specific messages and processes them accordingly.</li>
+    <li><strong>Message Broker</strong>: Routes messages from publishers to appropriate subscribers.</li>
+  </ol>
+
+  <h3 style="color: #8e44ad;">Example Implementation with RabbitMQ</h3>
+  <p style="color: #2c3e50;">
+    RabbitMQ is a popular message broker that supports the Publish-Subscribe pattern. Below is a simple example using Spring Boot.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.rabbit.core.RabbitTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class PublisherService {
+          private final RabbitTemplate rabbitTemplate;
+
+          public PublisherService(RabbitTemplate rabbitTemplate) {
+              this.rabbitTemplate = rabbitTemplate;
+          }
+
+          public void publishMessage(String message) {
+              rabbitTemplate.convertAndSend("exchangeName", "routingKey", message);
+              System.out.println("Message Published: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Subscriber Implementation</h3>
+  <p style="color: #2c3e50;">
+    The subscriber listens for messages from the broker and processes them.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.rabbit.annotation.RabbitListener;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class SubscriberService {
+          @RabbitListener(queues = "queueName")
+          public void receiveMessage(String message) {
+              System.out.println("Received Message: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using the Publish-Subscribe Pattern</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use message brokers like <strong>RabbitMQ, Apache Kafka, or Redis</strong> for reliable message delivery.</li>
+    <li>Ensure proper <strong>error handling</strong> to avoid message loss.</li>
+    <li>Use <strong>durable queues</strong> for persistent message storage.</li>
+    <li>Implement <strong>dead-letter queues</strong> to handle failed messages.</li>
+    <li>Monitor system performance and optimize message throughput.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <strong>Publish-Subscribe Pattern</strong> is an essential design model for building scalable, decoupled, and asynchronous applications. By using message brokers like RabbitMQ or Kafka, developers can efficiently distribute messages across multiple subscribers, improving system flexibility and performance.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Brokers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Message Brokers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    A <strong>Message Broker</strong> is a middleware system that enables communication between different applications, services, or systems. It helps in transmitting messages asynchronously, ensuring reliability, scalability, and decoupling between components.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use a Message Broker?</h3>
+  <p style="color: #2c3e50;">
+    Message brokers offer several advantages, making them essential for modern distributed systems:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Asynchronous Communication</strong>: Enables decoupling between producers and consumers.</li>
+    <li><strong>Scalability</strong>: Handles high loads efficiently by distributing messages.</li>
+    <li><strong>Reliability</strong>: Ensures message delivery even if some services are temporarily unavailable.</li>
+    <li><strong>Load Balancing</strong>: Distributes workload among multiple consumers.</li>
+    <li><strong>Fault Tolerance</strong>: Prevents data loss through persistent storage and retry mechanisms.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Message Brokers</h3>
+  <p style="color: #2c3e50;">
+    There are different types of message brokers, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Queue-Based Brokers</strong>: Messages are stored in a queue and processed by consumers (e.g., RabbitMQ, ActiveMQ).</li>
+    <li><strong>Publish-Subscribe Brokers</strong>: Messages are broadcast to multiple subscribers (e.g., Kafka, Redis Pub/Sub).</li>
+    <li><strong>Hybrid Brokers</strong>: Combine queue-based and pub-sub messaging (e.g., Azure Service Bus, Amazon SQS).</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Popular Message Brokers</h3>
+  <p style="color: #2c3e50;">Here are some widely used message brokers:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>RabbitMQ</strong>: Open-source, queue-based broker with support for complex routing.</li>
+    <li><strong>Apache Kafka</strong>: Distributed event streaming platform designed for high throughput.</li>
+    <li><strong>ActiveMQ</strong>: Java-based message broker supporting multiple protocols.</li>
+    <li><strong>Redis Pub/Sub</strong>: Lightweight broker supporting real-time message delivery.</li>
+    <li><strong>Amazon SQS</strong>: Fully managed message queuing service by AWS.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Example: Using RabbitMQ in Spring Boot</h3>
+  <p style="color: #2c3e50;">Below is an example of how to use RabbitMQ in a Spring Boot application.</p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.rabbit.annotation.RabbitListener;
+      import org.springframework.amqp.rabbit.core.RabbitTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class MessageService {
+          private final RabbitTemplate rabbitTemplate;
+
+          public MessageService(RabbitTemplate rabbitTemplate) {
+              this.rabbitTemplate = rabbitTemplate;
+          }
+
+          public void sendMessage(String message) {
+              rabbitTemplate.convertAndSend("queue_name", message);
+          }
+
+          @RabbitListener(queues = "queue_name")
+          public void receiveMessage(String message) {
+              System.out.println("Received message: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Message Brokers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use appropriate message acknowledgment strategies.</li>
+    <li>Optimize message size to reduce latency.</li>
+    <li>Ensure message persistence for reliability.</li>
+    <li>Monitor broker performance and configure retry policies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message brokers play a crucial role in modern distributed architectures by enabling reliable and scalable message communication. Choosing the right broker depends on the use case, performance requirements, and scalability needs.
+  </p>
+</div>
+`
+},
+
+{
+  title:`JMS (Java Message Service)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding JMS (Java Message Service)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Message Service (JMS) is a Java API that allows applications to create, send, receive, and read messages asynchronously. It is widely used for reliable, loosely coupled communication in distributed systems.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use JMS?</h3>
+  <p style="color: #2c3e50;">
+    JMS provides several advantages for enterprise applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Asynchronous Communication</strong>: Enables message-driven architecture.</li>
+    <li><strong>Reliability</strong>: Supports durable messaging for guaranteed delivery.</li>
+    <li><strong>Scalability</strong>: Decouples components, allowing them to scale independently.</li>
+    <li><strong>Interoperability</strong>: Works with different messaging systems.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">JMS Messaging Models</h3>
+  <p style="color: #2c3e50;">
+    JMS supports two primary messaging models:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Point-to-Point (Queue-Based Messaging)</strong>: Messages are sent to a queue and consumed by a single receiver.</li>
+    <li><strong>Publish-Subscribe (Topic-Based Messaging)</strong>: Messages are sent to a topic and received by multiple subscribers.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">How to Use JMS in Java</h3>
+  <p style="color: #2c3e50;">
+    A basic example of sending and receiving messages using JMS.
+  </p>
+
+  <h4 style="color: #2c3e50;">1. Configure JMS Connection Factory</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Bean
+      public ConnectionFactory connectionFactory() {
+          return new ActiveMQConnectionFactory("tcp://localhost:61616");
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2c3e50;">2. Sending a JMS Message</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class JmsProducer {
+          @Autowired
+          private JmsTemplate jmsTemplate;
+          
+          public void sendMessage(String destination, String message) {
+              jmsTemplate.convertAndSend(destination, message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #2c3e50;">3. Receiving a JMS Message</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      @JmsListener(destination = "testQueue")
+      public class JmsConsumer {
+          public void receiveMessage(String message) {
+              System.out.println("Received: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using JMS</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>connection pooling</strong> to improve performance.</li>
+    <li>Implement <strong>error handling</strong> for message failures.</li>
+    <li>Use <strong>durable subscriptions</strong> for reliable message consumption.</li>
+    <li>Monitor message queues to prevent bottlenecks.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JMS is a robust messaging framework that enables scalable and reliable communication in distributed systems. By leveraging JMS effectively, applications can ensure efficient message processing and decoupled service interactions.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Spring JMS Integration`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Spring JMS Integration</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Java Message Service (JMS) is a messaging API that allows communication between different components of a distributed application. 
+    Spring provides seamless integration with JMS to simplify messaging and event-driven applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring JMS?</h3>
+  <p style="color: #2c3e50;">
+    The integration of JMS with Spring brings several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Abstraction</strong>: Simplifies JMS API usage and exception handling.</li>
+    <li><strong>Declarative Messaging</strong>: Uses annotations and configurations to handle messaging.</li>
+    <li><strong>Integration with Spring Boot</strong>: Enables quick setup with minimal configuration.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up Spring JMS</h3>
+  <p style="color: #2c3e50;">
+    To enable JMS in a Spring Boot application, add the necessary dependencies and annotate the main class with <code>@EnableJms</code>.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.jms.annotation.EnableJms;
+
+      @SpringBootApplication
+      @EnableJms
+      public class JmsApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(JmsApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring JMS Listener</h3>
+  <p style="color: #2c3e50;">
+    The <code>@JmsListener</code> annotation listens for incoming messages on a specified destination queue.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.jms.annotation.JmsListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MessageReceiver {
+          @JmsListener(destination = "orderQueue")
+          public void receiveMessage(String message) {
+              System.out.println("Received message: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Sending Messages with JmsTemplate</h3>
+  <p style="color: #2c3e50;">
+    Spring provides <code>JmsTemplate</code> to send messages easily to a JMS destination.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.jms.core.JmsTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class MessageSender {
+          @Autowired
+          private JmsTemplate jmsTemplate;
+
+          public void sendMessage(String destination, String message) {
+              jmsTemplate.convertAndSend(destination, message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Spring JMS</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>@EnableJms</strong> to activate JMS support.</li>
+    <li>Handle exceptions properly when consuming messages.</li>
+    <li>Use a persistent message broker like ActiveMQ for reliability.</li>
+    <li>Monitor queues for performance optimization.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring JMS simplifies messaging in enterprise applications by integrating seamlessly with message brokers. 
+    With declarative configurations and annotation-based listeners, it enables robust communication between distributed services.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Producers & Consumers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Message Producers & Consumers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In messaging systems, <strong>Message Producers</strong> and <strong>Message Consumers</strong> play vital roles in enabling asynchronous communication between different components of an application. This model is widely used in message-oriented middleware (MOM) such as JMS, Apache Kafka, RabbitMQ, and ActiveMQ.
+  </p>
+
+  <h3 style="color: #16a085;">What is a Message Producer?</h3>
+  <p style="color: #2c3e50;">
+    A <strong>Message Producer</strong> is responsible for creating and sending messages to a destination (queue or topic). Producers are typically part of the event-driven architecture, ensuring that data is sent reliably to consumers.
+  </p>
+
+  <h3 style="color: #16a085;">What is a Message Consumer?</h3>
+  <p style="color: #2c3e50;">
+    A <strong>Message Consumer</strong> retrieves messages from a destination and processes them accordingly. Consumers can be designed to work synchronously or asynchronously, depending on the application requirements.
+  </p>
+
+  <h3 style="color: #e67e22;">Message Flow in a Messaging System</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Producer:</strong> Sends messages to a queue or topic.</li>
+    <li><strong>Message Broker:</strong> Routes and stores messages.</li>
+    <li><strong>Consumer:</strong> Retrieves and processes messages.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example: Message Producer & Consumer using JMS</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how a message producer and consumer can be implemented using Java Message Service (JMS) with Spring Boot.
+  </p>
+
+  <h4 style="color: #d35400;">Message Producer</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.jms.core.JmsTemplate;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class MessageProducer {
+          private final JmsTemplate jmsTemplate;
+
+          public MessageProducer(JmsTemplate jmsTemplate) {
+              this.jmsTemplate = jmsTemplate;
+          }
+
+          public void sendMessage(String destination, String message) {
+              jmsTemplate.convertAndSend(destination, message);
+              System.out.println("Message sent: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #d35400;">Message Consumer</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.jms.annotation.JmsListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MessageConsumer {
+
+          @JmsListener(destination = "testQueue")
+          public void receiveMessage(String message) {
+              System.out.println("Received message: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Message Producers & Consumers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use durable messaging queues to prevent message loss.</li>
+    <li>Ensure message ordering using FIFO (First In, First Out) when necessary.</li>
+    <li>Implement retry mechanisms for failed message processing.</li>
+    <li>Monitor and scale message consumers to handle increased loads.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message Producers and Consumers form the backbone of asynchronous messaging systems. They enhance scalability, decouple services, and improve application resilience. By leveraging message brokers like JMS, RabbitMQ, or Kafka, applications can efficiently process and distribute messages.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Spring Integration for Messaging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Spring Integration for Messaging</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Integration is a powerful framework within the Spring ecosystem designed to facilitate messaging-based communication
+    between components. It supports various messaging protocols and enables seamless integration between different systems
+    using an enterprise integration pattern.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Integration?</h3>
+  <p style="color: #2c3e50;">Spring Integration offers several advantages:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Decoupled Architecture</strong>: Enables communication between components without tight coupling.</li>
+    <li><strong>Support for Multiple Messaging Systems</strong>: Works with JMS, Kafka, RabbitMQ, WebSockets, and more.</li>
+    <li><strong>Enterprise Integration Patterns</strong>: Provides built-in support for common patterns like message channels, transformers, and routers.</li>
+    <li><strong>Declarative and Configurable</strong>: Allows easy configuration through XML or Java-based annotations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use Spring Integration?</h3>
+  <p style="color: #2c3e50;">
+    To start with Spring Integration, include the necessary dependencies in your <code>pom.xml</code>:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.integration&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-integration-core&lt;/artifactId&gt;
+        &lt;version&gt;5.5.0&lt;/version&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Basic Example: Message Flow</h3>
+  <p style="color: #2c3e50;">
+    Here is a simple example demonstrating a message flow using Spring Integration components.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.integration.channel.DirectChannel;
+      import org.springframework.messaging.MessageChannel;
+
+      @Configuration
+      public class IntegrationConfig {
+
+          @Bean
+          public MessageChannel inputChannel() {
+              return new DirectChannel();
+          }
+
+          @Bean
+          public MessageChannel outputChannel() {
+              return new DirectChannel();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using Transformers and Routers</h3>
+  <p style="color: #2c3e50;">
+    Spring Integration allows transformation of messages and routing based on content or headers.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.integration.annotation.Transformer;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MessageTransformer {
+          @Transformer(inputChannel = "inputChannel", outputChannel = "outputChannel")
+          public String transform(String message) {
+              return message.toUpperCase();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Spring Integration</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>message channels</strong> to decouple message producers and consumers.</li>
+    <li>Utilize <strong>error handling</strong> mechanisms to manage failures effectively.</li>
+    <li>Monitor integration flows using <strong>Spring Actuator</strong>.</li>
+    <li>Choose the right messaging protocol (JMS, Kafka, RabbitMQ) based on your use case.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Integration provides a robust framework for handling messaging-based communication. It simplifies integration
+    with various messaging systems and supports enterprise integration patterns, making it an excellent choice for
+    scalable and maintainable applications.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Listeners`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Message Listeners</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In message-driven applications, <strong>Message Listeners</strong> play a crucial role in processing incoming messages asynchronously. 
+    They are used in various messaging frameworks, including JMS (Java Message Service) and Spring Boot, to listen for messages from a queue or topic.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Message Listeners?</h3>
+  <p style="color: #2c3e50;">
+    Message Listeners provide several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Asynchronous Processing</strong>: Allows background message consumption without blocking application threads.</li>
+    <li><strong>Scalability</strong>: Supports concurrent message processing, making applications more scalable.</li>
+    <li><strong>Reliability</strong>: Ensures messages are processed even if the producer is unavailable.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Message Listener in JMS</h3>
+  <p style="color: #2c3e50;">
+    In JMS, a Message Listener is an interface that allows objects to asynchronously receive messages.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.jms.Message;
+      import javax.jms.MessageListener;
+      import javax.jms.TextMessage;
+
+      public class MyMessageListener implements MessageListener {
+          @Override
+          public void onMessage(Message message) {
+              if (message instanceof TextMessage) {
+                  try {
+                      System.out.println("Received: " + ((TextMessage) message).getText());
+                  } catch (Exception e) {
+                      e.printStackTrace();
+                  }
+              }
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Message Listener in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    In Spring Boot, we can use <code>@JmsListener</code> or <code>@RabbitListener</code> for handling messages from queues.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.jms.annotation.JmsListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MessageConsumer {
+
+          @JmsListener(destination = "testQueue")
+          public void receiveMessage(String message) {
+              System.out.println("Received message: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Message Listeners</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use proper <strong>error handling</strong> to prevent message loss.</li>
+    <li>Ensure message <strong>acknowledgment</strong> is configured correctly.</li>
+    <li>Optimize the listener for <strong>high throughput</strong> by enabling concurrency settings.</li>
+    <li>Use <strong>retry mechanisms</strong> to handle transient failures.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message Listeners are essential for building efficient and scalable message-driven applications. Whether using JMS or Spring Boot, 
+    implementing a well-structured listener ensures smooth communication between producers and consumers.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Conversion`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Message Conversion in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Message conversion in Spring enables the transformation of messages between different formats, such as JSON, XML, or custom formats, making it easier to integrate with various messaging systems.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Message Conversion?</h3>
+  <p style="color: #2c3e50;">
+    Message conversion provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Seamless Data Transformation</strong>: Converts messages between different formats automatically.</li>
+    <li><strong>Integration with Various Protocols</strong>: Supports JSON, XML, and custom serialization formats.</li>
+    <li><strong>Reduces Boilerplate Code</strong>: Simplifies message handling by automating conversions.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Use Message Converters?</h3>
+  <p style="color: #2c3e50;">
+    Spring provides built-in message converters like <code>MappingJackson2MessageConverter</code> for JSON and <code>SimpleMessageConverter</code> for basic types.
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.messaging.converter.MappingJackson2MessageConverter;
+      
+      @Configuration
+      public class MessageConverterConfig {
+          @Bean
+          public MappingJackson2MessageConverter messageConverter() {
+              return new MappingJackson2MessageConverter();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example of Message Conversion</h3>
+  <p style="color: #2c3e50;">
+    The following example demonstrates how a message listener automatically converts a JSON message into a Java object.
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.jms.annotation.JmsListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class OrderListener {
+          @JmsListener(destination = "order.queue")
+          public void receiveMessage(Order order) {
+              System.out.println("Received order: " + order);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Custom Message Converters</h3>
+  <p style="color: #2c3e50;">
+    If built-in converters don’t meet your needs, you can create a custom message converter.
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.messaging.converter.AbstractMessageConverter;
+      import org.springframework.messaging.Message;
+      import org.springframework.util.MimeType;
+
+      public class CustomMessageConverter extends AbstractMessageConverter {
+          protected CustomMessageConverter() {
+              super(new MimeType("application", "custom"));
+          }
+
+          @Override
+          protected boolean supports(Class<?> clazz) {
+              return CustomMessage.class.isAssignableFrom(clazz);
+          }
+
+          @Override
+          protected Object convertFromInternal(Message<?> message, Class<?> targetClass, Object conversionHint) {
+              // Custom conversion logic here
+              return new CustomMessage(new String((byte[]) message.getPayload()));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Message Conversion</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>MappingJackson2MessageConverter</strong> for JSON-based messaging.</li>
+    <li>Leverage <strong>custom converters</strong> for proprietary formats.</li>
+    <li>Ensure message format consistency across systems.</li>
+    <li>Monitor message conversions for performance optimization.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message conversion in Spring simplifies message handling by transforming data formats automatically. By using built-in converters or defining custom ones, developers can integrate messaging systems efficiently.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Asynchronous Messaging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Asynchronous Messaging in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Asynchronous messaging is a communication pattern where messages are sent and received independently of time, allowing the sender and receiver to process data at different rates without waiting for an immediate response.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Asynchronous Messaging?</h3>
+  <p style="color: #2c3e50;">Asynchronous messaging offers several advantages:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Decoupling</strong>: The sender and receiver do not need to be available at the same time.</li>
+    <li><strong>Scalability</strong>: Enables handling large workloads without blocking operations.</li>
+    <li><strong>Fault Tolerance</strong>: Ensures message delivery even if the receiver is temporarily unavailable.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Enabling Asynchronous Messaging in Spring</h3>
+  <p style="color: #2c3e50;">To use asynchronous messaging, enable it using <code>@EnableAsync</code> in your Spring Boot application.</p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.scheduling.annotation.EnableAsync;
+
+      @SpringBootApplication
+      @EnableAsync
+      public class AsyncApplication {
+          public static void main(String[] args) {
+              SpringApplication.run(AsyncApplication.class, args);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Example: Implementing Asynchronous Messaging</h3>
+  <p style="color: #2c3e50;">You can use <code>@Async</code> to execute methods asynchronously.</p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.scheduling.annotation.Async;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class NotificationService {
+
+          @Async
+          public void sendEmail(String recipient) {
+              try { Thread.sleep(2000); } catch (InterruptedException e) { e.printStackTrace(); }
+              System.out.println("Email sent to: " + recipient);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Asynchronous Messaging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>@EnableAsync</strong> to activate async processing.</li>
+    <li>Ensure thread pool configuration to handle multiple async tasks efficiently.</li>
+    <li>Use error handling to manage failures in async tasks.</li>
+    <li>Monitor performance and optimize resource usage.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Asynchronous messaging improves system efficiency by decoupling operations and allowing background processing. By implementing <code>@Async</code> and configuring appropriate thread pools, applications can achieve better scalability and responsiveness.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Transactional Messaging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Transactional Messaging in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Transactional Messaging ensures that messages are reliably delivered as part of a transaction. It helps maintain data consistency across distributed systems by ensuring messages are sent only when a transaction is successfully committed.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Transactional Messaging?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Data Consistency</strong>: Ensures messages are delivered only if the transaction succeeds.</li>
+    <li><strong>Reliability</strong>: Prevents message loss or duplication.</li>
+    <li><strong>Atomicity</strong>: Links message sending with database operations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Transactional Messaging?</h3>
+  <p style="color: #2c3e50;">
+    Spring supports transactional messaging using <code>@Transactional</code> along with messaging frameworks like Kafka, RabbitMQ, or JMS.
+  </p>
+
+  <h3 style="color: #8e44ad;">Example Implementation</h3>
+  <p style="color: #2c3e50;">
+    Below is an example using Spring Boot and Kafka to achieve transactional messaging:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.kafka.annotation.EnableKafka;
+      import org.springframework.kafka.core.KafkaTemplate;
+      import org.springframework.stereotype.Service;
+      import org.springframework.transaction.annotation.Transactional;
+      
+      @Service
+      public class TransactionalMessageService {
+          private final KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+      
+          public TransactionalMessageService(KafkaTemplate&lt;String, String&gt; kafkaTemplate) {
+              this.kafkaTemplate = kafkaTemplate;
+          }
+      
+          @Transactional
+          public void sendMessage(String topic, String message) {
+              kafkaTemplate.send(topic, message);
+              // Other database operations within the same transaction
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensure database operations and messaging are part of the same transaction.</li>
+    <li>Use <strong>idempotent processing</strong> to prevent duplicate messages.</li>
+    <li>Implement <strong>retry mechanisms</strong> for message delivery failures.</li>
+    <li>Leverage <strong>Outbox Patterns</strong> for reliable event-driven messaging.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Transactional Messaging is crucial for ensuring reliable communication in distributed systems. By integrating messaging within transactions, we can maintain data integrity and prevent inconsistencies in microservices architectures.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Acknowledgement`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Message Acknowledgement</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In messaging systems, <strong>Message Acknowledgement</strong> is a crucial mechanism that ensures messages are received and processed correctly. It helps maintain reliability by preventing message loss and ensuring that messages are not duplicated or ignored.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Message Acknowledgement Important?</h3>
+  <p style="color: #2c3e50;">
+    Message acknowledgement plays a key role in messaging protocols by providing the following benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reliability</strong>: Ensures messages are delivered and processed successfully.</li>
+    <li><strong>Data Integrity</strong>: Prevents message duplication and loss.</li>
+    <li><strong>Efficient Resource Management</strong>: Frees up system resources by confirming message processing.</li>
+    <li><strong>Error Handling</strong>: Helps identify and handle failed deliveries.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Message Acknowledgement</h3>
+  <p style="color: #2c3e50;">
+    Different messaging systems use various types of acknowledgements based on their reliability requirements.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automatic Acknowledgement (AUTO_ACK)</strong>: Messages are automatically acknowledged upon receipt.</li>
+    <li><strong>Manual Acknowledgement</strong>: The consumer explicitly acknowledges message processing.</li>
+    <li><strong>Negative Acknowledgement (NACK)</strong>: Indicates message processing failure and requests re-delivery.</li>
+    <li><strong>Batch Acknowledgement</strong>: Acknowledges multiple messages at once to improve efficiency.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Message Acknowledgement in Java</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of implementing message acknowledgement in Java using a message queue system like RabbitMQ.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import com.rabbitmq.client.*;
+      
+      public class Consumer {
+          private final static String QUEUE_NAME = "task_queue";
+          
+          public static void main(String[] argv) throws Exception {
+              ConnectionFactory factory = new ConnectionFactory();
+              factory.setHost("localhost");
+              Connection connection = factory.newConnection();
+              Channel channel = connection.createChannel();
+              
+              channel.queueDeclare(QUEUE_NAME, true, false, false, null);
+              System.out.println("[*] Waiting for messages...");
+              
+              DeliverCallback deliverCallback = (consumerTag, delivery) -> {
+                  String message = new String(delivery.getBody(), "UTF-8");
+                  System.out.println("[x] Received '" + message + "'");
+                  
+                  // Simulating processing time
+                  try { Thread.sleep(1000); } catch (InterruptedException e) { e.printStackTrace(); }
+                  
+                  // Manually acknowledge message
+                  channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+              };
+              
+              boolean autoAck = false;
+              channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, consumerTag -> {});
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Message Acknowledgement</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use manual acknowledgement for critical applications to prevent data loss.</li>
+    <li>Implement <strong>dead-letter queues</strong> for handling failed message deliveries.</li>
+    <li>Optimize batch acknowledgements for high-throughput systems.</li>
+    <li>Monitor message queues to detect and resolve processing issues.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message Acknowledgement is essential for building reliable and robust messaging systems. By implementing proper acknowledgement mechanisms, developers can ensure message integrity, prevent data loss, and enhance overall system efficiency.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Messaging with Kafka`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Messaging with Kafka</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Apache Kafka is a distributed event streaming platform used for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications. It enables the exchange of messages between producers and consumers in a fault-tolerant and scalable manner.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Kafka for Messaging?</h3>
+  <p style="color: #2c3e50;">
+    Kafka is widely used in messaging systems due to its benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>High Throughput</strong>: Kafka can handle large volumes of messages efficiently.</li>
+    <li><strong>Scalability</strong>: It scales horizontally by adding more brokers to the cluster.</li>
+    <li><strong>Fault Tolerance</strong>: Ensures data durability and reliability.</li>
+    <li><strong>Real-time Processing</strong>: Supports real-time event-driven architectures.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Core Components of Kafka Messaging</h3>
+  <p style="color: #2c3e50;">
+    Kafka consists of the following key components:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Producers</strong>: Send messages to Kafka topics.</li>
+    <li><strong>Topics</strong>: Logical channels where messages are stored.</li>
+    <li><strong>Brokers</strong>: Kafka servers that handle messages.</li>
+    <li><strong>Consumers</strong>: Read messages from topics.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Kafka Messaging Workflow</h3>
+  <p style="color: #2c3e50;">
+    Kafka follows a publish-subscribe model where producers publish messages to topics, and consumers subscribe to topics to retrieve messages.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.apache.kafka.clients.producer.KafkaProducer;
+      import org.apache.kafka.clients.producer.ProducerRecord;
+      import java.util.Properties;
+
+      public class KafkaMessageProducer {
+          public static void main(String[] args) {
+              Properties props = new Properties();
+              props.put("bootstrap.servers", "localhost:9092");
+              props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+              props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+
+              KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+              ProducerRecord<String, String> record = new ProducerRecord<>("test-topic", "Hello, Kafka!");
+              producer.send(record);
+              producer.close();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Kafka Messaging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use proper topic partitioning to distribute load effectively.</li>
+    <li>Enable replication for high availability.</li>
+    <li>Optimize batch sizes for improved throughput.</li>
+    <li>Monitor Kafka metrics for performance tuning.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Kafka is a powerful messaging system designed for high-performance event streaming. Its scalability, durability, and real-time processing capabilities make it ideal for modern applications that require efficient data exchange.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Spring Cloud Stream`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Spring Cloud Stream</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Cloud Stream is a framework that simplifies event-driven microservices communication using messaging platforms like Apache Kafka and RabbitMQ. It abstracts messaging complexities and provides a declarative programming model.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Cloud Stream?</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Stream offers several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Decoupled Architecture</strong>: Enables loose coupling between microservices.</li>
+    <li><strong>Declarative Messaging</strong>: Uses annotations and configuration-based approach.</li>
+    <li><strong>Scalability</strong>: Supports horizontal scaling with partitioned data processing.</li>
+    <li><strong>Multi-Broker Support</strong>: Works with Kafka, RabbitMQ, and other brokers.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Configure Spring Cloud Stream?</h3>
+  <p style="color: #2c3e50;">
+    To enable Spring Cloud Stream, add the necessary dependencies and configure a message broker.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-cloud-starter-stream-kafka&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Spring Cloud Stream Example</h3>
+  <p style="color: #2c3e50;">
+    The following example demonstrates a producer sending messages and a consumer receiving them using Spring Cloud Stream.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.cloud.stream.function.StreamBridge;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class MessageProducer {
+          private final StreamBridge streamBridge;
+
+          public MessageProducer(StreamBridge streamBridge) {
+              this.streamBridge = streamBridge;
+          }
+
+          public void sendMessage(String message) {
+              streamBridge.send("message-out", message);
+          }
+      }
+    </code>
+  </pre>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.stereotype.Component;
+      import java.util.function.Consumer;
+
+      @Component
+      public class MessageConsumer {
+          @Bean
+          public Consumer<String> messageIn() {
+              return message -> System.out.println("Received: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Spring Cloud Stream</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>Spring Cloud Function</strong> for a functional approach to messaging.</li>
+    <li>Configure proper <strong>retry mechanisms</strong> to handle failures.</li>
+    <li>Leverage <strong>partitioning</strong> to distribute workload efficiently.</li>
+    <li>Monitor <strong>broker health</strong> and optimize resource allocation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Cloud Stream simplifies microservices messaging by providing an abstraction over message brokers. It enables seamless integration, scalability, and event-driven architectures, making it a powerful tool for modern applications.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message-Driven POJOs (MDP)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Message-Driven POJOs (MDP) in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In Spring, Message-Driven POJOs (MDP) are a key component of the messaging system, allowing Java objects (Plain Old Java Objects) to asynchronously process messages. Unlike traditional EJB-based message-driven beans (MDBs), MDPs are lightweight, loosely coupled, and can be easily integrated into Spring applications.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Message-Driven POJOs?</h3>
+  <p style="color: #2c3e50;">
+    The use of MDPs in a Spring application provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Decoupled Architecture</strong>: Helps separate business logic from messaging infrastructure.</li>
+    <li><strong>Asynchronous Processing</strong>: Enables handling of messages without blocking other operations.</li>
+    <li><strong>Flexibility</strong>: Can be configured with different messaging platforms like JMS, RabbitMQ, or Kafka.</li>
+    <li><strong>Easy Integration</strong>: Works seamlessly with Spring’s dependency injection and transaction management.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Implement Message-Driven POJOs?</h3>
+  <p style="color: #2c3e50;">
+    Spring provides built-in support for MDPs using the <code>JmsListener</code> annotation and <code>DefaultMessageListenerContainer</code>. Below is an example demonstrating an MDP in Spring with JMS.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.jms.annotation.JmsListener;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class MessageReceiver {
+
+          @JmsListener(destination = "order.queue")
+          public void receiveMessage(String message) {
+              System.out.println("Received message: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Configuring Message Listener Container</h3>
+  <p style="color: #2c3e50;">
+    To enable message-driven POJOs, configure a <code>DefaultJmsListenerContainerFactory</code> in your application.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.jms.ConnectionFactory;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+      
+      @Configuration
+      public class JmsConfig {
+
+          @Bean
+          public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory) {
+              DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+              factory.setConnectionFactory(connectionFactory);
+              factory.setConcurrency("1-5");
+              return factory;
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Message-Driven POJOs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use proper **error handling** to manage message failures gracefully.</li>
+    <li>Configure **concurrency settings** to optimize message processing efficiency.</li>
+    <li>Ensure **transactional messaging** for consistency in processing messages.</li>
+    <li>Monitor **message queues** to prevent backlog and optimize performance.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message-Driven POJOs (MDP) provide a lightweight, flexible way to process messages asynchronously in Spring applications. They improve scalability and maintainability while allowing seamless integration with various messaging systems like JMS and RabbitMQ.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Filtering & Routing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Message Filtering & Routing in Spring</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In enterprise applications, message filtering and routing are essential techniques for managing the flow of messages between different components. Spring Integration provides robust support for filtering messages based on specific criteria and routing them to the appropriate destination dynamically.
+  </p>
+
+  <h3 style="color: #16a085;">What is Message Filtering?</h3>
+  <p style="color: #2c3e50;">
+    Message filtering ensures that only relevant messages are processed while unwanted or unnecessary messages are discarded. This is useful in event-driven systems where multiple components subscribe to message events.
+  </p>
+
+  <h4 style="color: #e74c3c;">Example of Message Filtering in Spring Integration</h4>
+  <p style="color: #2c3e50;">
+    Spring provides the <code>MessageFilter</code> component, which can be used to filter messages based on custom conditions.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.integration.core.MessageSelector;
+      import org.springframework.messaging.Message;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class CustomMessageFilter implements MessageSelector {
+
+          @Override
+          public boolean accept(Message<?> message) {
+              // Filter messages containing "valid" keyword
+              return message.getPayload().toString().contains("valid");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">What is Message Routing?</h3>
+  <p style="color: #2c3e50;">
+    Message routing involves directing messages to different endpoints based on message headers, content, or external conditions. Spring provides several routing mechanisms, including **Content-Based Routing, Header-Based Routing, and Recipient List Routing**.
+  </p>
+
+  <h4 style="color: #e67e22;">Example of Content-Based Routing</h4>
+  <p style="color: #2c3e50;">
+    In content-based routing, messages are routed based on the message payload.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.integration.annotation.Router;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class OrderRouter {
+
+          @Router
+          public String routeOrder(String order) {
+              if (order.contains("electronics")) {
+                  return "electronicsChannel";
+              } else if (order.contains("grocery")) {
+                  return "groceryChannel";
+              }
+              return "defaultChannel";
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #d35400;">Example of Header-Based Routing</h4>
+  <p style="color: #2c3e50;">
+    Header-based routing directs messages based on metadata present in message headers.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.integration.annotation.Router;
+      import org.springframework.messaging.Message;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class HeaderBasedRouter {
+
+          @Router
+          public String routeBasedOnHeader(Message<String> message) {
+              String department = message.getHeaders().get("department", String.class);
+              return department != null && department.equals("HR") ? "hrChannel" : "defaultChannel";
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for Message Filtering & Routing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **message selectors** to filter unnecessary messages before processing.</li>
+    <li>Ensure **dynamic routing rules** to adapt to changing business requirements.</li>
+    <li>Implement **logging and monitoring** to track message flow and debugging.</li>
+    <li>Use **Spring Integration Patterns** for better scalability and maintainability.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message filtering and routing are critical in event-driven and microservices architectures. Spring Integration makes it easier to handle these operations efficiently, ensuring that messages are processed by the right consumers while reducing system load.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Message Priority`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Message Priority in Spring Integration</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In message-driven architectures, certain messages need to be processed before others. **Message Priority** helps in prioritizing messages to ensure that critical tasks are executed first. 
+    Spring Integration provides built-in support for message priority through **priority channels** and **message headers**.
+  </p>
+
+  <h3 style="color: #16a085;">What is Message Priority?</h3>
+  <p style="color: #2c3e50;">
+    Message priority is a mechanism that allows messages to be processed in order of their importance. 
+    This is especially useful in systems where urgent messages (e.g., error alerts, high-priority orders) must be handled before lower-priority ones.
+  </p>
+
+  <h4 style="color: #e74c3c;">How Message Priority Works in Spring</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Spring Integration allows messages to carry a **priority header**.</li>
+    <li>Messages with higher priority values are processed before lower-priority messages.</li>
+    <li>The **PriorityChannel** in Spring Integration ensures ordered message processing.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Using Priority Channels</h3>
+  <p style="color: #2c3e50;">
+    A **PriorityChannel** is a special type of message channel that sorts messages based on their priority. 
+    Messages with higher priority are dequeued first.
+  </p>
+
+  <h4 style="color: #e67e22;">Example: Configuring a Priority Channel</h4>
+  <p style="color: #2c3e50;">
+    Below is an example of how to configure and use a PriorityChannel in Spring Integration.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.integration.channel.PriorityChannel;
+      import org.springframework.messaging.Message;
+      import org.springframework.messaging.support.MessageBuilder;
+
+      @Configuration
+      public class PriorityConfig {
+
+          @Bean
+          public PriorityChannel priorityChannel() {
+              return new PriorityChannel();
+          }
+
+          public static void main(String[] args) {
+              PriorityChannel channel = new PriorityChannel();
+
+              // Creating messages with priority headers
+              Message<String> highPriorityMsg = MessageBuilder.withPayload("High Priority Task")
+                      .setHeader("priority", 10).build();
+              Message<String> lowPriorityMsg = MessageBuilder.withPayload("Low Priority Task")
+                      .setHeader("priority", 1).build();
+
+              // Sending messages to the channel
+              channel.send(lowPriorityMsg);
+              channel.send(highPriorityMsg);
+
+              // Receiving messages (High Priority comes first)
+              System.out.println(channel.receive().getPayload()); // High Priority Task
+              System.out.println(channel.receive().getPayload()); // Low Priority Task
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Priority Queue in Message Brokers (RabbitMQ/Kafka)</h3>
+  <p style="color: #2c3e50;">
+    When integrating with message brokers like **RabbitMQ or Kafka**, priority-based message processing can be implemented using priority queues.
+  </p>
+
+  <h4 style="color: #e74c3c;">RabbitMQ Example</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.core.Queue;
+      import org.springframework.amqp.rabbit.annotation.RabbitListener;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class RabbitMQConfig {
+
+          @Bean
+          public Queue priorityQueue() {
+              return new Queue("priority-queue", true, false, false, Map.of("x-max-priority", 10));
+          }
+
+          @RabbitListener(queues = "priority-queue")
+          public void receiveMessage(String message) {
+              System.out.println("Received: " + message);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for Message Priority</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Define clear priority levels (e.g., **HIGH = 10, MEDIUM = 5, LOW = 1**).</li>
+    <li>Use **PriorityChannel** for in-memory prioritization.</li>
+    <li>When using message brokers, configure **priority queues** for efficient processing.</li>
+    <li>Log and monitor priority-based processing to ensure fairness.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message Priority ensures that critical messages are processed first, improving system responsiveness. 
+    Spring Integration provides built-in support for **priority channels** and integrates well with message brokers like RabbitMQ and Kafka for priority-based messaging.
+  </p>
+</div>
+`
+},
+{
+  title:`Message Acknowledgement`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Message Persistence in Spring Integration</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In message-driven architectures, ensuring that messages are not lost due to system failures or crashes is crucial. 
+    **Message Persistence** allows messages to be stored in a durable medium, ensuring reliable message delivery even in case of unexpected failures. 
+    Spring Integration provides various mechanisms to achieve this.
+  </p>
+
+  <h3 style="color: #16a085;">What is Message Persistence?</h3>
+  <p style="color: #2c3e50;">
+    Message Persistence refers to storing messages so that they remain available even if the system crashes or restarts. 
+    Unlike in-memory messaging, where messages are lost when the system shuts down, persistent messages are saved to a database, file system, or message broker.
+  </p>
+
+  <h4 style="color: #e74c3c;">Why is Message Persistence Important?</h4>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Ensures **reliable message delivery** in case of system crashes.</li>
+    <li>Supports **asynchronous communication** between distributed components.</li>
+    <li>Prevents **data loss** and ensures messages are processed in order.</li>
+    <li>Works well with **message queues (RabbitMQ, Kafka, ActiveMQ)** for durable messaging.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Message Persistence with Spring Integration</h3>
+  <p style="color: #2c3e50;">
+    Spring Integration supports message persistence using **Persistent Message Stores** and **Message Brokers**.
+  </p>
+
+  <h4 style="color: #e67e22;">1. Using a JDBC Message Store</h4>
+  <p style="color: #2c3e50;">
+    Spring Integration provides a **JDBC-based message store** to persist messages in a relational database.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.integration.store.JdbcMessageStore;
+      import javax.sql.DataSource;
+
+      @Configuration
+      public class MessagePersistenceConfig {
+
+          @Bean
+          public JdbcMessageStore jdbcMessageStore(DataSource dataSource) {
+              return new JdbcMessageStore(dataSource);
+          }
+      }
+    </code>
+  </pre>
+
+  <p style="color: #2c3e50;">
+    In this setup, messages are stored in a database table and can be retrieved later for processing.
+  </p>
+
+  <h4 style="color: #e67e22;">2. Using a File-Based Message Store</h4>
+  <p style="color: #2c3e50;">
+    Messages can also be stored in files instead of a database using **SimpleMessageStore**.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.integration.store.SimpleMessageStore;
+
+      @Configuration
+      public class FileMessageStoreConfig {
+
+          @Bean
+          public SimpleMessageStore simpleMessageStore() {
+              return new SimpleMessageStore();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Message Persistence in Message Brokers</h3>
+  <p style="color: #2c3e50;">
+    Many enterprise messaging systems support **persistent queues** to store messages until they are successfully processed.
+  </p>
+
+  <h4 style="color: #e74c3c;">RabbitMQ Example</h4>
+  <p style="color: #2c3e50;">
+    RabbitMQ provides **durable queues** to ensure messages are not lost if the broker restarts.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.amqp.core.Queue;
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+
+      @Configuration
+      public class RabbitMQConfig {
+
+          @Bean
+          public Queue durableQueue() {
+              return new Queue("persistent-queue", true);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #e74c3c;">Kafka Example</h4>
+  <p style="color: #2c3e50;">
+    Kafka stores messages in a distributed log, ensuring they are **persisted across multiple brokers**.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.apache.kafka.clients.producer.ProducerConfig;
+      import org.apache.kafka.clients.producer.KafkaProducer;
+      import org.apache.kafka.clients.producer.ProducerRecord;
+      import java.util.Properties;
+
+      public class KafkaPersistenceExample {
+          public static void main(String[] args) {
+              Properties props = new Properties();
+              props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+              props.put(ProducerConfig.ACKS_CONFIG, "all");
+              props.put(ProducerConfig.RETRIES_CONFIG, 3);
+              props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+              props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+
+              KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+              ProducerRecord<String, String> record = new ProducerRecord<>("persistent-topic", "Persistent Message");
+              producer.send(record);
+              producer.close();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #27ae60;">Best Practices for Message Persistence</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **JDBC or File-Based Message Stores** for in-memory messaging systems.</li>
+    <li>For high-availability, use **message brokers with persistence enabled**.</li>
+    <li>Enable **retry mechanisms** to ensure message delivery.</li>
+    <li>Use **message acknowledgment** in RabbitMQ/Kafka to avoid message loss.</li>
+    <li>Monitor and clean up old messages from the persistence store.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Message Persistence is crucial for ensuring reliable message delivery in distributed systems. 
+    Spring Integration provides built-in support for **JDBC and File-based storage**, while external message brokers like **RabbitMQ and Kafka** handle persistence efficiently.
+  </p>
+</div>
+`
+},
+{
+  title:`Error Handling in Messaging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Error Handling in Messaging</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In distributed systems, messaging plays a crucial role in enabling communication between microservices and applications. However, errors can occur due to network failures, processing issues, or unexpected payloads. Proper error handling ensures message reliability and system stability.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Error Handling Important?</h3>
+  <p style="color: #2c3e50;">
+    Implementing error handling in messaging systems helps achieve:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reliability</strong>: Ensures messages are not lost due to failures.</li>
+    <li><strong>Scalability</strong>: Prevents cascading failures in microservices.</li>
+    <li><strong>Fault Tolerance</strong>: Allows graceful recovery from errors.</li>
+    <li><strong>Data Integrity</strong>: Prevents duplicate or corrupted messages.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Common Error Handling Strategies</h3>
+  <p style="color: #2c3e50;">
+    Various techniques can be used to handle errors in messaging systems:
+  </p>
+  
+  <h4 style="color: #8e44ad;">1. Retry Mechanism</h4>
+  <p style="color: #2c3e50;">
+    Automatic retries help recover from transient failures. Implement exponential backoff to prevent system overload.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Service
+      public class MessageService {
+          @Retryable(value = MessagingException.class, maxAttempts = 3, backoff = @Backoff(delay = 2000))
+          public void processMessage(String message) {
+              // Process message logic
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Dead Letter Queue (DLQ)</h4>
+  <p style="color: #2c3e50;">
+    Messages that fail multiple times can be sent to a DLQ for manual inspection or automated resolution.
+  </p>
+  
+  <h4 style="color: #8e44ad;">3. Circuit Breaker Pattern</h4>
+  <p style="color: #2c3e50;">
+    If a service repeatedly fails, the circuit breaker opens to prevent further processing until stability is restored.
+  </p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @CircuitBreaker(name = "messageService", fallbackMethod = "fallbackMessageHandler")
+      public void processMessage(String message) {
+          // Process logic
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Idempotency</h4>
+  <p style="color: #2c3e50;">
+    Ensure messages have a unique identifier to prevent duplicate processing.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for Error Handling</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Implement retry with exponential backoff.</li>
+    <li>Use Dead Letter Queues for persistent errors.</li>
+    <li>Log and monitor errors for proactive resolution.</li>
+    <li>Design messages to be idempotent.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Effective error handling in messaging ensures system reliability, prevents message loss, and enhances fault tolerance. By applying best practices such as retries, DLQs, circuit breakers, and idempotency, distributed systems can maintain seamless communication even in failure scenarios.
+  </p>
+</div>
+`
+},
+{
+  title:`Message Security`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Message Security</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In modern applications, ensuring the security of messages during transmission and storage is crucial. Message security protects against threats such as eavesdropping, tampering, and unauthorized access, ensuring data integrity and confidentiality.
+  </p>
+
+  <h3 style="color: #16a085;">Common Security Threats in Messaging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Eavesdropping</strong>: Intercepting messages during transmission.</li>
+    <li><strong>Message Tampering</strong>: Unauthorized modification of messages.</li>
+    <li><strong>Replay Attacks</strong>: Resending intercepted messages to manipulate systems.</li>
+    <li><strong>Unauthorized Access</strong>: Gaining access to messages without proper authentication.</li>
+    <li><strong>Denial of Service (DoS) Attacks</strong>: Overloading the system with excessive messages.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Message Security Techniques</h3>
+  <p style="color: #2c3e50;">
+    Implementing strong security measures helps prevent these threats. Some key techniques include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Encryption</strong>: Secure messages using encryption protocols like AES, RSA, or TLS.</li>
+    <li><strong>Authentication</strong>: Verify sender and receiver identities using authentication mechanisms.</li>
+    <li><strong>Message Integrity Checks</strong>: Use digital signatures and checksums to detect tampering.</li>
+    <li><strong>Access Control</strong>: Restrict message access based on user roles and permissions.</li>
+    <li><strong>Secure Message Queues</strong>: Implement security measures in message brokers like RabbitMQ, Kafka, or AWS SQS.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Implementing Message Encryption in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Encryption ensures that messages remain confidential during transmission. Below is an example of encrypting messages using AES in Spring Boot:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import javax.crypto.Cipher;
+      import javax.crypto.KeyGenerator;
+      import javax.crypto.SecretKey;
+      import java.util.Base64;
+
+      public class MessageSecurity {
+          private SecretKey secretKey;
+
+          public MessageSecurity() throws Exception {
+              KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+              keyGenerator.init(256);
+              secretKey = keyGenerator.generateKey();
+          }
+
+          public String encryptMessage(String message) throws Exception {
+              Cipher cipher = Cipher.getInstance("AES");
+              cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+              return Base64.getEncoder().encodeToString(cipher.doFinal(message.getBytes()));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using JWT for Secure Message Authentication</h3>
+  <p style="color: #2c3e50;">
+    JSON Web Tokens (JWT) provide a secure way to authenticate and validate message senders.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import io.jsonwebtoken.Jwts;
+      import io.jsonwebtoken.SignatureAlgorithm;
+      import java.util.Date;
+
+      public class JwtUtil {
+          private static final String SECRET_KEY = "mySecretKey";
+
+          public static String generateToken(String user) {
+              return Jwts.builder()
+                      .setSubject(user)
+                      .setIssuedAt(new Date())
+                      .setExpiration(new Date(System.currentTimeMillis() + 600000))
+                      .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                      .compact();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Message Security</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>end-to-end encryption</strong> for secure message transmission.</li>
+    <li>Implement <strong>authentication and authorization</strong> to restrict access.</li>
+    <li>Regularly <strong>rotate encryption keys</strong> to maintain security.</li>
+    <li>Use <strong>secure protocols</strong> like TLS to encrypt network communication.</li>
+    <li>Monitor and log security events for threat detection and auditing.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Securing messages is a critical aspect of modern applications. By implementing encryption, authentication, and access control mechanisms, organizations can protect sensitive data and prevent security threats. Adopting best practices ensures that messaging systems remain secure, reliable, and trustworthy.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Messaging Systems`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Messaging Systems</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing messaging systems is crucial to ensure reliability, performance, and security. Messaging systems, such as RabbitMQ, Kafka, and ActiveMQ, require rigorous testing to verify message delivery, ordering, duplication handling, and fault tolerance.
+  </p>
+
+  <h3 style="color: #16a085;">Key Areas of Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Functional Testing</strong>: Ensures messages are correctly sent, received, and processed.</li>
+    <li><strong>Performance Testing</strong>: Evaluates message throughput, latency, and scalability.</li>
+    <li><strong>Reliability Testing</strong>: Tests system resilience against failures and recovery mechanisms.</li>
+    <li><strong>Security Testing</strong>: Ensures authentication, authorization, and encryption measures are intact.</li>
+    <li><strong>Integration Testing</strong>: Verifies communication between different components using messaging.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Writing Unit Tests for Messaging</h3>
+  <p style="color: #2c3e50;">
+    In Spring Boot, you can write unit tests for messaging components using JUnit and Mockito.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.mockito.Mockito;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+      @SpringBootTest
+      public class MessagingTest {
+          private RabbitTemplate rabbitTemplate = Mockito.mock(RabbitTemplate.class);
+
+          @Test
+          void testMessageSending() {
+              Mockito.doNothing().when(rabbitTemplate).convertAndSend("queue", "Test Message");
+              rabbitTemplate.convertAndSend("queue", "Test Message");
+              Mockito.verify(rabbitTemplate, Mockito.times(1)).convertAndSend("queue", "Test Message");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Performance Testing Messaging Systems</h3>
+  <p style="color: #2c3e50;">
+    Performance testing ensures that the messaging system can handle high loads efficiently. Tools like JMeter and Gatling can be used to simulate thousands of concurrent messages.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Measure <strong>latency</strong> (time taken to deliver a message).</li>
+    <li>Analyze <strong>throughput</strong> (messages processed per second).</li>
+    <li>Test system behavior under <strong>high load</strong> conditions.</li>
+    <li>Monitor resource usage (CPU, memory, network).</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Testing Messaging Systems</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>mock messaging brokers</strong> in unit tests to isolate logic.</li>
+    <li>Ensure <strong>idempotency</strong> to prevent duplicate message processing.</li>
+    <li>Simulate <strong>network failures</strong> to test fault tolerance.</li>
+    <li>Monitor message queues for <strong>unexpected delays</strong>.</li>
+    <li>Log message flow for debugging and auditing.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing messaging systems is essential for ensuring robustness, scalability, and security. By implementing functional, performance, and integration tests, developers can detect issues early and improve system reliability. Following best practices guarantees a resilient messaging infrastructure.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Basics`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Software Testing Basics</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Software testing is a critical process in the software development lifecycle (SDLC) that ensures the quality, reliability, and performance of an application. It involves executing software components using manual or automated tools to identify defects and verify that the software meets specified requirements.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Software Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    Software testing plays a vital role in delivering high-quality applications. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Bug Identification</strong>: Detects defects and issues early in the development process.</li>
+    <li><strong>Performance Assurance</strong>: Ensures the application runs efficiently under various conditions.</li>
+    <li><strong>Security Enhancement</strong>: Identifies vulnerabilities and protects against security threats.</li>
+    <li><strong>Improved User Experience</strong>: Helps in delivering a seamless experience for end-users.</li>
+    <li><strong>Cost Reduction</strong>: Reduces maintenance costs by preventing future issues.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Software Testing</h3>
+  <p style="color: #2c3e50;">
+    Software testing is broadly classified into two main categories:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Manual Testing</strong>: Testers execute test cases manually without automation tools.</li>
+    <li><strong>Automated Testing</strong>: Uses testing tools and scripts to automate test execution.</li>
+  </ul>
+  <p style="color: #2c3e50;">Common types of testing include:</p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unit Testing</strong>: Tests individual components or functions.</li>
+    <li><strong>Integration Testing</strong>: Ensures combined components work correctly.</li>
+    <li><strong>Functional Testing</strong>: Verifies application functionality as per requirements.</li>
+    <li><strong>Performance Testing</strong>: Tests system responsiveness and stability.</li>
+    <li><strong>Security Testing</strong>: Identifies security vulnerabilities.</li>
+    <li><strong>Regression Testing</strong>: Ensures recent changes don’t break existing functionality.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Software Testing Life Cycle (STLC)</h3>
+  <p style="color: #2c3e50;">
+    The Software Testing Life Cycle (STLC) consists of systematic steps to conduct testing effectively:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Requirement Analysis</strong>: Understand testing requirements.</li>
+    <li><strong>Test Planning</strong>: Define scope, approach, and resources.</li>
+    <li><strong>Test Case Design</strong>: Create test scenarios and test cases.</li>
+    <li><strong>Test Execution</strong>: Run test cases and report defects.</li>
+    <li><strong>Defect Reporting</strong>: Log defects and track their resolution.</li>
+    <li><strong>Test Closure</strong>: Evaluate test completion criteria and create reports.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Testing Tools</h3>
+  <p style="color: #2c3e50;">
+    Various testing tools help automate and streamline the testing process. Some popular tools include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Selenium</strong>: Used for automated web application testing.</li>
+    <li><strong>JMeter</strong>: Performance and load testing tool.</li>
+    <li><strong>JUnit/TestNG</strong>: Unit testing frameworks for Java applications.</li>
+    <li><strong>Postman</strong>: API testing tool.</li>
+    <li><strong>Katalon Studio</strong>: Automation testing tool for web, API, and mobile applications.</li>
+  </ul>
+
+  <h3 style="color: #d35400;">Best Practices for Effective Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Start testing early in the development cycle.</li>
+    <li>Use a combination of manual and automated testing.</li>
+    <li>Ensure comprehensive test coverage.</li>
+    <li>Maintain clear and detailed test cases.</li>
+    <li>Regularly update test cases based on new requirements.</li>
+    <li>Perform continuous testing in CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Software testing is a crucial aspect of application development that ensures quality, security, and performance. By following a structured approach and using appropriate testing tools, developers and testers can identify and resolve issues early, resulting in a robust and reliable application. Incorporating testing best practices can significantly enhance the efficiency and effectiveness of the software development process.
+  </p>
+</div>
+`
+},
+{
+  title:`End-to-End Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding End-to-End (E2E) Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    End-to-End (E2E) Testing is a software testing methodology that validates the entire application flow from start to finish. This ensures that all integrated components function correctly as a complete system. Unlike unit or integration testing, E2E testing simulates real user scenarios to verify the application’s behavior across multiple layers such as UI, database, network, and external dependencies.
+  </p>
+
+  <h3 style="color: #16a085;">Why is End-to-End Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    End-to-End Testing is crucial for ensuring a seamless user experience. Here are some key reasons why it is important:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Validates Complete Workflow</strong>: Ensures that the entire application, including integrations, works as expected.</li>
+    <li><strong>Detects System Dependencies</strong>: Identifies issues in APIs, databases, and third-party services.</li>
+    <li><strong>Improves Application Reliability</strong>: Reduces risks of failures in production by mimicking real user interactions.</li>
+    <li><strong>Enhances User Experience</strong>: Ensures that the final product meets user expectations.</li>
+    <li><strong>Prevents Regression Issues</strong>: Ensures that new changes do not break existing functionality.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components of End-to-End Testing</h3>
+  <p style="color: #2c3e50;">
+    An effective End-to-End Testing strategy consists of the following key components:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>User Scenarios</strong>: Define real-world user interactions and workflows.</li>
+    <li><strong>Test Environment</strong>: A production-like environment with all necessary components.</li>
+    <li><strong>Test Data</strong>: Realistic data that replicates actual use cases.</li>
+    <li><strong>Automation Framework</strong>: Tools like Selenium, Cypress, or Playwright for automating tests.</li>
+    <li><strong>Reports & Logs</strong>: Detailed logs and reports for analysis and debugging.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: End-to-End Testing Process</h3>
+  <p style="color: #2c3e50;">
+    Below is a step-by-step approach to performing End-to-End Testing.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define Test Scenarios</h4>
+  <p style="color: #2c3e50;">
+    Identify critical workflows such as user login, checkout process, or API responses.
+  </p>
+
+  <h4 style="color: #8e44ad;">2. Set Up the Test Environment</h4>
+  <p style="color: #2c3e50;">
+    Prepare a dedicated testing environment with databases, APIs, and third-party integrations.
+  </p>
+
+  <h4 style="color: #8e44ad;">3. Write and Execute Test Cases</h4>
+  <p style="color: #2c3e50;">
+    Use automation tools to write scripts for various test scenarios.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-javascript">
+      describe('User Login Test', () => {
+          it('should log in successfully', () => {
+              cy.visit('https://example.com');
+              cy.get('#username').type('testuser');
+              cy.get('#password').type('password123');
+              cy.get('#login-button').click();
+              cy.url().should('include', '/dashboard');
+          });
+      });
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">4. Validate Results</h4>
+  <p style="color: #2c3e50;">
+    Compare the expected output with actual test results.
+  </p>
+
+  <h4 style="color: #8e44ad;">5. Report and Debug Issues</h4>
+  <p style="color: #2c3e50;">
+    Analyze logs, screenshots, and reports to fix any detected issues.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for End-to-End Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Prioritize critical user workflows.</li>
+    <li>Automate repetitive and complex scenarios.</li>
+    <li>Use parallel testing to speed up execution.</li>
+    <li>Ensure test data is realistic and updated.</li>
+    <li>Integrate E2E tests into CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    End-to-End Testing is essential for ensuring application stability and a smooth user experience. By testing the entire system as a whole, it helps catch defects that other types of testing might miss. Implementing best practices and using automation tools can enhance the efficiency and reliability of your E2E tests, ensuring a flawless product for end-users.
+  </p>
+</div>
+`
+},
+{
+  title:`Test-Driven Development (TDD)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Test-Driven Development (TDD)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Test-Driven Development (TDD) is a software development methodology that emphasizes writing tests before writing the actual code. It follows a cyclical process of writing a failing test, implementing the necessary code, and then refactoring while ensuring all tests pass. This approach improves code quality, enhances maintainability, and helps prevent defects early in the development cycle.
+  </p>
+  
+  <h3 style="color: #16a085;">Why Use Test-Driven Development?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Code Quality</strong>: TDD enforces better design and modularity.</li>
+    <li><strong>Early Bug Detection</strong>: Defects are identified before production.</li>
+    <li><strong>Better Code Maintainability</strong>: Code is structured and well-tested.</li>
+    <li><strong>Confidence in Refactoring</strong>: Changes can be made with fewer risks.</li>
+    <li><strong>Faster Debugging</strong>: Tests pinpoint issues quickly.</li>
+  </ul>
+  
+  <h3 style="color: #e67e22;">The TDD Cycle</h3>
+  <p style="color: #2c3e50;">
+    TDD follows a **Red-Green-Refactor** cycle:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Red</strong>: Write a failing test case.</li>
+    <li><strong>Green</strong>: Write the minimum code required to pass the test.</li>
+    <li><strong>Refactor</strong>: Optimize the code without changing its functionality.</li>
+  </ul>
+  
+  <h3 style="color: #2980b9;">Example: Implementing TDD in Java</h3>
+  <p style="color: #2c3e50;">
+    Below is a simple demonstration of TDD using Java and JUnit.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Write a Failing Test</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      
+      class CalculatorTest {
+          @Test
+          void testAddition() {
+              Calculator calc = new Calculator();
+              assertEquals(5, calc.add(2, 3));
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Implement the Code</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      class Calculator {
+          public int add(int a, int b) {
+              return a + b;
+          }
+      }
+    </code>
+  </pre>
+  
+  <h4 style="color: #8e44ad;">3. Refactor and Optimize</h4>
+  <p style="color: #2c3e50;">
+    If necessary, refine the code while keeping the test passing.
+  </p>
+
+  <h3 style="color: #d35400;">Best Practices for TDD</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write clear and concise test cases.</li>
+    <li>Ensure tests cover all possible scenarios.</li>
+    <li>Keep test execution fast and efficient.</li>
+    <li>Refactor code without modifying test logic.</li>
+    <li>Maintain a separate test suite for integration and unit tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Test-Driven Development (TDD) is a powerful methodology that enhances software quality and reliability. By following the Red-Green-Refactor cycle, developers can create robust applications with fewer defects. Adopting TDD leads to better code structure, maintainability, and confidence in software development.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Mockito`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Mockito in Java</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Mockito is a popular Java framework used for unit testing by creating mock objects. It allows developers to isolate components and verify interactions without requiring actual dependencies. By using Mockito, developers can test their code efficiently and ensure it behaves as expected under different conditions.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Mockito?</h3>
+  <p style="color: #2c3e50;">
+    Mockito helps in simplifying unit tests by allowing developers to mock dependencies instead of using real implementations. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Isolation</strong>: Tests are independent of actual database calls or API integrations.</li>
+    <li><strong>Improved Test Speed</strong>: Avoids time-consuming operations like database queries.</li>
+    <li><strong>Behavior Verification</strong>: Ensures that methods are called with the correct arguments.</li>
+    <li><strong>Flexible Testing</strong>: Supports stubbing and spying to modify behavior for different test scenarios.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Features of Mockito</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Mocking Objects</strong>: Create dummy objects to simulate dependencies.</li>
+    <li><strong>Stubbing</strong>: Define return values for mocked methods.</li>
+    <li><strong>Verifying Interactions</strong>: Ensure methods are invoked with the right parameters.</li>
+    <li><strong>Argument Matchers</strong>: Allow flexible verification of method arguments.</li>
+    <li><strong>Spying</strong>: Use real objects but override specific methods.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using Mockito in Java</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use Mockito to test a service class in Java.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Adding Mockito Dependency</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.mockito&lt;/groupId&gt;
+        &lt;artifactId&gt;mockito-core&lt;/artifactId&gt;
+        &lt;version&gt;4.0.0&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Creating a Service and Repository</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class UserService {
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id).orElse(null);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Writing a Mockito Test</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import static org.mockito.Mockito.*;
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+      import org.mockito.Mockito;
+      import java.util.Optional;
+
+      public class UserServiceTest {
+          @Test
+          void testGetUserById() {
+              UserRepository mockRepo = mock(UserRepository.class);
+              UserService userService = new UserService(mockRepo);
+
+              User user = new User(1L, "John Doe");
+              when(mockRepo.findById(1L)).thenReturn(Optional.of(user));
+
+              User result = userService.getUserById(1L);
+              assertNotNull(result);
+              assertEquals("John Doe", result.getName());
+
+              verify(mockRepo, times(1)).findById(1L);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Mockito</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>mock()</code> to create mock instances of dependencies.</li>
+    <li>Use <code>when().thenReturn()</code> for stubbing method behaviors.</li>
+    <li>Use <code>verify()</code> to check if a method was called with the correct parameters.</li>
+    <li>Use <code>spy()</code> when you need partial mocking of a real object.</li>
+    <li>Avoid mocking everything; mock only external dependencies.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Mockito is a powerful framework that simplifies unit testing in Java by allowing developers to create mock objects and verify method interactions. By isolating dependencies, Mockito makes it easier to write fast, reliable, and maintainable tests. Following best practices ensures effective test coverage and enhances code quality.
+  </p>
+</div>
+
+`
+},
+{
+  title:`JUnit`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to JUnit</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    JUnit is a popular testing framework for Java that allows developers to write and run unit tests efficiently. It is an essential part of Test-Driven Development (TDD) and helps ensure code reliability and correctness. JUnit supports assertions, annotations, and test runners to facilitate automated testing.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use JUnit?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automated Testing</strong>: Allows running tests automatically with minimal effort.</li>
+    <li><strong>Code Reliability</strong>: Helps identify bugs early in development.</li>
+    <li><strong>Integration with Build Tools</strong>: Works with Maven, Gradle, and CI/CD pipelines.</li>
+    <li><strong>Assertions for Validation</strong>: Provides methods to check expected vs. actual outcomes.</li>
+    <li><strong>Test Coverage</strong>: Encourages writing more test cases to ensure code quality.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key JUnit Annotations</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>@Test</code> - Marks a method as a test case.</li>
+    <li><code>@BeforeEach</code> - Runs before each test case.</li>
+    <li><code>@AfterEach</code> - Runs after each test case.</li>
+    <li><code>@BeforeAll</code> - Runs once before all tests.</li>
+    <li><code>@AfterAll</code> - Runs once after all tests.</li>
+    <li><code>@Disabled</code> - Skips a test case.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">JUnit Example</h3>
+  <p style="color: #2c3e50;">Below is a simple JUnit test case.</p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.Test;
+      import static org.junit.jupiter.api.Assertions.*;
+
+      class CalculatorTest {
+          @Test
+          void testAddition() {
+              Calculator calc = new Calculator();
+              assertEquals(5, calc.add(2, 3), "2 + 3 should be 5");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for JUnit</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write independent test cases for better maintainability.</li>
+    <li>Use meaningful test method names to indicate test intent.</li>
+    <li>Test both positive and negative scenarios.</li>
+    <li>Use <code>@BeforeEach</code> and <code>@AfterEach</code> to set up and clean up test environments.</li>
+    <li>Integrate JUnit with mocking frameworks like Mockito for better test coverage.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    JUnit is a powerful and widely used framework for Java unit testing. It enhances software reliability, helps detect bugs early, and integrates well with modern development workflows. By following best practices, you can make your testing more effective and efficient.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Spring Testing (@SpringBootTest, @WebMvcTest)`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Spring Testing (@SpringBootTest, @WebMvcTest)</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing is an essential part of any application development process to ensure correctness, reliability, and performance. Spring Boot provides powerful testing support through annotations such as <code>@SpringBootTest</code> and <code>@WebMvcTest</code>, which help developers write comprehensive and efficient tests.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Spring Testing?</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot testing provides multiple benefits, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring Application Stability</strong>: Detects bugs and issues early.</li>
+    <li><strong>Automated Testing</strong>: Helps in continuous integration and deployment.</li>
+    <li><strong>Efficient Debugging</strong>: Reduces time spent on debugging by identifying errors quickly.</li>
+    <li><strong>Improved Code Quality</strong>: Ensures maintainability and scalability.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">@SpringBootTest: Full Context Testing</h3>
+  <p style="color: #2c3e50;">
+    The <code>@SpringBootTest</code> annotation loads the full application context, allowing integration testing of the entire Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">Example: Using @SpringBootTest</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import static org.assertj.core.api.Assertions.assertThat;
+
+      @SpringBootTest
+      class ApplicationTests {
+
+          @Test
+          void contextLoads() {
+              assertThat(true).isTrue();
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">@WebMvcTest: Testing Controllers</h3>
+  <p style="color: #2c3e50;">
+    The <code>@WebMvcTest</code> annotation is used for testing controllers, focusing only on the web layer without loading the entire application context.
+  </p>
+
+  <h4 style="color: #8e44ad;">Example: Using @WebMvcTest</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.test.web.servlet.MockMvc;
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+      @WebMvcTest
+      class WebLayerTest {
+
+          @Autowired
+          private MockMvc mockMvc;
+
+          @Test
+          void shouldReturnDefaultMessage() throws Exception {
+              mockMvc.perform(get("/"))
+                     .andExpect(status().isOk());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Spring Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@SpringBootTest</code> for integration testing and full context loading.</li>
+    <li>Use <code>@WebMvcTest</code> for controller testing to avoid unnecessary overhead.</li>
+    <li>Mock dependencies to isolate unit tests from external components.</li>
+    <li>Run tests in an isolated environment to prevent conflicts.</li>
+    <li>Use meaningful assertions to verify expected behaviors.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides powerful testing capabilities with <code>@SpringBootTest</code> for full application context testing and <code>@WebMvcTest</code> for lightweight controller testing. By leveraging these annotations effectively, developers can ensure the robustness and reliability of their applications.
+  </p>
+</div>
+
+`
+},
+{
+  title:`MockMvc`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>MockMvc</code> in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    <code>MockMvc</code> is a powerful testing utility in Spring Boot that allows developers to test their Spring MVC controllers without starting a full web server. By simulating HTTP requests and responses, <code>MockMvc</code> ensures that your controller logic functions correctly and meets expectations.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>MockMvc</code>?</h3>
+  <p style="color: #2c3e50;">
+    The primary advantages of using <code>MockMvc</code> in Spring Boot applications include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>No Need for a Running Server</strong>: Allows you to test controllers without deploying the application.</li>
+    <li><strong>Faster Execution</strong>: Tests execute quickly as they don’t require a full application context.</li>
+    <li><strong>Flexible Configuration</strong>: Works seamlessly with various Spring testing annotations.</li>
+    <li><strong>Precise Request Simulation</strong>: Supports GET, POST, PUT, DELETE, and other HTTP methods.</li>
+    <li><strong>Integration with JUnit and Mockito</strong>: Easily works with testing frameworks for robust test cases.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up <code>MockMvc</code> in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To use <code>MockMvc</code>, you need to set up the Spring Boot test environment properly. Below is a step-by-step guide.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Required Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Ensure your <code>pom.xml</code> (Maven) includes the necessary dependencies:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Controller</h4>
+  <p style="color: #2c3e50;">
+    Here’s an example of a simple REST controller:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.springframework.web.bind.annotation.*;
+
+      @RestController
+      @RequestMapping("/api")
+      public class SampleController {
+
+          @GetMapping("/hello")
+          public String sayHello() {
+              return "Hello, MockMvc!";
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Write a <code>MockMvc</code> Test</h4>
+  <p style="color: #2c3e50;">
+    Now, let’s write a test case using <code>MockMvc</code> to verify our controller response:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.test.web.servlet.MockMvc;
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+      @WebMvcTest(SampleController.class)
+      public class SampleControllerTest {
+
+          @Autowired
+          private MockMvc mockMvc;
+
+          @Test
+          public void testSayHello() throws Exception {
+              mockMvc.perform(get("/api/hello"))
+                      .andExpect(status().isOk())
+                      .andExpect(content().string("Hello, MockMvc!"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>MockMvc</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@WebMvcTest</code> to focus only on testing controllers.</li>
+    <li>Leverage <code>MockMvcRequestBuilders</code> for different HTTP methods.</li>
+    <li>Verify both HTTP status codes and response content.</li>
+    <li>Use <code>andExpect()</code> for assertions on responses.</li>
+    <li>Mock dependencies using <code>@MockBean</code> when needed.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    <code>MockMvc</code> is an essential tool for testing Spring Boot applications efficiently. It allows developers to validate controller logic, ensuring accurate HTTP responses while keeping tests lightweight and fast. By integrating <code>MockMvc</code> into your test strategy, you can improve code quality and prevent unexpected issues in production.
+  </p>
+</div>
+
+`
+},
+{
+  title:`Testing Repositories`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Repositories in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing repositories is a crucial part of Spring Boot applications to ensure that data access logic works as expected. Spring Boot provides powerful testing utilities, including <code>@DataJpaTest</code>, which helps in testing JPA repositories efficiently by configuring only the persistence layer components.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Repositories?</h3>
+  <p style="color: #2c3e50;">
+    Repository testing ensures that database queries execute correctly and return expected results. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Validation of Query Methods</strong>: Ensures that queries defined in repositories retrieve the correct data.</li>
+    <li><strong>Database Schema Verification</strong>: Helps detect issues with entity mappings and relationships.</li>
+    <li><strong>Performance Optimization</strong>: Identifies inefficient queries before deploying to production.</li>
+    <li><strong>Ensuring Data Integrity</strong>: Helps maintain data consistency through proper CRUD operations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up Repository Testing</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot provides the <code>@DataJpaTest</code> annotation, which configures an in-memory database (H2 by default) and loads only the repository layer.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Required Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Ensure you have the following dependencies in your <code>pom.xml</code> (for Maven) or <code>build.gradle</code> (for Gradle).
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;com.h2database&lt;/groupId&gt;
+          &lt;artifactId&gt;h2&lt;/artifactId&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+          &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a Repository Interface</h4>
+  <p style="color: #2c3e50;">
+    Define a repository interface extending <code>JpaRepository</code> for CRUD operations.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import org.springframework.data.jpa.repository.JpaRepository;
+      import java.util.Optional;
+
+      public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+          Optional&lt;User&gt; findByEmail(String email);
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Write Repository Tests</h4>
+  <p style="color: #2c3e50;">
+    Use <code>@DataJpaTest</code> to test repository methods with an in-memory database.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      import static org.assertj.core.api.Assertions.assertThat;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+      import java.util.Optional;
+
+      @DataJpaTest
+      public class UserRepositoryTest {
+
+          @Autowired
+          private UserRepository userRepository;
+
+          @Test
+          public void testSaveAndFindByEmail() {
+              User user = new User(null, "John Doe", "john.doe@example.com");
+              userRepository.save(user);
+
+              Optional&lt;User&gt; foundUser = userRepository.findByEmail("john.doe@example.com");
+              assertThat(foundUser).isPresent();
+              assertThat(foundUser.get().getName()).isEqualTo("John Doe");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Repository Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@DataJpaTest</code> to load only the persistence layer components.</li>
+    <li>Leverage an in-memory database like H2 for fast and isolated testing.</li>
+    <li>Ensure each test case runs independently to avoid data inconsistencies.</li>
+    <li>Use <code>TestEntityManager</code> to verify database changes directly.</li>
+    <li>Test edge cases such as empty result sets and constraint violations.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing repositories in Spring Boot ensures that your database interactions work correctly and efficiently. The <code>@DataJpaTest</code> annotation simplifies repository testing by configuring only the persistence layer, making tests faster and more reliable. By following best practices, you can create robust and well-tested data access layers in your Spring Boot applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Services`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Services in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing services is a crucial aspect of ensuring the reliability and correctness of your Spring Boot application. Service layer tests focus on testing business logic independently, usually by mocking dependencies like repositories, external APIs, and other services. In this article, we’ll explore how to test services effectively in Spring Boot using JUnit and Mockito.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Services?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Business Logic Accuracy</strong>: Verifies that the core business logic behaves as expected.</li>
+    <li><strong>Detects Bugs Early</strong>: Identifies issues before they impact users.</li>
+    <li><strong>Improves Maintainability</strong>: Ensures that changes in logic do not introduce regressions.</li>
+    <li><strong>Enhances Confidence</strong>: Helps developers refactor code with confidence.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components in Service Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>JUnit</strong>: The primary testing framework for Java applications.</li>
+    <li><strong>Mockito</strong>: A popular mocking framework to isolate service testing from dependencies.</li>
+    <li><strong>@Mock and @InjectMocks</strong>: Used to mock dependencies and inject them into the service under test.</li>
+    <li><strong>@ExtendWith(MockitoExtension.class)</strong>: Integrates Mockito with JUnit 5.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Testing a Service in Spring Boot</h3>
+  <p style="color: #2c3e50;">Let’s consider a <code>UserService</code> that interacts with a repository to fetch user data.</p>
+
+  <h4 style="color: #8e44ad;">1. Define the Service</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.stereotype.Service;
+      import java.util.Optional;
+
+      @Service
+      public class UserService {
+
+          private final UserRepository userRepository;
+
+          public UserService(UserRepository userRepository) {
+              this.userRepository = userRepository;
+          }
+
+          public User getUserById(Long id) {
+              return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Writing a Test for the Service</h4>
+  <p style="color: #2c3e50;">We’ll use JUnit 5 and Mockito to test the <code>UserService</code> without requiring a real database.</p>
+  
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import static org.mockito.Mockito.*;
+
+      import org.junit.jupiter.api.BeforeEach;
+      import org.junit.jupiter.api.Test;
+      import org.junit.jupiter.api.extension.ExtendWith;
+      import org.mockito.InjectMocks;
+      import org.mockito.Mock;
+      import org.mockito.junit.jupiter.MockitoExtension;
+      import java.util.Optional;
+
+      @ExtendWith(MockitoExtension.class)
+      class UserServiceTest {
+
+          @Mock
+          private UserRepository userRepository;
+
+          @InjectMocks
+          private UserService userService;
+
+          @BeforeEach
+          void setUp() {
+              User user = new User(1L, "John Doe", "john@example.com");
+              when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+          }
+
+          @Test
+          void testGetUserById_Success() {
+              User user = userService.getUserById(1L);
+              assertNotNull(user);
+              assertEquals("John Doe", user.getName());
+          }
+
+          @Test
+          void testGetUserById_UserNotFound() {
+              when(userRepository.findById(2L)).thenReturn(Optional.empty());
+              Exception exception = assertThrows(RuntimeException.class, () -> userService.getUserById(2L));
+              assertEquals("User not found", exception.getMessage());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing Services</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@Mock</code> to isolate the service from external dependencies.</li>
+    <li>Validate edge cases, such as missing data or invalid input.</li>
+    <li>Follow the <strong>AAA (Arrange, Act, Assert)</strong> pattern for clear test structure.</li>
+    <li>Ensure <code>assertThrows</code> is used to validate exceptions properly.</li>
+    <li>Use meaningful test names that describe the scenario.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing the service layer in Spring Boot ensures that your business logic is reliable and bug-free. Using Mockito and JUnit, you can write effective unit tests without depending on actual databases. By following best practices, you can make your service tests more maintainable, robust, and meaningful.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Controllers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Controllers in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    In a Spring Boot application, controllers handle incoming HTTP requests and return appropriate responses. Proper testing of controllers ensures that endpoints behave as expected. Spring Boot provides various tools like <code>MockMvc</code>, <code>@WebMvcTest</code>, and <code>@MockBean</code> for efficient testing.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Controllers?</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Correct Response:</strong> Verifies that API endpoints return the expected HTTP status and response body.</li>
+    <li><strong>Validates Business Logic:</strong> Confirms that the controller processes requests correctly.</li>
+    <li><strong>Enhances API Stability:</strong> Prevents unintended changes in API behavior.</li>
+    <li><strong>Improves Maintainability:</strong> Detects issues early in the development cycle.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Tools for Controller Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>MockMvc</code>: Simulates HTTP requests to test controller endpoints.</li>
+    <li><code>@WebMvcTest</code>: Loads only the web layer for focused testing.</li>
+    <li><code>@MockBean</code>: Mocks service dependencies in controller tests.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Testing a Controller with <code>MockMvc</code></h3>
+
+  <h4 style="color: #8e44ad;">1. Define the Controller</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.springframework.web.bind.annotation.*;
+      import java.util.*;
+
+      @RestController
+      @RequestMapping("/users")
+      public class UserController {
+          private final UserService userService;
+
+          public UserController(UserService userService) {
+              this.userService = userService;
+          }
+
+          @GetMapping("/{id}")
+          public User getUserById(@PathVariable Long id) {
+              return userService.getUserById(id);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Write the Test Using <code>MockMvc</code></h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import org.junit.jupiter.api.Test;
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+      import org.springframework.boot.test.mock.mockito.MockBean;
+      import org.springframework.test.web.servlet.MockMvc;
+      import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+      import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+      import static org.mockito.Mockito.*;
+
+      @WebMvcTest(UserController.class)
+      public class UserControllerTest {
+
+          @Autowired
+          private MockMvc mockMvc;
+
+          @MockBean
+          private UserService userService;
+
+          @Test
+          public void testGetUserById() throws Exception {
+              User mockUser = new User(1L, "John Doe", "john@example.com");
+              when(userService.getUserById(1L)).thenReturn(mockUser);
+
+              mockMvc.perform(get("/users/1"))
+                  .andExpect(status().isOk())
+                  .andExpect(jsonPath("$.name").value("John Doe"))
+                  .andExpect(jsonPath("$.email").value("john@example.com"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing Controllers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>@WebMvcTest</code> for focused testing of controllers.</li>
+    <li>Mock dependencies with <code>@MockBean</code> to isolate controller logic.</li>
+    <li>Test all HTTP methods (GET, POST, PUT, DELETE) for correctness.</li>
+    <li>Verify error handling by simulating edge cases.</li>
+    <li>Check HTTP status codes and response structures.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing controllers in Spring Boot is essential for ensuring the correctness of API endpoints. By using tools like <code>MockMvc</code> and <code>@WebMvcTest</code>, developers can simulate HTTP requests, verify responses, and handle edge cases efficiently. Well-tested controllers lead to more robust and reliable applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Test Configuration & Profiles`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Test Configuration & Profiles in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Spring Boot provides powerful support for configuring applications in different environments using **profiles** and **test configurations**. These features help manage application settings efficiently, allowing developers to separate production, development, and test configurations. This ensures smooth transitions between different application states and reliable testing mechanisms.
+  </p>
+
+  <h3 style="color: #16a085;">What are Spring Profiles?</h3>
+  <p style="color: #2c3e50;">
+    Spring Profiles allow you to define and group different configurations based on the environment. For example, you can have separate configurations for **development**, **testing**, and **production**. Profiles help ensure that environment-specific settings are applied automatically without manual intervention.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Modular Configuration</strong>: Helps manage different environments efficiently.</li>
+    <li><strong>Conditional Beans</strong>: Enables or disables beans based on the active profile.</li>
+    <li><strong>Environment-Specific Properties</strong>: Loads properties from profile-specific files.</li>
+    <li><strong>Seamless Testing</strong>: Allows different configurations for unit tests and integration tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Defining Profiles in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To define profiles in a Spring Boot application, create separate **application.properties** or **application.yml** files with profile-specific names.
+  </p>
+
+  <h4 style="color: #8e44ad;">Example: Profile-Specific Properties</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # application-dev.properties (for development)
+      server.port=8081
+      database.url=jdbc:mysql://localhost/dev_db
+    </code>
+  </pre>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      # application-prod.properties (for production)
+      server.port=8080
+      database.url=jdbc:mysql://prod.server/prod_db
+    </code>
+  </pre>
+
+  <h3 style="color: #2980b9;">Activating Profiles</h3>
+  <p style="color: #2c3e50;">
+    You can activate a profile by setting the **spring.profiles.active** property in the **application.properties** file or passing it as a command-line argument.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      spring.profiles.active=dev
+    </code>
+  </pre>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      java -jar myapp.jar --spring.profiles.active=prod
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">What is Test Configuration?</h3>
+  <p style="color: #2c3e50;">
+    Test Configuration in Spring Boot helps isolate application testing from production settings. It ensures that the test environment is configured correctly without affecting the actual application.
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Test-Specific Beans</strong>: Loads configurations applicable only to test cases.</li>
+    <li><strong>Mocking Dependencies</strong>: Uses mock implementations to avoid real database interactions.</li>
+    <li><strong>Database Configurations</strong>: Uses in-memory databases like H2 for testing.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Using @TestConfiguration</h3>
+  <p style="color: #2c3e50;">
+    The <code>@TestConfiguration</code> annotation is used to define configurations that should be applied only during testing.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.boot.test.context.TestConfiguration;
+      import org.springframework.context.annotation.Bean;
+
+      @TestConfiguration
+      public class MyTestConfig {
+          @Bean
+          public MyService myService() {
+              return new MyServiceMock(); // Mocked service for testing
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Best Practices for Test Configuration & Profiles</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use **@TestConfiguration** to provide test-specific beans and dependencies.</li>
+    <li>Use **@ActiveProfiles("test")** in test classes to load test profiles.</li>
+    <li>Configure **H2 in-memory database** for testing instead of real databases.</li>
+    <li>Mock external dependencies to avoid network calls during testing.</li>
+    <li>Ensure test configurations do not affect production settings.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    **Profiles** and **test configurations** are essential features in Spring Boot that help manage application settings across different environments. Using **profiles**, you can define separate configurations for development, production, and testing. With **@TestConfiguration**, you can isolate test-specific settings to ensure smooth and efficient testing. By following best practices, you can maintain a clean and scalable application setup while ensuring optimal performance in all environments.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing with TestContainers`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Testing with TestContainers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Writing reliable and consistent integration tests is a crucial part of modern software development. TestContainers is a Java library that enables lightweight, throwaway instances of databases, message brokers, and other dependencies inside Docker containers. This ensures a realistic testing environment without the complexity of managing external services manually.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use TestContainers?</h3>
+  <p style="color: #2c3e50;">
+    TestContainers provide several benefits that make them ideal for integration testing:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Realistic Testing</strong>: Uses actual services instead of mocks, leading to more reliable tests.</li>
+    <li><strong>Isolated Test Environment</strong>: Each test runs in a fresh container, ensuring no conflicts between tests.</li>
+    <li><strong>Supports Various Technologies</strong>: Works with databases like PostgreSQL, MySQL, and NoSQL databases like MongoDB.</li>
+    <li><strong>Integration with Popular Frameworks</strong>: Works seamlessly with JUnit, Spring Boot, and other testing frameworks.</li>
+    <li><strong>Automation-Friendly</strong>: Containers are automatically started and stopped during tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Features of TestContainers</h3>
+  <p style="color: #2c3e50;">
+    Some of the key features of TestContainers include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>GenericContainer</strong>: Allows running any Docker container.</li>
+    <li><strong>Database Containers</strong>: Pre-configured containers for popular databases.</li>
+    <li><strong>Network Support</strong>: Enables simulating real-world network scenarios.</li>
+    <li><strong>Custom Images</strong>: Allows running tests with customized container images.</li>
+    <li><strong>Reusable Containers</strong>: Optimizes performance by keeping containers alive between tests.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using TestContainers in a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use TestContainers in a Spring Boot application to test database interactions.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add TestContainers Dependency</h4>
+  <p style="color: #2c3e50;">
+    Add the following dependency to your <code>pom.xml</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.testcontainers&lt;/groupId&gt;
+        &lt;artifactId&gt;testcontainers&lt;/artifactId&gt;
+        &lt;version&gt;1.17.6&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a TestContainer for PostgreSQL</h4>
+  <p style="color: #2c3e50;">
+    Define a test configuration using TestContainers.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.BeforeAll;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.testcontainers.containers.PostgreSQLContainer;
+      import static org.junit.jupiter.api.Assertions.*;
+
+      @SpringBootTest
+      public class DatabaseTest {
+
+          static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14-alpine");
+
+          @BeforeAll
+          static void startContainer() {
+              postgres.start();
+              System.setProperty("DB_URL", postgres.getJdbcUrl());
+              System.setProperty("DB_USERNAME", postgres.getUsername());
+              System.setProperty("DB_PASSWORD", postgres.getPassword());
+          }
+
+          @Test
+          void testDatabaseConnection() {
+              assertTrue(postgres.isRunning());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using TestContainers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>static</code> containers to prevent unnecessary container restarts between tests.</li>
+    <li>Ensure that your test dependencies are correctly scoped to avoid including TestContainers in production.</li>
+    <li>Leverage reusable containers to speed up test execution.</li>
+    <li>Use wait strategies to ensure services inside the container are ready before running tests.</li>
+    <li>Use network simulation features to test real-world scenarios.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    TestContainers is a powerful tool for writing robust integration tests by providing real, disposable environments inside Docker containers. Whether you are testing databases, message queues, or microservices, TestContainers simplifies the setup and enhances test reliability. By following best practices, you can seamlessly integrate TestContainers into your CI/CD pipeline and improve the quality of your software.
+  </p>
+</div>
+`
+},
+{
+  title:`Parameterized Tests`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Testing with TestContainers</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Writing reliable and consistent integration tests is a crucial part of modern software development. TestContainers is a Java library that enables lightweight, throwaway instances of databases, message brokers, and other dependencies inside Docker containers. This ensures a realistic testing environment without the complexity of managing external services manually.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use TestContainers?</h3>
+  <p style="color: #2c3e50;">
+    TestContainers provide several benefits that make them ideal for integration testing:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Realistic Testing</strong>: Uses actual services instead of mocks, leading to more reliable tests.</li>
+    <li><strong>Isolated Test Environment</strong>: Each test runs in a fresh container, ensuring no conflicts between tests.</li>
+    <li><strong>Supports Various Technologies</strong>: Works with databases like PostgreSQL, MySQL, and NoSQL databases like MongoDB.</li>
+    <li><strong>Integration with Popular Frameworks</strong>: Works seamlessly with JUnit, Spring Boot, and other testing frameworks.</li>
+    <li><strong>Automation-Friendly</strong>: Containers are automatically started and stopped during tests.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Features of TestContainers</h3>
+  <p style="color: #2c3e50;">
+    Some of the key features of TestContainers include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>GenericContainer</strong>: Allows running any Docker container.</li>
+    <li><strong>Database Containers</strong>: Pre-configured containers for popular databases.</li>
+    <li><strong>Network Support</strong>: Enables simulating real-world network scenarios.</li>
+    <li><strong>Custom Images</strong>: Allows running tests with customized container images.</li>
+    <li><strong>Reusable Containers</strong>: Optimizes performance by keeping containers alive between tests.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using TestContainers in a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use TestContainers in a Spring Boot application to test database interactions.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add TestContainers Dependency</h4>
+  <p style="color: #2c3e50;">
+    Add the following dependency to your <code>pom.xml</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.testcontainers&lt;/groupId&gt;
+        &lt;artifactId&gt;testcontainers&lt;/artifactId&gt;
+        &lt;version&gt;1.17.6&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create a TestContainer for PostgreSQL</h4>
+  <p style="color: #2c3e50;">
+    Define a test configuration using TestContainers.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.junit.jupiter.api.BeforeAll;
+      import org.junit.jupiter.api.Test;
+      import org.springframework.boot.test.context.SpringBootTest;
+      import org.testcontainers.containers.PostgreSQLContainer;
+      import static org.junit.jupiter.api.Assertions.*;
+
+      @SpringBootTest
+      public class DatabaseTest {
+
+          static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:14-alpine");
+
+          @BeforeAll
+          static void startContainer() {
+              postgres.start();
+              System.setProperty("DB_URL", postgres.getJdbcUrl());
+              System.setProperty("DB_USERNAME", postgres.getUsername());
+              System.setProperty("DB_PASSWORD", postgres.getPassword());
+          }
+
+          @Test
+          void testDatabaseConnection() {
+              assertTrue(postgres.isRunning());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using TestContainers</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>static</code> containers to prevent unnecessary container restarts between tests.</li>
+    <li>Ensure that your test dependencies are correctly scoped to avoid including TestContainers in production.</li>
+    <li>Leverage reusable containers to speed up test execution.</li>
+    <li>Use wait strategies to ensure services inside the container are ready before running tests.</li>
+    <li>Use network simulation features to test real-world scenarios.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    TestContainers is a powerful tool for writing robust integration tests by providing real, disposable environments inside Docker containers. Whether you are testing databases, message queues, or microservices, TestContainers simplifies the setup and enhances test reliability. By following best practices, you can seamlessly integrate TestContainers into your CI/CD pipeline and improve the quality of your software.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing Asynchronous Code`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing Asynchronous Code</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Asynchronous code introduces challenges in testing due to delayed execution and unpredictable timing. Proper testing ensures that async operations work as expected and handle concurrency correctly.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test Asynchronous Code?</h3>
+  <p style="color: #2c3e50;">
+    Testing asynchronous code is crucial for several reasons:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring Correct Execution</strong>: Verifies that async functions return expected results.</li>
+    <li><strong>Handling Edge Cases</strong>: Detects race conditions, timeouts, and deadlocks.</li>
+    <li><strong>Performance Optimization</strong>: Identifies slow operations affecting user experience.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Common Approaches to Testing Async Code</h3>
+  <p style="color: #2c3e50;">
+    There are multiple ways to test asynchronous functions depending on the language and framework used.
+  </p>
+
+  <h3 style="color: #8e44ad;">Using Promises and Async/Await in JavaScript</h3>
+  <p style="color: #2c3e50;">
+    In JavaScript, testing async functions with <code>async/await</code> ensures proper execution order.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-javascript">
+      test('fetches user data', async () => {
+        const user = await fetchUserData(1);
+        expect(user.name).toBe('John Doe');
+      });
+    </code>
+  </pre>
+
+  <h3 style="color: #8e44ad;">Using CompletableFuture in Java</h3>
+  <p style="color: #2c3e50;">
+    Java's <code>CompletableFuture</code> allows asynchronous execution. It can be tested using assertions after completion.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Test
+      public void testAsyncMethod() throws Exception {
+          CompletableFuture<String> future = asyncService.getData();
+          assertEquals("Hello, World!", future.get());
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing Async Code</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>timeouts</strong> to detect hanging async operations.</li>
+    <li>Leverage <strong>mocks</strong> and <strong>spies</strong> to simulate async behavior.</li>
+    <li>Use <strong>assertions</strong> to verify async results.</li>
+    <li>Ensure proper <strong>error handling</strong> in async tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing asynchronous code is essential for maintaining robust applications. By leveraging proper techniques like promises, futures, and mocks, developers can ensure smooth async operations and prevent hidden bugs.
+  </p>
+</div>
+`
+},
+{
+  title:`Testing REST APIs`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Testing REST APIs</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Testing REST APIs is crucial to ensure reliability, security, and performance. Proper testing helps detect issues early and guarantees that the API meets business and technical requirements.
+  </p>
+
+  <h3 style="color: #16a085;">Why Test REST APIs?</h3>
+  <p style="color: #2c3e50;">
+    Testing REST APIs provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensuring Correct Responses</strong>: Validates HTTP status codes, headers, and response payloads.</li>
+    <li><strong>Detecting Security Vulnerabilities</strong>: Prevents issues like SQL injection and unauthorized access.</li>
+    <li><strong>Performance Validation</strong>: Ensures APIs handle load efficiently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Approaches to REST API Testing</h3>
+  <p style="color: #2c3e50;">
+    Various methods can be used to test REST APIs:
+  </p>
+
+  <h3 style="color: #8e44ad;">Using Postman for Manual Testing</h3>
+  <p style="color: #2c3e50;">
+    Postman is a popular tool for manually testing API endpoints by sending requests and inspecting responses.
+  </p>
+
+  <h3 style="color: #8e44ad;">Automated Testing with JUnit & RestAssured</h3>
+  <p style="color: #2c3e50;">
+    In Java, RestAssured simplifies API testing by enabling fluent request validation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Test
+      public void testGetUser() {
+          given()
+              .when().get("/users/1")
+              .then().statusCode(200)
+              .body("name", equalTo("John Doe"));
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Testing REST APIs</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Validate <strong>status codes</strong> and <strong>response structures</strong>.</li>
+    <li>Test for <strong>authentication and authorization</strong>.</li>
+    <li>Simulate <strong>error scenarios</strong> (e.g., invalid input).</li>
+    <li>Use <strong>load testing</strong> tools for performance validation.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Testing REST APIs is essential for building reliable applications. By leveraging tools like Postman, RestAssured, and automated testing frameworks, developers can ensure their APIs function correctly under all conditions.
+  </p>
+</div>
+`
+},
+{
+  title:`Contract Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Contract Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Contract testing is a technique for ensuring that two independent systems, such as a client and a server, can communicate correctly. It verifies that API contracts are upheld, reducing integration issues.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Contract Testing?</h3>
+  <p style="color: #2c3e50;">
+    Contract testing provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures Compatibility</strong>: Prevents breaking changes between services.</li>
+    <li><strong>Faster Development</strong>: Allows teams to work independently with confidence.</li>
+    <li><strong>Reduces Integration Issues</strong>: Detects mismatches before deployment.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How Contract Testing Works</h3>
+  <p style="color: #2c3e50;">
+    Contract testing typically involves two parties:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Consumer</strong>: The system that calls the API (e.g., frontend or another service).</li>
+    <li><strong>Provider</strong>: The system that serves the API (e.g., a backend service).</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Using Pact for Contract Testing</h3>
+  <p style="color: #2c3e50;">
+    Pact is a popular tool for contract testing. It allows consumers and providers to define and verify API contracts.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Test
+      @PactTestFor(providerName = "UserService")
+      public void testUserContract(MockServer mockServer) {
+          given()
+              .when().get(mockServer.getUrl() + "/users/1")
+              .then().statusCode(200)
+              .body("name", equalTo("John Doe"));
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Contract Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Define clear <strong>API contracts</strong> between consumers and providers.</li>
+    <li>Automate contract tests in the CI/CD pipeline.</li>
+    <li>Ensure both parties update their tests when API changes occur.</li>
+    <li>Use contract testing as a complement to integration and unit tests.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Contract testing helps ensure seamless API interactions by verifying that services conform to agreed-upon contracts. By leveraging tools like Pact, teams can improve integration reliability and streamline development workflows.
+  </p>
+</div>
+`
+},
+
+{
+  title:`Mocking External Services`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Mocking External Services</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Mocking external services is a crucial technique in software testing that allows developers to simulate third-party APIs, databases, and services. This helps ensure reliable and efficient testing without depending on external systems.
+  </p>
+
+  <h3 style="color: #16a085;">Why Mock External Services?</h3>
+  <p style="color: #2c3e50;">
+    Mocking external services provides several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Isolation</strong>: Tests run independently of third-party services.</li>
+    <li><strong>Faster Execution</strong>: Reduces response time by avoiding real network calls.</li>
+    <li><strong>Cost Efficiency</strong>: Avoids fees associated with using external APIs.</li>
+    <li><strong>Reliability</strong>: Eliminates downtime risks from third-party services.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Mock External Services?</h3>
+  <p style="color: #2c3e50;">
+    Several techniques can be used to mock external services:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Using Mock Frameworks</strong>: Tools like WireMock, Mockito, and MockServer help simulate API responses.</li>
+    <li><strong>Dependency Injection</strong>: Replacing real service calls with mock implementations.</li>
+    <li><strong>Stub APIs</strong>: Creating static or dynamic responses to replicate external services.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example Using WireMock</h3>
+  <p style="color: #2c3e50;">
+    WireMock is a popular tool for mocking RESTful APIs in tests.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      @Rule
+      public WireMockRule wireMockRule = new WireMockRule(8080);
+      
+      @Test
+      public void testMockedService() {
+          stubFor(get(urlEqualTo("/users/1"))
+              .willReturn(aResponse()
+                  .withStatus(200)
+                  .withHeader("Content-Type", "application/json")
+                  .withBody("{\"id\": 1, \"name\": \"John Doe\"}")));
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Mocking</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <strong>realistic test data</strong> to simulate actual API behavior.</li>
+    <li>Ensure <strong>mocked responses</strong> handle various edge cases (timeouts, errors, etc.).</li>
+    <li>Keep mocks up-to-date with API contract changes.</li>
+    <li>Combine mocks with integration tests to validate real-world behavior.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Mocking external services is an essential practice for improving test reliability, speed, and efficiency. By leveraging tools like WireMock and Mockito, developers can create stable test environments that simulate real-world interactions without external dependencies.
+  </p>
+</div>
+`
+},
+{
+  title:`Test Coverage`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Test Coverage</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Test coverage is a metric that measures the extent to which the codebase is tested. It helps ensure that critical parts of the application are validated through unit, integration, and functional tests.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Test Coverage Important?</h3>
+  <p style="color: #2c3e50;">
+    Ensuring high test coverage provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Code Quality</strong>: Helps catch bugs early in the development cycle.</li>
+    <li><strong>Better Maintainability</strong>: Ensures changes do not break existing functionality.</li>
+    <li><strong>Increased Confidence</strong>: Provides assurance that the application behaves as expected.</li>
+    <li><strong>Compliance & Standards</strong>: Helps meet industry regulations requiring thorough testing.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How to Measure Test Coverage?</h3>
+  <p style="color: #2c3e50;">
+    Test coverage can be measured using different techniques:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Line Coverage</strong>: Measures the percentage of executed lines of code.</li>
+    <li><strong>Branch Coverage</strong>: Ensures all conditional branches are tested.</li>
+    <li><strong>Function Coverage</strong>: Confirms that all functions/methods are called at least once.</li>
+    <li><strong>Mutation Coverage</strong>: Assesses how well tests detect modified code behaviors.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example Using JaCoCo</h3>
+  <p style="color: #2c3e50;">
+    JaCoCo is a popular tool for measuring test coverage in Java applications.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.7</version>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>prepare-agent</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for High Test Coverage</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Write tests for critical paths and edge cases.</li>
+    <li>Ensure meaningful assertions to validate logic.</li>
+    <li>Regularly review and update test cases as code evolves.</li>
+    <li>Aim for high coverage, but prioritize quality over quantity.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Test coverage is a crucial aspect of software quality assurance. By using tools like JaCoCo and following best practices, developers can ensure robust and reliable applications that meet industry standards.
+  </p>
+</div>`
+},
+{
+  title:`Performance Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding Performance Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Performance testing is a crucial process that evaluates the speed, responsiveness, and stability of a system under various conditions. It ensures that applications perform optimally, even under heavy loads.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Performance Testing Important?</h3>
+  <p style="color: #2c3e50;">
+    Performance testing provides several key benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Ensures System Stability</strong>: Identifies bottlenecks that may cause crashes under high traffic.</li>
+    <li><strong>Improves User Experience</strong>: Guarantees fast response times and smooth interactions.</li>
+    <li><strong>Validates Scalability</strong>: Helps determine if the application can handle expected growth.</li>
+    <li><strong>Reduces Downtime</strong>: Prevents failures before deployment by detecting weaknesses.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Performance Testing</h3>
+  <p style="color: #2c3e50;">
+    Performance testing can be categorized into different types:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Load Testing</strong>: Evaluates system behavior under expected load conditions.</li>
+    <li><strong>Stress Testing</strong>: Determines the system’s limits by testing beyond normal conditions.</li>
+    <li><strong>Spike Testing</strong>: Examines how the system reacts to sudden, extreme increases in load.</li>
+    <li><strong>Scalability Testing</strong>: Tests the system’s ability to scale up or down efficiently.</li>
+    <li><strong>Endurance Testing</strong>: Measures performance over extended periods.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example Using JMeter</h3>
+  <p style="color: #2c3e50;">
+    Apache JMeter is a popular tool for conducting performance tests.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-xml">
+      <testPlan>
+          <threadGroup>
+              <numThreads>100</numThreads>
+              <rampTime>10</rampTime>
+              <loopCount>10</loopCount>
+          </threadGroup>
+          <httpSampler>
+              <domain>example.com</domain>
+              <path>/api/test</path>
+              <method>GET</method>
+          </httpSampler>
+      </testPlan>
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Performance Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Define clear performance objectives before testing.</li>
+    <li>Simulate real-world scenarios to get accurate results.</li>
+    <li>Run tests in a controlled environment to minimize external factors.</li>
+    <li>Monitor system metrics such as CPU, memory, and network usage.</li>
+    <li>Analyze and optimize based on test results before deployment.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Performance testing is essential for ensuring a smooth and responsive application experience. By leveraging tools like JMeter and following best practices, developers can enhance system reliability and user satisfaction.
+  </p>
+</div>
+`
+},
+{
+  title:`CI/CD & Testing`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Understanding CI/CD & Testing</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    CI/CD (Continuous Integration and Continuous Deployment) is a development practice that automates testing and deployment, ensuring software is delivered efficiently and reliably. Testing is an integral part of CI/CD to maintain quality and detect issues early.
+  </p>
+
+  <h3 style="color: #16a085;">Why is Testing Important in CI/CD?</h3>
+  <p style="color: #2c3e50;">
+    Incorporating testing into CI/CD pipelines provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Early Bug Detection</strong>: Identifies issues before they reach production.</li>
+    <li><strong>Faster Feedback</strong>: Developers get immediate insights into code quality.</li>
+    <li><strong>Consistent Software Quality</strong>: Ensures reliability with automated tests.</li>
+    <li><strong>Efficient Deployment</strong>: Reduces manual intervention and accelerates release cycles.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Types of Testing in CI/CD</h3>
+  <p style="color: #2c3e50;">
+    Different types of testing ensure comprehensive coverage in CI/CD pipelines:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Unit Testing</strong>: Verifies individual components work correctly.</li>
+    <li><strong>Integration Testing</strong>: Ensures multiple components function together as expected.</li>
+    <li><strong>Functional Testing</strong>: Validates business logic and application behavior.</li>
+    <li><strong>Performance Testing</strong>: Measures speed, scalability, and reliability under load.</li>
+    <li><strong>Security Testing</strong>: Identifies vulnerabilities to safeguard the application.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example CI/CD Pipeline with Testing</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a simple CI/CD pipeline using GitHub Actions with automated testing.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-yaml">
+      name: CI/CD Pipeline
+
+      on: [push, pull_request]
+
+      jobs:
+        build-test:
+          runs-on: ubuntu-latest
+          steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Set up Java
+              uses: actions/setup-java@v2
+              with:
+                java-version: '17'
+
+            - name: Build and Test
+              run: |
+                mvn clean install
+                mvn test
+
+            - name: Deploy
+              run: echo "Deploying application..."
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for CI/CD Testing</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Run tests in parallel to reduce execution time.</li>
+    <li>Use test coverage tools to ensure comprehensive validation.</li>
+    <li>Automate rollback mechanisms in case of failures.</li>
+    <li>Regularly update test cases to match evolving business needs.</li>
+    <li>Monitor test results and logs to identify patterns and improvements.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Integrating testing into CI/CD pipelines enhances software quality, accelerates delivery, and ensures reliability. By implementing best practices, teams can achieve smooth and efficient software deployments with minimal risk.
+  </p>
+</div>
+`
+},
+{
+  title:`Test Best Practices`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Test Best Practices</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Implementing best practices in testing ensures software quality, maintainability, and reliability. Following structured guidelines helps prevent defects, improve performance, and enhance user experience.
+  </p>
+
+  <h3 style="color: #16a085;">Why Follow Test Best Practices?</h3>
+  <p style="color: #2c3e50;">
+    Adhering to best practices in testing provides several advantages:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Improved Software Quality</strong>: Ensures code meets functional and non-functional requirements.</li>
+    <li><strong>Early Bug Detection</strong>: Identifies and fixes defects before deployment.</li>
+    <li><strong>Enhanced Maintainability</strong>: Simplifies debugging and future development.</li>
+    <li><strong>Efficient Testing Process</strong>: Reduces redundancy and improves coverage.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Test Best Practices</h3>
+  <p style="color: #2c3e50;">
+    The following best practices help establish an effective testing strategy:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Write Clear and Maintainable Tests</strong>: Use descriptive test names and structured assertions.</li>
+    <li><strong>Use Automated Testing</strong>: Automate repetitive tests to improve efficiency.</li>
+    <li><strong>Follow the Test Pyramid</strong>: Balance unit, integration, and end-to-end tests.</li>
+    <li><strong>Ensure Test Isolation</strong>: Avoid dependencies between tests to prevent false positives.</li>
+    <li><strong>Implement Continuous Testing</strong>: Integrate testing into CI/CD pipelines.</li>
+  </ul>
+
+  <h3 style="color: #8e44ad;">Example of Well-Structured Unit Test</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of a structured unit test using JUnit:
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-java">
+      import static org.junit.jupiter.api.Assertions.*;
+      import org.junit.jupiter.api.Test;
+
+      class CalculatorTest {
+          @Test
+          void testAddition() {
+              Calculator calc = new Calculator();
+              assertEquals(5, calc.add(2, 3), "2 + 3 should equal 5");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Additional Best Practices</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Mock external dependencies to ensure reliable test execution.</li>
+    <li>Use parameterized tests to cover multiple scenarios efficiently.</li>
+    <li>Regularly review and refactor test cases to match code changes.</li>
+    <li>Monitor test results and maintain a clean test suite.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Adopting test best practices improves software quality, accelerates development, and minimizes defects. A well-structured testing approach ensures smooth application performance and enhances user satisfaction.
+  </p>
+</div>`
+}
      ]
 
 }
