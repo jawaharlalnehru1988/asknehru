@@ -3604,7 +3604,830 @@ export class JavaContent {
     <p>The <code>return</code> statement is essential for controlling method execution and returning values in Java. Understanding how to use it effectively helps in writing clean and efficient code.</p>
 </div>
 ` 
-}
+},
+{
+    articleTitle: `Math Class`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math Class in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math</code> class in Java is a built-in class that provides a collection of mathematical functions, constants, and operations. It is part of the <code>java.lang</code> package and contains static methods that can be used directly without creating an instance of the class.
+    </p>
+    
+    <h2 style="color: #2980b9;">Key Features of Math Class</h2>
+    <ul>
+        <li>Contains mathematical constants like <code>Math.PI</code> and <code>Math.E</code>.</li>
+        <li>Provides methods for basic arithmetic operations.</li>
+        <li>Includes trigonometric, logarithmic, and exponential functions.</li>
+        <li>Supports rounding, absolute value, and random number generation.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Commonly Used Methods in Math Class</h2>
+    
+    <h3 style="color: #2980b9;">1. Basic Mathematical Operations</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathBasicOps {
+        public static void main(String[] args) {
+            System.out.println("Max: " + Math.max(10, 20));
+            System.out.println("Min: " + Math.min(10, 20));
+            System.out.println("Absolute: " + Math.abs(-15));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">2. Power and Square Root</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathPowerRoot {
+        public static void main(String[] args) {
+            System.out.println("Square Root: " + Math.sqrt(25));
+            System.out.println("Power: " + Math.pow(2, 3));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">3. Rounding and Random Numbers</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathRounding {
+        public static void main(String[] args) {
+            System.out.println("Ceiling: " + Math.ceil(4.3));
+            System.out.println("Floor: " + Math.floor(4.7));
+            System.out.println("Round: " + Math.round(4.5));
+            System.out.println("Random: " + Math.random());
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">4. Trigonometric Functions</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathTrigonometry {
+        public static void main(String[] args) {
+            System.out.println("Sin(45): " + Math.sin(Math.toRadians(45)));
+            System.out.println("Cos(45): " + Math.cos(Math.toRadians(45)));
+            System.out.println("Tan(45): " + Math.tan(Math.toRadians(45)));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Best Practices</h2>
+    <ul>
+        <li>Use <code>Math</code> methods for efficient and precise calculations.</li>
+        <li>Utilize <code>Math.random()</code> to generate random numbers.</li>
+        <li>Convert angles to radians when using trigonometric functions.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Conclusion</h2>
+    <p>The <code>Math</code> class in Java is an essential tool for performing mathematical computations efficiently. Understanding its functions enables developers to handle numerical calculations with ease.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Methods`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math Class in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math</code> class in Java is a built-in class that provides a collection of mathematical functions, constants, and operations. It is part of the <code>java.lang</code> package and contains static methods that can be used directly without creating an instance of the class.
+    </p>
+    
+    <h2 style="color: #2980b9;">Key Features of Math Class</h2>
+    <ul>
+        <li>Contains mathematical constants like <code>Math.PI</code> and <code>Math.E</code>.</li>
+        <li>Provides methods for basic arithmetic operations.</li>
+        <li>Includes trigonometric, logarithmic, and exponential functions.</li>
+        <li>Supports rounding, absolute value, and random number generation.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Commonly Used Methods in Math Class</h2>
+    
+    <h3 style="color: #2980b9;">1. Basic Mathematical Operations</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathBasicOps {
+        public static void main(String[] args) {
+            System.out.println("Max: " + Math.max(10, 20));
+            System.out.println("Min: " + Math.min(10, 20));
+            System.out.println("Absolute: " + Math.abs(-15));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">2. Power and Square Root</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathPowerRoot {
+        public static void main(String[] args) {
+            System.out.println("Square Root: " + Math.sqrt(25));
+            System.out.println("Power: " + Math.pow(2, 3));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">3. Rounding and Random Numbers</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathRounding {
+        public static void main(String[] args) {
+            System.out.println("Ceiling: " + Math.ceil(4.3));
+            System.out.println("Floor: " + Math.floor(4.7));
+            System.out.println("Round: " + Math.round(4.5));
+            System.out.println("Random: " + Math.random());
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">4. Trigonometric Functions</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathTrigonometry {
+        public static void main(String[] args) {
+            System.out.println("Sin(45): " + Math.sin(Math.toRadians(45)));
+            System.out.println("Cos(45): " + Math.cos(Math.toRadians(45)));
+            System.out.println("Tan(45): " + Math.tan(Math.toRadians(45)));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">5. Logarithmic and Exponential Functions</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathLogExp {
+        public static void main(String[] args) {
+            System.out.println("Natural Log (ln(10)): " + Math.log(10));
+            System.out.println("Log base 10 (log10(1000)): " + Math.log10(1000));
+            System.out.println("Exponential (e^2): " + Math.exp(2));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h3 style="color: #2980b9;">6. Hyperbolic Functions</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathHyperbolic {
+        public static void main(String[] args) {
+            System.out.println("Sinh(1): " + Math.sinh(1));
+            System.out.println("Cosh(1): " + Math.cosh(1));
+            System.out.println("Tanh(1): " + Math.tanh(1));
+        }
+    }
+    </code>
+    </p`
+},
+{
+    articleTitle: `Math Constants`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math Class in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math</code> class in Java is a built-in class that provides a collection of mathematical functions, constants, and operations. It is part of the <code>java.lang</code> package and contains static methods that can be used directly without creating an instance of the class.
+    </p>
+    
+    <h2 style="color: #2980b9;">Key Features of Math Class</h2>
+    <ul>
+        <li>Contains mathematical constants like <code>Math.PI</code> and <code>Math.E</code>.</li>
+        <li>Provides methods for basic arithmetic operations.</li>
+        <li>Includes trigonometric, logarithmic, and exponential functions.</li>
+        <li>Supports rounding, absolute value, and random number generation.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Common Math Constants</h2>
+    <ul>
+        <li><code>Math.PI</code> - Represents the value of π (3.141592653589793).</li>
+        <li><code>Math.E</code> - Represents the base of natural logarithms (2.718281828459045).</li>
+        <li><code>Math.SQRT2</code> - Represents the square root of 2 (1.4142135623730951).</li>
+        <li><code>Math.SQRT1_2</code> - Represents the square root of 1/2 (0.7071067811865476).</li>
+        <li><code>Math.LN2</code> - Represents the natural logarithm of 2 (0.6931471805599453).</li>
+        <li><code>Math.LN10</code> - Represents the natural logarithm of 10 (2.302585092994046).</li>
+        <li><code>Math.LOG2E</code> - Represents the base 2 logarithm of E (1.4426950408889634).</li>
+        <li><code>Math.LOG10E</code> - Represents the base 10 logarithm of E (0.4342944819032518).</li>
+    </ul>
+    
+    <h3 style="color: #2980b9;">Example Usage of Math Constants</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathConstantsExample {
+        public static void main(String[] args) {
+            System.out.println("Value of PI: " + Math.PI);
+            System.out.println("Value of E: " + Math.E);
+            System.out.println("Square Root of 2: " + Math.sqrt(2));
+            System.out.println("Natural Logarithm of 10: " + Math.log(10));
+            System.out.println("Log base 10 of E: " + Math.log10(Math.E));
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Best Practices</h2>
+    <ul>
+        <li>Use <code>Math</code> constants for precise calculations instead of hardcoding values.</li>
+        <li>Combine constants with Math methods for advanced computations.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Conclusion</h2>
+    <p>The <code>Math</code> class in Java is an essential tool for performing mathematical computations efficiently. Understanding its constants and methods enables developers to handle numerical calculations with ease.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Functions`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math Class in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math</code> class in Java is a built-in class that provides a collection of mathematical functions, constants, and operations. It is part of the <code>java.lang</code> package and contains static methods that can be used directly without creating an instance of the class.
+    </p>
+    
+    <h2 style="color: #2980b9;">Key Features of Math Class</h2>
+    <ul>
+        <li>Contains mathematical constants like <code>Math.PI</code> and <code>Math.E</code>.</li>
+        <li>Provides methods for basic arithmetic operations.</li>
+        <li>Includes trigonometric, logarithmic, and exponential functions.</li>
+        <li>Supports rounding, absolute value, and random number generation.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Common Math Constants</h2>
+    <ul>
+        <li><code>Math.PI</code> - Represents the value of π (3.141592653589793).</li>
+        <li><code>Math.E</code> - Represents the base of natural logarithms (2.718281828459045).</li>
+        <li><code>Math.SQRT2</code> - Represents the square root of 2 (1.4142135623730951).</li>
+        <li><code>Math.SQRT1_2</code> - Represents the square root of 1/2 (0.7071067811865476).</li>
+        <li><code>Math.LN2</code> - Represents the natural logarithm of 2 (0.6931471805599453).</li>
+        <li><code>Math.LN10</code> - Represents the natural logarithm of 10 (2.302585092994046).</li>
+        <li><code>Math.LOG2E</code> - Represents the base 2 logarithm of E (1.4426950408889634).</li>
+        <li><code>Math.LOG10E</code> - Represents the base 10 logarithm of E (0.4342944819032518).</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Common Math Functions</h2>
+    <ul>
+        <li><code>Math.abs(x)</code> - Returns the absolute value of <code>x</code>.</li>
+        <li><code>Math.pow(x, y)</code> - Returns <code>x</code> raised to the power <code>y</code>.</li>
+        <li><code>Math.sqrt(x)</code> - Returns the square root of <code>x</code>.</li>
+        <li><code>Math.max(x, y)</code> - Returns the maximum of <code>x</code> and <code>y</code>.</li>
+        <li><code>Math.min(x, y)</code> - Returns the minimum of <code>x</code> and <code>y</code>.</li>
+        <li><code>Math.round(x)</code> - Rounds <code>x</code> to the nearest integer.</li>
+        <li><code>Math.ceil(x)</code> - Returns the smallest integer greater than or equal to <code>x</code>.</li>
+        <li><code>Math.floor(x)</code> - Returns the largest integer less than or equal to <code>x</code>.</li>
+        <li><code>Math.random()</code> - Returns a random number between 0.0 and 1.0.</li>
+    </ul>
+    
+    <h3 style="color: #2980b9;">Example Usage of Math Functions</h3>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MathFunctionsExample {
+        public static void main(String[] args) {
+            System.out.println("Absolute value of -5: " + Math.abs(-5));
+            System.out.println("2 raised to the power 3: " + Math.pow(2, 3));
+            System.out.println("Square root of 16: " + Math.sqrt(16));
+            System.out.println("Maximum of 10 and 20: " + Math.max(10, 20));
+            System.out.println("Minimum of 10 and 20: " + Math.min(10, 20));
+            System.out.println("Rounded value of 4.7: " + Math.round(4.7));
+            System.out.println("Ceiling value of 4.2: " + Math.ceil(4.2));
+            System.out.println("Floor value of 4.9: " + Math.floor(4.9));
+            System.out.println("Random number between 0 and 1: " + Math.random());
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Best Practices</h2>
+    <ul>
+        <li>Use <code>Math</code> functions for precise calculations in Java applications.</li>
+        <li>Utilize rounding methods to control decimal values in financial and scientific computations.</li>
+        <li>Use <code>Math.random()</code> to generate random values but consider using <code>Random</code> class for more flexibility.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Conclusion</h2>
+    <p>The <code>Math</code> class in Java is an essential tool for performing mathematical computations efficiently. Understanding its constants and methods enables developers to handle numerical calculations with ease.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math random`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.random() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.random()</code> method in Java is used to generate random numbers. It provides a simple way to obtain pseudo-random values between 0.0 and 1.0, which can be scaled to any desired range.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.random()?</h2>
+    <p>The <code>Math.random()</code> method returns a double value greater than or equal to 0.0 and less than 1.0.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RandomExample {
+        public static void main(String[] args) {
+            double randomValue = Math.random();
+            System.out.println("Generated Random Value: " + randomValue);
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Generating Random Numbers in a Range</h2>
+    <p>To generate random numbers in a specific range, you can use the formula:</p>
+    <p><code>randomNumber = (Math.random() * (max - min)) + min;</code></p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RandomRange {
+        public static void main(String[] args) {
+            int min = 1, max = 10;
+            int randomInt = (int)(Math.random() * (max - min + 1)) + min;
+            System.out.println("Random Number between 1 and 10: " + randomInt);
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Using Random with Different Data Types</h2>
+    <ul>
+        <li>Generating random integers</li>
+        <li>Generating random floating-point numbers</li>
+        <li>Generating random boolean values</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">Alternative: java.util.Random Class</h2>
+    <p>The <code>java.util.Random</code> class provides more flexibility in generating random numbers.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    import java.util.Random;
+
+    public class RandomClassExample {
+        public static void main(String[] args) {
+            Random random = new Random();
+            int num = random.nextInt(100); // Random number from 0 to 99
+            System.out.println("Random number: " + num);
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Why Use Math.random()?</h2>
+    <p><code>Math.random()</code> is useful for:</p>
+    <ul>
+        <li>Simple random number generation</li>
+        <li>Quick calculations without creating an object</li>
+        <li>Generating random values in a specific range</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Using <code>Math.random()</code> is an easy way to generate random numbers in Java. Understanding its usage and alternatives like <code>java.util.Random</code> can help in building better applications.</p>
+</div>`
+},
+{
+    articleTitle: `Math Round`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.round() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.round()</code> method in Java is used to round floating-point numbers to the nearest integer. It is a simple and effective way to handle numerical rounding operations.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.round()?</h2>
+    <p>The <code>Math.round()</code> method rounds a floating-point number to the nearest integer. If the fractional part is 0.5 or greater, it rounds up; otherwise, it rounds down.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RoundExample {
+        public static void main(String[] args) {
+            System.out.println(Math.round(4.3)); // Outputs 4
+            System.out.println(Math.round(4.6)); // Outputs 5
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Math.round() with Different Data Types</h2>
+    <p>Math.round() works with both <code>float</code> and <code>double</code> data types:</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RoundExample {
+        public static void main(String[] args) {
+            float num1 = 5.7f;
+            double num2 = 8.4;
+            
+            System.out.println(Math.round(num1)); // Outputs 6
+            System.out.println(Math.round(num2)); // Outputs 8
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Difference Between Math.floor(), Math.ceil(), and Math.round()</h2>
+    <ul>
+        <li><code>Math.floor()</code> - Always rounds down to the nearest integer.</li>
+        <li><code>Math.ceil()</code> - Always rounds up to the nearest integer.</li>
+        <li><code>Math.round()</code> - Rounds to the nearest integer based on 0.5 threshold.</li>
+    </ul>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RoundingComparison {
+        public static void main(String[] args) {
+            double value = 4.5;
+            
+            System.out.println(Math.floor(value)); // Outputs 4
+            System.out.println(Math.ceil(value)); // Outputs 5
+            System.out.println(Math.round(value)); // Outputs 5
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Why Use Math.round()?</h2>
+    <p>Math.round() is commonly used for:</p>
+    <ul>
+        <li>Rounding currency values</li>
+        <li>Working with approximate values</li>
+        <li>Reducing decimal places in calculations</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.round() is a useful method in Java for rounding floating-point values to the nearest integer. Understanding its behavior compared to Math.floor() and Math.ceil() helps in making precise numerical decisions.</p>
+</div>`
+},
+{
+    articleTitle: `Math Ceiling`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.ceil() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.ceil()</code> method in Java is used to round a floating-point number up to the nearest integer. It ensures that the result is always greater than or equal to the original number.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.ceil()?</h2>
+    <p>The <code>Math.ceil()</code> method returns the smallest integer greater than or equal to a given number. It always rounds up, regardless of the decimal value.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class CeilExample {
+        public static void main(String[] args) {
+            System.out.println(Math.ceil(4.3)); // Outputs 5
+            System.out.println(Math.ceil(4.9)); // Outputs 5
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Math.ceil() with Different Data Types</h2>
+    <p>Math.ceil() works with <code>double</code> values and returns a <code>double</code> result:</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class CeilExample {
+        public static void main(String[] args) {
+            double num1 = 6.1;
+            double num2 = 7.9;
+            
+            System.out.println(Math.ceil(num1)); // Outputs 7.0
+            System.out.println(Math.ceil(num2)); // Outputs 8.0
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Difference Between Math.floor(), Math.round(), and Math.ceil()</h2>
+    <ul>
+        <li><code>Math.floor()</code> - Always rounds down to the nearest integer.</li>
+        <li><code>Math.ceil()</code> - Always rounds up to the nearest integer.</li>
+        <li><code>Math.round()</code> - Rounds to the nearest integer based on 0.5 threshold.</li>
+    </ul>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RoundingComparison {
+        public static void main(String[] args) {
+            double value = 4.5;
+            
+            System.out.println(Math.floor(value)); // Outputs 4.0
+            System.out.println(Math.ceil(value)); // Outputs 5.0
+            System.out.println(Math.round(value)); // Outputs 5
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Why Use Math.ceil()?</h2>
+    <p>Math.ceil() is useful for:</p>
+    <ul>
+        <li>Calculating billing amounts that require rounding up</li>
+        <li>Ensuring a higher threshold for mathematical computations</li>
+        <li>Handling scenarios where downward rounding is not acceptable</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.ceil() is a reliable method for rounding floating-point numbers upward in Java. Understanding its behavior alongside Math.floor() and Math.round() helps in precise numerical calculations.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Floor`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.floor() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.floor()</code> method in Java is used to round a floating-point number down to the nearest integer. It ensures that the result is always less than or equal to the original number.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.floor()?</h2>
+    <p>The <code>Math.floor()</code> method returns the largest integer less than or equal to a given number. It always rounds down, regardless of the decimal value.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class FloorExample {
+        public static void main(String[] args) {
+            System.out.println(Math.floor(4.3)); // Outputs 4
+            System.out.println(Math.floor(4.9)); // Outputs 4
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Math.floor() with Different Data Types</h2>
+    <p>Math.floor() works with <code>double</code> values and returns a <code>double</code> result:</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class FloorExample {
+        public static void main(String[] args) {
+            double num1 = 6.1;
+            double num2 = 7.9;
+            
+            System.out.println(Math.floor(num1)); // Outputs 6.0
+            System.out.println(Math.floor(num2)); // Outputs 7.0
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Difference Between Math.floor(), Math.round(), and Math.ceil()</h2>
+    <ul>
+        <li><code>Math.floor()</code> - Always rounds down to the nearest integer.</li>
+        <li><code>Math.ceil()</code> - Always rounds up to the nearest integer.</li>
+        <li><code>Math.round()</code> - Rounds to the nearest integer based on 0.5 threshold.</li>
+    </ul>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RoundingComparison {
+        public static void main(String[] args) {
+            double value = 4.5;
+            
+            System.out.println(Math.floor(value)); // Outputs 4.0
+            System.out.println(Math.ceil(value)); // Outputs 5.0
+            System.out.println(Math.round(value)); // Outputs 5
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Why Use Math.floor()?</h2>
+    <p>Math.floor() is useful for:</p>
+    <ul>
+        <li>Calculating discounts or price reductions</li>
+        <li>Ensuring a lower threshold for numerical computations</li>
+        <li>Handling scenarios where upward rounding is not acceptable</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.floor() is a reliable method for rounding floating-point numbers downward in Java. Understanding its behavior alongside Math.ceil() and Math.round() helps in precise numerical calculations.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Max`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.max() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.max()</code> method in Java is used to find the maximum of two numbers. It helps in determining the largest value among given inputs.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.max()?</h2>
+    <p>The <code>Math.max()</code> method takes two arguments and returns the greater of the two.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MaxExample {
+        public static void main(String[] args) {
+            System.out.println(Math.max(10, 20)); // Outputs 20
+            System.out.println(Math.max(-5, -2)); // Outputs -2
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Math.max() with Different Data Types</h2>
+    <p>Math.max() works with various numeric types such as <code>int</code>, <code>double</code>, <code>float</code>, and <code>long</code>.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MaxExample {
+        public static void main(String[] args) {
+            double num1 = 6.8;
+            double num2 = 7.2;
+            
+            System.out.println(Math.max(num1, num2)); // Outputs 7.2
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Use Cases of Math.max()</h2>
+    <ul>
+        <li>Finding the highest score in a game</li>
+        <li>Comparing user inputs to determine the larger value</li>
+        <li>Implementing logic where the highest value needs to be selected</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.max() is a simple yet powerful method in Java for comparing two numbers and returning the highest value. It is widely used in mathematical and logical operations.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Min`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.min() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.min()</code> method in Java is used to find the minimum of two numbers. It helps in determining the smallest value among given inputs.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.min()?</h2>
+    <p>The <code>Math.min()</code> method takes two arguments and returns the smaller of the two.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MinExample {
+        public static void main(String[] args) {
+            System.out.println(Math.min(10, 20)); // Outputs 10
+            System.out.println(Math.min(-5, -2)); // Outputs -5
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Math.min() with Different Data Types</h2>
+    <p>Math.min() works with various numeric types such as <code>int</code>, <code>double</code>, <code>float</code>, and <code>long</code>.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class MinExample {
+        public static void main(String[] args) {
+            double num1 = 6.8;
+            double num2 = 7.2;
+            
+            System.out.println(Math.min(num1, num2)); // Outputs 6.8
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Use Cases of Math.min()</h2>
+    <ul>
+        <li>Finding the lowest score in a game</li>
+        <li>Comparing user inputs to determine the smaller value</li>
+        <li>Implementing logic where the lowest value needs to be selected</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.min() is a simple yet useful method in Java for comparing two numbers and returning the smallest value. It is widely used in mathematical and logical operations.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Pow`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.pow() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.pow()</code> method in Java is used to calculate the power of a number. It takes two arguments: a base and an exponent, and returns the result of raising the base to the power of the exponent.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.pow()?</h2>
+    <p>The <code>Math.pow()</code> method computes the power of a number using the formula:</p>
+    <p><code>Math.pow(base, exponent)</code> returns <code>base^exponent</code>.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class PowExample {
+        public static void main(String[] args) {
+            System.out.println(Math.pow(2, 3)); // Outputs 8.0 (2^3)
+            System.out.println(Math.pow(5, 2)); // Outputs 25.0 (5^2)
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Math.pow() with Different Data Types</h2>
+    <p>The <code>Math.pow()</code> method always returns a <code>double</code>, regardless of the input types.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class PowExample {
+        public static void main(String[] args) {
+            int base = 3;
+            double exponent = 2.5;
+            
+            System.out.println(Math.pow(base, exponent)); // Outputs 15.588...
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Use Cases of Math.pow()</h2>
+    <ul>
+        <li>Calculating squares and cubes of numbers</li>
+        <li>Solving mathematical equations requiring exponents</li>
+        <li>Determining compound interest calculations</li>
+        <li>Scientific computations involving exponential values</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.pow() is a powerful function in Java that enables efficient calculations of exponential values. It is widely used in scientific computations, financial calculations, and game development.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Sqrt`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.sqrt() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.sqrt()</code> method in Java is used to calculate the square root of a given number. It returns the non-negative square root of the specified value as a double.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.sqrt()?</h2>
+    <p>The <code>Math.sqrt()</code> method computes the square root of a number. If the number is negative, it returns <code>NaN</code> (Not a Number).</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class SqrtExample {
+        public static void main(String[] args) {
+            System.out.println(Math.sqrt(25)); // Outputs 5.0
+            System.out.println(Math.sqrt(2));  // Outputs 1.414...
+            System.out.println(Math.sqrt(-4)); // Outputs NaN
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Handling Different Inputs</h2>
+    <p>The <code>Math.sqrt()</code> method always returns a <code>double</code>. Special cases include:</p>
+    <ul>
+        <li>If the input is positive, it returns the square root.</li>
+        <li>If the input is zero, it returns zero.</li>
+        <li>If the input is negative, it returns <code>NaN</code>.</li>
+    </ul>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class SqrtTest {
+        public static void main(String[] args) {
+            System.out.println(Math.sqrt(0));   // Outputs 0.0
+            System.out.println(Math.sqrt(16));  // Outputs 4.0
+            System.out.println(Math.sqrt(-9));  // Outputs NaN
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Use Cases of Math.sqrt()</h2>
+    <ul>
+        <li>Solving quadratic equations</li>
+        <li>Finding distances between points</li>
+        <li>Calculating physics and engineering formulas</li>
+        <li>Computing geometric calculations like area and diagonal length</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.sqrt() is a fundamental mathematical function in Java, widely used in scientific, engineering, and gaming applications to compute square roots accurately.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Random`, content:`<div style="font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Math.random() in Java</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math.random()</code> method in Java is used to generate a random number between <code>0.0</code> (inclusive) and <code>1.0</code> (exclusive). It returns a pseudo-random <code>double</code> value each time it is called.
+    </p>
+    
+    <h2 style="color: #2980b9;">What is Math.random()?</h2>
+    <p>The <code>Math.random()</code> method provides a simple way to generate random numbers in Java. The generated number is always greater than or equal to 0.0 and less than 1.0.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RandomExample {
+        public static void main(String[] args) {
+            double randomValue = Math.random();
+            System.out.println("Random Value: " + randomValue);
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Generating Random Numbers in a Range</h2>
+    <p>To generate a random number within a specific range, multiply the output of <code>Math.random()</code> by the range size and add an offset if needed.</p>
+    <pre>
+    <code class="language-java" codeHighlight>
+    public class RandomRange {
+        public static void main(String[] args) {
+            int min = 1;
+            int max = 10;
+            int randomNum = (int) (Math.random() * (max - min + 1)) + min;
+            System.out.println("Random number between 1 and 10: " + randomNum);
+        }
+    }
+    </code>
+    </pre>
+    
+    <h2 style="color: #2980b9;">Use Cases of Math.random()</h2>
+    <ul>
+        <li>Generating random numbers for gaming applications</li>
+        <li>Randomizing test data</li>
+        <li>Simulating dice rolls or coin flips</li>
+        <li>Creating randomized selections in applications</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Math.random() is a useful method for generating random numbers in Java. By scaling and shifting its output, developers can create random values suited for various applications.</p>
+</div>
+`
+},
+{
+    articleTitle: `Math Class`, content:``
+},
  
                  
     ]
