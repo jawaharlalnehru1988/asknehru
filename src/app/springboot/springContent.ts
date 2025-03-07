@@ -38993,7 +38993,757 @@ title:`@PatchMapping`, content:`<div style="font-family: Arial, sans-serif; padd
     Adopting test best practices improves software quality, accelerates development, and minimizes defects. A well-structured testing approach ensures smooth application performance and enhances user satisfaction.
   </p>
 </div>`
+},
+{
+  title:`AOP`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Aspect-Oriented Programming (AOP) in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Aspect-Oriented Programming (AOP) is a programming paradigm that helps modularize cross-cutting concerns such as logging, security, and transaction management. Spring Boot provides AOP support through the <code>spring-aspects</code> module, allowing developers to separate concerns and enhance maintainability. AOP enables declarative method interception, reducing code duplication and improving code organization.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use AOP?</h3>
+  <p style="color: #2c3e50;">
+    AOP allows developers to implement cross-cutting concerns efficiently. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Code Separation</strong>: Keeps business logic clean by handling concerns separately.</li>
+    <li><strong>Reusability</strong>: Avoids repetitive code by centralizing cross-cutting logic.</li>
+    <li><strong>Maintainability</strong>: Improves code readability and maintainability.</li>
+    <li><strong>Performance</strong>: Enhances performance by executing concerns only when necessary.</li>
+    <li><strong>Declarative Programming</strong>: Reduces boilerplate code by using annotations.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of AOP</h3>
+  <p style="color: #2c3e50;">
+    To understand AOP, it's essential to know the following concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Aspect</strong>: A module that encapsulates a cross-cutting concern.</li>
+    <li><strong>Join Point</strong>: A specific point in the execution flow where an aspect can be applied.</li>
+    <li><strong>Advice</strong>: The action taken at a join point, such as logging or security checks.</li>
+    <li><strong>Pointcut</strong>: A set of join points where advice should be applied.</li>
+    <li><strong>Weaving</strong>: The process of linking aspects with target objects.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using AOP in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to implement AOP in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Enable AOP</h4>
+  <p style="color: #2c3e50;">
+    Enable AOP in your Spring Boot application using the <code>@EnableAspectJAutoProxy</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
+      @Configuration
+      @EnableAspectJAutoProxy
+      public class AopConfig {
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Create an Aspect</h4>
+  <p style="color: #2c3e50;">
+    Define an aspect using the <code>@Aspect</code> annotation to intercept method calls.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.aspectj.lang.annotation.Aspect;
+      import org.aspectj.lang.annotation.Before;
+      import org.springframework.stereotype.Component;
+
+      @Aspect
+      @Component
+      public class LoggingAspect {
+
+          @Before("execution(* com.example.service.*.*(..))")
+          public void logBeforeMethodExecution() {
+              System.out.println("Method execution started");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Create a Service</h4>
+  <p style="color: #2c3e50;">
+    Implement a service where the aspect will be applied.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class UserService {
+
+          public void getUser() {
+              System.out.println("Fetching user details");
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using AOP</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use AOP for cross-cutting concerns such as logging, security, and transactions.</li>
+    <li>Define clear pointcuts to apply advice only where necessary.</li>
+    <li>Keep aspects focused and modular to maintain code readability.</li>
+    <li>Combine AOP with Spring Boot features like caching and transactions.</li>
+    <li>Test AOP configurations to ensure expected behavior.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    AOP in Spring Boot is a powerful technique for handling cross-cutting concerns efficiently. By using aspects, advice, and pointcuts, developers can modularize concerns like logging and security without cluttering business logic. Implementing AOP correctly enhances maintainability, readability, and performance, making it an essential tool in enterprise applications.
+  </p>
+</div>
+`
+},
+{
+  title:`Logging`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Logging in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Logging is a fundamental part of any application, allowing developers to track and debug application behavior. Spring Boot provides a comprehensive logging framework with built-in support for various logging libraries like Logback, Log4j2, and Java Util Logging (JUL). Proper logging helps in monitoring, debugging, and maintaining applications effectively.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Logging?</h3>
+  <p style="color: #2c3e50;">
+    Logging is essential for understanding application flow and diagnosing issues. Key reasons to use logging include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Debugging</strong>: Helps in identifying and resolving bugs quickly.</li>
+    <li><strong>Monitoring</strong>: Provides insights into application behavior and performance.</li>
+    <li><strong>Error Tracking</strong>: Captures runtime errors for troubleshooting.</li>
+    <li><strong>Audit and Compliance</strong>: Maintains logs for security and compliance purposes.</li>
+    <li><strong>Performance Analysis</strong>: Helps in analyzing slow responses or failures.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Logging Frameworks in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot supports various logging frameworks, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Logback</strong> (Default logging framework in Spring Boot).</li>
+    <li><strong>Log4j2</strong> (Powerful alternative with additional features).</li>
+    <li><strong>Java Util Logging (JUL)</strong> (Basic logging option for Java applications).</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Configuring Logging in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot uses Logback by default, but you can configure logging in various ways:
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Default Logging Configuration</h4>
+  <p style="color: #2c3e50;">
+    By default, Spring Boot logs messages at the <code>INFO</code> level and outputs them to the console.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.slf4j.Logger;
+      import org.slf4j.LoggerFactory;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class LoggingService {
+          private static final Logger logger = LoggerFactory.getLogger(LoggingService.class);
+
+          public void logMessage() {
+              logger.info("This is an INFO level log message");
+              logger.warn("This is a WARN level log message");
+              logger.error("This is an ERROR level log message");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Custom Logging Configuration</h4>
+  <p style="color: #2c3e50;">
+    You can configure logging levels in the <code>application.properties</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      logging.level.root=INFO
+      logging.level.org.springframework=DEBUG
+      logging.file.name=application.log
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Using Log4j2</h4>
+  <p style="color: #2c3e50;">
+    To use Log4j2, add the dependency and configure a <code>log4j2.xml</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code>
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-log4j2&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Logging</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use appropriate log levels: <code>INFO</code>, <code>DEBUG</code>, <code>WARN</code>, <code>ERROR</code>.</li>
+    <li>Store logs in files for persistence and debugging.</li>
+    <li>Use structured logging for better analysis.</li>
+    <li>Avoid logging sensitive information.</li>
+    <li>Use external monitoring tools like ELK Stack or Splunk.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Logging is an essential aspect of software development, enabling better debugging, monitoring, and maintenance. Spring Boot provides built-in support for multiple logging frameworks, allowing flexible and efficient logging configuration. By following best practices, you can enhance application reliability and troubleshooting capabilities.
+  </p>
+</div>
+`
+},
+{
+  title:`RestTemplate`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to <code>RestTemplate</code> in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    <code>RestTemplate</code> is a synchronous HTTP client provided by Spring Boot that allows applications to communicate with RESTful web services. It simplifies the process of making HTTP requests and handling responses, making it a powerful tool for integrating external APIs.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use <code>RestTemplate</code>?</h3>
+  <p style="color: #2c3e50;">
+    The <code>RestTemplate</code> is widely used in Spring Boot applications for:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Consuming REST APIs</strong>: Enables seamless interaction with external services.</li>
+    <li><strong>Handling Different HTTP Methods</strong>: Supports GET, POST, PUT, DELETE, and more.</li>
+    <li><strong>Automatic Deserialization</strong>: Converts JSON/XML responses into Java objects.</li>
+    <li><strong>Ease of Use</strong>: Reduces boilerplate code for making HTTP calls.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Features of <code>RestTemplate</code></h3>
+  <p style="color: #2c3e50;">
+    Some essential features of <code>RestTemplate</code> include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Exchange Method</strong>: Provides full control over the request.</li>
+    <li><strong>Error Handling</strong>: Throws exceptions for non-2xx HTTP responses.</li>
+    <li><strong>Custom Headers</strong>: Allows setting headers for API requests.</li>
+    <li><strong>Timeout Configuration</strong>: Can be configured for network timeouts.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Using <code>RestTemplate</code> in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use <code>RestTemplate</code> in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Define a <code>RestTemplate</code> Bean</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Bean;
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.web.client.RestTemplate;
+
+      @Configuration
+      public class RestTemplateConfig {
+          @Bean
+          public RestTemplate restTemplate() {
+              return new RestTemplate();
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Making a GET Request</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.beans.factory.annotation.Autowired;
+      import org.springframework.stereotype.Service;
+      import org.springframework.web.client.RestTemplate;
+
+      @Service
+      public class ApiService {
+          @Autowired
+          private RestTemplate restTemplate;
+
+          public String getExternalData() {
+              String url = "https://api.example.com/data";
+              return restTemplate.getForObject(url, String.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Making a POST Request</h4>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.http.ResponseEntity;
+      import org.springframework.stereotype.Service;
+      import org.springframework.web.client.RestTemplate;
+
+      @Service
+      public class ApiService {
+          @Autowired
+          private RestTemplate restTemplate;
+
+          public ResponseEntity<String> createResource(Object request) {
+              String url = "https://api.example.com/resource";
+              return restTemplate.postForEntity(url, request, String.class);
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using <code>RestTemplate</code></h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>RestTemplate</code> within a service layer for better separation of concerns.</li>
+    <li>Handle exceptions properly using <code>try-catch</code> blocks or Spring’s <code>ResponseErrorHandler</code>.</li>
+    <li>Configure timeouts using <code>HttpClient</code> for better resilience.</li>
+    <li>Use Spring WebClient (Reactive) for non-blocking operations.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    <code>RestTemplate</code> is a powerful tool for integrating external REST APIs in Spring Boot applications. By using its various HTTP methods and configurations, developers can build robust, maintainable applications that interact with web services efficiently. However, as <code>RestTemplate</code> is being deprecated in favor of <code>WebClient</code>, consider migrating to a reactive approach when building new applications.
+  </p>
+</div>
+
+`
+},
+{
+  title:`WebSocket`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to WebSocket</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    WebSocket is a communication protocol that provides full-duplex interaction between a client and a server over a single, long-lived connection. Unlike traditional HTTP requests, which require repeated polling to fetch updates, WebSocket enables real-time communication with minimal overhead. This makes it an excellent choice for applications that require instant updates, such as chat apps, online gaming, and financial dashboards.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use WebSocket?</h3>
+  <p style="color: #2c3e50;">
+    WebSocket offers several advantages that make it an ideal choice for real-time applications:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Real-Time Communication</strong>: Enables instant bidirectional data exchange between client and server.</li>
+    <li><strong>Reduced Latency</strong>: Eliminates the need for continuous polling, reducing network traffic.</li>
+    <li><strong>Persistent Connection</strong>: Uses a single connection that remains open, improving efficiency.</li>
+    <li><strong>Scalability</strong>: Supports a large number of concurrent connections with minimal resource consumption.</li>
+    <li><strong>Event-Driven</strong>: Uses an event-based approach, making it easier to handle updates dynamically.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">How WebSocket Works</h3>
+  <p style="color: #2c3e50;">
+    WebSocket follows a simple handshake process and then maintains a persistent connection. The key steps include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Handshake</strong>: Initiated using an HTTP request with an "Upgrade" header to switch to WebSocket.</li>
+    <li><strong>Connection Establishment</strong>: Once accepted, a persistent connection is established between client and server.</li>
+    <li><strong>Message Exchange</strong>: Data can now be sent and received in real time over the connection.</li>
+    <li><strong>Connection Closure</strong>: Either party can close the connection when communication is no longer needed.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing WebSocket in JavaScript</h3>
+  <p style="color: #2c3e50;">
+    Below is a simple example demonstrating how to use WebSocket in JavaScript.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Creating a WebSocket Server</h4>
+  <p style="color: #2c3e50;">
+    First, we create a WebSocket server using Node.js.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-javascript">
+      const WebSocket = require('ws');
+      const server = new WebSocket.Server({ port: 8080 });
+      
+      server.on('connection', (socket) => {
+          console.log('New client connected');
+          socket.on('message', (message) => {
+              console.log(Received: \${message});
+              socket.send('Message received!');
+          });
+      });
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Connecting from a WebSocket Client</h4>
+  <p style="color: #2c3e50;">
+    Next, create a client-side connection in JavaScript.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code class="language-javascript">
+      const socket = new WebSocket('ws://localhost:8080');
+      
+      socket.onopen = () => {
+          console.log('Connected to WebSocket server');
+          socket.send('Hello Server!');
+      };
+      
+      socket.onmessage = (event) => {
+          console.log(Server says \${event.data});
+      };
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using WebSocket</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Always handle WebSocket disconnections gracefully to prevent unexpected crashes.</li>
+    <li>Use message compression to optimize data transmission.</li>
+    <li>Implement authentication and authorization to secure WebSocket connections.</li>
+    <li>Limit the number of concurrent WebSocket connections to avoid server overload.</li>
+    <li>Monitor WebSocket traffic to detect anomalies and potential security threats.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    WebSocket is a powerful protocol for real-time web applications that require instant communication. By maintaining a persistent, full-duplex connection, it significantly reduces network latency and improves responsiveness. Whether you're building a chat application, a live stock market dashboard, or an online multiplayer game, WebSocket provides the efficiency and scalability needed for seamless real-time interactions.
+  </p>
+</div>
+`
+},
+{
+  title:`Scheduler`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Scheduler in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Scheduling tasks is an essential feature in modern applications to automate repetitive tasks such as generating reports, sending emails, or performing maintenance activities. Spring Boot provides a powerful scheduling mechanism using the <code>@Scheduled</code> annotation, allowing developers to define and manage scheduled tasks with ease.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Scheduling?</h3>
+  <p style="color: #2c3e50;">
+    Using a scheduler in Spring Boot helps streamline operations by executing tasks at predefined intervals. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Automation</strong>: Reduces manual effort by scheduling routine tasks.</li>
+    <li><strong>Efficiency</strong>: Ensures timely execution of tasks without human intervention.</li>
+    <li><strong>Improved Performance</strong>: Offloads background processing from the main application logic.</li>
+    <li><strong>Flexibility</strong>: Allows scheduling tasks at fixed rates, with delays, or using cron expressions.</li>
+    <li><strong>Integration</strong>: Works seamlessly with Spring Boot applications.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Concepts of Scheduling</h3>
+  <p style="color: #2c3e50;">
+    When working with scheduling in Spring Boot, it's important to understand these concepts:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>@Scheduled</strong>: The primary annotation used to define scheduled tasks.</li>
+    <li><strong>Fixed Rate</strong>: Executes tasks at a constant rate.</li>
+    <li><strong>Fixed Delay</strong>: Runs a task after a fixed delay following the previous execution.</li>
+    <li><strong>Cron Expressions</strong>: Enables complex scheduling patterns.</li>
+    <li><strong>Thread Pooling</strong>: Helps manage concurrent scheduled tasks effectively.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing a Scheduler in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to use the <code>@Scheduled</code> annotation to automate tasks in a Spring Boot application.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Enable Scheduling</h4>
+  <p style="color: #2c3e50;">
+    Enable scheduling in your Spring Boot application using the <code>@EnableScheduling</code> annotation.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.context.annotation.Configuration;
+      import org.springframework.scheduling.annotation.EnableScheduling;
+
+      @Configuration
+      @EnableScheduling
+      public class SchedulerConfig {
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Define a Scheduled Task</h4>
+  <p style="color: #2c3e50;">
+    Use the <code>@Scheduled</code> annotation to define tasks that execute at a fixed rate or delay.
+  </p>
+
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      import org.springframework.scheduling.annotation.Scheduled;
+      import org.springframework.stereotype.Service;
+
+      @Service
+      public class ScheduledTaskService {
+
+          @Scheduled(fixedRate = 5000)
+          public void executeTaskAtFixedRate() {
+              System.out.println("Executing task at fixed rate: " + System.currentTimeMillis());
+          }
+
+          @Scheduled(fixedDelay = 3000, initialDelay = 1000)
+          public void executeTaskWithFixedDelay() {
+              System.out.println("Executing task with fixed delay: " + System.currentTimeMillis());
+          }
+
+          @Scheduled(cron = "0 0/1 * * * ?")
+          public void executeTaskUsingCronExpression() {
+              System.out.println("Executing cron job every minute: " + System.currentTimeMillis());
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Using Scheduling</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use <code>fixedRate</code> for periodic tasks that should run at regular intervals.</li>
+    <li>Use <code>fixedDelay</code> when a task depends on the completion of the previous task.</li>
+    <li>Use <code>cron</code> expressions for advanced scheduling patterns.</li>
+    <li>Consider using <code>TaskScheduler</code> for more control over scheduling.</li>
+    <li>Monitor and log scheduled tasks to detect failures or performance issues.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    The <code>@Scheduled</code> annotation in Spring Boot provides a simple and effective way to automate repetitive tasks. By defining scheduled methods, you can improve efficiency and ensure timely execution of critical processes. Whether using fixed intervals or complex cron expressions, scheduling enables better task management and system optimization. Following best practices ensures reliability and performance in your scheduled tasks.
+  </p>
+</div>
+`
+},
+{
+  title:`Monitoring`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Monitoring in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Monitoring is a crucial aspect of maintaining and optimizing applications, ensuring they run efficiently and identifying potential issues before they become critical. Spring Boot provides powerful monitoring capabilities through Actuator, Micrometer, and integration with external monitoring tools.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use Monitoring?</h3>
+  <p style="color: #2c3e50;">
+    Effective monitoring helps in understanding system performance and improving application reliability. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Performance Tracking</strong>: Helps measure application response times and resource usage.</li>
+    <li><strong>Error Detection</strong>: Identifies issues such as memory leaks, slow queries, and failed requests.</li>
+    <li><strong>System Health</strong>: Provides real-time insights into application health.</li>
+    <li><strong>Security</strong>: Detects suspicious activity or unauthorized access.</li>
+    <li><strong>Scalability</strong>: Assists in optimizing resources for better performance.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Components of Monitoring</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot offers various tools to help monitor applications effectively:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Spring Boot Actuator</strong>: Provides built-in endpoints for monitoring and managing applications.</li>
+    <li><strong>Micrometer</strong>: A metrics collection framework that integrates with monitoring systems like Prometheus and Grafana.</li>
+    <li><strong>Logging and Tracing</strong>: Helps track errors and performance bottlenecks.</li>
+    <li><strong>Health Checks</strong>: Offers predefined endpoints to check system status.</li>
+    <li><strong>Distributed Tracing</strong>: Monitors requests across microservices.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Implementing Monitoring in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to enable Spring Boot Actuator for monitoring.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Include the following dependencies in your <code>pom.xml</code> file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+          &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+          &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Enable Actuator Endpoints</h4>
+  <p style="color: #2c3e50;">
+    Configure Actuator in <code>application.properties</code> to enable monitoring endpoints.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-properties">
+      management.endpoints.web.exposure.include=* 
+      management.endpoint.health.show-details=always
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Access Monitoring Endpoints</h4>
+  <p style="color: #2c3e50;">
+    Once enabled, you can access endpoints such as:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><code>/actuator/health</code> - Shows application health status.</li>
+    <li><code>/actuator/metrics</code> - Provides performance metrics.</li>
+    <li><code>/act`
+},
+{
+  title:`Deployment`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to Deployment in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    Deployment is a critical phase in software development, ensuring that an application is accessible to users in a stable and efficient manner. Spring Boot simplifies deployment with built-in tools and support for various deployment environments, including cloud, containers, and traditional servers.
+  </p>
+
+  <h3 style="color: #16a085;">Why Deployment Matters?</h3>
+  <p style="color: #2c3e50;">
+    Proper deployment ensures seamless application performance, security, and scalability. Key benefits include:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Reliability</strong>: Ensures application uptime and stability.</li>
+    <li><strong>Scalability</strong>: Enables applications to handle increased traffic.</li>
+    <li><strong>Security</strong>: Protects applications from vulnerabilities.</li>
+    <li><strong>Performance Optimization</strong>: Ensures efficient resource usage.</li>
+    <li><strong>Continuous Integration & Deployment</strong>: Facilitates automated updates.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Key Deployment Strategies</h3>
+  <p style="color: #2c3e50;">
+    Spring Boot supports multiple deployment approaches, including:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Standalone JAR Deployment</strong>: Package the application as an executable JAR with an embedded server.</li>
+    <li><strong>WAR Deployment</strong>: Deploy on external servlet containers like Tomcat, Jetty, or WildFly.</li>
+    <li><strong>Containerization</strong>: Use Docker to package applications for consistent deployment.</li>
+    <li><strong>Cloud Deployment</strong>: Deploy applications on cloud platforms like AWS, Google Cloud, or Azure.</li>
+    <li><strong>Kubernetes & Orchestration</strong>: Manage deployments with Kubernetes for scalability.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example: Deploying a Spring Boot Application</h3>
+  <p style="color: #2c3e50;">
+    Below is an example of how to package and deploy a Spring Boot application as an executable JAR.
+  </p>
+
+  <h4 style="color: #8e44ad;">1. Package the Application</h4>
+  <p style="color: #2c3e50;">
+    Use Maven to build the application into a JAR file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      mvn clean package
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Run the Application</h4>
+  <p style="color: #2c3e50;">
+    Start the application using the generated JAR file.
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      java -jar target/myapp-0.0.1-SNAPSHOT.jar
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Deploy to a Cloud Platform</h4>
+  <p style="color: #2c3e50;">
+    Example of deploying to AWS Elastic Beanstalk:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-bash">
+      eb init -p java my-spring-boot-app
+      eb create my-app-environment
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Best Practices for Deployment</h3>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li>Use CI/CD pipelines for automated deployment.</li>
+    <li>Enable application monitoring and logging.</li>
+    <li>Use environment variables for configuration management.</li>
+    <li>Ensure security best practices like SSL and authentication.</li>
+    <li>Optimize resource allocation for cost-effective scaling.</li>
+  </ul>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    Deployment is a key aspect of delivering stable, secure, and high-performing applications. Spring Boot provides flexible deployment options, including JAR, WAR, containers, and cloud-based solutions. Implementing best practices ensures efficient deployment and seamless user experience.
+  </p>
+</div>`
+},
+{
+  title:`CI/CD`, content:`<div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
+  <h2 style="color: #2c3e50;">Introduction to WebSocket in Spring Boot</h2>
+  <p style="font-size: 16px; color: #34495e;">
+    WebSocket is a full-duplex communication protocol that enables real-time interaction between clients and servers. Unlike HTTP, which follows a request-response model, WebSocket allows bi-directional communication, making it ideal for applications like chat apps, live notifications, and real-time data updates.
+  </p>
+
+  <h3 style="color: #16a085;">Why Use WebSocket?</h3>
+  <p style="color: #2c3e50;">
+    Implementing WebSocket offers several benefits:
+  </p>
+  <ul style="color: #2c3e50; padding-left: 20px;">
+    <li><strong>Real-time Communication</strong>: Enables instant data transfer.</li>
+    <li><strong>Efficient</strong>: Reduces overhead compared to HTTP polling.</li>
+    <li><strong>Bi-directional</strong>: Both client and server can send messages anytime.</li>
+    <li><strong>Scalability</strong>: Supports multiple concurrent connections efficiently.</li>
+  </ul>
+
+  <h3 style="color: #e67e22;">Setting Up WebSocket in Spring Boot</h3>
+  <p style="color: #2c3e50;">
+    To use WebSocket in Spring Boot, follow these steps:
+  </p>
+  
+  <h4 style="color: #8e44ad;">1. Add Dependencies</h4>
+  <p style="color: #2c3e50;">
+    Include the following dependency in your <code>pom.xml</code> file:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-xml">
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-websocket&lt;/artifactId&gt;
+      &lt;/dependency&gt;
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">2. Configure WebSocket</h4>
+  <p style="color: #2c3e50;">
+    Create a WebSocket configuration class:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      @Configuration
+      @EnableWebSocket
+      public class WebSocketConfig implements WebSocketConfigurer {
+          @Override
+          public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+              registry.addHandler(new MyWebSocketHandler(), "/ws").setAllowedOrigins("*");
+          }
+      }
+    </code>
+  </pre>
+
+  <h4 style="color: #8e44ad;">3. Create a WebSocket Handler</h4>
+  <p style="color: #2c3e50;">
+    Implement a handler to process WebSocket messages:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-java">
+      public class MyWebSocketHandler extends TextWebSocketHandler {
+          @Override
+          protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+              session.sendMessage(new TextMessage("Hello, " + message.getPayload() + "!"));
+          }
+      }
+    </code>
+  </pre>
+
+  <h3 style="color: #d35400;">Testing WebSocket</h3>
+  <p style="color: #2c3e50;">
+    Use a WebSocket client like Postman or a simple JavaScript snippet to test:
+  </p>
+  <pre style="background:rgb(1, 16, 20); color: #ecf0f1; padding: 10px; border-radius: 5px; font-size: 14px; overflow-x: auto;">
+    <code codeHighlight class="language-javascript">
+      let ws = new WebSocket("ws://localhost:8080/ws");
+      ws.onmessage = (event) => console.log("Received: " + event.data);
+      ws.onopen = () => ws.send("John");
+    </code>
+  </pre>
+
+  <h3 style="color: #2c3e50;">Conclusion</h3>
+  <p style="color: #2c3e50;">
+    WebSocket is a powerful tool for real-time applications in Spring Boot. By setting up a WebSocket server, handling messages, and testing using WebSocket clients, you can enhance your application with seamless real-time communication.
+  </p>
+</div>
+`
+},
+{
+  title:`CI/CD`, content:``
 }
+
+
      ]
 
 }
