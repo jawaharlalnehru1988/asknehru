@@ -107,10 +107,10 @@ export class Homejson {
             intro: "Hear and learn Softskills"
         },
         {
-            PName: "My Portfolio",
-            PImage: "assets/image/nehruphoto.png",
-            routerLink: "/portfolio",
-            intro: "Check out my portfolio"
+            PName: "React",
+            PImage: "assets/image/react.png",
+            routerLink: "/react",
+            intro: "Master React's core concepts"
         }
 
     ]

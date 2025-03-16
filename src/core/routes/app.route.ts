@@ -67,7 +67,7 @@ export const routes: Routes = [
     path: 'css', loadComponent: () => import('../../app/css-concepts/css-concepts.component').then((m) => m.CssConceptsComponent)
   },
   {
-    path: 'portfolio', loadComponent: () => import('../../app/portfolio/portfolio.component').then((m) => m.PortfolioComponent)
+    path: 'react', loadComponent: () => import('../../app/react/react.component').then((m) => m.ReactComponent)
   },
   {
     path: 'spotify',
