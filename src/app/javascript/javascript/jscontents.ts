@@ -6797,8 +6797,7 @@ console.log(newArray); // Output: [1, 2, 3]</code></pre>
 </div>`
 },
 {
-    articleTitle: `findLastIndex`,
-    content: `<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    articleTitle: `findLastIndex`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
     <h1 style="color: #2c3e50; text-align: center;">The \`findLastIndex()\` Method in JavaScript</h1>
     <p style="font-size: 16px; line-height: 1.6; color: #333;">
         The \`findLastIndex()\` method in JavaScript is used to **find the index of the last element in an array that satisfies a specified condition**. It works similarly to the \`findIndex()\` method but searches the array from the end to the beginning. If no element satisfies the condition, it returns \`-1\`.
@@ -6939,7 +6938,2806 @@ console.log(filteredAndSorted); // Output: [25, 40, 100]</code></pre>
     <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
     <p>The \`toSorted()\` method is a simple and powerful tool for creating a new sorted array without modifying the original array. It is particularly useful for preserving the original data while working with a sorted version. Whether you're working with strings, numbers, or objects, \`toSorted()\` provides a clean and efficient approach to array sorting.</p>
 </div>`
+},
+{
+  articleTitle: `toSpliced`,   content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The toSpliced Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The toSpliced method in JavaScript is used to **create a new array with elements removed or replaced**, leaving the original array unchanged. Unlike the splice method, which modifies the original array, toSpliced returns a new array, making it useful for immutable operations.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Usage of toSpliced</h2>
+    <p>The toSpliced method allows you to remove or replace elements without modifying the original array.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["banana", "apple", "cherry", "mango"];
+let newFruits = fruits.toSpliced(1, 1);
+console.log(newFruits); // Output: ["banana", "cherry", "mango"]
+console.log(fruits); // Output: ["banana", "apple", "cherry", "mango"] (original array remains unchanged)</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Removing Elements</h2>
+    <p>You can remove elements by specifying the starting index and the number of elements to remove.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40, 50];
+let newNumbers = numbers.toSpliced(2, 2);
+console.log(newNumbers); // Output: [10, 20, 50]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Replacing Elements</h2>
+    <p>To replace elements, specify the index, the number of elements to remove, and the new elements.</p>
+    <pre><code class="language-javascript" codeHighlight>let colors = ["red", "blue", "green"];
+let newColors = colors.toSpliced(1, 1, "yellow");
+console.log(newColors); // Output: ["red", "yellow", "green"]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Adding Elements Without Removal</h2>
+    <p>You can insert elements without removing any by setting the delete count to 0.</p>
+    <pre><code class="language-javascript" codeHighlight>let items = ["pen", "notebook", "eraser"];
+let newItems = items.toSpliced(1, 0, "pencil");
+console.log(newItems); // Output: ["pen", "pencil", "notebook", "eraser"]</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Imperative Approach to Achieve toSpliced</h2>
+    <p>Similar functionality can be achieved using array slicing and spreading.</p>
+    <pre><code class="language-javascript" codeHighlight>function toSpliced(array, start, deleteCount, ...items) {
+    return [...array.slice(0, start), ...items, ...array.slice(start + deleteCount)];
 }
 
+let fruits = ["banana", "apple", "cherry", "mango"];
+let newFruits = toSpliced(fruits, 1, 1);
+console.log(newFruits); // Output: ["banana", "cherry", "mango"]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Limitations of toSpliced</h2>
+    <p>While toSpliced is powerful, it has some limitations:
+        <ul>
+            <li>Not supported in older browsers like Internet Explorer.</li>
+            <li>Creates a new array, which may impact performance for very large arrays.</li>
+        </ul>
+    </p>
+    
+    <h2 style="color: #2980b9;">7. Combining toSpliced with Other Methods</h2>
+    <p>You can combine toSpliced with other array methods like map or filter for advanced operations.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40, 50];
+let modifiedNumbers = numbers.filter(num => num !== 30).toSpliced(2, 0, 25);
+console.log(modifiedNumbers); // Output: [10, 20, 25, 40, 50]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The toSpliced method is a powerful alternative to splice that enables non-destructive array modifications. Whether you need to remove, replace, or insert elements, toSpliced provides a clean and immutable approach.</p>
+</div>
+`
+},
+{
+  articleTitle: `toReversed`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">The <code>toReversed()</code> Method in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>toReversed()</code> method in JavaScript creates a **new reversed array** from the elements of an existing array without modifying the original array. Unlike the <code>reverse()</code> method, which alters the original array, <code>toReversed()</code> returns a **new copy** with the elements reversed.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Usage of <code>toReversed()</code></h2>
+    <p>The <code>toReversed()</code> method reverses the elements of an array and returns a new array, keeping the original array unchanged.</p>
+    <pre><code class="language-javascript" codeHighlight>let fruits = ["banana", "apple", "cherry"];
+let reversedFruits = fruits.toReversed();
+console.log(reversedFruits); // Output: ["cherry", "apple", "banana"]
+console.log(fruits); // Output: ["banana", "apple", "cherry"] (original array remains unchanged)</code></pre>
+
+    <h2 style="color: #2980b9;">2. Using <code>toReversed()</code> on Numbers</h2>
+    <p>The method also works with numbers, reversing their order.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [10, 20, 30, 40, 50];
+let reversedNumbers = numbers.toReversed();
+console.log(reversedNumbers); // Output: [50, 40, 30, 20, 10]</code></pre>
+
+    <h2 style="color: #2980b9;">3. Using <code>toReversed()</code> on Strings</h2>
+    <p>Since JavaScript strings are immutable, you can use <code>toReversed()</code> by first converting the string into an array of characters.</p>
+    <pre><code class="language-javascript" codeHighlight>let text = "hello";
+let reversedText = [...text].toReversed().join("");
+console.log(reversedText); // Output: "olleh"</code></pre>
+
+    <h2 style="color: #2980b9;">4. Using <code>toReversed()</code> with Objects</h2>
+    <p>If you have an array of objects, you can reverse their order without modifying the original array.</p>
+    <pre><code class="language-javascript" codeHighlight>let users = [
+    { name: "Alice", age: 25 },
+    { name: "Bob", age: 30 },
+    { name: "Charlie", age: 20 }
 ];
+let reversedUsers = users.toReversed();
+console.log(reversedUsers);
+/*
+Output:
+[
+  { name: "Charlie", age: 20 },
+  { name: "Bob", age: 30 },
+  { name: "Alice", age: 25 }
+]
+*/</code></pre>
+
+    <h2 style="color: #2980b9;">5. Imperative Approach to Achieve <code>toReversed()</code></h2>
+    <p>Before <code>toReversed()</code>, achieving the same effect required creating a copy of the array manually.</p>
+    <pre><code class="language-javascript" codeHighlight>function toReversed(array) {
+    return [...array].reverse();
+}
+
+let fruits = ["banana", "apple", "cherry"];
+let reversedFruits = toReversed(fruits);
+console.log(reversedFruits); // Output: ["cherry", "apple", "banana"]
+console.log(fruits); // Output: ["banana", "apple", "cherry"] (original array remains unchanged)</code></pre>
+
+    <h2 style="color: #2980b9;">6. Limitations of <code>toReversed()</code></h2>
+    <p>While <code>toReversed()</code> is a powerful method, it has some limitations:</p>
+    <ul>
+        <li>Not supported in older browsers (e.g., Internet Explorer).</li>
+        <li>Requires additional memory, as it creates a new array instead of modifying the original.</li>
+    </ul>
+
+    <h2 style="color: #2980b9;">7. Combining <code>toReversed()</code> with Other Methods</h2>
+    <p>It can be combined with methods like <code>map()</code> and <code>filter()</code> for more advanced operations.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4, 5];
+let reversedDoubledNumbers = numbers.toReversed().map(num => num * 2);
+console.log(reversedDoubledNumbers); // Output: [10, 8, 6, 4, 2]</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>toReversed()</code> method is a simple and efficient way to reverse an array without modifying the original. It provides a functional approach to reversing elements, making JavaScript programming cleaner and more maintainable.</p>
+</div>
+`
+},
+{
+  articleTitle: `Creating Objects`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Creating Objects in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, objects are fundamental building blocks that store key-value pairs. They allow you to model real-world entities and organize data efficiently. There are multiple ways to create objects in JavaScript, each with its own use case.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Object Literals</h2>
+    <p>The simplest way to create an object is by using an object literal.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    name: "Alice",
+    age: 25,
+    city: "New York"
+};
+console.log(person.name); // Output: Alice</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using the Object Constructor</h2>
+    <p>You can create objects using the built-in <code>Object</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = new Object();
+person.name = "Alice";
+person.age = 25;
+person.city = "New York";
+console.log(person.city); // Output: New York</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using a Constructor Function</h2>
+    <p>A constructor function allows you to create multiple instances of an object.</p>
+    <pre><code class="language-javascript" codeHighlight>function Person(name, age, city) {
+    this.name = name;
+    this.age = age;
+    this.city = city;
+}
+
+let person1 = new Person("Alice", 25, "New York");
+console.log(person1.age); // Output: 25</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using the Object.create() Method</h2>
+    <p>The <code>Object.create()</code> method allows you to create an object with a specified prototype.</p>
+    <pre><code class="language-javascript" codeHighlight>let prototypeObj = {
+    greet: function() {
+        console.log("Hello!");
+    }
+};
+let newObj = Object.create(prototypeObj);
+newObj.greet(); // Output: Hello!</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Using Classes (ES6+)</h2>
+    <p>JavaScript introduced classes in ES6, which provide a cleaner syntax for creating objects.</p>
+    <pre><code class="language-javascript" codeHighlight>class Person {
+    constructor(name, age, city) {
+        this.name = name;
+        this.age = age;
+        this.city = city;
+    }
+}
+let person2 = new Person("Bob", 30, "Los Angeles");
+console.log(person2.name); // Output: Bob</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using JSON</h2>
+    <p>You can also create objects using JSON syntax, which is commonly used for data exchange.</p>
+    <pre><code class="language-javascript" codeHighlight>let jsonData = '{"name": "Charlie", "age": 28, "city": "Chicago"}';
+let person3 = JSON.parse(jsonData);
+console.log(person3.city); // Output: Chicago</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>There are multiple ways to create objects in JavaScript, each suited for different scenarios. Object literals are the most straightforward, while constructor functions and classes offer better structure for reusable code. Understanding these techniques will help you write efficient and maintainable JavaScript applications.</p>
+</div>
+`
+},
+{
+  articleTitle: `Accessing Properties`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Accessing Properties in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, object properties can be accessed using dot notation or bracket notation. Each method has its use cases depending on the property name and context.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Dot Notation</h2>
+    <p>Dot notation is the most common and readable way to access an object's properties.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "Alice", age: 25 };
+console.log(person.name); // Output: Alice
+console.log(person.age);  // Output: 25</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Bracket Notation</h2>
+    <p>Bracket notation is useful when property names have spaces or are stored as variables.</p>
+    <pre><code class="language-javascript" codeHighlight>let car = { "car brand": "Tesla", model: "Model S" };
+console.log(car["car brand"]); // Output: Tesla</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing Properties with Variables</h2>
+    <p>When property names are dynamic, bracket notation must be used.</p>
+    <pre><code class="language-javascript" codeHighlight>let key = "model";
+console.log(car[key]); // Output: Model S</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Checking if a Property Exists</h2>
+    <p>Use the <code>in</code> operator or <code>hasOwnProperty</code> method to check if a property exists.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log("age" in person); // Output: true
+console.log(person.hasOwnProperty("name")); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Accessing Nested Properties</h2>
+    <p>Objects can contain nested objects, which can be accessed using multiple dot or bracket notations.</p>
+    <pre><code class="language-javascript" codeHighlight>let student = { info: { name: "John", grade: "A" } };
+console.log(student.info.name); // Output: John</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using Optional Chaining</h2>
+    <p>Optional chaining <code>?.</code> prevents errors when accessing deep properties in undefined or null objects.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(student.info?.age); // Output: undefined</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Accessing properties in JavaScript can be done using dot or bracket notation, each with its use cases. Checking property existence and using optional chaining can prevent errors when dealing with nested objects.</p>
+</div>`
+},
+{
+  articleTitle: `Modifying Properties`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Modifying Properties in JavaScript</h1>
+    
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, objects consist of properties that can be added, modified, or deleted dynamically. Understanding how to modify properties is crucial for effective object manipulation in JavaScript.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Adding Properties to an Object</h2>
+    <p>New properties can be added to an object at any time by simply assigning a value to a key.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "Alice", age: 25 };
+
+person.city = "New York";
+console.log(person);
+// Output: { name: "Alice", age: 25, city: "New York" }</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Modifying Existing Properties</h2>
+    <p>Existing properties can be updated by assigning a new value to them.</p>
+    <pre><code class="language-javascript" codeHighlight>let car = { brand: "Toyota", model: "Camry", year: 2020 };
+
+car.year = 2023;
+console.log(car);
+// Output: { brand: "Toyota", model: "Camry", year: 2023 }</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Deleting Properties</h2>
+    <p>Properties can be removed from an object using the <code>delete</code> operator.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { username: "john_doe", password: "12345", role: "admin" };
+
+delete user.password;
+console.log(user);
+// Output: { username: "john_doe", role: "admin" }</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Checking Property Existence</h2>
+    <p>Use the <code>in</code> operator or <code>hasOwnProperty()</code> method to check if a property exists in an object.</p>
+    <pre><code class="language-javascript" codeHighlight>let book = { title: "JavaScript Guide", author: "MDN" };
+
+console.log("title" in book); // true
+console.log(book.hasOwnProperty("author")); // true
+console.log("publisher" in book); // false</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Making Properties Read-Only</h2>
+    <p>Use <code>Object.defineProperty()</code> to make a property read-only, preventing modification.</p>
+    <pre><code class="language-javascript" codeHighlight>let settings = { theme: "dark" };
+
+Object.defineProperty(settings, "theme", { writable: false });
+settings.theme = "light"; // No effect in strict mode
+console.log(settings.theme); // Output: "dark"</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Modifying Property Descriptors</h2>
+    <p>JavaScript allows you to change attributes like writable, enumerable, and configurable using <code>Object.defineProperty()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { name: "David" };
+
+Object.defineProperty(user, "name", { configurable: false });
+delete user.name; // Will not work since configurable is false
+console.log(user.name); // Output: "David"</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Using Object.freeze() and Object.seal()</h2>
+    <p>
+        <ul>
+            <li><code>Object.freeze(obj)</code>: Prevents adding, deleting, or modifying properties.</li>
+            <li><code>Object.seal(obj)</code>: Allows modification of existing properties but prevents adding or deleting.</li>
+        </ul>
+    </p>
+    <pre><code class="language-javascript" codeHighlight>let config = { mode: "production" };
+
+Object.freeze(config);
+config.mode = "development"; // No effect
+console.log(config.mode); // Output: "production"
+
+let settings = { theme: "light" };
+Object.seal(settings);
+delete settings.theme; // Will not work
+settings.theme = "dark"; // Works
+console.log(settings.theme); // Output: "dark"</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>
+        Understanding how to modify properties in JavaScript is essential for effective object manipulation.
+        You can add, update, delete, and control property behavior using various methods like <code>Object.defineProperty()</code>, <code>Object.freeze()</code>, and <code>Object.seal()</code>.
+        Mastering these techniques allows for better data management and security in JavaScript applications.
+    </p>
+</div>
+`
+},
+{
+  articleTitle: `Deleting Properties`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Deleting Properties in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, object properties can be removed dynamically using the <code>delete</code> operator. This is useful when you need to modify objects by removing unwanted properties without affecting other data.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Using the <code>delete</code> Operator</h2>
+    <p>The <code>delete</code> operator is specifically designed to remove properties from an object.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "Alice", age: 25, city: "London" };
+
+delete person.age;
+
+console.log(person);
+// Output:
+// { name: "Alice", city: "London" }</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Deleting Non-Existent Properties</h2>
+    <p>If you attempt to delete a property that does not exist, JavaScript does not throw an error; it simply does nothing.</p>
+    <pre><code class="language-javascript" codeHighlight>let car = { brand: "Tesla", model: "Model 3" };
+
+delete car.year;
+
+console.log(car);
+// Output:
+// { brand: "Tesla", model: "Model 3" }</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Deleting Properties in Nested Objects</h2>
+    <p>To delete a nested property, you need to specify the correct property path.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { name: "John", details: { age: 30, city: "New York" } };
+
+delete user.details.city;
+
+console.log(user);
+// Output:
+// { name: "John", details: { age: 30 } }</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Deleting Array Elements</h2>
+    <p>The <code>delete</code> operator can be used on array elements, but it leaves <code>undefined</code> holes instead of shifting elements.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = [1, 2, 3, 4];
+
+delete numbers[1];
+
+console.log(numbers);
+// Output:
+// [1, empty, 3, 4]</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Checking If a Property Exists After Deletion</h2>
+    <p>After deleting a property, you can check if it still exists using the <code>in</code> operator or <code>hasOwnProperty</code> method.</p>
+    <pre><code class="language-javascript" codeHighlight>let book = { title: "JavaScript Guide", author: "MDN" };
+
+delete book.author;
+
+console.log("author" in book); // Output: false
+console.log(book.hasOwnProperty("author")); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Deleting Properties with <code>Object.freeze()</code> and <code>Object.seal()</code></h2>
+    <p>Properties of an object cannot be deleted if the object is frozen or sealed.</p>
+    <pre><code class="language-javascript" codeHighlight>let data = { key: "value" };
+
+Object.freeze(data);
+delete data.key;
+
+console.log(data);
+// Output:
+// { key: "value" } (property not deleted because object is frozen)</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Deleting properties in JavaScript is straightforward with the <code>delete</code> operator, but its behavior varies depending on whether the property exists, if it's part of a nested object, or if the object is frozen or sealed. While it works for removing object properties, caution should be taken when using it on arrays, as it leaves gaps instead of shifting elements.</p>
+</div>`
+},
+{
+  articleTitle: `Object Methods`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Methods in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, objects can contain functions as properties, which are called <strong>methods</strong>. Object methods allow objects to perform actions and interact with their own data.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Defining Object Methods</h2>
+    <p>Methods are simply functions stored as object properties. They are invoked using the dot notation.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    name: "Alice",
+    greet: function() {
+        console.log("Hello, my name is " + this.name);
+    }
+};
+
+person.greet();
+// Output: Hello, my name is Alice</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Shorthand Method Syntax</h2>
+    <p>ES6 introduced a shorter way to define methods inside objects.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    name: "Alice",
+    greet() {
+        console.log("Hello, my name is " + this.name);
+    }
+};
+
+person.greet();
+// Output: Hello, my name is Alice</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using <code>this</code> in Methods</h2>
+    <p>The <code>this</code> keyword inside a method refers to the object that owns the method.</p>
+    <pre><code class="language-javascript" codeHighlight>let car = {
+    brand: "Toyota",
+    model: "Camry",
+    details() {
+        console.log(\`Car: \${this.brand}, \${this.model}\`);
+    }
+};
+
+car.details();
+// Output: Car: Toyota Camry</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Object Methods: <code>Object.keys()</code>, <code>Object.values()</code>, and <code>Object.entries()</code></h2>
+    <p>JavaScript provides built-in methods for working with object properties.</p>
+    
+    <h3 style="color: #16a085;">4.1 Object.keys()</h3>
+    <p>Returns an array of an object's property names.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { name: "Bob", age: 25, city: "Paris" };
+console.log(Object.keys(user));
+// Output: ["name", "age", "city"]</code></pre>
+    
+    <h3 style="color: #16a085;">4.2 Object.values()</h3>
+    <p>Returns an array of an object's property values.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(Object.values(user));
+// Output: ["Bob", 25, "Paris"]</code></pre>
+    
+    <h3 style="color: #16a085;">4.3 Object.entries()</h3>
+    <p>Returns an array of key-value pairs.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(Object.entries(user));
+// Output: [["name", "Bob"], ["age", 25], ["city", "Paris"]]</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Defining Methods Dynamically</h2>
+    <p>Methods can be added to an object dynamically.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = { species: "Dog" };
+
+animal.speak = function() {
+    console.log("Woof!");
+};
+
+animal.speak();
+// Output: Woof!</code></pre>
+    
+    <h2 style="color: #2980b9;">6. <code>hasOwnProperty()</code> Method</h2>
+    <p>Checks if an object has a particular property.</p>
+    <pre><code class="language-javascript" codeHighlight>let book = { title: "1984", author: "George Orwell" };
+console.log(book.hasOwnProperty("title")); // Output: true
+console.log(book.hasOwnProperty("year")); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Using Methods with <code>call()</code>, <code>apply()</code>, and <code>bind()</code></h2>
+    <p>These methods allow controlling the value of <code>this</code> in functions.</p>
+    
+    <h3 style="color: #16a085;">7.1 call()</h3>
+    <p>Invokes a function with a specified <code>this</code> value.</p>
+    <pre><code class="language-javascript" codeHighlight>function introduce() 
+    console.log(\`Hello, I'm \${this.name}\`);
+
+
+let user1 = {name: "Alice"};
+introduce.call(user1);
+// Output: Hello, I'm Alice</code></pre>
+    
+    <h3 style="color: #16a085;">7.2 apply()</h3>
+    <p>Works like <code>call()</code> but takes arguments as an array.</p>
+    <pre><code class="language-javascript" codeHighlight>function greet(greeting) 
+    console.log(\`\${greeting}, I'm \${this.name}\`);
+
+
+greet.apply(user1, ["Hi"]);
+// Output: Hi, I'm Alice</code></pre>
+    
+    <h3 style="color: #16a085;">7.3 bind()</h3>
+    <p>Creates a new function with a bound <code>this</code> value.</p>
+    <pre><code class="language-javascript" codeHighlight>let boundGreet = greet.bind(user1, "Hello");
+boundGreet();
+// Output: Hello, I'm Alice</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Object methods are essential for making objects functional. Understanding <code>this</code>, shorthand syntax, built-in methods, and method binding helps in writing cleaner and more efficient JavaScript code.</p>
+</div>`
+
+},
+{
+  articleTitle: `Object Destructuring`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Destructuring in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Object destructuring is a powerful feature in JavaScript that allows extracting properties from objects and assigning them to variables in a concise and readable way.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Object Destructuring</h2>
+    <p>Using destructuring, we can extract values from objects easily.</p>
+    <pre><code class="language-javascript" codeHighlight>const person = { name: "Alice", age: 25, city: "New York" };
+const { name, age, city } = person;
+
+console.log(name); // Output: Alice
+console.log(age);  // Output: 25
+console.log(city); // Output: New York</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Default Values</h2>
+    <p>Default values can be assigned if the property is missing.</p>
+    <pre><code class="language-javascript" codeHighlight>const user = { username: "JohnDoe" };
+const { username, email = "Not provided" } = user;
+
+console.log(username); // Output: JohnDoe
+console.log(email);    // Output: Not provided</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Renaming Variables</h2>
+    <p>We can rename variables while destructuring.</p>
+    <pre><code class="language-javascript" codeHighlight>const student = { firstName: "Mike", lastName: "Smith" };
+const { firstName: fName, lastName: lName } = student;
+
+console.log(fName); // Output: Mike
+console.log(lName); // Output: Smith</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Nested Object Destructuring</h2>
+    <p>Destructuring can be used to extract nested object properties.</p>
+    <pre><code class="language-javascript" codeHighlight>const employee = { 
+    id: 101, 
+    details: { dept: "HR", location: "London" } 
+};
+const { id, details: { dept, location } } = employee;
+
+console.log(id);      // Output: 101
+console.log(dept);    // Output: HR
+console.log(location);// Output: London</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Destructuring in Function Parameters</h2>
+    <p>Function parameters can use destructuring directly.</p>
+    <pre><code class="language-javascript" codeHighlight>function displayUser({ name, age }) {
+    console.log(\`Name: \${name}, Age: \${age}\`);
+}
+const userInfo = { name: "David", age: 30 };
+displayUser(userInfo);
+// Output: Name: David, Age: 30</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Rest Operator in Destructuring</h2>
+    <p>The rest operator allows capturing remaining properties.</p>
+    <pre><code class="language-javascript" codeHighlight>const car = { brand: "Tesla", model: "Model 3", year: 2022, color: "Red" };
+const { brand, model, ...others } = car;
+
+console.log(brand);  // Output: Tesla
+console.log(model);  // Output: Model 3
+console.log(others); // Output: { year: 2022, color: "Red" }</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Object destructuring simplifies the process of extracting values from objects, making JavaScript code cleaner and more readable. It is a crucial feature for modern JavaScript development.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Spread Operator`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Spread Operator in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <strong>spread operator</strong> (<code>...</code>) in JavaScript is a powerful feature introduced in ES6 that allows us to expand elements of an iterable (like an array or object) into individual elements. It is widely used for copying objects, merging objects, and modifying object properties in an immutable way.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Basic Syntax of Object Spread Operator</h2>
+    <p>The object spread operator allows us to copy all properties from one object to another.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { name: "Alice", age: 25 };
+let clonedUser = { ...user };
+
+console.log(clonedUser);
+// Output: { name: "Alice", age: 25 }</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Merging Objects</h2>
+    <p>We can use the spread operator to merge two or more objects.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { name: "Alice" };
+let details = { age: 25, city: "Paris" };
+
+let mergedUser = { ...user, ...details };
+console.log(mergedUser);
+// Output: { name: "Alice", age: 25, city: "Paris" }</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Overriding Properties</h2>
+    <p>If the same property exists in multiple objects, the last one will override the previous ones.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "Alice", age: 30 };
+let updatedPerson = { ...person, age: 35 };
+
+console.log(updatedPerson);
+// Output: { name: "Alice", age: 35 }</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Adding New Properties</h2>
+    <p>We can add new properties while copying an object.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { name: "Alice", age: 25 };
+let userWithEmail = { ...user, email: "alice@example.com" };
+
+console.log(userWithEmail);
+// Output: { name: "Alice", age: 25, email: "alice@example.com" }</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Removing a Property</h2>
+    <p>To remove a property, we can use the spread operator along with destructuring.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { name: "Alice", age: 25, city: "Paris" };
+let { city, ...userWithoutCity } = user;
+
+console.log(userWithoutCity);
+// Output: { name: "Alice", age: 25 }</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Nested Objects</h2>
+    <p>While copying objects, the spread operator performs a <strong>shallow copy</strong>. It does not deeply copy nested objects.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "Alice", address: { city: "Paris", zip: "75000" } };
+let copiedPerson = { ...person };
+
+copiedPerson.address.city = "London";
+console.log(person.address.city);
+// Output: "London" (because it's a shallow copy)</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Spread Operator vs Object.assign()</h2>
+    <p>The spread operator is a modern alternative to <code>Object.assign()</code> for copying and merging objects.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj1 = { a: 1, b: 2 };
+let obj2 = { b: 3, c: 4 };
+
+// Using Object.assign()
+let merged1 = Object.assign({}, obj1, obj2);
+console.log(merged1); // Output: { a: 1, b: 3, c: 4 }
+
+// Using spread operator
+let merged2 = { ...obj1, ...obj2 };
+console.log(merged2); // Output: { a: 1, b: 3, c: 4 }</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The object spread operator provides a clean and efficient way to work with objects in JavaScript. It simplifies cloning, merging, modifying, and destructuring objects while making the code more readable and maintainable.</p>
+</div>
+`
+},
+{
+  articleTitle:`Object Rest Operator`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Rest Operator in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <strong>Object Rest Operator</strong> is a powerful feature in JavaScript introduced with ES6. It allows you to extract and collect the remaining properties of an object into a new variable. This operator is useful for object destructuring and working with dynamic data structures.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Understanding the Rest Operator</h2>
+    <p>The rest operator is represented by three dots (<code>...</code>) and is used to gather the remaining properties of an object after specific ones have been extracted.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    name: "Alice",
+    age: 30,
+    city: "New York",
+    country: "USA"
+};
+
+let { name, ...rest } = person;
+console.log(name); // Output: Alice
+console.log(rest); // Output: { age: 30, city: "New York", country: "USA" }</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using Object Rest in Function Parameters</h2>
+    <p>The rest operator is useful when passing objects as function arguments while keeping flexibility in handling additional properties.</p>
+    <pre><code class="language-javascript" codeHighlight>function displayDetails({ name, ...info }) {
+    console.log("Name:", name);
+    console.log("Other Info:", info);
+}
+
+displayDetails({ name: "Bob", age: 28, profession: "Engineer" });
+// Output:
+// Name: Bob
+// Other Info: { age: 28, profession: "Engineer" }</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Filtering Out Specific Properties</h2>
+    <p>You can use the rest operator to remove specific properties from an object while keeping the remaining ones.</p>
+    <pre><code class="language-javascript" codeHighlight>let car = {
+    brand: "Toyota",
+    model: "Camry",
+    year: 2022,
+    color: "Blue"
+};
+
+let { color, ...carDetails } = car;
+console.log(carDetails); 
+// Output: { brand: "Toyota", model: "Camry", year: 2022 }</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Cloning Objects with the Rest Operator</h2>
+    <p>The rest operator can be combined with the spread operator to create a copy of an object while modifying or excluding properties.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = { id: 1, username: "john_doe", password: "1234" };
+
+let { password, ...safeUser } = user;
+console.log(safeUser);
+// Output: { id: 1, username: "john_doe" } (password excluded)</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Rest Operator vs Spread Operator</h2>
+    <p>The <strong>rest operator</strong> gathers properties into an object, while the <strong>spread operator</strong> expands properties from an object.</p>
+    <pre><code class="language-javascript" codeHighlight>// Rest operator example
+let { firstName, ...details } = { firstName: "Eve", age: 25, city: "LA" };
+console.log(details); // Output: { age: 25, city: "LA" }
+
+// Spread operator example
+let newDetails = { ...details, country: "USA" };
+console.log(newDetails); // Output: { age: 25, city: "LA", country: "USA" }</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The Object Rest Operator is a convenient way to extract and manage object properties efficiently. It simplifies destructuring, filtering, and working with dynamic objects in JavaScript.</p>
+</div>
+`
+},
+{
+  articleTitle:`Object Computed Properties`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Computed Properties in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Computed properties in JavaScript allow you to dynamically define property names in objects. This feature is particularly useful when you need to create property names based on variables or expressions. Computed properties are enclosed in square brackets <code>[]</code> within the object literal.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Computed Property</h2>
+    <p>Computed properties enable you to use an expression as the property name in an object. The expression inside the square brackets is evaluated, and the result is used as the property name.</p>
+    <pre><code class="language-javascript" codeHighlight>let propName = "age";
+let person = {
+    name: "John",
+    [propName]: 30 // Computed property
+};
+
+console.log(person); 
+// Output: { name: "John", age: 30 }</code></pre>
+
+    <h2 style="color: #2980b9;">2. Computed Properties with Dynamic Values</h2>
+    <p>You can use computed properties to dynamically assign values based on conditions or calculations. This makes your code more flexible and concise.</p>
+    <pre><code class="language-javascript" codeHighlight>let dynamicKey = "status";
+let isActive = true;
+
+let user = {
+    name: "Alice",
+    [dynamicKey]: isActive ? "Active" : "Inactive" // Computed property with dynamic value
+};
+
+console.log(user); 
+// Output: { name: "Alice", status: "Active" }</code></pre>
+
+    <h2 style="color: #2980b9;">3. Computed Properties in Nested Objects</h2>
+    <p>Computed properties can also be used in nested objects, allowing you to dynamically define property names at any level of the object structure.</p>
+    <pre><code class="language-javascript" codeHighlight>let key = "address";
+let city = "New York";
+
+let employee = {
+    name: "Jane",
+    [key]: { // Computed property in a nested object
+        city: city
+    }
+};
+
+console.log(employee); 
+// Output: { name: "Jane", address: { city: "New York" } }</code></pre>
+
+    <h2 style="color: #2980b9;">4. Computed Properties with Functions</h2>
+    <p>You can use functions to generate property names dynamically. This is useful when the property name depends on complex logic or external data.</p>
+    <pre><code class="language-javascript" codeHighlight>function getKey() {
+    return "dynamicKey";
+}
+
+let obj = {
+    [getKey()]: "This is a computed property" // Computed property using a function
+};
+
+console.log(obj); 
+// Output: { dynamicKey: "This is a computed property" }</code></pre>
+
+    <h2 style="color: #2980b9;">5. Computed Properties with Template Literals</h2>
+    <p>Template literals can be used inside computed properties to create dynamic property names based on multiple variables or expressions.</p>
+    <pre><code class="language-javascript" codeHighlight>let prefix = "user";
+let id = 123;
+
+let data = {
+    [\`\${prefix}_\${id}\`]: "John Doe" // Computed property with template literal
+};
+
+console.log(data); 
+// Output: { user_123: "John Doe" }</code></pre>
+
+    <h2 style="color: #2980b9;">6. Computed Properties in ES6 Classes</h2>
+    <p>Computed properties can also be used in ES6 classes to dynamically define methods or properties within the class.</p>
+    <pre><code class="language-javascript" codeHighlight>let methodName = "greet";
+
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+
+    [methodName]() { // Computed property as a method
+        console.log \`Hello, \${this.name}!\`);
+    }
+}
+
+let person = new Person("Alice");
+person.greet(); 
+// Output: Hello, Alice!</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Computed properties in JavaScript provide a powerful way to dynamically define property names in objects. They are particularly useful when working with dynamic data, nested objects, or complex logic. By leveraging computed properties, you can write more flexible and maintainable code. Whether you're working with simple objects, nested structures, or ES6 classes, computed properties are an essential tool in modern JavaScript development.</p>
+</div>`
+},
+{
+  articleTitle: `Object Property Shorthand`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Property Shorthand in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Object property shorthand is a feature in JavaScript that allows you to create objects more concisely. When the property name and the variable name are the same, you can omit the value and simply specify the property name. This shorthand syntax makes your code cleaner and easier to read.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Property Shorthand</h2>
+    <p>When the property name and the variable name are identical, you can use the shorthand syntax to define the object property.</p>
+    <pre><code class="language-javascript" codeHighlight>let name = "John";
+let age = 30;
+
+// Without shorthand
+let person = {
+    name: name,
+    age: age
+};
+
+// With shorthand
+let personShorthand = { name, age };
+
+console.log(personShorthand); 
+// Output: { name: "John", age: 30 }</code></pre>
+
+    <h2 style="color: #2980b9;">2. Shorthand in Function Return Values</h2>
+    <p>Object property shorthand is particularly useful when returning objects from functions. It reduces redundancy and improves readability.</p>
+    <pre><code class="language-javascript" codeHighlight>function createUser(name, age) {
+    return { name, age }; // Shorthand syntax
+}
+
+let user = createUser("Alice", 25);
+console.log(user); 
+// Output: { name: "Alice", age: 25 }</code></pre>
+
+    <h2 style="color: #2980b9;">3. Shorthand with Methods</h2>
+    <p>You can also use shorthand syntax when defining methods in an object. This makes the code more concise and easier to understand.</p>
+    <pre><code class="language-javascript" codeHighlight>let name = "John";
+let greet = function() {
+    console.log(\`Hello, \${this.name}!\`);
+};
+
+// Without shorthand
+let person = {
+    name: name,
+    greet: greet
+};
+
+// With shorthand
+let personShorthand = { name, greet };
+
+personShorthand.greet(); 
+// Output: Hello, John!</code></pre>
+
+    <h2 style="color: #2980b9;">4. Combining Shorthand with Computed Properties</h2>
+    <p>Object property shorthand can be combined with computed properties to create dynamic and concise object definitions.</p>
+    <pre><code class="language-javascript" codeHighlight>let key = "status";
+let isActive = true;
+
+let user = {
+    name: "Alice",
+    [key]: isActive ? "Active" : "Inactive" // Computed property with shorthand
+};
+
+console.log(user); 
+// Output: { name: "Alice", status: "Active" }</code></pre>
+
+    <h2 style="color: #2980b9;">5. Shorthand in Destructuring</h2>
+    <p>Object property shorthand is often used in conjunction with destructuring to extract properties from objects concisely.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "John", age: 30 };
+
+// Destructuring with shorthand
+let { name, age } = person;
+
+console.log(name, age); 
+// Output: John 30</code></pre>
+
+    <h2 style="color: #2980b9;">6. Shorthand in ES6 Classes</h2>
+    <p>Object property shorthand can also be used in ES6 classes to define properties more concisely.</p>
+    <pre><code class="language-javascript" codeHighlight>class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        console.log(\`Hello, \${this.name}!\`);
+    }
+}
+
+let person = new Person("Jane", 28);
+person.greet(); 
+// Output: Hello, Jane!</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Object property shorthand is a powerful and concise feature in JavaScript that simplifies object creation. It is particularly useful when the property name and variable name are the same, reducing redundancy and improving code readability. Whether you're defining simple objects, returning values from functions, or working with ES6 classes, object property shorthand is an essential tool for writing clean and efficient JavaScript code.</p>
+</div>`
+},
+{
+  articleTitle: `Object Property Accessors`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Property Accessors in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, object property accessors provide a way to define special methods, called <strong>getters</strong> and <strong>setters</strong>, for accessing and modifying object properties. These allow more control over how values are retrieved and assigned.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Getters and Setters</h2>
+    <p>Getters allow reading property values, and setters allow modifying them. They are defined using the <code>get</code> and <code>set</code> keywords.</p>
+    
+    <h3 style="color: #16a085;">1.1 Defining Getters</h3>
+    <p>A getter method retrieves a property value.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    firstName: "John",
+    lastName: "Doe",
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+};
+
+console.log(person.fullName);
+// Output: John Doe</code></pre>
+
+    <h3 style="color: #16a085;">1.2 Defining Setters</h3>
+    <p>A setter method allows modifying a property.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = {
+    firstName: "Alice",
+    lastName: "Smith",
+    set fullName(name) {
+        let parts = name.split(" ");
+        this.firstName = parts[0];
+        this.lastName = parts[1];
+    }
+};
+
+user.fullName = "Emma Brown";
+console.log(user.firstName); // Output: Emma
+console.log(user.lastName);  // Output: Brown</code></pre>
+
+    <h2 style="color: #2980b9;">2. Getters and Setters with Object.defineProperty()</h2>
+    <p>Another way to define accessors is using <code>Object.defineProperty()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let car = { brand: "Toyota", model: "Camry" };
+
+Object.defineProperty(car, "fullDetails", {
+    get: function() {
+        return this.brand + " " + this.model;
+    },
+    set: function(value) {
+        let parts = value.split(" ");
+        this.brand = parts[0];
+        this.model = parts[1];
+    }
+});
+
+console.log(car.fullDetails); // Output: Toyota Camry
+car.fullDetails = "Honda Civic";
+console.log(car.brand);  // Output: Honda
+console.log(car.model);  // Output: Civic</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Advantages of Property Accessors</h2>
+    <ul style="color: #333; font-size: 16px;">
+        <li>Encapsulation: Allows controlled access to object properties.</li>
+        <li>Validation: Enables validation before setting property values.</li>
+        <li>Computed Properties: Helps generate dynamic values.</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Object property accessors provide an efficient way to manage object properties dynamically. By using getters and setters, you can enhance encapsulation and control data access within objects.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Property Getters`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Property Getters in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Getters in JavaScript are special methods that allow you to define how a property's value is retrieved. They are defined using the <code>get</code> keyword and are particularly useful when you want to compute or dynamically generate a value for a property each time it is accessed. Getters provide a way to encapsulate logic while maintaining the simplicity of accessing a property.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Getter</h2>
+    <p>A getter is defined using the <code>get</code> keyword followed by the property name. When the property is accessed, the getter function is automatically called, and its return value is used as the property's value.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    firstName: "John",
+    lastName: "Doe",
+    get fullName() {
+        return \`\${this.firstName} \${this.lastName}\`;
+    }
+};
+
+console.log(person.fullName); 
+// Output: John Doe</code></pre>
+
+    <h2 style="color: #2980b9;">2. Getters with Computed Values</h2>
+    <p>Getters are often used to compute or derive values dynamically based on other properties of the object. This allows you to keep your data consistent and avoid redundancy.</p>
+    <pre><code class="language-javascript" codeHighlight>let rectangle = {
+    width: 10,
+    height: 5,
+    get area() {
+        return this.width * this.height;
+    }
+};
+
+console.log(rectangle.area); 
+// Output: 50</code></pre>
+
+    <h2 style="color: #2980b9;">3. Getters in Classes</h2>
+    <p>Getters can also be used in ES6 classes to define computed properties. This is useful for encapsulating logic within the class and providing a clean interface for accessing derived values.</p>
+    <pre><code class="language-javascript" codeHighlight>class Circle {
+    constructor(radius) {
+        this.radius = radius;
+    }
+
+    get area() {
+        return Math.PI * this.radius ** 2;
+    }
+}
+
+let circle = new Circle(5);
+console.log(circle.area); 
+// Output: 78.53981633974483</code></pre>
+
+    <h2 style="color: #2980b9;">4. Getters with Private Properties</h2>
+    <p>Getters are often used to expose private or internal properties of an object. This allows you to control access to the data and add validation or computation logic if needed.</p>
+    <pre><code class="language-javascript" codeHighlight>let user = {
+    _password: "secret123", // Private property (conventionally marked with an underscore)
+    get password() {
+        return "****"; // Hide the actual password
+    }
+};
+
+console.log(user.password); 
+// Output: ****</code></pre>
+
+    <h2 style="color: #2980b9;">5. Combining Getters and Setters</h2>
+    <p>Getters are often paired with setters to create fully controlled properties. While the getter retrieves the value, the setter allows you to define how the value is assigned.</p>
+    <pre><code class="language-javascript" codeHighlight>let temperature = {
+    _celsius: 0,
+    get fahrenheit() {
+        return (this._celsius * 9/5) + 32;
+    },
+    set fahrenheit(value) {
+        this._celsius = (value - 32) * 5/9;
+    }
+};
+
+temperature.fahrenheit = 77; // Setter is called
+console.log(temperature.fahrenheit); // Getter is called
+// Output: 77
+console.log(temperature._celsius); 
+// Output: 25</code></pre>
+
+    <h2 style="color: #2980b9;">6. Getters in Object Literals vs. Classes</h2>
+    <p>Getters can be defined in both object literals and classes. The choice depends on your use case. Object literals are great for one-off objects, while classes are better for reusable and structured code.</p>
+    <pre><code class="language-javascript" codeHighlight>// Object Literal
+let car = {
+    brand: "Toyota",
+    get description() {
+        return \`This car is a \${this.brand}\`;
+    }
+};
+
+console.log(car.description); 
+// Output: This car is a Toyota
+
+// Class
+class Car {
+    constructor(brand) {
+        this.brand = brand;
+    }
+
+    get description() {
+        return \`This car is a \${this.brand}\`;
+    }
+}
+
+let myCar = new Car("Honda");
+console.log(myCar.description); 
+// Output: This car is a Honda</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Getters in JavaScript are a powerful feature that allows you to define how a property's value is retrieved. They are particularly useful for computing or deriving values dynamically, encapsulating logic, and controlling access to properties. Whether you're working with object literals or classes, getters provide a clean and efficient way to manage object properties. By combining getters with setters, you can create fully controlled and responsive properties that enhance the flexibility and maintainability of your code.</p>
+</div>`
+},
+{
+  articleTitle: `Object Property Setters`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Property Setters in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, setters allow you to define a function to execute when a property value is set. They provide a way to control how properties are modified and enforce validation rules.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Defining Setters with <code>set</code> Keyword</h2>
+    <p>Setters are defined using the <code>set</code> keyword inside an object.</p>
+    <pre><code class="language-javascript">let user = {
+    firstName: "John",
+    lastName: "Doe",
+    
+    set fullName(name) {
+        let parts = name.split(" ");
+        this.firstName = parts[0];
+        this.lastName = parts[1];
+    }
+};
+
+user.fullName = "Alice Johnson";
+console.log(user.firstName); // Output: Alice
+console.log(user.lastName);  // Output: Johnson</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using Setters with <code>Object.defineProperty()</code></h2>
+    <p>Another way to define setters is by using <code>Object.defineProperty()</code>.</p>
+    <pre><code class="language-javascript">let person = { age: 30 };
+
+Object.defineProperty(person, "setAge", {
+    set: function(value) {
+        if (value < 0) {
+            console.log("Age cannot be negative.");
+        } else {
+            this.age = value;
+        }
+    }
+});
+
+person.setAge = -5; // Output: Age cannot be negative.
+person.setAge = 25;
+console.log(person.age); // Output: 25</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Benefits of Using Setters</h2>
+    <ul>
+        <li>Encapsulation: Helps in controlling how properties are modified.</li>
+        <li>Validation: Prevents invalid values from being assigned.</li>
+        <li>Data Transformation: Automatically modifies values before setting.</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Setters in JavaScript provide an efficient way to manage property assignments while ensuring data integrity. They are useful for validation, transformation, and encapsulation of object properties.</p>
+</div>`
+},
+{
+  articleTitle: `Object Property Descriptors`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Property Descriptors in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Object property descriptors in JavaScript provide a way to define and manage the behavior of object properties. Each property in an object has a descriptor that contains information about its value, writability, enumerability, and configurability. By using property descriptors, you can control how properties behave, such as making them read-only, non-enumerable, or non-configurable.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Understanding Property Descriptors</h2>
+    <p>Every property in an object has a descriptor that can be accessed using the <code>Object.getOwnPropertyDescriptor</code> method. The descriptor contains the following attributes:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong>value</strong>: The value of the property.</li>
+        <li><strong>writable</strong>: Whether the property's value can be changed.</li>
+        <li><strong>enumerable</strong>: Whether the property shows up during enumeration (e.g., in <code>for...in</code> loops).</li>
+        <li><strong>configurable</strong>: Whether the property can be deleted or its attributes modified.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "John" };
+let descriptor = Object.getOwnPropertyDescriptor(person, "name");
+
+console.log(descriptor);
+// Output: { value: "John", writable: true, enumerable: true, configurable: true }</code></pre>
+
+    <h2 style="color: #2980b9;">2. Defining Property Descriptors</h2>
+    <p>You can define or modify property descriptors using the <code>Object.defineProperty</code> method. This allows you to specify the behavior of the property explicitly.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {};
+
+Object.defineProperty(person, "name", {
+    value: "John",
+    writable: false, // Cannot change the value
+    enumerable: true, // Shows up in enumeration
+    configurable: false // Cannot delete or modify attributes
+});
+
+console.log(person.name); // Output: John
+person.name = "Jane"; // Throws an error in strict mode (writable is false)
+console.log(person.name); // Output: John</code></pre>
+
+    <h2 style="color: #2980b9;">3. Non-Enumerable Properties</h2>
+    <p>By setting <code>enumerable</code> to <code>false</code>, you can hide a property from enumeration methods like <code>for...in</code> loops or <code>Object.keys</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "John", age: 30 };
+
+Object.defineProperty(person, "age", {
+    enumerable: false
+});
+
+for (let key in person) {
+    console.log(key); // Output: name (age is not enumerated)
+}
+
+console.log(Object.keys(person)); // Output: ["name"]</code></pre>
+
+    <h2 style="color: #2980b9;">4. Non-Configurable Properties</h2>
+    <p>When a property is marked as non-configurable, its attributes cannot be changed, and the property cannot be deleted.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "John" };
+
+Object.defineProperty(person, "name", {
+    configurable: false
+});
+
+delete person.name; // Fails silently in non-strict mode
+console.log(person.name); // Output: John
+
+Object.defineProperty(person, "name", { writable: false }); // Throws an error</code></pre>
+
+    <h2 style="color: #2980b9;">5. Getters and Setters in Descriptors</h2>
+    <p>Property descriptors can also define getters and setters, allowing you to control how a property is accessed or modified.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    _age: 25
+};
+
+Object.defineProperty(person, "age", {
+    get() {
+        return this._age;
+    },
+    set(value) {
+        if (value > 0) {
+            this._age = value;
+        }
+    },
+    enumerable: true,
+    configurable: true
+});
+
+console.log(person.age); // Output: 25
+person.age = 30;
+console.log(person.age); // Output: 30
+person.age = -5; // Setter ignores invalid value
+console.log(person.age); // Output: 30</code></pre>
+
+    <h2 style="color: #2980b9;">6. Using <code>Object.defineProperties</code></h2>
+    <p>The <code>Object.defineProperties</code> method allows you to define multiple properties and their descriptors at once.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {};
+
+Object.defineProperties(person, {
+    name: {
+        value: "John",
+        writable: true,
+        enumerable: true,
+        configurable: true
+    },
+    age: {
+        value: 30,
+        writable: false,
+        enumerable: false,
+        configurable: false
+    }
+});
+
+console.log(person.name); // Output: John
+console.log(person.age); // Output: 30</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Object property descriptors in JavaScript provide fine-grained control over the behavior of object properties. By using descriptors, you can define properties as read-only, non-enumerable, or non-configurable, and even implement custom getters and setters. This feature is particularly useful for creating robust and secure objects, ensuring that properties behave exactly as intended. Whether you're working with simple objects or complex data structures, property descriptors are an essential tool for advanced JavaScript development.</p>
+</div>`
+},
+{
+  articleTitle: `Object Property Symbols`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Property Symbols in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, <strong>Symbols</strong> are a unique and immutable primitive data type introduced in ES6. They are primarily used as object property keys to avoid naming conflicts and ensure uniqueness.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Creating a Symbol</h2>
+    <p>You can create a Symbol using the <code>Symbol()</code> function.</p>
+    <pre><code class="language-javascript" codeHighlight>let sym1 = Symbol();
+let sym2 = Symbol("description");
+console.log(sym1, sym2);
+// Output: Symbol() Symbol(description)</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using Symbols as Object Keys</h2>
+    <p>Symbols can be used as unique property keys in objects.</p>
+    <pre><code class="language-javascript" codeHighlight>let id = Symbol("id");
+let user = {
+    name: "Alice",
+    [id]: 123
+};
+console.log(user[id]); // Output: 123</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Symbols are Unique</h2>
+    <p>Each Symbol is guaranteed to be unique, even if they have the same description.</p>
+    <pre><code class="language-javascript" codeHighlight>let symA = Symbol("test");
+let symB = Symbol("test");
+console.log(symA === symB); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Global Symbol Registry</h2>
+    <p>Symbols can be shared globally using <code>Symbol.for()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let globalSym1 = Symbol.for("shared");
+let globalSym2 = Symbol.for("shared");
+console.log(globalSym1 === globalSym2); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Retrieving Symbol Properties</h2>
+    <p>Symbol properties are not accessible through <code>Object.keys()</code> or <code>Object.values()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(Object.keys(user)); // Output: ["name"]
+console.log(Object.getOwnPropertySymbols(user)); // Output: [Symbol(id)]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using Well-Known Symbols</h2>
+    <p>JavaScript has built-in symbols like <code>Symbol.iterator</code> and <code>Symbol.toStringTag</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let arr = [1, 2, 3];
+console.log(arr[Symbol.iterator]); // Output: function values() { [native code] }</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Symbols are a powerful feature in JavaScript for creating unique, non-enumerable object properties. They help prevent naming conflicts and enable advanced object behavior.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Prototype`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Prototype in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <strong>prototype</strong> is a fundamental concept in JavaScript that enables inheritance and shared behavior among objects. Every object in JavaScript has a prototype, which is either another object or <code>null</code>. The prototype forms the basis of JavaScript's prototype-based inheritance, allowing objects to inherit properties and methods from their prototype.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What is a Prototype?</h2>
+    <p>In JavaScript, every object has an internal property called <code>[[Prototype]]</code>, which refers to another object. When you try to access a property or method on an object, JavaScript first looks for it on the object itself. If it doesn't find it, it looks up the prototype chain until it finds the property or reaches the end of the chain (where the prototype is <code>null</code>).</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = {
+    sound: "Unknown",
+    makeSound() {
+        console.log(this.sound);
+    }
+};
+
+let dog = Object.create(animal); // dog inherits from animal
+dog.sound = "Woof";
+
+dog.makeSound(); // Output: Woof</code></pre>
+
+    <h2 style="color: #2980b9;">2. The Prototype Chain</h2>
+    <p>The prototype chain is a series of linked prototypes that JavaScript traverses to find properties or methods. If a property is not found on an object, JavaScript looks at its prototype, then the prototype's prototype, and so on, until it finds the property or reaches the end of the chain.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = {
+    sound: "Unknown"
+};
+
+let dog = Object.create(animal);
+dog.sound = "Woof";
+
+let puppy = Object.create(dog);
+
+console.log(puppy.sound); // Output: Woof (inherited from dog)
+console.log(puppy.hasOwnProperty("sound")); // Output: false</code></pre>
+
+    <h2 style="color: #2980b9;">3. The <code>__proto__</code> Property</h2>
+    <p>The <code>__proto__</code> property is a legacy way to access an object's prototype. While it is widely supported, it is recommended to use <code>Object.getPrototypeOf</code> and <code>Object.setPrototypeOf</code> instead.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = { sound: "Unknown" };
+let dog = { sound: "Woof" };
+
+dog.__proto__ = animal; // Set prototype (not recommended)
+console.log(dog.sound); // Output: Woof (own property)
+console.log(dog.hasOwnProperty("sound")); // Output: true</code></pre>
+
+    <h2 style="color: #2980b9;">4. Constructor Functions and Prototypes</h2>
+    <p>Constructor functions in JavaScript have a <code>prototype</code> property, which is used to define shared properties and methods for all instances created by the constructor. When you create an object using a constructor, its prototype is set to the constructor's <code>prototype</code> property.</p>
+    <pre><code class="language-javascript" codeHighlight>function Animal(sound) {
+    this.sound = sound;
+}
+
+Animal.prototype.makeSound = function() {
+    console.log(this.sound);
+};
+
+let dog = new Animal("Woof");
+dog.makeSound(); // Output: Woof</code></pre>
+
+    <h2 style="color: #2980b9;">5. Modifying Prototypes</h2>
+    <p>You can modify an object's prototype dynamically, and all objects that inherit from it will immediately reflect the changes. This is a powerful feature but should be used with caution to avoid unintended side effects.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = { sound: "Unknown" };
+let dog = Object.create(animal);
+
+animal.makeSound = function() {
+    console.log(this.sound);
+};
+
+dog.makeSound(); // Output: Unknown</code></pre>
+
+    <h2 style="color: #2980b9;">6. Prototype vs. <code>__proto__</code></h2>
+    <p>The <code>prototype</code> property is used on constructor functions to define shared behavior for instances, while <code>__proto__</code> is a property of an object that points to its prototype. The two are related but serve different purposes.</p>
+    <pre><code class="language-javascript" codeHighlight>function Animal() {}
+Animal.prototype.sound = "Unknown";
+
+let dog = new Animal();
+console.log(dog.sound); // Output: Unknown
+console.log(dog.__proto__ === Animal.prototype); // Output: true</code></pre>
+
+    <h2 style="color: #2980b9;">7. Prototypal Inheritance in ES6 Classes</h2>
+    <p>ES6 classes provide a syntactic sugar over JavaScript's prototype-based inheritance. Under the hood, classes still use prototypes to share methods and properties.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    constructor(sound) {
+        this.sound = sound;
+    }
+
+    makeSound() {
+        console.log(this.sound);
+    }
+}
+
+class Dog extends Animal {
+    constructor() {
+        super("Woof");
+    }
+}
+
+let dog = new Dog();
+dog.makeSound(); // Output: Woof</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The prototype is a core concept in JavaScript that enables inheritance and shared behavior among objects. By understanding prototypes, you can leverage JavaScript's prototype-based inheritance to create efficient and reusable code. Whether you're working with constructor functions, ES6 classes, or plain objects, prototypes provide a powerful mechanism for defining and sharing behavior across your application.</p>
+</div>`
+},
+{
+  articleTitle: `Object Constructor`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Constructor in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, an <strong>Object Constructor</strong> is a special function used to create multiple objects with similar properties and methods. It provides a template for creating objects dynamically.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Defining an Object Constructor</h2>
+    <p>An object constructor function is defined like a regular function but starts with a capital letter by convention.</p>
+    <pre><code class="language-javascript" codeHighlight>function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.greet = function() {
+        console.log("Hello, my name is " + this.name);
+    };
+}
+
+let person1 = new Person("Alice", 25);
+let person2 = new Person("Bob", 30);
+
+person1.greet(); // Output: Hello, my name is Alice
+person2.greet(); // Output: Hello, my name is Bob</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Adding Methods to the Constructor's Prototype</h2>
+    <p>To improve memory efficiency, methods can be added to the prototype instead of being inside the constructor function.</p>
+    <pre><code class="language-javascript" codeHighlight>Person.prototype.sayAge = function() {
+    console.log("I am " + this.age + " years old.");
+};
+
+person1.sayAge(); // Output: I am 25 years old
+person2.sayAge(); // Output: I am 30 years old</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using the <code>new</code> Keyword</h2>
+    <p>The <code>new</code> keyword creates a new instance of an object, binding <code>this</code> to the new instance.</p>
+    <ul>
+        <li>Creates a blank object.</li>
+        <li>Sets <code>this</code> to the new object.</li>
+        <li>Returns the object automatically.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">4. Checking Object Type</h2>
+    <p>To check if an object is created from a constructor, use the <code>instanceof</code> operator.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(person1 instanceof Person); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Constructor with Default Values</h2>
+    <p>You can set default values by checking if arguments are provided.</p>
+    <pre><code class="language-javascript" codeHighlight>function Car(brand = "Toyota", model = "Camry") {
+    this.brand = brand;
+    this.model = model;
+}
+
+let car1 = new Car();
+let car2 = new Car("Honda", "Civic");
+
+console.log(car1.brand); // Output: Toyota
+console.log(car2.brand); // Output: Honda</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using ES6 Classes as Constructors</h2>
+    <p>ES6 introduced <code>class</code> syntax, which provides a more structured way to define constructors.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    constructor(type, sound) {
+        this.type = type;
+        this.sound = sound;
+    }
+    makeSound() {
+        console.log(this.sound);
+    }
+}
+
+let dog = new Animal("Dog", "Woof");
+dog.makeSound(); // Output: Woof</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Object constructors are a powerful way to create reusable object structures in JavaScript. Understanding how to use constructors and prototypes helps in writing cleaner and more efficient code.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Prototype Inheritance`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Prototype Inheritance in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Prototype inheritance is a key feature of JavaScript that allows objects to inherit properties and methods from other objects. Unlike classical inheritance found in many other programming languages, JavaScript uses a prototype-based model. This means that objects can directly inherit from other objects, creating a dynamic and flexible inheritance mechanism.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Understanding Prototype Inheritance</h2>
+    <p>In JavaScript, every object has a prototype, which is another object that it inherits properties and methods from. When you try to access a property or method on an object, JavaScript first looks for it on the object itself. If it doesn't find it, it looks up the prototype chain until it finds the property or reaches the end of the chain (where the prototype is <code>null</code>).</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = {
+    sound: "Unknown",
+    makeSound() {
+        console.log(this.sound);
+    }
+};
+
+let dog = Object.create(animal); // dog inherits from animal
+dog.sound = "Woof";
+
+dog.makeSound(); // Output: Woof</code></pre>
+
+    <h2 style="color: #2980b9;">2. The Prototype Chain</h2>
+    <p>The prototype chain is a series of linked prototypes that JavaScript traverses to find properties or methods. If a property is not found on an object, JavaScript looks at its prototype, then the prototype's prototype, and so on, until it finds the property or reaches the end of the chain.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = {
+    sound: "Unknown"
+};
+
+let dog = Object.create(animal);
+dog.sound = "Woof";
+
+let puppy = Object.create(dog);
+
+console.log(puppy.sound); // Output: Woof (inherited from dog)
+console.log(puppy.hasOwnProperty("sound")); // Output: false</code></pre>
+
+    <h2 style="color: #2980b9;">3. Constructor Functions and Prototype Inheritance</h2>
+    <p>Constructor functions in JavaScript have a <code>prototype</code> property, which is used to define shared properties and methods for all instances created by the constructor. When you create an object using a constructor, its prototype is set to the constructor's <code>prototype</code> property.</p>
+    <pre><code class="language-javascript" codeHighlight>function Animal(sound) {
+    this.sound = sound;
+}
+
+Animal.prototype.makeSound = function() {
+    console.log(this.sound);
+};
+
+let dog = new Animal("Woof");
+dog.makeSound(); // Output: Woof</code></pre>
+
+    <h2 style="color: #2980b9;">4. Modifying Prototypes Dynamically</h2>
+    <p>You can modify an object's prototype dynamically, and all objects that inherit from it will immediately reflect the changes. This is a powerful feature but should be used with caution to avoid unintended side effects.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = { sound: "Unknown" };
+let dog = Object.create(animal);
+
+animal.makeSound = function() {
+    console.log(this.sound);
+};
+
+dog.makeSound(); // Output: Unknown</code></pre>
+
+    <h2 style="color: #2980b9;">5. Inheriting from Multiple Prototypes</h2>
+    <p>JavaScript does not support multiple inheritance directly, but you can achieve similar behavior by combining properties from multiple prototypes. This can be done using utility functions or libraries.</p>
+    <pre><code class="language-javascript" codeHighlight>let canEat = {
+    eat() {
+        console.log(\`\${this.name} is eating.\`);
+    }
+};
+
+let canSleep = {
+    sleep() {
+        console.log(\`\${this.name} is sleeping.\`);
+    }
+};
+
+function Animal(name) {
+    this.name = name;
+}
+
+Object.assign(Animal.prototype, canEat, canSleep);
+
+let dog = new Animal("Dog");
+dog.eat(); // Output: Dog is eating.
+dog.sleep(); // Output: Dog is sleeping.</code></pre>
+
+    <h2 style="color: #2980b9;">6. ES6 Classes and Prototype Inheritance</h2>
+    <p>ES6 classes provide a syntactic sugar over JavaScript's prototype-based inheritance. Under the hood, classes still use prototypes to share methods and properties.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    constructor(sound) {
+        this.sound = sound;
+    }
+
+    makeSound() {
+        console.log(this.sound);
+    }
+}
+
+class Dog extends Animal {
+    constructor() {
+        super("Woof");
+    }
+}
+
+let dog = new Dog();
+dog.makeSound(); // Output: Woof</code></pre>
+
+    <h2 style="color: #2980b9;">7. The <code>super</code> Keyword</h2>
+    <p>The <code>super</code> keyword is used in ES6 classes to call the constructor or methods of the parent class. This is essential for setting up inheritance in class-based syntax.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        console.log(\`\${this.name} makes a sound.\`);
+    }
+}
+
+class Dog extends Animal {
+    constructor(name) {
+        super(name); // Call the parent class constructor
+    }
+
+    speak() {
+        super.speak(); // Call the parent class method
+        console.log(\`\${this.name} barks.\`);
+    }
+}
+
+let dog = new Dog("Rex");
+dog.speak();
+// Output:
+// Rex makes a sound.
+// Rex barks.</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Prototype inheritance is a powerful and flexible feature in JavaScript that allows objects to inherit properties and methods from other objects. By understanding how the prototype chain works, you can create efficient and reusable code. Whether you're using constructor functions, ES6 classes, or plain objects, prototype inheritance provides a robust mechanism for building complex and dynamic applications.</p>
+</div>`
+},
+{
+  articleTitle: `Object Class`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Class in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Object</code> class in JavaScript is the foundation of all objects in the language. Every object in JavaScript is an instance of the <code>Object</code> class, either directly or indirectly. The <code>Object</code> class provides a set of built-in methods and properties that are inherited by all objects, making it a cornerstone of JavaScript's object-oriented programming model.
+    </p>
+
+    <h2 style="color: #2980b9;">1. The <code>Object</code> Constructor</h2>
+    <p>The <code>Object</code> constructor is used to create new objects. When called with the <code>new</code> keyword, it creates an empty object. When called without <code>new</code>, it performs type conversion.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj1 = new Object(); // Creates an empty object
+let obj2 = Object(); // Also creates an empty object (without new)
+
+console.log(obj1); // Output: {}
+console.log(obj2); // Output: {}</code></pre>
+
+    <h2 style="color: #2980b9;">2. Built-in Methods of the <code>Object</code> Class</h2>
+    <p>The <code>Object</code> class provides several built-in methods that are available to all objects. These methods are used to manipulate and inspect objects.</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong><code>Object.keys()</code></strong>: Returns an array of an object's own enumerable property names.</li>
+        <li><strong><code>Object.values()</code></strong>: Returns an array of an object's own enumerable property values.</li>
+        <li><strong><code>Object.entries()</code></strong>: Returns an array of an object's own enumerable key-value pairs.</li>
+        <li><strong><code>Object.assign()</code></strong>: Copies properties from one or more source objects to a target object.</li>
+        <li><strong><code>Object.freeze()</code></strong>: Prevents modifications to an object (makes it immutable).</li>
+        <li><strong><code>Object.seal()</code></strong>: Prevents new properties from being added to an object but allows modification of existing properties.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "John", age: 30 };
+
+console.log(Object.keys(person)); // Output: ["name", "age"]
+console.log(Object.values(person)); // Output: ["John", 30]
+console.log(Object.entries(person)); // Output: [["name", "John"], ["age", 30]]
+
+let clone = Object.assign({}, person); // Clones the object
+console.log(clone); // Output: { name: "John", age: 30 }</code></pre>
+
+    <h2 style="color: #2980b9;">3. Prototype Methods of the <code>Object</code> Class</h2>
+    <p>The <code>Object</code> class also provides methods that are available on all objects through the prototype chain. These include:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong><code>hasOwnProperty()</code></strong>: Checks if an object has a specific property as its own (not inherited).</li>
+        <li><strong><code>toString()</code></strong>: Returns a string representation of the object.</li>
+        <li><strong><code>valueOf()</code></strong>: Returns the primitive value of the object.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "John", age: 30 };
+
+console.log(person.hasOwnProperty("name")); // Output: true
+console.log(person.toString()); // Output: [object Object]
+console.log(person.valueOf()); // Output: { name: "John", age: 30 }</code></pre>
+
+    <h2 style="color: #2980b9;">4. Creating Objects with <code>Object.create()</code></h2>
+    <p>The <code>Object.create()</code> method allows you to create a new object with a specified prototype. This is useful for implementing prototype-based inheritance.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = {
+    sound: "Unknown",
+    makeSound() {
+        console.log(this.sound);
+    }
+};
+
+let dog = Object.create(animal); // dog inherits from animal
+dog.sound = "Woof";
+
+dog.makeSound(); // Output: Woof</code></pre>
+
+    <h2 style="color: #2980b9;">5. Object Property Descriptors</h2>
+    <p>The <code>Object</code> class provides methods to define and inspect property descriptors, which control the behavior of object properties (e.g., writability, enumerability, configurability).</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {};
+
+Object.defineProperty(person, "name", {
+    value: "John",
+    writable: false, // Cannot change the value
+    enumerable: true, // Shows up in enumeration
+    configurable: false // Cannot delete or modify attributes
+});
+
+console.log(person.name); // Output: John
+person.name = "Jane"; // Throws an error in strict mode
+console.log(person.name); // Output: John</code></pre>
+
+    <h2 style="color: #2980b9;">6. Object Immutability</h2>
+    <p>The <code>Object</code> class provides methods to make objects immutable, preventing modifications to their properties.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "John", age: 30 };
+
+Object.freeze(person); // Makes the object immutable
+person.age = 40; // Fails silently in non-strict mode
+console.log(person.age); // Output: 30
+
+Object.seal(person); // Prevents adding new properties
+person.city = "New York"; // Fails silently in non-strict mode
+console.log(person.city); // Output: undefined</code></pre>
+
+    <h2 style="color: #2980b9;">7. The <code>Object</code> Class in ES6</h2>
+    <p>In ES6, the <code>Object</code> class was extended with additional methods, such as <code>Object.setPrototypeOf</code> and <code>Object.getPrototypeOf</code>, which allow you to dynamically set and retrieve an object's prototype.</p>
+    <pre><code class="language-javascript" codeHighlight>let animal = { sound: "Unknown" };
+let dog = { sound: "Woof" };
+
+Object.setPrototypeOf(dog, animal); // Set prototype
+console.log(Object.getPrototypeOf(dog) === animal); // Output: true</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Object</code> class is the foundation of all objects in JavaScript, providing a rich set of methods and properties for creating, manipulating, and inspecting objects. By leveraging the features of the <code>Object</code> class, you can build robust and flexible applications. Whether you're working with simple objects, prototype-based inheritance, or advanced object manipulation, the <code>Object</code> class is an essential tool in JavaScript development.</p>
+</div>`
+},
+{
+  articleTitle: `Object Static`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Static Methods in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, <strong>static methods</strong> are functions defined on a class itself rather than its instances. They are useful for utility functions that do not need access to instance-specific data.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Defining Static Methods</h2>
+    <p>Static methods are defined using the <code>static</code> keyword inside a class.</p>
+    <pre><code class="language-javascript" codeHighlight>
+class MathUtils {
+    static add(a, b) {
+        return a + b;
+    }
+}
+console.log(MathUtils.add(5, 3)); // Output: 8
+    </code></pre>
+    
+    <h2 style="color: #2980b9;">2. Accessing Static Methods</h2>
+    <p>Static methods are called on the class itself, not on instances.</p>
+    <pre><code class="language-javascript" codeHighlight>
+let mathObj = new MathUtils();
+// mathObj.add(5, 3); // Error: add is not a function
+console.log(MathUtils.add(10, 20)); // Output: 30
+    </code></pre>
+    
+    <h2 style="color: #2980b9;">3. Common Use Cases of Static Methods</h2>
+    <ul>
+        <li>Utility functions (e.g., mathematical operations)</li>
+        <li>Helper methods</li>
+        <li>Factory methods</li>
+    </ul>
+    
+    <h3 style="color: #16a085;">Example: Utility Function</h3>
+    <pre><code class="language-javascript" codeHighlight>
+class Helper {
+    static greet(name) {
+        return \`Hello, \${name}!\`;
+    }
+}
+console.log(Helper.greet("Alice")); // Output: Hello, Alice!
+    </code></pre>
+    
+    <h3 style="color: #16a085;">Example: Factory Method</h3>
+    <p>A factory method creates and returns an object.</p>
+    <pre><code class="language-javascript" codeHighlight>
+class Car {
+    constructor(brand) {
+        this.brand = brand;
+    }
+    static createToyota() {
+        return new Car("Toyota");
+    }
+}
+let myCar = Car.createToyota();
+console.log(myCar.brand); // Output: Toyota
+    </code></pre>
+    
+    <h2 style="color: #2980b9;">4. Inheriting Static Methods</h2>
+    <p>Static methods can be inherited by subclasses.</p>
+    <pre><code class="language-javascript" codeHighlight>
+class Parent {
+    static sayHello() {
+        return "Hello from Parent";
+    }
+}
+class Child extends Parent {}
+console.log(Child.sayHello()); // Output: Hello from Parent
+    </code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Static methods are useful for defining functions that do not require access to instance-specific properties. They improve code organization and reusability in JavaScript classes.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Super`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Super in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>super</code> keyword in JavaScript is used to call methods from a parent class within a subclass. It allows a child class to access properties and methods of its parent class efficiently.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Using <code>super</code> in Class Methods</h2>
+    <p>When a subclass needs to invoke a method from its parent class, <code>super</code> can be used.</p>
+    <pre><code class="language-javascript" codeHighlight>class Parent {
+    greet() {
+        console.log("Hello from Parent class");
+    }
+}
+
+class Child extends Parent {
+    greet() {
+        super.greet(); // Calls the method from Parent class
+        console.log("Hello from Child class");
+    }
+}
+
+let obj = new Child();
+obj.greet();
+// Output:
+// Hello from Parent class
+// Hello from Child class</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using <code>super</code> in Constructors</h2>
+    <p>In a derived class, the <code>super</code> keyword must be called before accessing <code>this</code> to inherit properties from the parent class.</p>
+    <pre><code class="language-javascript" codeHighlight>class Person {
+    constructor(name) {
+        this.name = name;
+    }
+}
+
+class Employee extends Person {
+    constructor(name, role) {
+        super(name); // Calls the constructor of Person
+        this.role = role;
+    }
+}
+
+let emp = new Employee("Alice", "Developer");
+console.log(emp.name); // Output: Alice
+console.log(emp.role); // Output: Developer</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Calling Parent Getters and Setters</h2>
+    <p><code>super</code> can also be used to call getter and setter methods from a parent class.</p>
+    <pre><code class="language-javascript" codeHighlight>class Parent {
+    get info() {
+        return "Data from Parent";
+    }
+}
+
+class Child extends Parent {
+    get info() {
+        return super.info + " and Child";
+    }
+}
+
+let obj = new Child();
+console.log(obj.info); // Output: Data from Parent and Child</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using <code>super</code> in Method Overriding</h2>
+    <p>When a child class overrides a method, <code>super</code> allows it to call the parent method while still adding new behavior.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    speak() {
+        console.log("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        super.speak();
+        console.log("Dog barks");
+    }
+}
+
+let pet = new Dog();
+pet.speak();
+// Output:
+// Animal makes a sound
+// Dog barks</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>super</code> keyword is a powerful tool in JavaScript, enabling subclasses to efficiently access and extend parent class methods and properties. Proper usage of <code>super</code> enhances code reusability and maintainability.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Static Properties`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Static Properties in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Static properties in JavaScript are properties that belong to the class or constructor function itself, rather than to instances of the class. These properties are shared across all instances and are accessed directly on the class or constructor function. Static properties are useful for defining utility methods, constants, or shared data that does not depend on instance-specific state.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What are Static Properties?</h2>
+    <p>Static properties are defined directly on the class or constructor function and are accessed using the class name, not an instance of the class. They are typically used for functionality that is relevant to the class as a whole, rather than to individual instances.</p>
+    <pre><code class="language-javascript" codeHighlight>class MathUtils {
+    static PI = 3.14159; // Static property
+
+    static square(x) { // Static method
+        return x * x;
+    }
+}
+
+console.log(MathUtils.PI); // Output: 3.14159
+console.log(MathUtils.square(5)); // Output: 25</code></pre>
+
+    <h2 style="color: #2980b9;">2. Static Properties in Constructor Functions</h2>
+    <p>In constructor functions, static properties are defined directly on the function object. These properties are shared across all instances created by the constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>function MathUtils() {}
+
+MathUtils.PI = 3.14159; // Static property
+
+MathUtils.square = function(x) { // Static method
+    return x * x;
+};
+
+console.log(MathUtils.PI); // Output: 3.14159
+console.log(MathUtils.square(5)); // Output: 25</code></pre>
+
+    <h2 style="color: #2980b9;">3. Static Properties in ES6 Classes</h2>
+    <p>ES6 classes provide a cleaner syntax for defining static properties and methods using the <code>static</code> keyword. Static properties are accessed directly on the class, not on instances.</p>
+    <pre><code class="language-javascript" codeHighlight>class Counter {
+    static count = 0; // Static property
+
+    static increment() { // Static method
+        Counter.count++;
+    }
+}
+
+Counter.increment();
+Counter.increment();
+console.log(Counter.count); // Output: 2</code></pre>
+
+    <h2 style="color: #2980b9;">4. Use Cases for Static Properties</h2>
+    <p>Static properties are commonly used for:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong>Utility Methods</strong>: Functions that perform generic tasks and do not depend on instance-specific data.</li>
+        <li><strong>Constants</strong>: Values that remain the same across all instances of the class.</li>
+        <li><strong>Shared Data</strong>: Data that needs to be shared or tracked across all instances.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>class Config {
+    static API_URL = "https://api.example.com"; // Static constant
+
+    static getEndpoint(endpoint) { // Static utility method
+        return \`\${Config.API_URL}/\${endpoint}\`;
+    }
+}
+
+console.log(Config.getEndpoint("users")); // Output: https://api.example.com/users</code></pre>
+
+    <h2 style="color: #2980b9;">5. Static Properties and Inheritance</h2>
+    <p>Static properties are inherited by subclasses. However, they are still accessed directly on the subclass, not on instances of the subclass.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    static type = "Animal"; // Static property
+}
+
+class Dog extends Animal {}
+
+console.log(Dog.type); // Output: Animal (inherited from Animal)</code></pre>
+
+    <h2 style="color: #2980b9;">6. Static Properties in Modules</h2>
+    <p>Static properties are often used in modules to define constants or utility functions that are shared across the application.</p>
+    <pre><code class="language-javascript" codeHighlight>// mathUtils.js
+export class MathUtils {
+    static PI = 3.14159;
+
+    static square(x) {
+        return x * x;
+    }
+}
+
+// main.js
+import { MathUtils } from "./mathUtils.js";
+
+console.log(MathUtils.PI); // Output: 3.14159
+console.log(MathUtils.square(5)); // Output: 25</code></pre>
+
+    <h2 style="color: #2980b9;">7. Limitations of Static Properties</h2>
+    <p>Static properties are not accessible on instances of the class. Attempting to access them on an instance will result in <code>undefined</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>class MathUtils {
+    static PI = 3.14159;
+}
+
+let utils = new MathUtils();
+console.log(utils.PI); // Output: undefined</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Static properties in JavaScript are a powerful feature for defining properties and methods that belong to the class or constructor function itself, rather than to instances. They are useful for defining utility methods, constants, and shared data that are relevant to the class as a whole. By leveraging static properties, you can write cleaner and more organized code, especially when working with utility classes, constants, or shared functionality.</p>
+</div>`
+},
+{
+  articleTitle: `Object Static Methods`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Static Methods in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, <strong>static methods</strong> are functions that belong to a class but are not accessible through instances of the class. These methods are defined using the <code>static</code> keyword and are called directly on the class itself.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Defining Static Methods</h2>
+    <p>Static methods are declared inside a class using the <code>static</code> keyword.</p>
+    <pre><code class="language-javascript">class MathUtils {
+    static add(a, b) {
+        return a + b;
+    }
+}
+
+console.log(MathUtils.add(5, 3));
+// Output: 8</code></pre>
+
+    <h2 style="color: #2980b9;">2. Calling Static Methods</h2>
+    <p>Static methods are called on the class itself, not on instances.</p>
+    <pre><code class="language-javascript">let math = new MathUtils();
+// math.add(5, 3); // This will throw an error because static methods are not accessible via instances</code></pre>
+
+    <h2 style="color: #2980b9;">3. Use Cases of Static Methods</h2>
+    <ul>
+        <li>Utility functions (e.g., mathematical operations)</li>
+        <li>Helper functions (e.g., formatting data)</li>
+        <li>Factory methods (e.g., creating objects in a standardized way)</li>
+    </ul>
+
+    <h2 style="color: #2980b9;">4. Example: Utility Functions</h2>
+    <p>Static methods can be used to perform operations without creating class instances.</p>
+    <pre><code class="language-javascript">class Formatter {
+    static capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+}
+
+console.log(Formatter.capitalize("hello"));
+// Output: Hello</code></pre>
+
+    <h2 style="color: #2980b9;">5. Example: Factory Method</h2>
+    <p>Static methods can be used to create instances with predefined properties.</p>
+    <pre><code class="language-javascript">class Car {
+    constructor(brand, model) {
+        this.brand = brand;
+        this.model = model;
+    }
+    static createTesla(model) {
+        return new Car("Tesla", model);
+    }
+}
+
+let myCar = Car.createTesla("Model S");
+console.log(myCar);
+// Output: Car { brand: 'Tesla', model: 'Model S' }</code></pre>
+
+    <h2 style="color: #2980b9;">6. Static Methods and Inheritance</h2>
+    <p>Static methods are inherited by subclasses and can be overridden.</p>
+    <pre><code class="language-javascript">class Parent {
+    static greet() {
+        console.log("Hello from Parent");
+    }
+}
+
+class Child extends Parent {}
+
+Child.greet();
+// Output: Hello from Parent</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Static methods provide a way to create utility functions that operate at the class level, making them useful for mathematical operations, helper functions, and factory methods.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Private Properties`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Private Properties in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, **private properties** are used to encapsulate object data, restricting direct access from outside the object. This is useful for maintaining data integrity and enforcing controlled access.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Using the <code>#</code> Symbol for Private Properties</h2>
+    <p>ES6 introduced the \`#\` symbol to define private properties inside a class.</p>
+    <pre><code class="language-javascript" codeHighlight>
+class Person {
+    #name;
+    constructor(name) {
+        this.#name = name;
+    }
+    getName() {
+        return this.#name;
+    }
+}
+
+let person = new Person("Alice");
+console.log(person.getName()); // Output: Alice
+console.log(person.#name); // Error: Private field '#name' must be declared in an enclosing class
+    </code></pre>
+    
+    <h2 style="color: #2980b9;">2. Benefits of Private Properties</h2>
+    <p>Private properties provide better encapsulation and security for object data.</p>
+    <ul>
+        <li>Prevents accidental modification of sensitive data.</li>
+        <li>Encourages controlled access through getter and setter methods.</li>
+        <li>Avoids naming conflicts in large codebases.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">3. Private Methods in JavaScript</h2>
+    <p>Similar to properties, private methods can be defined using \`#\`.</p>
+    <pre><code class="language-javascript" codeHighlight>
+class BankAccount {
+    #balance = 0;
+    
+    #calculateInterest() {
+        return this.#balance * 0.05;
+    }
+    
+    deposit(amount) {
+        this.#balance += amount;
+    }
+    
+    getBalance() {
+        return this.#balance + this.#calculateInterest();
+    }
+}
+
+let account = new BankAccount();
+account.deposit(1000);
+console.log(account.getBalance()); // Output: 1050
+console.log(account.#calculateInterest()); // Error: Private method '#calculateInterest' is not accessible
+    </code></pre>
+    
+    <h2 style="color: #2980b9;">4. Workarounds for Private Properties Before ES6</h2>
+    <p>Before private properties were introduced, developers used closures or WeakMaps.</p>
+    
+    <h3 style="color: #16a085;">4.1 Using Closures</h3>
+    <pre><code class="language-javascript" codeHighlight>
+function Person(name) {
+    let _name = name; // Private variable
+    
+    this.getName = function() {
+        return _name;
+    };
+}
+
+let user = new Person("Bob");
+console.log(user.getName()); // Output: Bob
+console.log(user._name); // Undefined (not accessible directly)
+    </code></pre>
+    
+    <h3 style="color: #16a085;">4.2 Using WeakMaps</h3>
+    <pre><code class="language-javascript" codeHighlight>
+const privateData = new WeakMap();
+
+class Employee {
+    constructor(name) {
+        privateData.set(this, { name });
+    }
+    getName() {
+        return privateData.get(this).name;
+    }
+}
+
+let emp = new Employee("John");
+console.log(emp.getName()); // Output: John
+console.log(privateData.get(emp)); // Accessible only inside the class
+    </code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Private properties help in writing secure and maintainable JavaScript code. The modern approach using the \`#\` symbol is preferred, but older techniques like closures and WeakMaps can still be useful in certain cases.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Private Methods`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Private Methods in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Private methods in JavaScript are methods that are only accessible within the class or object where they are defined. They are not accessible from outside the class, making them useful for encapsulating implementation details and ensuring that certain functionality is not exposed or modified externally. Private methods help improve code maintainability and reduce the risk of unintended side effects.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What are Private Methods?</h2>
+    <p>Private methods are methods that can only be called from within the class or object where they are defined. They are not accessible from outside the class, making them ideal for encapsulating internal logic or helper functions that should not be exposed to the outside world.</p>
+    <pre><code class="language-javascript" codeHighlight>class Counter {
+    #count = 0; // Private field
+
+    #increment() { // Private method
+        this.#count++;
+    }
+
+    incrementBy(value) {
+        for (let i = 0; i < value; i++) {
+            this.#increment(); // Calling private method
+        }
+    }
+
+    getCount() {
+        return this.#count;
+    }
+}
+
+let counter = new Counter();
+counter.incrementBy(3);
+console.log(counter.getCount()); // Output: 3
+console.log(counter.#increment); // Error: Private method is not accessible</code></pre>
+
+    <h2 style="color: #2980b9;">2. Private Methods in ES6 Classes</h2>
+    <p>In ES6 classes, private methods are defined using the <code>#</code> prefix. This syntax ensures that the method is only accessible within the class and cannot be called or modified from outside.</p>
+    <pre><code class="language-javascript" codeHighlight>class BankAccount {
+    #balance = 0; // Private field
+
+    #validateAmount(amount) { // Private method
+        if (amount <= 0) {
+            throw new Error("Amount must be positive");
+        }
+    }
+
+    deposit(amount) {
+        this.#validateAmount(amount); // Calling private method
+        this.#balance += amount;
+    }
+
+    getBalance() {
+        return this.#balance;
+    }
+}
+
+let account = new BankAccount();
+account.deposit(100);
+console.log(account.getBalance()); // Output: 100
+console.log(account.#validateAmount); // Error: Private method is not accessible</code></pre>
+
+    <h2 style="color: #2980b9;">3. Private Methods in Constructor Functions</h2>
+    <p>In constructor functions, private methods can be implemented using closures. By defining a function inside the constructor, you can create a private scope that is inaccessible from outside the function.</p>
+    <pre><code class="language-javascript" codeHighlight>function Counter() {
+    let count = 0; // Private variable
+
+    function increment() { // Private method
+        count++;
+    }
+
+    this.incrementBy = function(value) {
+        for (let i = 0; i < value; i++) {
+            increment(); // Calling private method
+        }
+    };
+
+    this.getCount = function() {
+        return count;
+    };
+}
+
+let counter = new Counter();
+counter.incrementBy(3);
+console.log(counter.getCount()); // Output: 3
+console.log(counter.increment); // Output: undefined (private method is not accessible)</code></pre>
+
+    <h2 style="color: #2980b9;">4. Use Cases for Private Methods</h2>
+    <p>Private methods are commonly used for:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong>Encapsulation</strong>: Hiding internal implementation details from external code.</li>
+        <li><strong>Validation</strong>: Performing internal validation or checks before modifying state.</li>
+        <li><strong>Helper Functions</strong>: Defining utility functions that are only relevant within the class.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>class User {
+    #password; // Private field
+
+    constructor(username, password) {
+        this.username = username;
+        this.#password = password;
+    }
+
+    #validatePassword(password) { // Private method
+        return password.length >= 8;
+    }
+
+    setPassword(newPassword) {
+        if (this.#validatePassword(newPassword)) {
+            this.#password = newPassword;
+        } else {
+            throw new Error("Password must be at least 8 characters long");
+        }
+    }
+}
+
+let user = new User("john_doe", "oldPassword");
+user.setPassword("newPassword");
+console.log(user.#validatePassword); // Error: Private method is not accessible</code></pre>
+
+    <h2 style="color: #2980b9;">5. Private Methods and Inheritance</h2>
+    <p>Private methods are not inherited by subclasses. They are only accessible within the class where they are defined. This ensures that the encapsulation of private methods is maintained even in inheritance hierarchies.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    #sound = "Unknown"; // Private field
+
+    #makeSound() { // Private method
+        console.log(this.#sound);
+    }
+
+    speak() {
+        this.#makeSound(); // Calling private method
+    }
+}
+
+class Dog extends Animal {
+    constructor() {
+        super();
+        this.#sound = "Woof"; // Error: Private field is not accessible
+    }
+}
+
+let dog = new Dog();
+dog.speak(); // Output: Unknown (private method is not overridden)</code></pre>
+
+    <h2 style="color: #2980b9;">6. Limitations of Private Methods</h2>
+    <p>Private methods are not accessible outside the class, which can make testing or debugging more challenging. Additionally, they are not supported in older JavaScript environments, so you may need to use alternative approaches (e.g., closures) for compatibility.</p>
+    <pre><code class="language-javascript" codeHighlight>class Example {
+    #privateMethod() {
+        console.log("This is private");
+    }
+
+    callPrivateMethod() {
+        this.#privateMethod(); // Accessible within the class
+    }
+}
+
+let example = new Example();
+example.callPrivateMethod(); // Output: This is private
+console.log(example.#privateMethod); // Error: Private method is not accessible</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Private methods in JavaScript are a powerful tool for encapsulating internal logic and ensuring that certain functionality is not exposed or modified externally. By using private methods, you can improve the maintainability and robustness of your code. Whether you're working with ES6 classes or constructor functions, private methods provide a way to hide implementation details and enforce encapsulation, making your code more secure and easier to manage.</p>
+</div>`
+},
+{
+  articleTitle: `Object Public Properties`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Public Properties in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, public properties are properties that can be accessed and modified from outside the object. 
+        They are commonly used in object-oriented programming to store and retrieve data within an object.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Defining Public Properties</h2>
+    <p>Public properties are created by assigning values directly to an object.</p>
+    <pre><code class="language-javascript" codeHighlight>class Person {
+    constructor(name, age) {
+        this.name = name; // Public property
+        this.age = age;   // Public property
+    }
+}
+
+let person = new Person("Alice", 25);
+console.log(person.name); // Output: Alice
+console.log(person.age);  // Output: 25</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Modifying Public Properties</h2>
+    <p>Public properties can be easily modified after object creation.</p>
+    <pre><code class="language-javascript" codeHighlight>person.name = "Bob";
+console.log(person.name); // Output: Bob</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Public Properties in Object Literals</h2>
+    <p>Objects created using object literals can also have public properties.</p>
+    <pre><code class="language-javascript" codeHighlight>let car = {
+    brand: "Toyota",
+    model: "Camry"
+};
+console.log(car.brand); // Output: Toyota
+car.model = "Corolla";
+console.log(car.model); // Output: Corolla</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Public Properties in ES6 Classes</h2>
+    <p>ES6 introduced a more concise way to define public properties directly in a class.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    species = "Dog"; // Public property
+}
+let pet = new Animal();
+console.log(pet.species); // Output: Dog</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Public vs. Private Properties</h2>
+    <p>Public properties can be accessed and modified from outside the object, whereas private properties (using <code>#</code>) cannot.</p>
+    <pre><code class="language-javascript" codeHighlight>class User {
+    username = "guest"; // Public property
+    #password = "secret"; // Private property
+}
+let user = new User();
+console.log(user.username); // Output: guest
+console.log(user.#password); // Error: Private field '#password' must be declared in an enclosing class</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using Getters and Setters with Public Properties</h2>
+    <p>Public properties can be accessed using getters and modified using setters.</p>
+    <pre><code class="language-javascript" codeHighlight>class Book {
+    constructor(title) {
+        this._title = title; // Public property with underscore convention
+    }
+    get title() {
+        return this._title;
+    }
+    set title(newTitle) {
+        this._title = newTitle;
+    }
+}
+let book = new Book("JavaScript Basics");
+console.log(book.title); // Output: JavaScript Basics
+book.title = "Advanced JavaScript";
+console.log(book.title); // Output: Advanced JavaScript</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Public properties are essential for storing and modifying object data. They provide flexibility but should be managed carefully to prevent unintended modifications.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Public Methods`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Public Methods in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Public methods in JavaScript are methods that are accessible from outside the class or object where they are defined. They form the public interface of an object, allowing external code to interact with the object's functionality. Public methods are essential for defining the behavior of an object and enabling communication between different parts of a program.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What are Public Methods?</h2>
+    <p>Public methods are methods that can be called from outside the class or object. They are part of the object's public API and are used to expose functionality to other parts of the program. Public methods are defined without any special syntax and are accessible on instances of the class or object.</p>
+    <pre><code class="language-javascript" codeHighlight>class Calculator {
+    add(a, b) { // Public method
+        return a + b;
+    }
+
+    subtract(a, b) { // Public method
+        return a - b;
+    }
+}
+
+let calc = new Calculator();
+console.log(calc.add(5, 3)); // Output: 8
+console.log(calc.subtract(5, 3)); // Output: 2</code></pre>
+
+    <h2 style="color: #2980b9;">2. Public Methods in ES6 Classes</h2>
+    <p>In ES6 classes, public methods are defined directly within the class body. They are accessible on instances of the class and can be called from external code.</p>
+    <pre><code class="language-javascript" codeHighlight>class User {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() { // Public method
+        console.log(\`Hello, my name is \${this.name}\`);
+    }
+
+    getBirthYear() { // Public method
+        const currentYear = new Date().getFullYear();
+        return currentYear - this.age;
+    }
+}
+
+let user = new User("John", 30);
+user.greet(); // Output: Hello, my name is John
+console.log(user.getBirthYear()); // Output: 1993</code></pre>
+
+    <h2 style="color: #2980b9;">3. Public Methods in Constructor Functions</h2>
+    <p>In constructor functions, public methods are defined using the <code>this</code> keyword. These methods are added to the prototype of the constructor function and are shared across all instances.</p>
+    <pre><code class="language-javascript" codeHighlight>function Calculator() {}
+
+Calculator.prototype.add = function(a, b) { // Public method
+    return a + b;
+};
+
+Calculator.prototype.subtract = function(a, b) { // Public method
+    return a - b;
+};
+
+let calc = new Calculator();
+console.log(calc.add(5, 3)); // Output: 8
+console.log(calc.subtract(5, 3)); // Output: 2</code></pre>
+
+    <h2 style="color: #2980b9;">4. Use Cases for Public Methods</h2>
+    <p>Public methods are commonly used for:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong>Exposing Functionality</strong>: Providing a way for external code to interact with an object.</li>
+        <li><strong>Encapsulation</strong>: Hiding internal implementation details while exposing a clean interface.</li>
+        <li><strong>Reusability</strong>: Defining methods that can be reused across multiple instances of a class.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>class BankAccount {
+    constructor(balance) {
+        this.balance = balance;
+    }
+
+    deposit(amount) { // Public method
+        this.balance += amount;
+    }
+
+    withdraw(amount) { // Public method
+        if (amount <= this.balance) {
+            this.balance -= amount;
+        } else {
+            throw new Error("Insufficient funds");
+        }
+    }
+
+    getBalance() { // Public method
+        return this.balance;
+    }
+}
+
+let account = new BankAccount(100);
+account.deposit(50);
+account.withdraw(30);
+console.log(account.getBalance()); // Output: 120</code></pre>
+
+    <h2 style="color: #2980b9;">5. Public Methods and Inheritance</h2>
+    <p>Public methods are inherited by subclasses. This allows subclasses to reuse and extend the functionality of the parent class.</p>
+    <pre><code class="language-javascript" codeHighlight>class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() { // Public method
+        console.log(\`\${this.name} makes a sound.\`);
+    }
+}
+
+class Dog extends Animal {
+    speak() { // Overriding public method
+        console.log(\`\${this.name} barks.\`);
+    }
+}
+
+let dog = new Dog("Rex");
+dog.speak(); // Output: Rex barks.</code></pre>
+
+    <h2 style="color: #2980b9;">6. Public Methods in Modules</h2>
+    <p>Public methods are often used in modules to expose functionality to other parts of the application. This allows for modular and organized code.</p>
+    <pre><code class="language-javascript" codeHighlight>// mathUtils.js
+export class MathUtils {
+    static add(a, b) { // Public static method
+        return a + b;
+    }
+
+    static subtract(a, b) { // Public static method
+        return a - b;
+    }
+}
+
+// main.js
+import { MathUtils } from "./mathUtils.js";
+
+console.log(MathUtils.add(5, 3)); // Output: 8
+console.log(MathUtils.subtract(5, 3)); // Output: 2</code></pre>
+
+    <h2 style="color: #2980b9;">7. Limitations of Public Methods</h2>
+    <p>Public methods are accessible to all parts of the program, which can lead to unintended modifications or misuse. To mitigate this, it's important to design a clear and well-documented public API.</p>
+    <pre><code class="language-javascript" codeHighlight>class Counter {
+    constructor() {
+        this.count = 0;
+    }
+
+    increment() { // Public method
+        this.count++;
+    }
+}
+
+let counter = new Counter();
+counter.increment();
+console.log(counter.count); // Output: 1
+counter.count = 100; // Direct modification of internal state (not recommended)
+console.log(counter.count); // Output: 100</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Public methods in JavaScript are a fundamental part of object-oriented programming, providing a way to expose functionality and define the behavior of objects. By designing a clear and well-documented public API, you can create robust and reusable code that is easy to understand and maintain. Whether you're working with ES6 classes, constructor functions, or modules, public methods are essential for building interactive and dynamic applications.</p>
+</div>`
+},
+{
+  articleTitle: `Object Symbol`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Symbol in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, <strong>Symbols</strong> are a unique and immutable primitive data type introduced in ES6. They are primarily used to create object properties that are guaranteed to be unique, helping to prevent accidental property name conflicts.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Creating a Symbol</h2>
+    <p>You can create a Symbol using the <code>Symbol()</code> function.</p>
+    <pre><code class="language-javascript">let sym1 = Symbol();
+let sym2 = Symbol("description");
+console.log(typeof sym1); // Output: "symbol"</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Symbols as Object Properties</h2>
+    <p>Since Symbols are unique, they can be used as object properties to avoid name conflicts.</p>
+    <pre><code class="language-javascript">let id = Symbol("id");
+let user = {
+    name: "Alice",
+    [id]: 12345
+};
+console.log(user[id]); // Output: 12345</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Symbols are Unique</h2>
+    <p>Each Symbol is unique, even if they have the same description.</p>
+    <pre><code class="language-javascript">let symA = Symbol("test");
+let symB = Symbol("test");
+console.log(symA === symB); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using Symbols in Object Methods</h2>
+    <p>Symbols can be used in object methods.</p>
+    <pre><code class="language-javascript">let action = Symbol("action");
+let obj = {
+    [action]() {
+        console.log("Performing an action...");
+    }
+};
+obj[action](); // Output: Performing an action...</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Symbol.for() and Symbol.keyFor()</h2>
+    <p>The <code>Symbol.for()</code> method creates or retrieves a global Symbol, while <code>Symbol.keyFor()</code> retrieves its key.</p>
+    <pre><code class="language-javascript">let globalSym = Symbol.for("shared");
+console.log(Symbol.keyFor(globalSym)); // Output: "shared"</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Retrieving Symbol Properties</h2>
+    <p>Symbols are not included in <code>Object.keys()</code> or <code>Object.values()</code>, but can be accessed using <code>Object.getOwnPropertySymbols()</code>.</p>
+    <pre><code class="language-javascript">console.log(Object.getOwnPropertySymbols(user)); // Output: [Symbol(id)]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Symbols provide a powerful way to create unique properties in objects, making them useful for hiding implementation details and avoiding naming collisions.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Object`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Object in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, the term <strong>"Object Object"</strong> often appears when you try to convert an object to a string without explicitly defining how it should be represented. This typically happens when you use the <code>toString()</code> method or implicitly convert an object to a string (e.g., by concatenating it with another string). Understanding this behavior is crucial for debugging and working with objects effectively.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What is "Object Object"?</h2>
+    <p>When you try to convert an object to a string in JavaScript, the default behavior is to call the <code>toString()</code> method on the object. The default implementation of <code>toString()</code> for objects returns <code>"[object Object]"</code>, which is why you often see this output.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+console.log(obj.toString()); // Output: [object Object]
+console.log("User: " + obj); // Output: User: [object Object]</code></pre>
+
+    <h2 style="color: #2980b9;">2. Why Does This Happen?</h2>
+    <p>The <code>"[object Object]"</code> output is the result of the default <code>toString()</code> method inherited from the <code>Object.prototype</code>. This method is designed to provide a generic string representation of an object, which is not very useful for debugging or displaying object data.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+console.log(Object.prototype.toString.call(obj)); // Output: [object Object]</code></pre>
+
+    <h2 style="color: #2980b9;">3. Customizing Object String Representation</h2>
+    <p>To provide a more meaningful string representation of an object, you can override the <code>toString()</code> method. This allows you to define how the object should be converted to a string.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    name: "John",
+    age: 30,
+    toString() {
+        return \`Person: \${this.name}, \${this.age} years old\`;
+    }
+};
+
+console.log(person.toString()); // Output: Person: John, 30 years old
+console.log("User: " + person); // Output: User: Person: John, 30 years old</code></pre>
+
+    <h2 style="color: #2980b9;">4. Using <code>JSON.stringify()</code></h2>
+    <p>If you want to convert an object to a string for debugging or logging purposes, you can use <code>JSON.stringify()</code>. This method converts the object to a JSON string, which is more readable and informative than <code>"[object Object]"</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+console.log(JSON.stringify(obj)); // Output: {"name":"John","age":30}</code></pre>
+
+    <h2 style="color: #2980b9;">5. Common Scenarios Where "Object Object" Appears</h2>
+    <p>The <code>"[object Object]"</code> output often appears in the following scenarios:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li><strong>String Concatenation</strong>: When an object is concatenated with a string.</li>
+        <li><strong>Implicit Conversion</strong>: When an object is used in a context that expects a string (e.g., <code>alert(obj)</code>).</li>
+        <li><strong>Debugging</strong>: When logging an object without using <code>JSON.stringify()</code> or a custom <code>toString()</code> method.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+alert(obj); // Output: [object Object] (in an alert box)
+console.log("Details: " + obj); // Output: Details: [object Object]</code></pre>
+
+    <h2 style="color: #2980b9;">6. Avoiding "Object Object" in Output</h2>
+    <p>To avoid the <code>"[object Object]"</code> output, you can:</p>
+    <ul style="list-style-type: disc; margin-left: 20px;">
+        <li>Override the <code>toString()</code> method for custom string representation.</li>
+        <li>Use <code>JSON.stringify()</code> to convert the object to a JSON string.</li>
+        <li>Explicitly access and display the object's properties.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+
+// Custom toString()
+obj.toString = function() {
+    return \`{ name: \${this.name}, age: \${this.age} }\`;
+};
+console.log("User: " + obj); // Output: User: { name: John, age: 30 }
+
+// Using JSON.stringify()
+console.log("User: " + JSON.stringify(obj)); // Output: User: {"name":"John","age":30}
+
+// Explicitly accessing properties
+console.log(\`User: \${obj.name}, \${obj.age}\`); // Output: User: John, 30</code></pre>
+
+    <h2 style="color: #2980b9;">7. Debugging with "Object Object"</h2>
+    <p>When debugging, seeing <code>"[object Object]"</code> can be frustrating. To get more meaningful information, use tools like <code>console.dir()</code> or <code>console.table()</code> to inspect the object's properties.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+
+console.dir(obj); // Output: Displays the object's properties in an interactive list
+console.table(obj); // Output: Displays the object's properties in a table format</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>"[object Object]"</code> output in JavaScript is a result of the default <code>toString()</code> method for objects. While it is not very informative, you can customize this behavior by overriding the <code>toString()</code> method or using <code>JSON.stringify()</code> for better debugging and logging. By understanding and addressing this behavior, you can make your code more readable and easier to debug.</p>
+</div>`
+},
+{
+  articleTitle: `Object Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, an <strong>Object Array</strong> is an array containing multiple objects. Each object can store key-value pairs, making object arrays useful for managing collections of data.
+    </p>
+    
+    <h2 style="color: #2980b9;">1. Creating an Array of Objects</h2>
+    <p>You can store multiple objects inside an array using square brackets <code>[]</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let students = [
+    { name: "Alice", age: 22, course: "Math" },
+    { name: "Bob", age: 24, course: "Science" },
+    { name: "Charlie", age: 23, course: "History" }
+];
+console.log(students);</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Accessing Objects in an Array</h2>
+    <p>Use index notation to access a specific object in the array.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(students[0].name); // Output: Alice</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Iterating Through an Object Array</h2>
+    <p>You can use loops like <code>forEach()</code> or <code>map()</code> to iterate over an array of objects.</p>
+    <pre><code class="language-javascript" codeHighlight>students.forEach(student => {
+    console.log(\`\${student.name} is \${student.age} years old and studies \${student.course}.\`);
+});</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Adding a New Object to the Array</h2>
+    <p>Use <code>push()</code> to add a new object.</p>
+    <pre><code class="language-javascript" codeHighlight>students.push({ name: "David", age: 25, course: "Physics" });
+console.log(students);</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Removing an Object from the Array</h2>
+    <p>Use <code>splice()</code> to remove an object at a specific index.</p>
+    <pre><code class="language-javascript" codeHighlight>students.splice(1, 1); // Removes the second object (Bob)
+console.log(students);</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Filtering Objects in an Array</h2>
+    <p>Use <code>filter()</code> to find objects that meet certain conditions.</p>
+    <pre><code class="language-javascript" codeHighlight>let youngStudents = students.filter(student => student.age < 24);
+console.log(youngStudents);</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting an Object Array</h2>
+    <p>Use <code>sort()</code> to order objects based on a property.</p>
+    <pre><code class="language-javascript" codeHighlight>students.sort((a, b) => a.age - b.age);
+console.log(students);</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Object arrays in JavaScript are powerful for handling multiple objects efficiently. Understanding how to manipulate and iterate over them is essential for effective JavaScript programming.</p>
+</div>`
+},
+{
+  articleTitle: `Object Date`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Date in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Date</code> object in JavaScript is used to work with dates and times. It provides various methods to get, set, and manipulate date and time values.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Date Object</h2>
+    <p>You can create a new date object using the <code>new Date()</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let currentDate = new Date();
+console.log(currentDate);
+// Output: Current date and time</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Creating a Specific Date</h2>
+    <p>You can pass specific values to create a custom date.</p>
+    <pre><code class="language-javascript" codeHighlight>let specificDate = new Date(2025, 2, 17);
+console.log(specificDate);
+// Output: Mon Mar 17 2025</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Getting Date Components</h2>
+    <p>Several methods are available to get specific parts of a date.</p>
+    <pre><code class="language-javascript" codeHighlight>let date = new Date();
+console.log(date.getFullYear());  // Output: 2025 (current year)
+console.log(date.getMonth());     // Output: 2 (March, since months are 0-based)
+console.log(date.getDate());      // Output: 17 (day of the month)</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Setting Date Components</h2>
+    <p>You can modify date components using setter methods.</p>
+    <pre><code class="language-javascript" codeHighlight>let newDate = new Date();
+newDate.setFullYear(2030);
+console.log(newDate);
+// Output: Updated date with year 2030</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Formatting Dates</h2>
+    <p>Use <code>toLocaleDateString()</code> to format dates.</p>
+    <pre><code class="language-javascript" codeHighlight>let formattedDate = new Date().toLocaleDateString("en-US");
+console.log(formattedDate);
+// Output: MM/DD/YYYY format</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Comparing Dates</h2>
+    <p>You can compare two dates using comparison operators.</p>
+    <pre><code class="language-javascript" codeHighlight>let date1 = new Date("2025-03-17");
+let date2 = new Date("2025-04-01");
+console.log(date1 < date2); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Getting Timestamps</h2>
+    <p>The timestamp represents milliseconds since January 1, 1970.</p>
+    <pre><code class="language-javascript" codeHighlight>let timestamp = Date.now();
+console.log(timestamp);
+// Output: Current timestamp in milliseconds</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Date</code> object is essential for handling date and time operations in JavaScript. Understanding its methods helps in working with dates efficiently.</p>
+</div>
+`
+}
+
+]
 }
