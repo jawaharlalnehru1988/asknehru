@@ -9737,7 +9737,1606 @@ console.log(timestamp);
     <p>The <code>Date</code> object is essential for handling date and time operations in JavaScript. Understanding its methods helps in working with dates efficiently.</p>
 </div>
 `
+},
+{
+  articleTitle: `Object Error`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Error in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Error</code> object in JavaScript is used to handle runtime errors. It provides various types of errors such as <code>SyntaxError</code>, <code>TypeError</code>, and <code>ReferenceError</code> to help developers debug their code efficiently.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating an Error Object</h2>
+    <p>You can create a new error using the <code>Error</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let error = new Error("Something went wrong!");
+console.log(error.message);
+// Output: Something went wrong!</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Types of Errors</h2>
+    <p>JavaScript has built-in error types for different scenarios.</p>
+    <ul>
+        <li><strong>ReferenceError:</strong> Occurs when accessing an undefined variable.</li>
+        <li><strong>TypeError:</strong> Occurs when a value is not of the expected type.</li>
+        <li><strong>SyntaxError:</strong> Occurs due to incorrect syntax.</li>
+        <li><strong>RangeError:</strong> Occurs when a value is out of range.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">3. Handling Errors with try...catch</h2>
+    <p>Use <code>try...catch</code> to handle errors and prevent program crashes.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let result = undefinedVariable; // ReferenceError
+} catch (error) {
+    console.log("Error caught:", error.message);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Throwing Custom Errors</h2>
+    <p>You can throw custom errors using the <code>throw</code> statement.</p>
+    <pre><code class="language-javascript" codeHighlight>function checkAge(age) {
+    if (age < 18) {
+        throw new Error("Age must be 18 or above.");
+    }
+    return "Access granted";
 }
+try {
+    console.log(checkAge(16));
+} catch (error) {
+    console.log("Error:", error.message);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Using finally Block</h2>
+    <p>The <code>finally</code> block executes regardless of an error.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let data = JSON.parse('{ "name": "John" }');
+} catch (error) {
+    console.log("Invalid JSON");
+} finally {
+    console.log("Execution completed");
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Error Object Properties</h2>
+    <p>The <code>Error</code> object has properties to get details about errors.</p>
+    <ul>
+        <li><code>name</code> - The type of error (e.g., ReferenceError).</li>
+        <li><code>message</code> - The error message.</li>
+        <li><code>stack</code> - Stack trace for debugging.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let result = num * 5; // ReferenceError
+} catch (error) {
+    console.log(error.name); // Output: ReferenceError
+    console.log(error.message);
+    console.log(error.stack);
+}</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Error</code> object is essential for handling and debugging errors in JavaScript. Using proper error handling techniques ensures a smooth user experience and maintains application stability.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Function`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Function in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, functions are first-class objects, meaning they can be treated like any other object. They can be assigned to variables, passed as arguments to other functions, returned from functions, and even have properties and methods. Understanding the relationship between objects and functions is crucial for mastering JavaScript's functional programming capabilities.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Functions as Objects</h2>
+    <p>In JavaScript, functions are instances of the <code>Function</code> object. This means they can have properties and methods, just like any other object.</p>
+    <pre><code class="language-javascript" codeHighlight>function greet() {
+    console.log("Hello, World!");
+}
+
+console.log(typeof greet); // Output: function
+console.log(greet instanceof Object); // Output: true
+console.log(greet instanceof Function); // Output: true</code></pre>
+
+    <h2 style="color: #2980b9;">2. Adding Properties to Functions</h2>
+    <p>Since functions are objects, you can add properties to them. These properties can store data or metadata related to the function.</p>
+    <pre><code class="language-javascript" codeHighlight>function greet() {
+    console.log("Hello, World!");
+}
+
+greet.language = "English"; // Adding a property to the function
+console.log(greet.language); // Output: English</code></pre>
+
+    <h2 style="color: #2980b9;">3. Functions as Methods</h2>
+    <p>Functions can be assigned as methods of an object. When a function is a property of an object, it is referred to as a method.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    name: "John",
+    greet: function() {
+        console.log(\`Hello, my name is \${this.name}\`);
+    }
+};
+
+person.greet(); // Output: Hello, my name is John</code></pre>
+
+    <h2 style="color: #2980b9;">4. Functions as Constructors</h2>
+    <p>Functions can be used as constructors to create new objects. When a function is used with the <code>new</code> keyword, it acts as a constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+let john = new Person("John", 30);
+console.log(john.name); // Output: John
+console.log(john.age); // Output: 30</code></pre>
+
+    <h2 style="color: #2980b9;">5. Functions as Arguments</h2>
+    <p>Functions can be passed as arguments to other functions. This is a common pattern in JavaScript, especially in higher-order functions.</p>
+    <pre><code class="language-javascript" codeHighlight>function greet(name) {
+    console.log(\`Hello, \${name}\`);
+}
+
+function executeFunction(fn, name) {
+    fn(name);
+}
+
+executeFunction(greet, "John"); // Output: Hello, John</code></pre>
+
+    <h2 style="color: #2980b9;">6. Functions Returning Functions</h2>
+    <p>Functions can return other functions. This is useful for creating closures and function factories.</p>
+    <pre><code class="language-javascript" codeHighlight>function createGreeting(greeting) {
+    return function(name) {
+        console.log(\`\${greeting}, \${name}\`);
+    };
+}
+
+let sayHello = createGreeting("Hello");
+sayHello("John"); // Output: Hello, John</code></pre>
+
+    <h2 style="color: #2980b9;">7. Built-in Function Methods</h2>
+    <p>The <code>Function</code> object provides several built-in methods, such as <code>call</code>, <code>apply</code>, and <code>bind</code>, which allow you to control the context (<code>this</code>) in which a function is executed.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = {
+    name: "John"
+};
+
+function greet() {
+    console.log(\`Hello, \${this.name}\`);
+}
+
+greet.call(person); // Output: Hello, John
+greet.apply(person); // Output: Hello, John
+
+let boundGreet = greet.bind(person);
+boundGreet(); // Output: Hello, John</code></pre>
+
+    <h2 style="color: #2980b9;">8. Arrow Functions</h2>
+    <p>Arrow functions are a concise way to write functions in JavaScript. They do not have their own <code>this</code> context and are often used for short, inline functions.</p>
+    <pre><code class="language-javascript" codeHighlight>let greet = (name) => {
+    console.log(\`Hello, \${name}\`);
+};
+
+greet("John"); // Output: Hello, John</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Functions in JavaScript are versatile and powerful, serving as both executable code and objects. They can be assigned properties, used as methods, passed as arguments, returned from other functions, and even used as constructors. Understanding the object nature of functions is essential for leveraging JavaScript's full potential in both object-oriented and functional programming paradigms.</p>
+</div>`
+},
+{
+  articleTitle: `Object Math`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Math in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Math</code> object in JavaScript provides built-in mathematical functions and constants that help perform complex calculations. It includes methods for rounding, generating random numbers, trigonometry, logarithms, and more. Unlike other objects, the <code>Math</code> object is static, meaning you do not need to create an instance to use its properties and methods.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Properties of Math Object</h2>
+    <p>The <code>Math</code> object includes several mathematical constants.</p>
+    <pre><code class="language-javascript">console.log(Math.PI);        // Output: 3.141592653589793
+console.log(Math.E);         // Output: 2.718281828459045 (Euler's number)
+console.log(Math.LN2);       // Output: 0.6931471805599453 (Natural log of 2)
+console.log(Math.SQRT2);     // Output: 1.4142135623730951 (Square root of 2)</code></pre>
+
+    <h2 style="color: #2980b9;">2. Rounding Numbers</h2>
+    <p>The <code>Math</code> object provides methods to round numbers.</p>
+    <pre><code class="language-javascript">console.log(Math.round(4.7));  // Output: 5 (Rounds to the nearest integer)
+console.log(Math.floor(4.9));  // Output: 4 (Rounds down)
+console.log(Math.ceil(4.1));   // Output: 5 (Rounds up)
+console.log(Math.trunc(4.9));  // Output: 4 (Removes decimal part)</code></pre>
+
+    <h2 style="color: #2980b9;">3. Generating Random Numbers</h2>
+    <p>You can generate random numbers using <code>Math.random()</code>.</p>
+    <pre><code class="language-javascript">console.log(Math.random());      // Output: Random number between 0 and 1
+console.log(Math.floor(Math.random() * 10) + 1);  // Output: Random integer between 1 and 10</code></pre>
+
+    <h2 style="color: #2980b9;">4. Power and Square Root</h2>
+    <p>Use <code>Math.pow()</code> and <code>Math.sqrt()</code> for exponents and roots.</p>
+    <pre><code class="language-javascript">console.log(Math.pow(2, 3));  // Output: 8 (2 raised to the power 3)
+console.log(Math.sqrt(16));   // Output: 4 (Square root of 16)</code></pre>
+
+    <h2 style="color: #2980b9;">5. Trigonometric Functions</h2>
+    <p>The <code>Math</code> object provides trigonometric functions.</p>
+    <pre><code class="language-javascript">console.log(Math.sin(Math.PI / 2)); // Output: 1 (Sine of 90 degrees)
+console.log(Math.cos(0));           // Output: 1 (Cosine of 0 degrees)
+console.log(Math.tan(Math.PI / 4)); // Output: 1 (Tangent of 45 degrees)</code></pre>
+
+    <h2 style="color: #2980b9;">6. Logarithmic and Exponential Functions</h2>
+    <p>Use logarithmic and exponential functions for advanced calculations.</p>
+    <pre><code class="language-javascript">console.log(Math.log(1));    // Output: 0 (Natural log of 1)
+console.log(Math.exp(1));    // Output: 2.718 (Euler's number raised to power 1)</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Math</code> object is a powerful tool in JavaScript for performing mathematical operations. Its methods and properties help with rounding, generating random numbers, working with exponents, trigonometry, and more.</p>
+</div>
+`
+},
+{
+  articleTitle: `Object Number`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Number in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Number</code> object in JavaScript is used to work with numerical values. It provides various properties and methods to handle numbers, including integer and floating-point operations, conversions, and mathematical computations.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Number Object</h2>
+    <p>Numbers in JavaScript can be created using literals or the <code>Number</code> constructor.</p>
+    <pre><code class="language-javascript">let num1 = 42;  // Number literal
+let num2 = new Number(42);  // Number object
+console.log(num1);  // Output: 42
+console.log(num2);  // Output: [Number: 42]</code></pre>
+
+    <h2 style="color: #2980b9;">2. Number Properties</h2>
+    <p>The <code>Number</code> object has useful built-in properties.</p>
+    <pre><code class="language-javascript">console.log(Number.MAX_VALUE);   // Output: Largest possible number
+console.log(Number.MIN_VALUE);   // Output: Smallest possible number
+console.log(Number.POSITIVE_INFINITY); // Output: Infinity
+console.log(Number.NEGATIVE_INFINITY); // Output: -Infinity
+console.log(Number.NaN); // Output: NaN (Not-a-Number)</code></pre>
+
+    <h2 style="color: #2980b9;">3. Checking if a Value is a Number</h2>
+    <p>Use <code>isNaN()</code> and <code>isFinite()</code> to check number validity.</p>
+    <pre><code class="language-javascript">console.log(isNaN("Hello"));  // Output: true (Not a number)
+console.log(isNaN(42));       // Output: false (Valid number)
+console.log(isFinite(10));    // Output: true
+console.log(isFinite(Infinity)); // Output: false</code></pre>
+
+    <h2 style="color: #2980b9;">4. Converting Strings to Numbers</h2>
+    <p>You can convert strings to numbers using <code>parseInt()</code>, <code>parseFloat()</code>, and <code>Number()</code>.</p>
+    <pre><code class="language-javascript">console.log(parseInt("42"));    // Output: 42
+console.log(parseFloat("3.14")); // Output: 3.14
+console.log(Number("99"));       // Output: 99</code></pre>
+
+    <h2 style="color: #2980b9;">5. Number Methods</h2>
+    <p>The <code>Number</code> object provides various methods to handle numbers.</p>
+    <pre><code class="language-javascript">let num = 5.6789;
+console.log(num.toFixed(2));    // Output: "5.68" (Rounds to 2 decimal places)
+console.log(num.toPrecision(3)); // Output: "5.68" (3 significant digits)
+console.log(num.toExponential(2)); // Output: "5.68e+0" (Exponential notation)</code></pre>
+
+    <h2 style="color: #2980b9;">6. Comparing Numbers</h2>
+    <p>Use <code>Number.isInteger()</code> and <code>Number.isSafeInteger()</code> for comparisons.</p>
+    <pre><code class="language-javascript">console.log(Number.isInteger(10));   // Output: true
+console.log(Number.isInteger(10.5)); // Output: false
+console.log(Number.isSafeInteger(9007199254740991)); // Output: true
+console.log(Number.isSafeInteger(9007199254740992)); // Output: false</code></pre>
+
+    <h2 style="color: #2980b9;">7. Working with Large and Small Numbers</h2>
+    <p>JavaScript supports <code>BigInt</code> for large numbers.</p>
+    <pre><code class="language-javascript">let bigNumber = BigInt(9007199254740991);
+console.log(bigNumber); // Output: 9007199254740991n</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Number</code> object in JavaScript is useful for handling numerical values with various properties and methods. It provides functions for conversions, formatting, comparisons, and working with large numbers.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object String`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object String in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>String</code> object in JavaScript is used to work with textual data. It provides various methods to manipulate, format, and analyze strings efficiently.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a String Object</h2>
+    <p>Strings can be created using string literals or the <code>String</code> constructor.</p>
+    <pre><code class="language-javascript">let str1 = "Hello, World!"; // String literal
+let str2 = new String("Hello, World!"); // String object
+console.log(str1); // Output: Hello, World!
+console.log(str2); // Output: [String: 'Hello, World!']</code></pre>
+
+    <h2 style="color: #2980b9;">2. String Properties</h2>
+    <p>The <code>String</code> object has useful built-in properties.</p>
+    <pre><code class="language-javascript">let text = "JavaScript";
+console.log(text.length);  // Output: 10 (Number of characters)</code></pre>
+
+    <h2 style="color: #2980b9;">3. Accessing Characters</h2>
+    <p>You can access individual characters using bracket notation or the <code>charAt()</code> method.</p>
+    <pre><code class="language-javascript">let str = "Hello";
+console.log(str[0]);       // Output: H
+console.log(str.charAt(1)); // Output: e</code></pre>
+
+    <h2 style="color: #2980b9;">4. Changing Case</h2>
+    <p>Use <code>toUpperCase()</code> and <code>toLowerCase()</code> to change the case of a string.</p>
+    <pre><code class="language-javascript">let msg = "Hello, JavaScript!";
+console.log(msg.toUpperCase()); // Output: HELLO, JAVASCRIPT!
+console.log(msg.toLowerCase()); // Output: hello, javascript!</code></pre>
+
+    <h2 style="color: #2980b9;">5. Searching in Strings</h2>
+    <p>Use <code>indexOf()</code> and <code>includes()</code> to search within a string.</p>
+    <pre><code class="language-javascript">let sentence = "JavaScript is fun!";
+console.log(sentence.indexOf("fun")); // Output: 14 (Position of 'fun')
+console.log(sentence.includes("Java")); // Output: true</code></pre>
+
+    <h2 style="color: #2980b9;">6. Extracting Substrings</h2>
+    <p>Use <code>slice()</code>, <code>substring()</code>, and <code>substr()</code> to extract parts of a string.</p>
+    <pre><code class="language-javascript">let str = "JavaScript";
+console.log(str.slice(0, 4)); // Output: Java
+console.log(str.substring(4, 10)); // Output: Script</code></pre>
+
+    <h2 style="color: #2980b9;">7. Replacing Text</h2>
+    <p>Use <code>replace()</code> to replace text in a string.</p>
+    <pre><code class="language-javascript">let text = "I love JavaScript!";
+console.log(text.replace("JavaScript", "coding")); 
+// Output: I love coding!</code></pre>
+
+    <h2 style="color: #2980b9;">8. Splitting and Joining Strings</h2>
+    <p>Use <code>split()</code> to divide a string and <code>join()</code> to merge strings.</p>
+    <pre><code class="language-javascript">let words = "Hello World JavaScript".split(" ");
+console.log(words); // Output: ['Hello', 'World', 'JavaScript']
+
+let sentence = words.join(" ");
+console.log(sentence); // Output: Hello World JavaScript</code></pre>
+
+    <h2 style="color: #2980b9;">9. Trimming Spaces</h2>
+    <p>Use <code>trim()</code> to remove whitespace from both ends of a string.</p>
+    <pre><code class="language-javascript">let str = "   JavaScript   ";
+console.log(str.trim()); // Output: "JavaScript"</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>String</code> object in JavaScript is powerful for handling text data. It offers many methods for searching, modifying, and formatting strings.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object RegExp`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px; padding: 20px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object RegExp in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>RegExp</code> (Regular Expression) object in JavaScript is used for pattern matching and searching within strings. It provides powerful methods for finding, replacing, and validating text.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Regular Expression</h2>
+    <p>Regular expressions can be created using two different methods.</p>
+    <pre><code class="language-javascript">// Using literal syntax
+let regex1 = /hello/;
+
+// Using the RegExp constructor
+let regex2 = new RegExp("hello");
+
+console.log(regex1, regex2);
+// Output: /hello/ /hello/</code></pre>
+
+    <h2 style="color: #2980b9;">2. Testing a String with RegExp</h2>
+    <p>The <code>test()</code> method checks if a string matches a pattern.</p>
+    <pre><code class="language-javascript">let pattern = /JavaScript/;
+console.log(pattern.test("I love JavaScript!")); 
+// Output: true</code></pre>
+
+    <h2 style="color: #2980b9;">3. Searching for a Match</h2>
+    <p>The <code>exec()</code> method searches for a match and returns details.</p>
+    <pre><code class="language-javascript">let regex = /world/;
+let result = regex.exec("Hello world!");
+console.log(result);
+// Output: ["world", index: 6, input: "Hello world!", groups: undefined]</code></pre>
+
+    <h2 style="color: #2980b9;">4. Using Flags in Regular Expressions</h2>
+    <p>Flags modify how regular expressions behave:</p>
+    <ul>
+        <li><code>g</code> - Global search</li>
+        <li><code>i</code> - Case-insensitive search</li>
+        <li><code>m</code> - Multi-line mode</li>
+    </ul>
+    <pre><code class="language-javascript">let regex = /hello/gi;
+console.log("Hello hello HELLO".match(regex));
+// Output: ["Hello", "hello", "HELLO"]</code></pre>
+
+    <h2 style="color: #2980b9;">5. Matching Patterns with <code>match()</code></h2>
+    <p>The <code>match()</code> method retrieves all matches in an array.</p>
+    <pre><code class="language-javascript">let text = "apple, banana, apple, orange";
+let matches = text.match(/apple/g);
+console.log(matches);
+// Output: ["apple", "apple"]</code></pre>
+
+    <h2 style="color: #2980b9;">6. Replacing Text with RegExp</h2>
+    <p>The <code>replace()</code> method allows replacing text based on a pattern.</p>
+    <pre><code class="language-javascript">let str = "JavaScript is awesome!";
+let newStr = str.replace(/awesome/, "powerful");
+console.log(newStr);
+// Output: "JavaScript is powerful!"</code></pre>
+
+    <h2 style="color: #2980b9;">7. Splitting a String with RegExp</h2>
+    <p>The <code>split()</code> method divides a string using a regex pattern.</p>
+    <pre><code class="language-javascript">let sentence = "one, two; three four";
+let words = sentence.split(/[,; ]+/);
+console.log(words);
+// Output: ["one", "two", "three", "four"]</code></pre>
+
+    <h2 style="color: #2980b9;">8. Common Regular Expressions</h2>
+    <p>Here are some useful regex patterns:</p>
+    <ul>
+        <li><code>/\d+/</code> - Matches numbers</li>
+        <li><code>/\w+/</code> - Matches words</li>
+        <li><code>/\s+/</code> - Matches whitespace</li>
+        <li><code>/^[A-Z]/</code> - Checks if a string starts with a capital letter</li>
+    </ul>
+    <pre><code class="language-javascript">let numberCheck = /\d+/;
+console.log(numberCheck.test("12345")); // Output: true
+
+let wordCheck = /\w+/;
+console.log(wordCheck.test("Hello")); // Output: true</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>RegExp</code> object in JavaScript is a powerful tool for pattern matching and text manipulation. Understanding regular expressions allows developers to perform complex string operations with ease.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object JSON`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object JSON in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        JSON (JavaScript Object Notation) is a lightweight data format used for exchanging data between a server and a client. It is widely used because of its simplicity and readability.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What is JSON?</h2>
+    <p>JSON is a text-based format for storing and exchanging data. It consists of key-value pairs similar to JavaScript objects.</p>
+    <pre><code class="language-json" codeHighlight>{
+    "name": "Alice",
+    "age": 25,
+    "city": "New York"
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Converting JavaScript Object to JSON</h2>
+    <p>Use <code>JSON.stringify()</code> to convert a JavaScript object into a JSON string.</p>
+    <pre><code class="language-javascript" codeHighlight>let person = { name: "Alice", age: 25, city: "New York" };
+let jsonString = JSON.stringify(person);
+console.log(jsonString);
+// Output: {"name":"Alice","age":25,"city":"New York"}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Parsing JSON to JavaScript Object</h2>
+    <p>Use <code>JSON.parse()</code> to convert a JSON string back to a JavaScript object.</p>
+    <pre><code class="language-javascript" codeHighlight>let jsonData = '{"name":"Alice","age":25,"city":"New York"}';
+let personObject = JSON.parse(jsonData);
+console.log(personObject.name);
+// Output: Alice</code></pre>
+    
+    <h2 style="color: #2980b9;">4. JSON with Arrays</h2>
+    <p>JSON can store arrays of values.</p>
+    <pre><code class="language-json" codeHighlight>{
+    "students": [
+        { "name": "Alice", "age": 25 },
+        { "name": "Bob", "age": 22 }
+    ]
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Accessing JSON Data</h2>
+    <p>JSON data can be accessed using dot notation or bracket notation.</p>
+    <pre><code class="language-javascript" codeHighlight>let data = {
+    students: [
+        { name: "Alice", age: 25 },
+        { name: "Bob", age: 22 }
+    ]
+};
+console.log(data.students[0].name);
+// Output: Alice</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Sending and Receiving JSON Data</h2>
+    <p>JSON is commonly used in HTTP requests and APIs.</p>
+    <pre><code class="language-javascript" codeHighlight>fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data));</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>JSON is an essential format for data exchange in web applications. Understanding how to convert, parse, and manipulate JSON is crucial for working with APIs and storing data efficiently.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object TypedArray`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object TypedArray in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>TypedArray</code> objects in JavaScript provide a mechanism for accessing raw binary data in memory buffers. They offer different views for interpreting binary data as integers, floating points, or unsigned values.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a TypedArray</h2>
+    <p>You can create a TypedArray using different constructors such as <code>Int8Array</code>, <code>Uint8Array</code>, <code>Float32Array</code>, etc.</p>
+    <pre><code class="language-javascript" codeHighlight>let intArray = new Int16Array(5);
+console.log(intArray);
+// Output: Int16Array(5) [0, 0, 0, 0, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Initializing a TypedArray</h2>
+    <p>You can initialize a TypedArray with specific values.</p>
+    <pre><code class="language-javascript" codeHighlight>let floatArray = new Float32Array([1.5, 2.5, 3.5]);
+console.log(floatArray);
+// Output: Float32Array(3) [1.5, 2.5, 3.5]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing and Modifying Values</h2>
+    <p>TypedArrays allow direct access and modification of elements.</p>
+    <pre><code class="language-javascript" codeHighlight>let uintArray = new Uint8Array(3);
+uintArray[0] = 255;
+uintArray[1] = 128;
+console.log(uintArray);
+// Output: Uint8Array(3) [255, 128, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using an ArrayBuffer</h2>
+    <p>TypedArrays work with <code>ArrayBuffer</code> for efficient memory management.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(16);
+let int32View = new Int32Array(buffer);
+console.log(int32View.length);
+// Output: 4 (since each Int32 takes 4 bytes)</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Copying and Slicing TypedArrays</h2>
+    <p>You can copy and slice TypedArrays using <code>set()</code> and <code>subarray()</code> methods.</p>
+    <pre><code class="language-javascript" codeHighlight>let sourceArray = new Uint8Array([10, 20, 30]);
+let targetArray = new Uint8Array(3);
+targetArray.set(sourceArray);
+console.log(targetArray);
+// Output: Uint8Array(3) [10, 20, 30]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Converting TypedArray to Regular Array</h2>
+    <p>You can convert a TypedArray to a standard array using <code>Array.from()</code> or the spread operator.</p>
+    <pre><code class="language-javascript" codeHighlight>let typedArray = new Uint16Array([5, 10, 15]);
+let normalArray = Array.from(typedArray);
+console.log(normalArray);
+// Output: [5, 10, 15]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting and Iterating over TypedArrays</h2>
+    <p>TypedArrays can be sorted and iterated like regular arrays.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = new Uint8Array([3, 1, 4, 1, 5]);
+numbers.sort();
+console.log(numbers);
+// Output: Uint8Array(5) [1, 1, 3, 4, 5]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>TypedArray</code> objects are powerful tools for handling raw binary data in JavaScript. They improve performance for numerical computations and are widely used in WebGL, multimedia processing, and cryptography.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object ArrayBuffer`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px; padding: 20px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object ArrayBuffer in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>ArrayBuffer</code> object in JavaScript is used to represent a fixed-length raw binary data buffer. It is primarily used in handling binary data and is often combined with typed arrays and <code>DataView</code> to manipulate memory efficiently.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating an ArrayBuffer</h2>
+    <p>You can create an <code>ArrayBuffer</code> using the <code>new ArrayBuffer(size)</code> constructor, where <code>size</code> is the number of bytes allocated.</p>
+    <pre><code class="language-javascript">let buffer = new ArrayBuffer(16);
+console.log(buffer.byteLength); 
+// Output: 16 (bytes allocated)</code></pre>
+
+    <h2 style="color: #2980b9;">2. Using a Typed Array</h2>
+    <p>Since <code>ArrayBuffer</code> does not have methods to manipulate data directly, we use typed arrays like <code>Uint8Array</code> to interact with it.</p>
+    <pre><code class="language-javascript">let buffer = new ArrayBuffer(8);
+let view = new Uint8Array(buffer);
+
+view[0] = 255;
+view[1] = 128;
+console.log(view); 
+// Output: Uint8Array(8) [255, 128, 0, 0, 0, 0, 0, 0]</code></pre>
+
+    <h2 style="color: #2980b9;">3. Working with DataView</h2>
+    <p><code>DataView</code> allows flexible reading and writing of different data types in an <code>ArrayBuffer</code>.</p>
+    <pre><code class="language-javascript">let buffer = new ArrayBuffer(8);
+let dataView = new DataView(buffer);
+
+dataView.setInt8(0, 127);
+dataView.setInt16(1, 32000, true); // Little-endian
+
+console.log(dataView.getInt8(0));  // Output: 127
+console.log(dataView.getInt16(1, true)); // Output: 32000</code></pre>
+
+    <h2 style="color: #2980b9;">4. Copying an ArrayBuffer</h2>
+    <p>To copy an <code>ArrayBuffer</code>, use the <code>slice()</code> method.</p>
+    <pre><code class="language-javascript">let buffer = new ArrayBuffer(8);
+let view = new Uint8Array(buffer);
+view[0] = 42;
+
+let copiedBuffer = buffer.slice(0, 4);
+console.log(new Uint8Array(copiedBuffer)); 
+// Output: Uint8Array(4) [42, 0, 0, 0]</code></pre>
+
+    <h2 style="color: #2980b9;">5. Sharing ArrayBuffer with Multiple Views</h2>
+    <p>Multiple typed arrays can share the same <code>ArrayBuffer</code> for efficient memory usage.</p>
+    <pre><code class="language-javascript">let buffer = new ArrayBuffer(8);
+let intView = new Int32Array(buffer);
+let byteView = new Uint8Array(buffer);
+
+intView[0] = 12345;
+console.log(byteView); 
+// Output: Uint8Array(8) [57, 48, 0, 0, 0, 0, 0, 0]</code></pre>
+
+    <h2 style="color: #2980b9;">6. Benefits of Using ArrayBuffer</h2>
+    <ul>
+        <li>Efficient handling of binary data.</li>
+        <li>Used in Web APIs like WebSockets and WebGL.</li>
+        <li>Improves performance for large datasets.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>ArrayBuffer</code> object is a powerful feature in JavaScript for working with raw binary data. It is widely used in performance-critical applications, including WebSockets, file handling, and cryptographic operations.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object SharedArrayBuffer`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px; padding: 20px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object SharedArrayBuffer in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>SharedArrayBuffer</code> object in JavaScript is similar to <code>ArrayBuffer</code>, but it allows multiple threads (such as Web Workers) to share and modify memory concurrently. This enables efficient parallel processing of data.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a SharedArrayBuffer</h2>
+    <p>You can create a <code>SharedArrayBuffer</code> using the <code>new SharedArrayBuffer(size)</code> constructor, where <code>size</code> is the number of bytes allocated.</p>
+    <pre><code class="language-javascript">let sharedBuffer = new SharedArrayBuffer(16);
+console.log(sharedBuffer.byteLength); 
+// Output: 16 (bytes allocated)</code></pre>
+
+    <h2 style="color: #2980b9;">2. Using a Typed Array with SharedArrayBuffer</h2>
+    <p>Since <code>SharedArrayBuffer</code> does not have methods to manipulate data directly, we use typed arrays like <code>Int32Array</code> to interact with it.</p>
+    <pre><code class="language-javascript">let sharedBuffer = new SharedArrayBuffer(16);
+let sharedView = new Int32Array(sharedBuffer);
+
+sharedView[0] = 42;
+console.log(sharedView); 
+// Output: Int32Array(4) [42, 0, 0, 0]</code></pre>
+
+    <h2 style="color: #2980b9;">3. Atomic Operations with Atomics API</h2>
+    <p>To ensure safe concurrent access to shared memory, JavaScript provides the <code>Atomics</code> API.</p>
+    <pre><code class="language-javascript">let sharedBuffer = new SharedArrayBuffer(16);
+let sharedView = new Int32Array(sharedBuffer);
+
+Atomics.store(sharedView, 0, 100);
+console.log(Atomics.load(sharedView, 0));  
+// Output: 100</code></pre>
+
+    <h2 style="color: #2980b9;">4. Waiting and Notifying Threads</h2>
+    <p>The <code>Atomics.wait()</code> and <code>Atomics.notify()</code> methods allow workers to wait for changes in shared memory.</p>
+    <pre><code class="language-javascript">let sharedBuffer = new SharedArrayBuffer(16);
+let sharedView = new Int32Array(sharedBuffer);
+
+Atomics.store(sharedView, 0, 0);
+setTimeout(() => {
+    Atomics.store(sharedView, 0, 1);
+    Atomics.notify(sharedView, 0);
+}, 2000);
+
+console.log("Waiting for value change...");
+Atomics.wait(sharedView, 0, 0);
+console.log("Value changed:", sharedView[0]);</code></pre>
+
+    <h2 style="color: #2980b9;">5. Sharing SharedArrayBuffer Between Web Workers</h2>
+    <p><code>SharedArrayBuffer</code> allows sharing memory between the main thread and workers.</p>
+    <pre><code class="language-javascript">// Main thread
+let sharedBuffer = new SharedArrayBuffer(16);
+let worker = new Worker("worker.js");
+
+worker.postMessage(sharedBuffer);</code></pre>
+
+    <pre><code class="language-javascript">// worker.js
+self.onmessage = function(event) {
+    let sharedView = new Int32Array(event.data);
+    console.log("Worker received SharedArrayBuffer:", sharedView);
+};</code></pre>
+
+    <h2 style="color: #2980b9;">6. Security Considerations</h2>
+    <ul>
+        <li>SharedArrayBuffer was disabled in some browsers due to security concerns (e.g., Spectre attacks).</li>
+        <li>It is now available only in secure contexts (HTTPS) with the required COOP and COEP headers.</li>
+    </ul>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>SharedArrayBuffer</code> object is an advanced JavaScript feature that enables high-performance parallel computing. It is essential for working with multi-threaded applications, but requires careful handling due to its security restrictions.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object DataView`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object DataView in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>DataView</code> object in JavaScript provides a low-level interface for reading and writing multiple number types in an <code>ArrayBuffer</code>. It allows control over endianness (byte order) and efficient data manipulation.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a DataView</h2>
+    <p>You need an <code>ArrayBuffer</code> to create a DataView.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(16);
+let view = new DataView(buffer);
+console.log(view);
+// Output: DataView { byteLength: 16 }</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Writing Data to DataView</h2>
+    <p>Use setter methods to store values at specific byte offsets.</p>
+    <pre><code class="language-javascript" codeHighlight>let dataView = new DataView(new ArrayBuffer(8));
+dataView.setInt16(0, 300);
+dataView.setFloat32(2, 10.5);
+console.log(dataView);
+// Output: DataView with stored values</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Reading Data from DataView</h2>
+    <p>Use getter methods to retrieve values.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(dataView.getInt16(0));  // Output: 300
+console.log(dataView.getFloat32(2)); // Output: 10.5</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Handling Endianness</h2>
+    <p>DataView allows explicit control over byte ordering.</p>
+    <pre><code class="language-javascript" codeHighlight>dataView.setInt16(0, 300, true);  // Little-endian
+console.log(dataView.getInt16(0, true)); // Output: 300</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Working with Multiple Data Types</h2>
+    <p>DataView can handle different data types in the same buffer.</p>
+    <pre><code class="language-javascript" codeHighlight>dataView.setUint8(0, 255);
+dataView.setInt32(1, 123456);
+console.log(dataView.getUint8(0));  // Output: 255
+console.log(dataView.getInt32(1));  // Output: 123456</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Using DataView with TypedArrays</h2>
+    <p>DataView can be used alongside TypedArrays.</p>
+    <pre><code class="language-javascript" codeHighlight>let typedArray = new Uint8Array(dataView.buffer);
+typedArray[0] = 42;
+console.log(dataView.getUint8(0));  // Output: 42</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>DataView</code> object is essential for fine-grained control over binary data, making it highly useful in applications like networking, file processing, and graphics rendering.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object Uint8Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Uint8Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Uint8Array</code> object in JavaScript is a typed array that represents an array of 8-bit unsigned integers. It is used for handling binary data efficiently and works with <code>ArrayBuffer</code>.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Uint8Array</h2>
+    <p>You can create a Uint8Array in different ways.</p>
+    <pre><code class="language-javascript" codeHighlight>let uint8 = new Uint8Array(5);
+console.log(uint8);
+// Output: Uint8Array(5) [0, 0, 0, 0, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>You can initialize a Uint8Array with specific values.</p>
+    <pre><code class="language-javascript" codeHighlight>let uint8Values = new Uint8Array([10, 20, 30, 40]);
+console.log(uint8Values);
+// Output: Uint8Array(4) [10, 20, 30, 40]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing and Modifying Values</h2>
+    <p>Uint8Array allows direct access and modification.</p>
+    <pre><code class="language-javascript" codeHighlight>let uint8Arr = new Uint8Array(3);
+uint8Arr[0] = 255;
+uint8Arr[1] = 128;
+console.log(uint8Arr);
+// Output: Uint8Array(3) [255, 128, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using Uint8Array with ArrayBuffer</h2>
+    <p>Uint8Array can be created from an ArrayBuffer.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(8);
+let uint8View = new Uint8Array(buffer);
+console.log(uint8View.length);
+// Output: 8</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Copying and Slicing</h2>
+    <p>Use <code>set()</code> and <code>subarray()</code> for copying and slicing.</p>
+    <pre><code class="language-javascript" codeHighlight>let source = new Uint8Array([5, 10, 15]);
+let target = new Uint8Array(3);
+target.set(source);
+console.log(target);
+// Output: Uint8Array(3) [5, 10, 15]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Converting to a Regular Array</h2>
+    <p>Convert a Uint8Array to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let normalArray = Array.from(uint8Values);
+console.log(normalArray);
+// Output: [10, 20, 30, 40]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting and Iterating</h2>
+    <p>Sort and iterate over Uint8Array like regular arrays.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = new Uint8Array([3, 1, 4, 1, 5]);
+numbers.sort();
+console.log(numbers);
+// Output: Uint8Array(5) [1, 1, 3, 4, 5]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Uint8Array</code> is a crucial data structure for efficient binary data manipulation, often used in Web APIs, cryptography, and multimedia applications.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object Uint8ClampedArray`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Uint8ClampedArray in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Uint8ClampedArray</code> object in JavaScript is a typed array that represents an array of 8-bit unsigned integers, with values automatically clamped between 0 and 255. This means any value set below 0 becomes 0, and any value above 255 becomes 255.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Uint8ClampedArray</h2>
+    <p>You can create a new <code>Uint8ClampedArray</code> using different methods.</p>
+    <pre><code class="language-javascript">let clampedArray = new Uint8ClampedArray(5);
+console.log(clampedArray); 
+// Output: Uint8ClampedArray(5) [0, 0, 0, 0, 0]</code></pre>
+
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>We can initialize the array with values, and it automatically clamps out-of-range values.</p>
+    <pre><code class="language-javascript">let clampedArray = new Uint8ClampedArray([10, 255, 300, -5, 128]);
+console.log(clampedArray);
+// Output: Uint8ClampedArray(5) [10, 255, 255, 0, 128]</code></pre>
+
+    <h2 style="color: #2980b9;">3. Clamping Behavior</h2>
+    <p>Unlike <code>Uint8Array</code>, which allows overflow, <code>Uint8ClampedArray</code> ensures values stay between 0 and 255.</p>
+    <pre><code class="language-javascript">let arr = new Uint8ClampedArray(2);
+arr[0] = 260; // Clamped to 255
+arr[1] = -20; // Clamped to 0
+console.log(arr); 
+// Output: Uint8ClampedArray(2) [255, 0]</code></pre>
+
+    <h2 style="color: #2980b9;">4. Using with an ArrayBuffer</h2>
+    <p>We can create a <code>Uint8ClampedArray</code> from an <code>ArrayBuffer</code> to share memory.</p>
+    <pre><code class="language-javascript">let buffer = new ArrayBuffer(4);
+let clampedArray = new Uint8ClampedArray(buffer);
+console.log(clampedArray.byteLength); 
+// Output: 4</code></pre>
+
+    <h2 style="color: #2980b9;">5. Working with Image Data</h2>
+    <p><code>Uint8ClampedArray</code> is commonly used in the <code>Canvas API</code> to handle image pixel data.</p>
+    <pre><code class="language-javascript">let canvas = document.createElement('canvas');
+let ctx = canvas.getContext('2d');
+let imageData = ctx.createImageData(2, 2);
+
+console.log(imageData.data instanceof Uint8ClampedArray); 
+// Output: true</code></pre>
+
+    <h2 style="color: #2980b9;">6. Iterating Over Uint8ClampedArray</h2>
+    <p>We can loop through values using <code>forEach</code> or a <code>for</code> loop.</p>
+    <pre><code class="language-javascript">let clampedArray = new Uint8ClampedArray([50, 200, 300]);
+clampedArray.forEach(value => console.log(value));
+// Output: 50, 200, 255</code></pre>
+
+    <h2 style="color: #2980b9;">7. Converting to a Regular Array</h2>
+    <p>You can convert a <code>Uint8ClampedArray</code> to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript">let clampedArray = new Uint8ClampedArray([100, 150, 255]);
+let normalArray = Array.from(clampedArray);
+console.log(normalArray); 
+// Output: [100, 150, 255]</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Uint8ClampedArray</code> object is essential for handling color data in images, as it ensures values remain within the 0-255 range. Its automatic clamping behavior prevents unexpected pixel overflow issues.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object Uint16Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Uint16Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Uint16Array</code> object in JavaScript is a typed array that represents an array of 16-bit (2-byte) unsigned integers. Each element in the array ranges from <strong>0 to 65535</strong>. It is often used for handling binary data efficiently.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Uint16Array</h2>
+    <p>You can create a <code>Uint16Array</code> using different methods.</p>
+    <pre><code class="language-javascript">let uint16Array = new Uint16Array(5);
+console.log(uint16Array); 
+// Output: Uint16Array(5) [0, 0, 0, 0, 0]</code></pre>
+
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>We can initialize a <code>Uint16Array</code> with an array of numbers.</p>
+    <pre><code class="language-javascript">let uint16Array = new Uint16Array([100, 5000, 65535, 70000]);
+console.log(uint16Array);
+// Output: Uint16Array(4) [100, 5000, 65535, 4464] (70000 overflows and wraps)</code></pre>
+
+    <h2 style="color: #2980b9;">3. Handling Overflow</h2>
+    <p>Values greater than 65535 will overflow and wrap around due to the 16-bit limit.</p>
+    <pre><code class="language-javascript">let arr = new Uint16Array(2);
+arr[0] = 70000; // Overflow
+arr[1] = -1; // Wrapped to max 65535
+console.log(arr); 
+// Output: Uint16Array(2) [4464, 65535]</code></pre>
+
+    <h2 style="color: #2980b9;">4. Creating from an ArrayBuffer</h2>
+    <p>We can use an <code>ArrayBuffer</code> to create a <code>Uint16Array</code> with shared memory.</p>
+    <pre><code class="language-javascript">let buffer = new ArrayBuffer(10);
+let uint16Array = new Uint16Array(buffer);
+console.log(uint16Array.byteLength); 
+// Output: 10 (5 Uint16 elements, each 2 bytes)</code></pre>
+
+    <h2 style="color: #2980b9;">5. Accessing Elements</h2>
+    <p>Elements can be accessed using index notation like a normal array.</p>
+    <pre><code class="language-javascript">let uint16Array = new Uint16Array([150, 300, 500]);
+console.log(uint16Array[0]); // Output: 150
+console.log(uint16Array[1]); // Output: 300</code></pre>
+
+    <h2 style="color: #2980b9;">6. Modifying Uint16Array</h2>
+    <p>We can modify the values of a <code>Uint16Array</code> like a regular array.</p>
+    <pre><code class="language-javascript">let uint16Array = new Uint16Array(3);
+uint16Array[0] = 10000;
+uint16Array[1] = 65535;
+uint16Array[2] = 70000; // Overflows and wraps
+
+console.log(uint16Array);
+// Output: Uint16Array(3) [10000, 65535, 4464]</code></pre>
+
+    <h2 style="color: #2980b9;">7. Iterating Over Uint16Array</h2>
+    <p>We can loop through the array using <code>forEach</code> or a <code>for</code> loop.</p>
+    <pre><code class="language-javascript">let uint16Array = new Uint16Array([200, 400, 600]);
+uint16Array.forEach(value => console.log(value));
+// Output: 200, 400, 600</code></pre>
+
+    <h2 style="color: #2980b9;">8. Converting to a Regular Array</h2>
+    <p>You can convert a <code>Uint16Array</code> to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript">let uint16Array = new Uint16Array([100, 200, 300]);
+let normalArray = Array.from(uint16Array);
+console.log(normalArray); 
+// Output: [100, 200, 300]</code></pre>
+
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Uint16Array</code> object is useful when dealing with binary data that requires 16-bit unsigned integers. It ensures efficient memory usage and prevents negative values.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object Int32Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Int32Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Int32Array</code> object in JavaScript is a typed array that represents an array of 32-bit signed integers. It provides efficient storage and manipulation of large sets of integer values and is commonly used for performance-sensitive applications.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating an Int32Array</h2>
+    <p>You can create an Int32Array in multiple ways.</p>
+    <pre><code class="language-javascript" codeHighlight>let int32 = new Int32Array(5);
+console.log(int32);
+// Output: Int32Array(5) [0, 0, 0, 0, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>You can initialize an Int32Array with specific values.</p>
+    <pre><code class="language-javascript" codeHighlight>let int32Values = new Int32Array([100, 200, 300, 400]);
+console.log(int32Values);
+// Output: Int32Array(4) [100, 200, 300, 400]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing and Modifying Values</h2>
+    <p>Int32Array allows direct access and modification.</p>
+    <pre><code class="language-javascript" codeHighlight>let int32Arr = new Int32Array(3);
+int32Arr[0] = -500;
+int32Arr[1] = 1024;
+console.log(int32Arr);
+// Output: Int32Array(3) [-500, 1024, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using Int32Array with ArrayBuffer</h2>
+    <p>Int32Array can be created from an ArrayBuffer.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(16);
+let int32View = new Int32Array(buffer);
+console.log(int32View.length);
+// Output: 4 (since each Int32 takes 4 bytes)</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Copying and Slicing</h2>
+    <p>Use <code>set()</code> and <code>subarray()</code> for copying and slicing.</p>
+    <pre><code class="language-javascript" codeHighlight>let source = new Int32Array([5, 10, 15]);
+let target = new Int32Array(3);
+target.set(source);
+console.log(target);
+// Output: Int32Array(3) [5, 10, 15]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Converting to a Regular Array</h2>
+    <p>Convert an Int32Array to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let normalArray = Array.from(int32Values);
+console.log(normalArray);
+// Output: [100, 200, 300, 400]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting and Iterating</h2>
+    <p>Sort and iterate over Int32Array like regular arrays.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = new Int32Array([3, 1, 4, 1, 5]);
+numbers.sort();
+console.log(numbers);
+// Output: Int32Array(5) [1, 1, 3, 4, 5]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Int32Array</code> is a powerful data structure for handling large integer datasets efficiently. It is widely used in performance-critical applications such as numerical computations and data processing.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object Float32Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Float32Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Float32Array</code> object in JavaScript is a typed array that represents an array of 32-bit floating-point numbers. It provides efficient storage and manipulation of large sets of decimal values and is commonly used in graphics, scientific computations, and data processing.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Float32Array</h2>
+    <p>You can create a Float32Array in multiple ways.</p>
+    <pre><code class="language-javascript" codeHighlight>let float32 = new Float32Array(5);
+console.log(float32);
+// Output: Float32Array(5) [0, 0, 0, 0, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>You can initialize a Float32Array with specific values.</p>
+    <pre><code class="language-javascript" codeHighlight>let float32Values = new Float32Array([1.5, 2.3, 3.7, 4.9]);
+console.log(float32Values);
+// Output: Float32Array(4) [1.5, 2.3, 3.7, 4.9]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing and Modifying Values</h2>
+    <p>Float32Array allows direct access and modification.</p>
+    <pre><code class="language-javascript" codeHighlight>let float32Arr = new Float32Array(3);
+float32Arr[0] = -1.25;
+float32Arr[1] = 3.14;
+console.log(float32Arr);
+// Output: Float32Array(3) [-1.25, 3.14, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using Float32Array with ArrayBuffer</h2>
+    <p>Float32Array can be created from an ArrayBuffer.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(16);
+let float32View = new Float32Array(buffer);
+console.log(float32View.length);
+// Output: 4 (since each Float32 takes 4 bytes)</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Copying and Slicing</h2>
+    <p>Use <code>set()</code> and <code>subarray()</code> for copying and slicing.</p>
+    <pre><code class="language-javascript" codeHighlight>let source = new Float32Array([2.5, 5.5, 7.5]);
+let target = new Float32Array(3);
+target.set(source);
+console.log(target);
+// Output: Float32Array(3) [2.5, 5.5, 7.5]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Converting to a Regular Array</h2>
+    <p>Convert a Float32Array to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let normalArray = Array.from(float32Values);
+console.log(normalArray);
+// Output: [1.5, 2.3, 3.7, 4.9]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting and Iterating</h2>
+    <p>Sort and iterate over Float32Array like regular arrays.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = new Float32Array([3.14, 1.59, 2.71, 1.41]);
+numbers.sort();
+console.log(numbers);
+// Output: Float32Array(4) [1.41, 1.59, 2.71, 3.14]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Float32Array</code> is a powerful data structure for handling floating-point datasets efficiently. It is widely used in scientific calculations, graphics programming, and numerical analysis.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object Float64Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Float64Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Float64Array</code> object in JavaScript is a typed array that represents an array of 64-bit floating-point numbers. It provides efficient storage and manipulation of large sets of decimal values and is commonly used in high-precision calculations, scientific computations, and data processing.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Float64Array</h2>
+    <p>You can create a Float64Array in multiple ways.</p>
+    <pre><code class="language-javascript" codeHighlight>let float64 = new Float64Array(5);
+console.log(float64);
+// Output: Float64Array(5) [0, 0, 0, 0, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>You can initialize a Float64Array with specific values.</p>
+    <pre><code class="language-javascript" codeHighlight>let float64Values = new Float64Array([1.5, 2.3, 3.7, 4.9]);
+console.log(float64Values);
+// Output: Float64Array(4) [1.5, 2.3, 3.7, 4.9]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing and Modifying Values</h2>
+    <p>Float64Array allows direct access and modification.</p>
+    <pre><code class="language-javascript" codeHighlight>let float64Arr = new Float64Array(3);
+float64Arr[0] = -1.25;
+float64Arr[1] = 3.14;
+console.log(float64Arr);
+// Output: Float64Array(3) [-1.25, 3.14, 0]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using Float64Array with ArrayBuffer</h2>
+    <p>Float64Array can be created from an ArrayBuffer.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(32);
+let float64View = new Float64Array(buffer);
+console.log(float64View.length);
+// Output: 4 (since each Float64 takes 8 bytes)</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Copying and Slicing</h2>
+    <p>Use <code>set()</code> and <code>subarray()</code> for copying and slicing.</p>
+    <pre><code class="language-javascript" codeHighlight>let source = new Float64Array([2.5, 5.5, 7.5]);
+let target = new Float64Array(3);
+target.set(source);
+console.log(target);
+// Output: Float64Array(3) [2.5, 5.5, 7.5]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Converting to a Regular Array</h2>
+    <p>Convert a Float64Array to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let normalArray = Array.from(float64Values);
+console.log(normalArray);
+// Output: [1.5, 2.3, 3.7, 4.9]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting and Iterating</h2>
+    <p>Sort and iterate over Float64Array like regular arrays.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = new Float64Array([3.14, 1.59, 2.71, 1.41]);
+numbers.sort();
+console.log(numbers);
+// Output: Float64Array(4) [1.41, 1.59, 2.71, 3.14]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Float64Array</code> is a powerful data structure for handling high-precision floating-point datasets efficiently. It is widely used in scientific calculations, graphics programming, and numerical analysis.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object BigInt64Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object BigInt64Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>BigInt64Array</code> object in JavaScript is a typed array that represents an array of 64-bit signed integers using <code>BigInt</code>. It allows for handling large integer values efficiently and is commonly used in applications requiring high-precision integer computations.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a BigInt64Array</h2>
+    <p>You can create a BigInt64Array in multiple ways.</p>
+    <pre><code class="language-javascript" codeHighlight>let bigIntArr = new BigInt64Array(5);
+console.log(bigIntArr);
+// Output: BigInt64Array(5) [0n, 0n, 0n, 0n, 0n]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>You can initialize a BigInt64Array with specific values.</p>
+    <pre><code class="language-javascript" codeHighlight>let bigIntValues = new BigInt64Array([10n, 20n, 30n, 40n]);
+console.log(bigIntValues);
+// Output: BigInt64Array(4) [10n, 20n, 30n, 40n]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing and Modifying Values</h2>
+    <p>BigInt64Array allows direct access and modification.</p>
+    <pre><code class="language-javascript" codeHighlight>let bigIntArr = new BigInt64Array(3);
+bigIntArr[0] = -100n;
+bigIntArr[1] = 500n;
+console.log(bigIntArr);
+// Output: BigInt64Array(3) [-100n, 500n, 0n]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using BigInt64Array with ArrayBuffer</h2>
+    <p>BigInt64Array can be created from an ArrayBuffer.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(32);
+let bigIntView = new BigInt64Array(buffer);
+console.log(bigIntView.length);
+// Output: 4 (since each BigInt64 takes 8 bytes)</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Copying and Slicing</h2>
+    <p>Use <code>set()</code> and <code>subarray()</code> for copying and slicing.</p>
+    <pre><code class="language-javascript" codeHighlight>let source = new BigInt64Array([100n, 200n, 300n]);
+let target = new BigInt64Array(3);
+target.set(source);
+console.log(target);
+// Output: BigInt64Array(3) [100n, 200n, 300n]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Converting to a Regular Array</h2>
+    <p>Convert a BigInt64Array to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let normalArray = Array.from(bigIntValues);
+console.log(normalArray);
+// Output: [10n, 20n, 30n, 40n]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting and Iterating</h2>
+    <p>Sorting a BigInt64Array requires conversion to a regular array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = new BigInt64Array([30n, 10n, 20n, 40n]);
+let sortedNumbers = Array.from(numbers).sort((a, b) => (a > b ? 1 : -1));
+console.log(sortedNumbers);
+// Output: [10n, 20n, 30n, 40n]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>BigInt64Array</code> is useful for handling large integers efficiently in JavaScript. It is widely used in applications that require high-precision integer computations, such as cryptography, financial calculations, and scientific computing.</p>
+</div>`
+},
+{
+   articleTitle: `Object BigUint64Array`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object BigUint64Array in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>BigUint64Array</code> object in JavaScript is a typed array that represents an array of 64-bit unsigned integers using <code>BigInt</code>. It is useful for handling large non-negative integers efficiently in high-precision computations.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a BigUint64Array</h2>
+    <p>You can create a BigUint64Array in multiple ways.</p>
+    <pre><code class="language-javascript" codeHighlight>let bigUintArr = new BigUint64Array(5);
+console.log(bigUintArr);
+// Output: BigUint64Array(5) [0n, 0n, 0n, 0n, 0n]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Initializing with Values</h2>
+    <p>You can initialize a BigUint64Array with specific values.</p>
+    <pre><code class="language-javascript" codeHighlight>let bigUintValues = new BigUint64Array([10n, 20n, 30n, 40n]);
+console.log(bigUintValues);
+// Output: BigUint64Array(4) [10n, 20n, 30n, 40n]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Accessing and Modifying Values</h2>
+    <p>BigUint64Array allows direct access and modification.</p>
+    <pre><code class="language-javascript" codeHighlight>let bigUintArr = new BigUint64Array(3);
+bigUintArr[0] = 100n;
+bigUintArr[1] = 500n;
+console.log(bigUintArr);
+// Output: BigUint64Array(3) [100n, 500n, 0n]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using BigUint64Array with ArrayBuffer</h2>
+    <p>BigUint64Array can be created from an ArrayBuffer.</p>
+    <pre><code class="language-javascript" codeHighlight>let buffer = new ArrayBuffer(32);
+let bigUintView = new BigUint64Array(buffer);
+console.log(bigUintView.length);
+// Output: 4 (since each BigUint64 takes 8 bytes)</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Copying and Slicing</h2>
+    <p>Use <code>set()</code> and <code>subarray()</code> for copying and slicing.</p>
+    <pre><code class="language-javascript" codeHighlight>let source = new BigUint64Array([100n, 200n, 300n]);
+let target = new BigUint64Array(3);
+target.set(source);
+console.log(target);
+// Output: BigUint64Array(3) [100n, 200n, 300n]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Converting to a Regular Array</h2>
+    <p>Convert a BigUint64Array to a normal array using <code>Array.from()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let normalArray = Array.from(bigUintValues);
+console.log(normalArray);
+// Output: [10n, 20n, 30n, 40n]</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Sorting and Iterating</h2>
+    <p>Sorting a BigUint64Array requires conversion to a regular array.</p>
+    <pre><code class="language-javascript" codeHighlight>let numbers = new BigUint64Array([30n, 10n, 20n, 40n]);
+let sortedNumbers = Array.from(numbers).sort((a, b) => (a > b ? 1 : -1));
+console.log(sortedNumbers);
+// Output: [10n, 20n, 30n, 40n]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>BigUint64Array</code> is useful for handling large unsigned integers efficiently in JavaScript. It is widely used in applications that require high-precision computations, such as cryptography, financial calculations, and scientific computing.</p>
+</div>`
+},
+{
+   articleTitle: `Object Proxy`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Proxy in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Proxy</code> object in JavaScript allows the creation of custom behaviors for fundamental operations (e.g., property lookup, assignment, enumeration, function invocation). Proxies provide a way to intercept and redefine basic operations on objects.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a Proxy</h2>
+    <p>You can create a Proxy using the <code>new Proxy()</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let target = {};
+let handler = {};
+let proxy = new Proxy(target, handler);
+console.log(proxy);
+// Output: Proxy {}</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Intercepting Property Access</h2>
+    <p>Use the <code>get</code> trap to intercept property access.</p>
+    <pre><code class="language-javascript" codeHighlight>let handler = {
+    get: function(target, property) {
+        return property in target ? target[property] : \`Property \${property} not found\`;
+    }
+};
+let obj = { name: "John" };
+let proxy = new Proxy(obj, handler);
+console.log(proxy.name); // Output: John
+console.log(proxy.age);  // Output: Property age not found</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Intercepting Property Assignment</h2>
+    <p>Use the <code>set</code> trap to control property assignment.</p>
+    <pre><code class="language-javascript" codeHighlight>let handler = {
+    set: function(target, property, value) {
+        if (typeof value === "number") {
+            target[property] = value;
+        } else {
+            console.log("Only numbers are allowed!");
+        }
+        return true;
+    }
+};
+let obj = {};
+let proxy = new Proxy(obj, handler);
+proxy.age = 25;
+console.log(proxy.age); // Output: 25
+proxy.age = "Hello"; // Output: Only numbers are allowed!</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Intercepting Property Deletion</h2>
+    <p>Use the <code>deleteProperty</code> trap to control deletion.</p>
+    <pre><code class="language-javascript" codeHighlight>let handler = {
+    deleteProperty: function(target, property) {
+        console.log (\`Deleting property \${property}\`);
+        return delete target[property];
+    }
+};
+let obj = { name: "John" };
+let proxy = new Proxy(obj, handler);
+delete proxy.name;
+// Output: Deleting property name</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Validating Property Access</h2>
+    <p>Use a Proxy to enforce access rules.</p>
+    <pre><code class="language-javascript" codeHighlight>let handler = {
+    get: function(target, property) {
+        if (property.startsWith("_")) {
+            throw new Error("Access denied");
+        }
+        return target[property];
+    }
+};
+let obj = { _secret: "Hidden", name: "John" };
+let proxy = new Proxy(obj, handler);
+console.log(proxy.name); // Output: John
+console.log(proxy._secret); // Throws error: Access denied</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Proxy</code> object is a powerful tool for intercepting and customizing object behavior in JavaScript. It is widely used for validation, logging, data binding, and security enforcement.</p>
+</div>`
+},
+{
+   articleTitle: `Object Reflect`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object Reflect in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Reflect</code> object in JavaScript provides methods for interceptable JavaScript operations. It is designed to complement <code>Proxy</code> and offers an alternative way to perform fundamental object operations in a functional manner.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Getting Property Values</h2>
+    <p>The <code>Reflect.get()</code> method retrieves a property from an object.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+console.log(Reflect.get(obj, "name"));
+// Output: John</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Setting Property Values</h2>
+    <p>The <code>Reflect.set()</code> method assigns a value to a property.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = {};
+Reflect.set(obj, "age", 25);
+console.log(obj.age);
+// Output: 25</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Checking Property Existence</h2>
+    <p>Use <code>Reflect.has()</code> to check if an object contains a specific property.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John" };
+console.log(Reflect.has(obj, "name")); // Output: true
+console.log(Reflect.has(obj, "age"));  // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Deleting Properties</h2>
+    <p>Use <code>Reflect.deleteProperty()</code> to remove a property.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John", age: 30 };
+Reflect.deleteProperty(obj, "age");
+console.log(obj);
+// Output: { name: "John" }</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Getting Property Descriptors</h2>
+    <p>Use <code>Reflect.getOwnPropertyDescriptor()</code> to retrieve property descriptors.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John" };
+console.log(Reflect.getOwnPropertyDescriptor(obj, "name"));
+// Output: { value: "John", writable: true, enumerable: true, configurable: true }</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Preventing Extensions</h2>
+    <p>Use <code>Reflect.preventExtensions()</code> to make an object non-extensible.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "John" };
+Reflect.preventExtensions(obj);
+console.log(Reflect.isExtensible(obj));
+// Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">7. Constructing Objects</h2>
+    <p>Use <code>Reflect.construct()</code> to create a new object instance.</p>
+    <pre><code class="language-javascript" codeHighlight>class Person {
+    constructor(name) {
+        this.name = name;
+    }
+}
+let person = Reflect.construct(Person, ["Alice"]);
+console.log(person.name);
+// Output: Alice</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Reflect</code> object simplifies object manipulation and provides a functional approach to standard operations. It works well with <code>Proxy</code> and enhances metaprogramming capabilities in JavaScript.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object WeakMap`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object WeakMap in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>WeakMap</code> object in JavaScript is a collection of key-value pairs where keys must be objects and values can be of any type. Unlike regular <code>Map</code>, <code>WeakMap</code> allows objects to be garbage-collected when there are no other references to them.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a WeakMap</h2>
+    <p>You can create a WeakMap using the <code>new WeakMap()</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakMap = new WeakMap();
+let obj = {};
+weakMap.set(obj, "value");
+console.log(weakMap.get(obj));
+// Output: value</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Setting Values</h2>
+    <p>Use <code>set()</code> to store a key-value pair.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakMap = new WeakMap();
+let key = {};
+weakMap.set(key, "Hello");
+console.log(weakMap.get(key));
+// Output: Hello</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Getting Values</h2>
+    <p>Use <code>get()</code> to retrieve a value by its key.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakMap = new WeakMap();
+let obj = {};
+weakMap.set(obj, 42);
+console.log(weakMap.get(obj));
+// Output: 42</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Checking Key Existence</h2>
+    <p>Use <code>has()</code> to check if a key exists.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakMap = new WeakMap();
+let obj = {};
+weakMap.set(obj, "data");
+console.log(weakMap.has(obj)); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Deleting Entries</h2>
+    <p>Use <code>delete()</code> to remove an entry from the WeakMap.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakMap = new WeakMap();
+let obj = {};
+weakMap.set(obj, "value");
+weakMap.delete(obj);
+console.log(weakMap.has(obj));
+// Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">6. WeakMap vs Map</h2>
+    <p>Unlike <code>Map</code>, <code>WeakMap</code> does not allow iteration and its keys are weakly held.</p>
+    <pre><code class="language-javascript" codeHighlight>let map = new Map();
+let weakMap = new WeakMap();
+let obj = {};
+map.set(obj, "Persisted");
+weakMap.set(obj, "Garbage Collected");
+console.log(map.get(obj)); // Output: Persisted
+console.log(weakMap.get(obj)); // Output: Garbage Collected</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>WeakMap</code> object is useful for private data storage and memory-efficient key-value mappings. It ensures that objects can be garbage-collected when they are no longer in use.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object WeakSet`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object WeakSet in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>WeakSet</code> object in JavaScript is a collection of objects, where each object is held "weakly." Unlike a regular <code>Set</code>, <code>WeakSet</code> does not prevent its objects from being garbage-collected when there are no other references to them.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a WeakSet</h2>
+    <p>You can create a WeakSet using the <code>new WeakSet()</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakSet = new WeakSet();
+let obj = {};
+weakSet.add(obj);
+console.log(weakSet.has(obj));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Adding Elements</h2>
+    <p>Use <code>add()</code> to store an object in the WeakSet.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakSet = new WeakSet();
+let user = { name: "Alice" };
+weakSet.add(user);
+console.log(weakSet.has(user));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Checking for Existence</h2>
+    <p>Use <code>has()</code> to check if an object exists in the WeakSet.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakSet = new WeakSet();
+let obj = {};
+weakSet.add(obj);
+console.log(weakSet.has(obj)); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Removing Elements</h2>
+    <p>Use <code>delete()</code> to remove an object from the WeakSet.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakSet = new WeakSet();
+let obj = {};
+weakSet.add(obj);
+weakSet.delete(obj);
+console.log(weakSet.has(obj));
+// Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">5. WeakSet vs Set</h2>
+    <p>Unlike <code>Set</code>, <code>WeakSet</code> does not allow iteration and only stores objects.</p>
+    <pre><code class="language-javascript" codeHighlight>let set = new Set();
+let weakSet = new WeakSet();
+let obj = {};
+set.add(obj);
+weakSet.add(obj);
+console.log(set.has(obj)); // Output: true
+console.log(weakSet.has(obj)); // Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>WeakSet</code> object is useful for memory-efficient object tracking. Since it holds objects weakly, they are automatically garbage-collected when no other references exist.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object WeakRef`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object WeakRef in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>WeakRef</code> object in JavaScript provides a way to create weak references to objects. This allows objects to be garbage-collected when there are no strong references to them, making it useful for caching and managing memory efficiently.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a WeakRef</h2>
+    <p>You can create a WeakRef using the <code>new WeakRef()</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { name: "Alice" };
+let weakRef = new WeakRef(obj);
+console.log(weakRef.deref()); // Output: { name: "Alice" }</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Accessing WeakRef Data</h2>
+    <p>Use <code>deref()</code> to retrieve the object if it has not been garbage-collected.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { value: 42 };
+let weakRef = new WeakRef(obj);
+console.log(weakRef.deref()); // Output: { value: 42 }</code></pre>
+    
+    <h2 style="color: #2980b9;">3. WeakRef and Garbage Collection</h2>
+    <p>If there are no strong references to the object, it may be garbage-collected.</p>
+    <pre><code class="language-javascript" codeHighlight>let weakRef;
+(function() {
+    let obj = { message: "Hello" };
+    weakRef = new WeakRef(obj);
+})(); // obj goes out of scope here
+console.log(weakRef.deref()); // Output: undefined (if garbage-collected)</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using WeakRef with FinalizationRegistry</h2>
+    <p>The <code>FinalizationRegistry</code> can be used to run cleanup logic when objects are garbage-collected.</p>
+    <pre><code class="language-javascript" codeHighlight>let registry = new FinalizationRegistry((heldValue) => {
+    console.log(\`\${heldValue} has been garbage-collected.\`);
+});
+let obj = { data: "temp" };
+registry.register(obj, "temp data");
+let weakRef = new WeakRef(obj);
+obj = null; // Allow garbage collection</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>WeakRef</code> object is useful for creating weak references that allow objects to be garbage-collected. It is particularly helpful for caching and managing memory in scenarios where objects should not be kept alive unnecessarily.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object FinalizationRegistry`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Object FinalizationRegistry in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>FinalizationRegistry</code> object in JavaScript provides a way to register cleanup callbacks that are executed when an object is garbage-collected. It helps in resource management and weak references cleanup.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating a FinalizationRegistry</h2>
+    <p>You can create a FinalizationRegistry using the <code>new FinalizationRegistry()</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let registry = new FinalizationRegistry((heldValue) => {
+    console.log(\`\${heldValue} has been garbage-collected.\`);
+});</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Registering an Object</h2>
+    <p>Use <code>register()</code> to track an object and specify a cleanup callback.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { data: "temporary" };
+registry.register(obj, "temporary data");
+obj = null; // Allow garbage collection</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Unregistering an Object</h2>
+    <p>Use <code>unregister()</code> to remove an object from the registry before it is garbage-collected.</p>
+    <pre><code class="language-javascript" codeHighlight>let obj = { info: "important" };
+let token = {};
+registry.register(obj, "important info", token);
+registry.unregister(token); // Prevent cleanup callback</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Practical Use Cases</h2>
+    <p><code>FinalizationRegistry</code> is useful for cleaning up resources like closing database connections or removing cached data.</p>
+    <pre><code class="language-javascript" codeHighlight>class Resource {
+    constructor(name) {
+        this.name = name;
+        registry.register(this, name);
+    }
+}
+let res = new Resource("File Handle");
+res = null; // Resource cleanup when garbage-collected</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>FinalizationRegistry</code> object is useful for managing resource cleanup and weak references. It ensures that cleanup callbacks run when objects are no longer needed.</p>
+</div>
+`
+},
+{
+   articleTitle: `Object Error`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
 
 ]
 }
