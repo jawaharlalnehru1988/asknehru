@@ -11302,34 +11302,536 @@ res = null; // Resource cleanup when garbage-collected</code></pre>
 `
 },
 {
-   articleTitle: `Object Error`, content:``
+   articleTitle: `try...catch`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: try...catch</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, error handling is crucial to ensure the smooth execution of a program. The <code>try...catch</code> statement provides a way to catch and handle runtime errors gracefully, preventing the script from crashing.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Syntax of try...catch</h2>
+    <p>The basic syntax of <code>try...catch</code> is:</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    // Code that may throw an error
+} catch (error) {
+    // Code to handle the error
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Handling Errors with try...catch</h2>
+    <p>Let's look at an example where an undefined variable causes an error.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let result = x + 5; // 'x' is not defined
+} catch (error) {
+    console.log("An error occurred:", error.message);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. The Error Object</h2>
+    <p>When an error occurs, JavaScript creates an error object containing useful information.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    JSON.parse("{ invalid JSON }");
+} catch (error) {
+    console.log("Error Name:", error.name);
+    console.log("Error Message:", error.message);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using finally</h2>
+    <p>The <code>finally</code> block executes whether an error occurs or not.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    console.log("Try block executed");
+} catch (error) {
+    console.log("Catch block executed");
+} finally {
+    console.log("Finally block executed");
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Throwing Custom Errors</h2>
+    <p>You can throw custom errors using the <code>throw</code> statement.</p>
+    <pre><code class="language-javascript" codeHighlight>function checkAge(age) {
+    if (age < 18) {
+        throw new Error("You must be at least 18 years old.");
+    }
+    return "Access granted.";
+}
+
+try {
+    console.log(checkAge(15));
+} catch (error) {
+    console.log("Caught an error:", error.message);
+}</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Using <code>try...catch</code> helps in error management, making JavaScript applications more robust and user-friendly. Understanding its features like the error object, <code>finally</code>, and custom errors ensures effective debugging.</p>
+</div>
+`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `throw`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: throw</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        In JavaScript, the <code>throw</code> statement is used to create custom errors. It allows developers to generate exceptions intentionally, making error handling more precise and meaningful.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Syntax of throw</h2>
+    <p>The <code>throw</code> statement can be used to throw exceptions.</p>
+    <pre><code class="language-javascript" codeHighlight>throw expression;</code></pre>
+    <p>The thrown expression can be a string, number, boolean, object, or an instance of the <code>Error</code> class.</p>
+    
+    <h2 style="color: #2980b9;">2. Throwing Custom Errors</h2>
+    <p>Instead of relying on JavaScript’s default errors, we can throw our own error messages.</p>
+    <pre><code class="language-javascript" codeHighlight>function checkNumber(value) {
+    if (isNaN(value)) {
+        throw "Not a valid number!";
+    }
+    return "Valid number: " + value;
+}
+
+try {
+    console.log(checkNumber("abc"));
+} catch (error) {
+    console.log("Error caught:", error);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using throw with Error Objects</h2>
+    <p>Using the built-in <code>Error</code> object provides more details about the error.</p>
+    <pre><code class="language-javascript" codeHighlight>function checkAge(age) {
+    if (age < 18) {
+        throw new Error("You must be at least 18 years old.");
+    }
+    return "Access granted.";
+}
+
+try {
+    console.log(checkAge(15));
+} catch (error) {
+    console.log("Error Name:", error.name);
+    console.log("Error Message:", error.message);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Throwing Different Types of Errors</h2>
+    <p>You can throw different error types like <code>TypeError</code>, <code>ReferenceError</code>, or even custom error objects.</p>
+    <pre><code class="language-javascript" codeHighlight>function divide(a, b) {
+    if (b === 0) {
+        throw new RangeError("Cannot divide by zero.");
+    }
+    return a / b;
+}
+
+try {
+    console.log(divide(10, 0));
+} catch (error) {
+    console.log("Caught an error:", error.message);
+}</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>throw</code> statement allows developers to create meaningful error messages, improving debugging and application reliability. When combined with <code>try...catch</code>, it enhances error handling in JavaScript programs.</p>
+</div>`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `finally`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: finally</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>finally</code> block in JavaScript is used in conjunction with <code>try...catch</code> statements. It allows code to execute regardless of whether an error occurs or not. This is useful for cleanup operations like closing files, releasing resources, or resetting variables.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Syntax of finally</h2>
+    <p>The <code>finally</code> block always executes after the <code>try</code> and <code>catch</code> blocks.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    // Code that may throw an error
+} catch (error) {
+    // Handling the error
+} finally {
+    // Code that will always execute
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using finally with try...catch</h2>
+    <p>The <code>finally</code> block ensures that essential cleanup is performed.</p>
+    <pre><code class="language-javascript" codeHighlight>function processFile() {
+    try {
+        console.log("Opening file...");
+        throw new Error("File not found");
+    } catch (error) {
+        console.log("Error:", error.message);
+    } finally {
+        console.log("Closing file...");
+    }
+}
+
+processFile();</code></pre>
+    
+    <h2 style="color: #2980b9;">3. When does finally execute?</h2>
+    <p>The <code>finally</code> block executes:</p>
+    <ul>
+        <li>When no error occurs.</li>
+        <li>When an error is caught in the <code>catch</code> block.</li>
+        <li>Even if there is a <code>return</code> statement in the <code>try</code> or <code>catch</code> block.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>function testFinally() {
+    try {
+        console.log("Trying...");
+        return "Return from try";
+    } catch (error) {
+        console.log("Error caught");
+    } finally {
+        console.log("Finally always runs");
+    }
+}
+
+console.log(testFinally());</code></pre>
+    
+    <h2 style="color: #2980b9;">4. finally with No Catch Block</h2>
+    <p>The <code>finally</code> block can also be used without a <code>catch</code> block.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    console.log("Executing try block");
+} finally {
+    console.log("Finally block executed");
+}</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>finally</code> block ensures that important code runs regardless of errors. It is ideal for cleanup operations and improving code reliability.</p>
+</div>`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `Error`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: Error Object</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>Error</code> object in JavaScript is used to handle and represent runtime errors. It provides information about the error, such as its message and type, making debugging easier.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating an Error Object</h2>
+    <p>You can create an error using the <code>Error</code> constructor.</p>
+    <pre><code class="language-javascript" codeHighlight>let error = new Error("Something went wrong!");
+console.log(error.name);  // Output: "Error"
+console.log(error.message); // Output: "Something went wrong!"</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Throwing an Error</h2>
+    <p>You can use the <code>throw</code> statement to raise an error.</p>
+    <pre><code class="language-javascript" codeHighlight>function divide(a, b) {
+    if (b === 0) {
+        throw new Error("Cannot divide by zero");
+    }
+    return a / b;
+}
+
+try {
+    console.log(divide(10, 0));
+} catch (error) {
+    console.log("Error caught:", error.message);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Built-in Error Types</h2>
+    <p>JavaScript provides several built-in error types:</p>
+    <ul>
+        <li><code>ReferenceError</code> - Occurs when accessing an undefined variable.</li>
+        <li><code>TypeError</code> - Occurs when an operation is performed on an incompatible type.</li>
+        <li><code>SyntaxError</code> - Occurs when there is a syntax mistake in the code.</li>
+        <li><code>RangeError</code> - Occurs when a value is out of range.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let x = y;  // y is not defined
+} catch (error) {
+    console.log(error.name);  // Output: ReferenceError
+    console.log(error.message); 
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Custom Errors</h2>
+    <p>You can create custom error classes to handle specific scenarios.</p>
+    <pre><code class="language-javascript" codeHighlight>class CustomError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "CustomError";
+    }
+}
+
+try {
+    throw new CustomError("This is a custom error");
+} catch (error) {
+    console.log(error.name);  // Output: CustomError
+    console.log(error.message);
+}</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>The <code>Error</code> object in JavaScript helps handle and debug errors efficiently. Understanding built-in error types and custom errors improves code reliability and maintainability.</p>
+</div>`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `EvalError`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: EvalError</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>EvalError</code> object in JavaScript represents an error related to the global <code>eval()</code> function. Though it is not commonly used in modern JavaScript, it exists for backward compatibility.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What is EvalError?</h2>
+    <p>Originally, <code>EvalError</code> was intended to handle errors occurring with the <code>eval()</code> function. However, modern JavaScript engines throw other errors like <code>SyntaxError</code> or <code>ReferenceError</code> instead.</p>
+    
+    <h2 style="color: #2980b9;">2. Creating an EvalError</h2>
+    <p>Although rarely needed, you can manually create an <code>EvalError</code> instance.</p>
+    <pre><code class="language-javascript" codeHighlight>let error = new EvalError("This is an EvalError");
+console.log(error.name);  // Output: "EvalError"
+console.log(error.message); // Output: "This is an EvalError"</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Handling EvalError</h2>
+    <p>Since JavaScript does not automatically throw <code>EvalError</code>, you can use it in custom error handling.</p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    throw new EvalError("Custom EvalError example");
+} catch (error) {
+    console.log(error.name);  // Output: EvalError
+    console.log(error.message);
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Should You Use EvalError?</h2>
+    <p>Since JavaScript now throws other error types for <code>eval()</code>-related issues, using <code>EvalError</code> is generally unnecessary. It remains in JavaScript for compatibility reasons.</p>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>While <code>EvalError</code> is a part of JavaScript, it is rarely used in modern coding practices. Instead, errors from <code>eval()</code> are typically handled using <code>SyntaxError</code> or <code>ReferenceError</code>.</p>
+</div>`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `RangeError`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: RangeError</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>RangeError</code> object in JavaScript represents an error when a value is not within the allowed range. It usually occurs in scenarios such as setting an invalid array length, using out-of-range numbers, or incorrect function parameters.
+    </p>
+
+    <h2 style="color: #2980b9;">1. When Does RangeError Occur?</h2>
+    <p>Common cases where <code>RangeError</code> can be thrown include:</p>
+    <ul>
+        <li>Setting an invalid array length.</li>
+        <li>Using <code>toFixed()</code> or <code>toPrecision()</code> with an out-of-range argument.</li>
+        <li>Recursion exceeding the call stack size.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">2. Examples of RangeError</h2>
+    <p><strong>Example 1: Invalid Array Length</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let arr = new Array(-1); // Invalid length
+} catch (error) {
+    console.log(error.name);  // Output: "RangeError"
+    console.log(error.message);
+}</code></pre>
+    
+    <p><strong>Example 2: Out-of-Range Argument in toFixed()</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let num = 10.123;
+    console.log(num.toFixed(100)); // Precision too high
+} catch (error) {
+    console.log(error.name);  // Output: "RangeError"
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Handling RangeError</h2>
+    <p>To handle <code>RangeError</code>, use a <code>try...catch</code> block to manage unexpected values.</p>
+    <pre><code class="language-javascript" codeHighlight>function safeArrayLength(length) {
+    try {
+        let arr = new Array(length);
+        return arr;
+    } catch (error) {
+        if (error instanceof RangeError) {
+            console.log("Invalid array length: ", error.message);
+        }
+    }
+}
+
+safeArrayLength(-5); // Output: "Invalid array length: Invalid array length"</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p><code>RangeError</code> occurs when a numeric value is outside its allowable range. To prevent it, always validate user inputs and use <code>try...catch</code> to handle exceptions gracefully.</p>
+</div>`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `ReferenceError`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: ReferenceError</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>ReferenceError</code> object in JavaScript represents an error that occurs when trying to access a variable that has not been declared. This typically happens due to typos, incorrect scope usage, or missing declarations.
+    </p>
+
+    <h2 style="color: #2980b9;">1. When Does ReferenceError Occur?</h2>
+    <p>Common cases where <code>ReferenceError</code> can be thrown include:</p>
+    <ul>
+        <li>Using a variable that has not been declared.</li>
+        <li>Accessing a variable outside its scope.</li>
+        <li>Misspelling variable names.</li>
+        <li>Using <code>let</code> or <code>const</code> variables before declaration (Temporal Dead Zone).</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">2. Examples of ReferenceError</h2>
+    <p><strong>Example 1: Accessing an Undeclared Variable</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    console.log(nonExistentVar); // Variable is not declared
+} catch (error) {
+    console.log(error.name);  // Output: "ReferenceError"
+    console.log(error.message);
+}</code></pre>
+    
+    <p><strong>Example 2: Using a Variable Before Declaration</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    console.log(myVar);
+    let myVar = 10; // ReferenceError due to Temporal Dead Zone
+} catch (error) {
+    console.log(error.name);  // Output: "ReferenceError"
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Handling ReferenceError</h2>
+    <p>To handle <code>ReferenceError</code>, ensure all variables are properly declared before use and validate references.</p>
+    <pre><code class="language-javascript" codeHighlight>function safeAccess() {
+    try {
+        console.log(myVar);
+    } catch (error) {
+        if (error instanceof ReferenceError) {
+            console.log("Variable is not defined: ", error.message);
+        }
+    }
+}
+
+safeAccess(); // Output: "Variable is not defined: myVar is not defined"</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p><code>ReferenceError</code> occurs when accessing an undeclared or out-of-scope variable. To prevent it, always declare variables before use and use <code>try...catch</code> for error handling.</p>
+</div>`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `SyntaxError`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: SyntaxError</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>SyntaxError</code> object in JavaScript represents an error that occurs when the JavaScript engine encounters code that violates the syntax rules of the language. These errors typically arise from incorrect code structure, such as missing brackets, invalid function definitions, or improper keyword usage.
+    </p>
+
+    <h2 style="color: #2980b9;">1. When Does SyntaxError Occur?</h2>
+    <p>Common cases where <code>SyntaxError</code> can be thrown include:</p>
+    <ul>
+        <li>Missing or mismatched parentheses, brackets, or braces.</li>
+        <li>Using reserved keywords incorrectly.</li>
+        <li>Incorrect function declarations.</li>
+        <li>Invalid JSON syntax.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">2. Examples of SyntaxError</h2>
+    <p><strong>Example 1: Missing Bracket</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    eval("if (true { console.log('Hello'); }"); // Missing closing parenthesis
+} catch (error) {
+    console.log(error.name);  // Output: "SyntaxError"
+    console.log(error.message);
+}</code></pre>
+    
+    <p><strong>Example 2: Incorrect Function Declaration</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    eval("function() { console.log('Hello'); }"); // Missing function name
+} catch (error) {
+    console.log(error.name);  // Output: "SyntaxError"
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Handling SyntaxError</h2>
+    <p>Since <code>SyntaxError</code> occurs at parse time, it is best prevented by ensuring proper syntax before execution. However, using <code>try...catch</code> with <code>eval()</code> can help catch runtime syntax errors.</p>
+    <pre><code class="language-javascript" codeHighlight>function safeEval(code) {
+    try {
+        eval(code);
+    } catch (error) {
+        if (error instanceof SyntaxError) {
+            console.log("Syntax error in code: ", error.message);
+        }
+    }
+}
+
+safeEval("var a = ;"); // Output: "Syntax error in code: Unexpected token ';'"</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p><code>SyntaxError</code> occurs due to invalid JavaScript syntax. To prevent it, always write well-structured code and use linters or code editors with syntax validation.</p>
+</div>
+`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `TypeError`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: TypeError</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>TypeError</code> object in JavaScript represents an error that occurs when an operation is performed on a value that is not of the expected type. These errors typically arise when attempting to access properties of <code>null</code> or <code>undefined</code>, calling a non-function as a function, or using an invalid operation on a data type.
+    </p>
+
+    <h2 style="color: #2980b9;">1. When Does TypeError Occur?</h2>
+    <p>Common cases where <code>TypeError</code> can be thrown include:</p>
+    <ul>
+        <li>Accessing properties of <code>null</code> or <code>undefined</code>.</li>
+        <li>Calling something that is not a function.</li>
+        <li>Incorrect use of built-in object methods.</li>
+        <li>Trying to modify immutable properties.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">2. Examples of TypeError</h2>
+    <p><strong>Example 1: Accessing Property of Undefined</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let obj = null;
+    console.log(obj.name); // Attempting to access property of null
+} catch (error) {
+    console.log(error.name);  // Output: "TypeError"
+    console.log(error.message);
+}</code></pre>
+    
+    <p><strong>Example 2: Calling a Non-Function</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let num = 5;
+    num(); // Attempting to call a number as a function
+} catch (error) {
+    console.log(error.name);  // Output: "TypeError"
+}</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Handling TypeError</h2>
+    <p>To avoid <code>TypeError</code>, ensure that variables are properly initialized and that function calls are valid. Using <code>try...catch</code> can help handle unexpected type issues.</p>
+    <pre><code class="language-javascript" codeHighlight>function safeAccess(obj) {
+    try {
+        console.log(obj.name);
+    } catch (error) {
+        if (error instanceof TypeError) {
+            console.log("Type error encountered: ", error.message);
+        }
+    }
+}
+
+safeAccess(null); // Output: "Type error encountered: Cannot read properties of null (reading 'name')"</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p><code>TypeError</code> occurs due to operations on incompatible types. Proper variable initialization and type checking can prevent these errors in JavaScript applications.</p>
+</div>`
 },
 {
-   articleTitle: `Object Date`, content:``
+   articleTitle: `URIError`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Error Handling in JavaScript: URIError</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        The <code>URIError</code> object in JavaScript represents an error that occurs when an incorrect or malformed URI (Uniform Resource Identifier) is passed to a built-in URI handling function. This typically happens when using functions like <code>decodeURIComponent()</code> or <code>encodeURIComponent()</code> with invalid input.
+    </p>
+
+    <h2 style="color: #2980b9;">1. When Does URIError Occur?</h2>
+    <p>Common cases where <code>URIError</code> can be thrown include:</p>
+    <ul>
+        <li>Passing improperly formatted URIs to decoding functions.</li>
+        <li>Using characters that are not valid for encoding.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">2. Examples of URIError</h2>
+    <p><strong>Example 1: Malformed URI in decodeURIComponent</strong></p>
+    <pre><code class="language-javascript" codeHighlight>try {
+    let badURI = "%E0%A4%A";
+    console.log(decodeURIComponent(badURI)); // Incorrectly formatted URI
+} catch (error) {
+    console.log(error.name);  // Output: "URIError"
+    console.log(error.message);
+}</code></pre>
+    
+    <p><strong>Example 2: Handling URIError</strong></p>
+    <pre><code class="language-javascript" codeHighlight>function safeDecode(uri) {
+    try {
+        return decodeURIComponent(uri);
+    } catch (error) {
+        if (error instanceof URIError) {
+            console.log("Invalid URI detected: ", error.message);
+        }
+    }
+}
+
+safeDecode("%E0%A4%A"); // Output: "Invalid URI detected: URI malformed"</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Preventing URIError</h2>
+    <p>To avoid <code>URIError</code>, ensure that the input to URI functions is correctly formatted. Always validate and encode data properly before decoding.</p>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p><code>URIError</code> occurs due to malformed URI inputs. Proper validation and error handling techniques help prevent these errors in JavaScript applications.</p>
+</div>`
 },
 {
    articleTitle: `Object Date`, content:``
