@@ -11834,11 +11834,604 @@ safeDecode("%E0%A4%A"); // Output: "Invalid URI detected: URI malformed"</code><
 </div>`
 },
 {
+   articleTitle: `meta characters`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Meta Characters in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Meta characters in JavaScript are special characters that have a unique meaning in regular expressions. They help in pattern matching and searching within strings.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Common Meta Characters</h2>
+    <p>Meta characters are used to define search patterns in JavaScript. Some commonly used ones include:</p>
+    <ul>
+        <li><code>^</code> - Matches the beginning of a string.</li>
+        <li><code>$</code> - Matches the end of a string.</li>
+        <li><code>.</code> - Matches any single character except a newline.</li>
+        <li><code>*</code> - Matches zero or more occurrences of the preceding character.</li>
+        <li><code>+</code> - Matches one or more occurrences of the preceding character.</li>
+        <li><code>?</code> - Matches zero or one occurrence of the preceding character.</li>
+        <li><code>\d</code> - Matches any digit (0-9).</li>
+        <li><code>\w</code> - Matches any word character (letters, digits, underscore).</li>
+        <li><code>\s</code> - Matches any whitespace character.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">2. Examples of Using Meta Characters</h2>
+    <p><strong>Example 1: Using <code>^</code> and <code>$</code> to Match Full String</strong></p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /^hello$/;
+console.log(regex.test("hello")); // Output: true
+console.log(regex.test("hello world")); // Output: false</code></pre>
+    
+    <p><strong>Example 2: Using <code>\d</code> to Match Numbers</strong></p>
+    <pre><code class="language-javascript" codeHighlight>let digitRegex = /\d+/;
+console.log(digitRegex.test("123")); // Output: true
+console.log(digitRegex.test("abc")); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Escaping Meta Characters</h2>
+    <p>If you need to match a meta character as a literal, escape it using <code>\</code>. For example, to match a dot (<code>.</code>):</p>
+    <pre><code class="language-javascript" codeHighlight>let dotRegex = /\./;
+console.log(dotRegex.test("a.b")); // Output: true
+console.log(dotRegex.test("ab")); // Output: false</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Meta characters are crucial in JavaScript regular expressions for efficient string searching and pattern matching. Understanding them allows for powerful text processing.</p>
+</div>
+`
+},
+{
+   articleTitle: `regular expressions`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Regular Expressions in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Regular expressions (regex) in JavaScript are patterns used for matching and manipulating strings. They are useful for searching, replacing, and validating text data.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Creating Regular Expressions</h2>
+    <p>Regular expressions can be created using two syntaxes:</p>
+    <ul>
+        <li>Using regex literals: <code>/pattern/flags</code></li>
+        <li>Using the <code>RegExp</code> constructor: <code>new RegExp("pattern", "flags")</code></li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>let regex1 = /hello/;
+let regex2 = new RegExp("hello");</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Common Regular Expression Flags</h2>
+    <ul>
+        <li><code>g</code> - Global search (search all matches).</li>
+        <li><code>i</code> - Case-insensitive search.</li>
+        <li><code>m</code> - Multi-line search.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">3. Using Regular Expressions</h2>
+    <p><strong>Example: Searching a Pattern</strong></p>
+    <pre><code class="language-javascript" codeHighlight>let text = "Hello world";
+let regex = /hello/i;
+console.log(regex.test(text)); // Output: true</code></pre>
+    
+    <p><strong>Example: Replacing a Pattern</strong></p>
+    <pre><code class="language-javascript" codeHighlight>let newText = text.replace(/hello/i, "Hi");
+console.log(newText); // Output: Hi world</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Matching Specific Patterns</h2>
+    <p>Regular expressions can match different patterns in a string:</p>
+    <pre><code class="language-javascript" codeHighlight>let digitRegex = /\d+/; // Matches any number
+console.log(digitRegex.test("123")); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Useful Regular Expressions</h2>
+    <ul>
+        <li><code>/^\d+$/</code> - Matches a whole number.</li>
+        <li><code>/^[a-z]+$/i</code> - Matches only alphabetic characters.</li>
+        <li><code>/\s+/</code> - Matches whitespace characters.</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Regular expressions in JavaScript are a powerful tool for text processing, validation, and manipulation. Mastering regex allows for efficient string handling.</p>
+</div>
+`
+},
+{
+   articleTitle: `regular expression literals`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Regular Expression Literals in JavaScript</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Regular expression literals in JavaScript are a way to define regular expressions using a specific syntax. They are enclosed between forward slashes (<code>/pattern/flags</code>) and provide a more readable and efficient way to work with regex compared to the <code>RegExp</code> constructor.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Syntax of Regular Expression Literals</h2>
+    <p>Regular expression literals follow this pattern:</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /pattern/flags;</code></pre>
+    <p>Example:</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /hello/i;
+console.log(regex.test("Hello world")); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Advantages of Regular Expression Literals</h2>
+    <ul>
+        <li>More concise and readable than using the <code>RegExp</code> constructor.</li>
+        <li>Compiled at script load time, making execution faster.</li>
+        <li>Supports common flags like <code>g</code>, <code>i</code>, and <code>m</code>.</li>
+    </ul>
+    
+    <h2 style="color: #2980b9;">3. Using Regular Expression Literals</h2>
+    <p><strong>Example: Searching a Pattern</strong></p>
+    <pre><code class="language-javascript" codeHighlight>let text = "The quick brown fox";
+let regex = /quick/;
+console.log(regex.test(text)); // Output: true</code></pre>
+    
+    <p><strong>Example: Replacing Text</strong></p>
+    <pre><code class="language-javascript" codeHighlight>let newText = text.replace(/quick/, "fast");
+console.log(newText); // Output: The fast brown fox</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Matching Multiple Patterns</h2>
+    <p>You can use character classes and quantifiers with regex literals:</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /[aeiou]/g;
+console.log("hello world".match(regex)); // Output: ['e', 'o', 'o']</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Common Regular Expression Flags</h2>
+    <ul>
+        <li><code>g</code> - Global search (find all matches).</li>
+        <li><code>i</code> - Case-insensitive search.</li>
+        <li><code>m</code> - Multi-line search.</li>
+    </ul>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Regular expression literals in JavaScript provide an easy and efficient way to define and use regex patterns. They are useful for searching, replacing, and validating text data.</p>
+</div>
+`
+},
+{
+   articleTitle: `character classes`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Character Classes in JavaScript Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Character classes in JavaScript regular expressions allow you to match specific sets of characters. They are enclosed in square brackets <code>[]</code> and provide a way to define groups of characters for pattern matching.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Character Classes</h2>
+    <p>Character classes match any one character within the brackets.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /[aeiou]/;
+console.log(regex.test("hello")); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Negated Character Classes</h2>
+    <p>Using <code>^</code> inside the brackets negates the character class, meaning it matches anything <strong>except</strong> the specified characters.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /[^aeiou]/;
+console.log(regex.test("hello")); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Ranges in Character Classes</h2>
+    <p>You can define a range of characters using <code>-</code> inside the brackets.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /[a-z]/;
+console.log(regex.test("Hello")); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Predefined Character Classes</h2>
+    <p>JavaScript provides shorthand notations for common character classes:</p>
+    <ul>
+        <li><code>\d</code> - Matches any digit (0-9).</li>
+        <li><code>\D</code> - Matches any non-digit.</li>
+        <li><code>\w</code> - Matches any word character (a-z, A-Z, 0-9, _).</li>
+        <li><code>\W</code> - Matches any non-word character.</li>
+        <li><code>\s</code> - Matches any whitespace character.</li>
+        <li><code>\S</code> - Matches any non-whitespace character.</li>
+    </ul>
+    <pre><code class="language-javascript" codeHighlight>let regex = /\d/;
+console.log(regex.test("abc123")); // Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Combining Character Classes</h2>
+    <p>Character classes can be combined to create complex patterns.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /[A-Za-z0-9]/;
+console.log(regex.test("Hello123")); // Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Character classes in JavaScript regular expressions provide a powerful way to match sets of characters, making pattern matching more flexible and efficient.</p>
+</div>
+`
+},
+{
+   articleTitle: `anchors`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Anchors in JavaScript Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Anchors in JavaScript regular expressions are special characters that allow matching positions within a string rather than actual characters. The two primary anchors are <code>^</code> (caret) and <code>$</code> (dollar sign).
+    </p>
+
+    <h2 style="color: #2980b9;">1. The Caret (^) Anchor</h2>
+    <p>The <code>^</code> anchor matches the beginning of a string.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /^Hello/;
+console.log(regex.test("Hello world")); // Output: true
+console.log(regex.test("Say Hello"));   // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">2. The Dollar Sign ($) Anchor</h2>
+    <p>The <code>$</code> anchor matches the end of a string.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /world$/;
+console.log(regex.test("Hello world")); // Output: true
+console.log(regex.test("worldwide"));  // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Using Both Anchors Together</h2>
+    <p>By combining <code>^</code> and <code>$</code>, you can match an exact string.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /^Hello world$/;
+console.log(regex.test("Hello world")); // Output: true
+console.log(regex.test("Hello world!")); // Output: false</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Anchors in Multiline Mode</h2>
+    <p>Using the <code>m</code> flag allows anchors to work on each line separately in a multiline string.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /^Hello/m;
+let text = "Good morning\nHello world";
+console.log(regex.test(text)); // Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Anchors in JavaScript regular expressions help in matching positions within a string rather than characters. They are useful for validating input formats and ensuring text patterns appear in specific positions.</p>
+</div>
+`
+},
+{
+   articleTitle: `quantifiers`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Quantifiers in JavaScript Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Quantifiers in JavaScript regular expressions define how many times a character, group, or character class must appear in the input string to produce a match. They help in pattern matching by specifying repetition criteria.
+    </p>
+
+    <h2 style="color: #2980b9;">1. The Asterisk (*) Quantifier</h2>
+    <p>The <code>*</code> quantifier matches the preceding element zero or more times.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /go*/;
+console.log("gooood".match(regex)); // Output: ["goo"]
+console.log("gd".match(regex)); // Output: ["g"]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. The Plus (+) Quantifier</h2>
+    <p>The <code>+</code> quantifier matches the preceding element one or more times.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /go+/;
+console.log("gooood".match(regex)); // Output: ["goo"]
+console.log("gd".match(regex)); // Output: null</code></pre>
+    
+    <h2 style="color: #2980b9;">3. The Question Mark (?) Quantifier</h2>
+    <p>The <code>?</code> quantifier matches the preceding element zero or one time (optional).</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /colou?r/;
+console.log("color".match(regex)); // Output: ["color"]
+console.log("colour".match(regex)); // Output: ["colour"]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. The Curly Braces ({}) Quantifier</h2>
+    <p>The <code>{n,m}</code> quantifier specifies an exact or range number of occurrences.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /a{2,4}/;
+console.log("aaaa".match(regex)); // Output: ["aaaa"]
+console.log("a".match(regex)); // Output: null</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Combining Quantifiers</h2>
+    <p>You can use multiple quantifiers together to form complex patterns.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /go{2,3}d?/;
+console.log("goood".match(regex)); // Output: ["goo"]
+console.log("good".match(regex)); // Output: ["goo"]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Quantifiers in JavaScript regular expressions allow flexible pattern matching by specifying repetition. They are useful for validating inputs and searching text with varying occurrences.</p>
+</div>
+`
+},
+{
+   articleTitle: `grouping`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Grouping in JavaScript Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Grouping in JavaScript regular expressions is done using parentheses <code>()</code>. It allows us to capture specific parts of a match, apply quantifiers to a group, and reuse matched groups.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Capturing Groups</h2>
+    <p>Using parentheses <code>()</code>, we can capture parts of a string that match a pattern.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /(go)+/;
+console.log("gogogo".match(regex)); // Output: ["gogogo", "go"]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using Captured Groups</h2>
+    <p>Captured groups can be referenced using <code>$1, $2</code> in replacements.</p>
+    <pre><code class="language-javascript" codeHighlight>let str = "Hello 2025";
+let regex = /(\d{4})/;
+console.log(str.replace(regex, "Year: $1")); // Output: "Hello Year: 2025"</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Non-Capturing Groups</h2>
+    <p>Using <code>(?:...)</code>, you can group without capturing.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /(?:go)+/;
+console.log("gogogo".match(regex)); // Output: ["gogogo"]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Nested Groups</h2>
+    <p>Regular expressions support nested groups for complex patterns.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /(a(bc))/;
+console.log("abc".match(regex)); // Output: ["abc", "abc", "bc"]</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Backreferences</h2>
+    <p>Backreferences allow referring to previous captured groups using <code>1, 2</code> etc.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /(w+) 1/;
+console.log("hello hello".match(regex)); // Output: ["hello hello", "hello"]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Grouping in JavaScript regular expressions is a powerful tool that enables capturing, repeating, and referencing parts of a pattern for advanced text processing.</p>
+</div>`
+},
+{
+   articleTitle: `capturing groups`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Capturing Groups in Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Capturing groups in regular expressions allow you to extract specific portions of a match. They are defined using parentheses <code>()</code> and are useful for pattern matching, extracting substrings, and performing substitutions.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Syntax</h2>
+    <p>To create a capturing group, enclose the desired pattern in parentheses.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /(\d{4})-(\d{2})-(\d{2})/;
+let date = "2025-03-17";
+let match = date.match(regex);
+console.log(match);
+// Output: ["2025-03-17", "2025", "03", "17"]</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Accessing Capturing Groups</h2>
+    <p>Captured groups are available in the match array as indexed elements.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log(match[1]); // Output: "2025" (Year)
+console.log(match[2]); // Output: "03" (Month)
+console.log(match[3]); // Output: "17" (Day)</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Named Capturing Groups</h2>
+    <p>You can name capturing groups for better readability using <code>?&lt;name&gt;</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let namedRegex = /(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})/;
+let namedMatch = date.match(namedRegex);
+console.log(namedMatch.groups.year);  // Output: "2025"
+console.log(namedMatch.groups.month); // Output: "03"
+console.log(namedMatch.groups.day);   // Output: "17"</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Using Capturing Groups in Replace</h2>
+    <p>Captured groups can be used for text replacements with <code>replace()</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let formattedDate = date.replace(/(\d{4})-(\d{2})-(\d{2})/, "$3/$2/$1");
+console.log(formattedDate);
+// Output: "17/03/2025"</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Nested Capturing Groups</h2>
+    <p>Regular expressions support nested capturing groups.</p>
+    <pre><code class="language-javascript" codeHighlight>let nestedRegex = /(\d{4})-((\d{2})-(\d{2}))/;
+let nestedMatch = date.match(nestedRegex);
+console.log(nestedMatch);
+// Output: ["2025-03-17", "2025", "03-17", "03", "17"]</code></pre>
+    
+    <h2 style="color: #2980b9;">6. Non-Capturing Groups</h2>
+    <p>Use <code>(?:...)</code> to create groups without capturing.</p>
+    <pre><code class="language-javascript" codeHighlight>let nonCapturingRegex = /(?:\d{4})-(\d{2})-(\d{2})/;
+let nonCapturingMatch = date.match(nonCapturingRegex);
+console.log(nonCapturingMatch);
+// Output: ["2025-03-17", "03", "17"]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Capturing groups enhance the power of regular expressions by allowing extraction and manipulation of matched content. Understanding them improves pattern matching and text processing efficiency.</p>
+</div>
+
+`
+},
+{
+   articleTitle: `backreferences`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Backreferences in Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Backreferences in regular expressions allow you to reuse captured groups within the same pattern. They are useful for ensuring repetition of specific patterns and validating structured text formats.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Syntax</h2>
+    <p>To use a backreference, use <code>\n</code>, where <code>n</code> is the group number.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = (w+) 1/;
+let text = "hello hello";
+console.log(regex.test(text));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Using Backreferences in Match</h2>
+    <p>Backreferences ensure repeated patterns are identical.</p>
+    <pre><code class="language-javascript" codeHighlight>let match = text.match(regex);
+console.log(match);
+// Output: ["hello hello", "hello"]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Named Backreferences</h2>
+    <p>Use <code>\k&lt;name&gt;</code> to refer to named capturing groups.</p>
+    <pre><code class="language-javascript" codeHighlight>let namedRegex = (?&lt;word&gt;w+) k&lt;word&gt;/;
+let namedMatch = text.match(namedRegex);
+console.log(namedMatch.groups.word);
+// Output: "hello"</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Validating Repetitive Patterns</h2>
+    <p>Backreferences help in validation, such as detecting duplicated words.</p>
+    <pre><code class="language-javascript" codeHighlight>let duplicateRegex = (bw+b) 1/;
+let sentence = "This is is a test.";
+console.log(duplicateRegex.test(sentence));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Using Backreferences in Replace</h2>
+    <p>Backreferences help in replacing duplicated words.</p>
+    <pre><code class="language-javascript" codeHighlight>let fixedSentence = sentence.replace((bw+b) 1/, "$1");
+console.log(fixedSentence);
+// Output: "This is a test."</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Backreferences make regular expressions more powerful by allowing repeated pattern matching and validation. They are essential for structured text processing and ensuring consistency.</p>
+</div>
+`
+},
+{
+   articleTitle: `non-capturing groups`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Non-Capturing Groups in Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Non-capturing groups in regular expressions allow you to group parts of a pattern without storing them for later reference. They are useful when you need to apply quantifiers or alternation without affecting match results.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Syntax</h2>
+    <p>To create a non-capturing group, use <code>(?:...)</code> instead of <code>(...)</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /(?:hello|hi) world/;
+let text = "hello world";
+console.log(regex.test(text));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Difference from Capturing Groups</h2>
+    <p>Unlike capturing groups, non-capturing groups do not store matched content.</p>
+    <pre><code class="language-javascript" codeHighlight>let captureRegex = /(hello|hi) world/;
+let nonCaptureRegex = /(?:hello|hi) world/;
+let match1 = "hello world".match(captureRegex);
+let match2 = "hello world".match(nonCaptureRegex);
+console.log(match1);
+// Output: ["hello world", "hello"]
+console.log(match2);
+// Output: ["hello world"]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. When to Use Non-Capturing Groups</h2>
+    <p>Use non-capturing groups when you need grouping but do not need backreferences.</p>
+    <pre><code class="language-javascript" codeHighlight>let optimizedRegex = /(?:https?|ftp):\/\/\S+/;
+let url = "https://example.com";
+console.log(optimizedRegex.test(url));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Performance Benefits</h2>
+    <p>Non-capturing groups improve performance by reducing memory usage.</p>
+    <pre><code class="language-javascript" codeHighlight>let efficientRegex = /(?:foo|bar){2}/;
+console.log(efficientRegex.test("foobar"));
+// Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Non-capturing groups are a valuable tool for optimizing regular expressions when capturing data is unnecessary. They help simplify patterns and improve efficiency.</p>
+</div>
+
+`
+},
+{
+   articleTitle: `lookahead assertions`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Lookahead Assertions in Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Lookahead assertions in regular expressions allow you to check if a pattern exists ahead in the text without including it in the match. They are useful for enforcing constraints in a pattern without consuming characters.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Syntax</h2>
+    <p>Lookaheads use <code>(?=...)</code> for positive assertions and <code>(?!...)</code> for negative assertions.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /hello(?= world)/;
+let text = "hello world";
+console.log(regex.test(text));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Positive Lookahead</h2>
+    <p>A positive lookahead ensures a pattern follows without consuming it.</p>
+    <pre><code class="language-javascript" codeHighlight>let posLookahead = /\d{3}(?=\sUSD)/;
+console.log("500 USD".match(posLookahead));
+// Output: ["500"]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Negative Lookahead</h2>
+    <p>A negative lookahead ensures a pattern does <strong>not</strong> follow.</p>
+    <pre><code class="language-javascript" codeHighlight>let negLookahead = /hello(?! world)/;
+console.log("hello there".match(negLookahead));
+// Output: ["hello"]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Practical Applications</h2>
+    <p>Lookaheads are useful for validation and filtering.</p>
+    <pre><code class="language-javascript" codeHighlight>let passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+console.log(passwordRegex.test("Secure123"));
+// Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Lookahead assertions provide a powerful way to enforce rules in regular expressions without consuming characters. They are particularly useful for validation and structured text processing.</p>
+</div>
+
+`
+},
+{
+   articleTitle: `lookbehind assertions`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Lookbehind Assertions in Regular Expressions</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Lookbehind assertions in regular expressions allow you to check if a pattern appears before a specific sequence without including it in the match. They are useful for enforcing constraints while keeping the matched portion clean.
+    </p>
+
+    <h2 style="color: #2980b9;">1. Basic Syntax</h2>
+    <p>Lookbehinds use <code>(?&lt;=...)</code> for positive assertions and <code>(?&lt;!...)</code> for negative assertions.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /(?&lt;=hello )world/;
+let text = "hello world";
+console.log(regex.test(text));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Positive Lookbehind</h2>
+    <p>A positive lookbehind ensures a pattern precedes the current match without including it.</p>
+    <pre><code class="language-javascript" codeHighlight>let posLookbehind = /(?&lt;=\$)\d+/;
+console.log("$500".match(posLookbehind));
+// Output: ["500"]</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Negative Lookbehind</h2>
+    <p>A negative lookbehind ensures a pattern does <strong>not</strong> precede the match.</p>
+    <pre><code class="language-javascript" codeHighlight>let negLookbehind = /(?&lt;!USD )\d+/;
+console.log("EUR 100".match(negLookbehind));
+// Output: ["100"]</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Practical Applications</h2>
+    <p>Lookbehinds are useful for selective extraction and validation.</p>
+    <pre><code class="language-javascript" codeHighlight>let emailRegex = /(?&lt;=@)[a-zA-Z0-9.-]+/;
+console.log("contact@example.com".match(emailRegex));
+// Output: ["example.com"]</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Lookbehind assertions allow for efficient pattern validation and extraction in regular expressions without affecting the final match. They are particularly useful for text processing and validation tasks.</p>
+</div>
+
+`
+},
+{
+   articleTitle: `Unicode`, content:`<div style="font-family: Arial, sans-serif; margin: auto; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+    <h1 style="color: #2c3e50; text-align: center;">Understanding Unicode</h1>
+    <p style="font-size: 16px; line-height: 1.6; color: #333;">
+        Unicode is a universal character encoding standard that enables the representation and handling of text in different languages and scripts. It provides a unique number for every character, no matter the platform, program, or language.
+    </p>
+
+    <h2 style="color: #2980b9;">1. What is Unicode?</h2>
+    <p>Unicode assigns a unique code point to every character in various writing systems, ensuring text consistency across devices.</p>
+    <pre><code class="language-javascript" codeHighlight>let char = "\u03A9"; // Unicode for Greek letter Omega (Ω)
+console.log(char);
+// Output: Ω</code></pre>
+    
+    <h2 style="color: #2980b9;">2. Unicode Code Points</h2>
+    <p>Characters are represented using unique code points written in the form <code>U+XXXX</code>.</p>
+    <pre><code class="language-javascript" codeHighlight>console.log("A".codePointAt(0));
+// Output: 65 (U+0041)</code></pre>
+    
+    <h2 style="color: #2980b9;">3. Unicode in JavaScript Strings</h2>
+    <p>JavaScript supports Unicode natively, but some characters require special handling.</p>
+    <pre><code class="language-javascript" codeHighlight>let emoji = "\u{1F600}"; // Unicode for 😀
+console.log(emoji);
+// Output: 😀</code></pre>
+    
+    <h2 style="color: #2980b9;">4. Unicode and Regular Expressions</h2>
+    <p>The Unicode flag <code>u</code> allows correct matching of Unicode characters in regex.</p>
+    <pre><code class="language-javascript" codeHighlight>let regex = /\u{1F600}/u;
+console.log(regex.test("😀"));
+// Output: true</code></pre>
+    
+    <h2 style="color: #2980b9;">5. Handling Unicode Normalization</h2>
+    <p>Unicode normalization helps in comparing text with different representations.</p>
+    <pre><code class="language-javascript" codeHighlight>let str1 = "é";
+let str2 = "e\u0301"; // 'e' + combining accent
+console.log(str1 === str2);
+// Output: false
+console.log(str1.normalize() === str2.normalize());
+// Output: true</code></pre>
+    
+    <p style="margin-top: 20px; font-weight: bold;">Conclusion:</p>
+    <p>Unicode is essential for handling multilingual text correctly. Understanding Unicode encoding, normalization, and support in programming languages like JavaScript ensures text consistency across systems.</p>
+</div>
+
+`
+},
+{
    articleTitle: `Object Date`, content:``
 },
 {
    articleTitle: `Object Date`, content:``
 },
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+},
+{
+   articleTitle: `Object Date`, content:``
+}
 
 ]
 }
