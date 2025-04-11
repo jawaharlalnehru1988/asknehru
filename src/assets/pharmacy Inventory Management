@@ -1,0 +1,41 @@
+Pharmacy Inventory Management
+Features:
+Basic Inventory Tracking:
+•	Store basic information for each drug: drug name, quantity in stock, and price. 
+•	View a simple list of all medications currently in stock, with quantities displayed. 
+•	Search for specific drugs by name or category (e.g., antibiotics, pain relievers). 
+Stock Updates:
+•	Manually update stock levels when drugs are received from suppliers or dispensed to customers. 
+•	Display an option to adjust stock (increase or decrease) when new deliveries arrive or sales happen.
+Low Stock Alerts:
+•	Automatically notify staff when a drug's quantity falls below a predefined threshold (e.g., when stock reaches 10 units). 
+•	Allow users to manually set a "low stock" threshold for each drug. 
+Expiration Date Tracking:
+•	Track expiration dates for each medication. 
+•	Display warnings when drugs are near expiration or expired (e.g., within 30 days of expiry). 
+Basic Reporting:
+•	Generate a simple report showing all drugs that are low in stock. 
+•	View a basic report of total drugs dispensed within a specific time frame. 
+Tech Stack Overview:
+•	MongoDB: Stores basic drug inventory data, including drug name, quantity, price, and expiration date. 
+•	Express.js + Node.js: Backend APIs for handling drug inventory updates (e.g., adding, updating, or removing drugs from stock). 
+•	React.js: Simple frontend for displaying the list of drugs, adding new drugs, and updating stock. 
+•	JWT Authentication: Basic login for pharmacy staff to ensure only authorized users can access the system. 
+•	Basic Alerts: Using simple notifications or email (via SendGrid) to notify users of low stock. 
+
+Ideal Users for This Platform:
+•	Pharmacy Staff: To manage inventory, add new stock, and ensure that medications are available for customers. 
+•	Pharmacy Owner/Manager: To monitor overall inventory, see low-stock warnings, and manage simple reporting tasks. 
+Simplified Workflow Example:
+Adding New Drug to Inventory:
+•	A pharmacy staff member can enter a new drug into the system, specifying the drug name, quantity, price, and expiration date. 
+Updating Stock Levels:
+•	When new stock is delivered, the staff updates the quantity in the system. If drugs are dispensed to a customer, the stock quantity decreases automatically. 
+Low Stock Alert:
+•	The system automatically flags any drugs that have low stock based on the set threshold, ensuring the pharmacy is aware of what needs to be reordered. 
+Expiration Date Notification:
+•	The system alerts staff members when drugs are close to expiration, so they can remove or mark expired stock. 
+This simplified pharmacy inventory management system focuses on the essential features of inventory tracking, low stock alerts, and basic reporting. It's perfect for smaller pharmacies or those that need a simple tool to streamline their operations.
+ 
+
+I am planning to accomplish the above with MEAN stack. read the above requirement and create excel documentation where, first sheet will be "technologies and stacks" will be there. second sheet will have collections and models, third will be APIs and endpoints, third will be definitions of done
