@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-angular-audio',
-  standalone: true,
-  imports: [],
-  templateUrl: './angular-audio.component.html',
-  styleUrl: './angular-audio.component.scss'
+    selector: 'app-angular-audio',
+    imports: [],
+    templateUrl: './angular-audio.component.html',
+    styleUrl: './angular-audio.component.scss'
 })
 export class AngularAudioComponent {
   id!: string | null;

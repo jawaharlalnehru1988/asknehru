@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToolbarComponent } from './toolbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ApiService } from '../api.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -18,10 +18,10 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [OverlayModule, MatMenuModule, HttpClientModule, BrowserAnimationsModule, RouterTestingModule, ReactiveFormsModule, MatToolbarModule, MatIconModule, ToolbarComponent], // Include HttpClientModule here
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    imports: [OverlayModule, MatMenuModule, BrowserAnimationsModule, RouterTestingModule, ReactiveFormsModule, MatToolbarModule, MatIconModule, ToolbarComponent],
     providers: [ApiService, { provide: MatDialogRef, useValue: {} }, // Mock MatDialogRef
-        { provide: MAT_DIALOG_DATA, useValue: {} }], // Mock MAT_DIALOG_DATA], // Provide your service here
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        { provide: MAT_DIALOG_DATA, useValue: {} }, provideHttpClient(withInterceptorsFromDi())]
 })
     .compileComponents();
 

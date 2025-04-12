@@ -1,0 +1,20 @@
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon mat-button [matMenuTriggerFor]="menu">menu</mat-icon>
+      <mat-menu #menu="matMenu">
+        @for (rTopic of reactTsTopics; track rTopic; let idx = $index) {
+            <button mat-menu-item (click)="selectProject(rTopic)">{{rTopic}}</button>
+        }
+        
+      </mat-menu>
+    </button>
+    <span>React Core </span>  <img class="react-logo" src="../../assets/image/react.png" alt="" srcset="">
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+  
