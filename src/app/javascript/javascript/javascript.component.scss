@@ -1,0 +1,249 @@
+.main-container {
+    display: flex;
+    height: 89vh;
+    align-items: stretch;
+    position: relative;
+  }
+
+  .content {
+    flex-grow: 1; /* Allow the content area to grow and fill the remaining space */
+    padding: 20px;
+    background-color: rgb(243, 250, 250); /* Add some padding for better spacing */
+  }
+  nav.topic{
+    display: flex;
+    justify-content: space-between;
+  }
+@media screen and (max-width: 600px ) {
+  .content{
+    padding: 0px !important;
+  }
+  .topics-container{
+    display: none !important;
+  }
+  .js-sidebar-big{
+    display: none !important;
+  }
+  .article-container{
+    padding: 0px !important;
+  }
+  .content-container{
+    width: 98vw !important;
+  }
+  .topic-content-space{
+    
+  }
+  article{
+    width: -webkit-fill-available !important;
+    padding-inline: 12px !important;   
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .js-sidebar-small{
+    display: none !important;
+  }
+}
+  .js-sidebar-big{
+    background-color: rgb(22, 4, 70);
+    transition: width 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 3rem;
+  }
+
+  .js-sidebar-small{
+    background-color: rgb(22, 4, 70);
+    transition: width 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 3rem;
+  }
+
+.circle-arrow-small{
+    @extend .circle-arrow;
+    left: 58px;
+ }
+  
+.circle-arrow:hover {
+    background-color: #f0f0f0;
+  }
+
+  .topics-list{
+    padding: 12px;
+}
+
+.topics-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+    height: 84vh;
+    width: 18%;
+
+    .topic{
+        display: flex;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: left;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+  
+
+    .sub-topic{
+      @extend .topic;
+      height: fit-content;
+      cursor: pointer;
+    }
+
+    .topic:hover{
+        background-color: #e9ecef;
+    }
+    .sub-title{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+}
+
+.topic-content-space{
+  display: flex;
+}
+
+.topic-arrow {
+  width: 8px;
+  height: 8px;
+  border: solid #000;
+  border-width: 0 3px 3px 0;
+  transform: rotate(135deg); 
+  transition: transform 0.5s ease;
+}
+
+.topic div{
+  font-size: 12px;
+}
+
+.mat-icon:hover, .topic div:hover{
+  cursor: pointer;
+  color: #054164;
+}
+
+.article-container {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  width: 80vw;
+  margin: 0 auto;
+  height: 84vh;
+}
+
+h1, h2 {
+  color: #2c3e50;
+}
+
+ul {
+  list-style-type: square;
+  margin-left: 20px;
+}
+
+.content-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0px;
+  cursor: pointer;
+  background-color: aliceblue;
+  width: 80vw;
+  overflow-y: scroll;
+  max-height: 88vh;
+}
+
+
+$menu-bg: #fff;
+$menu-border: #ccc;
+$menu-hover: #f4f4f4;
+
+.menu {
+  position: relative;
+  display: inline-block;
+ 
+  .menu-trigger {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: auto 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+
+    &:hover {
+      background: darkcyan;
+    }
+  }
+
+  .menu-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: $menu-bg;
+    border: 1px solid $menu-border;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    min-width: 180px;
+    z-index: 1000;
+
+    .menu-item {
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+      background: $menu-bg;
+
+      &:hover {
+        background: $menu-hover;
+
+        .submenu {
+          display: block;
+        }
+      }
+
+      .submenu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        background: $menu-bg;
+        border: 1px solid $menu-border;
+        border-radius: 5px;
+        display: none;
+        min-width: 180px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        .submenu-item {
+          padding: 10px;
+          cursor: pointer;
+
+          &:hover {
+            background: $menu-hover;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover .menu-content {
+    display: block;
+    width: 56%;
+  }
+}
