@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { QuillModule } from 'ngx-quill';
 
 export interface TutorialContent {
   id?: number;
@@ -19,7 +20,7 @@ export interface TutorialContent {
 
 @Component({
   selector: 'app-llm',
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, QuillModule],
   templateUrl: './llm.component.html',
   styleUrl: './llm.component.scss'
 })
@@ -31,6 +32,8 @@ export class LLMComponent implements OnInit {
   showArticleModal: boolean = false;
   isSubmitting: boolean = false;
   isLoading: boolean = false;
+  isEditMode: boolean = false;
+  editingArticleId: number | null = null;
   
   articleForm!: FormGroup;
   selectedArticle: TutorialContent | null = null;
@@ -41,6 +44,22 @@ export class LLMComponent implements OnInit {
   audios: TutorialContent[] = [];
   videos: TutorialContent[] = [];
   allTutorials: TutorialContent[] = [];
+
+  // Quill editor configuration
+  quillConfig = {
+    toolbar: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'align': [] }],
+      ['blockquote', 'code-block'],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+    theme: 'snow'
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -129,13 +148,47 @@ export class LLMComponent implements OnInit {
   }
 
   openAddForm() {
+    this.isEditMode = false;
+    this.editingArticleId = null;
     this.showAddForm = true;
     this.initializeForm();
   }
 
+  openEditForm(article: TutorialContent) {
+    this.isEditMode = true;
+    this.editingArticleId = article.id || null;
+    this.showAddForm = true;
+    this.initializeForm();
+    this.populateFormWithArticle(article);
+  }
+
   closeAddForm() {
     this.showAddForm = false;
+    this.isEditMode = false;
+    this.editingArticleId = null;
     this.articleForm.reset();
+  }
+
+  populateFormWithArticle(article: TutorialContent) {
+    // Clear existing tags
+    while (this.tagsArray.length !== 0) {
+      this.tagsArray.removeAt(0);
+    }
+    
+    // Add tags from article
+    article.tags.forEach(tag => {
+      this.tagsArray.push(this.fb.control(tag, [Validators.required]));
+    });
+
+    // Populate form fields
+    this.articleForm.patchValue({
+      title: article.title,
+      description: article.description,
+      difficulty: article.difficulty,
+      thumbnail: article.thumbnail || '',
+      content: article.content || '',
+      publishDate: article.publishDate
+    });
   }
 
   onSubmit() {
@@ -146,32 +199,50 @@ export class LLMComponent implements OnInit {
       // Filter out empty tags
       formData.tags = formData.tags.filter((tag: string) => tag.trim() !== '');
       
-      this.http.post<TutorialContent>(this.apiUrl, formData).subscribe({
-        next: (response) => {
-          console.log('Article created successfully:', response);
-          
-          // Add the new article to the appropriate array based on type
-          if (response.type === 'article' || !response.type) {
-            this.articles.unshift(response);
-          } else if (response.type === 'audio') {
-            this.audios.unshift(response);
-          } else if (response.type === 'video') {
-            this.videos.unshift(response);
+      if (this.isEditMode && this.editingArticleId) {
+        // Update existing article
+        formData.id = this.editingArticleId;
+        this.http.put<TutorialContent>(`${this.apiUrl}/${this.editingArticleId}`, formData).subscribe({
+          next: (response) => {
+            console.log('Article updated successfully:', response);
+            this.loadTutorials(); // Refresh the list
+            this.closeAddForm();
+          },
+          error: (error) => {
+            console.error('Error updating article:', error);
+          },
+          complete: () => {
+            this.isSubmitting = false;
           }
-          
-          // Also add to allTutorials array
-          this.allTutorials.unshift(response);
-          
-          this.closeAddForm();
-          this.isSubmitting = false;
-          // You can add a success notification here
-        },
-        error: (error) => {
-          console.error('Error creating article:', error);
-          this.isSubmitting = false;
-          // You can add an error notification here
-        }
-      });
+        });
+      } else {
+        // Create new article
+        this.http.post<TutorialContent>(this.apiUrl, formData).subscribe({
+          next: (response) => {
+            console.log('Article created successfully:', response);
+            
+            // Add the new article to the appropriate array based on type
+            if (response.type === 'article' || !response.type) {
+              this.articles.unshift(response);
+            } else if (response.type === 'audio') {
+              this.audios.unshift(response);
+            } else if (response.type === 'video') {
+              this.videos.unshift(response);
+            }
+            
+            // Also add to allTutorials array
+            this.allTutorials.unshift(response);
+            
+            this.closeAddForm();
+          },
+          error: (error) => {
+            console.error('Error creating article:', error);
+          },
+          complete: () => {
+            this.isSubmitting = false;
+          }
+        });
+      }
     } else {
       // Mark all fields as touched to show validation errors
       Object.keys(this.articleForm.controls).forEach(key => {

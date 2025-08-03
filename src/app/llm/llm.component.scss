@@ -285,3 +285,174 @@ input:focus {
     transition: width 0.3s ease;
   }
 }
+
+// Quill Editor Custom Styles
+.quill-editor-wrapper {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  
+  &:focus-within {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+  
+  &.border-red-500:focus-within {
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+  }
+}
+
+:host ::ng-deep {
+  .ql-toolbar {
+    border-top: 1px solid #e5e7eb !important;
+    border-left: 1px solid #e5e7eb !important;
+    border-right: 1px solid #e5e7eb !important;
+    border-bottom: none !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+    background: #f9fafb !important;
+    font-family: inherit !important;
+  }
+
+  .ql-container {
+    border-bottom: 1px solid #e5e7eb !important;
+    border-left: 1px solid #e5e7eb !important;
+    border-right: 1px solid #e5e7eb !important;
+    border-top: none !important;
+    border-radius: 0 0 0.5rem 0.5rem !important;
+    font-family: inherit !important;
+    font-size: 16px !important;
+  }
+
+  .ql-editor {
+    min-height: 300px !important;
+    padding: 16px !important;
+    line-height: 1.6 !important;
+    font-family: inherit !important;
+    color: #374151 !important;
+    
+    &.ql-blank::before {
+      font-style: italic !important;
+      color: #9ca3af !important;
+      position: absolute !important;
+      pointer-events: none !important;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600 !important;
+      color: #1f2937 !important;
+      margin-top: 1.5em !important;
+      margin-bottom: 0.5em !important;
+    }
+    
+    h1 { font-size: 2em !important; }
+    h2 { font-size: 1.5em !important; }
+    h3 { font-size: 1.17em !important; }
+    
+    p {
+      margin-bottom: 1em !important;
+      color: #374151 !important;
+    }
+    
+    ul, ol {
+      margin: 1em 0 !important;
+      padding-left: 1.5em !important;
+      
+      li {
+        margin-bottom: 0.5em !important;
+      }
+    }
+    
+    blockquote {
+      border-left: 4px solid #3b82f6 !important;
+      margin: 1.5em 0 !important;
+      padding: 1em 1em 1em 2em !important;
+      font-style: italic !important;
+      color: #6b7280 !important;
+      background: #f8fafc !important;
+      border-radius: 4px !important;
+    }
+    
+    code {
+      background: #f3f4f6 !important;
+      padding: 2px 4px !important;
+      border-radius: 3px !important;
+      font-family: 'Courier New', monospace !important;
+      font-size: 0.9em !important;
+      color: #dc2626 !important;
+    }
+    
+    pre {
+      background: #1f2937 !important;
+      color: #f9fafb !important;
+      padding: 1em !important;
+      border-radius: 6px !important;
+      overflow-x: auto !important;
+      margin: 1em 0 !important;
+      
+      code {
+        background: transparent !important;
+        color: inherit !important;
+        padding: 0 !important;
+      }
+    }
+    
+    a {
+      color: #3b82f6 !important;
+      text-decoration: underline !important;
+      
+      &:hover {
+        color: #2563eb !important;
+      }
+    }
+  }
+
+  // Focus states for the editor container
+  .focus-within\:ring-2:focus-within {
+    .ql-toolbar {
+      border-color: #3b82f6 !important;
+    }
+    
+    .ql-container {
+      border-color: #3b82f6 !important;
+    }
+  }
+
+  // Error states
+  .border-red-500 {
+    .ql-toolbar {
+      border-color: #ef4444 !important;
+    }
+    
+    .ql-container {
+      border-color: #ef4444 !important;
+    }
+  }
+
+  // Ensure buttons are visible
+  .ql-toolbar .ql-picker,
+  .ql-toolbar button {
+    color: #374151 !important;
+  }
+
+  .ql-toolbar button:hover,
+  .ql-toolbar button.ql-active {
+    color: #3b82f6 !important;
+  }
+
+  .ql-toolbar .ql-stroke {
+    stroke: #374151 !important;
+  }
+
+  .ql-toolbar .ql-fill {
+    fill: #374151 !important;
+  }
+
+  .ql-toolbar button:hover .ql-stroke,
+  .ql-toolbar button.ql-active .ql-stroke {
+    stroke: #3b82f6 !important;
+  }
+
+  .ql-toolbar button:hover .ql-fill,
+  .ql-toolbar button.ql-active .ql-fill {
+    fill: #3b82f6 !important;
+  }
+}

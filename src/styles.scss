@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/cdk/overlay-prebuilt.css';
 @import "prismjs/themes/prism-okaidia.css";
+@import 'quill/dist/quill.snow.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -110,3 +111,31 @@ html, body {
 //   font-weight: 900;
 //   font-size: 16px;
 // }
+
+/* Quill Editor Global Fixes */
+.ql-toolbar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.ql-toolbar .ql-formats {
+  margin-right: 15px !important;
+}
+
+.ql-editor {
+  box-sizing: border-box !important;
+}
+
+.ql-editor p {
+  margin: 0 0 1em 0 !important;
+}
+
+.ql-editor ol,
+.ql-editor ul {
+  padding-left: 1.5em !important;
+}
+
+.ql-container .ql-editor {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}

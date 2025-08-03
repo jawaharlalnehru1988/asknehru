@@ -214,6 +214,16 @@
           
           <div class="flex space-x-2">
             <button 
+              *ngIf="activeTab === 'articles'"
+              class="p-2 text-gray-400 hover:text-blue-600 transition-colors duration-200"
+              (click)="$event.stopPropagation(); openEditForm(item)"
+              title="Edit Article"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+            <button 
               class="p-2 text-gray-400 hover:text-red-500 transition-colors duration-200"
               (click)="$event.stopPropagation()"
               title="Like"
@@ -300,7 +310,7 @@
   >
     <div class="p-6 border-b border-gray-200">
       <div class="flex items-center justify-between">
-        <h2 class="text-2xl font-bold text-gray-900">Add New Article</h2>
+        <h2 class="text-2xl font-bold text-gray-900">{{ isEditMode ? 'Edit Article' : 'Add New Article' }}</h2>
         <button 
           type="button"
           class="text-gray-400 hover:text-gray-600 transition-colors duration-200"
@@ -423,13 +433,15 @@
         <label class="block text-sm font-medium text-gray-700 mb-2">
           Content <span class="text-red-500">*</span>
         </label>
-        <textarea
-          formControlName="content"
-          rows="6"
-          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-          [class.border-red-500]="hasError('content')"
-          placeholder="Enter the full article content"
-        ></textarea>
+        <div class="quill-editor-wrapper"
+             [class.border-red-500]="hasError('content')">
+          <quill-editor
+            formControlName="content"
+            [modules]="quillConfig"
+            placeholder="Enter the full article content with rich formatting..."
+            [style]="{ height: '350px' }">
+          </quill-editor>
+        </div>
         <div *ngIf="hasError('content')" class="mt-1 text-sm text-red-600">
           {{ getErrorMessage('content') }}
         </div>
@@ -466,7 +478,7 @@
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <span>{{ isSubmitting ? 'Creating...' : 'Create Article' }}</span>
+          <span>{{ isSubmitting ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Update Article' : 'Create Article') }}</span>
         </button>
       </div>
     </form>
@@ -543,8 +555,7 @@
 
       <!-- Article Body -->
       <div class="prose prose-lg max-w-none">
-        <div class="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
-          {{selectedArticle.content}}
+        <div class="text-gray-700 leading-relaxed text-lg ql-editor" [innerHTML]="selectedArticle.content">
         </div>
       </div>
 
