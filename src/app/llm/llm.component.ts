@@ -37,7 +37,7 @@ export class LLMComponent implements OnInit {
   
   articleForm!: FormGroup;
   selectedArticle: TutorialContent | null = null;
-  private apiUrl = 'http://localhost:8080/api/tutorials';
+  private apiUrl = 'https://askharekrishna-production.up.railway.app/api/tutorials';
 
   // Initialize as empty arrays - will be populated from API
   articles: TutorialContent[] = [];
