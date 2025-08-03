@@ -111,6 +111,12 @@ export class Homejson {
             PImage: "assets/image/react.png",
             routerLink: "/react",
             intro: "Master React's core concepts"
+        },
+        {
+            PName: "LLM Engineering Road Map",
+            PImage: "https://res.cloudinary.com/dbmkctsda/image/upload/v1754196646/0_zUGGFYAUKtzUmBJ7_nhp96h.jpg",
+            routerLink: "/llm",
+            intro: "Zero to Hero Master Guidance"
         }
 
     ]
