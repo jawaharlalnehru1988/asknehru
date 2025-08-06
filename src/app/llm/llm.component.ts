@@ -1,22 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { QuillModule } from 'ngx-quill';
-
-export interface TutorialContent {
-  id?: number;
-  title: string;
-  description: string;
-  duration?: string;
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
-  tags: string[];
-  thumbnail?: string;
-  url?: string;
-  content?: string;
-  publishDate: string;
-  type?: 'article' | 'audio' | 'video'; // Add type to distinguish content types
-}
+import { TutorialService, TutorialContent } from '../services/tutorial.service';
 
 @Component({
   selector: 'app-llm',
@@ -37,7 +24,6 @@ export class LLMComponent implements OnInit {
   
   articleForm!: FormGroup;
   selectedArticle: TutorialContent | null = null;
-  private apiUrl = 'https://askharekrishna-production.up.railway.app/api/tutorials';
 
   // Initialize as empty arrays - will be populated from API
   articles: TutorialContent[] = [];
@@ -63,7 +49,7 @@ export class LLMComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private tutorialService: TutorialService
   ) {}
 
   ngOnInit() {
@@ -74,7 +60,7 @@ export class LLMComponent implements OnInit {
   loadTutorials() {
     this.isLoading = true;
     
-    this.http.get<TutorialContent[]>(this.apiUrl).subscribe({
+    this.tutorialService.getAllTutorials().subscribe({
       next: (tutorials) => {
         this.allTutorials = tutorials;
         
@@ -111,12 +97,15 @@ export class LLMComponent implements OnInit {
       error: (error) => {
         console.error('Error loading tutorials:', error);
         this.isLoading = false;
-        // You can add error handling/notification here
         
         // Fallback to empty arrays or show error message
         this.articles = [];
         this.audios = [];
         this.videos = [];
+        this.allTutorials = [];
+        
+        // You can add a user-friendly error notification here
+        alert('Failed to load tutorials. Please check your connection and try again.');
       }
     });
   }
@@ -202,14 +191,17 @@ export class LLMComponent implements OnInit {
       if (this.isEditMode && this.editingArticleId) {
         // Update existing article
         formData.id = this.editingArticleId;
-        this.http.put<TutorialContent>(`${this.apiUrl}/${this.editingArticleId}`, formData).subscribe({
+        this.tutorialService.updateTutorial(this.editingArticleId, formData).subscribe({
           next: (response) => {
             console.log('Article updated successfully:', response);
             this.loadTutorials(); // Refresh the list
             this.closeAddForm();
+            // You can add a success notification here
+            alert('Article updated successfully!');
           },
           error: (error) => {
             console.error('Error updating article:', error);
+            alert('Failed to update article. Please try again.');
           },
           complete: () => {
             this.isSubmitting = false;
@@ -217,7 +209,7 @@ export class LLMComponent implements OnInit {
         });
       } else {
         // Create new article
-        this.http.post<TutorialContent>(this.apiUrl, formData).subscribe({
+        this.tutorialService.createTutorial(formData).subscribe({
           next: (response) => {
             console.log('Article created successfully:', response);
             
@@ -234,9 +226,12 @@ export class LLMComponent implements OnInit {
             this.allTutorials.unshift(response);
             
             this.closeAddForm();
+            // You can add a success notification here
+            alert('Article created successfully!');
           },
           error: (error) => {
             console.error('Error creating article:', error);
+            alert('Failed to create article. Please try again.');
           },
           complete: () => {
             this.isSubmitting = false;
@@ -251,6 +246,23 @@ export class LLMComponent implements OnInit {
         
         if (control instanceof FormArray) {
           control.controls.forEach(c => c.markAsTouched());
+        }
+      });
+    }
+  }
+
+  // Method to delete a tutorial
+  deleteTutorial(tutorial: TutorialContent) {
+    if (tutorial.id && confirm('Are you sure you want to delete this tutorial?')) {
+      this.tutorialService.deleteTutorial(tutorial.id).subscribe({
+        next: () => {
+          console.log('Tutorial deleted successfully');
+          this.loadTutorials(); // Refresh the list
+          alert('Tutorial deleted successfully!');
+        },
+        error: (error) => {
+          console.error('Error deleting tutorial:', error);
+          alert('Failed to delete tutorial. Please try again.');
         }
       });
     }
