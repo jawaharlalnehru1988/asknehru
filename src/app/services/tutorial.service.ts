@@ -20,7 +20,8 @@ export interface TutorialContent {
   providedIn: 'root'
 })
 export class TutorialService {
-  private readonly API_BASE_URL = 'https://aksharekrishna.loca.lt/api';
+  private readonly API_BASE_URL = 'https://airfare-expand-citations-particularly.trycloudflare.com/api';
+  // private readonly API_BASE_URL = 'http://192.168.0.102:8080/api';
   
   private readonly httpOptions = {
     headers: new HttpHeaders({

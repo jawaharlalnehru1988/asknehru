@@ -73,6 +73,9 @@ export const routes: Routes = [
     path: 'llm', loadComponent: () => import('../../app/llm/llm.component').then((m) => m.LLMComponent)
   },
   {
+    path: 'systemdesign', loadComponent: () => import('../../app/system-design/system-design.component').then((m) => m.SystemDesignComponent)
+  },
+  {
     path: 'spotify',
     loadChildren: () =>
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),

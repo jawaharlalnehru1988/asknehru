@@ -1,0 +1,147 @@
+<!-- System Design Topics Container -->
+<div class="min-h-screen bg-gradient-animated py-8 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        System Design Mastery
+      </h1>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        Master the art of designing scalable systems with comprehensive tutorials and practical examples
+      </p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let topic of topicsCards; let i = index"
+        (click)="openTopicModal(topic, i)"
+        class="topic-card group relative bg-white/10 backdrop-blur-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
+      >
+        <!-- Card Image -->
+        <div class="relative h-48 overflow-hidden">
+          <img 
+            [src]="topic.imageUrl" 
+            [alt]="topic.title"
+            class="topic-image w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <!-- Category Badge -->
+          <div class="absolute top-4 left-4 bg-purple-500/90 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs font-medium">
+            {{ topic.category }}
+          </div>
+        </div>
+
+        <!-- Card Content -->
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-300">
+            {{ topic.title }}
+          </h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            {{ topic.description }}
+          </p>
+        </div>
+
+        <!-- Hover Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div class="bg-white/20 backdrop-blur-sm rounded-full p-3">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Full-Width Modal -->
+<div 
+  *ngIf="showModal" 
+  class="modal-overlay fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
+  (click)="closeModal()"
+>
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div 
+      class="modal-content bg-white rounded-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <span class="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm font-medium">
+              {{ selectedTopic?.category }}
+            </span>
+            <h2 class="text-2xl font-bold text-white">{{ selectedTopic?.title }}</h2>
+          </div>
+          <button 
+            (click)="closeModal()"
+            class="text-white/80 hover:text-white transition-colors duration-200 p-1 rounded-full hover:bg-white/10"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="overflow-y-auto max-h-[70vh] p-6">
+        <div 
+          [innerHTML]="selectedTopic?.content" 
+          class="prose prose-lg max-w-none"
+        ></div>
+      </div>
+
+      <!-- Modal Footer with Navigation -->
+      <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
+        <div class="flex items-center justify-between">
+          <!-- Previous Button -->
+          <button 
+            *ngIf="currentTopicIndex > 0"
+            (click)="navigateToPrevious()"
+            class="flex items-center space-x-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-200 font-medium"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            <span>Previous</span>
+          </button>
+          <div *ngIf="currentTopicIndex === 0" class="w-24"></div>
+
+          <!-- Topic Counter -->
+          <div class="text-center">
+            <span class="text-gray-500 text-sm font-medium">
+              {{ currentTopicIndex + 1 }} of {{ topicsCards.length }}
+            </span>
+          </div>
+
+          <!-- Next Button -->
+          <button 
+            *ngIf="currentTopicIndex < topicsCards.length - 1"
+            (click)="navigateToNext()"
+            class="flex items-center space-x-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors duration-200 font-medium"
+          >
+            <span>Next</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+          <div *ngIf="currentTopicIndex === topicsCards.length - 1" class="w-24"></div>
+        </div>
+
+        <!-- Close Button -->
+        <div class="flex justify-center mt-4">
+          <button 
+            (click)="closeModal()"
+            class="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors duration-200 font-medium"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
