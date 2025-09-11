@@ -1,19 +1,55 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
+
+// Interface for System Design Topic
+export interface SystemDesignTopic {
+  id?: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  category: string;
+  sectionLink: string;
+  audioUrl: string;
+  content: string;
+}
 
 @Component({
   selector: 'app-system-design',
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, QuillModule],
   templateUrl: './system-design.component.html',
   styleUrl: './system-design.component.scss'
 })
 export class SystemDesignComponent {
   showModal: boolean = false;
-  selectedTopic: any = null;
+  showAddForm: boolean = false;
+  selectedTopic: SystemDesignTopic | null = null;
   currentTopicIndex: number = 0;
   audioError: boolean = false;
+  isSubmitting: boolean = false;
+  isEditMode: boolean = false;
+  editingTopicId: number | null = null;
+  
+  topicForm!: FormGroup;
 
-  topicsCards = [
+  // Quill editor configuration
+  quillConfig = {
+    toolbar: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'align': [] }],
+      ['blockquote', 'code-block'],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+    theme: 'snow'
+  };
+
+  topicsCards: SystemDesignTopic[] = [
     {
       title: 'Introduction to High-Level System Design',
       description: 'Understand the basics of system design, its importance, and key concepts.',
@@ -194,10 +230,132 @@ export class SystemDesignComponent {
     }
   ];
 
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+    this.initializeForm();
+  }
+
+  // Initialize form
+  initializeForm() {
+    this.topicForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
+      imageUrl: ['', [Validators.required, Validators.pattern('https?://.+')]],
+      category: ['', [Validators.required]],
+      sectionLink: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+      audioUrl: ['', [Validators.pattern('https?://.+')]],
+      content: ['', [Validators.required, Validators.minLength(50)]]
+    });
+  }
+
+  // Form control methods
+  openAddForm() {
+    this.isEditMode = false;
+    this.editingTopicId = null;
+    this.showAddForm = true;
+    this.topicForm.reset();
+    this.topicForm.patchValue({
+      category: 'High-Level-Design'
+    });
+  }
+
+  openEditForm(topic: SystemDesignTopic, index: number) {
+    this.isEditMode = true;
+    this.editingTopicId = topic.id || index;
+    this.showAddForm = true;
+    this.populateFormWithTopic(topic);
+  }
+
+  closeAddForm() {
+    this.showAddForm = false;
+    this.isEditMode = false;
+    this.editingTopicId = null;
+    this.topicForm.reset();
+  }
+
+  populateFormWithTopic(topic: SystemDesignTopic) {
+    this.topicForm.patchValue({
+      title: topic.title,
+      description: topic.description,
+      imageUrl: topic.imageUrl,
+      category: topic.category,
+      sectionLink: topic.sectionLink,
+      audioUrl: topic.audioUrl,
+      content: topic.content
+    });
+  }
+
+  onSubmit() {
+    if (this.topicForm.valid) {
+      this.isSubmitting = true;
+      const formData: SystemDesignTopic = { ...this.topicForm.value };
+      
+      if (this.isEditMode && this.editingTopicId !== null) {
+        // Update existing topic
+        const index = typeof this.editingTopicId === 'number' ? this.editingTopicId : 
+                     this.topicsCards.findIndex(t => t.id === this.editingTopicId);
+        
+        if (index >= 0) {
+          formData.id = this.topicsCards[index].id;
+          this.topicsCards[index] = formData;
+          console.log('Topic updated successfully:', formData);
+        }
+      } else {
+        // Add new topic
+        formData.id = Date.now(); // Simple ID generation
+        this.topicsCards.push(formData);
+        console.log('Topic created successfully:', formData);
+      }
+      
+      this.closeAddForm();
+      this.isSubmitting = false;
+    } else {
+      // Mark all fields as touched to show validation errors
+      Object.keys(this.topicForm.controls).forEach(key => {
+        const control = this.topicForm.get(key);
+        control?.markAsTouched();
+      });
+    }
+  }
+
+  // Helper method to check if a form control has validation errors
+  hasError(controlName: string, errorType?: string): boolean {
+    const control = this.topicForm.get(controlName);
+    if (!control) return false;
+    
+    if (errorType) {
+      return control.hasError(errorType) && control.touched;
+    }
+    return control.invalid && control.touched;
+  }
+
+  // Helper method to get validation error message
+  getErrorMessage(controlName: string): string {
+    const control = this.topicForm.get(controlName);
+    if (!control || !control.errors) return '';
+
+    const errors = control.errors;
+    
+    if (errors['required']) return `${controlName} is required`;
+    if (errors['minlength']) return `${controlName} must be at least ${errors['minlength'].requiredLength} characters`;
+    if (errors['maxlength']) return `${controlName} must not exceed ${errors['maxlength'].requiredLength} characters`;
+    if (errors['pattern']) {
+      if (controlName === 'sectionLink') return 'Section link can only contain letters, numbers and hyphens';
+      return `${controlName} must be a valid URL`;
+    }
+    
+    return 'Invalid input';
+  }
+
+  // Delete topic
+  deleteTopic(index: number) {
+    if (confirm('Are you sure you want to delete this topic?')) {
+      this.topicsCards.splice(index, 1);
+      console.log('Topic deleted successfully');
+    }
+  }
 
   // Open topic modal
-  openTopicModal(topic: any, index: number) {
+  openTopicModal(topic: SystemDesignTopic, index: number) {
     this.selectedTopic = topic;
     this.currentTopicIndex = index;
     this.showModal = true;
