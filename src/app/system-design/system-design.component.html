@@ -89,6 +89,35 @@
 
       <!-- Modal Content -->
       <div class="overflow-y-auto max-h-[70vh] p-6">
+        <!-- Audio Player -->
+        <div *ngIf="selectedTopic?.audioUrl" class="mb-6 bg-gray-50 p-4 rounded-lg">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">🎧 Listen to this episode</h3>
+          <audio 
+            [src]="selectedTopic?.audioUrl" 
+            controls 
+            preload="metadata"
+            class="w-full"
+            style="height: 40px;"
+            (loadeddata)="onAudioLoaded($event)"
+            (error)="onAudioError($event)"
+          >
+            <p class="text-red-500 text-sm">Your browser does not support the audio element. 
+              <a [href]="selectedTopic?.audioUrl" target="_blank" class="text-blue-500 underline">Download the audio file</a>
+            </p>
+          </audio>
+          
+          <!-- Audio Error Message -->
+          <div *ngIf="audioError" class="mt-2 p-3 bg-red-100 border-l-4 border-red-500 text-red-700">
+            <p class="text-sm">
+              <strong>Audio loading failed.</strong> 
+              <a [href]="selectedTopic?.audioUrl" target="_blank" class="text-blue-600 underline hover:text-blue-800">
+                Try downloading the file directly
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Content -->
         <div 
           [innerHTML]="selectedTopic?.content" 
           class="prose prose-lg max-w-none"

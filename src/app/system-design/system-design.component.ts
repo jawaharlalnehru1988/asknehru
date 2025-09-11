@@ -11,6 +11,7 @@ export class SystemDesignComponent {
   showModal: boolean = false;
   selectedTopic: any = null;
   currentTopicIndex: number = 0;
+  audioError: boolean = false;
 
   topicsCards = [
     {
@@ -19,7 +20,7 @@ export class SystemDesignComponent {
       imageUrl: 'https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png',
       category: "High-Level-Design",
       sectionLink: 'introduction',
-      audioUrl: '',
+      audioUrl: 'https://raw.githubusercontent.com/jawaharlalnehru1988/bgsloka/master/assets/high%20level%20design/ep1%20-%20what%20is%20HLD.mp3',
       content: `<h1 data-start="209" data-end="257">🎙️ Podcast Script &mdash; Nehru from asknehru.com</h1>
 <p data-start="258" data-end="388"><strong data-start="258" data-end="300">Season 1: High-Level Design Essentials</strong><br data-start="300" data-end="303" /> <strong data-start="303" data-end="388">Episode 1: What is HLD? Problem framing &rarr; NFRs (SLA/SLO), constraints, trade-offs</strong></p>
 <hr data-start="390" data-end="393" />
@@ -143,7 +144,7 @@ export class SystemDesignComponent {
       imageUrl: 'https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png',
       category: "High-Level-Design",
       sectionLink: 'from-requirements-to-architecture',
-      audioUrl: '',
+      audioUrl: 'https://raw.githubusercontent.com/jawaharlalnehru1988/bgsloka/master/assets/high%20level%20design/ep2%20-%20from%20requirements%20to%20architecture.mp3',
       content: ``
     },
     {
@@ -152,7 +153,7 @@ export class SystemDesignComponent {
       imageUrl: 'https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png',
       category: "High-Level-Design",
       sectionLink: 'workload-modeling',
-      audioUrl: '',
+      audioUrl: 'https://raw.githubusercontent.com/jawaharlalnehru1988/bgsloka/master/assets/high%20level%20design/ep3%20-%20Workload%20modelling%20.mp3',
       content: ``
     },
     {
@@ -161,7 +162,7 @@ export class SystemDesignComponent {
       imageUrl: 'https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png',
       category: "High-Level-Design",
       sectionLink: 'apis-at-hld',
-      audioUrl: '',
+      audioUrl: 'https://raw.githubusercontent.com/jawaharlalnehru1988/bgsloka/master/assets/high%20level%20design/ep4%20-%20APIs%20at%20HLD.mp3',
       content: ``
     },
     {
@@ -170,7 +171,7 @@ export class SystemDesignComponent {
       imageUrl: 'https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png',
       category: "High-Level-Design",
       sectionLink: 'data-storage-choices',
-      audioUrl: '',
+      audioUrl: 'https://raw.githubusercontent.com/jawaharlalnehru1988/bgsloka/master/assets/high%20level%20design/ep5%20-%20Data%20storage%20choices.mp3',
       content: ``
     },
     {
@@ -179,7 +180,16 @@ export class SystemDesignComponent {
       imageUrl: 'https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png',
       category: "High-Level-Design",
       sectionLink: 'caching-strategies',
-      audioUrl: '',
+      audioUrl: 'https://raw.githubusercontent.com/jawaharlalnehru1988/bgsloka/master/assets/high%20level%20design/ep6%20-%20Cashing%20Strategies%20.mp3',
+      content: ``
+    },
+    {
+      title: 'CDN Edge Reverse Proxy',
+      description: 'Learn how to design and implement a CDN edge reverse proxy for efficient content delivery.',
+      imageUrl: 'https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png',
+      category: "High-Level-Design",
+      sectionLink: 'cdn-edge-reverse-proxy',
+      audioUrl: 'https://raw.githubusercontent.com/jawaharlalnehru1988/bgsloka/master/assets/high%20level%20design/ep7%20-%20CDN%20Edge%20Reverse%20proxy%20.mp3',
       content: ``
     }
   ];
@@ -191,6 +201,7 @@ export class SystemDesignComponent {
     this.selectedTopic = topic;
     this.currentTopicIndex = index;
     this.showModal = true;
+    this.audioError = false; // Reset audio error state
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
   }
 
@@ -198,7 +209,20 @@ export class SystemDesignComponent {
   closeModal() {
     this.showModal = false;
     this.selectedTopic = null;
+    this.audioError = false;
     document.body.style.overflow = 'auto'; // Restore scrolling
+  }
+
+  // Handle audio loading error
+  onAudioError(event: any) {
+    console.error('Audio loading error:', event);
+    this.audioError = true;
+  }
+
+  // Handle audio loading success
+  onAudioLoaded(event: any) {
+    console.log('Audio loaded successfully:', event);
+    this.audioError = false;
   }
 
   // Navigate to previous topic
