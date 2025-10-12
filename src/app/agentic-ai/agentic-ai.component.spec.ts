@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LLMComponent } from './llm.component';
+import { AgenticAiComponent } from './agentic-ai.component';
 
-describe('LLMComponent', () => {
-  let component: LLMComponent;
-  let fixture: ComponentFixture<LLMComponent>;
+describe('AgenticAiComponent', () => {
+  let component: AgenticAiComponent;
+  let fixture: ComponentFixture<AgenticAiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LLMComponent]
+      imports: [AgenticAiComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LLMComponent);
+    fixture = TestBed.createComponent(AgenticAiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

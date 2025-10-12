@@ -70,7 +70,7 @@ export const routes: Routes = [
     path: 'react', loadComponent: () => import('../../app/react/react.component').then((m) => m.ReactComponent)
   },
   {
-    path: 'llm', loadComponent: () => import('../../app/llm/llm.component').then((m) => m.LLMComponent)
+    path: 'agentic-ai', loadComponent: () => import('../../app/agentic-ai/agentic-ai.component').then((m) => m.AgenticAiComponent)
   },
   {
     path: 'systemdesign', loadComponent: () => import('../../app/system-design/system-design.component').then((m) => m.SystemDesignComponent)
