@@ -76,6 +76,9 @@ export const routes: Routes = [
     path: 'systemdesign', loadComponent: () => import('../../app/system-design/system-design.component').then((m) => m.SystemDesignComponent)
   },
   {
+    path: 'mcq-training/:topic', loadComponent: () => import('../../app/mcq-training/mcq-training.component').then((m) => m.McqTrainingComponent)
+  },
+  {
     path: 'spotify',
     loadChildren: () =>
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),

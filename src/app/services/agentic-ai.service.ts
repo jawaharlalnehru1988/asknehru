@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface AgenticAITopic {
   _id?: string;
@@ -22,7 +23,7 @@ export interface AgenticAITopic {
   providedIn: 'root'
 })
 export class AgenticAiService {
-  private API_BASE_URL = 'http://localhost:4000';
+  private API_BASE_URL = environment.apiBaseUrl;
 
   // HTTP headers with tunnel bypass
   private httpOptions = {

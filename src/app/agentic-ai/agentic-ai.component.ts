@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { AgenticAiService, AgenticAITopic } from '../services/agentic-ai.service';
 
 @Component({
@@ -45,7 +46,8 @@ export class AgenticAiComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private agenticAiService: AgenticAiService
+    private agenticAiService: AgenticAiService,
+    private router: Router
   ) {
     this.initializeForm();
   }
@@ -297,6 +299,11 @@ export class AgenticAiComponent implements OnInit {
       this.currentTopicIndex++;
       this.selectedTopic = this.topicsCards[this.currentTopicIndex];
     }
+  }
+
+  // Navigate to MCQ Training page
+  openMcqTraining() {
+    this.router.navigate(['/mcq-training/agentic-ai']);
   }
 
   // Handle keyboard navigation
