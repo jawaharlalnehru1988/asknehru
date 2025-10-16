@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://asknehru-backend.vercel.app',
+  apiBaseUrl: 'http://localhost:4000',
+  // apiBaseUrl: 'https://asknehru-backend.vercel.app',
   seoKeys: ['asknehru', 'jawaharlalnehru', 'nehru', 'nehruwebsite', 'programming', 'javascript'],
 };
 
