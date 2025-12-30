@@ -1,9 +1,2 @@
-.youtube-video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px; /* Adding rounded corners */
-    overflow: hidden; /* Ensures that the corners are properly cut off */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better appearance */
-    max-width: 100%;
-}
+@import url('../../angular-demystify/angular-blogs/angular-blogs.component.scss');
+
