@@ -1,0 +1,107 @@
+<div class="office-communication-container">
+  <!-- Header -->
+  <div class="header-section">
+    <h1>Office Communication Guide</h1>
+    <p class="subtitle">Master the art of effective workplace communication</p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading conversations...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error" class="error-container">
+    <p>{{ error }}</p>
+  </div>
+
+  <!-- Conversations List View -->
+  <div *ngIf="!loading && !error && !selectedConversation" class="conversations-grid">
+    <div 
+      *ngFor="let conversation of conversations" 
+      class="conversation-card"
+      (click)="selectConversation(conversation)">
+      <div class="card-header">
+        <span class="category-badge">{{ conversation.topicCategory }}</span>
+        <span class="date">{{ conversation.createdAt | date: 'MMM d, yyyy' }}</span>
+      </div>
+      <h2 class="card-title">{{ conversation.topicCategory }}</h2>
+      <p class="card-preview">{{ conversation.question.split('\n')[0] }}</p>
+      <div class="card-footer">
+        <span class="read-more">Read More →</span>
+        <span *ngIf="conversation.audio" class="audio-badge">
+          <i class="audio-icon">🎵</i> Audio Available
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && !error && conversations.length === 0" class="empty-state">
+    <h3>No conversations yet</h3>
+    <p>Check back soon for office communication tips and guides.</p>
+  </div>
+
+  <!-- Detail View -->
+  <div *ngIf="selectedConversation" class="conversation-detail">
+    <button class="back-button" (click)="backToList()">
+      ← Back to all topics
+    </button>
+
+    <div class="detail-header">
+      <span class="category-badge large">{{ selectedConversation.topicCategory }}</span>
+      <h1>{{ selectedConversation.topicCategory }}</h1>
+      <p class="meta">
+        <span>Published: {{ selectedConversation.createdAt | date: 'MMMM d, yyyy' }}</span>
+        <span *ngIf="selectedConversation.updatedAt !== selectedConversation.createdAt">
+          • Updated: {{ selectedConversation.updatedAt | date: 'MMMM d, yyyy' }}
+        </span>
+      </p>
+    </div>
+
+    <!-- Audio Player -->
+    <div *ngIf="selectedConversation.audio" class="audio-section">
+      <h3>🎵 Listen to this topic</h3>
+      <audio controls [src]="'https://api.asknehru.com' + (selectedConversation.audio || '')">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <!-- Questions Section -->
+    <div class="content-section">
+      <h2>Questions Covered</h2>
+      <div class="questions-list">
+        <p *ngFor="let line of formatText(selectedConversation.question)" 
+           [class.question-item]="isQuestion(line)">
+          {{ line }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Answer Section -->
+    <div class="content-section">
+      <h2>Comprehensive Guide</h2>
+      <div class="answer-content">
+        <p *ngFor="let line of formatText(selectedConversation.answer)" 
+           [class.section-title]="isSectionTitle(line)">
+          {{ line }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Critical Conversation Section -->
+    <div *ngIf="selectedConversation.criticalConversation" class="content-section critical-section">
+      <h2>💡 Critical Insights</h2>
+      <div class="critical-content">
+        <p *ngFor="let line of formatText(selectedConversation.criticalConversation)">
+          {{ line }}
+        </p>
+      </div>
+    </div>
+
+    <button class="back-button bottom" (click)="backToList()">
+      ← Back to all topics
+    </button>
+  </div>
+</div>

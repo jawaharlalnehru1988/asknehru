@@ -76,6 +76,9 @@ export const routes: Routes = [
     path: 'systemdesign', loadComponent: () => import('../../app/system-design/system-design.component').then((m) => m.SystemDesignComponent)
   },
   {
+    path: 'officecommunication', loadComponent: () => import('../../app/officecommunication/officecommunication.component').then((m) => m.OfficecommunicationComponent)
+  },
+  {
     path: 'mcq-training/:topic', loadComponent: () => import('../../app/mcq-training/mcq-training.component').then((m) => m.McqTrainingComponent)
   },
   {

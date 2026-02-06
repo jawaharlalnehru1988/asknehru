@@ -123,6 +123,12 @@ export class Homejson {
             PImage: "https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/c937db99-2e3a-4173-ace3-626cea9956f8.png",
             routerLink: "/systemdesign",
             intro: "Learn the fundamentals of System Design"
+        },
+        {
+            PName: "Office Communication",
+            PImage: "https://res.cloudinary.com/dbmkctsda/image/upload/v1756956557/office-communication.png",
+            routerLink: "/officecommunication",
+            intro: "Master the art of office communication"
         }
 
     ]
