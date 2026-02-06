@@ -10,6 +10,7 @@ import { tap } from 'rxjs/operators';
 export class ApiService {
  apiUrl = "https://sheetdb.io/api/v1/8yxcpd7w4hy4y";
  getUrl = "https://script.google.com/macros/s/AKfycbysfcraS4_qdipktKPs9blVZ-fJFSEDupkvHKmFI7oKWBUjA6qMjvjrDXJUd_GMlvrB/exec";
+ authApiUrl = "https://api.asknehru.com";
  private usersDataSubject = new BehaviorSubject<any[]>([]);
  usersData$: Observable<any[]> = this.usersDataSubject.asObservable();
  private loginSubject = new Subject<boolean>();
@@ -72,6 +73,14 @@ setSignUpData(data: boolean){
   }
   getSignUpData(){
     return this.signUpSubject.asObservable();
+  }
+
+  login(payload: { usernameOrEmail: string; password: string }): Observable<any> {
+    return this.http.post(`${this.authApiUrl}/api/auth/login`, payload);
+  }
+
+  register(payload: { username: string; email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.authApiUrl}/api/users`, payload);
   }
 
   fetchData(): Observable<any> {

@@ -9,10 +9,10 @@
       <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
     }
     @if (isUserLoggedIn) {
-      <button [disabled]="!loggedInTrue" mat-button routerLinkActive="active-link" routerLink="login" class="font-bold">Login</button>
+      <button [disabled]="!loggedInTrue" mat-button class="font-bold" (click)="openLoginDialog()">Login</button>
     }
     @if (isUserLoggedIn) {
-      <button [disabled]="signInTrue" mat-button routerLinkActive="active-link" routerLink="register" class="font-bold">Sign Up</button>
+      <button [disabled]="signInTrue" mat-button class="font-bold" (click)="openSignupDialog()">Sign Up</button>
     }
     @if (!isUserLoggedIn) {
       <button (click)="loggedOut()" mat-button routerLinkActive="active-link" routerLink="" class="font-bold">Log Out</button>

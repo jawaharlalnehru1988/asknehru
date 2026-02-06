@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>
+  @if (mode === 'login') { Login } @else { Sign Up }
+</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="auth-form">
+    @if (mode === 'signup') {
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+    }
+
+    @if (mode === 'login') {
+      <mat-form-field appearance="outline">
+        <mat-label>Username or Email</mat-label>
+        <input matInput formControlName="usernameOrEmail" />
+      </mat-form-field>
+    }
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    @if (errorMessage) {
+      <p class="error">{{ errorMessage }}</p>
+    }
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="submit()" [disabled]="isLoading">
+    @if (mode === 'login') { Login } @else { Sign Up }
+  </button>
+</mat-dialog-actions>

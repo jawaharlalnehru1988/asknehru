@@ -7,6 +7,8 @@ import { MatMenu, MatMenuItem } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 
 @Component({
     selector: 'app-toolbar',
@@ -20,6 +22,7 @@ import { MatToolbar } from '@angular/material/toolbar';
         RouterLinkActive,
         MatMenu,
         MatMenuItem,
+      MatDialogModule,
     ]
 })
 export class ToolbarComponent implements OnInit {
@@ -48,7 +51,7 @@ export class ToolbarComponent implements OnInit {
     {title: "project Studio", routerName: "projectStudio"},
   ];
 
-  constructor(private api: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private overlay: Overlay) { 
+  constructor(private api: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private overlay: Overlay, private dialog: MatDialog) { 
     this.api.getLoginData().subscribe((booleanValue) => {
       this.loggedInTrue = booleanValue;
     });
@@ -88,6 +91,7 @@ for (const key in this.loggedInUserData) {
 
   loggedInUser(){
     this.logInObj =  localStorage.getItem('user');
+    const token = localStorage.getItem('token');
     const loggedInUserData = JSON.parse(this.logInObj);
     this.loggedInUserData = loggedInUserData;
     if (loggedInUserData && loggedInUserData !== null) {
@@ -95,7 +99,7 @@ for (const key in this.loggedInUserData) {
     } else {
       this.initialName = "";
     }
-    if (this.initialName && this.initialName !== "") {
+    if (token || (this.initialName && this.initialName !== "")) {
       this.isUserLoggedIn = false;
     } else {
       this.isUserLoggedIn = true;
@@ -121,6 +125,36 @@ checkIfSuperAdmin(loggedInUserData: any) {
     this.router.navigate(['']);
     this.isUserLoggedIn = true;
     this.isSuperAdmin = false;
+  }
+
+  openLoginDialog(): void {
+    const dialogRef = this.dialog.open(AuthDialogComponent, {
+      data: { mode: 'login' },
+      width: '420px'
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.token) {
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('user', JSON.stringify({ name: 'User', role: 'User' }));
+        this.loggedInUser();
+      }
+    });
+  }
+
+  openSignupDialog(): void {
+    const dialogRef = this.dialog.open(AuthDialogComponent, {
+      data: { mode: 'signup' },
+      width: '420px'
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.token) {
+        localStorage.setItem('token', result.token);
+        localStorage.setItem('user', JSON.stringify({ name: 'User', role: 'User' }));
+        this.loggedInUser();
+      }
+    });
   }
   openOverlay() {
   }

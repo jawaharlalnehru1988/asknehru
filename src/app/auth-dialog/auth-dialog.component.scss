@@ -1,0 +1,12 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 320px;
+}
+
+.error {
+  color: #d32f2f;
+  margin: 0;
+  font-size: 0.9rem;
+}
