@@ -17,6 +17,11 @@
   </section>
 
   <section class="blog-section">
+    @if (loading) {
+    <div class="flex justify-center items-center h-64 w-full col-span-full">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+    } @else {
     @for( blog of blogArticleData; track blog) {
     <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
       <mat-card-header>
@@ -30,6 +35,7 @@
         {{ blog.intro }}
       </mat-card-content>
     </mat-card>
+    }
     }
   </section>
   <section>

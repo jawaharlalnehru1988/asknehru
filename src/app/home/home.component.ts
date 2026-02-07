@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent extends Homejson implements OnInit {
   override blogArticleData: Project[] = [];
+  loading: boolean = true;
 
   constructor(private apiService: ApiService) {
     super();
@@ -27,6 +28,7 @@ export class HomeComponent extends Homejson implements OnInit {
   }
 
   loadRoadmaps() {
+    this.loading = true;
     this.apiService.getRoadmaps().subscribe({
       next: (roadmaps) => {
         this.blogArticleData = roadmaps.map(roadmap => ({
@@ -37,9 +39,11 @@ export class HomeComponent extends Homejson implements OnInit {
           intro: roadmap.intro,
           syllabus: roadmap.syllabus
         }));
+        this.loading = false;
       },
       error: (err) => {
         console.error('Error loading roadmaps:', err);
+        this.loading = false;
       }
     });
   }
