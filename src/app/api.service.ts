@@ -96,4 +96,8 @@ setSignUpData(data: boolean){
       })
     );
   }
+
+  getRoadmaps(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/roadmaps`);
+  }
 }
