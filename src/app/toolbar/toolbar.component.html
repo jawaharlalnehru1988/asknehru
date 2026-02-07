@@ -1,27 +1,24 @@
-
-
-
-  <mat-toolbar>
-    <span class="hide-on-small font-bold">AskNehru</span>
-    <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
-    <span class="example-spacer"></span>
-    @if (isSuperAdmin) {
-      <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
-    }
-    @if (isUserLoggedIn) {
-      <button [disabled]="!loggedInTrue" mat-button class="font-bold" (click)="openLoginDialog()">Login</button>
-    }
-    @if (isUserLoggedIn) {
-      <button [disabled]="signInTrue" mat-button class="font-bold" (click)="openSignupDialog()">Sign Up</button>
-    }
-    @if (!isUserLoggedIn) {
-      <button (click)="loggedOut()" mat-button routerLinkActive="active-link" routerLink="" class="font-bold">Log Out</button>
-    }
-  </mat-toolbar>
+<mat-toolbar>
+  <span class="hide-on-small font-bold">AskNehru</span>
+  <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
+  <span class="example-spacer"></span>
+  @if (isSuperAdmin) {
+  <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
+  }
+  @if (isUserLoggedIn) {
+  <button [disabled]="!loggedInTrue" mat-button class="font-bold" (click)="openLoginDialog()">Login</button>
+  }
+  @if (isUserLoggedIn) {
+  <button [disabled]="signInTrue" mat-button class="font-bold" (click)="openSignupDialog()">Sign Up</button>
+  }
+  @if (!isUserLoggedIn) {
+  <button (click)="loggedOut()" mat-button routerLinkActive="active-link" routerLink="" class="font-bold">Log
+    Out</button>
+  }
+</mat-toolbar>
 
 <mat-menu #menu="matMenu">
   @for (project of ProjectList; track project) {
-    <button mat-menu-item [routerLink]="project.routerName" >{{project.title}}</button>
+  <button mat-menu-item [routerLink]="project.routerName">{{project.title}}</button>
   }
 </mat-menu>
-

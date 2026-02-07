@@ -9,11 +9,11 @@ import { CommonModule } from '@angular/common';
 
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    standalone: true,
-    imports: [CommonModule, MatCardModule, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MatCardModule, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
 })
 export class HomeComponent extends Homejson implements OnInit {
   override blogArticleData: Project[] = [];
@@ -30,10 +30,12 @@ export class HomeComponent extends Homejson implements OnInit {
     this.apiService.getRoadmaps().subscribe({
       next: (roadmaps) => {
         this.blogArticleData = roadmaps.map(roadmap => ({
+          id: roadmap.id,
           PName: roadmap.mainTopic,
-          routerLink: roadmap.routerLink,
+          routerLink: `/project/${roadmap.id}`,
           PImage: roadmap.imageUrl ? `https://api.asknehru.com${roadmap.imageUrl}` : 'assets/image/default.png',
-          intro: roadmap.intro
+          intro: roadmap.intro,
+          syllabus: roadmap.syllabus
         }));
       },
       error: (err) => {

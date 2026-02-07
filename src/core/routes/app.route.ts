@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', loadComponent: () =>import('../../app/home/home.component').then((m) => m.HomeComponent)},
+  { path: '', loadComponent: () => import('../../app/home/home.component').then((m) => m.HomeComponent) },
   {
     path: 'home',
     loadComponent: () =>
@@ -28,7 +28,7 @@ export const routes: Routes = [
   },
   {
     path: 'typescript',
-    loadComponent: () =>import('../../app/typescript/typescript.component').then((m) => m.TypescriptComponent),
+    loadComponent: () => import('../../app/typescript/typescript.component').then((m) => m.TypescriptComponent),
   },
   {
     path: 'tstopic/:id',
@@ -49,19 +49,19 @@ export const routes: Routes = [
       ),
   },
   {
-    path:'java', loadComponent: ()=> import('../../app/java/java.component').then(c => c.JavaComponent)
+    path: 'java', loadComponent: () => import('../../app/java/java.component').then(c => c.JavaComponent)
   },
   {
-    path:'jasmine', loadComponent: ()=> import('../../app/jasmine/jasmine.component').then(c => c.JasmineComponent)
+    path: 'jasmine', loadComponent: () => import('../../app/jasmine/jasmine.component').then(c => c.JasmineComponent)
   },
   {
-    path:'springboot', loadComponent: ()=> import('../../app/springboot/springboot.component').then(c => c.SpringbootComponent)
+    path: 'springboot', loadComponent: () => import('../../app/springboot/springboot.component').then(c => c.SpringbootComponent)
   },
   {
-    path:'sql', loadComponent: ()=> import('../../app/sql/sql.component').then(c => c.SqlComponent)
+    path: 'sql', loadComponent: () => import('../../app/sql/sql.component').then(c => c.SqlComponent)
   },
   {
-    path:'git', loadComponent: ()=> import('../../app/git-commands/git-commands.component').then(c => c.GitCommandsComponent)
+    path: 'git', loadComponent: () => import('../../app/git-commands/git-commands.component').then(c => c.GitCommandsComponent)
   },
   {
     path: 'css', loadComponent: () => import('../../app/css-concepts/css-concepts.component').then((m) => m.CssConceptsComponent)
@@ -87,7 +87,11 @@ export const routes: Routes = [
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),
   },
   {
-    path: 'jsconcepts', loadComponent:() => import('../../app/javascript/javascript/javascript.component').then((m) => m.JavascriptComponent)
+    path: 'jsconcepts', loadComponent: () => import('../../app/javascript/javascript/javascript.component').then((m) => m.JavascriptComponent)
+  },
+  {
+    path: 'project/:id',
+    loadComponent: () => import('../../app/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
   },
   { path: '**', redirectTo: '/home' },
 ];

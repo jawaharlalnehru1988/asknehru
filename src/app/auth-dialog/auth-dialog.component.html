@@ -3,33 +3,41 @@
 </h2>
 
 <mat-dialog-content>
-  <form [formGroup]="form" class="auth-form">
+  <form [formGroup]="form" class="auth-form flex flex-col space-y-4">
     @if (mode === 'signup') {
-      <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput formControlName="username" />
+    <div class="flex flex-col">
+      <label class="text-sm font-medium text-gray-700 mb-1">Username</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput formControlName="username" placeholder="Enter your username" />
       </mat-form-field>
+    </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" />
+    <div class="flex flex-col">
+      <label class="text-sm font-medium text-gray-700 mb-1">Email</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput type="email" formControlName="email" placeholder="Enter your email" />
       </mat-form-field>
+    </div>
     }
 
     @if (mode === 'login') {
-      <mat-form-field appearance="outline">
-        <mat-label>Username or Email</mat-label>
-        <input matInput formControlName="usernameOrEmail" />
+    <div class="flex flex-col">
+      <label class="text-sm font-medium text-gray-700 mb-1">Username or Email</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput formControlName="usernameOrEmail" placeholder="Enter username or email" />
       </mat-form-field>
+    </div>
     }
 
-    <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" />
-    </mat-form-field>
+    <div class="flex flex-col">
+      <label class="text-sm font-medium text-gray-700 mb-1">Password</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput type="password" formControlName="password" placeholder="Enter your password" />
+      </mat-form-field>
+    </div>
 
     @if (errorMessage) {
-      <p class="error">{{ errorMessage }}</p>
+    <p class="error text-red-600 text-sm mt-2">{{ errorMessage }}</p>
     }
   </form>
 </mat-dialog-content>

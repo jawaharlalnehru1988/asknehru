@@ -1,0 +1,41 @@
+.syllabus-content {
+    h1, h2, h3, h4, h5, h6 {
+      color: #1f2937; /* gray-800 */
+      font-weight: 700;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    
+    p {
+      margin-bottom: 1em;
+      line-height: 1.6;
+    }
+  
+    ul, ol {
+      margin-left: 1.5em;
+      margin-bottom: 1em;
+      list-style-type: disc;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1em;
+        
+        th, td {
+            border: 1px solid #e5e7eb;
+            padding: 0.5em;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+    }
+    
+    pre {
+         white-space: pre-wrap;
+         font-family: inherit;
+    }
+  }
