@@ -1,0 +1,22 @@
+<div *ngIf="details" class="details-container">
+    <h2 class="main-title">{{ details.subTopic || details.mainTopic }}</h2>
+
+    <div *ngIf="details.article" class="content-section">
+        <h3 class="section-title article-title">Article</h3>
+        <div [innerHTML]="details.article" class="content-body"></div>
+    </div>
+
+    <div *ngIf="details.positiveConversation" class="content-section">
+        <h3 class="section-title positive-title">Positive Conversation</h3>
+        <div [innerHTML]="details.positiveConversation" class="content-body"></div>
+    </div>
+
+    <div *ngIf="details.negativeConversation" class="content-section">
+        <h3 class="section-title negative-title">Negative Conversation</h3>
+        <div [innerHTML]="details.negativeConversation" class="content-body"></div>
+    </div>
+</div>
+<div *ngIf="!details" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading details...</p>
+</div>

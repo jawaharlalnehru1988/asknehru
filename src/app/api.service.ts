@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -13,6 +13,8 @@ export class ApiService {
 
   private loginSubject = new Subject<boolean>();
   private signUpSubject = new Subject<boolean>();
+  private selectedMainTopicSubject = new BehaviorSubject<string | null>(null);
+  selectedMainTopic$ = this.selectedMainTopicSubject.asObservable();
   constructor(private http: HttpClient) {
 
   }
@@ -75,5 +77,13 @@ export class ApiService {
 
   getRoadmapById(id: any): Observable<any> {
     return this.http.get<any>(`${this.authApiUrl}/api/roadmaps/${id}`);
+  }
+
+  getConversations(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/conversations`);
+  }
+
+  setMainTopic(topic: string | null) {
+    this.selectedMainTopicSubject.next(topic);
   }
 }

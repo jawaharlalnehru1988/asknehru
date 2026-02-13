@@ -1,6 +1,13 @@
 <mat-toolbar>
   <span class="hide-on-small font-bold">AskNehru</span>
   <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
+  <button mat-button [matMenuTriggerFor]="topicsMenu" class="font-bold">Topics</button>
+  <mat-menu #topicsMenu="matMenu">
+    <button mat-menu-item (click)="selectTopic(null)">All</button>
+    @for (topic of mainTopics; track topic) {
+    <button mat-menu-item (click)="selectTopic(topic)">{{topic}}</button>
+    }
+  </mat-menu>
   <span class="example-spacer"></span>
   @if (isSuperAdmin) {
   <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>

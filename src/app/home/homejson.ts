@@ -1,7 +1,7 @@
 export interface Project {
   id?: number;
   PName: string;
-  routerLink: string;
+  routerLink?: string;
   PImage: string;
   intro: string;
   mainTopic?: string;
@@ -9,6 +9,10 @@ export interface Project {
   imageUrl?: string;
   createdAt?: string;
   updatedAt?: string;
+  subTopic?: string;
+  article?: string;
+  positiveConversation?: string;
+  negativeConversation?: string;
 }
 
 export interface Tile {

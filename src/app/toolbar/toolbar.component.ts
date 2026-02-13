@@ -3,7 +3,7 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
@@ -22,6 +22,7 @@ import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
     RouterLinkActive,
     MatMenu,
     MatMenuItem,
+    MatMenuTrigger,
     MatDialogModule,
   ]
 })
@@ -41,6 +42,7 @@ export class ToolbarComponent implements OnInit {
   hide: boolean = true;
   isEditPwd: boolean = false;
   isEditEmail: boolean = false;
+  mainTopics: string[] = [];
   ProjectList = [
     { title: "Gym Website", routerName: "gymwebpage" },
     { title: "Yoga Website", routerName: "yoga" },
@@ -79,6 +81,12 @@ export class ToolbarComponent implements OnInit {
       }
     });
 
+    this.api.getConversations().subscribe({
+      next: (data) => {
+        this.mainTopics = [...new Set(data.map((item: any) => item.mainTopic))];
+      }
+    });
+
     for (const key in this.loggedInUserData) {
       if (this.loggedInUserData.hasOwnProperty(key)) {
         const control = this.signUpForm.get(key);
@@ -87,6 +95,11 @@ export class ToolbarComponent implements OnInit {
         }
       }
     }
+  }
+
+  selectTopic(topic: string | null) {
+    this.api.setMainTopic(topic);
+    this.router.navigate(['/articles-gallery']);
   }
 
   loggedInUser() {

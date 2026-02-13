@@ -8,25 +8,6 @@ export const routes: Routes = [
       import('../../app/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'angular-demystified',
-    loadChildren: () =>
-      import('../../core/routes/angular.route').then((m) => m.routes),
-  },
-  {
-    path: 'angular-topic/:id',
-    loadComponent: () =>
-      import(
-        '../../app/angular-demystify/angular-blogs/angular-blogs.component'
-      ).then((m) => m.AngularBlogsComponent),
-  },
-  {
-    path: 'angular-audio/:id',
-    loadComponent: () =>
-      import(
-        '../../app/angular-demystify/angular-audio/angular-audio.component'
-      ).then((m) => m.AngularAudioComponent),
-  },
-  {
     path: 'typescript',
     loadComponent: () => import('../../app/typescript/typescript.component').then((m) => m.TypescriptComponent),
   },
@@ -37,9 +18,7 @@ export const routes: Routes = [
         (m) => m.TypescriptDetailsComponent
       ),
   },
-  {
-    path: 'rxjs', loadComponent: () => import('../../app/angular-demystify/rxjs/rxjs.component').then((m) => m.RxjsComponent),
-  },
+
   {
     path: 'toolbar',
 
@@ -48,9 +27,7 @@ export const routes: Routes = [
         (m) => m.ToolbarComponent
       ),
   },
-  {
-    path: 'java', loadComponent: () => import('../../app/java/java.component').then(c => c.JavaComponent)
-  },
+
   {
     path: 'jasmine', loadComponent: () => import('../../app/jasmine/jasmine.component').then(c => c.JasmineComponent)
   },
@@ -70,9 +47,6 @@ export const routes: Routes = [
     path: 'react', loadComponent: () => import('../../app/react/react.component').then((m) => m.ReactComponent)
   },
   {
-    path: 'agentic-ai', loadComponent: () => import('../../app/agentic-ai/agentic-ai.component').then((m) => m.AgenticAiComponent)
-  },
-  {
     path: 'systemdesign', loadComponent: () => import('../../app/system-design/system-design.component').then((m) => m.SystemDesignComponent)
   },
   {
@@ -87,11 +61,16 @@ export const routes: Routes = [
       import('../../core/routes/spotify.route').then((m) => m.spotifyRoute),
   },
   {
-    path: 'jsconcepts', loadComponent: () => import('../../app/javascript/javascript/javascript.component').then((m) => m.JavascriptComponent)
-  },
-  {
     path: 'project/:id',
     loadComponent: () => import('../../app/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
+  },
+  {
+    path: 'articles-gallery',
+    loadComponent: () => import('../../app/articles-gallery/articles-gallery.component').then(m => m.ArticlesGalleryComponent)
+  },
+  {
+    path: 'infodetails/:id',
+    loadComponent: () => import('../../app/infodetails/infodetails.component').then(m => m.InfodetailsComponent)
   },
   { path: '**', redirectTo: '/home' },
 ];

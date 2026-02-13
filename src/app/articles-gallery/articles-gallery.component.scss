@@ -1,0 +1,155 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    // Deep space-like background to make colors pop
+    background-color: #0f172a;
+    padding: 3rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.loading-wrapper {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    color: #94a3b8;
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-top-color: #38bdf8;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 1rem;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.article-card {
+    position: relative;
+    background: rgba(30, 41, 59, 0.7);
+    border-radius: 16px;
+    padding: 2px; // For the border gradient effect
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+
+        .card-glow {
+            opacity: 0.8;
+            transform: scale(1.5);
+        }
+    }
+
+    // The actual content container
+    .card-content {
+        background: #1e293b;
+        border-radius: 14px; // Slightly less than card border-radius
+        padding: 1.75rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        z-index: 2;
+    }
+
+    // Ambient glow effect behind content
+    .card-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 50% 50%,
+                rgba(56, 189, 248, 0.15),
+                rgba(168, 85, 247, 0.15),
+                transparent 70%);
+        opacity: 0.4;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1;
+        pointer-events: none;
+    }
+}
+
+.topic-badge {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.4rem 1rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 99px; // Pill shape
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #f1f5f9;
+    margin: 0 0 1.5rem 0;
+    // Limit to 3 lines
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    margin-top: auto;
+    font-size: 0.85rem;
+    color: #94a3b8;
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .icon {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+    }
+
+    .audio {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-weight: 500;
+
+        &.available {
+            color: #34d399; // Greenish hint if available
+        }
+    }
+}

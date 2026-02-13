@@ -1,0 +1,31 @@
+<section class="gallery-container">
+    @if(loading) {
+    <div class="loading-wrapper">
+        <div class="spinner"></div>
+        <p>Loading articles...</p>
+    </div>
+    } @else {
+    @for(article of articles; track article) {
+    <div class="article-card" (click)="openDetails(article.id)">
+        <div class="card-content">
+            <span class="topic-badge">{{ article.mainTopic }}</span>
+            <h3 class="card-title">{{ article.subTopic || 'Untitled Article' }}</h3>
+
+            <div class="card-meta">
+                <div class="meta-item">
+                    <span class="icon">📅</span>
+                    <span>{{ article.createdAt | date:'mediumDate' }}</span>
+                </div>
+
+                <div class="meta-item audio" [class.available]="article.articleAudio || article.conversationAudio">
+                    <span class="icon">🎧</span>
+                    <span>Audio: {{ (article.articleAudio || article.conversationAudio) ? 'Yes' : 'No' }}</span>
+                </div>
+            </div>
+        </div>
+        <!-- Ambient Glow Element -->
+        <div class="card-glow"></div>
+    </div>
+    }
+    }
+</section>
