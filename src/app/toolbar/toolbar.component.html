@@ -1,13 +1,16 @@
 <mat-toolbar>
   <span class="hide-on-small font-bold">AskNehru</span>
   <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
-  <button mat-button [matMenuTriggerFor]="topicsMenu" class="font-bold">Topics</button>
-  <mat-menu #topicsMenu="matMenu">
-    <button mat-menu-item (click)="selectTopic(null)">All</button>
-    @for (topic of mainTopics; track topic) {
-    <button mat-menu-item (click)="selectTopic(topic)">{{topic}}</button>
-    }
-  </mat-menu>
+  <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
+    <input type="text" placeholder="Search Topic" aria-label="Topic" matInput [formControl]="topicControl"
+      [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTopic($event.option.value)">
+      <mat-option [value]="null">All</mat-option>
+      @for (topic of filteredTopics | async; track topic) {
+      <mat-option [value]="topic">{{topic}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
   <span class="example-spacer"></span>
   @if (isSuperAdmin) {
   <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>

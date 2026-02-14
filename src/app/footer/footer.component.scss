@@ -1,0 +1,120 @@
+:host {
+    display: block;
+    margin-top: auto; // Push to bottom if flex container
+}
+
+.site-footer {
+    background-color: #1a202c; // Dark background
+    color: #e2e8f0; // Light text
+    padding: 3rem 1rem 1rem 1rem;
+    font-family: 'Inter', sans-serif;
+    border-top: 1px solid #2d3748;
+
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .footer-column {
+        h3 {
+            color: #fff;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #4a5568;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        p,
+        li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            mat-icon {
+                font-size: 1.2rem;
+                height: 1.2rem;
+                width: 1.2rem;
+                color: #a0aec0;
+            }
+
+            a {
+                color: #e2e8f0;
+                text-decoration: none;
+                transition: color 0.2s;
+
+                &:hover {
+                    color: #63b3ed; // Light blue hover
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    .projects {
+        li::before {
+            content: "•";
+            color: #4fd1c5;
+            margin-right: 0.5rem;
+        }
+    }
+
+    .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        a {
+            color: #cbd5e0;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background-color: #2d3748;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            &:hover {
+                background-color: #4a5568;
+                color: #fff;
+                transform: translateY(-2px);
+            }
+
+            svg {
+                width: 20px;
+                height: 20px;
+                fill: currentColor;
+            }
+
+            span {
+                font-weight: 500;
+            }
+        }
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #2d3748;
+        font-size: 0.85rem;
+        color: #718096;
+    }
+}

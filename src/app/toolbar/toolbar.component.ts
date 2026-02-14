@@ -2,13 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-toolbar',
@@ -22,8 +27,11 @@ import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
     RouterLinkActive,
     MatMenu,
     MatMenuItem,
-    MatMenuTrigger,
     MatDialogModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    AsyncPipe
   ]
 })
 export class ToolbarComponent implements OnInit {
@@ -43,6 +51,10 @@ export class ToolbarComponent implements OnInit {
   isEditPwd: boolean = false;
   isEditEmail: boolean = false;
   mainTopics: string[] = [];
+
+  topicControl = new FormControl('');
+  filteredTopics!: Observable<string[]>;
+
   ProjectList = [
     { title: "Gym Website", routerName: "gymwebpage" },
     { title: "Yoga Website", routerName: "yoga" },
@@ -84,6 +96,11 @@ export class ToolbarComponent implements OnInit {
     this.api.getConversations().subscribe({
       next: (data) => {
         this.mainTopics = [...new Set(data.map((item: any) => item.mainTopic))];
+        // Initialize filtered topics after data is loaded
+        this.filteredTopics = this.topicControl.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value || '')),
+        );
       }
     });
 
@@ -95,6 +112,11 @@ export class ToolbarComponent implements OnInit {
         }
       }
     }
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.mainTopics.filter(topic => topic.toLowerCase().includes(filterValue));
   }
 
   selectTopic(topic: string | null) {

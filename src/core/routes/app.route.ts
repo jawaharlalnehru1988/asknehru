@@ -38,9 +38,6 @@ export const routes: Routes = [
     path: 'sql', loadComponent: () => import('../../app/sql/sql.component').then(c => c.SqlComponent)
   },
   {
-    path: 'git', loadComponent: () => import('../../app/git-commands/git-commands.component').then(c => c.GitCommandsComponent)
-  },
-  {
     path: 'css', loadComponent: () => import('../../app/css-concepts/css-concepts.component').then((m) => m.CssConceptsComponent)
   },
   {
