@@ -1,7 +1,18 @@
-<<<<<<< HEAD
 # Asknehru
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
+This is my webpage to teach software. Built with [Angular CLI](https://github.com/angular/angular-cli).
+
+## 🚀 Automated Deployment
+
+This project is configured with **automated deployment** to VPS via GitHub Actions!
+
+- ✅ Automatic build on every push
+- ✅ Deploy to VPS server
+- ✅ Zero-downtime deployments
+
+**📖 Quick Start**: See [SECRETS_CLARIFICATION.md](SECRETS_CLARIFICATION.md) for detailed explanations of each secret  
+**📋 Setup Checklist**: See [SECRETS_SETUP.md](SECRETS_SETUP.md) for step-by-step setup  
+**📚 Full Documentation**: See [DEPLOYMENT.md](DEPLOYMENT.md) for complete deployment guide
 
 ## Development server
 
@@ -26,7 +37,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-=======
-# asknehru
-this is my webpage to teach software
->>>>>>> 816e4e4a03c5a42ce28489daf9b66f6d3b3090f9
