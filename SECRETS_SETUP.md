@@ -14,17 +14,17 @@ Add each secret one by one:
 
 #### Secret 1: VPS_HOST
 - **Name**: `VPS_HOST`
-- **Value**: `91.99.67.35`
+- **Value**: `your-vps-ip` (e.g., `203.0.113.10` or your actual VPS IP)
 - Click "Add secret"
 
 #### Secret 2: VPS_USERNAME
 - **Name**: `VPS_USERNAME`
-- **Value**: `root` (or your actual SSH username)
+- **Value**: `your-ssh-username` (e.g., `root` or your actual SSH username)
 - Click "Add secret"
 
 #### Secret 3: VPS_PASSWORD
 - **Name**: `VPS_PASSWORD`
-- **Value**: `murari16108`
+- **Value**: `your-secure-password` (your actual VPS SSH password)
 - Click "Add secret"
 
 #### Secret 4: VPS_PORT
@@ -50,8 +50,8 @@ After adding all secrets, you should see:
 Before triggering the workflow, ensure your VPS is ready:
 
 ```bash
-# SSH into your VPS
-ssh root@91.99.67.35
+# SSH into your VPS (replace with your actual VPS IP and username)
+ssh username@your-vps-ip
 
 # Create deployment directory
 mkdir -p /var/www/asknehru
@@ -83,7 +83,7 @@ Once secrets are configured and VPS is prepared:
 
 If the workflow fails:
 1. Check that all secrets are spelled exactly as shown above
-2. Verify VPS SSH access: `ssh root@91.99.67.35`
+2. Verify VPS SSH access: `ssh username@your-vps-ip`
 3. Check workflow logs in GitHub Actions for specific errors
 4. Ensure the deployment directory exists and is writable
 
@@ -111,7 +111,7 @@ If the workflow fails:
 ## Next Steps
 
 After successful deployment:
-1. ✅ Access your application at: http://91.99.67.35
+1. ✅ Access your application at: http://your-vps-ip (or your domain)
 2. ✅ Configure a domain name (optional)
 3. ✅ Set up SSL certificate with Let's Encrypt
 4. ✅ Configure environment-specific settings

@@ -22,14 +22,14 @@ To enable automated deployment, you need to configure the following secrets in y
 
 | Secret Name | Description | Example Value |
 |-------------|-------------|---------------|
-| `VPS_HOST` | Your VPS IP address or hostname | `91.99.67.35` |
+| `VPS_HOST` | Your VPS IP address or hostname | `203.0.113.10` |
 | `VPS_USERNAME` | SSH username for VPS | `root` or your username |
-| `VPS_PASSWORD` | SSH password for VPS | `murari16108` |
+| `VPS_PASSWORD` | SSH password for VPS | `your-secure-password` |
 | `VPS_PORT` | SSH port (default is 22) | `22` |
 | `VPS_DEPLOY_PATH` | Target directory on VPS | `/var/www/asknehru` or `/home/user/app` |
 
 ### Security Notes:
-- **IMPORTANT**: The password `murari16108` should be stored as a GitHub secret (`VPS_PASSWORD`), not in the workflow file
+- **IMPORTANT**: Keep your VPS password secure and never commit it to the repository
 - Never commit passwords or sensitive data directly in your code
 - Consider using SSH keys instead of passwords for better security
 
@@ -73,7 +73,7 @@ Add the following configuration:
 ```nginx
 server {
     listen 80;
-    server_name 91.99.67.35 yourdomain.com;
+    server_name your-domain.com www.your-domain.com;
     root /var/www/asknehru;
     index index.html;
 
@@ -116,7 +116,7 @@ ssh-keygen -t ed25519 -C "github-actions"
 
 ### Copy public key to VPS:
 ```bash
-ssh-copy-id -i ~/.ssh/id_ed25519.pub username@91.99.67.35
+ssh-copy-id -i ~/.ssh/id_ed25519.pub username@your-vps-ip
 ```
 
 ### Update GitHub Secrets:
@@ -138,7 +138,7 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub username@91.99.67.35
 - Verify nginx user has read access
 
 ### Application not loading
-- Check nginx error logs: `sudo tail -f /var/nginx/error.log`
+- Check nginx error logs: `sudo tail -f /var/log/nginx/error.log`
 - Verify build output directory matches nginx root
 
 ## Manual Deployment
@@ -151,7 +151,7 @@ npm install
 npm run build
 
 # Copy to VPS
-scp -r dist/asknehru/* username@91.99.67.35:/var/www/asknehru/
+scp -r dist/asknehru/* username@your-vps-ip:/var/www/asknehru/
 ```
 
 ## Monitoring Deployments

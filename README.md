@@ -7,7 +7,7 @@ This is my webpage to teach software. Built with [Angular CLI](https://github.co
 This project is configured with **automated deployment** to VPS via GitHub Actions!
 
 - ✅ Automatic build on every push
-- ✅ Deploy to VPS at `91.99.67.35`
+- ✅ Deploy to VPS server
 - ✅ Zero-downtime deployments
 
 **📖 Setup Instructions**: See [SECRETS_SETUP.md](SECRETS_SETUP.md) for quick setup guide  
