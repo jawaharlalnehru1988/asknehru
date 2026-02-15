@@ -8,18 +8,6 @@ export const routes: Routes = [
       import('../../app/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'typescript',
-    loadComponent: () => import('../../app/typescript/typescript.component').then((m) => m.TypescriptComponent),
-  },
-  {
-    path: 'tstopic/:id',
-    loadComponent: () =>
-      import('../../app/typescript-details/typescript-details.component').then(
-        (m) => m.TypescriptDetailsComponent
-      ),
-  },
-
-  {
     path: 'toolbar',
 
     loadComponent: () =>
@@ -29,16 +17,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'jasmine', loadComponent: () => import('../../app/jasmine/jasmine.component').then(c => c.JasmineComponent)
-  },
-  {
     path: 'springboot', loadComponent: () => import('../../app/springboot/springboot.component').then(c => c.SpringbootComponent)
-  },
-  {
-    path: 'sql', loadComponent: () => import('../../app/sql/sql.component').then(c => c.SqlComponent)
-  },
-  {
-    path: 'css', loadComponent: () => import('../../app/css-concepts/css-concepts.component').then((m) => m.CssConceptsComponent)
   },
   {
     path: 'react', loadComponent: () => import('../../app/react/react.component').then((m) => m.ReactComponent)

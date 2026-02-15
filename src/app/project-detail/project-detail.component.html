@@ -18,11 +18,12 @@
                 {{ roadmap.intro }}
             </p>
 
-            <div class="syllabus-content prose lg:prose-xl max-w-none">
+            <div class="syllabus-content">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Roadmap Syllabus</h2>
 
                 <!-- Render syllabus with formatting -->
-                <div class="text-gray-700 leading-relaxed font-sans" [innerHTML]="roadmap.syllabus | safeHtml">
+                <div class="prose lg:prose-xl max-w-none text-gray-700 leading-relaxed font-sans"
+                    [innerHTML]="roadmap.syllabus | safeHtml">
                 </div>
             </div>
 
