@@ -10,7 +10,8 @@ This project is configured with **automated deployment** to VPS via GitHub Actio
 - ✅ Deploy to VPS server
 - ✅ Zero-downtime deployments
 
-**📖 Setup Instructions**: See [SECRETS_SETUP.md](SECRETS_SETUP.md) for quick setup guide  
+**📖 Quick Start**: See [SECRETS_CLARIFICATION.md](SECRETS_CLARIFICATION.md) for detailed explanations of each secret  
+**📋 Setup Checklist**: See [SECRETS_SETUP.md](SECRETS_SETUP.md) for step-by-step setup  
 **📚 Full Documentation**: See [DEPLOYMENT.md](DEPLOYMENT.md) for complete deployment guide
 
 ## Development server
