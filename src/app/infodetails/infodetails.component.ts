@@ -5,6 +5,19 @@ import { ApiService } from '../api.service';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-json';
 
+export interface Conversation {
+  id: number;
+  mainTopic: string;
+  subTopic: string;
+  article: string;
+  positiveConversation: string;
+  negativeConversation: string;
+  articleAudio: string;
+  conversationAudio: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 @Component({
   selector: 'app-infodetails',
   standalone: true,
@@ -13,15 +26,16 @@ import 'prismjs/components/prism-json';
   styleUrl: './infodetails.component.scss'
 })
 export class InfodetailsComponent implements OnInit {
-  details: any;
+  details: Conversation | undefined;
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private el: ElementRef) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.apiService.getConversations().subscribe(data => {
-        this.details = data.find((item: any) => item.id == id);
+      this.apiService.getConversations().subscribe((data: any[]) => {
+        this.details = data.find((item: Conversation) => item.id == Number(id));
+        console.log(this.details);
         setTimeout(() => this.highlight(), 100);
       });
     }
@@ -42,5 +56,11 @@ export class InfodetailsComponent implements OnInit {
       }
       Prism.highlightElement(code);
     });
+  }
+
+  getAudioUrl(path: string | null): string {
+    if (!path) return '';
+    if (path.startsWith('http')) return path;
+    return this.apiService.authApiUrl + path;
   }
 }

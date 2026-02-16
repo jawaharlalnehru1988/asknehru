@@ -14,6 +14,17 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
+.topic-category {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #667eea;
+    /* A nice indigo shade */
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
 .main-title {
     font-size: 2.5rem;
     font-weight: 700;
@@ -22,6 +33,7 @@
     margin-bottom: 2rem;
     border-bottom: 2px solid #eaeaea;
     padding-bottom: 1rem;
+    margin-top: 0;
 }
 
 .content-section {
@@ -54,6 +66,21 @@
 .negative-title {
     background-color: #ffebee;
     color: #f44336;
+}
+
+.audio-title {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
+
+.audio-container {
+    margin: 1rem 0;
+
+    audio {
+        width: 100%;
+        max-width: 500px;
+        display: block;
+    }
 }
 
 .content-body {
