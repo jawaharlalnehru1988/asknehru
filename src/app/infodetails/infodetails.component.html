@@ -7,7 +7,8 @@
         <div *ngIf="details.articleAudio" class="audio-container">
             <audio controls [src]="getAudioUrl(details.articleAudio)"></audio>
         </div>
-        <div [innerHTML]="details.article" class="content-body"></div>
+        <!-- Using markdown component to render Markdown content -->
+        <markdown [data]="details.article" class="content-body"></markdown>
     </div>
 
     <!-- Conversation Audio Section -->
@@ -20,12 +21,12 @@
 
     <div *ngIf="details.positiveConversation" class="content-section">
         <h3 class="section-title positive-title">Positive Conversation</h3>
-        <div [innerHTML]="details.positiveConversation" class="content-body"></div>
+        <markdown [data]="details.positiveConversation" class="content-body"></markdown>
     </div>
 
     <div *ngIf="details.negativeConversation" class="content-section">
         <h3 class="section-title negative-title">Negative Conversation</h3>
-        <div [innerHTML]="details.negativeConversation" class="content-body"></div>
+        <markdown [data]="details.negativeConversation" class="content-body"></markdown>
     </div>
 </div>
 <div *ngIf="!details" class="loading-container">

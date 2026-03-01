@@ -1,9 +1,8 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
-import Prism from 'prismjs';
-import 'prismjs/components/prism-json';
+import { MarkdownModule } from 'ngx-markdown';
 
 export interface Conversation {
   id: number;
@@ -21,41 +20,22 @@ export interface Conversation {
 @Component({
   selector: 'app-infodetails',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MarkdownModule],
   templateUrl: './infodetails.component.html',
   styleUrl: './infodetails.component.scss'
 })
 export class InfodetailsComponent implements OnInit {
   details: Conversation | undefined;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private el: ElementRef) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.apiService.getConversations().subscribe((data: any[]) => {
         this.details = data.find((item: Conversation) => item.id == Number(id));
-        console.log(this.details);
-        setTimeout(() => this.highlight(), 100);
       });
     }
-  }
-
-  highlight() {
-    const preElements = this.el.nativeElement.querySelectorAll('pre');
-    preElements.forEach((pre: HTMLElement) => {
-      pre.removeAttribute('style'); // Remove inline styles to allow Prism theme to take effect
-      let code = pre.querySelector('code');
-      if (!code) {
-        code = document.createElement('code');
-        code.className = 'language-json'; // Defaulting to JSON as per request
-        code.innerHTML = pre.innerHTML;
-        pre.innerHTML = ''; // Clear pre content
-        pre.appendChild(code);
-        pre.classList.add('language-json');
-      }
-      Prism.highlightElement(code);
-    });
   }
 
   getAudioUrl(path: string | null): string {

@@ -85,15 +85,75 @@
 
 .content-body {
     text-align: justify;
-
     color: #4a5568;
     font-size: 1.1rem;
+    display: block;
 
-    // Ensure PrismJS blocks look good embedded
-    ::ng-deep pre {
-        border-radius: 8px;
-        margin-top: 1rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    ::ng-deep {
+        p {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #e53e3e;
+        }
+
+        pre {
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+
+            code {
+                background: transparent;
+                padding: 0;
+                color: inherit;
+                font-size: inherit;
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+
+            th,
+            td {
+                border: 1px solid #e2e8f0;
+                padding: 0.75rem;
+                text-align: left;
+            }
+
+            th {
+                background: #f8fafc;
+            }
+        }
     }
 }
 
