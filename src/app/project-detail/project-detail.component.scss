@@ -1,41 +1,174 @@
-.syllabus-content {
-    h1, h2, h3, h4, h5, h6 {
-      color: #1f2937; /* gray-800 */
-      font-weight: 700;
-      margin-top: 1.5em;
-      margin-bottom: 0.5em;
-    }
-    
-    p {
-      margin-bottom: 1em;
-      line-height: 1.6;
-    }
-  
-    ul, ol {
-      margin-left: 1.5em;
-      margin-bottom: 1em;
-      list-style-type: disc;
-    }
-    
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 1em;
-        
-        th, td {
-            border: 1px solid #e5e7eb;
-            padding: 0.5em;
-            text-align: left;
+.premium-markdown {
+    :host ::ng-deep {
+        h1, h2, h3, h4 {
+            color: #0f172a !important;
+            font-weight: 900 !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0.75rem !important;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.025em;
         }
-        
-        th {
-            background-color: #f3f4f6;
-            font-weight: 600;
+
+        h1 { font-size: 2.5rem !important; color: #1e40af !important; }
+        h2 { 
+            font-size: 1.85rem !important; 
+            color: #0f172a !important;
+            position: relative;
+            padding-bottom: 0.5rem;
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 3rem;
+                height: 4px;
+                background: #2563eb;
+                border-radius: 2px;
+            }
+        }
+        h3 { 
+            font-size: 1.4rem !important; 
+            color: #334155 !important;
+            &::before {
+                content: "◈";
+                margin-right: 0.75rem;
+                color: #3b82f6;
+                font-size: 0.8em;
+            }
+        }
+
+        p {
+            color: #475569 !important;
+            line-height: 1.7 !important;
+            margin-bottom: 1rem !important;
+            font-size: 1.125rem !important;
+        }
+
+        ul {
+            list-style-type: none !important;
+            padding-left: 0 !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+            
+            li {
+                position: relative !important;
+                padding-left: 2.25rem !important;
+                margin-bottom: 0.6rem !important;
+                color: #334155 !important;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                font-size: 1.05rem !important;
+                font-weight: 500 !important;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0.25rem;
+                    top: 0.65rem;
+                    width: 10px;
+                    height: 10px;
+                    background: #2563eb;
+                    border-radius: 4px;
+                    transform: rotate(45deg);
+                    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+                }
+
+                &:hover {
+                    transform: translateX(8px);
+                    color: #0f172a !important;
+                    &::before {
+                        background: #0f172a;
+                        transform: rotate(90deg) scale(1.2);
+                    }
+                }
+            }
+        }
+
+        ol {
+            padding-left: 1.5rem !important;
+            li {
+                padding-left: 0.5rem !important;
+                margin-bottom: 0.6rem !important;
+                color: #334155 !important;
+                font-weight: 500;
+                &::marker {
+                    color: #2563eb;
+                    font-weight: 900;
+                }
+            }
+        }
+
+        strong {
+            color: #1e3a8a !important;
+            font-weight: 800 !important;
+            background: linear-gradient(120deg, #dbeafe 0%, #dbeafe 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.4em;
+            background-position: 0 88%;
+            padding: 0 0.2rem;
+        }
+
+        blockquote {
+            border-left: 6px solid #0f172a !important;
+            background: #f8fafc !important;
+            padding: 2rem !important;
+            border-radius: 1.5rem !important;
+            color: #1e293b !important;
+            font-style: italic !important;
+            margin: 2.5rem 0 !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            position: relative;
+            &::before {
+                content: '"';
+                position: absolute;
+                top: -1rem;
+                left: 1.5rem;
+                font-size: 5rem;
+                color: #e2e8f0;
+                font-family: serif;
+                line-height: 1;
+            }
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+            margin: 3rem 0 !important;
+        }
+
+        code {
+            background: #f1f5f9 !important;
+            color: #e11d48 !important;
+            padding: 0.2rem 0.5rem !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            font-size: 0.9em !important;
+        }
+
+        pre {
+            background: #0f172a !important;
+            color: #f8fafc !important;
+            padding: 2rem !important;
+            border-radius: 2rem !important;
+            overflow-x: auto !important;
+            margin: 2rem 0 !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
     }
-    
-    pre {
-         white-space: pre-wrap;
-         font-family: inherit;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+}

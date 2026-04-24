@@ -5,12 +5,12 @@ import { Project } from '../home/homejson';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { SafeHtmlPipe } from '../../core/pipes/safe-html.pipe';
+import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
     selector: 'app-project-detail',
     standalone: true,
-    imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink, SafeHtmlPipe],
+    imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink, MarkdownModule],
     templateUrl: './project-detail.component.html',
     styleUrls: ['./project-detail.component.scss']
 })
