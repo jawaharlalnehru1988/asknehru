@@ -6,6 +6,7 @@ import { MatButton } from '@angular/material/button';
 import { Homejson, Project } from './homejson';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class HomeComponent extends Homejson implements OnInit {
           id: roadmap.id,
           PName: roadmap.mainTopic,
           routerLink: `/project/${roadmap.id}`,
-          PImage: roadmap.imageUrl ? `https://api.asknehru.com${roadmap.imageUrl}` : 'assets/image/default.png',
+          PImage: roadmap.imageUrl ? `${environment.apiBaseUrl}${roadmap.imageUrl}` : 'assets/image/default.png',
           intro: roadmap.intro,
           syllabus: roadmap.syllabus
         }));

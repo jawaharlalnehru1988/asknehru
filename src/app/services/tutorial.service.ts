@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface TutorialContent {
   id?: number;
@@ -20,7 +21,7 @@ export interface TutorialContent {
   providedIn: 'root'
 })
 export class TutorialService {
-  private readonly API_BASE_URL = 'https://airfare-expand-citations-particularly.trycloudflare.com/api';
+  private readonly API_BASE_URL = environment.apiBaseUrl;
   // private readonly API_BASE_URL = 'http://192.168.0.102:8080/api';
   
   private readonly httpOptions = {

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { tap } from 'rxjs/operators';
 
 export class ApiService {
 
-  authApiUrl = "https://api.asknehru.com";
+  authApiUrl = environment.apiBaseUrl;
 
   private loginSubject = new Subject<boolean>();
   private signUpSubject = new Subject<boolean>();

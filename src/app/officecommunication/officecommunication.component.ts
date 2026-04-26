@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Conversation, ConversationsService } from '../services/conversations.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-officecommunication',
@@ -14,6 +15,7 @@ export class OfficecommunicationComponent implements OnInit {
   loading: boolean = true;
   error: string = '';
   selectedConversation: Conversation | null = null;
+  apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private conversationsService: ConversationsService) { }
 

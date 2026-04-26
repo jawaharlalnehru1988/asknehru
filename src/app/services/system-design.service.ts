@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 export interface SystemDesignTopic {
   _id?: string;
@@ -19,7 +20,7 @@ export interface SystemDesignTopic {
   providedIn: 'root'
 })
 export class SystemDesignService {
-  private readonly API_BASE_URL = 'https://asknehru-backend.vercel.app';
+  private readonly API_BASE_URL = environment.apiBaseUrl;
   
   private readonly httpOptions = {
     headers: new HttpHeaders({

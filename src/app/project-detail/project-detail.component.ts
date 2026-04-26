@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MarkdownModule } from 'ngx-markdown';
 
+import { environment } from '../../environments/environment';
+
 @Component({
     selector: 'app-project-detail',
     standalone: true,
@@ -18,6 +20,7 @@ export class ProjectDetailComponent implements OnInit {
     roadmap: any;
     loading: boolean = true;
     error: string | null = null;
+    apiBaseUrl = environment.apiBaseUrl;
 
     constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
