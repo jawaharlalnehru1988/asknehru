@@ -28,7 +28,7 @@
         <mat-card-title-group>
           <mat-card-title>{{ blog.PName }}</mat-card-title>
           <mat-card-subtitle>click to explore Roadmap</mat-card-subtitle>
-          <img mat-card-sm-image [alt]="''" [src]="blog.PImage" class="blog-image">
+          <img *ngIf="blog.PImage" mat-card-sm-image [alt]="''" [src]="blog.PImage" class="blog-image">
         </mat-card-title-group>
       </mat-card-header>
       <mat-card-content>

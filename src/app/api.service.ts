@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -32,6 +32,12 @@ export class ApiService {
     return this.http.post<any>('http://localhost:3000/Forms', inputData);
   }
   updateFormData(data: any, id: number) {
+    return this.http.put<any>('http://localhost:3000/Forms/' + id, data);
+  }
+  postFormValuesAndReturn(inputData: any) {
+    return this.http.post<any>('http://localhost:3000/Forms', inputData);
+  }
+  updateFormDataAndReturn(data: any, id: number) {
     return this.http.put<any>('http://localhost:3000/Forms/' + id, data);
   }
   deleteFormData(id: number) {
@@ -84,7 +90,30 @@ export class ApiService {
     return this.http.get<any[]>(`${this.authApiUrl}/api/conversations`);
   }
 
+  getExplainedSubtopics(): Observable<number[]> {
+    return this.http.get<number[]>(`${this.authApiUrl}/api/conversations/exists`);
+  }
+
+  explainSubtopic(subtopicId: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.authApiUrl}/api/conversations/explain`, { subtopicId }, { headers });
+  }
+
+  generateMcqs(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.authApiUrl}/api/conversations/${id}/mcq`, {}, { headers });
+  }
+
   setMainTopic(topic: string | null) {
     this.selectedMainTopicSubject.next(topic);
   }
 }
+

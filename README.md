@@ -1,32 +1,44 @@
-<<<<<<< HEAD
-# Asknehru
+# AskNehru Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
+Angular frontend for asknehru.com.
 
-## Development server
+## Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+npm start
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+cd /var/www/asknehru-platform/frontend
+npm ci
+npm run build
+```
 
-## Running unit tests
+Production build output:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```text
+/var/www/asknehru-platform/frontend/dist/asknehru/browser
+```
 
-## Running end-to-end tests
+## Deployment
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+This app is served statically by nginx.
 
-## Further help
+Main site config:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-=======
-# asknehru
-this is my webpage to teach software
->>>>>>> 816e4e4a03c5a42ce28489daf9b66f6d3b3090f9
+```text
+/etc/nginx/sites-available/asknehrufullstack
+```
+
+Current production deploy path:
+
+```bash
+cd /var/www/asknehru-platform/frontend
+git pull origin master
+npm ci
+npm run build
+sudo systemctl reload nginx
+```
