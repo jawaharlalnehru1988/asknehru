@@ -56,12 +56,12 @@ export class ApiService {
     return this.signUpSubject.asObservable();
   }
 
-  login(payload: { usernameOrEmail: string; password: string }): Observable<any> {
+  login(payload: { email: string; password: string }): Observable<any> {
     return this.http.post(`${this.authApiUrl}/api/auth/login`, payload);
   }
 
-  register(payload: { username: string; email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.authApiUrl}/api/users`, payload);
+  register(payload: { fullName: string; phoneNumber?: string; email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.authApiUrl}/api/auth/register`, payload);
   }
 
   fetchData(): Observable<any> {
@@ -114,6 +114,24 @@ export class ApiService {
 
   setMainTopic(topic: string | null) {
     this.selectedMainTopicSubject.next(topic);
+  }
+
+  saveScore(subtopicId: number, score: number, totalQuestions: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.authApiUrl}/api/conversations/${subtopicId}/scores`, { score, totalQuestions }, { headers });
+  }
+
+  getUserScores(): Observable<any[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<any[]>(`${this.authApiUrl}/api/conversations/scores`, { headers });
   }
 }
 

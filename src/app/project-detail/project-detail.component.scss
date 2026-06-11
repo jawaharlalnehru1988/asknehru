@@ -186,3 +186,12 @@
     animation: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+.drawer-width-responsive {
+    width: 100vw;
+    max-width: 42rem; /* fallback for mobile/tablet matching max-w-2xl */
+
+    @media (min-width: 1024px) {
+        max-width: 60vw !important;
+    }
+}
+

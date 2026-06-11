@@ -16,14 +16,18 @@
   <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
   }
   @if (isUserLoggedIn) {
-  <button [disabled]="!loggedInTrue" mat-button class="font-bold" (click)="openLoginDialog()">Login</button>
-  }
-  @if (isUserLoggedIn) {
-  <button [disabled]="signInTrue" mat-button class="font-bold" (click)="openSignupDialog()">Sign Up</button>
+  <button class="hide-on-small font-bold" mat-button routerLinkActive="active-link" routerLink="/dashboard">Dashboard</button>
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-initial-btn">
+    <div class="user-initial">{{ initialName | uppercase }}</div>
+  </button>
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+    <button mat-menu-item (click)="loggedOut()">Log Out</button>
+  </mat-menu>
   }
   @if (!isUserLoggedIn) {
-  <button (click)="loggedOut()" mat-button routerLinkActive="active-link" routerLink="" class="font-bold">Log
-    Out</button>
+  <button [disabled]="!loggedInTrue" mat-button class="font-bold bg-gray-300 text-gray-800" (click)="openLoginDialog()">Login</button>
+  <button [disabled]="signInTrue" mat-button class="font-bold text-gray-800" (click)="openSignupDialog()">Sign Up</button>
   }
 </mat-toolbar>
 

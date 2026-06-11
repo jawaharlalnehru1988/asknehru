@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MarkdownModule } from 'ngx-markdown';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 
 import { environment } from '../../environments/environment';
 
@@ -21,11 +23,13 @@ export class ProjectDetailComponent implements OnInit {
     loading: boolean = true;
     error: string | null = null;
     copiedId: number | null = null;
+    apiBaseUrl: string = environment.apiBaseUrl;
 
     explainedSubtopicIds: Set<number> = new Set();
     loadingSubtopics: Set<number> = new Set();
     activeExplanation: any = null;
     drawerOpen: boolean = false;
+    currentSubtopicName: string = '';
 
     // MCQ Quiz properties
     generatingMcqs: boolean = false;
@@ -37,8 +41,10 @@ export class ProjectDetailComponent implements OnInit {
     score: number = 0;
     showFeedback: boolean = false;
     currentSelectedOption: number | null = null;
+    isSavingScore: boolean = false;
+    scoreSaved: boolean = false;
 
-    constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+    constructor(private route: ActivatedRoute, private apiService: ApiService, private dialog: MatDialog) { }
 
     copyToClipboard(text: string, id: number) {
         navigator.clipboard.writeText(text).then(() => {
@@ -91,6 +97,7 @@ export class ProjectDetailComponent implements OnInit {
     }
 
     explainOrRead(subtopic: any) {
+        this.currentSubtopicName = subtopic.subtopicName;
         this.loadingSubtopics.add(subtopic.id);
         this.apiService.explainSubtopic(subtopic.id).subscribe({
             next: (res) => {
@@ -151,6 +158,7 @@ export class ProjectDetailComponent implements OnInit {
     selectOption(optionIndex: number) {
         if (this.showFeedback) return;
         this.currentSelectedOption = optionIndex;
+        this.submitAnswer();
     }
 
     submitAnswer() {
@@ -170,7 +178,42 @@ export class ProjectDetailComponent implements OnInit {
             this.currentQuestionIndex++;
         } else {
             this.quizCompleted = true;
+            this.handleQuizCompletion();
         }
+    }
+
+    handleQuizCompletion() {
+        const token = localStorage.getItem('token');
+        if (token) {
+            this.saveScore();
+        } else {
+            const dialogRef = this.dialog.open(AuthDialogComponent, {
+                width: '400px',
+                data: { mode: 'login' }
+            });
+
+            dialogRef.afterClosed().subscribe(result => {
+                if (result && result.token) {
+                    localStorage.setItem('token', result.token);
+                    this.saveScore();
+                }
+            });
+        }
+    }
+
+    saveScore() {
+        if (!this.activeExplanation || !this.activeExplanation.subtopicId) return;
+        this.isSavingScore = true;
+        this.apiService.saveScore(this.activeExplanation.subtopicId, this.score, this.mcqsList.length).subscribe({
+            next: () => {
+                this.isSavingScore = false;
+                this.scoreSaved = true;
+            },
+            error: (err) => {
+                console.error('Failed to save score', err);
+                this.isSavingScore = false;
+            }
+        });
     }
 
     resetQuiz() {

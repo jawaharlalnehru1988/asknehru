@@ -175,7 +175,7 @@
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" (click)="closeDrawer()" aria-hidden="true"></div>
 
         <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-0 sm:pl-10 md:pl-16 animate-slide-in">
-            <div class="pointer-events-auto w-screen max-w-2xl transform transition ease-in-out duration-500 sm:duration-700">
+            <div class="pointer-events-auto drawer-width-responsive transform transition ease-in-out duration-500 sm:duration-700">
                 <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-2xl border-l border-slate-100">
                     <!-- Drawer Header -->
                     <div class="bg-slate-900 px-6 py-6 sm:px-8 flex items-center justify-between shadow-md">
@@ -186,7 +186,7 @@
                                 </svg>
                             </div>
                             <h2 class="text-xl font-black text-white tracking-tight" id="slide-over-title">
-                                AI Explanation
+                                {{ currentSubtopicName }}
                             </h2>
                         </div>
                         <button type="button" class="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-slate-800 transition-all focus:outline-none" (click)="closeDrawer()">
@@ -266,7 +266,10 @@
                                                 'border-red-500 bg-red-50 text-red-900': showFeedback && currentSelectedOption === i && mcqsList[currentQuestionIndex].answerIndex !== i,
                                                 'opacity-50': showFeedback && mcqsList[currentQuestionIndex].answerIndex !== i && currentSelectedOption !== i
                                             }">
-                                        <span>{{ option }}</span>
+                                        <div class="flex items-start gap-2 flex-1 min-w-0">
+                                            <span class="font-bold text-slate-400 select-none">{{ ['A', 'B', 'C', 'D'][i] }}.</span>
+                                            <span class="whitespace-normal">{{ option }}</span>
+                                        </div>
                                         
                                         <!-- Feedback Icons -->
                                         <div class="flex-shrink-0" *ngIf="showFeedback">
@@ -282,12 +285,6 @@
 
                                 <!-- Action Buttons -->
                                 <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                                    <button *ngIf="!showFeedback"
-                                            (click)="submitAnswer()"
-                                            [disabled]="currentSelectedOption === null"
-                                            class="px-6 py-3 bg-blue-600 text-white font-bold rounded-xl shadow-md transition-all hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">
-                                        Check Answer
-                                    </button>
                                     <button *ngIf="showFeedback"
                                             (click)="nextQuestion()"
                                             class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl shadow-md transition-all hover:bg-slate-800">
@@ -328,6 +325,17 @@
                                          'bg-yellow-100 text-yellow-700': score < 5
                                      }">
                                     {{ score >= 8 ? 'Mastery Achieved! Excellent!' : (score >= 5 ? 'Good Job! Keep practicing.' : 'Need Review. Try studying the article again.') }}
+                                </div>
+
+                                <!-- Score Save Indicator -->
+                                <div *ngIf="isSavingScore" class="text-sm text-blue-500 animate-pulse font-bold">
+                                    Saving score to your profile...
+                                </div>
+                                <div *ngIf="scoreSaved && !isSavingScore" class="text-sm text-green-600 font-bold flex items-center gap-1 justify-center bg-green-50 px-4 py-1.5 rounded-full border border-green-200">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Score Saved to Dashboard
                                 </div>
 
                                 <!-- Action Buttons -->

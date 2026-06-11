@@ -11,7 +11,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -27,11 +27,13 @@ import { map, startWith } from 'rxjs/operators';
     RouterLinkActive,
     MatMenu,
     MatMenuItem,
+    MatMenuTrigger,
     MatDialogModule,
     MatAutocompleteModule,
     MatInputModule,
     ReactiveFormsModule,
-    AsyncPipe
+    AsyncPipe,
+    UpperCasePipe
   ]
 })
 export class ToolbarComponent implements OnInit {
@@ -127,18 +129,39 @@ export class ToolbarComponent implements OnInit {
   loggedInUser() {
     this.logInObj = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    const loggedInUserData = JSON.parse(this.logInObj);
-    this.loggedInUserData = loggedInUserData;
-    if (loggedInUserData && loggedInUserData !== null) {
-      this.initialName = this.getInitials(loggedInUserData.name);
+    let loggedInUserData = null;
+    
+    if (this.logInObj) {
+      try {
+        loggedInUserData = JSON.parse(this.logInObj);
+        this.loggedInUserData = loggedInUserData;
+      } catch(e) {}
+    }
+    
+    let userName = "";
+    if (loggedInUserData && loggedInUserData.name && loggedInUserData.name !== 'User') {
+      userName = loggedInUserData.name;
+    } else if (token) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        userName = payload.email || payload.sub || "User";
+      } catch (e) {
+        userName = "User";
+      }
+    }
+
+    if (userName) {
+      this.initialName = this.getInitials(userName);
     } else {
       this.initialName = "";
     }
-    if (token || (this.initialName && this.initialName !== "")) {
-      this.isUserLoggedIn = false;
-    } else {
+
+    if (token) {
       this.isUserLoggedIn = true;
+    } else {
+      this.isUserLoggedIn = false;
     }
+    
     this.checkIfSuperAdmin(loggedInUserData);
   }
 

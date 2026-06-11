@@ -17,6 +17,9 @@
   </section>
 
   <section class="blog-section">
+    <div class="col-span-full text-center text-3xl font-bold mt-2 mb-6 text-white w-full">
+      Choose your favourite topics to master
+    </div>
     @if (loading) {
     <div class="flex justify-center items-center h-64 w-full col-span-full">
       <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -28,7 +31,6 @@
         <mat-card-title-group>
           <mat-card-title>{{ blog.PName }}</mat-card-title>
           <mat-card-subtitle>click to explore Roadmap</mat-card-subtitle>
-          <img *ngIf="blog.PImage" mat-card-sm-image [alt]="''" [src]="blog.PImage" class="blog-image">
         </mat-card-title-group>
       </mat-card-header>
       <mat-card-content>

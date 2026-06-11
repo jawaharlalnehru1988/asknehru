@@ -45,6 +45,10 @@ export const routes: Routes = [
     loadComponent: () => import('../../app/articles-gallery/articles-gallery.component').then(m => m.ArticlesGalleryComponent)
   },
   {
+    path: 'dashboard',
+    loadComponent: () => import('../../app/dashboard/dashboard.component').then(m => m.DashboardComponent)
+  },
+  {
     path: 'infodetails/:id',
     loadComponent: () => import('../../app/infodetails/infodetails.component').then(m => m.InfodetailsComponent)
   },
