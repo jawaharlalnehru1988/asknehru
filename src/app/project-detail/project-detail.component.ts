@@ -8,13 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MarkdownModule } from 'ngx-markdown';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-project-detail',
     standalone: true,
-    imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink, MarkdownModule],
+    imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink, MarkdownModule, FormsModule],
     templateUrl: './project-detail.component.html',
     styleUrls: ['./project-detail.component.scss']
 })
@@ -43,6 +44,12 @@ export class ProjectDetailComponent implements OnInit {
     currentSelectedOption: number | null = null;
     isSavingScore: boolean = false;
     scoreSaved: boolean = false;
+
+    // Chat properties
+    isChatOpen: boolean = false;
+    chatInput: string = '';
+    chatMessages: {role: string, content: string}[] = [];
+    isSendingMessage: boolean = false;
 
     constructor(private route: ActivatedRoute, private apiService: ApiService, private dialog: MatDialog) { }
 
@@ -228,6 +235,34 @@ export class ProjectDetailComponent implements OnInit {
         this.quizStarted = false;
         this.quizCompleted = false;
         this.mcqsList = [];
+        this.isChatOpen = false;
+        this.chatMessages = [];
+        this.chatInput = '';
+    }
+
+    toggleChat() {
+        this.isChatOpen = !this.isChatOpen;
+    }
+
+    sendMessage() {
+        if (!this.chatInput.trim() || this.isSendingMessage || !this.activeExplanation) return;
+        
+        const question = this.chatInput.trim();
+        this.chatMessages.push({ role: 'user', content: question });
+        this.chatInput = '';
+        this.isSendingMessage = true;
+
+        this.apiService.chatAboutSubtopic(this.activeExplanation.subtopicId, question).subscribe({
+            next: (res) => {
+                this.chatMessages.push({ role: 'assistant', content: res.answer });
+                this.isSendingMessage = false;
+            },
+            error: (err) => {
+                console.error("Chat error:", err);
+                this.chatMessages.push({ role: 'assistant', content: 'Sorry, I encountered an error while trying to answer your question.' });
+                this.isSendingMessage = false;
+            }
+        });
     }
 }
 

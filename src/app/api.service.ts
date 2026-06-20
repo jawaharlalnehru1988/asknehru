@@ -112,6 +112,15 @@ export class ApiService {
     return this.http.post<any>(`${this.authApiUrl}/api/conversations/${id}/mcq`, {}, { headers });
   }
 
+  chatAboutSubtopic(subtopicId: number, question: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.authApiUrl}/api/conversations/chat`, { subtopicId, question }, { headers });
+  }
+
   setMainTopic(topic: string | null) {
     this.selectedMainTopicSubject.next(topic);
   }

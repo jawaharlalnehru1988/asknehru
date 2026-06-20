@@ -8,6 +8,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-java';
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
