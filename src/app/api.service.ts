@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { signal } from '@angular/core';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -16,6 +17,13 @@ export class ApiService {
   private signUpSubject = new Subject<boolean>();
   private selectedMainTopicSubject = new BehaviorSubject<string | null>(null);
   selectedMainTopic$ = this.selectedMainTopicSubject.asObservable();
+
+  // State caches
+  private roadmapsListCache = signal<any[] | null>(null);
+  private roadmapCache = signal<Map<number, any>>(new Map());
+  private explainedSubtopicsCache = signal<number[] | null>(null);
+  private conversationsCache = signal<any[] | null>(null);
+
   constructor(private http: HttpClient) {
 
   }
@@ -64,6 +72,19 @@ export class ApiService {
     return this.http.post(`${this.authApiUrl}/api/auth/register`, payload);
   }
 
+  refresh(payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/auth/refresh`, payload);
+  }
+
+  logout(refreshToken: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json'
+    });
+    return this.http.post<any>(`${this.authApiUrl}/api/auth/logout`, { refreshToken }, { headers });
+  }
+
   fetchData(): Observable<any> {
     const startTime = performance.now();
     const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1'; // Example endpoint
@@ -79,19 +100,48 @@ export class ApiService {
   }
 
   getRoadmaps(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.authApiUrl}/api/roadmaps`);
+    const cached = this.roadmapsListCache();
+    if (cached) {
+      return of(cached);
+    }
+    return this.http.get<any[]>(`${this.authApiUrl}/api/roadmaps`).pipe(
+      tap(data => this.roadmapsListCache.set(data))
+    );
   }
 
   getRoadmapById(id: any): Observable<any> {
-    return this.http.get<any>(`${this.authApiUrl}/api/roadmaps/${id}`);
+    const cachedMap = this.roadmapCache();
+    const numericId = Number(id);
+    if (cachedMap.has(numericId)) {
+      return of(cachedMap.get(numericId));
+    }
+    return this.http.get<any>(`${this.authApiUrl}/api/roadmaps/${id}`).pipe(
+      tap(data => {
+        const newMap = new Map(this.roadmapCache());
+        newMap.set(numericId, data);
+        this.roadmapCache.set(newMap);
+      })
+    );
   }
 
   getConversations(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.authApiUrl}/api/conversations`);
+    const cached = this.conversationsCache();
+    if (cached) {
+      return of(cached);
+    }
+    return this.http.get<any[]>(`${this.authApiUrl}/api/conversations`).pipe(
+      tap(data => this.conversationsCache.set(data))
+    );
   }
 
   getExplainedSubtopics(): Observable<number[]> {
-    return this.http.get<number[]>(`${this.authApiUrl}/api/conversations/exists`);
+    const cached = this.explainedSubtopicsCache();
+    if (cached) {
+      return of(cached);
+    }
+    return this.http.get<number[]>(`${this.authApiUrl}/api/conversations/exists`).pipe(
+      tap(data => this.explainedSubtopicsCache.set(data))
+    );
   }
 
   explainSubtopic(subtopicId: number): Observable<any> {
@@ -100,7 +150,14 @@ export class ApiService {
       'Authorization': token ? `Bearer ${token}` : '',
       'Content-Type': 'application/json'
     });
-    return this.http.post<any>(`${this.authApiUrl}/api/conversations/explain`, { subtopicId }, { headers });
+    return this.http.post<any>(`${this.authApiUrl}/api/conversations/explain`, { subtopicId }, { headers }).pipe(
+      tap(() => {
+        const cached = this.explainedSubtopicsCache();
+        if (cached && !cached.includes(subtopicId)) {
+          this.explainedSubtopicsCache.set([...cached, subtopicId]);
+        }
+      })
+    );
   }
 
   generateMcqs(id: number): Observable<any> {

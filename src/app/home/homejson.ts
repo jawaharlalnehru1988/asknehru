@@ -13,6 +13,12 @@ export interface Project {
   article?: string;
   positiveConversation?: string;
   negativeConversation?: string;
+  chaptersCount?: number;
+  subtopicsCount?: number;
+  totalScore?: number;
+  totalAttemptedQuestions?: number;
+  explainedSubtopicsCount?: number;
+  generatedMcqsCount?: number;
 }
 
 export interface Tile {

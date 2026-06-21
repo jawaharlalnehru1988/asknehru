@@ -123,7 +123,7 @@ export class AuthDialogComponent {
       this.api.login(payload).subscribe({
         next: (res) => {
           this.isLoading = false;
-          this.dialogRef.close({ token: res.data.accessToken, tokenType: res.data.tokenType });
+          this.dialogRef.close({ token: res.data.accessToken, refreshToken: res.data.refreshToken, tokenType: res.data.tokenType });
         },
         error: () => {
           this.isLoading = false;
@@ -149,7 +149,7 @@ export class AuthDialogComponent {
         this.api.login(loginPayload).subscribe({
           next: (res) => {
             this.isLoading = false;
-            this.dialogRef.close({ token: res.data.accessToken, tokenType: res.data.tokenType });
+            this.dialogRef.close({ token: res.data.accessToken, refreshToken: res.data.refreshToken, tokenType: res.data.tokenType });
           },
           error: () => {
             this.isLoading = false;

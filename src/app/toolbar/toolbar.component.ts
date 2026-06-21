@@ -97,7 +97,7 @@ export class ToolbarComponent implements OnInit {
 
     this.api.getConversations().subscribe({
       next: (data) => {
-        this.mainTopics = [...new Set(data.map((item: any) => item.mainTopic))];
+        this.mainTopics = [...new Set(data.map((item: any) => item.mainTopic))] as string[];
         // Initialize filtered topics after data is loaded
         this.filteredTopics = this.topicControl.valueChanges.pipe(
           startWith(''),
@@ -179,9 +179,21 @@ export class ToolbarComponent implements OnInit {
     return initials;
   }
   loggedOut() {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (refreshToken) {
+      this.api.logout(refreshToken).subscribe({
+        next: () => this.clearSession(),
+        error: () => this.clearSession()
+      });
+    } else {
+      this.clearSession();
+    }
+  }
+
+  clearSession() {
     localStorage.clear();
     this.router.navigate(['']);
-    this.isUserLoggedIn = true;
+    this.isUserLoggedIn = false;
     this.isSuperAdmin = false;
   }
 
@@ -194,6 +206,9 @@ export class ToolbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.token) {
         localStorage.setItem('token', result.token);
+        if (result.refreshToken) {
+          localStorage.setItem('refreshToken', result.refreshToken);
+        }
         localStorage.setItem('user', JSON.stringify({ name: 'User', role: 'User' }));
         this.loggedInUser();
       }
@@ -209,6 +224,9 @@ export class ToolbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.token) {
         localStorage.setItem('token', result.token);
+        if (result.refreshToken) {
+          localStorage.setItem('refreshToken', result.refreshToken);
+        }
         localStorage.setItem('user', JSON.stringify({ name: 'User', role: 'User' }));
         this.loggedInUser();
       }
