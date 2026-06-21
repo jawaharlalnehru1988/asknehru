@@ -53,6 +53,7 @@ export class ToolbarComponent implements OnInit {
   isEditPwd: boolean = false;
   isEditEmail: boolean = false;
   mainTopics: string[] = [];
+  isDarkMode: boolean = false;
 
   topicControl = new FormControl('');
   filteredTopics!: Observable<string[]>;
@@ -77,6 +78,16 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Initialize dark mode
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      this.isDarkMode = true;
+      document.documentElement.classList.add('dark');
+    } else {
+      this.isDarkMode = false;
+      document.documentElement.classList.remove('dark');
+    }
+
     this.signUpForm = this.formBuilder.group({
       id: [""],
       name: ["", Validators.required],
@@ -233,6 +244,17 @@ export class ToolbarComponent implements OnInit {
     });
   }
   openOverlay() {
+  }
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    if (this.isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
   }
 
 

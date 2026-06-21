@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Project } from '../home/homejson';
@@ -19,7 +19,7 @@ import { environment } from '../../environments/environment';
     templateUrl: './project-detail.component.html',
     styleUrls: ['./project-detail.component.scss']
 })
-export class ProjectDetailComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit, OnDestroy {
     roadmap: any;
     loading: boolean = true;
     error: string | null = null;
@@ -66,6 +66,18 @@ export class ProjectDetailComponent implements OnInit {
         });
     }
 
+    @HostListener('window:beforeunload')
+    saveScrollPosition() {
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id) {
+            sessionStorage.setItem('roadmapScrollPos_' + id, window.scrollY.toString());
+        }
+    }
+
+    ngOnDestroy() {
+        this.saveScrollPosition();
+    }
+
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
             const id = params.get('id');
@@ -94,6 +106,16 @@ export class ProjectDetailComponent implements OnInit {
             next: (data) => {
                 this.roadmap = data;
                 this.loading = false;
+                
+                // Restore scroll position after a short delay to ensure DOM is updated
+                setTimeout(() => {
+                    const savedPos = sessionStorage.getItem('roadmapScrollPos_' + id);
+                    if (savedPos) {
+                        window.scrollTo({ top: parseInt(savedPos, 10), behavior: 'smooth' });
+                    } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }, 100);
             },
             error: (err) => {
                 console.error(err);

@@ -12,6 +12,9 @@
     </mat-autocomplete>
   </mat-form-field>
   <span class="example-spacer"></span>
+  <button mat-icon-button (click)="toggleDarkMode()" aria-label="Toggle dark mode">
+    <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
   @if (isSuperAdmin) {
   <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
   }
