@@ -68,6 +68,12 @@
                         <div>
                             <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Structured Syllabus</h2>
                             <p class="text-slate-500 dark:text-slate-400 font-medium">Follow this step-by-step master plan</p>
+                            
+                            @if (isUserLoggedIn && totalRoadmapQuestions > 0) {
+                                <div class="mt-2 text-sm text-yellow-500 font-bold">
+                                    Roadmap Score: {{ totalRoadmapScore }} / {{ totalRoadmapQuestions }}
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -96,9 +102,16 @@
                                      class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-3 md:p-4 bg-slate-50/50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-400 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-100 dark:hover:shadow-slate-800 transition-all duration-300 group">
                                     <div class="flex items-start sm:items-center gap-3 flex-1 min-w-0 w-full">
                                         <div class="w-2.5 h-2.5 rounded-full bg-blue-500/20 border-2 border-blue-500 flex-shrink-0 mt-1 sm:mt-0 group-hover:scale-110 transition-transform"></div>
-                                        <span class="text-slate-700 dark:text-slate-300 font-bold text-sm md:text-base tracking-tight group-hover:text-slate-900 dark:group-hover:text-white transition-colors whitespace-normal">
-                                            {{ subtopic.subtopicName }}
-                                        </span>
+                                        <div class="flex flex-col">
+                                            <span class="text-slate-700 dark:text-slate-300 font-bold text-sm md:text-base tracking-tight group-hover:text-slate-900 dark:group-hover:text-white transition-colors whitespace-normal">
+                                                {{ subtopic.subtopicName }}
+                                            </span>
+                                            @if (isUserLoggedIn && subtopicScores[subtopic.id]) {
+                                                <span class="text-xs text-yellow-500 font-bold mt-0.5">
+                                                    Score: {{ subtopicScores[subtopic.id].score }} / {{ subtopicScores[subtopic.id].totalQuestions }}
+                                                </span>
+                                            }
+                                        </div>
                                     </div>
                                     <div class="flex items-center justify-end w-full sm:w-auto gap-2 flex-shrink-0 mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-0 border-slate-200 dark:border-slate-700">
                                         <!-- Explain / Read Button -->

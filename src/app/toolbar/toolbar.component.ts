@@ -75,6 +75,16 @@ export class ToolbarComponent implements OnInit {
     this.api.getSignUpData().subscribe((data) => {
       this.signInTrue = data;
     });
+    this.api.authState$.subscribe(state => {
+      this.isUserLoggedIn = state;
+      if (state) {
+        this.loggedInUser();
+      } else {
+        this.initialName = "";
+        this.isSuperAdmin = false;
+        // if user was logged in and now state is false, they were logged out
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -202,7 +212,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   clearSession() {
-    localStorage.clear();
+    this.api.globalLogout();
     this.router.navigate(['']);
     this.isUserLoggedIn = false;
     this.isSuperAdmin = false;
@@ -221,6 +231,7 @@ export class ToolbarComponent implements OnInit {
           localStorage.setItem('refreshToken', result.refreshToken);
         }
         localStorage.setItem('user', JSON.stringify({ name: 'User', role: 'User' }));
+        this.api.setAuthState(true);
         this.loggedInUser();
       }
     });
@@ -239,6 +250,7 @@ export class ToolbarComponent implements OnInit {
           localStorage.setItem('refreshToken', result.refreshToken);
         }
         localStorage.setItem('user', JSON.stringify({ name: 'User', role: 'User' }));
+        this.api.setAuthState(true);
         this.loggedInUser();
       }
     });

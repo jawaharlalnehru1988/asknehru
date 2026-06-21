@@ -10,6 +10,7 @@ export type AuthDialogMode = 'login' | 'signup';
 
 export interface AuthDialogData {
   mode: AuthDialogMode;
+  message?: string;
 }
 
 export function passwordMatchValidator(control: AbstractControl) {
@@ -47,6 +48,7 @@ export function passwordMatchValidator(control: AbstractControl) {
 })
 export class AuthDialogComponent {
   mode: AuthDialogMode;
+  message?: string;
   form: FormGroup;
   isLoading = false;
   errorMessage = '';
@@ -58,6 +60,7 @@ export class AuthDialogComponent {
     private formBuilder: FormBuilder,
   ) {
     this.mode = data.mode;
+    this.message = data.message;
     this.form = this.formBuilder.group({
       fullName: [''],
       phoneNumber: [''],

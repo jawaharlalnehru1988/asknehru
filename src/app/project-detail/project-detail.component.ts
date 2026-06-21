@@ -11,6 +11,7 @@ import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { FormsModule } from '@angular/forms';
 
 import { environment } from '../../environments/environment';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-project-detail',
@@ -25,6 +26,15 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     error: string | null = null;
     copiedId: number | null = null;
     apiBaseUrl: string = environment.apiBaseUrl;
+
+    isUserLoggedIn: boolean = false;
+    totalRoadmapScore: number = 0;
+    totalRoadmapQuestions: number = 0;
+    subtopicScores: { [subtopicId: number]: { score: number, totalQuestions: number } } = {};
+
+    private guestTimer: any;
+    // 5 minutes for production
+    private readonly GUEST_TIME_LIMIT_MS = 300000;
 
     explainedSubtopicIds: Set<number> = new Set();
     loadingSubtopics: Set<number> = new Set();
@@ -76,19 +86,111 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.saveScrollPosition();
+        if (this.guestTimer) {
+            clearTimeout(this.guestTimer);
+        }
     }
 
     ngOnInit(): void {
+        this.apiService.authState$.subscribe(state => {
+            this.isUserLoggedIn = state;
+            if (state && this.roadmap) {
+                this.loadScores();
+            } else {
+                this.clearScores();
+            }
+        });
+
         this.route.paramMap.subscribe(params => {
             const id = params.get('id');
             if (id) {
                 this.loadRoadmap(+id);
                 this.loadExplainedSubtopics();
+                this.startGuestTimer();
             } else {
                 this.error = "Roadmap ID not found.";
                 this.loading = false;
             }
         });
+    }
+
+    clearScores() {
+        this.totalRoadmapScore = 0;
+        this.totalRoadmapQuestions = 0;
+        this.subtopicScores = {};
+    }
+
+    loadScores() {
+        if (!this.isUserLoggedIn || !this.roadmap) return;
+        
+        forkJoin({
+            conversations: this.apiService.getConversations(),
+            scores: this.apiService.getUserScores()
+        }).subscribe({
+            next: ({ conversations, scores }) => {
+                let roadmapSubtopicIds: number[] = [];
+                if (this.roadmap.chapters) {
+                    this.roadmap.chapters.forEach((ch: any) => {
+                        if (ch.subtopics) {
+                            ch.subtopics.forEach((sub: any) => roadmapSubtopicIds.push(sub.id));
+                        }
+                    });
+                }
+                
+                const roadmapConversations = conversations.filter((conv: any) => roadmapSubtopicIds.includes(conv.subtopicId));
+                
+                this.subtopicScores = {};
+                this.totalRoadmapQuestions = 0;
+                
+                roadmapConversations.forEach((conv: any) => {
+                    let mcqsCount = 0;
+                    try {
+                        const mcqs = JSON.parse(conv.mcqs || '[]');
+                        mcqsCount = mcqs.length;
+                    } catch (e) {}
+                    
+                    if (mcqsCount > 0) {
+                        this.subtopicScores[conv.subtopicId] = {
+                            score: 0,
+                            totalQuestions: mcqsCount
+                        };
+                        this.totalRoadmapQuestions += mcqsCount;
+                    }
+                });
+                
+                this.totalRoadmapScore = 0;
+                scores.forEach((s: any) => {
+                    if (this.subtopicScores[s.subtopicId]) {
+                        this.subtopicScores[s.subtopicId].score = s.score || 0;
+                        this.totalRoadmapScore += s.score || 0;
+                    } else if (roadmapSubtopicIds.includes(s.subtopicId)) {
+                        this.subtopicScores[s.subtopicId] = {
+                            score: s.score || 0,
+                            totalQuestions: s.totalQuestions || 0
+                        };
+                        this.totalRoadmapScore += s.score || 0;
+                        this.totalRoadmapQuestions += s.totalQuestions || 0;
+                    }
+                });
+            },
+            error: (err) => console.error('Error fetching scores:', err)
+        });
+    }
+
+    startGuestTimer() {
+        if (typeof window !== 'undefined' && window.localStorage && !localStorage.getItem('token')) {
+            this.guestTimer = setTimeout(() => {
+                if (!localStorage.getItem('token')) {
+                    this.dialog.open(AuthDialogComponent, {
+                        data: { 
+                            mode: 'login', 
+                            message: 'Please login or sign up to store your score and track your mastery of a subject!' 
+                        },
+                        width: '420px'
+                    });
+                }
+            }, this.GUEST_TIME_LIMIT_MS);
+        }
     }
 
     loadExplainedSubtopics() {
@@ -106,6 +208,10 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
             next: (data) => {
                 this.roadmap = data;
                 this.loading = false;
+                
+                if (this.isUserLoggedIn) {
+                    this.loadScores();
+                }
                 
                 // Restore scroll position after a short delay to ensure DOM is updated
                 setTimeout(() => {

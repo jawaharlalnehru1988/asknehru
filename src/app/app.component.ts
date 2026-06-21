@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { ApiService } from './api.service';
 
 @Component({
     selector: 'app-root',
@@ -10,36 +11,49 @@ import { FooterComponent } from './footer/footer.component';
     styleUrls: ['./app.component.scss'],
     imports: [ToolbarComponent, RouterOutlet, FooterComponent]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
     title = 'asknehru';
+    private inactivityTimer: any;
+    // 60 minutes for production
+    private readonly INACTIVITY_LIMIT_MS = 3600000;
 
-    code = `
-import java.util.Scanner;
+    constructor(private apiService: ApiService) {}
 
-public class AddTwoNumbers {
-    public static void main(String[] args) {
-        // Create a Scanner object to take input from the user
-        Scanner scanner = new Scanner(System.in);
-
-        // Prompt user for the first number
-        System.out.print("Enter the first number: ");
-        int num1 = scanner.nextInt();
-
-        // Prompt user for the second number
-        System.out.print("Enter the second number: ");
-        int num2 = scanner.nextInt();
-
-        // Calculate the sum
-        int sum = num1 + num2;
-
-        // Output the result
-        System.out.println("The sum of " + num1 + " and " + num2 + " is: " + sum);
-        
-        // Close the scanner
-        scanner.close();
+    ngOnInit() {
+      this.resetInactivityTimer();
     }
-}
 
-`
+    ngOnDestroy() {
+      this.clearInactivityTimer();
+    }
 
+    @HostListener('window:mousemove')
+    @HostListener('window:keydown')
+    @HostListener('window:click')
+    @HostListener('window:scroll')
+    onUserActivity() {
+      this.resetInactivityTimer();
+    }
+
+    private resetInactivityTimer() {
+      this.clearInactivityTimer();
+      if (typeof window !== 'undefined') {
+        this.inactivityTimer = setTimeout(() => {
+          this.handleInactivity();
+        }, this.INACTIVITY_LIMIT_MS);
+      }
+    }
+
+    private clearInactivityTimer() {
+      if (this.inactivityTimer) {
+        clearTimeout(this.inactivityTimer);
+      }
+    }
+
+    private handleInactivity() {
+      if (typeof window !== 'undefined' && window.localStorage && localStorage.getItem('token')) {
+        console.log('User logged out due to inactivity');
+        this.apiService.globalLogout();
+      }
+    }
 }

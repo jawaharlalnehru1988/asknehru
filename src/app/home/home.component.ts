@@ -24,7 +24,9 @@ export class HomeComponent extends Homejson implements OnInit {
   }
 
   ngOnInit() {
-    this.loadRoadmaps();
+    this.apiService.authState$.subscribe(() => {
+      this.loadRoadmaps();
+    });
   }
 
   loadRoadmaps() {
@@ -96,6 +98,10 @@ export class HomeComponent extends Homejson implements OnInit {
                  }
                });
             } else {
+               this.blogArticleData.forEach(blog => {
+                 blog.totalScore = undefined;
+                 blog.totalAttemptedQuestions = undefined;
+               });
                this.loading = false;
             }
           },

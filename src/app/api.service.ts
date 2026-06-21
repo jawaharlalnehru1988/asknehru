@@ -18,6 +18,16 @@ export class ApiService {
   private selectedMainTopicSubject = new BehaviorSubject<string | null>(null);
   selectedMainTopic$ = this.selectedMainTopicSubject.asObservable();
 
+  private authStateSubject = new BehaviorSubject<boolean>(this.checkToken());
+  authState$ = this.authStateSubject.asObservable();
+
+  private checkToken(): boolean {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return !!localStorage.getItem('token');
+    }
+    return false;
+  }
+
   // State caches
   private roadmapsListCache = signal<any[] | null>(null);
   private roadmapCache = signal<Map<number, any>>(new Map());
@@ -77,12 +87,25 @@ export class ApiService {
   }
 
   logout(refreshToken: string): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
     const headers = new HttpHeaders({
       'Authorization': token ? `Bearer ${token}` : '',
       'Content-Type': 'application/json'
     });
     return this.http.post<any>(`${this.authApiUrl}/api/auth/logout`, { refreshToken }, { headers });
+  }
+
+  setAuthState(state: boolean) {
+    this.authStateSubject.next(state);
+  }
+
+  globalLogout() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('user');
+    }
+    this.setAuthState(false);
   }
 
   fetchData(): Observable<any> {
