@@ -34,6 +34,21 @@ export class HomeComponent extends Homejson implements OnInit {
     this.apiService.getRoadmaps().subscribe({
       next: (roadmaps) => {
         const token = localStorage.getItem('token');
+        let isSuperAdmin = false;
+        if (token) {
+          try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const email = payload.email || payload.sub;
+            if (email === 'jawaharlalnehru@gmail.com' || payload.role === 'Super Admin') {
+              isSuperAdmin = true;
+            }
+          } catch (e) {}
+        }
+
+        let filteredRoadmaps = roadmaps;
+        if (!isSuperAdmin) {
+          filteredRoadmaps = roadmaps.filter((r: any) => r.userAssignedRoadmap === true);
+        }
         
         // Fetch all conversations and explained subtopics
         forkJoin({
@@ -41,7 +56,7 @@ export class HomeComponent extends Homejson implements OnInit {
           explainedSubtopics: this.apiService.getExplainedSubtopics()
         }).subscribe({
           next: ({ conversations, explainedSubtopics }) => {
-            this.blogArticleData = roadmaps.map(roadmap => {
+            this.blogArticleData = filteredRoadmaps.map((roadmap: any) => {
               let chaptersCount = roadmap.chapters ? roadmap.chapters.length : 0;
               let subtopicsCount = 0;
               let roadmapSubtopicIds: number[] = [];

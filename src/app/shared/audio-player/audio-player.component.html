@@ -1,0 +1,99 @@
+<div class="audio-player" *ngIf="audioUrl; else noAudio">
+  <!-- Hidden native audio element — plays in background when screen is locked -->
+  <audio
+    #audioEl
+    [src]="audioUrl"
+    preload="metadata"
+    (play)="onPlay()"
+    (pause)="onPause()"
+    (timeupdate)="onTimeUpdate()"
+    (durationchange)="onDurationChange()"
+    (ended)="onEnded()"
+    (error)="onError()"
+    (canplay)="onCanPlay()"
+  ></audio>
+
+  <!-- Error state -->
+  <div *ngIf="hasError" class="player-error">
+    <svg xmlns="http://www.w3.org/2000/svg" class="err-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+    </svg>
+    <span>Could not load audio</span>
+  </div>
+
+  <!-- Player UI -->
+  <div *ngIf="!hasError" class="player-ui">
+
+    <!-- Top row: waveform icon + title + speed -->
+    <div class="player-header">
+      <div class="wave-icon" [class.playing]="isPlaying">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <span class="player-label">Listen to Article</span>
+      <button class="speed-btn" (click)="cycleSpeed()" [title]="'Playback speed: ' + playbackRate + 'x'">
+        {{ playbackRate }}x
+      </button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-row">
+      <span class="time-badge">{{ formatTime(currentTime) }}</span>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="progressPercent"></div>
+        <input
+          type="range"
+          class="seek-range"
+          min="0"
+          [max]="duration || 0"
+          [value]="currentTime"
+          step="0.5"
+          (input)="onSeek($event)"
+          aria-label="Seek audio position"
+        />
+      </div>
+      <span class="time-badge">{{ formatTime(duration) }}</span>
+    </div>
+
+    <!-- Controls row -->
+    <div class="controls-row">
+      <!-- Rewind 15s -->
+      <button class="ctrl-btn secondary" (click)="seekBy(-15)" title="Back 15 seconds" [disabled]="!duration">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="1 4 1 10 7 10"></polyline>
+          <path d="M3.51 15a9 9 0 1 0 .49-3.5"></path>
+        </svg>
+        <span class="seek-label">15</span>
+      </button>
+
+      <!-- Play / Pause -->
+      <button class="ctrl-btn primary" (click)="togglePlay()" [attr.aria-label]="isPlaying ? 'Pause' : 'Play'">
+        <!-- Spinner -->
+        <svg *ngIf="isLoading" class="spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+        <!-- Pause icon -->
+        <svg *ngIf="!isLoading && isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+        <!-- Play icon -->
+        <svg *ngIf="!isLoading && !isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+
+      <!-- Forward 15s -->
+      <button class="ctrl-btn secondary" (click)="seekBy(15)" title="Forward 15 seconds" [disabled]="!duration">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <path d="M20.49 15a9 9 0 1 1-.49-3.5"></path>
+        </svg>
+        <span class="seek-label">15</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- No audio state — shows nothing (hidden) -->
+<ng-template #noAudio></ng-template>

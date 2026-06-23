@@ -222,5 +222,36 @@ export class ApiService {
     });
     return this.http.get<any[]>(`${this.authApiUrl}/api/conversations/scores`, { headers });
   }
+
+  uploadSubtopicAudio(conversationId: number, file: File): Observable<any> {
+    const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
+    const headers = new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : ''
+      // No Content-Type — let browser set multipart boundary automatically
+    });
+    const formData = new FormData();
+    formData.append('articleAudio', file, file.name);
+    return this.http.post<any>(
+      `${this.authApiUrl}/api/conversations/${conversationId}/audio`,
+      formData,
+      { headers }
+    );
+  }
+
+  /** Returns true if the currently logged-in user is the super admin. */
+  isSuperAdmin(): boolean {
+    if (typeof window === 'undefined' || !window.localStorage) return false;
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+    try {
+      // Decode JWT payload (base64url part between first and second dot)
+      const payload = token.split('.')[1];
+      const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+      return decoded?.email === 'jawaharlalnehru@gmail.com';
+    } catch {
+      return false;
+    }
+  }
 }
+
 

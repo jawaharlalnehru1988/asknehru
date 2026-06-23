@@ -150,6 +150,48 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </button>
+
+                                        <!-- 🎙️ Record / Upload Audio button — super admin only -->
+                                        <!-- hidden file input: on mobile shows "Record Audio" + "Choose File" sheet -->
+                                        <ng-container *ngIf="isSuperAdmin">
+                                        <input
+                                            type="file"
+                                            accept="audio/*"
+                                            class="hidden"
+                                            [id]="'audio-input-' + subtopic.id"
+                                            (change)="onAudioFileSelected($event, subtopic.id)"
+                                        />
+                                        <button
+                                            (click)="triggerAudioInput(subtopic.id)"
+                                            [disabled]="audioUploadState[subtopic.id] === 'uploading'"
+                                            class="p-1.5 rounded-lg transition-all duration-200 focus:outline-none flex-shrink-0 relative"
+                                            [ngClass]="{
+                                                'text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700': audioUploadState[subtopic.id] !== 'uploading' && audioUploadState[subtopic.id] !== 'done' && audioUploadState[subtopic.id] !== 'error',
+                                                'text-indigo-500 animate-pulse cursor-wait': audioUploadState[subtopic.id] === 'uploading',
+                                                'text-green-500': audioUploadState[subtopic.id] === 'done',
+                                                'text-red-500': audioUploadState[subtopic.id] === 'error'
+                                            }"
+                                            [title]="audioUploadState[subtopic.id] === 'uploading' ? 'Uploading...' : audioUploadState[subtopic.id] === 'done' ? 'Audio uploaded!' : 'Record or upload audio'"
+                                        >
+                                            <!-- Default mic icon -->
+                                            <svg *ngIf="audioUploadState[subtopic.id] !== 'uploading' && audioUploadState[subtopic.id] !== 'done' && audioUploadState[subtopic.id] !== 'error'" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4M12 3a4 4 0 014 4v4a4 4 0 01-8 0V7a4 4 0 014-4z" />
+                                            </svg>
+                                            <!-- Uploading spinner -->
+                                            <svg *ngIf="audioUploadState[subtopic.id] === 'uploading'" class="h-4.5 w-4.5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                                            </svg>
+                                            <!-- Done checkmark -->
+                                            <svg *ngIf="audioUploadState[subtopic.id] === 'done'" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            <!-- Error icon -->
+                                            <svg *ngIf="audioUploadState[subtopic.id] === 'error'" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                        </ng-container>
                                     </div>
                                 </div>
                             </div>
@@ -205,6 +247,38 @@
                         
                         <!-- 1. ARTICLE VIEW (Default) -->
                         <div *ngIf="!quizStarted" class="flex flex-col gap-6">
+
+                            <!-- 🎧 Recorded Audio Player — super admin's voice if available -->
+                            <app-audio-player
+                                *ngIf="activeExplanation.articleAudio"
+                                [audioUrl]="activeExplanation.articleAudio"
+                            ></app-audio-player>
+
+                            <!-- 🔊 Web Speech TTS fallback — shown only when no recorded audio -->
+                            <div *ngIf="!activeExplanation.articleAudio && speechSupported"
+                                 class="flex items-center gap-3 bg-slate-800 rounded-xl px-4 py-3 border border-slate-700">
+                                <div class="flex-1">
+                                    <p class="text-slate-300 text-xs font-semibold">🔊 No audio recorded yet</p>
+                                    <p class="text-slate-500 text-xs mt-0.5">Browser will read this article aloud</p>
+                                </div>
+                                <button *ngIf="!isSpeaking"
+                                    (click)="speakArticle()"
+                                    class="flex items-center gap-1.5 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253" />
+                                    </svg>
+                                    Read Aloud
+                                </button>
+                                <button *ngIf="isSpeaking"
+                                    (click)="stopSpeaking()"
+                                    class="flex items-center gap-1.5 px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-all animate-pulse">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h6v4H9z" />
+                                    </svg>
+                                    Stop
+                                </button>
+                            </div>
                             <div class="prose prose-slate dark:prose-invert max-w-none bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
                                 <markdown class="premium-markdown" [data]="activeExplanation.article"></markdown>
                             </div>

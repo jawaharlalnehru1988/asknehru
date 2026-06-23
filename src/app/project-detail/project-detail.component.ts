@@ -9,6 +9,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { AudioPlayerComponent } from '../shared/audio-player/audio-player.component';
 
 import { environment } from '../../environments/environment';
 import { forkJoin } from 'rxjs';
@@ -16,7 +17,7 @@ import { forkJoin } from 'rxjs';
 @Component({
     selector: 'app-project-detail',
     standalone: true,
-    imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink, MarkdownModule, FormsModule],
+    imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink, MarkdownModule, FormsModule, AudioPlayerComponent],
     templateUrl: './project-detail.component.html',
     styleUrls: ['./project-detail.component.scss']
 })
@@ -61,6 +62,17 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     chatMessages: {role: string, content: string}[] = [];
     isSendingMessage: boolean = false;
 
+    // Audio upload per-subtopic state
+    // key = subtopicId, value = 'uploading' | 'done' | 'error'
+    audioUploadState: { [subtopicId: number]: string } = {};
+
+    // Super admin flag — mic/upload button only shown to super admin
+    isSuperAdmin: boolean = false;
+
+    // Web Speech API TTS state (fallback when no recorded audio)
+    isSpeaking: boolean = false;
+    speechSupported: boolean = typeof window !== 'undefined' && 'speechSynthesis' in window;
+
     constructor(private route: ActivatedRoute, private apiService: ApiService, private dialog: MatDialog) { }
 
     copyToClipboard(text: string, id: number) {
@@ -89,9 +101,11 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
         if (this.guestTimer) {
             clearTimeout(this.guestTimer);
         }
+        this.stopSpeaking();
     }
 
     ngOnInit(): void {
+        this.isSuperAdmin = this.apiService.isSuperAdmin();
         this.apiService.authState$.subscribe(state => {
             this.isUserLoggedIn = state;
             if (state && this.roadmap) {
@@ -372,6 +386,58 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
         this.isChatOpen = !this.isChatOpen;
     }
 
+    // ── Audio upload ───────────────────────────────────────────────────
+
+    /** Programmatically click the hidden file input for a given subtopic. */
+    triggerAudioInput(subtopicId: number): void {
+        const input = document.getElementById('audio-input-' + subtopicId) as HTMLInputElement | null;
+        input?.click();
+    }
+
+    /**
+     * Called when the user picks/records a file via the hidden input.
+     * Uploads to the existing conversation entry for the subtopic.
+     */
+    onAudioFileSelected(event: Event, subtopicId: number): void {
+        const input = event.target as HTMLInputElement;
+        const file = input.files?.[0];
+        if (!file) return;
+
+        // Find the conversation ID for this subtopic from activeExplanation
+        // We must first ensure the conversation exists (explainSubtopic creates it)
+        this.audioUploadState[subtopicId] = 'uploading';
+
+        // If the conversation isn't loaded yet, explain first then upload
+        const doUpload = (conversationId: number) => {
+            this.apiService.uploadSubtopicAudio(conversationId, file).subscribe({
+                next: (updated: any) => {
+                    this.audioUploadState[subtopicId] = 'done';
+                    // If drawer is open for this subtopic, refresh the audio URL
+                    if (this.activeExplanation && this.activeExplanation.subtopicId === subtopicId) {
+                        this.activeExplanation = { ...this.activeExplanation, articleAudio: updated.articleAudio };
+                    }
+                    // Reset input so same file can be re-selected
+                    input.value = '';
+                    setTimeout(() => { this.audioUploadState[subtopicId] = 'done'; }, 3000);
+                },
+                error: () => {
+                    this.audioUploadState[subtopicId] = 'error';
+                    input.value = '';
+                }
+            });
+        };
+
+        if (this.activeExplanation && this.activeExplanation.subtopicId === subtopicId) {
+            doUpload(this.activeExplanation.id);
+        } else {
+            // Explain subtopic first to get/create the conversation entry
+            this.apiService.explainSubtopic(subtopicId).subscribe({
+                next: (res: any) => doUpload(res.id),
+                error: () => { this.audioUploadState[subtopicId] = 'error'; }
+            });
+        }
+    }
+
     sendMessage() {
         if (!this.chatInput.trim() || this.isSendingMessage || !this.activeExplanation) return;
         
@@ -392,6 +458,39 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
             }
         });
     }
+
+    // ── Web Speech API TTS fallback ────────────────────────────────────
+
+    speakArticle(): void {
+        if (!this.speechSupported || !this.activeExplanation?.article) return;
+        window.speechSynthesis.cancel();
+        // Strip markdown syntax for cleaner speech
+        const text = this.activeExplanation.article
+            .replace(/#{1,6}\s?/g, '')       // headings
+            .replace(/\*\*(.+?)\*\*/g, '$1') // bold
+            .replace(/\*(.+?)\*/g, '$1')     // italic
+            .replace(/`{1,3}[^`]*`{1,3}/g, '') // code
+            .replace(/\[(.+?)\]\(.+?\)/g, '$1') // links
+            .replace(/^\s*[-*+]\s/gm, '')    // bullets
+            .replace(/\n{2,}/g, '. ')        // paragraph breaks
+            .trim();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        utterance.onstart  = () => { this.isSpeaking = true; };
+        utterance.onend    = () => { this.isSpeaking = false; };
+        utterance.onerror  = () => { this.isSpeaking = false; };
+        utterance.onpause  = () => { this.isSpeaking = false; };
+        utterance.onresume = () => { this.isSpeaking = true; };
+        window.speechSynthesis.speak(utterance);
+        this.isSpeaking = true;
+    }
+
+    stopSpeaking(): void {
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+        }
+        this.isSpeaking = false;
+    }
 }
-
-
