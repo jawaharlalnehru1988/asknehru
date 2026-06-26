@@ -30,7 +30,15 @@ export const routes: Routes = [
   },
   {
     path: 'coding',
-    loadComponent: () => import('../../app/coding-interview/coding-interview.component').then(m => m.CodingInterviewComponent)
+    loadComponent: () => import('../../app/coding-interview/coding-interview.component').then(m => m.CodingInterviewComponent),
+    children: [
+      { path: '', loadComponent: () => import('../../app/coding-interview/coding-setup/coding-setup.component').then(m => m.CodingSetupComponent) },
+      { path: 'manipulation', loadComponent: () => import('../../app/coding-interview/manipulation/manipulation.component').then(m => m.ManipulationComponent) },
+      { path: 'complexity', loadComponent: () => import('../../app/coding-interview/complexity/complexity.component').then(m => m.ComplexityComponent) },
+      { path: 'super-easy', loadComponent: () => import('../../app/coding-interview/super-easy/super-easy.component').then(m => m.SuperEasyComponent) },
+      { path: 'hard', loadComponent: () => import('../../app/coding-interview/hard/hard.component').then(m => m.HardComponent) },
+      { path: 'harder', loadComponent: () => import('../../app/coding-interview/harder/harder.component').then(m => m.HarderComponent) }
+    ]
   },
   { path: '**', redirectTo: '/home' },
 ];

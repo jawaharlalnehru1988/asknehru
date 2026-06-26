@@ -308,7 +308,12 @@ export class ApiService {
   }
 
   saveManipulationQuestionSet(topic: string, category: string, setName: string, questions: {question: string, hint: string}[]): Observable<any> {
-    const payload = { topic, category, setName, questions };
+    const payload = {
+      topic,
+      category,
+      setName,
+      questions: questions.map(q => q.question)
+    };
     return this.http.post<any>(`${this.authApiUrl}/api/coding/manipulation/saved-sets`, payload, { headers: this.getAuthHeaders() });
   }
 
