@@ -1,21 +1,29 @@
 <main class="shell route-shell p-4">
-  <div *ngIf="errorMessage" class="banner error p-2 bg-red-100 text-red-700 rounded mb-4">{{ errorMessage }}</div>
-  <div *ngIf="successMessage" class="banner success p-2 bg-green-100 text-green-700 rounded mb-4">{{ successMessage }}</div>
+  @if (errorMessage) {
+    <div class="banner error p-2 bg-red-100 text-red-700 rounded mb-4">{{ errorMessage }}</div>
+  }
+  @if (successMessage) {
+    <div class="banner success p-2 bg-green-100 text-green-700 rounded mb-4">{{ successMessage }}</div>
+  }
 
   <!-- Loading State -->
-  <div *ngIf="!ready" class="text-gray-500">Loading session...</div>
+  @if (!ready) {
+    <div class="text-gray-500">Loading session...</div>
+  }
 
   <!-- Auth Wall -->
-  <section *ngIf="ready && !isAuthenticated" class="route-hero p-8 bg-gray-50 rounded shadow">
-    <p class="eyebrow text-sm uppercase text-gray-500 font-semibold mb-2">Coding Test Hub</p>
-    <h1 class="text-3xl font-bold mb-4">This workspace needs an authenticated session.</h1>
-    <p class="hero-copy mb-6 text-gray-700">Please log in first before attempting a customized Coding workspace interview.</p>
-    <div class="hero-links">
-      <button class="primary-button link-button px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" (click)="openLoginDialog()">Go to Login</button>
-    </div>
-  </section>
+  @if (ready && !isAuthenticated) {
+    <section class="route-hero p-8 bg-gray-50 rounded shadow">
+      <p class="eyebrow text-sm uppercase text-gray-500 font-semibold mb-2">Coding Test Hub</p>
+      <h1 class="text-3xl font-bold mb-4">This workspace needs an authenticated session.</h1>
+      <p class="hero-copy mb-6 text-gray-700">Please log in first before attempting a customized Coding workspace interview.</p>
+      <div class="hero-links">
+        <button class="primary-button link-button px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" (click)="openLoginDialog()">Go to Login</button>
+      </div>
+    </section>
+  }
 
-  <ng-container *ngIf="ready && isAuthenticated">
+  @if (ready && isAuthenticated) {
     <router-outlet></router-outlet>
-  </ng-container>
+  }
 </main>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../api.service';
@@ -7,7 +7,7 @@ import { ApiService } from '../../api.service';
 @Component({
   selector: 'app-manipulation',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule],
   templateUrl: './manipulation.component.html',
   styleUrls: ['./manipulation.component.scss']
 })

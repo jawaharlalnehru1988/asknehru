@@ -5,7 +5,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { MatButton } from '@angular/material/button';
 import { Homejson, Project } from './homejson';
 import { ApiService } from '../api.service';
-import { CommonModule } from '@angular/common';
+
 import { environment } from '../../environments/environment';
 import { forkJoin } from 'rxjs';
 @Component({
@@ -13,7 +13,7 @@ import { forkJoin } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, MatCardModule, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
+  imports: [MatCardModule, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
 })
 export class HomeComponent extends Homejson implements OnInit {
   override blogArticleData: Project[] = [];

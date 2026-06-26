@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../api.service';
@@ -8,7 +8,7 @@ import { MarkdownModule } from 'ngx-markdown';
 @Component({
   selector: 'app-complexity',
   standalone: true,
-  imports: [CommonModule, FormsModule, MarkdownModule],
+  imports: [FormsModule, MarkdownModule],
   templateUrl: './complexity.component.html',
   styleUrls: ['./complexity.component.scss']
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
@@ -8,7 +8,7 @@ import { ApiService } from '../api.service';
 @Component({
   selector: 'app-coding-interview',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatDialogModule],
+  imports: [RouterModule, MatDialogModule],
   templateUrl: './coding-interview.component.html',
   styleUrls: ['./coding-interview.component.scss']
 })

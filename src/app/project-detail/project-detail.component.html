@@ -1,376 +1,408 @@
-<div class="min-h-screen bg-slate-50 dark:bg-slate-900 relative overflow-hidden font-sans" *ngIf="!loading && roadmap">
+@if (!loading && roadmap) {
+  <div class="min-h-screen bg-slate-50 dark:bg-slate-900 relative overflow-hidden font-sans">
     <!-- Decorative Background Elements -->
     <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <!-- Technical Grid -->
-        <div class="absolute inset-0 opacity-[0.03]" 
-             style="background-image: radial-gradient(#0f172a 1px, transparent 1px); background-size: 30px 30px;">
-        </div>
-        
-        <!-- Soft Organic Lines -->
-        <svg class="absolute top-0 right-0 w-1/2 h-full opacity-10" viewBox="0 0 400 800" fill="none">
-            <path d="M400 100C300 150 200 50 100 150S-100 250 -200 400" stroke="#3b82f6" stroke-width="2" />
-            <path d="M420 120C320 170 220 70 120 170S-80 270 -180 420" stroke="#6366f1" stroke-width="1" stroke-dasharray="10 10" />
-            <path d="M380 80C280 130 180 30 80 130S-120 230 -220 380" stroke="#2563eb" stroke-width="0.5" />
-        </svg>
-
-        <svg class="absolute bottom-0 left-0 w-1/2 h-full opacity-10" viewBox="0 0 400 800" fill="none">
-            <path d="M0 700C100 650 200 750 300 650S500 550 600 400" stroke="#3b82f6" stroke-width="2" />
-            <path d="M-20 680C80 630 180 730 280 630S480 530 580 380" stroke="#6366f1" stroke-width="1" stroke-dasharray="10 10" />
-        </svg>
-
-        <!-- Blurred Orbs -->
-        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-[120px] opacity-40 -mr-20 -mt-20"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-100 rounded-full blur-[120px] opacity-40 -ml-20 -mb-20"></div>
+      <!-- Technical Grid -->
+      <div class="absolute inset-0 opacity-[0.03]"
+        style="background-image: radial-gradient(#0f172a 1px, transparent 1px); background-size: 30px 30px;">
+      </div>
+      <!-- Soft Organic Lines -->
+      <svg class="absolute top-0 right-0 w-1/2 h-full opacity-10" viewBox="0 0 400 800" fill="none">
+        <path d="M400 100C300 150 200 50 100 150S-100 250 -200 400" stroke="#3b82f6" stroke-width="2" />
+        <path d="M420 120C320 170 220 70 120 170S-80 270 -180 420" stroke="#6366f1" stroke-width="1" stroke-dasharray="10 10" />
+        <path d="M380 80C280 130 180 30 80 130S-120 230 -220 380" stroke="#2563eb" stroke-width="0.5" />
+      </svg>
+      <svg class="absolute bottom-0 left-0 w-1/2 h-full opacity-10" viewBox="0 0 400 800" fill="none">
+        <path d="M0 700C100 650 200 750 300 650S500 550 600 400" stroke="#3b82f6" stroke-width="2" />
+        <path d="M-20 680C80 630 180 730 280 630S480 530 580 380" stroke="#6366f1" stroke-width="1" stroke-dasharray="10 10" />
+      </svg>
+      <!-- Blurred Orbs -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-[120px] opacity-40 -mr-20 -mt-20"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-100 rounded-full blur-[120px] opacity-40 -ml-20 -mb-20"></div>
     </div>
-
     <!-- Hero Section -->
-    <div class="relative h-[450px] w-full overflow-hidden" *ngIf="roadmap.imageUrl">
+    @if (roadmap.imageUrl) {
+      <div class="relative h-[450px] w-full overflow-hidden">
         <img [src]="apiBaseUrl + roadmap.imageUrl" alt="{{ roadmap.mainTopic }}"
-            class="w-full h-full object-cover scale-105">
+          class="w-full h-full object-cover scale-105">
         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-8 md:p-16 max-w-6xl mx-auto">
-            <div class="flex flex-col gap-4 animate-fade-in-up">
-                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-bold bg-blue-500/20 text-blue-200 backdrop-blur-md border border-blue-500/30 w-fit">
-                    Curated Roadmap
-                </span>
-                <h1 class="text-5xl md:text-7xl text-white font-black tracking-tight drop-shadow-2xl">
-                    {{ roadmap.mainTopic }}
-                </h1>
-            </div>
+          <div class="flex flex-col gap-4 animate-fade-in-up">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-bold bg-blue-500/20 text-blue-200 backdrop-blur-md border border-blue-500/30 w-fit">
+              Curated Roadmap
+            </span>
+            <h1 class="text-5xl md:text-7xl text-white font-black tracking-tight drop-shadow-2xl">
+              {{ roadmap.mainTopic }}
+            </h1>
+          </div>
         </div>
-    </div>
-
+      </div>
+    }
     <!-- No Image Header -->
-    <div class="pt-24 pb-12 px-8 max-w-6xl mx-auto text-center" *ngIf="!roadmap.imageUrl">
+    @if (!roadmap.imageUrl) {
+      <div class="pt-24 pb-12 px-8 max-w-6xl mx-auto text-center">
         <div class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-bold bg-blue-100 text-blue-700 mb-6">
-            Learning Path
+          Learning Path
         </div>
         <h1 class="text-6xl md:text-8xl text-slate-900 dark:text-white font-black tracking-tighter mb-8 leading-none">
-            {{ roadmap.mainTopic }}
+          {{ roadmap.mainTopic }}
         </h1>
         <div class="w-32 h-2.5 bg-blue-600 mx-auto rounded-full shadow-lg shadow-blue-200"></div>
-    </div>
-
+      </div>
+    }
     <!-- Main Content -->
     <main class="relative z-10 max-w-5xl mx-auto px-6 -mt-20 md:-mt-32 pb-32">
-        <div class="grid grid-cols-1 gap-12">
-            
-
-            <!-- Syllabus Section -->
-            <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.05)] border border-slate-100 dark:border-slate-800 overflow-hidden">
-                <div class="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 p-10 md:px-16 flex items-center justify-between">
-                    <div class="flex items-center gap-6">
-                        <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white shadow-2xl shadow-slate-400/50 rotate-3 transition-transform hover:rotate-0">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Structured Syllabus</h2>
-                            <p class="text-slate-500 dark:text-slate-400 font-medium">Follow this step-by-step master plan</p>
-                            
-                            @if (isUserLoggedIn && totalRoadmapQuestions > 0) {
-                                <div class="mt-2 text-sm text-yellow-500 font-bold">
-                                    Roadmap Score: {{ totalRoadmapScore }} / {{ totalRoadmapQuestions }}
-                                </div>
-                            }
-                        </div>
+      <div class="grid grid-cols-1 gap-12">
+        <!-- Syllabus Section -->
+        <div class="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-[0_32px_64px_-15px_rgba(0,0,0,0.05)] border border-slate-100 dark:border-slate-800 overflow-hidden">
+          <div class="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 p-10 md:px-16 flex items-center justify-between">
+            <div class="flex items-center gap-6">
+              <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white shadow-2xl shadow-slate-400/50 rotate-3 transition-transform hover:rotate-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Structured Syllabus</h2>
+                <p class="text-slate-500 dark:text-slate-400 font-medium">Follow this step-by-step master plan</p>
+                @if (isUserLoggedIn && totalRoadmapQuestions > 0) {
+                  <div class="mt-2 text-sm text-yellow-500 font-bold">
+                    Roadmap Score: {{ totalRoadmapScore }} / {{ totalRoadmapQuestions }}
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="p-10 md:p-16">
+            <!-- Fallback to markdown if legacy syllabus field is present -->
+            @if (roadmap.syllabus) {
+              <markdown [data]="roadmap.syllabus"
+                class="premium-markdown prose prose-slate dark:prose-invert lg:prose-xl max-w-none">
+              </markdown>
+            }
+            <!-- Dynamic structured view of Chapters and Subtopics -->
+            @if (roadmap.chapters && roadmap.chapters.length > 0) {
+              <div class="flex flex-col gap-10">
+                @for (chapter of roadmap.chapters; track chapter; let i = $index) {
+                  <div
+                    class="relative pl-8 md:pl-16 border-l-2 border-slate-200 dark:border-slate-700 last:border-l-transparent pb-10 last:pb-0">
+                    <!-- Timeline badge indicator -->
+                    <div class="absolute -left-[21px] top-1 w-10 h-10 rounded-full bg-slate-900 dark:bg-slate-800 border-4 border-slate-50 dark:border-slate-900 flex items-center justify-center text-white text-sm font-black shadow-lg shadow-slate-300 dark:shadow-slate-800">
+                      {{ i + 1 }}
                     </div>
-                </div>
-                
-                <div class="p-10 md:p-16">
-                    <!-- Fallback to markdown if legacy syllabus field is present -->
-                    <markdown *ngIf="roadmap.syllabus" [data]="roadmap.syllabus" 
-                        class="premium-markdown prose prose-slate dark:prose-invert lg:prose-xl max-w-none">
-                    </markdown>
-
-                    <!-- Dynamic structured view of Chapters and Subtopics -->
-                    <div *ngIf="roadmap.chapters && roadmap.chapters.length > 0" class="flex flex-col gap-10">
-                        <div *ngFor="let chapter of roadmap.chapters; let i = index" 
-                             class="relative pl-8 md:pl-16 border-l-2 border-slate-200 dark:border-slate-700 last:border-l-transparent pb-10 last:pb-0">
-                            <!-- Timeline badge indicator -->
-                            <div class="absolute -left-[21px] top-1 w-10 h-10 rounded-full bg-slate-900 dark:bg-slate-800 border-4 border-slate-50 dark:border-slate-900 flex items-center justify-center text-white text-sm font-black shadow-lg shadow-slate-300 dark:shadow-slate-800">
-                                {{ i + 1 }}
+                    <h3 class="text-xl md:text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
+                      {{ chapter.chapterName }}
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      @for (subtopic of chapter.subtopics; track subtopic) {
+                        <div
+                          class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-3 md:p-4 bg-slate-50/50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-400 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-100 dark:hover:shadow-slate-800 transition-all duration-300 group">
+                          <div class="flex items-start sm:items-center gap-3 flex-1 min-w-0 w-full">
+                            <div class="w-2.5 h-2.5 rounded-full bg-blue-500/20 border-2 border-blue-500 flex-shrink-0 mt-1 sm:mt-0 group-hover:scale-110 transition-transform"></div>
+                            <div class="flex flex-col">
+                              <span class="text-slate-700 dark:text-slate-300 font-bold text-sm md:text-base tracking-tight group-hover:text-slate-900 dark:group-hover:text-white transition-colors whitespace-normal">
+                                {{ subtopic.subtopicName }}
+                              </span>
+                              @if (isUserLoggedIn && subtopicScores[subtopic.id]) {
+                                <span class="text-xs text-yellow-500 font-bold mt-0.5">
+                                  Score: {{ subtopicScores[subtopic.id].score }} / {{ subtopicScores[subtopic.id].totalQuestions }}
+                                </span>
+                              }
                             </div>
-                            
-                            <h3 class="text-xl md:text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
-                                {{ chapter.chapterName }}
-                            </h3>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div *ngFor="let subtopic of chapter.subtopics" 
-                                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 p-3 md:p-4 bg-slate-50/50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-400 hover:bg-white dark:hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-100 dark:hover:shadow-slate-800 transition-all duration-300 group">
-                                    <div class="flex items-start sm:items-center gap-3 flex-1 min-w-0 w-full">
-                                        <div class="w-2.5 h-2.5 rounded-full bg-blue-500/20 border-2 border-blue-500 flex-shrink-0 mt-1 sm:mt-0 group-hover:scale-110 transition-transform"></div>
-                                        <div class="flex flex-col">
-                                            <span class="text-slate-700 dark:text-slate-300 font-bold text-sm md:text-base tracking-tight group-hover:text-slate-900 dark:group-hover:text-white transition-colors whitespace-normal">
-                                                {{ subtopic.subtopicName }}
-                                            </span>
-                                            @if (isUserLoggedIn && subtopicScores[subtopic.id]) {
-                                                <span class="text-xs text-yellow-500 font-bold mt-0.5">
-                                                    Score: {{ subtopicScores[subtopic.id].score }} / {{ subtopicScores[subtopic.id].totalQuestions }}
-                                                </span>
-                                            }
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-end w-full sm:w-auto gap-2 flex-shrink-0 mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-0 border-slate-200 dark:border-slate-700">
-                                        <!-- Explain / Read Button -->
-                                        <button (click)="explainOrRead(subtopic)"
-                                                [disabled]="loadingSubtopics.has(subtopic.id) || (loadingSubtopics.size > 0 && !explainedSubtopicIds.has(subtopic.id))"
-                                                class="p-1.5 rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5 text-xs font-bold px-2.5 py-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                          </div>
+                          <div class="flex items-center justify-end w-full sm:w-auto gap-2 flex-shrink-0 mt-2 sm:mt-0 pt-2 sm:pt-0 border-t sm:border-0 border-slate-200 dark:border-slate-700">
+                            <!-- Explain / Read Button -->
+                            <button (click)="explainOrRead(subtopic)"
+                              [disabled]="loadingSubtopics.has(subtopic.id) || (loadingSubtopics.size > 0 && !explainedSubtopicIds.has(subtopic.id))"
+                              class="p-1.5 rounded-lg transition-all duration-200 focus:outline-none flex items-center gap-1.5 text-xs font-bold px-2.5 py-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
                                                 [ngClass]="{
                                                     'bg-blue-50 text-blue-600 hover:bg-blue-100': !explainedSubtopicIds.has(subtopic.id),
                                                     'bg-green-50 text-green-600 hover:bg-green-100': explainedSubtopicIds.has(subtopic.id)
                                                 }">
-                                            <!-- Spinner when loading -->
-                                            <svg *ngIf="loadingSubtopics.has(subtopic.id)" class="animate-spin h-3.5 w-3.5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                            </svg>
-                                            <!-- Spark/AI Icon for Explain -->
-                                            <svg *ngIf="!loadingSubtopics.has(subtopic.id) && !explainedSubtopicIds.has(subtopic.id)" xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.096.813zM3 3l1.5 1.5L3 6l1.5 1.5L3 9M18 3l1.5 1.5L18 6l1.5 1.5L18 9" />
-                                            </svg>
-                                            <!-- Book/Read Icon for Read -->
-                                            <svg *ngIf="!loadingSubtopics.has(subtopic.id) && explainedSubtopicIds.has(subtopic.id)" xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                            </svg>
-                                            {{ explainedSubtopicIds.has(subtopic.id) ? 'Read' : 'Explain' }}
-                                        </button>
-
-                                        <button (click)="copyToClipboard(subtopic.subtopicName, subtopic.id)"
-                                                class="p-1.5 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none flex-shrink-0 relative"
-                                                [title]="copiedId === subtopic.id ? 'Copied!' : 'Copy Topic'">
-                                            <!-- Copy Icon -->
-                                            <svg *ngIf="copiedId !== subtopic.id" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
-                                            </svg>
-                                            <!-- Checkmark Icon for Success -->
-                                            <svg *ngIf="copiedId === subtopic.id" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 md:h-5 md:w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </button>
-
-                                        <!-- 🎙️ Record / Upload Audio button — super admin only -->
-                                        <!-- hidden file input: on mobile shows "Record Audio" + "Choose File" sheet -->
-                                        <ng-container *ngIf="isSuperAdmin">
-                                        <input
-                                            type="file"
-                                            accept="audio/*"
-                                            class="hidden"
-                                            [id]="'audio-input-' + subtopic.id"
-                                            (change)="onAudioFileSelected($event, subtopic.id)"
-                                        />
-                                        <button
-                                            (click)="triggerAudioInput(subtopic.id)"
-                                            [disabled]="audioUploadState[subtopic.id] === 'uploading'"
-                                            class="p-1.5 rounded-lg transition-all duration-200 focus:outline-none flex-shrink-0 relative"
+                              <!-- Spinner when loading -->
+                              @if (loadingSubtopics.has(subtopic.id)) {
+                                <svg class="animate-spin h-3.5 w-3.5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                              }
+                              <!-- Spark/AI Icon for Explain -->
+                              @if (!loadingSubtopics.has(subtopic.id) && !explainedSubtopicIds.has(subtopic.id)) {
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.096.813zM3 3l1.5 1.5L3 6l1.5 1.5L3 9M18 3l1.5 1.5L18 6l1.5 1.5L18 9" />
+                                </svg>
+                              }
+                              <!-- Book/Read Icon for Read -->
+                              @if (!loadingSubtopics.has(subtopic.id) && explainedSubtopicIds.has(subtopic.id)) {
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                              }
+                              {{ explainedSubtopicIds.has(subtopic.id) ? 'Read' : 'Explain' }}
+                            </button>
+                            <button (click)="copyToClipboard(subtopic.subtopicName, subtopic.id)"
+                              class="p-1.5 text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none flex-shrink-0 relative"
+                              [title]="copiedId === subtopic.id ? 'Copied!' : 'Copy Topic'">
+                              <!-- Copy Icon -->
+                              @if (copiedId !== subtopic.id) {
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                </svg>
+                              }
+                              <!-- Checkmark Icon for Success -->
+                              @if (copiedId === subtopic.id) {
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 md:h-5 md:w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                              }
+                            </button>
+                            <!-- 🎙️ Record / Upload Audio button — super admin only -->
+                            <!-- hidden file input: on mobile shows "Record Audio" + "Choose File" sheet -->
+                            @if (isSuperAdmin) {
+                              <input
+                                type="file"
+                                accept="audio/*"
+                                class="hidden"
+                                [id]="'audio-input-' + subtopic.id"
+                                (change)="onAudioFileSelected($event, subtopic.id)"
+                                />
+                              <button
+                                (click)="triggerAudioInput(subtopic.id)"
+                                [disabled]="audioUploadState[subtopic.id] === 'uploading'"
+                                class="p-1.5 rounded-lg transition-all duration-200 focus:outline-none flex-shrink-0 relative"
                                             [ngClass]="{
                                                 'text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700': audioUploadState[subtopic.id] !== 'uploading' && audioUploadState[subtopic.id] !== 'done' && audioUploadState[subtopic.id] !== 'error',
                                                 'text-indigo-500 animate-pulse cursor-wait': audioUploadState[subtopic.id] === 'uploading',
                                                 'text-green-500': audioUploadState[subtopic.id] === 'done',
                                                 'text-red-500': audioUploadState[subtopic.id] === 'error'
                                             }"
-                                            [title]="audioUploadState[subtopic.id] === 'uploading' ? 'Uploading...' : audioUploadState[subtopic.id] === 'done' ? 'Audio uploaded!' : 'Record or upload audio'"
-                                        >
-                                            <!-- Default mic icon -->
-                                            <svg *ngIf="audioUploadState[subtopic.id] !== 'uploading' && audioUploadState[subtopic.id] !== 'done' && audioUploadState[subtopic.id] !== 'error'" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4M12 3a4 4 0 014 4v4a4 4 0 01-8 0V7a4 4 0 014-4z" />
-                                            </svg>
-                                            <!-- Uploading spinner -->
-                                            <svg *ngIf="audioUploadState[subtopic.id] === 'uploading'" class="h-4.5 w-4.5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                                            </svg>
-                                            <!-- Done checkmark -->
-                                            <svg *ngIf="audioUploadState[subtopic.id] === 'done'" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                            <!-- Error icon -->
-                                            <svg *ngIf="audioUploadState[subtopic.id] === 'error'" xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </button>
-                                        </ng-container>
-                                    </div>
-                                </div>
-                            </div>
+                                [title]="audioUploadState[subtopic.id] === 'uploading' ? 'Uploading...' : audioUploadState[subtopic.id] === 'done' ? 'Audio uploaded!' : 'Record or upload audio'"
+                                >
+                                <!-- Default mic icon -->
+                                @if (audioUploadState[subtopic.id] !== 'uploading' && audioUploadState[subtopic.id] !== 'done' && audioUploadState[subtopic.id] !== 'error') {
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4M12 3a4 4 0 014 4v4a4 4 0 01-8 0V7a4 4 0 014-4z" />
+                                  </svg>
+                                }
+                                <!-- Uploading spinner -->
+                                @if (audioUploadState[subtopic.id] === 'uploading') {
+                                  <svg class="h-4.5 w-4.5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                                  </svg>
+                                }
+                                <!-- Done checkmark -->
+                                @if (audioUploadState[subtopic.id] === 'done') {
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                  </svg>
+                                }
+                                <!-- Error icon -->
+                                @if (audioUploadState[subtopic.id] === 'error') {
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                  </svg>
+                                }
+                              </button>
+                            }
+                          </div>
                         </div>
+                      }
                     </div>
-                </div>
-            </div>
-
-            <!-- Navigation -->
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-12">
-                <a routerLink="/home" class="group relative px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-slate-300 hover:shadow-slate-400 flex items-center gap-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform group-hover:-translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    Return to Explorer
-                </a>
-            </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
         </div>
+        <!-- Navigation -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-12">
+          <a routerLink="/home" class="group relative px-10 py-5 bg-slate-900 text-white rounded-2xl font-bold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-2xl shadow-slate-300 hover:shadow-slate-400 flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform group-hover:-translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Return to Explorer
+          </a>
+        </div>
+      </div>
     </main>
-</div>
+  </div>
+}
 
 <!-- Slide-over Drawer Panel -->
-<div *ngIf="drawerOpen && activeExplanation" class="fixed inset-0 z-50 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+@if (drawerOpen && activeExplanation) {
+  <div class="fixed inset-0 z-50 overflow-hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
     <div class="absolute inset-0 overflow-hidden">
-        <!-- Overlay background -->
-        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" (click)="closeDrawer()" aria-hidden="true"></div>
-
-        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-0 sm:pl-10 md:pl-16 animate-slide-in">
-            <div class="pointer-events-auto drawer-width-responsive transform transition ease-in-out duration-500 sm:duration-700">
-                <div class="flex h-full flex-col overflow-y-scroll bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-100 dark:border-slate-800">
-                    <!-- Drawer Header -->
-                    <div class="bg-slate-900 px-6 py-6 sm:px-8 flex items-center justify-between shadow-md">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-blue-500/20 border border-blue-500/30 rounded-xl flex items-center justify-center text-blue-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.096.813zM3 3l1.5 1.5L3 6l1.5 1.5L3 9M18 3l1.5 1.5L18 6l1.5 1.5L18 9" />
-                                </svg>
-                            </div>
-                            <h2 class="text-xl font-black text-white tracking-tight" id="slide-over-title">
-                                {{ currentSubtopicName }}
-                            </h2>
-                        </div>
-                        <button type="button" class="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-slate-800 transition-all focus:outline-none" (click)="closeDrawer()">
-                            <span class="sr-only">Close panel</span>
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
+      <!-- Overlay background -->
+      <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" (click)="closeDrawer()" aria-hidden="true"></div>
+      <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-0 sm:pl-10 md:pl-16 animate-slide-in">
+        <div class="pointer-events-auto drawer-width-responsive transform transition ease-in-out duration-500 sm:duration-700">
+          <div class="flex h-full flex-col overflow-y-scroll bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-100 dark:border-slate-800">
+            <!-- Drawer Header -->
+            <div class="bg-slate-900 px-6 py-6 sm:px-8 flex items-center justify-between shadow-md">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-500/20 border border-blue-500/30 rounded-xl flex items-center justify-center text-blue-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 21l-.813-5.096L3 15l5.096-.813L9 9l.813 5.096L15 15l-5.096.813zM3 3l1.5 1.5L3 6l1.5 1.5L3 9M18 3l1.5 1.5L18 6l1.5 1.5L18 9" />
+                  </svg>
+                </div>
+                <h2 class="text-xl font-black text-white tracking-tight" id="slide-over-title">
+                  {{ currentSubtopicName }}
+                </h2>
+              </div>
+              <button type="button" class="rounded-xl p-2 text-slate-400 hover:text-white hover:bg-slate-800 transition-all focus:outline-none" (click)="closeDrawer()">
+                <span class="sr-only">Close panel</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <!-- Drawer Content -->
+            <div class="relative flex-1 px-4 py-6 sm:px-8 bg-slate-50/50 dark:bg-slate-800/50">
+              <!-- 1. ARTICLE VIEW (Default) -->
+              @if (!quizStarted) {
+                <div class="flex flex-col gap-6">
+                  <!-- 🎧 Recorded Audio Player — super admin's voice if available -->
+                  @if (activeExplanation.articleAudio) {
+                    <app-audio-player
+                      [audioUrl]="activeExplanation.articleAudio"
+                      [autoPlay]="isContinuousPlayActive"
+                      (audioEnded)="onBackendAudioEnded()"
+                      (playStarted)="onBackendAudioStarted()"
+                    ></app-audio-player>
+                  }
+                  <!-- 🔊 Web Speech TTS fallback — shown only when no recorded audio -->
+                  @if (!activeExplanation.articleAudio && speechSupported) {
+                    <div
+                      class="flex items-center gap-3 bg-slate-800 rounded-xl px-4 py-3 border border-slate-700">
+                      <div class="flex-1">
+                        <p class="text-slate-300 text-xs font-semibold">🔊 No audio recorded yet</p>
+                        <p class="text-slate-500 text-xs mt-0.5">Browser will read this article aloud</p>
+                      </div>
+                      @if (!isSpeaking) {
+                        <button
+                          (click)="speakArticle()"
+                          class="flex items-center gap-1.5 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition-all">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253" />
+                          </svg>
+                          Read Aloud
                         </button>
+                      }
+                      @if (isSpeaking) {
+                        <button
+                          (click)="stopSpeaking()"
+                          class="flex items-center gap-1.5 px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-all animate-pulse">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h6v4H9z" />
+                          </svg>
+                          Stop
+                        </button>
+                      }
+                      <input type="file" id="drawer-audio-upload" style="display: none" accept="audio/*" (change)="onAudioUploadDrawer($event)" />
+                      <button (click)="triggerDrawerAudioUpload()"
+                        [disabled]="audioUploadState[activeExplanation.subtopicId] === 'uploading'"
+                        class="flex items-center gap-1.5 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-all disabled:opacity-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        </svg>
+                        @if (audioUploadState[activeExplanation.subtopicId] !== 'uploading') {
+                          <span>Upload</span>
+                        }
+                        @if (audioUploadState[activeExplanation.subtopicId] === 'uploading') {
+                          <span>Uploading...</span>
+                        }
+                      </button>
                     </div>
-                    
-                    <!-- Drawer Content -->
-                    <div class="relative flex-1 px-4 py-6 sm:px-8 bg-slate-50/50 dark:bg-slate-800/50">
-                        
-                        <!-- 1. ARTICLE VIEW (Default) -->
-                        <div *ngIf="!quizStarted" class="flex flex-col gap-6">
-
-                            <!-- 🎧 Recorded Audio Player — super admin's voice if available -->
-                            <app-audio-player
-                                *ngIf="activeExplanation.articleAudio"
-                                [audioUrl]="activeExplanation.articleAudio"
-                                [autoPlay]="isContinuousPlayActive"
-                                (audioEnded)="onBackendAudioEnded()"
-                                (playStarted)="onBackendAudioStarted()"
-                            ></app-audio-player>
-
-                            <!-- 🔊 Web Speech TTS fallback — shown only when no recorded audio -->
-                            <div *ngIf="!activeExplanation.articleAudio && speechSupported"
-                                 class="flex items-center gap-3 bg-slate-800 rounded-xl px-4 py-3 border border-slate-700">
-                                <div class="flex-1">
-                                    <p class="text-slate-300 text-xs font-semibold">🔊 No audio recorded yet</p>
-                                    <p class="text-slate-500 text-xs mt-0.5">Browser will read this article aloud</p>
-                                </div>
-                                <button *ngIf="!isSpeaking"
-                                    (click)="speakArticle()"
-                                    class="flex items-center gap-1.5 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-lg transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253" />
-                                    </svg>
-                                    Read Aloud
-                                </button>
-                                <button *ngIf="isSpeaking"
-                                    (click)="stopSpeaking()"
-                                    class="flex items-center gap-1.5 px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-all animate-pulse">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h6v4H9z" />
-                                    </svg>
-                                    Stop
-                                </button>
-                                
-                                <input type="file" id="drawer-audio-upload" style="display: none" accept="audio/*" (change)="onAudioUploadDrawer($event)" />
-                                <button (click)="triggerDrawerAudioUpload()"
-                                    [disabled]="audioUploadState[activeExplanation.subtopicId] === 'uploading'"
-                                    class="flex items-center gap-1.5 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition-all disabled:opacity-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                                    </svg>
-                                    <span *ngIf="audioUploadState[activeExplanation.subtopicId] !== 'uploading'">Upload</span>
-                                    <span *ngIf="audioUploadState[activeExplanation.subtopicId] === 'uploading'">Uploading...</span>
-                                </button>
-                            </div>
-                            <div class="prose prose-slate dark:prose-invert max-w-none bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                                <markdown class="premium-markdown" [data]="activeExplanation.article"></markdown>
-                            </div>
-
-                            <!-- Article Navigation -->
-                            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 mb-6">
-                                <button *ngIf="previousSubtopic" (click)="explainOrRead(previousSubtopic)"
-                                        class="w-full sm:w-auto px-5 py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                    Previous: {{ previousSubtopic.subtopicName }}
-                                </button>
-                                <div *ngIf="!previousSubtopic" class="w-full sm:w-auto"></div>
-                                
-                                <button *ngIf="nextSubtopic" (click)="explainOrRead(nextSubtopic)"
-                                        class="w-full sm:w-auto px-5 py-3 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
-                                    Next: {{ nextSubtopic.subtopicName }}
-                                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                                <div *ngIf="!nextSubtopic" class="w-full sm:w-auto"></div>
-                            </div>
-
-                            <!-- Generate MCQ CTA Section -->
-                            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
-                                <div class="flex-1 text-center sm:text-left">
-                                    <h3 class="text-xl sm:text-2xl font-black tracking-tight mb-2">Evaluate Your Understanding</h3>
-                                    <p class="text-blue-100 text-sm md:text-base font-medium">Generate 10 multiple-choice questions powered by AI to test your knowledge of this topic.</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <button (click)="generateAndStartQuiz()" 
-                                            [disabled]="generatingMcqs"
-                                            class="w-full sm:w-auto px-6 py-3.5 bg-white text-blue-600 hover:bg-blue-50 font-black rounded-xl shadow-lg transition-all transform hover:scale-[1.03] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2">
-                                        <svg *ngIf="generatingMcqs" class="animate-spin h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        <svg *ngIf="!generatingMcqs" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                                        </svg>
-                                        {{ generatingMcqs ? 'Generating Quiz...' : 'Start Practice Quiz' }}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 2. ACTIVE QUIZ VIEW -->
-                        <div *ngIf="quizStarted && !quizCompleted" class="flex flex-col gap-6 animate-fade-in">
-                            <!-- Quiz Progress Header -->
-                            <div class="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col gap-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">Question {{ currentQuestionIndex + 1 }} of {{ mcqsList.length }}</span>
-                                    <button (click)="resetQuiz()" class="text-xs font-bold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors flex items-center gap-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                        Exit Quiz
-                                    </button>
-                                </div>
-                                <div class="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                                    <div class="bg-blue-600 h-full transition-all duration-300" [style.width.%]="((currentQuestionIndex) / mcqsList.length) * 100"></div>
-                                </div>
-                            </div>
-
-                            <!-- Question Card -->
-                            <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col gap-6">
-                                <h4 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 leading-snug">
-                                    {{ mcqsList[currentQuestionIndex].question }}
-                                </h4>
-
-                                <!-- Options List -->
-                                <div class="flex flex-col gap-3">
-                                    <button *ngFor="let option of mcqsList[currentQuestionIndex].options; let i = index"
-                                            (click)="selectOption(i)"
-                                            [disabled]="showFeedback"
-                                            class="w-full text-left p-4 rounded-xl border-2 transition-all flex items-center justify-between gap-3 font-semibold text-sm sm:text-base"
+                  }
+                  <div class="prose prose-slate dark:prose-invert max-w-none bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <markdown class="premium-markdown" [data]="activeExplanation.article"></markdown>
+                  </div>
+                  <!-- Article Navigation -->
+                  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 mb-6">
+                    @if (previousSubtopic) {
+                      <button (click)="explainOrRead(previousSubtopic)"
+                        class="w-full sm:w-auto px-5 py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Previous: {{ previousSubtopic.subtopicName }}
+                      </button>
+                    }
+                    @if (!previousSubtopic) {
+                      <div class="w-full sm:w-auto"></div>
+                    }
+                    @if (nextSubtopic) {
+                      <button (click)="explainOrRead(nextSubtopic)"
+                        class="w-full sm:w-auto px-5 py-3 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 font-semibold rounded-xl transition-all flex items-center justify-center gap-2">
+                        Next: {{ nextSubtopic.subtopicName }}
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    }
+                    @if (!nextSubtopic) {
+                      <div class="w-full sm:w-auto"></div>
+                    }
+                  </div>
+                  <!-- Generate MCQ CTA Section -->
+                  <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 sm:p-8 text-white shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="flex-1 text-center sm:text-left">
+                      <h3 class="text-xl sm:text-2xl font-black tracking-tight mb-2">Evaluate Your Understanding</h3>
+                      <p class="text-blue-100 text-sm md:text-base font-medium">Generate 10 multiple-choice questions powered by AI to test your knowledge of this topic.</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                      <button (click)="generateAndStartQuiz()"
+                        [disabled]="generatingMcqs"
+                        class="w-full sm:w-auto px-6 py-3.5 bg-white text-blue-600 hover:bg-blue-50 font-black rounded-xl shadow-lg transition-all transform hover:scale-[1.03] active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2">
+                        @if (generatingMcqs) {
+                          <svg class="animate-spin h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                        }
+                        @if (!generatingMcqs) {
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          </svg>
+                        }
+                        {{ generatingMcqs ? 'Generating Quiz...' : 'Start Practice Quiz' }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              }
+              <!-- 2. ACTIVE QUIZ VIEW -->
+              @if (quizStarted && !quizCompleted) {
+                <div class="flex flex-col gap-6 animate-fade-in">
+                  <!-- Quiz Progress Header -->
+                  <div class="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">Question {{ currentQuestionIndex + 1 }} of {{ mcqsList.length }}</span>
+                      <button (click)="resetQuiz()" class="text-xs font-bold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100 transition-colors flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        Exit Quiz
+                      </button>
+                    </div>
+                    <div class="w-full bg-slate-100 dark:bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                      <div class="bg-blue-600 h-full transition-all duration-300" [style.width.%]="((currentQuestionIndex) / mcqsList.length) * 100"></div>
+                    </div>
+                  </div>
+                  <!-- Question Card -->
+                  <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col gap-6">
+                    <h4 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 leading-snug">
+                      {{ mcqsList[currentQuestionIndex].question }}
+                    </h4>
+                    <!-- Options List -->
+                    <div class="flex flex-col gap-3">
+                      @for (option of mcqsList[currentQuestionIndex].options; track option; let i = $index) {
+                        <button
+                          (click)="selectOption(i)"
+                          [disabled]="showFeedback"
+                          class="w-full text-left p-4 rounded-xl border-2 transition-all flex items-center justify-between gap-3 font-semibold text-sm sm:text-base"
                                             [ngClass]="{
                                                 'border-slate-100 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 dark:text-slate-200': currentSelectedOption !== i && !showFeedback,
                                                 'border-blue-500 bg-blue-50/50 text-blue-900': currentSelectedOption === i && !showFeedback,
@@ -378,167 +410,191 @@
                                                 'border-red-500 bg-red-50 text-red-900': showFeedback && currentSelectedOption === i && mcqsList[currentQuestionIndex].answerIndex !== i,
                                                 'opacity-50': showFeedback && mcqsList[currentQuestionIndex].answerIndex !== i && currentSelectedOption !== i
                                             }">
-                                        <div class="flex items-start gap-2 flex-1 min-w-0">
-                                            <span class="font-bold text-slate-400 select-none">{{ ['A', 'B', 'C', 'D'][i] }}.</span>
-                                            <span class="whitespace-normal">{{ option }}</span>
-                                        </div>
-                                        
-                                        <!-- Feedback Icons -->
-                                        <div class="flex-shrink-0" *ngIf="showFeedback">
-                                            <svg *ngIf="mcqsList[currentQuestionIndex].answerIndex === i" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                            <svg *ngIf="currentSelectedOption === i && mcqsList[currentQuestionIndex].answerIndex !== i" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                </div>
-
-                                <!-- Action Buttons -->
-                                <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
-                                    <button *ngIf="showFeedback"
-                                            (click)="nextQuestion()"
-                                            class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl shadow-md transition-all hover:bg-slate-800">
-                                        {{ currentQuestionIndex === mcqsList.length - 1 ? 'Finish Quiz' : 'Next Question' }}
-                                    </button>
-                                </div>
+                          <div class="flex items-start gap-2 flex-1 min-w-0">
+                            <span class="font-bold text-slate-400 select-none">{{ ['A', 'B', 'C', 'D'][i] }}.</span>
+                            <span class="whitespace-normal">{{ option }}</span>
+                          </div>
+                          <!-- Feedback Icons -->
+                          @if (showFeedback) {
+                            <div class="flex-shrink-0">
+                              @if (mcqsList[currentQuestionIndex].answerIndex === i) {
+                                <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                              }
+                              @if (currentSelectedOption === i && mcqsList[currentQuestionIndex].answerIndex !== i) {
+                                <svg class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                              }
                             </div>
-                        </div>
-
-                        <!-- 3. QUIZ COMPLETED / RESULTS VIEW -->
-                        <div *ngIf="quizCompleted" class="flex flex-col gap-6 animate-fade-in">
-                            <div class="bg-white dark:bg-slate-900 p-8 sm:p-12 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm text-center flex flex-col items-center gap-6">
-                                <!-- Trophy/Medal graphic representation -->
-                                <div class="w-24 h-24 rounded-full flex items-center justify-center text-4xl shadow-lg"
+                          }
+                        </button>
+                      }
+                    </div>
+                    <!-- Action Buttons -->
+                    <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
+                      @if (showFeedback) {
+                        <button
+                          (click)="nextQuestion()"
+                          class="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl shadow-md transition-all hover:bg-slate-800">
+                          {{ currentQuestionIndex === mcqsList.length - 1 ? 'Finish Quiz' : 'Next Question' }}
+                        </button>
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+              <!-- 3. QUIZ COMPLETED / RESULTS VIEW -->
+              @if (quizCompleted) {
+                <div class="flex flex-col gap-6 animate-fade-in">
+                  <div class="bg-white dark:bg-slate-900 p-8 sm:p-12 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm text-center flex flex-col items-center gap-6">
+                    <!-- Trophy/Medal graphic representation -->
+                    <div class="w-24 h-24 rounded-full flex items-center justify-center text-4xl shadow-lg"
                                      [ngClass]="{
                                          'bg-yellow-100 text-yellow-600': score >= 8,
                                          'bg-blue-100 text-blue-600': score >= 5 && score < 8,
                                          'bg-slate-100 text-slate-600': score < 5
                                      }">
-                                    🏆
-                                </div>
-
-                                <div>
-                                    <h3 class="text-3xl font-black text-slate-900 dark:text-slate-100 mb-2">Quiz Completed!</h3>
-                                    <p class="text-slate-500 dark:text-slate-400 font-medium text-base">Here is how you performed on this article evaluation:</p>
-                                </div>
-
-                                <!-- Score display -->
-                                <div class="text-5xl font-black text-slate-900 dark:text-slate-100">
-                                    {{ score }} <span class="text-2xl text-slate-400 font-bold">/ {{ mcqsList.length }}</span>
-                                </div>
-
-                                <!-- Performance evaluation text -->
-                                <div class="px-6 py-2 rounded-full text-sm font-bold"
+                      🏆
+                    </div>
+                    <div>
+                      <h3 class="text-3xl font-black text-slate-900 dark:text-slate-100 mb-2">Quiz Completed!</h3>
+                      <p class="text-slate-500 dark:text-slate-400 font-medium text-base">Here is how you performed on this article evaluation:</p>
+                    </div>
+                    <!-- Score display -->
+                    <div class="text-5xl font-black text-slate-900 dark:text-slate-100">
+                      {{ score }} <span class="text-2xl text-slate-400 font-bold">/ {{ mcqsList.length }}</span>
+                    </div>
+                    <!-- Performance evaluation text -->
+                    <div class="px-6 py-2 rounded-full text-sm font-bold"
                                      [ngClass]="{
                                          'bg-green-100 text-green-700': score >= 8,
                                          'bg-blue-100 text-blue-700': score >= 5 && score < 8,
                                          'bg-yellow-100 text-yellow-700': score < 5
                                      }">
-                                    {{ score >= 8 ? 'Mastery Achieved! Excellent!' : (score >= 5 ? 'Good Job! Keep practicing.' : 'Need Review. Try studying the article again.') }}
-                                </div>
-
-                                <!-- Score Save Indicator -->
-                                <div *ngIf="isSavingScore" class="text-sm text-blue-500 animate-pulse font-bold">
-                                    Saving score to your profile...
-                                </div>
-                                <div *ngIf="scoreSaved && !isSavingScore" class="text-sm text-green-600 font-bold flex items-center gap-1 justify-center bg-green-50 px-4 py-1.5 rounded-full border border-green-200">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    Score Saved to Dashboard
-                                </div>
-
-                                <!-- Action Buttons -->
-                                <div class="flex flex-col sm:flex-row gap-3 w-full pt-6 border-t border-slate-100 justify-center">
-                                    <button (click)="startQuiz()" class="px-6 py-3.5 bg-blue-600 text-white font-bold rounded-xl shadow-md transition-all hover:bg-blue-700">
-                                        Retry Quiz
-                                    </button>
-                                    <button (click)="resetQuiz()" class="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition-all hover:bg-slate-200 dark:hover:bg-slate-700">
-                                        Back to Article
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
+                      {{ score >= 8 ? 'Mastery Achieved! Excellent!' : (score >= 5 ? 'Good Job! Keep practicing.' : 'Need Review. Try studying the article again.') }}
                     </div>
+                    <!-- Score Save Indicator -->
+                    @if (isSavingScore) {
+                      <div class="text-sm text-blue-500 animate-pulse font-bold">
+                        Saving score to your profile...
+                      </div>
+                    }
+                    @if (scoreSaved && !isSavingScore) {
+                      <div class="text-sm text-green-600 font-bold flex items-center gap-1 justify-center bg-green-50 px-4 py-1.5 rounded-full border border-green-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Score Saved to Dashboard
+                      </div>
+                    }
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3 w-full pt-6 border-t border-slate-100 justify-center">
+                      <button (click)="startQuiz()" class="px-6 py-3.5 bg-blue-600 text-white font-bold rounded-xl shadow-md transition-all hover:bg-blue-700">
+                        Retry Quiz
+                      </button>
+                      <button (click)="resetQuiz()" class="px-6 py-3.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition-all hover:bg-slate-200 dark:hover:bg-slate-700">
+                        Back to Article
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              }
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+}
 
 <!-- Chat Assistant Floating Button -->
-<button *ngIf="drawerOpen && activeExplanation" 
-        (click)="toggleChat()" 
-        class="fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-indigo-700 hover:scale-105 transition-all z-[60]">
+@if (drawerOpen && activeExplanation) {
+  <button
+    (click)="toggleChat()"
+    class="fixed bottom-6 right-6 w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-indigo-700 hover:scale-105 transition-all z-[60]">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
     </svg>
-</button>
+  </button>
+}
 
 <!-- Chat Window -->
-<div *ngIf="isChatOpen" class="fixed bottom-24 right-6 w-[85vw] sm:w-96 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-[60] flex flex-col overflow-hidden animate-slide-up">
+@if (isChatOpen) {
+  <div class="fixed bottom-24 right-6 w-[85vw] sm:w-96 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 z-[60] flex flex-col overflow-hidden animate-slide-up">
     <div class="bg-indigo-600 px-4 py-3 flex items-center justify-between shadow-sm shrink-0">
-        <h3 class="text-white font-bold flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            AI Assistant
-        </h3>
-        <button (click)="toggleChat()" class="text-indigo-100 hover:text-white transition-colors focus:outline-none">
-            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
+      <h3 class="text-white font-bold flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        AI Assistant
+      </h3>
+      <button (click)="toggleChat()" class="text-indigo-100 hover:text-white transition-colors focus:outline-none">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
-    
     <div class="p-4 overflow-y-auto bg-slate-50 dark:bg-slate-800 flex flex-col gap-3 h-[65vh] sm:h-[28rem]">
-        <div *ngIf="chatMessages.length === 0" class="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 px-4">
-            Hi! I have read the article. Ask me anything about it to test your understanding!
+      @if (chatMessages.length === 0) {
+        <div class="text-center text-sm text-slate-500 dark:text-slate-400 mt-4 px-4">
+          Hi! I have read the article. Ask me anything about it to test your understanding!
         </div>
-        <div *ngFor="let msg of chatMessages" 
-             class="max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm shrink-0"
-             [ngClass]="msg.role === 'user' ? 'bg-indigo-600 text-white self-end rounded-br-sm' : 'bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-200 self-start rounded-bl-sm'">
-            <markdown *ngIf="msg.role === 'assistant'" class="premium-markdown prose prose-slate dark:prose-invert prose-sm max-w-none break-words" [data]="msg.content"></markdown>
-            <span *ngIf="msg.role === 'user'" class="break-words">{{ msg.content }}</span>
+      }
+      @for (msg of chatMessages; track msg) {
+        <div
+          class="max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm shrink-0"
+          [ngClass]="msg.role === 'user' ? 'bg-indigo-600 text-white self-end rounded-br-sm' : 'bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-200 self-start rounded-bl-sm'">
+          @if (msg.role === 'assistant') {
+            <markdown class="premium-markdown prose prose-slate dark:prose-invert prose-sm max-w-none break-words" [data]="msg.content"></markdown>
+          }
+          @if (msg.role === 'user') {
+            <span class="break-words">{{ msg.content }}</span>
+          }
         </div>
-        <div *ngIf="isSendingMessage" class="self-start bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 rounded-2xl rounded-bl-sm px-4 py-3 text-sm shadow-sm flex items-center gap-2 shrink-0">
-            <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce"></div>
-            <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></div>
-            <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+      }
+      @if (isSendingMessage) {
+        <div class="self-start bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 rounded-2xl rounded-bl-sm px-4 py-3 text-sm shadow-sm flex items-center gap-2 shrink-0">
+          <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce"></div>
+          <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></div>
+          <div class="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
         </div>
+      }
     </div>
-    
     <div class="p-3 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 flex gap-2 shadow-inner shrink-0">
-        <input type="text" [(ngModel)]="chatInput" (keyup.enter)="sendMessage()" placeholder="Ask a question..." class="flex-1 bg-slate-100 dark:bg-slate-800 dark:text-slate-100 border-transparent focus:bg-white dark:focus:bg-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-xl text-sm px-4 py-2 transition-all outline-none">
-        <button (click)="sendMessage()" [disabled]="!chatInput.trim() || isSendingMessage" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl px-4 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-        </button>
+      <input type="text" [(ngModel)]="chatInput" (keyup.enter)="sendMessage()" placeholder="Ask a question..." class="flex-1 bg-slate-100 dark:bg-slate-800 dark:text-slate-100 border-transparent focus:bg-white dark:focus:bg-slate-900 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-xl text-sm px-4 py-2 transition-all outline-none">
+      <button (click)="sendMessage()" [disabled]="!chatInput.trim() || isSendingMessage" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl px-4 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+        </svg>
+      </button>
     </div>
-</div>
+  </div>
+}
 
 
 <!-- Loading State -->
-<div *ngIf="loading" class="min-h-screen bg-slate-50 flex flex-col justify-center items-center gap-6">
+@if (loading) {
+  <div class="min-h-screen bg-slate-50 flex flex-col justify-center items-center gap-6">
     <div class="relative">
-        <div class="w-20 h-20 border-4 border-blue-100 rounded-full"></div>
-        <div class="absolute top-0 left-0 w-20 h-20 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+      <div class="w-20 h-20 border-4 border-blue-100 rounded-full"></div>
+      <div class="absolute top-0 left-0 w-20 h-20 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
     </div>
     <p class="text-slate-500 font-bold animate-pulse tracking-widest uppercase text-xs">Architecting your path...</p>
-</div>
+  </div>
+}
 
 <!-- Error State -->
-<div *ngIf="error" class="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-8 text-center">
+@if (error) {
+  <div class="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-8 text-center">
     <div class="w-20 h-20 bg-red-100 rounded-3xl flex items-center justify-center text-red-600 mb-6">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
     </div>
     <h2 class="text-3xl font-black text-slate-900 mb-2">Oops! Something went wrong</h2>
     <p class="text-slate-500 mb-8 max-w-md">{{ error }}</p>
     <a routerLink="/home" class="px-8 py-3 bg-slate-900 text-white rounded-xl font-bold shadow-lg">Go Back Home</a>
-</div>
+  </div>
+}

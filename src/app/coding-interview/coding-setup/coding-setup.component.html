@@ -9,94 +9,116 @@
     <label class="field flex flex-col gap-1">
       <span class="font-medium text-gray-700">Select Technology Stack</span>
       <select class="p-2 border rounded" [(ngModel)]="topic" name="topic">
-        <option *ngFor="let t of topics" [value]="t.name">{{ t.name }}</option>
+        @for (t of topics; track t) {
+          <option [value]="t.name">{{ t.name }}</option>
+        }
       </select>
     </label>
 
     <div class="field flex flex-col gap-1">
       <span class="font-medium text-gray-700">Difficulty Level</span>
       <div class="flex gap-2 flex-wrap mt-1">
-        <button *ngFor="let lvl of difficultyLevels" type="button" 
-                (click)="difficulty = lvl"
-                class="px-4 py-2 text-sm rounded border cursor-pointer transition-colors"
-                [ngClass]="difficulty === lvl ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'">
-          {{ lvl.replace('_', ' ') }}
-        </button>
+        @for (lvl of difficultyLevels; track lvl) {
+          <button type="button"
+            (click)="difficulty = lvl"
+            class="px-4 py-2 text-sm rounded border cursor-pointer transition-colors"
+            [ngClass]="difficulty === lvl ? 'border-blue-500 bg-blue-50 text-blue-700' : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'">
+            {{ lvl.replace('_', ' ') }}
+          </button>
+        }
       </div>
 
       <!-- Manipulation Setup -->
-      <div *ngIf="difficulty === 'MANIPULATION CHALLENGE'" class="mt-4 p-4 bg-gray-50 rounded border">
-        <h3 class="font-bold mb-3 text-gray-700">Manipulation Options</h3>
-        <div class="mb-3">
-          <label class="block text-sm font-semibold mb-1 text-gray-700">Select Category</label>
-          <select [(ngModel)]="selectedManipulationCategory" (change)="fetchSavedSets()" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="manipCat">
-            <option *ngFor="let cat of manipulationCategories" [value]="cat.name">{{ cat.name }}</option>
-          </select>
+      @if (difficulty === 'MANIPULATION CHALLENGE') {
+        <div class="mt-4 p-4 bg-gray-50 rounded border">
+          <h3 class="font-bold mb-3 text-gray-700">Manipulation Options</h3>
+          <div class="mb-3">
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Select Category</label>
+            <select [(ngModel)]="selectedManipulationCategory" (change)="fetchSavedSets()" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="manipCat">
+              @for (cat of manipulationCategories; track cat) {
+                <option [value]="cat.name">{{ cat.name }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Question Set</label>
+            <select [(ngModel)]="selectedSavedSetId" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="savedSet">
+              <option value="NEW">Generate New AI Set</option>
+              <option value="NEXT">Generate Next AI Set (Exclude Previous)</option>
+              @if (savedQuestionSets && savedQuestionSets.length > 0) {
+                <optgroup label="Saved Question Sets">
+                  @for (set of savedQuestionSets; track set) {
+                    <option [value]="set.id">{{ set.setName }}</option>
+                  }
+                </optgroup>
+              }
+            </select>
+          </div>
+          @if (userHistory && userHistory.length > 0) {
+            <div class="mb-3 pt-3 border-t">
+              <label class="block text-sm font-semibold mb-1 text-gray-700">Revisit Previous Attempts</label>
+              <div class="flex gap-2">
+                <select [(ngModel)]="selectedHistoryId" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="historySet">
+                  <option value="">-- Select a past attempt --</option>
+                  @for (h of userHistory; track h) {
+                    <option [value]="h.id">
+                      {{ h.topic }} - Score: {{ h.score }}/100 ({{ h.date | date:'MMM d, y' }})
+                    </option>
+                  }
+                </select>
+              </div>
+            </div>
+          }
+          <div class="flex items-center gap-2 mt-4 pt-4 border-t">
+            <input type="text" [(ngModel)]="newCategoryName" placeholder="New Category Name" class="flex-1 p-2 border rounded" name="newCat">
+            <button (click)="handleAddCategory()" type="button" class="bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 transition">
+              Add Category
+            </button>
+          </div>
         </div>
-        
-        <div class="mb-3">
-          <label class="block text-sm font-semibold mb-1 text-gray-700">Question Set</label>
-          <select [(ngModel)]="selectedSavedSetId" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="savedSet">
-            <option value="NEW">Generate New AI Set</option>
-            <option value="NEXT">Generate Next AI Set (Exclude Previous)</option>
-            <optgroup *ngIf="savedQuestionSets && savedQuestionSets.length > 0" label="Saved Question Sets">
-              <option *ngFor="let set of savedQuestionSets" [value]="set.id">{{ set.setName }}</option>
-            </optgroup>
-          </select>
-        </div>
+      }
 
-        <div *ngIf="userHistory && userHistory.length > 0" class="mb-3 pt-3 border-t">
-          <label class="block text-sm font-semibold mb-1 text-gray-700">Revisit Previous Attempts</label>
-          <div class="flex gap-2">
-            <select [(ngModel)]="selectedHistoryId" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="historySet">
-              <option value="">-- Select a past attempt --</option>
-              <option *ngFor="let h of userHistory" [value]="h.id">
-                {{ h.topic }} - Score: {{ h.score }}/100 ({{ h.date | date:'MMM d, y' }})
-              </option>
+      <!-- Complexity Setup -->
+      @if (difficulty === 'COMPLEXITY') {
+        <div class="mt-4 p-4 bg-gray-50 rounded border">
+          <h3 class="font-bold mb-3 text-gray-700">Complexity Options</h3>
+          <div class="mb-3">
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Select Category</label>
+            <select [(ngModel)]="selectedComplexityCategory" (change)="fetchSavedComplexitySets()" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="compCat">
+              @for (cat of complexityCategories; track cat) {
+                <option [value]="cat.name">{{ cat.name }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Question Set</label>
+            <select [(ngModel)]="selectedSavedComplexitySetId" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="savedCompSet">
+              <option value="NEW">Generate New AI Set</option>
+              <option value="NEXT">Generate Next AI Set (Exclude Previous)</option>
+              @if (savedComplexitySets && savedComplexitySets.length > 0) {
+                <optgroup label="Saved Question Sets">
+                  @for (set of savedComplexitySets; track set) {
+                    <option [value]="set.id">{{ set.setName }}</option>
+                  }
+                </optgroup>
+              }
             </select>
           </div>
         </div>
-
-        <div class="flex items-center gap-2 mt-4 pt-4 border-t">
-          <input type="text" [(ngModel)]="newCategoryName" placeholder="New Category Name" class="flex-1 p-2 border rounded" name="newCat">
-          <button (click)="handleAddCategory()" type="button" class="bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700 transition">
-            Add Category
-          </button>
-        </div>
-      </div>
-
-      <!-- Complexity Setup -->
-      <div *ngIf="difficulty === 'COMPLEXITY'" class="mt-4 p-4 bg-gray-50 rounded border">
-        <h3 class="font-bold mb-3 text-gray-700">Complexity Options</h3>
-        <div class="mb-3">
-          <label class="block text-sm font-semibold mb-1 text-gray-700">Select Category</label>
-          <select [(ngModel)]="selectedComplexityCategory" (change)="fetchSavedComplexitySets()" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="compCat">
-            <option *ngFor="let cat of complexityCategories" [value]="cat.name">{{ cat.name }}</option>
-          </select>
-        </div>
-        
-        <div class="mb-3">
-          <label class="block text-sm font-semibold mb-1 text-gray-700">Question Set</label>
-          <select [(ngModel)]="selectedSavedComplexitySetId" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="savedCompSet">
-            <option value="NEW">Generate New AI Set</option>
-            <option value="NEXT">Generate Next AI Set (Exclude Previous)</option>
-            <optgroup *ngIf="savedComplexitySets && savedComplexitySets.length > 0" label="Saved Question Sets">
-              <option *ngFor="let set of savedComplexitySets" [value]="set.id">{{ set.setName }}</option>
-            </optgroup>
-          </select>
-        </div>
-      </div>
+      }
     </div>
 
-    <label *ngIf="difficulty !== 'MANIPULATION CHALLENGE' && difficulty !== 'COMPLEXITY'" class="field flex flex-col gap-1">
-      <span class="font-medium text-gray-700">Custom Specifications (Optional)</span>
-      <textarea class="p-3 border rounded resize-y" [(ngModel)]="customDescription" name="customDescription"
-                placeholder="e.g. Focus on recursive algorithms, bitwise logic, or scenario based data trees."
-                rows="3"></textarea>
-    </label>
+    @if (difficulty !== 'MANIPULATION CHALLENGE' && difficulty !== 'COMPLEXITY') {
+      <label class="field flex flex-col gap-1">
+        <span class="font-medium text-gray-700">Custom Specifications (Optional)</span>
+        <textarea class="p-3 border rounded resize-y" [(ngModel)]="customDescription" name="customDescription"
+          placeholder="e.g. Focus on recursive algorithms, bitwise logic, or scenario based data trees."
+        rows="3"></textarea>
+      </label>
+    }
 
-    <button class="primary-button px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mt-2 font-semibold" 
-            [disabled]="!!busyLabel" type="submit">
+    <button class="primary-button px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mt-2 font-semibold"
+      [disabled]="!!busyLabel" type="submit">
       {{ getSubmitButtonText() }}
     </button>
   </form>
