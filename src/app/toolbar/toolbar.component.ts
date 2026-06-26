@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
@@ -13,7 +13,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-toolbar',
@@ -111,15 +111,12 @@ export class ToolbarComponent implements OnInit {
       this.loggedInUser();
     });
 
-    this.api.getConversations().subscribe({
-      next: (data) => {
-        this.mainTopics = [...new Set(data.map((item: any) => item.mainTopic))] as string[];
-        // Initialize filtered topics after data is loaded
-        this.filteredTopics = this.topicControl.valueChanges.pipe(
-          startWith(''),
-          map(value => this._filter(value || '')),
-        );
-      }
+    this.checkAndFetchTopics();
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.checkAndFetchTopics();
     });
 
     for (const key in this.loggedInUserData) {
@@ -128,6 +125,24 @@ export class ToolbarComponent implements OnInit {
         if (control) {
           control.setValue(this.loggedInUserData[key]);
         }
+      }
+    }
+  }
+
+  checkAndFetchTopics() {
+    const currentUrl = this.router.url.split('?')[0];
+    if (currentUrl === '/' || currentUrl === '/home') {
+      if (this.mainTopics.length === 0) {
+        this.api.getConversations().subscribe({
+          next: (data) => {
+            this.mainTopics = [...new Set(data.map((item: any) => item.mainTopic))] as string[];
+            // Initialize filtered topics after data is loaded
+            this.filteredTopics = this.topicControl.valueChanges.pipe(
+              startWith(''),
+              map(value => this._filter(value || '')),
+            );
+          }
+        });
       }
     }
   }

@@ -35,7 +35,8 @@ export class CodingInterviewComponent implements OnInit {
   manipulationCategories: any[] = [];
   selectedManipulationCategory = '';
   newCategoryName = '';
-  manipulationQuestions: string[] = [];
+  manipulationQuestions: { question: string, hint: string }[] = [];
+  manipulationHintVisible: boolean[] = [];
   manipulationApproaches: string[] = [];
   manipulationAnswers: string[] = [];
   manipulationResult: any = null;
@@ -138,6 +139,14 @@ export class CodingInterviewComponent implements OnInit {
     });
   }
 
+  showHint(index: number) {
+    if (this.manipulationHintVisible[index]) return;
+    this.manipulationHintVisible[index] = true;
+    setTimeout(() => {
+      this.manipulationHintVisible[index] = false;
+    }, 15000);
+  }
+
   fetchTopics() {
     this.apiService.getTopics().pipe(
       catchError(() => {
@@ -190,9 +199,10 @@ export class CodingInterviewComponent implements OnInit {
     if (!this.selectedHistoryId) return;
     const history = this.userHistory.find(h => h.id == this.selectedHistoryId);
     if (history && history.questions) {
-      this.manipulationQuestions = history.questions;
+      this.manipulationQuestions = history.questions.map((q: string) => ({ question: q, hint: 'Hint not saved in history.' }));
       this.manipulationApproaches = new Array(this.manipulationQuestions.length).fill('');
       this.manipulationAnswers = new Array(this.manipulationQuestions.length).fill('');
+      this.manipulationHintVisible = new Array(this.manipulationQuestions.length).fill(false);
       this.activeSetName = 'Past Attempt (' + new Date(history.date).toLocaleDateString() + ')';
       this.isCurrentSetSaved = true;
       this.currentPhase = 'CODING';
@@ -215,6 +225,7 @@ export class CodingInterviewComponent implements OnInit {
            this.manipulationQuestions = set.questions;
            this.manipulationApproaches = new Array(this.manipulationQuestions.length).fill('');
            this.manipulationAnswers = new Array(this.manipulationQuestions.length).fill('');
+           this.manipulationHintVisible = new Array(this.manipulationQuestions.length).fill(false);
            this.activeSetName = set.setName;
            this.isCurrentSetSaved = true;
            this.currentPhase = 'CODING';
@@ -239,6 +250,7 @@ export class CodingInterviewComponent implements OnInit {
           this.manipulationQuestions = response.questions;
           this.manipulationApproaches = new Array(this.manipulationQuestions.length).fill('');
           this.manipulationAnswers = new Array(this.manipulationQuestions.length).fill('');
+          this.manipulationHintVisible = new Array(this.manipulationQuestions.length).fill(false);
           this.activeSetName = '';
           this.isCurrentSetSaved = false;
           this.currentPhase = 'CODING';

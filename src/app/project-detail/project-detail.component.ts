@@ -72,6 +72,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     // Web Speech API TTS state (fallback when no recorded audio)
     isSpeaking: boolean = false;
     speechSupported: boolean = typeof window !== 'undefined' && 'speechSynthesis' in window;
+    private utterances: SpeechSynthesisUtterance[] = [];
 
     constructor(private route: ActivatedRoute, private apiService: ApiService, private dialog: MatDialog) { }
 
@@ -464,8 +465,10 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     speakArticle(): void {
         if (!this.speechSupported || !this.activeExplanation?.article) return;
         window.speechSynthesis.cancel();
+        this.utterances = [];
+
         // Strip markdown syntax for cleaner speech
-        const text = this.activeExplanation.article
+        let text = this.activeExplanation.article
             .replace(/#{1,6}\s?/g, '')       // headings
             .replace(/\*\*(.+?)\*\*/g, '$1') // bold
             .replace(/\*(.+?)\*/g, '$1')     // italic
@@ -475,22 +478,37 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
             .replace(/\n{2,}/g, '. ')        // paragraph breaks
             .trim();
 
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.9;
-        utterance.onstart  = () => { this.isSpeaking = true; };
-        utterance.onend    = () => { this.isSpeaking = false; };
-        utterance.onerror  = () => { this.isSpeaking = false; };
-        utterance.onpause  = () => { this.isSpeaking = false; };
-        utterance.onresume = () => { this.isSpeaking = true; };
-        window.speechSynthesis.speak(utterance);
-        this.isSpeaking = true;
+        // Split text into chunks (by sentence boundaries or up to 200 chars)
+        const chunks = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+
+        chunks.forEach((chunk: string, index: number) => {
+            const utterance = new SpeechSynthesisUtterance(chunk.trim());
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            
+            if (index === 0) {
+                utterance.onstart = () => { this.isSpeaking = true; };
+            }
+            if (index === chunks.length - 1) {
+                utterance.onend = () => { this.isSpeaking = false; };
+            }
+            
+            utterance.onerror = () => { this.isSpeaking = false; window.speechSynthesis.cancel(); };
+
+            this.utterances.push(utterance);
+            window.speechSynthesis.speak(utterance);
+        });
+
+        if (chunks.length > 0) {
+            this.isSpeaking = true;
+        }
     }
 
     stopSpeaking(): void {
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
             window.speechSynthesis.cancel();
         }
+        this.utterances = [];
         this.isSpeaking = false;
     }
 }

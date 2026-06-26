@@ -284,7 +284,7 @@ export class ApiService {
     return this.http.get<any[]>(`${this.authApiUrl}/api/manipulation-categories`, { headers: this.getAuthHeaders() });
   }
 
-  saveManipulationQuestionSet(topic: string, category: string, setName: string, questions: string[]): Observable<any> {
+  saveManipulationQuestionSet(topic: string, category: string, setName: string, questions: {question: string, hint: string}[]): Observable<any> {
     const payload = { topic, category, setName, questions };
     return this.http.post<any>(`${this.authApiUrl}/api/coding/manipulation/saved-sets`, payload, { headers: this.getAuthHeaders() });
   }
