@@ -1,8 +1,10 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ApiService } from './api.service';
+import { SessionManagerService } from './services/session-manager.service';
 
 @Component({
     selector: 'app-root',
@@ -17,10 +19,16 @@ export class AppComponent implements OnInit, OnDestroy {
     // 60 minutes for production
     private readonly INACTIVITY_LIMIT_MS = 3600000;
 
-    constructor(private apiService: ApiService) {}
+    constructor(
+      @Inject(PLATFORM_ID) private platformId: Object,
+      private apiService: ApiService,
+      private sessionManager: SessionManagerService
+    ) {}
 
     ngOnInit() {
-      this.resetInactivityTimer();
+      if (isPlatformBrowser(this.platformId)) {
+        this.resetInactivityTimer();
+      }
     }
 
     ngOnDestroy() {

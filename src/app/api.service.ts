@@ -39,9 +39,7 @@ export class ApiService {
   }
 
 
-  getCourses() {
-    return this.http.get<any>('https://jawaharlalnehru1988.github.io/bookapi/course.json');
-  }
+
   getFormValues() {
     return this.http.get<any>('http://localhost:3000/Forms');
     // return this.http.get<any>('http://localhost:3000/Forms');
@@ -252,6 +250,64 @@ export class ApiService {
       return false;
     }
   }
-}
+  // --- Coding / Interview API Methods ---
+  
+  getTopics(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/topics`, { headers: this.getAuthHeaders() });
+  }
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
+    return new HttpHeaders({
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json'
+    });
+  }
+
+  startCodingTest(payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/start`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  submitCodingApproach(interviewId: number, questionId: number, payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/${interviewId}/question/${questionId}/approach`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  submitCodingDirect(interviewId: number, questionId: number, payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/${interviewId}/question/${questionId}/direct`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  submitCodingCode(interviewId: number, questionId: number, payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/${interviewId}/question/${questionId}/code`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  getManipulationCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/manipulation-categories`, { headers: this.getAuthHeaders() });
+  }
+
+  saveManipulationQuestionSet(topic: string, category: string, setName: string, questions: string[]): Observable<any> {
+    const payload = { topic, category, setName, questions };
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/manipulation/saved-sets`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  getSavedManipulationQuestionSets(topic: string, category: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/coding/manipulation/saved-sets?topic=${topic}&category=${category}`, { headers: this.getAuthHeaders() });
+  }
+
+  getManipulationHistory(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/coding/manipulation/history`, { headers: this.getAuthHeaders() });
+  }
+
+  addManipulationCategory(payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/manipulation-categories`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  startManipulationChallenge(payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/manipulation/start`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  evaluateManipulationAnswers(payload: any): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/manipulation/evaluate`, payload, { headers: this.getAuthHeaders() });
+  }
+
+}
 

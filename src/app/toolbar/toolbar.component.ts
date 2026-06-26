@@ -38,7 +38,7 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class ToolbarComponent implements OnInit {
   showFiller = false;
-  courseName: any;
+
   loggedInUserData: any; // Define a variable to store the user data
   logInObj: any;
   isSuperAdmin: boolean = false;
@@ -109,11 +109,6 @@ export class ToolbarComponent implements OnInit {
     });
     this.route.queryParams.subscribe(params => {
       this.loggedInUser();
-    });
-    this.api.getCourses().subscribe({
-      next: (res) => {
-        this.courseName = res.courses;
-      }
     });
 
     this.api.getConversations().subscribe({

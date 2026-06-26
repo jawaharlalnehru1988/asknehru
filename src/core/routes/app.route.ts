@@ -28,5 +28,9 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () => import('../../app/dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
+  {
+    path: 'coding',
+    loadComponent: () => import('../../app/coding-interview/coding-interview.component').then(m => m.CodingInterviewComponent)
+  },
   { path: '**', redirectTo: '/home' },
 ];

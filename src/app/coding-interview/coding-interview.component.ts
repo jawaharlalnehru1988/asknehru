@@ -1,0 +1,459 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { ApiService } from '../api.service';
+import { MarkdownModule } from 'ngx-markdown';
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+@Component({
+  selector: 'app-coding-interview',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule, MarkdownModule, MonacoEditorModule],
+  templateUrl: './coding-interview.component.html',
+  styleUrls: ['./coding-interview.component.scss']
+})
+export class CodingInterviewComponent implements OnInit {
+
+  ready = false;
+  errorMessage = '';
+  successMessage = '';
+  busyLabel = '';
+  isAuthenticated = false;
+
+  topics: any[] = [];
+  difficultyLevels: string[] = ["SUPER_EASY", "EASY", "MANIPULATION CHALLENGE", "HARD", "HARDER"];
+  
+  // Setup State
+  topic = '';
+  difficulty = 'MANIPULATION CHALLENGE';
+  customDescription = '';
+
+  // Manipulation Challenge State
+  manipulationCategories: any[] = [];
+  selectedManipulationCategory = '';
+  newCategoryName = '';
+  manipulationQuestions: string[] = [];
+  manipulationApproaches: string[] = [];
+  manipulationAnswers: string[] = [];
+  manipulationResult: any = null;
+
+  savedQuestionSets: any[] = [];
+  selectedSavedSetId: any = 'NEW';
+  
+  // History and Session Save State
+  userHistory: any[] = [];
+  selectedHistoryId: string = '';
+  activeSetName: string = '';
+  isCurrentSetSaved: boolean = false;
+
+  // Active Session State
+  activeInterviewId: number | null = null;
+  activeQuestionId: number | null = null;
+  questionText = '';
+
+  // Phase State
+  currentPhase: 'APPROACH' | 'CODING' | 'COMPLETED' = 'APPROACH';
+  approachText = '';
+  approachFeedback = '';
+  approachApproved = false;
+
+  // Editor State
+  selectedLanguage = 'javascript';
+  templates: { java: string, javascript: string } = { java: '', javascript: '' };
+  userCode = '';
+  
+  editorOptions = { theme: 'vs-dark', language: 'javascript', minimap: { enabled: false }, fontSize: 14, automaticLayout: true };
+  editorReadOnlyOptions = { theme: 'vs-dark', language: 'javascript', minimap: { enabled: false }, fontSize: 13, readOnly: true };
+
+  // Direct Answer State
+  directAnswer = '';
+  directResult: any = null;
+
+  // Scorecard State
+  codingResult: any = null;
+
+  constructor(private apiService: ApiService, private router: Router) {}
+
+  ngOnInit(): void {
+    // Check Auth
+    this.apiService.authState$.subscribe(state => {
+      this.isAuthenticated = state;
+    });
+
+    if (this.isAuthenticated) {
+      this.fetchTopics();
+      this.fetchManipulationCategories();
+      this.fetchUserHistory();
+    }
+    this.ready = true;
+  }
+
+  fetchUserHistory() {
+    this.apiService.getManipulationHistory().subscribe({
+      next: (data) => {
+        this.userHistory = data;
+      },
+      error: (err) => console.error('Failed to fetch user history', err)
+    });
+  }
+
+  fetchManipulationCategories() {
+    this.apiService.getManipulationCategories().subscribe({
+      next: (data) => {
+        this.manipulationCategories = data;
+        if (data.length > 0) {
+          this.selectedManipulationCategory = data[0].name;
+          this.fetchSavedSets();
+        }
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          this.errorMessage = 'Your session has expired. Please log out and log in again.';
+          this.isAuthenticated = false;
+          this.apiService.globalLogout();
+        } else {
+          console.error('Failed to load categories', err);
+          this.errorMessage = 'Failed to load categories.';
+        }
+      }
+    });
+  }
+
+  handleAddCategory() {
+    if (!this.newCategoryName.trim()) return;
+    this.busyLabel = 'Adding...';
+    this.apiService.addManipulationCategory({ name: this.newCategoryName }).subscribe({
+      next: (cat) => {
+        this.manipulationCategories.push(cat);
+        this.selectedManipulationCategory = cat.name;
+        this.newCategoryName = '';
+        this.busyLabel = '';
+      },
+      error: () => {
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  fetchTopics() {
+    this.apiService.getTopics().pipe(
+      catchError(() => {
+        // Fallback topics if API fails
+        return of([{ id: 1, name: 'Java' }, { id: 2, name: 'Javascript' }]);
+      })
+    ).subscribe(data => {
+      this.topics = data;
+      if (this.topics.length > 0) {
+        this.topic = this.topics[0].name;
+      }
+      this.fetchSavedSets();
+    });
+  }
+
+  fetchSavedSets() {
+    if (this.topic && this.selectedManipulationCategory) {
+      this.apiService.getSavedManipulationQuestionSets(this.topic, this.selectedManipulationCategory).subscribe({
+        next: (sets) => {
+          this.savedQuestionSets = sets;
+          this.selectedSavedSetId = 'NEW';
+        },
+        error: (err) => console.error('Failed to fetch saved sets', err)
+      });
+    }
+  }
+
+  saveCurrentManipulationSet() {
+    if (!this.manipulationQuestions || this.manipulationQuestions.length === 0) return;
+    const setName = prompt("Enter a name for this question set (e.g., Strings Practice Set 1):", "New Set");
+    if (!setName) return;
+
+    this.busyLabel = 'Saving Set...';
+    this.apiService.saveManipulationQuestionSet(this.topic, this.selectedManipulationCategory, setName, this.manipulationQuestions).subscribe({
+      next: (res) => {
+        this.successMessage = "Question set saved successfully!";
+        this.activeSetName = setName;
+        this.isCurrentSetSaved = true;
+        this.busyLabel = '';
+        this.fetchSavedSets(); // Refresh the list
+      },
+      error: (err) => {
+        this.errorMessage = "Failed to save question set.";
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  handleRevisitAttempt() {
+    if (!this.selectedHistoryId) return;
+    const history = this.userHistory.find(h => h.id == this.selectedHistoryId);
+    if (history && history.questions) {
+      this.manipulationQuestions = history.questions;
+      this.manipulationApproaches = new Array(this.manipulationQuestions.length).fill('');
+      this.manipulationAnswers = new Array(this.manipulationQuestions.length).fill('');
+      this.activeSetName = 'Past Attempt (' + new Date(history.date).toLocaleDateString() + ')';
+      this.isCurrentSetSaved = true;
+      this.currentPhase = 'CODING';
+    }
+  }
+
+  handleStartCodingSession() {
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    if (this.difficulty === 'MANIPULATION CHALLENGE') {
+      if (!this.selectedManipulationCategory) {
+        this.errorMessage = 'Please select a manipulation category.';
+        return;
+      }
+
+      if (this.selectedSavedSetId !== 'NEW' && this.selectedSavedSetId !== 'NEXT') {
+         const set = this.savedQuestionSets.find(s => s.id == this.selectedSavedSetId);
+         if (set) {
+           this.manipulationQuestions = set.questions;
+           this.manipulationApproaches = new Array(this.manipulationQuestions.length).fill('');
+           this.manipulationAnswers = new Array(this.manipulationQuestions.length).fill('');
+           this.activeSetName = set.setName;
+           this.isCurrentSetSaved = true;
+           this.currentPhase = 'CODING';
+           return;
+         }
+      }
+
+      this.busyLabel = 'Generating Challenge Ideas...';
+      const payload: any = {
+        topic: this.topic,
+        category: this.selectedManipulationCategory
+      };
+
+      if (this.selectedSavedSetId === 'NEXT') {
+        const prevQuestions: string[] = [];
+        this.savedQuestionSets.forEach(s => prevQuestions.push(...s.questions));
+        payload.previousQuestions = prevQuestions;
+      }
+
+      this.apiService.startManipulationChallenge(payload).subscribe({
+        next: (response) => {
+          this.manipulationQuestions = response.questions;
+          this.manipulationApproaches = new Array(this.manipulationQuestions.length).fill('');
+          this.manipulationAnswers = new Array(this.manipulationQuestions.length).fill('');
+          this.activeSetName = '';
+          this.isCurrentSetSaved = false;
+          this.currentPhase = 'CODING';
+          this.busyLabel = '';
+        },
+        error: (err) => {
+          this.errorMessage = 'Failed to generate manipulation questions.';
+          this.busyLabel = '';
+        }
+      });
+      return;
+    }
+
+    this.busyLabel = 'Generating Challenge...';
+
+    const payload = {
+      topic: this.topic,
+      difficulty: this.difficulty,
+      description: this.customDescription
+    };
+
+    this.apiService.startCodingTest(payload).subscribe({
+      next: (response) => {
+        this.activeInterviewId = response.interview_id;
+        this.activeQuestionId = response.question_id;
+        this.questionText = response.question_text;
+
+        this.approachText = '';
+        this.approachFeedback = '';
+        this.approachApproved = false;
+        this.userCode = '';
+        this.directAnswer = '';
+        this.directResult = null;
+        this.codingResult = null;
+
+        const isDirect = this.difficulty === 'SUPER_EASY' || this.difficulty === 'EASY';
+        this.currentPhase = isDirect ? 'CODING' : 'APPROACH';
+        this.selectedLanguage = this.topic.toLowerCase() === 'java' ? 'java' : 'javascript';
+        this.editorOptions = { ...this.editorOptions, language: this.selectedLanguage };
+        this.editorReadOnlyOptions = { ...this.editorReadOnlyOptions, language: this.selectedLanguage };
+        this.busyLabel = '';
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Failed to start coding session.';
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  handleSubmitApproach() {
+    if (!this.activeInterviewId || !this.activeQuestionId) return;
+    if (!this.approachText.trim()) {
+      this.errorMessage = 'Please describe your approach.';
+      return;
+    }
+
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.busyLabel = 'Evaluating Approach...';
+
+    const payload = { approach: this.approachText };
+    this.apiService.submitCodingApproach(this.activeInterviewId, this.activeQuestionId, payload).subscribe({
+      next: (response) => {
+        this.approachFeedback = response.feedback;
+        this.approachApproved = response.approved;
+
+        if (response.approved) {
+          this.templates = {
+            java: response.java_template ?? '',
+            javascript: response.javascript_template ?? ''
+          };
+          const lang = this.selectedLanguage === 'java' ? 'java' : 'javascript';
+          this.userCode = lang === 'java' ? this.templates.java : this.templates.javascript;
+          this.currentPhase = 'CODING';
+          this.successMessage = 'Approach Approved! Proceed to the coding challenge.';
+        } else {
+          this.errorMessage = 'Approach rejected. Please read the critique and try another strategy.';
+        }
+        this.busyLabel = '';
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Failed to submit approach.';
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  handleSubmitManipulationAnswers() {
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.busyLabel = 'Evaluating Answers...';
+
+    const payload = {
+      topic: this.topic,
+      category: this.selectedManipulationCategory,
+      questions: this.manipulationQuestions,
+      approaches: this.manipulationApproaches,
+      answers: this.manipulationAnswers
+    };
+
+    this.apiService.evaluateManipulationAnswers(payload).subscribe({
+      next: (response) => {
+        this.manipulationResult = response;
+        this.currentPhase = 'COMPLETED';
+        this.busyLabel = '';
+      },
+      error: (err) => {
+        this.errorMessage = 'Failed to evaluate answers.';
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  handleSubmitDirectAnswer() {
+    if (!this.activeInterviewId || !this.activeQuestionId) return;
+    if (!this.directAnswer.trim()) {
+      this.errorMessage = 'Please enter an answer.';
+      return;
+    }
+
+    this.errorMessage = '';
+    this.busyLabel = 'Evaluating Answer...';
+
+    this.apiService.submitCodingDirect(this.activeInterviewId, this.activeQuestionId, { answer: this.directAnswer }).subscribe({
+      next: (response) => {
+        this.directResult = response;
+        this.currentPhase = 'COMPLETED';
+        this.busyLabel = '';
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Failed to submit answer.';
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  handleSubmitCode() {
+    if (!this.activeInterviewId || !this.activeQuestionId) return;
+    if (!this.userCode.trim()) {
+      this.errorMessage = 'Write your code solution before submitting.';
+      return;
+    }
+
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.busyLabel = 'Grading Solution...';
+
+    const payload = {
+      language: this.selectedLanguage,
+      code: this.userCode
+    };
+
+    this.apiService.submitCodingCode(this.activeInterviewId, this.activeQuestionId, payload).subscribe({
+      next: (response) => {
+        this.codingResult = response;
+        this.currentPhase = 'COMPLETED';
+        this.busyLabel = '';
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Failed to grade solution.';
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  handleLanguageChange(event: any) {
+    const newLang = event.target.value;
+    this.selectedLanguage = newLang;
+    this.editorOptions = { ...this.editorOptions, language: newLang };
+    this.editorReadOnlyOptions = { ...this.editorReadOnlyOptions, language: newLang };
+    if (newLang === 'java') {
+      this.userCode = this.templates.java;
+    } else {
+      this.userCode = this.templates.javascript;
+    }
+  }
+
+  copyToClipboard(text: string) {
+    if (navigator && navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        this.successMessage = 'Copied to clipboard!';
+        setTimeout(() => this.successMessage = '', 3000);
+      }).catch(err => console.error('Failed to copy text: ', err));
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        this.successMessage = 'Copied to clipboard!';
+        setTimeout(() => this.successMessage = '', 3000);
+      } catch (err) {
+        console.error('Failed to copy text: ', err);
+      }
+      document.body.removeChild(textarea);
+    }
+  }
+
+  handleReset() {
+    this.activeInterviewId = null;
+    this.activeQuestionId = null;
+    this.questionText = '';
+    this.approachText = '';
+    this.approachFeedback = '';
+    this.approachApproved = false;
+    this.userCode = '';
+    this.directAnswer = '';
+    this.directResult = null;
+    this.codingResult = null;
+    this.manipulationQuestions = [];
+    this.manipulationAnswers = [];
+    this.manipulationResult = null;
+    this.currentPhase = 'APPROACH';
+    this.successMessage = '';
+    this.customDescription = '';
+  }
+}

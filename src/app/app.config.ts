@@ -7,6 +7,8 @@ import { routes } from '../core/routes/app.route';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 
+import { provideMonacoEditor } from 'ngx-monaco-editor-v2';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -14,5 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(),
     provideMarkdown(),
+    provideMonacoEditor(),
   ],
 };
