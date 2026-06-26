@@ -284,6 +284,29 @@ export class ApiService {
     return this.http.get<any[]>(`${this.authApiUrl}/api/manipulation-categories`, { headers: this.getAuthHeaders() });
   }
 
+  getComplexityCategories(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/complexity-categories`, { headers: this.getAuthHeaders() });
+  }
+
+  startComplexityQuestions(topic: string, category: string, previousQuestions?: string[]): Observable<any> {
+    const payload = { topic, category, previousQuestions };
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/complexity/start`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  evaluateComplexityAnswers(topic: string, category: string, questions: string[], answers: string[]): Observable<any> {
+    const payload = { topic, category, questions, answers };
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/complexity/evaluate`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  saveComplexityQuestionSet(topic: string, category: string, setName: string, questions: string[]): Observable<any> {
+    const payload = { topic, category, setName, questions };
+    return this.http.post<any>(`${this.authApiUrl}/api/coding/manipulation/saved-sets`, payload, { headers: this.getAuthHeaders() });
+  }
+
+  getSavedComplexityQuestionSets(topic: string, category: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/coding/manipulation/saved-sets?topic=${topic}&category=${category}`, { headers: this.getAuthHeaders() });
+  }
+
   saveManipulationQuestionSet(topic: string, category: string, setName: string, questions: {question: string, hint: string}[]): Observable<any> {
     const payload = { topic, category, setName, questions };
     return this.http.post<any>(`${this.authApiUrl}/api/coding/manipulation/saved-sets`, payload, { headers: this.getAuthHeaders() });

@@ -11,7 +11,7 @@
     <h1 class="text-3xl font-bold mb-4">This workspace needs an authenticated session.</h1>
     <p class="hero-copy mb-6 text-gray-700">Please log in first before attempting a customized Coding workspace interview.</p>
     <div class="hero-links">
-      <a class="primary-button link-button px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" routerLink="/home">Go to Login</a>
+      <button class="primary-button link-button px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" (click)="openLoginDialog()">Go to Login</button>
     </div>
   </section>
 
@@ -89,7 +89,29 @@
           </div>
         </div>
 
-        <label *ngIf="difficulty !== 'MANIPULATION CHALLENGE'" class="field flex flex-col gap-1">
+        <!-- Complexity Setup -->
+        <div *ngIf="difficulty === 'COMPLEXITY'" class="mt-4 p-4 bg-gray-50 rounded border">
+          <h3 class="font-bold mb-3 text-gray-700">Complexity Options</h3>
+          <div class="mb-3">
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Select Category</label>
+            <select [(ngModel)]="selectedComplexityCategory" (change)="fetchSavedComplexitySets()" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="compCat">
+              <option *ngFor="let cat of complexityCategories" [value]="cat.name">{{ cat.name }}</option>
+            </select>
+          </div>
+          
+          <div class="mb-3">
+            <label class="block text-sm font-semibold mb-1 text-gray-700">Question Set</label>
+            <select [(ngModel)]="selectedSavedComplexitySetId" class="w-full p-2 border rounded focus:ring-2 focus:ring-blue-500" name="savedCompSet">
+              <option value="NEW">Generate New AI Set</option>
+              <option value="NEXT">Generate Next AI Set (Exclude Previous)</option>
+              <optgroup *ngIf="savedComplexitySets && savedComplexitySets.length > 0" label="Saved Question Sets">
+                <option *ngFor="let set of savedComplexitySets" [value]="set.id">{{ set.setName }}</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <label *ngIf="difficulty !== 'MANIPULATION CHALLENGE' && difficulty !== 'COMPLEXITY'" class="field flex flex-col gap-1">
           <span class="font-medium text-gray-700">Custom Specifications (Optional)</span>
           <textarea class="p-3 border rounded resize-y" [(ngModel)]="customDescription" name="customDescription"
                     placeholder="e.g. Focus on recursive algorithms, bitwise logic, or scenario based data trees."
@@ -98,7 +120,7 @@
 
         <button class="primary-button px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mt-2 font-semibold" 
                 [disabled]="!!busyLabel" type="submit">
-          {{ busyLabel || 'Generate Challenge' }}
+          {{ getSubmitButtonText() }}
         </button>
       </form>
     </article>
@@ -172,6 +194,56 @@
       </button>
     </div>
 
+    <!-- State 2.5: Active Complexity Workspace -->
+    <div *ngIf="complexityQuestions.length > 0 && currentPhase !== 'COMPLETED'" class="mx-auto max-w-4xl w-full flex flex-col gap-6">
+      <div class="flex justify-between items-center bg-white p-4 rounded shadow">
+        <div>
+          <h2 class="text-2xl font-bold flex items-center gap-3">
+            Complexity Challenge
+            <span *ngIf="activeSetName" class="text-sm bg-indigo-100 text-indigo-800 border border-indigo-200 px-3 py-1 rounded-full font-semibold shadow-sm">
+              Active Set: {{ activeSetName }}
+            </span>
+            <button *ngIf="!isCurrentSetSaved" (click)="saveCurrentComplexitySet()" class="text-sm bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded shadow transition font-semibold">
+              Save Question Set
+            </button>
+            <span *ngIf="isCurrentSetSaved" class="text-sm text-green-600 font-semibold flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              Questions are saved with the name '{{ activeSetName }}'
+            </span>
+          </h2>
+          <p class="text-gray-600">Topic: {{ topic }} | Category: {{ selectedComplexityCategory }}</p>
+        </div>
+        <button class="text-red-500 hover:text-red-700 font-medium text-sm border border-red-200 px-3 py-1 rounded" (click)="handleReset()">Exit Challenge</button>
+      </div>
+
+      <article *ngFor="let q of complexityQuestions; let i = index" class="card p-5 bg-white rounded shadow">
+        <div class="flex justify-between items-start mb-3">
+          <h3 class="text-lg font-bold text-blue-800">Question {{ i + 1 }}</h3>
+          <button (click)="copyToClipboard(q)" class="text-gray-500 hover:text-blue-600 transition-colors p-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-300" title="Copy Question">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </button>
+        </div>
+        <div class="markdown-body text-gray-800 mb-4 block">
+          <markdown [data]="q"></markdown>
+        </div>
+        
+        <h4 class="font-semibold text-sm mb-2 text-blue-700">Your Answer</h4>
+        <textarea class="w-full p-4 border rounded font-mono text-sm bg-gray-50 h-24" 
+                  [(ngModel)]="complexityAnswers[i]" 
+                  placeholder="Provide time and space complexity and a brief explanation..."
+                  spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+      </article>
+
+      <button class="w-full py-4 bg-green-600 text-white font-bold text-xl rounded shadow hover:bg-green-700 transition"
+              (click)="handleSubmitComplexityAnswers()" [disabled]="!!busyLabel">
+        {{ busyLabel || 'Submit All 10 Answers for Evaluation' }}
+      </button>
+    </div>
+
     <div *ngIf="activeInterviewId && currentPhase !== 'COMPLETED'" 
          class="grid grid-cols-1 lg:grid-cols-2 gap-6 min-h-[calc(100vh-200px)]">
       
@@ -224,7 +296,7 @@
       <!-- Right Panel: Code Workspace -->
       <div class="flex flex-col h-full">
         <!-- Super Easy & Easy Input Console -->
-        <article *ngIf="difficulty === 'SUPER_EASY' || difficulty === 'EASY'" class="card p-6 bg-white rounded shadow flex flex-col justify-center h-full">
+        <article *ngIf="difficulty === 'SUPER_EASY' || difficulty === 'COMPLEXITY'" class="card p-6 bg-white rounded shadow flex flex-col justify-center h-full">
           <h3 class="text-xl font-bold mb-3">Write Your Answer</h3>
           <p class="text-gray-600 mb-4">Trace the output or complexity and write your final conclusion below.</p>
           <form (ngSubmit)="handleSubmitDirectAnswer()" class="flex flex-col gap-4 h-full">
@@ -238,7 +310,7 @@
         </article>
 
         <!-- Monaco Editor Split Workspace -->
-        <article *ngIf="difficulty !== 'SUPER_EASY' && difficulty !== 'EASY'" class="card p-3 bg-white rounded shadow flex flex-col h-full min-h-[500px]">
+        <article *ngIf="difficulty !== 'SUPER_EASY' && difficulty !== 'COMPLEXITY'" class="card p-3 bg-white rounded shadow flex flex-col h-full min-h-[500px]">
           <div class="flex justify-between items-center mb-3 px-2">
             <div class="flex items-center gap-2">
               <span class="text-sm font-medium">Select Language:</span>
@@ -301,6 +373,50 @@
 
             <h4 class="font-bold text-gray-700 mb-2">Your Code</h4>
             <pre class="bg-gray-800 text-green-400 p-4 rounded text-sm font-mono whitespace-pre-wrap overflow-x-auto shadow-inner">{{ manipulationAnswers[i] || 'No code provided' }}</pre>
+          </div>
+
+          <div class="border-t border-gray-200 pt-4">
+            <h4 class="font-bold text-gray-700 mb-2 flex items-center gap-2">
+              <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              AI Feedback
+            </h4>
+            <p class="text-gray-600 leading-relaxed bg-blue-50 p-3 rounded">{{ eval.feedback }}</p>
+          </div>
+        </article>
+      </ng-container>
+
+      <!-- Complexity Scorecard -->
+      <ng-container *ngIf="complexityResult">
+        <article class="card p-10 bg-white rounded shadow text-center">
+          <p class="text-gray-500 uppercase font-bold text-sm tracking-widest mb-6">Complexity Evaluation Scorecard</p>
+          <div class="mx-auto w-40 h-40 rounded-full border-[10px] border-gray-100 bg-gray-50 flex items-center justify-center mb-6 shadow-inner">
+            <div>
+              <div class="text-5xl font-black text-gray-800">{{ complexityResult.total_score }}</div>
+              <div class="text-sm text-gray-500 mt-1">out of 100</div>
+            </div>
+          </div>
+          <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">
+            Complexity Challenge: {{ selectedComplexityCategory }}
+          </h2>
+          <button class="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700" (click)="handleReset()">
+            Try Another Challenge
+          </button>
+        </article>
+
+        <article *ngFor="let eval of complexityResult.evaluations; let i = index" class="card p-6 bg-white rounded shadow border-l-4 border-blue-500">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="text-lg font-bold text-gray-800">Question {{ i + 1 }}</h3>
+            <span class="px-3 py-1 bg-green-100 text-green-800 font-bold rounded shadow-sm text-sm">
+              Score: {{ eval.score }} / 10 
+            </span>
+          </div>
+          <div class="markdown-body text-gray-800 mb-4 bg-gray-50 p-4 rounded text-sm border font-medium block">
+            <markdown [data]="eval.question"></markdown>
+          </div>
+          
+          <div class="mb-4">
+            <h4 class="font-bold text-gray-700 mb-2">Your Answer</h4>
+            <pre class="bg-gray-100 text-gray-800 border p-4 rounded text-sm font-mono whitespace-pre-wrap overflow-x-auto shadow-inner mb-4">{{ complexityAnswers[i] || 'No answer provided' }}</pre>
           </div>
 
           <div class="border-t border-gray-200 pt-4">

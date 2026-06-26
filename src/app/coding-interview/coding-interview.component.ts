@@ -7,11 +7,13 @@ import { MarkdownModule } from 'ngx-markdown';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 
 @Component({
   selector: 'app-coding-interview',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, MarkdownModule, MonacoEditorModule],
+  imports: [CommonModule, FormsModule, RouterModule, MarkdownModule, MonacoEditorModule, MatDialogModule],
   templateUrl: './coding-interview.component.html',
   styleUrls: ['./coding-interview.component.scss']
 })
@@ -24,7 +26,7 @@ export class CodingInterviewComponent implements OnInit {
   isAuthenticated = false;
 
   topics: any[] = [];
-  difficultyLevels: string[] = ["SUPER_EASY", "EASY", "MANIPULATION CHALLENGE", "HARD", "HARDER"];
+  difficultyLevels: string[] = ["SUPER_EASY", "COMPLEXITY", "MANIPULATION CHALLENGE", "HARD", "HARDER"];
   
   // Setup State
   topic = '';
@@ -41,8 +43,18 @@ export class CodingInterviewComponent implements OnInit {
   manipulationAnswers: string[] = [];
   manipulationResult: any = null;
 
+  // Complexity State
+  complexityCategories: any[] = [];
+  selectedComplexityCategory = '';
+  complexityQuestions: string[] = [];
+  complexityAnswers: string[] = [];
+  complexityResult: any = null;
+
   savedQuestionSets: any[] = [];
   selectedSavedSetId: any = 'NEW';
+  
+  savedComplexitySets: any[] = [];
+  selectedSavedComplexitySetId: any = 'NEW';
   
   // History and Session Save State
   userHistory: any[] = [];
@@ -76,7 +88,7 @@ export class CodingInterviewComponent implements OnInit {
   // Scorecard State
   codingResult: any = null;
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     // Check Auth
@@ -87,9 +99,19 @@ export class CodingInterviewComponent implements OnInit {
     if (this.isAuthenticated) {
       this.fetchTopics();
       this.fetchManipulationCategories();
+      this.fetchComplexityCategories();
       this.fetchUserHistory();
     }
     this.ready = true;
+  }
+
+  openLoginDialog(): void {
+    this.dialog.open(AuthDialogComponent, {
+      data: { mode: 'login' },
+      panelClass: 'auth-dialog-container',
+      disableClose: false,
+      maxWidth: '100vw',
+    });
   }
 
   fetchUserHistory() {
@@ -119,6 +141,21 @@ export class CodingInterviewComponent implements OnInit {
           console.error('Failed to load categories', err);
           this.errorMessage = 'Failed to load categories.';
         }
+      }
+    });
+  }
+
+  fetchComplexityCategories() {
+    this.apiService.getComplexityCategories().subscribe({
+      next: (data) => {
+        this.complexityCategories = data;
+        if (data.length > 0) {
+          this.selectedComplexityCategory = data[0].name;
+          this.fetchSavedComplexitySets();
+        }
+      },
+      error: (err) => {
+        console.error('Failed to load complexity categories', err);
       }
     });
   }
@@ -159,6 +196,7 @@ export class CodingInterviewComponent implements OnInit {
         this.topic = this.topics[0].name;
       }
       this.fetchSavedSets();
+      this.fetchSavedComplexitySets();
     });
   }
 
@@ -170,6 +208,18 @@ export class CodingInterviewComponent implements OnInit {
           this.selectedSavedSetId = 'NEW';
         },
         error: (err) => console.error('Failed to fetch saved sets', err)
+      });
+    }
+  }
+
+  fetchSavedComplexitySets() {
+    if (this.topic && this.selectedComplexityCategory) {
+      this.apiService.getSavedComplexityQuestionSets(this.topic, this.selectedComplexityCategory).subscribe({
+        next: (sets) => {
+          this.savedComplexitySets = sets;
+          this.selectedSavedComplexitySetId = 'NEW';
+        },
+        error: (err) => console.error('Failed to fetch complexity sets', err)
       });
     }
   }
@@ -187,6 +237,27 @@ export class CodingInterviewComponent implements OnInit {
         this.isCurrentSetSaved = true;
         this.busyLabel = '';
         this.fetchSavedSets(); // Refresh the list
+      },
+      error: (err) => {
+        this.errorMessage = "Failed to save question set.";
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  saveCurrentComplexitySet() {
+    if (!this.complexityQuestions || this.complexityQuestions.length === 0) return;
+    const setName = prompt("Enter a name for this complexity set:", "New Set");
+    if (!setName) return;
+
+    this.busyLabel = 'Saving Set...';
+    this.apiService.saveComplexityQuestionSet(this.topic, this.selectedComplexityCategory, setName, this.complexityQuestions).subscribe({
+      next: (res) => {
+        this.successMessage = "Complexity set saved successfully!";
+        this.activeSetName = setName;
+        this.isCurrentSetSaved = true;
+        this.busyLabel = '';
+        this.fetchSavedComplexitySets(); // Refresh the list
       },
       error: (err) => {
         this.errorMessage = "Failed to save question set.";
@@ -264,6 +335,53 @@ export class CodingInterviewComponent implements OnInit {
       return;
     }
 
+    if (this.difficulty === 'COMPLEXITY') {
+      if (!this.selectedComplexityCategory) {
+        this.errorMessage = 'Please select a complexity category.';
+        return;
+      }
+
+      if (this.selectedSavedComplexitySetId !== 'NEW' && this.selectedSavedComplexitySetId !== 'NEXT') {
+         const set = this.savedComplexitySets.find(s => s.id == this.selectedSavedComplexitySetId);
+         if (set) {
+           this.complexityQuestions = set.questions.map((q: string) => this.formatComplexityQuestion(q));
+           this.complexityAnswers = new Array(this.complexityQuestions.length).fill('');
+           this.activeSetName = set.setName;
+           this.isCurrentSetSaved = true;
+           this.currentPhase = 'CODING';
+           return;
+         }
+      }
+
+      this.busyLabel = 'Generating Challenge...';
+      const payload: any = {
+        topic: this.topic,
+        category: this.selectedComplexityCategory
+      };
+
+      if (this.selectedSavedComplexitySetId === 'NEXT') {
+        const prevQuestions: string[] = [];
+        this.savedComplexitySets.forEach(s => prevQuestions.push(...s.questions));
+        payload.previousQuestions = prevQuestions;
+      }
+
+      this.apiService.startComplexityQuestions(payload.topic, payload.category, payload.previousQuestions).subscribe({
+        next: (response) => {
+          this.complexityQuestions = response.questions.map((q: string) => this.formatComplexityQuestion(q));
+          this.complexityAnswers = new Array(this.complexityQuestions.length).fill('');
+          this.activeSetName = '';
+          this.isCurrentSetSaved = false;
+          this.currentPhase = 'CODING';
+          this.busyLabel = '';
+        },
+        error: (err) => {
+          this.errorMessage = 'Failed to generate complexity questions.';
+          this.busyLabel = '';
+        }
+      });
+      return;
+    }
+
     this.busyLabel = 'Generating Challenge...';
 
     const payload = {
@@ -286,7 +404,7 @@ export class CodingInterviewComponent implements OnInit {
         this.directResult = null;
         this.codingResult = null;
 
-        const isDirect = this.difficulty === 'SUPER_EASY' || this.difficulty === 'EASY';
+        const isDirect = this.difficulty === 'SUPER_EASY' || this.difficulty === 'COMPLEXITY';
         this.currentPhase = isDirect ? 'CODING' : 'APPROACH';
         this.selectedLanguage = this.topic.toLowerCase() === 'java' ? 'java' : 'javascript';
         this.editorOptions = { ...this.editorOptions, language: this.selectedLanguage };
@@ -298,6 +416,43 @@ export class CodingInterviewComponent implements OnInit {
         this.busyLabel = '';
       }
     });
+  }
+  getSubmitButtonText(): string {
+    if (this.busyLabel) return this.busyLabel;
+    
+    if (this.difficulty === 'MANIPULATION CHALLENGE' && this.selectedSavedSetId !== 'NEW' && this.selectedSavedSetId !== 'NEXT') {
+      return 'Recover Existing Manipulation Questions';
+    }
+    if (this.difficulty === 'COMPLEXITY' && this.selectedSavedComplexitySetId !== 'NEW' && this.selectedSavedComplexitySetId !== 'NEXT') {
+      return 'Recover Existing Complexity Questions';
+    }
+    
+    return 'Generate Challenge';
+  }
+
+  formatComplexityQuestion(q: string): string {
+    if (!q) return q;
+    const qMarkIndex = q.indexOf('?');
+    if (qMarkIndex !== -1 && qMarkIndex < q.length - 1) {
+      const questionText = q.substring(0, qMarkIndex + 1).trim();
+      const codeText = q.substring(qMarkIndex + 1).trim();
+      
+      if (codeText.includes('```')) {
+        return q;
+      }
+      
+      if (codeText.length > 0) {
+        let formattedCodeText = codeText;
+        if (!formattedCodeText.includes('\n')) {
+          formattedCodeText = formattedCodeText
+            .replace(/{/g, ' {\n    ')
+            .replace(/}/g, '\n}\n')
+            .replace(/;/g, ';\n    ');
+        }
+        return `${questionText}\n\n\`\`\`${this.topic.toLowerCase()}\n${formattedCodeText}\n\`\`\``;
+      }
+    }
+    return q;
   }
 
   handleSubmitApproach() {
@@ -359,6 +514,29 @@ export class CodingInterviewComponent implements OnInit {
       },
       error: (err) => {
         this.errorMessage = 'Failed to evaluate answers.';
+        this.busyLabel = '';
+      }
+    });
+  }
+
+  handleSubmitComplexityAnswers() {
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.busyLabel = 'Evaluating Answers...';
+
+    this.apiService.evaluateComplexityAnswers(this.topic, this.selectedComplexityCategory, this.complexityQuestions, this.complexityAnswers).subscribe({
+      next: (response) => {
+        this.complexityResult = response;
+        if (this.complexityResult && this.complexityResult.evaluations) {
+          this.complexityResult.evaluations.forEach((evalItem: any) => {
+            evalItem.question = this.formatComplexityQuestion(evalItem.question);
+          });
+        }
+        this.currentPhase = 'COMPLETED';
+        this.busyLabel = '';
+      },
+      error: (err) => {
+        this.errorMessage = 'Failed to evaluate complexity answers.';
         this.busyLabel = '';
       }
     });
