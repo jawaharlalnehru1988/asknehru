@@ -73,6 +73,11 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     isSpeaking: boolean = false;
     speechSupported: boolean = typeof window !== 'undefined' && 'speechSynthesis' in window;
     private utterances: SpeechSynthesisUtterance[] = [];
+    
+    // Continuous Playback state
+    isContinuousPlayActive: boolean = false;
+    autoGenerateRemaining: number = 0;
+    autoPlayPending: boolean = false;
 
     constructor(private route: ActivatedRoute, private apiService: ApiService, private dialog: MatDialog) { }
 
@@ -247,6 +252,17 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     }
 
     explainOrRead(subtopic: any) {
+        if (!this.autoPlayPending) {
+            this.stopSpeaking();
+        }
+        
+        if (!this.explainedSubtopicIds.has(subtopic.id) && this.drawerOpen) {
+            this.activeExplanation = {
+                subtopicId: subtopic.id,
+                article: '## Generating topic...\n\n_Please wait ~10-15 seconds while the AI creates this explanation._ ⏳'
+            };
+        }
+
         this.currentSubtopicName = subtopic.subtopicName;
         this.loadingSubtopics.add(subtopic.id);
         this.apiService.explainSubtopic(subtopic.id).subscribe({
@@ -255,10 +271,20 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
                 this.explainedSubtopicIds.add(subtopic.id);
                 this.drawerOpen = true;
                 this.loadingSubtopics.delete(subtopic.id);
+                
+                if (this.autoPlayPending) {
+                    this.autoPlayPending = false;
+                    setTimeout(() => {
+                        this.speakArticle(true);
+                    }, 500);
+                }
             },
             error: (err) => {
                 console.error(err);
                 this.loadingSubtopics.delete(subtopic.id);
+                if (this.drawerOpen && this.activeExplanation?.subtopicId === subtopic.id) {
+                    this.activeExplanation.article = '## Error\n\nFailed to generate this topic. Please try again.';
+                }
             }
         });
     }
@@ -374,6 +400,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
     closeDrawer() {
         this.drawerOpen = false;
+        this.stopSpeaking();
         this.activeExplanation = null;
         this.quizStarted = false;
         this.quizCompleted = false;
@@ -439,6 +466,48 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
         }
     }
 
+    triggerDrawerAudioUpload(): void {
+        const input = document.getElementById('drawer-audio-upload') as HTMLInputElement | null;
+        input?.click();
+    }
+
+    onAudioUploadDrawer(event: Event): void {
+        const input = event.target as HTMLInputElement;
+        const file = input.files?.[0];
+        if (!file) return;
+
+        // Check if file size is within 15MB limit
+        const MAX_SIZE = 15 * 1024 * 1024; // 15MB in bytes
+        if (file.size > MAX_SIZE) {
+            alert('File size exceeds the maximum limit of 15MB.');
+            input.value = '';
+            return;
+        }
+
+        if (!this.activeExplanation || !this.activeExplanation.id) {
+            return;
+        }
+
+        const subtopicId = this.activeExplanation.subtopicId;
+        this.audioUploadState[subtopicId] = 'uploading';
+
+        this.apiService.uploadSubtopicAudio(this.activeExplanation.id, file).subscribe({
+            next: (updated: any) => {
+                this.audioUploadState[subtopicId] = 'done';
+                if (this.activeExplanation && this.activeExplanation.subtopicId === subtopicId) {
+                    this.activeExplanation = { ...this.activeExplanation, articleAudio: updated.articleAudio };
+                }
+                input.value = '';
+                setTimeout(() => { this.audioUploadState[subtopicId] = 'done'; }, 3000);
+            },
+            error: () => {
+                this.audioUploadState[subtopicId] = 'error';
+                input.value = '';
+                alert('An error occurred during upload. Please try again.');
+            }
+        });
+    }
+
     sendMessage() {
         if (!this.chatInput.trim() || this.isSendingMessage || !this.activeExplanation) return;
         
@@ -462,10 +531,22 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
     // ── Web Speech API TTS fallback ────────────────────────────────────
 
-    speakArticle(): void {
-        if (!this.speechSupported || !this.activeExplanation?.article) return;
-        window.speechSynthesis.cancel();
-        this.utterances = [];
+    speakArticle(isAutoPlay: boolean = false): void {
+        if (!this.activeExplanation?.article) return;
+        this.stopSpeaking(false);
+        
+        if (!isAutoPlay) {
+            this.isContinuousPlayActive = true;
+            this.autoGenerateRemaining = 25;
+        }
+
+        if (this.activeExplanation.articleAudio) {
+            // We have backend audio, don't use Web Speech TTS.
+            // AudioPlayerComponent will pick it up since isContinuousPlayActive is true.
+            return;
+        }
+
+        if (!this.speechSupported) return;
 
         // Strip markdown syntax for cleaner speech
         let text = this.activeExplanation.article
@@ -478,37 +559,140 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
             .replace(/\n{2,}/g, '. ')        // paragraph breaks
             .trim();
 
-        // Split text into chunks (by sentence boundaries or up to 200 chars)
+        // Split text into chunks (by sentence boundaries)
         const chunks = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
-
-        chunks.forEach((chunk: string, index: number) => {
-            const utterance = new SpeechSynthesisUtterance(chunk.trim());
-            utterance.lang = 'en-US';
-            utterance.rate = 0.9;
-            
-            if (index === 0) {
-                utterance.onstart = () => { this.isSpeaking = true; };
-            }
-            if (index === chunks.length - 1) {
-                utterance.onend = () => { this.isSpeaking = false; };
-            }
-            
-            utterance.onerror = () => { this.isSpeaking = false; window.speechSynthesis.cancel(); };
-
-            this.utterances.push(utterance);
-            window.speechSynthesis.speak(utterance);
-        });
 
         if (chunks.length > 0) {
             this.isSpeaking = true;
+            this.playNextUtterance(0, chunks);
         }
     }
 
-    stopSpeaking(): void {
+    private playNextUtterance(index: number, chunks: string[]): void {
+        if (index >= chunks.length) {
+            // Entire article has finished narrating
+            this.isSpeaking = false;
+            this.onArticleSpeechEnd();
+            return;
+        }
+
+        if (!this.isSpeaking) {
+            return; // Stopped early by user
+        }
+
+        const chunkText = chunks[index].trim();
+        if (!chunkText) {
+            this.playNextUtterance(index + 1, chunks);
+            return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(chunkText);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        
+        utterance.onend = () => {
+            if (this.isSpeaking) {
+                // Small timeout allows browser to clear its internal buffer, preventing GC/limit bugs on mobile
+                setTimeout(() => {
+                    this.playNextUtterance(index + 1, chunks);
+                }, 50);
+            }
+        };
+
+        utterance.onerror = (e) => {
+            console.error('TTS Error', e);
+            if (this.isSpeaking) {
+                this.isSpeaking = false;
+                window.speechSynthesis.cancel();
+            }
+        };
+
+        this.utterances.push(utterance);
+        window.speechSynthesis.speak(utterance);
+    }
+
+    stopSpeaking(resetContinuousPlay: boolean = true): void {
         if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
             window.speechSynthesis.cancel();
         }
         this.utterances = [];
         this.isSpeaking = false;
+        if (resetContinuousPlay) {
+            this.isContinuousPlayActive = false;
+            this.autoPlayPending = false;
+        }
+    }
+
+    get previousSubtopic(): any {
+        if (!this.activeExplanation) return null;
+        return this.getPreviousSubtopic(this.activeExplanation.subtopicId);
+    }
+
+    get nextSubtopic(): any {
+        if (!this.activeExplanation) return null;
+        return this.getNextSubtopic(this.activeExplanation.subtopicId);
+    }
+
+    private getPreviousSubtopic(currentId: number | string): any {
+        if (!this.roadmap || !this.roadmap.chapters) return null;
+        let previous = null;
+        for (const chapter of this.roadmap.chapters) {
+            if (!chapter.subtopics) continue;
+            for (const sub of chapter.subtopics) {
+                if (sub.id == currentId) {
+                    return previous;
+                }
+                previous = sub;
+            }
+        }
+        return null;
+    }
+
+    private getNextSubtopic(currentId: number | string): any {
+        if (!this.roadmap || !this.roadmap.chapters) return null;
+        let foundCurrent = false;
+        for (const chapter of this.roadmap.chapters) {
+            if (!chapter.subtopics) continue;
+            for (const sub of chapter.subtopics) {
+                if (foundCurrent) return sub;
+                if (sub.id == currentId) {
+                    foundCurrent = true;
+                }
+            }
+        }
+        return null;
+    }
+
+    onBackendAudioStarted(): void {
+        this.isContinuousPlayActive = true;
+        this.autoGenerateRemaining = 25;
+    }
+
+    onBackendAudioEnded(): void {
+        this.onArticleSpeechEnd();
+    }
+
+    private onArticleSpeechEnd(): void {
+        if (!this.isContinuousPlayActive || !this.activeExplanation) return;
+        
+        const nextSub = this.getNextSubtopic(this.activeExplanation.subtopicId);
+        if (!nextSub) {
+            this.isContinuousPlayActive = false;
+            return; // No more subtopics
+        }
+
+        const isGenerated = this.explainedSubtopicIds.has(nextSub.id);
+        
+        if (isGenerated) {
+            this.autoPlayPending = true;
+            this.explainOrRead(nextSub);
+        } else if (this.autoGenerateRemaining > 0) {
+            this.autoGenerateRemaining--;
+            this.autoPlayPending = true;
+            this.explainOrRead(nextSub);
+        } else {
+            // Hit the auto-generate limit
+            this.isContinuousPlayActive = false;
+        }
     }
 }

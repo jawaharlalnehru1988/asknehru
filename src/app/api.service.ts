@@ -229,7 +229,7 @@ export class ApiService {
     });
     const formData = new FormData();
     formData.append('articleAudio', file, file.name);
-    return this.http.post<any>(
+    return this.http.put<any>(
       `${this.authApiUrl}/api/conversations/${conversationId}/audio`,
       formData,
       { headers }

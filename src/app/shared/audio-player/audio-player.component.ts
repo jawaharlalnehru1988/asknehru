@@ -6,7 +6,9 @@ import {
   SimpleChanges,
   ViewChild,
   ElementRef,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,6 +21,9 @@ import { CommonModule } from '@angular/common';
 })
 export class AudioPlayerComponent implements OnChanges, OnDestroy {
   @Input() audioUrl: string | null = null;
+  @Input() autoPlay: boolean = false;
+  @Output() audioEnded = new EventEmitter<void>();
+  @Output() playStarted = new EventEmitter<void>();
   @ViewChild('audioEl') audioEl!: ElementRef<HTMLAudioElement>;
 
   isPlaying = false;
@@ -35,6 +40,10 @@ export class AudioPlayerComponent implements OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['audioUrl']) {
       this.reset();
+      if (this.autoPlay && this.audioUrl) {
+        // slight delay to ensure audio element is ready
+        setTimeout(() => this.togglePlay(), 100);
+      }
     }
   }
 
@@ -89,6 +98,7 @@ export class AudioPlayerComponent implements OnChanges, OnDestroy {
     this.isPlaying = true;
     this.isLoading = false;
     this.hasError = false;
+    this.playStarted.emit();
   }
 
   onPause(): void {
@@ -109,6 +119,7 @@ export class AudioPlayerComponent implements OnChanges, OnDestroy {
     this.isPlaying = false;
     this.currentTime = 0;
     if (this.audioEl) this.audioEl.nativeElement.currentTime = 0;
+    this.audioEnded.emit();
   }
 
   onError(): void {
