@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080',
+  apiBaseUrl: 'http://localhost:8085',
   // apiBaseUrl: 'https://api.asknehru.com',
   seoKeys: ['asknehru', 'jawaharlalnehru', 'nehru', 'nehruwebsite', 'programming', 'javascript'],
 };
