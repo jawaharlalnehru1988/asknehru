@@ -19,6 +19,8 @@ export interface Project {
   totalAttemptedQuestions?: number;
   explainedSubtopicsCount?: number;
   generatedMcqsCount?: number;
+  category?: string;
+  displayOrder?: number;
 }
 
 export interface Tile {

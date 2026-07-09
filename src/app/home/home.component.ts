@@ -17,7 +17,17 @@ import { forkJoin } from 'rxjs';
 })
 export class HomeComponent extends Homejson implements OnInit {
   override blogArticleData: Project[] = [];
+  technicalRoadmaps: Project[] = [];
+  nonTechnicalRoadmaps: Project[] = [];
+  commonRoadmaps: Project[] = [];
   loading: boolean = true;
+
+  groupRoadmaps() {
+    const sorted = [...this.blogArticleData].sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+    this.technicalRoadmaps = sorted.filter(r => r.category === 'TECHNICAL');
+    this.nonTechnicalRoadmaps = sorted.filter(r => r.category === 'NON_TECHNICAL');
+    this.commonRoadmaps = sorted.filter(r => r.category === 'COMMON');
+  }
 
   constructor(private apiService: ApiService) {
     super();
@@ -93,7 +103,9 @@ export class HomeComponent extends Homejson implements OnInit {
                 chaptersCount,
                 subtopicsCount,
                 explainedSubtopicsCount,
-                generatedMcqsCount
+                generatedMcqsCount,
+                category: roadmap.category || 'TECHNICAL',
+                displayOrder: roadmap.displayOrder !== undefined ? roadmap.displayOrder : 0
               };
             });
 
@@ -105,10 +117,12 @@ export class HomeComponent extends Homejson implements OnInit {
                        blog.totalScore = blogScores.reduce((acc: number, s: any) => acc + (s.score || 0), 0);
                        blog.totalAttemptedQuestions = blogScores.reduce((acc: number, s: any) => acc + (s.totalQuestions || 0), 0);
                     });
+                    this.groupRoadmaps();
                     this.loading = false;
                  },
                  error: (err) => {
                     console.error('Error fetching scores:', err);
+                    this.groupRoadmaps();
                     this.loading = false;
                  }
                });
@@ -117,6 +131,7 @@ export class HomeComponent extends Homejson implements OnInit {
                  blog.totalScore = undefined;
                  blog.totalAttemptedQuestions = undefined;
                });
+               this.groupRoadmaps();
                this.loading = false;
             }
           },

@@ -16,66 +16,153 @@
     </div>
   </section>
 
-  <section class="blog-section">
-    <div class="col-span-full text-center text-3xl font-bold mt-2 mb-6 text-white w-full">
-      Choose your favourite topics to master
-    </div>
-    @if (loading) {
-    <div class="flex justify-center items-center h-64 w-full col-span-full">
+  <div class="col-span-full text-center text-3xl font-bold mt-6 mb-6 text-white w-full">
+    Choose your favourite topics to master
+  </div>
+
+  @if (loading) {
+    <div class="flex justify-center items-center h-64 w-full">
       <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
     </div>
-    } @else {
-    @for( blog of blogArticleData; track blog.id) {
-    <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
-      <mat-card-header>
-        <mat-card-title-group>
-          <mat-card-title>{{ blog.PName }}</mat-card-title>
-          <mat-card-subtitle>click to explore Roadmap</mat-card-subtitle>
-        </mat-card-title-group>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="flex flex-col gap-1 mt-2">
-          <div class="text-sm font-medium text-amber-400">
-            {{ blog.chaptersCount }} Chapters &bull; {{ blog.subtopicsCount }} Subtopics
-          </div>
-          <div class="text-sm text-slate-300">
-            Explanations: {{ blog.explainedSubtopicsCount || 0 }} / {{ blog.subtopicsCount }}
-          </div>
-          <div class="text-sm text-slate-300">
-            MCQs Available: {{ blog.generatedMcqsCount || 0 }}
-          </div>
-          @if (blog.totalAttemptedQuestions !== undefined) {
-            <div class="text-sm text-yellow-300 font-bold mt-1">
-              Score: {{ blog.totalScore }} / {{ blog.generatedMcqsCount || 0 }}
-            </div>
-          }
-        </div>
-      </mat-card-content>
-    </mat-card>
-    }
+  } @else {
     
-    <!-- Coding Simulator Card -->
-    <mat-card class="mat-card-container" style="border: 2px solid #3b82f6; cursor: pointer;" routerLink="/coding">
-      <mat-card-header>
-        <mat-card-title-group>
-          <mat-card-title>Coding Interview Sandbox</mat-card-title>
-          <mat-card-subtitle>click to test your coding skills</mat-card-subtitle>
-        </mat-card-title-group>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="flex flex-col gap-1 mt-2">
-          <div class="text-sm font-medium text-amber-400">
-            Interactive AI-driven coding challenges
-          </div>
-          <div class="text-sm text-slate-300">
-            Includes Code Editor & AI Feedback
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
+    <!-- 1. Technical Roadmaps -->
+    @if (technicalRoadmaps.length > 0) {
+      <div class="text-2xl font-bold mt-8 ml-6 text-white border-l-4 border-emerald-400 pl-3">
+        Technical Roadmaps
+      </div>
+      <section class="blog-section">
+        @for( blog of technicalRoadmaps; track blog.id) {
+          <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>{{ blog.PName }}</mat-card-title>
+                <mat-card-subtitle>click to explore Roadmap</mat-card-subtitle>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="flex flex-col gap-1 mt-2">
+                <div class="text-sm font-medium text-amber-400">
+                  {{ blog.chaptersCount }} Chapters &bull; {{ blog.subtopicsCount }} Subtopics
+                </div>
+                <div class="text-sm text-slate-300">
+                  Explanations: {{ blog.explainedSubtopicsCount || 0 }} / {{ blog.subtopicsCount }}
+                </div>
+                <div class="text-sm text-slate-300">
+                  MCQs Available: {{ blog.generatedMcqsCount || 0 }}
+                </div>
+                @if (blog.totalAttemptedQuestions !== undefined) {
+                  <div class="text-sm text-yellow-300 font-bold mt-1">
+                    Score: {{ blog.totalScore }} / {{ blog.generatedMcqsCount || 0 }}
+                  </div>
+                }
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </section>
     }
-  </section>
+
+    <!-- 2. Non-Technical Roadmaps -->
+    @if (nonTechnicalRoadmaps.length > 0) {
+      <div class="text-2xl font-bold mt-8 ml-6 text-white border-l-4 border-indigo-400 pl-3">
+        Non-Technical Roadmaps
+      </div>
+      <section class="blog-section">
+        @for( blog of nonTechnicalRoadmaps; track blog.id) {
+          <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>{{ blog.PName }}</mat-card-title>
+                <mat-card-subtitle>click to explore Roadmap</mat-card-subtitle>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="flex flex-col gap-1 mt-2">
+                <div class="text-sm font-medium text-amber-400">
+                  {{ blog.chaptersCount }} Chapters &bull; {{ blog.subtopicsCount }} Subtopics
+                </div>
+                <div class="text-sm text-slate-300">
+                  Explanations: {{ blog.explainedSubtopicsCount || 0 }} / {{ blog.subtopicsCount }}
+                </div>
+                <div class="text-sm text-slate-300">
+                  MCQs Available: {{ blog.generatedMcqsCount || 0 }}
+                </div>
+                @if (blog.totalAttemptedQuestions !== undefined) {
+                  <div class="text-sm text-yellow-300 font-bold mt-1">
+                    Score: {{ blog.totalScore }} / {{ blog.generatedMcqsCount || 0 }}
+                  </div>
+                }
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </section>
+    }
+
+    <!-- 3. Common Roadmaps -->
+    @if (commonRoadmaps.length > 0) {
+      <div class="text-2xl font-bold mt-8 ml-6 text-white border-l-4 border-amber-400 pl-3">
+        Common Roadmaps
+      </div>
+      <section class="blog-section">
+        @for( blog of commonRoadmaps; track blog.id) {
+          <mat-card class="mat-card-container" [routerLink]="blog.routerLink">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>{{ blog.PName }}</mat-card-title>
+                <mat-card-subtitle>click to explore Roadmap</mat-card-subtitle>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="flex flex-col gap-1 mt-2">
+                <div class="text-sm font-medium text-amber-400">
+                  {{ blog.chaptersCount }} Chapters &bull; {{ blog.subtopicsCount }} Subtopics
+                </div>
+                <div class="text-sm text-slate-300">
+                  Explanations: {{ blog.explainedSubtopicsCount || 0 }} / {{ blog.subtopicsCount }}
+                </div>
+                <div class="text-sm text-slate-300">
+                  MCQs Available: {{ blog.generatedMcqsCount || 0 }}
+                </div>
+                @if (blog.totalAttemptedQuestions !== undefined) {
+                  <div class="text-sm text-yellow-300 font-bold mt-1">
+                    Score: {{ blog.totalScore }} / {{ blog.generatedMcqsCount || 0 }}
+                  </div>
+                }
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </section>
+    }
+
+    <!-- Coding Simulator Card Section -->
+    <div class="text-2xl font-bold mt-8 ml-6 text-white border-l-4 border-blue-400 pl-3">
+      Sandbox Simulator
+    </div>
+    <section class="blog-section mb-12">
+      <mat-card class="mat-card-container" style="border: 2px solid #3b82f6; cursor: pointer;" routerLink="/coding">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>Coding Interview Sandbox</mat-card-title>
+            <mat-card-subtitle>click to test your coding skills</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="flex flex-col gap-1 mt-2">
+            <div class="text-sm font-medium text-amber-400">
+              Interactive AI-driven coding challenges
+            </div>
+            <div class="text-sm text-slate-300">
+              Includes Code Editor & AI Feedback
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+  }
 
 
 

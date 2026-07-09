@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ApiService } from '../api.service';
 
 export type AuthDialogMode = 'login' | 'signup';
@@ -43,6 +44,7 @@ export function passwordMatchValidator(control: AbstractControl) {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
   ],
 })
@@ -52,6 +54,8 @@ export class AuthDialogComponent {
   form: FormGroup;
   isLoading = false;
   errorMessage = '';
+  hidePassword = true;
+  hideConfirmPassword = true;
 
   constructor(
     private dialogRef: MatDialogRef<AuthDialogComponent>,
