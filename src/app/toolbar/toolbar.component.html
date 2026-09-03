@@ -1,6 +1,7 @@
 <mat-toolbar>
   <span class="hide-on-small font-bold">AskNehru</span>
   <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
+  <button mat-button routerLinkActive="active-link" routerLink="/roadmaps">Roadmaps</button>
   <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
     <input type="text" placeholder="Search Topic" aria-label="Topic" matInput [formControl]="topicControl"
       [matAutocomplete]="auto">
@@ -33,9 +34,3 @@
   <button [disabled]="signInTrue" mat-button class="font-bold text-gray-800" (click)="openSignupDialog()">Sign Up</button>
   }
 </mat-toolbar>
-
-<mat-menu #menu="matMenu">
-  @for (project of ProjectList; track project) {
-  <button mat-menu-item [routerLink]="project.routerName">{{project.title}}</button>
-  }
-</mat-menu>

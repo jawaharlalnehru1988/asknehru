@@ -1,0 +1,48 @@
+.roadmaps-page {
+  background: linear-gradient(to right, #6d1717, #59a598, #294569, #09273f);
+  min-height: calc(100vh - 64px);
+  padding-bottom: 2rem;
+}
+
+.blog-section {
+  margin: 16px 12px;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.mat-card-container {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 4px 0.2px white;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 2px white;
+  }
+}
+
+:host ::ng-deep .mat-mdc-card {
+  color: sandybrown;
+  background-color: #4b4b4b !important;
+}
+
+mat-card-subtitle {
+  color: #fff;
+}

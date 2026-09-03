@@ -17,6 +17,10 @@ export const routes: Routes = [
   },
 
   {
+    path: 'roadmaps',
+    loadComponent: () => import('../../app/roadmaps/roadmaps.component').then((m) => m.RoadmapsComponent)
+  },
+  {
     path: 'project/:id',
     loadComponent: () => import('../../app/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
   },
