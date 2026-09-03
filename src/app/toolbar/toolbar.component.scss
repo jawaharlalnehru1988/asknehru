@@ -17,7 +17,7 @@ mat-toolbar.dark-toolbar {
   height: 64px;
 }
 
-/* Brand Link: AskNehru + Home Icon in perfect horizontal alignment */
+/* Brand Link: AskNehru + Home Icon */
 .brand-link {
   display: inline-flex;
   align-items: center;
@@ -59,26 +59,42 @@ mat-toolbar.dark-toolbar {
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.hide-on-small {
-  @media (max-width: 640px) {
-    display: none;
-  }
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
 .example-spacer {
   flex: 1 1 auto;
 }
 
-/* Authentication Buttons */
+/* Google Sign-In Button for New Visitors */
+.google-auth-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    background: #f8fafc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .google-icon {
+    flex-shrink: 0;
+  }
+}
+
+/* Standard Authentication Buttons */
 .auth-btn-login {
   color: #e2e8f0 !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   border-radius: 8px !important;
-  margin-right: 8px;
   transition: all 0.2s ease;
 
   &:hover {
@@ -101,9 +117,20 @@ mat-toolbar.dark-toolbar {
   }
 }
 
+/* User Avatar / Profile Initial */
 .user-initial-btn {
   margin-left: 8px;
   overflow: visible;
+  padding: 0;
+}
+
+.user-avatar-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .user-initial {
@@ -119,4 +146,27 @@ mat-toolbar.dark-toolbar {
   font-size: 15px;
   line-height: 1;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+.hide-on-small {
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hide-on-mobile {
+    display: none;
+  }
+  .show-on-mobile {
+    display: inline;
+  }
+  .google-auth-btn {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
 }

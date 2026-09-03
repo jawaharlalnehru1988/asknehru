@@ -10,6 +10,9 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
 import { UpperCasePipe } from '@angular/common';
+import { environment } from '../../environments/environment';
+
+declare const google: any;
 
 @Component({
   selector: 'app-toolbar',
@@ -32,10 +35,11 @@ import { UpperCasePipe } from '@angular/common';
 export class ToolbarComponent implements OnInit {
   showFiller = false;
 
-  loggedInUserData: any; // Define a variable to store the user data
+  loggedInUserData: any;
   logInObj: any;
   isSuperAdmin: boolean = false;
   initialName!: string;
+  userPicture: string | null = null;
   isUserLoggedIn!: boolean;
   loggedInTrue: boolean = true;
   signInTrue!: boolean;
@@ -46,8 +50,16 @@ export class ToolbarComponent implements OnInit {
   isEditPwd: boolean = false;
   isEditEmail: boolean = false;
 
+  googleClientId = environment.googleClientId;
 
-  constructor(private api: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private overlay: Overlay, private dialog: MatDialog) {
+  constructor(
+    private api: ApiService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private overlay: Overlay,
+    private dialog: MatDialog
+  ) {
     this.api.getLoginData().subscribe((booleanValue) => {
       this.loggedInTrue = booleanValue;
     });
@@ -60,8 +72,8 @@ export class ToolbarComponent implements OnInit {
         this.loggedInUser();
       } else {
         this.initialName = "";
+        this.userPicture = null;
         this.isSuperAdmin = false;
-        // if user was logged in and now state is false, they were logged out
       }
     });
   }
@@ -69,6 +81,8 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
     // Default to dark theme across the platform
     document.documentElement.classList.add('dark');
+
+    this.initGoogleAuth();
 
     this.signUpForm = this.formBuilder.group({
       id: [""],
@@ -79,7 +93,8 @@ export class ToolbarComponent implements OnInit {
       role: [""],
       isactive: [""]
     });
-    this.route.queryParams.subscribe(params => {
+
+    this.route.queryParams.subscribe(() => {
       this.loggedInUser();
     });
 
@@ -93,7 +108,77 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  loggedInUser() {
+  initGoogleAuth(): void {
+    if (typeof window === 'undefined') return;
+
+    const checkGoogle = () => {
+      if (typeof google !== 'undefined' && google.accounts?.id) {
+        try {
+          google.accounts.id.initialize({
+            client_id: this.googleClientId,
+            callback: (response: any) => this.handleGoogleCredential(response),
+            auto_select: false,
+            cancel_on_tap_outside: true
+          });
+
+          const btnContainer = document.getElementById('google-btn-container');
+          if (btnContainer) {
+            google.accounts.id.renderButton(btnContainer, {
+              theme: 'filled_black',
+              size: 'medium',
+              shape: 'pill',
+              text: 'signin_with',
+              logo_alignment: 'left',
+              width: 180
+            });
+            const fallback = document.getElementById('google-fallback-btn');
+            if (fallback) {
+              fallback.style.display = 'none';
+            }
+          }
+        } catch (e) {
+          console.warn('Google Identity Services notice:', e);
+        }
+      } else {
+        setTimeout(checkGoogle, 300);
+      }
+    };
+    checkGoogle();
+  }
+
+  handleGoogleCredential(response: any): void {
+    if (!response?.credential) return;
+    try {
+      const payload = JSON.parse(atob(response.credential.split('.')[1]));
+      const user = {
+        name: payload.name || payload.email || 'User',
+        email: payload.email,
+        picture: payload.picture || null,
+        role: payload.email === 'jawaharlalnehru@gmail.com' ? 'Super Admin' : 'User'
+      };
+      localStorage.setItem('token', response.credential);
+      localStorage.setItem('user', JSON.stringify(user));
+      this.userPicture = user.picture;
+      this.api.setAuthState(true);
+      this.loggedInUser();
+    } catch (e) {
+      console.error('Error decoding Google credential', e);
+    }
+  }
+
+  signInWithGoogle(): void {
+    if (typeof google !== 'undefined' && google.accounts?.id) {
+      google.accounts.id.prompt((notification: any) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          this.openLoginDialog();
+        }
+      });
+    } else {
+      this.openLoginDialog();
+    }
+  }
+
+  loggedInUser(): void {
     this.logInObj = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     let loggedInUserData = null;
@@ -102,6 +187,9 @@ export class ToolbarComponent implements OnInit {
       try {
         loggedInUserData = JSON.parse(this.logInObj);
         this.loggedInUserData = loggedInUserData;
+        if (loggedInUserData && loggedInUserData.picture) {
+          this.userPicture = loggedInUserData.picture;
+        }
       } catch(e) {}
     }
     
@@ -111,7 +199,10 @@ export class ToolbarComponent implements OnInit {
     } else if (token) {
       try {
         const payload = JSON.parse(atob(token.split('.')[1]));
-        userName = payload.email || payload.sub || "User";
+        userName = payload.name || payload.email || payload.sub || "User";
+        if (payload.picture) {
+          this.userPicture = payload.picture;
+        }
       } catch (e) {
         userName = "User";
       }
@@ -132,20 +223,21 @@ export class ToolbarComponent implements OnInit {
     this.checkIfSuperAdmin(loggedInUserData);
   }
 
-  getObjectKeys() {
+  getObjectKeys(): string[] {
     return Object.keys(this.loggedInUserData);
   }
-  checkIfSuperAdmin(loggedInUserData: any) {
+
+  checkIfSuperAdmin(loggedInUserData: any): void {
     this.isSuperAdmin = !!(loggedInUserData && loggedInUserData.role === "Super Admin");
   }
-  getInitials(name: string) {
-    // Split the name by spaces
+
+  getInitials(name: string): string {
     const parts = name.split(' ');
-    // Map each part to its first character and join them
     const initials = parts.map(part => part.charAt(0)).join('');
     return initials;
   }
-  loggedOut() {
+
+  loggedOut(): void {
     const refreshToken = localStorage.getItem('refreshToken');
     if (refreshToken) {
       this.api.logout(refreshToken).subscribe({
@@ -157,7 +249,13 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  clearSession() {
+  clearSession(): void {
+    this.userPicture = null;
+    if (typeof google !== 'undefined' && google.accounts?.id) {
+      try {
+        google.accounts.id.disableAutoSelect();
+      } catch (e) {}
+    }
     this.api.globalLogout();
     this.router.navigate(['']);
     this.isUserLoggedIn = false;
@@ -201,20 +299,18 @@ export class ToolbarComponent implements OnInit {
       }
     });
   }
-  openOverlay() {
+
+  openOverlay(): void {
   }
-
-
-
 
   isDivisible(num1: number, num2: number): boolean {
     if (num2 === 0) {
       throw new Error("Division by zero is not allowed");
     }
     return num1 % num2 === 0;
-  };
+  }
 
-  filterLongStrings(Strings: string[]): string[] {
-    return Strings.filter(str => str.length >= 5);
+  filterLongStrings(strings: string[]): string[] {
+    return strings.filter(str => str.length >= 5);
   }
 }
