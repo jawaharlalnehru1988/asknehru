@@ -21,6 +21,8 @@ export interface Project {
   generatedMcqsCount?: number;
   category?: string;
   displayOrder?: number;
+  chapterTitles?: string[];
+  subtopicTitles?: string[];
 }
 
 export interface Tile {

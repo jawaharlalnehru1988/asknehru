@@ -1,17 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { Project } from '../home/homejson';
 import { ApiService } from '../api.service';
 import { environment } from '../../environments/environment';
 import { forkJoin } from 'rxjs';
+import Fuse, { IFuseOptions } from 'fuse.js';
 
 @Component({
   selector: 'app-roadmaps',
   templateUrl: './roadmaps.component.html',
   styleUrls: ['./roadmaps.component.scss'],
   standalone: true,
-  imports: [MatCardModule, RouterLink, MatCard, MatCardHeader, MatCardTitle, MatCardContent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    RouterLink,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent
+  ]
 })
 export class RoadmapsComponent implements OnInit {
   blogArticleData: Project[] = [];
@@ -20,12 +32,62 @@ export class RoadmapsComponent implements OnInit {
   commonRoadmaps: Project[] = [];
   loading: boolean = true;
 
+  // Fuse.js search state
+  searchQuery: string = '';
+  fuseInstance: Fuse<Project> | null = null;
+  isSearching: boolean = false;
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     this.apiService.authState$.subscribe(() => {
       this.loadRoadmaps();
     });
+  }
+
+  initFuse() {
+    const options: IFuseOptions<Project> = {
+      keys: [
+        { name: 'PName', weight: 0.45 },
+        { name: 'chapterTitles', weight: 0.3 },
+        { name: 'subtopicTitles', weight: 0.2 },
+        { name: 'intro', weight: 0.05 }
+      ],
+      threshold: 0.35,
+      ignoreLocation: true,
+      minMatchCharLength: 2
+    };
+    this.fuseInstance = new Fuse(this.blogArticleData, options);
+  }
+
+  onSearchChange(query: string) {
+    const trimmed = (query || '').trim();
+    this.searchQuery = trimmed;
+
+    if (!trimmed) {
+      this.isSearching = false;
+      this.groupRoadmaps();
+      return;
+    }
+
+    this.isSearching = true;
+    if (this.fuseInstance) {
+      const results = this.fuseInstance.search(trimmed);
+      const matched = results.map(r => r.item);
+      this.technicalRoadmaps = matched.filter(r => r.category === 'TECHNICAL');
+      this.nonTechnicalRoadmaps = matched.filter(r => r.category === 'NON_TECHNICAL');
+      this.commonRoadmaps = matched.filter(r => r.category === 'COMMON');
+    }
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
+    this.isSearching = false;
+    this.groupRoadmaps();
+  }
+
+  get searchResultsCount(): number {
+    return this.technicalRoadmaps.length + this.nonTechnicalRoadmaps.length + this.commonRoadmaps.length;
   }
 
   groupRoadmaps() {
@@ -66,12 +128,22 @@ export class RoadmapsComponent implements OnInit {
               let chaptersCount = roadmap.chapters ? roadmap.chapters.length : 0;
               let subtopicsCount = 0;
               let roadmapSubtopicIds: number[] = [];
+              let chapterTitles: string[] = [];
+              let subtopicTitles: string[] = [];
               
               if (roadmap.chapters) {
                  roadmap.chapters.forEach((ch: any) => {
+                   if (ch.title) {
+                     chapterTitles.push(ch.title);
+                   }
                    if (ch.subtopics) {
                      subtopicsCount += ch.subtopics.length;
-                     ch.subtopics.forEach((sub: any) => roadmapSubtopicIds.push(sub.id));
+                     ch.subtopics.forEach((sub: any) => {
+                       roadmapSubtopicIds.push(sub.id);
+                       if (sub.title) {
+                         subtopicTitles.push(sub.title);
+                       }
+                     });
                    }
                  });
               }
@@ -98,6 +170,8 @@ export class RoadmapsComponent implements OnInit {
                 syllabus: roadmap.syllabus,
                 chaptersCount,
                 subtopicsCount,
+                chapterTitles,
+                subtopicTitles,
                 explainedSubtopicsCount,
                 generatedMcqsCount,
                 category: roadmap.category || 'TECHNICAL',
@@ -114,11 +188,13 @@ export class RoadmapsComponent implements OnInit {
                        blog.totalAttemptedQuestions = blogScores.reduce((acc: number, s: any) => acc + (s.totalQuestions || 0), 0);
                     });
                     this.groupRoadmaps();
+                    this.initFuse();
                     this.loading = false;
                  },
                  error: (err) => {
                     console.error('Error fetching scores:', err);
                     this.groupRoadmaps();
+                    this.initFuse();
                     this.loading = false;
                  }
                });
@@ -128,6 +204,7 @@ export class RoadmapsComponent implements OnInit {
                  blog.totalAttemptedQuestions = undefined;
                });
                this.groupRoadmaps();
+               this.initFuse();
                this.loading = false;
             }
           },

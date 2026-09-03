@@ -1,57 +1,60 @@
 :host {
     display: block;
-    margin-top: auto; // Push to bottom if flex container
+    margin-top: auto;
 }
 
 .site-footer {
-    background-color: #1a202c; // Dark background
-    color: #e2e8f0; // Light text
-    padding: 3rem 1rem 1rem 1rem;
-    font-family: 'Inter', sans-serif;
-    border-top: 1px solid #2d3748;
+    background: linear-gradient(180deg, #0f172a 0%, #080d1a 100%);
+    color: #e2e8f0;
+    padding: 3.5rem 1.5rem 1.5rem 1.5rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 
     .footer-content {
-        max-width: 1200px;
+        max-width: 1000px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-bottom: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2.5rem;
     }
 
     .footer-column {
         h3 {
-            color: #fff;
+            color: #ffffff;
             font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid #4a5568;
+            border-bottom: 2px solid #3b82f6;
             padding-bottom: 0.5rem;
             display: inline-block;
+            letter-spacing: 0.025em;
         }
 
         p,
         li {
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            color: #cbd5e1;
 
-            mat-icon {
-                font-size: 1.2rem;
-                height: 1.2rem;
-                width: 1.2rem;
-                color: #a0aec0;
+            mat-icon.contact-icon {
+                font-size: 1.25rem;
+                height: 1.25rem;
+                width: 1.25rem;
+                color: #94a3b8;
             }
 
             a {
                 color: #e2e8f0;
                 text-decoration: none;
-                transition: color 0.2s;
+                transition: all 0.2s ease;
 
                 &:hover {
-                    color: #63b3ed; // Light blue hover
+                    color: #60a5fa;
                     text-decoration: underline;
                 }
             }
@@ -60,52 +63,125 @@
         ul {
             list-style: none;
             padding: 0;
+            margin: 0;
 
             li {
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.6rem;
+
+                a {
+                    color: #cbd5e1;
+
+                    &:hover {
+                        color: #38bdf8;
+                    }
+                }
             }
         }
     }
 
-    .projects {
-        li::before {
-            content: "•";
-            color: #4fd1c5;
-            margin-right: 0.5rem;
+    /* Contact details row */
+    .phone-whatsapp-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+
+        .separator {
+            color: #475569;
+            margin: 0 0.25rem;
+        }
+
+        .phone-link {
+            font-weight: 500;
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #25d366;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.25);
+            transition: all 0.2s ease;
+
+            .whatsapp-svg {
+                fill: #25d366;
+                transition: transform 0.2s ease;
+            }
+
+            &:hover {
+                background: rgba(37, 211, 102, 0.2);
+                color: #4ade80;
+                text-decoration: none;
+                transform: translateY(-1px);
+
+                .whatsapp-svg {
+                    transform: scale(1.15);
+                }
+            }
         }
     }
 
+
+    /* Social Links */
     .social-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.75rem;
 
-        a {
-            color: #cbd5e0;
+        .social-icon {
+            color: #e2e8f0;
             text-decoration: none;
             padding: 0.5rem 1rem;
-            background-color: #2d3748;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            font-size: 0.9rem;
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            font-size: 0.875rem;
             display: inline-flex;
             align-items: center;
             gap: 8px;
 
-            &:hover {
-                background-color: #4a5568;
-                color: #fff;
-                transform: translateY(-2px);
-            }
-
             svg {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
                 fill: currentColor;
+                transition: transform 0.2s ease;
             }
 
             span {
                 font-weight: 500;
+            }
+
+            &:hover {
+                background-color: #334155;
+                color: #ffffff;
+                border-color: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+                svg {
+                    transform: scale(1.1);
+                }
+            }
+
+            &.whatsapp-social {
+                border-color: rgba(37, 211, 102, 0.3);
+                background: rgba(37, 211, 102, 0.1);
+
+                svg {
+                    fill: #25d366;
+                }
+
+                &:hover {
+                    background: rgba(37, 211, 102, 0.25);
+                    border-color: #25d366;
+                    color: #4ade80;
+                }
             }
         }
     }
@@ -113,8 +189,24 @@
     .footer-bottom {
         text-align: center;
         padding-top: 2rem;
-        border-top: 1px solid #2d3748;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         font-size: 0.85rem;
-        color: #718096;
+        color: #94a3b8;
+    }
+}
+
+@media (max-width: 640px) {
+    .site-footer {
+        padding: 2.5rem 1rem 1rem 1rem;
+
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .phone-whatsapp-row {
+            flex-direction: row;
+            align-items: center;
+        }
     }
 }

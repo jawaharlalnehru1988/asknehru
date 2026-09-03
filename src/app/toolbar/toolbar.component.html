@@ -1,36 +1,33 @@
-<mat-toolbar>
-  <span class="hide-on-small font-bold">AskNehru</span>
-  <button mat-button routerLink=""><mat-icon>home</mat-icon></button>
-  <button mat-button routerLinkActive="active-link" routerLink="/roadmaps">Roadmaps</button>
-  <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
-    <input type="text" placeholder="Search Topic" aria-label="Topic" matInput [formControl]="topicControl"
-      [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTopic($event.option.value)">
-      <mat-option [value]="null">All</mat-option>
-      @for (topic of filteredTopics | async; track topic) {
-      <mat-option [value]="topic">{{topic}}</mat-option>
-      }
-    </mat-autocomplete>
-  </mat-form-field>
+<mat-toolbar class="dark-toolbar">
+  <a routerLink="/" class="brand-link" aria-label="AskNehru Home">
+    <span class="brand-title">AskNehru</span>
+    <mat-icon class="home-icon">home</mat-icon>
+  </a>
+
   <span class="example-spacer"></span>
-  <button mat-icon-button (click)="toggleDarkMode()" aria-label="Toggle dark mode">
-    <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
-  </button>
+
   @if (isSuperAdmin) {
-  <button class="hide-on-small" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
+  <button class="hide-on-small text-slate-300 hover:text-white" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
   }
+
   @if (isUserLoggedIn) {
-  <button class="hide-on-small font-bold" mat-button routerLinkActive="active-link" routerLink="/dashboard">Dashboard</button>
-  <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-initial-btn">
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-initial-btn" aria-label="User profile">
     <div class="user-initial">{{ initialName | uppercase }}</div>
   </button>
   <mat-menu #userMenu="matMenu">
-    <button mat-menu-item routerLink="/dashboard">Dashboard</button>
-    <button mat-menu-item (click)="loggedOut()">Log Out</button>
+    <button mat-menu-item routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-menu-item (click)="loggedOut()">
+      <mat-icon>logout</mat-icon>
+      <span>Log Out</span>
+    </button>
   </mat-menu>
   }
+
   @if (!isUserLoggedIn) {
-  <button [disabled]="!loggedInTrue" mat-button class="font-bold bg-gray-300 text-gray-800" (click)="openLoginDialog()">Login</button>
-  <button [disabled]="signInTrue" mat-button class="font-bold text-gray-800" (click)="openSignupDialog()">Sign Up</button>
+  <button [disabled]="!loggedInTrue" mat-button class="auth-btn-login font-semibold" (click)="openLoginDialog()">Login</button>
+  <button [disabled]="signInTrue" mat-button class="auth-btn-signup font-semibold" (click)="openSignupDialog()">Sign Up</button>
   }
 </mat-toolbar>

@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthDialogComponent } from '../auth-dialog/auth-dialog.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
-import { AsyncPipe, UpperCasePipe } from '@angular/common';
-import { Observable } from 'rxjs';
-import { map, startWith, filter } from 'rxjs/operators';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-toolbar',
@@ -29,10 +25,7 @@ import { map, startWith, filter } from 'rxjs/operators';
     MatMenuItem,
     MatMenuTrigger,
     MatDialogModule,
-    MatAutocompleteModule,
-    MatInputModule,
     ReactiveFormsModule,
-    AsyncPipe,
     UpperCasePipe
   ]
 })
@@ -52,11 +45,6 @@ export class ToolbarComponent implements OnInit {
   hide: boolean = true;
   isEditPwd: boolean = false;
   isEditEmail: boolean = false;
-  mainTopics: string[] = [];
-  isDarkMode: boolean = false;
-
-  topicControl = new FormControl('');
-  filteredTopics!: Observable<string[]>;
 
 
   constructor(private api: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private overlay: Overlay, private dialog: MatDialog) {
@@ -79,15 +67,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Initialize dark mode
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      this.isDarkMode = true;
-      document.documentElement.classList.add('dark');
-    } else {
-      this.isDarkMode = false;
-      document.documentElement.classList.remove('dark');
-    }
+    // Default to dark theme across the platform
+    document.documentElement.classList.add('dark');
 
     this.signUpForm = this.formBuilder.group({
       id: [""],
@@ -102,14 +83,6 @@ export class ToolbarComponent implements OnInit {
       this.loggedInUser();
     });
 
-    this.checkAndFetchTopics();
-
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      this.checkAndFetchTopics();
-    });
-
     for (const key in this.loggedInUserData) {
       if (this.loggedInUserData.hasOwnProperty(key)) {
         const control = this.signUpForm.get(key);
@@ -118,34 +91,6 @@ export class ToolbarComponent implements OnInit {
         }
       }
     }
-  }
-
-  checkAndFetchTopics() {
-    const currentUrl = this.router.url.split('?')[0];
-    if (currentUrl === '/' || currentUrl === '/home') {
-      if (this.mainTopics.length === 0) {
-        this.api.getConversations().subscribe({
-          next: (data) => {
-            this.mainTopics = [...new Set(data.map((item: any) => item.mainTopic))] as string[];
-            // Initialize filtered topics after data is loaded
-            this.filteredTopics = this.topicControl.valueChanges.pipe(
-              startWith(''),
-              map(value => this._filter(value || '')),
-            );
-          }
-        });
-      }
-    }
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.mainTopics.filter(topic => topic.toLowerCase().includes(filterValue));
-  }
-
-  selectTopic(topic: string | null) {
-    this.api.setMainTopic(topic);
-    this.router.navigate(['/articles-gallery']);
   }
 
   loggedInUser() {
@@ -259,16 +204,7 @@ export class ToolbarComponent implements OnInit {
   openOverlay() {
   }
 
-  toggleDarkMode() {
-    this.isDarkMode = !this.isDarkMode;
-    if (this.isDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }
+
 
 
   isDivisible(num1: number, num2: number): boolean {

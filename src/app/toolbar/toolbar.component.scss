@@ -1,52 +1,104 @@
-.spacer {
-  flex: 1 1 auto;
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.search-field {
-  font-size: 14px;
-  width: 100%;
-  max-width: 300px;
-  margin-left: 8px;
+mat-toolbar.dark-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, #0b1120 0%, #060a12 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 0 1.25rem;
+  height: 64px;
+}
 
-  ::ng-deep .mat-mdc-form-field-subscript-wrapper {
-    display: none;
-  }
+/* Brand Link: AskNehru + Home Icon in perfect horizontal alignment */
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 
-  ::ng-deep .mat-mdc-text-field-wrapper {
-    background-color: white;
-    border-radius: 4px;
-    height: 40px;
-    padding: 0 10px;
-  }
+  &:hover {
+    opacity: 0.9;
 
-  ::ng-deep .mat-mdc-form-field-flex {
-    height: 40px;
-    align-items: center;
+    .home-icon {
+      color: #60a5fa;
+      transform: scale(1.1);
+    }
   }
+}
 
-  // Adjust input padding to center text vertically if needed
-  input {
-    margin-top: -2px;
-  }
+.brand-title {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.home-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .hide-on-small {
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     display: none;
   }
 }
 
 .font-bold {
-  font-weight: bold;
-}
-
-mat-toolbar {
-  display: flex;
-  justify-content: space-between;
+  font-weight: 700;
 }
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+/* Authentication Buttons */
+.auth-btn-login {
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+  }
+}
+
+.auth-btn-signup {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af) !important;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.5);
+  }
 }
 
 .user-initial-btn {
@@ -55,15 +107,16 @@ mat-toolbar {
 }
 
 .user-initial {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background-color: #3f51b5;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
