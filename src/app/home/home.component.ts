@@ -196,24 +196,48 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   consultingPillars = [
     {
+      rank: 'A',
+      suit: '♠',
+      order: '01',
+      accent: 'amber',
+      accentGlow: 'rgba(245, 158, 11, 0.25)',
+      badge: 'Architecture & Strategy',
       icon: 'architecture',
       title: 'Product Counseling & Architecture',
       subtitle: 'From Concept to Scalable System',
       description: 'I counsel startups and business owners on transforming rough ideas into production-ready software architectures, database schemas, and milestone-driven technical roadmaps.'
     },
     {
+      rank: 'K',
+      suit: '♦',
+      order: '02',
+      accent: 'blue',
+      accentGlow: 'rgba(59, 130, 246, 0.25)',
+      badge: 'Full-Stack & Cloud',
       icon: 'layers',
       title: 'Full-Stack Web & Cloud Systems',
       subtitle: 'Modern, Resilient Codebases',
       description: 'Over 4+ years building high-throughput web applications with Angular, React, Next.js, Spring Boot, Node.js, and Python/Django. Clean architecture, automated testing, and scalable microservices.'
     },
     {
+      rank: 'Q',
+      suit: '♣',
+      order: '03',
+      accent: 'emerald',
+      accentGlow: 'rgba(16, 185, 129, 0.25)',
+      badge: 'Kotlin & Jetpack Compose',
       icon: 'smartphone',
       title: 'Native Android Mobile Engineering',
       subtitle: 'Modern Kotlin & Jetpack Compose',
       description: 'Capable of engineering native, fluid Android mobile applications using Kotlin, Jetpack Compose, Room database, Coroutines, and cloud data synchronization.'
     },
     {
+      rank: 'J',
+      suit: '♥',
+      order: '04',
+      accent: 'purple',
+      accentGlow: 'rgba(168, 85, 247, 0.25)',
+      badge: 'Linux VPS & Containers',
       icon: 'cloud_done',
       title: 'Cloud Deployment & DevOps',
       subtitle: 'Zero-Downtime Linux Infrastructure',

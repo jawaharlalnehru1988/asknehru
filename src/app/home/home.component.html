@@ -137,40 +137,93 @@
   </section>
 
   <!-- ================= PRODUCT COUNSELOR & CAPABILITIES ================= -->
-  <section class="capabilities-section py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <!-- ================= PRODUCT COUNSELOR & CAPABILITIES ================= -->
+  <section class="capabilities-section py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-      <h3 class="text-emerald-400 text-sm font-bold uppercase tracking-widest">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
         What I Bring to Your Organization &amp; Clients
-      </h3>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white">
         Product Counseling, Full-Stack &amp; Android Engineering
       </h2>
       <p class="text-slate-300 text-base sm:text-lg">
         Bridging the gap between high-level business vision and rock-solid technical execution across web, cloud microservices, and native mobile ecosystems.
       </p>
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-amber-500/30 text-amber-300 text-xs font-medium tracking-wide">
+        <span>🃏</span>
+        <span>Hover over the cards to experience the Rummy deck fanning motion</span>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      @for (pillar of consultingPillars; track pillar.title) {
-        <div class="pillar-card p-8 rounded-2xl backdrop-blur-md border border-white/10 hover:border-amber-400/40 transition-all group" appTilt3d [maxTilt]="6" [scale]="1.02" appSpotlight spotlightColor="rgba(245, 158, 11, 0.12)">
-          <div class="flex items-center gap-4 mb-4 relative z-10">
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-amber-500/20 to-emerald-500/20 text-amber-400 border border-white/10 font-bold text-xl group-hover:scale-110 transition-transform">
-              ✓
+    <!-- RUMMY CARDS DECK WRAPPER -->
+    <div class="rummy-deck-wrapper py-6 overflow-visible">
+      <div class="rummy-deck-hand">
+        @for (pillar of consultingPillars; track pillar.title; let i = $index) {
+          <div 
+            class="rummy-card rummy-card-{{ i + 1 }} card-{{ pillar.accent }} relative rounded-3xl p-7 border backdrop-blur-xl group cursor-pointer"
+            appTilt3d 
+            [maxTilt]="8" 
+            [scale]="1.04" 
+            appSpotlight 
+            [spotlightColor]="pillar.accentGlow">
+            
+            <!-- Card Corner Index Top-Left (Rummy Ace/King/Queen/Jack) -->
+            <div class="card-corner-index top-left flex flex-col items-center">
+              <span class="card-rank font-black text-2xl leading-none">{{ pillar.rank }}</span>
+              <span class="card-suit text-sm leading-none mt-1">{{ pillar.suit }}</span>
             </div>
-            <div>
-              <h3 class="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
-                {{ pillar.title }}
-              </h3>
-              <p class="text-sm text-emerald-400 font-medium">
-                {{ pillar.subtitle }}
+
+            <!-- Card Corner Index Top-Right (Pillar Order Number) -->
+            <div class="card-pillar-tag absolute top-4 right-5 text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border">
+              Pillar {{ pillar.order }}
+            </div>
+
+            <!-- Holographic Sheen Sweep -->
+            <div class="card-holographic-sheen"></div>
+
+            <!-- Card Body Content -->
+            <div class="card-content-inner pt-7 pb-6 space-y-4 relative z-10">
+              
+              <!-- Check Seal Icon -->
+              <div class="w-13 h-13 rounded-2xl flex items-center justify-center text-xl font-bold border shadow-xl transition-transform duration-300 group-hover:scale-110 card-icon-seal">
+                ✓
+              </div>
+
+              <!-- Titles -->
+              <div class="space-y-1">
+                <h3 class="text-xl font-black text-white group-hover:text-amber-300 transition-colors leading-snug">
+                  {{ pillar.title }}
+                </h3>
+                <div class="text-xs font-bold uppercase tracking-wider card-subtitle">
+                  {{ pillar.subtitle }}
+                </div>
+              </div>
+
+              <!-- Description -->
+              <p class="text-slate-300 text-sm leading-relaxed">
+                {{ pillar.description }}
               </p>
+
+              <!-- Pillar Badge Tag -->
+              <div class="pt-2">
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-xl border card-badge-pill">
+                  <span>{{ pillar.suit }}</span>
+                  <span>{{ pillar.badge }}</span>
+                </span>
+              </div>
+
             </div>
+
+            <!-- Card Corner Index Bottom-Right (Inverted) -->
+            <div class="card-corner-index bottom-right flex flex-col items-center rotate-180">
+              <span class="card-rank font-black text-2xl leading-none">{{ pillar.rank }}</span>
+              <span class="card-suit text-sm leading-none mt-1">{{ pillar.suit }}</span>
+            </div>
+
           </div>
-          <p class="text-slate-300 leading-relaxed text-sm sm:text-base relative z-10">
-            {{ pillar.description }}
-          </p>
-        </div>
-      }
+        }
+      </div>
     </div>
   </section>
 
