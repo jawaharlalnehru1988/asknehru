@@ -17,6 +17,23 @@ import { SpotlightDirective } from '../shared/animations/spotlight.directive';
 import { CountUpDirective } from '../shared/animations/count-up.directive';
 import { BorderBeamDirective } from '../shared/animations/border-beam.directive';
 
+export interface EnterpriseExperience {
+  id: string;
+  company: string;
+  shortName: string;
+  role: string;
+  period: string;
+  location: string;
+  current: boolean;
+  logoIcon: string;
+  badgeGradient: string;
+  primaryHighlight: string;
+  impactMetrics: { value: string; label: string }[];
+  keyAchievements: string[];
+  projectsMentioned: string[];
+  techStack: string[];
+}
+
 export interface ProjectShowcase {
   id: string;
   name: string;
@@ -49,6 +66,120 @@ export interface ProjectShowcase {
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   selectedProjectId: string = 'business';
+  selectedExperienceId: string = 'bayer';
+
+  enterpriseExperiences: EnterpriseExperience[] = [
+    {
+      id: 'bayer',
+      company: 'Bayer CropScience Pvt Ltd',
+      shortName: 'Bayer',
+      role: 'Software Engineer — Full Stack & Agentic AI',
+      period: 'Dec 2025 – Present',
+      location: 'Bangalore, India',
+      current: true,
+      logoIcon: '🌱',
+      badgeGradient: 'from-emerald-500 to-teal-500',
+      primaryHighlight: 'Agentic AI Platform (LangGraph) & 28% Front-End Load Time Reduction',
+      impactMetrics: [
+        { value: '-28%', label: 'UI Load Time' },
+        { value: 'Agentic AI', label: 'LangGraph Multi-Agent' },
+        { value: 'Enterprise', label: 'Real-Time Workflows' }
+      ],
+      keyAchievements: [
+        'Designed and developed an Agentic AI platform using LangGraph and multi-agent coordination architecture.',
+        'Developed scalable Angular UI components, dramatically improving rendering performance and cutting load times by 28%.',
+        'Engineered dynamic UI generation REST APIs using Spring Boot to support complex user interaction pipelines.',
+        'Handled enterprise-scale applications with high-volume data streams and mission-critical responsiveness.'
+      ],
+      projectsMentioned: [
+        'Design Agent Platform (LangGraph)',
+        'Dynamic UI Generation REST Pipeline'
+      ],
+      techStack: ['Angular 20+', 'Spring Boot', 'LangGraph', 'Multi-Agent AI', 'PostgreSQL', 'RxJS', 'Docker']
+    },
+    {
+      id: 'hcltech',
+      company: 'HCLTech Pvt Ltd',
+      shortName: 'HCLTech',
+      role: 'Lead Engineer — Full Stack Developer',
+      period: 'Mar 2025 – Dec 2025',
+      location: 'Bangalore, India',
+      current: false,
+      logoIcon: '🏢',
+      badgeGradient: 'from-blue-600 to-indigo-600',
+      primaryHighlight: 'Enterprise Microservices, Scalable Modules & Full-Stack Leadership',
+      impactMetrics: [
+        { value: 'Lead', label: 'Engineering Role' },
+        { value: 'REST API', label: 'High-Throughput Services' },
+        { value: 'Full-Stack', label: 'Angular + Spring Boot' }
+      ],
+      keyAchievements: [
+        'Spearheaded enterprise application feature modules utilizing modern Angular and Spring Boot architectures.',
+        'Designed resilient, secure RESTful APIs and established streamlined frontend-to-backend service contracts.',
+        'Led sprint technical evaluations, code reviews, and enterprise release deliveries.'
+      ],
+      projectsMentioned: [
+        'Enterprise Application Modernization',
+        'Scalable REST Services Layer'
+      ],
+      techStack: ['Angular', 'Spring Boot', 'Microservices', 'REST APIs', 'PostgreSQL', 'Git']
+    },
+    {
+      id: 'rebit',
+      company: 'Reserve Bank Information Technology (ReBIT)',
+      shortName: 'ReBIT',
+      role: 'Development Engineer — Fullstack Developer',
+      period: 'Dec 2023 – Feb 2025',
+      location: 'Bangalore, India',
+      current: false,
+      logoIcon: '🏛️',
+      badgeGradient: 'from-amber-500 to-orange-600',
+      primaryHighlight: 'Master Data Management (MDM) with TDD & Next Gen Core Banking (NGCB)',
+      impactMetrics: [
+        { value: '100% TDD', label: 'Test-Driven Reliability' },
+        { value: 'Banking', label: 'Mission-Critical Compliance' },
+        { value: 'Clean Arch', label: 'Layered Domain Design' }
+      ],
+      keyAchievements: [
+        'Designed and implemented core modules for the Master Data Management (MDM) system using Test-Driven Development (TDD), boosting system reliability.',
+        'Engineered full-stack modules for NGCB (Next Generation Core Banking), implementing high-security REST APIs for financial data processing.',
+        'Developed responsive Angular interfaces accompanied by rigorous unit test coverage in Jasmine and Karma.',
+        'Followed Clean Architecture principles and layered domain design for rock-solid banking service scalability.'
+      ],
+      projectsMentioned: [
+        'Master Data Management System (MDM)',
+        'Next Gen Core Banking (NGCB)'
+      ],
+      techStack: ['Angular', 'Spring Boot', 'TDD (Jasmine/Karma)', 'Clean Architecture', 'PostgreSQL', 'Spring Security']
+    },
+    {
+      id: 'ninjacart',
+      company: 'Wolken Software & Ninjacart',
+      shortName: 'Ninjacart',
+      role: 'Full Stack / Frontend Engineer',
+      period: '2022 – 2023',
+      location: 'Bangalore, India',
+      current: false,
+      logoIcon: '⚡',
+      badgeGradient: 'from-violet-600 to-purple-600',
+      primaryHighlight: 'High-Throughput Supply Chain Logistics & Component Library Architecture',
+      impactMetrics: [
+        { value: 'Supply Chain', label: 'Real-Time Logistics' },
+        { value: 'Component', label: 'Reusable Architecture' },
+        { value: 'Agile', label: 'Rapid Sprint Delivery' }
+      ],
+      keyAchievements: [
+        'Developed Angular-based user interfaces handling complex supply-chain logistics, live inventory metrics, and fast user workflows.',
+        'Constructed reusable component systems that accelerated sprint feature delivery across cross-functional teams.',
+        'Optimized client-side state handling and API data streaming via RxJS observables and functional operators.'
+      ],
+      projectsMentioned: [
+        'Supply Chain Operations Dashboard',
+        'Enterprise SaaS Component Suite'
+      ],
+      techStack: ['Angular', 'TypeScript', 'RxJS', 'REST APIs', 'SCSS', 'Git']
+    }
+  ];
 
   consultingPillars = [
     {
@@ -309,6 +440,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
       if (floatingBadges.length) {
         tl.from(floatingBadges, { scale: 0.65, opacity: 0, stagger: 0.12, duration: 0.75, ease: 'back.out(1.6)' }, '-=0.5');
+      }
+    });
+  }
+
+  get selectedExperience(): EnterpriseExperience {
+    return this.enterpriseExperiences.find(e => e.id === this.selectedExperienceId) || this.enterpriseExperiences[0];
+  }
+
+  selectExperience(id: string): void {
+    if (this.selectedExperienceId === id) return;
+    this.selectedExperienceId = id;
+    this.ngZone.runOutsideAngular(() => {
+      const card = this.hostEl.nativeElement.querySelector('.active-experience-card');
+      if (card) {
+        gsap.fromTo(card, { opacity: 0.35, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' });
       }
     });
   }
