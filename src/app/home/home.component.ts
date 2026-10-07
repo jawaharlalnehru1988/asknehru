@@ -2,6 +2,7 @@ import {
   Component,
   OnInit,
   AfterViewInit,
+  OnDestroy,
   ElementRef,
   NgZone
 } from '@angular/core';
@@ -12,6 +13,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import gsap from 'gsap';
 
 import { FluidAuroraComponent } from '../shared/animations/fluid-aurora/fluid-aurora.component';
+import { ParticleNetworkComponent } from '../shared/animations/particle-network/particle-network.component';
 import { Tilt3dDirective } from '../shared/animations/tilt-3d.directive';
 import { SpotlightDirective } from '../shared/animations/spotlight.directive';
 import { CountUpDirective } from '../shared/animations/count-up.directive';
@@ -58,15 +60,26 @@ export interface ProjectShowcase {
     RouterLink,
     MatCardModule,
     FluidAuroraComponent,
+    ParticleNetworkComponent,
     Tilt3dDirective,
     SpotlightDirective,
     CountUpDirective,
     BorderBeamDirective
   ]
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   selectedProjectId: string = 'business';
   selectedExperienceId: string = 'bayer';
+
+  rotatingRoles: string[] = [
+    'Product Consultant',
+    'Agentic AI Engineer (LangGraph)',
+    'Enterprise Full-Stack Architect',
+    'Spring Boot & Microservices Lead',
+    'Native Android Kotlin Developer'
+  ];
+  currentRoleIndex: number = 0;
+  private roleIntervalId: any;
 
   enterpriseExperiences: EnterpriseExperience[] = [
     {
@@ -401,6 +414,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
         project.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(project.url);
       }
     });
+
+    this.startRoleRotation();
+  }
+
+  ngOnDestroy(): void {
+    if (this.roleIntervalId) {
+      clearInterval(this.roleIntervalId);
+    }
+  }
+
+  private startRoleRotation(): void {
+    this.roleIntervalId = setInterval(() => {
+      this.currentRoleIndex = (this.currentRoleIndex + 1) % this.rotatingRoles.length;
+      this.ngZone.runOutsideAngular(() => {
+        const roleEl = this.hostEl.nativeElement.querySelector('.rotating-role-text');
+        if (roleEl) {
+          gsap.fromTo(
+            roleEl,
+            { y: 14, opacity: 0, filter: 'blur(4px)' },
+            { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power2.out' }
+          );
+        }
+      });
+    }, 2800);
   }
 
   ngAfterViewInit(): void {

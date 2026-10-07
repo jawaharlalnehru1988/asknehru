@@ -2,7 +2,8 @@
 
   <!-- ================= HERO PROFILE SECTION ================= -->
   <section class="hero-wrapper relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
-    <app-fluid-aurora [showGrid]="true" intensity="subtle"></app-fluid-aurora>
+    <app-fluid-aurora [showGrid]="true" intensity="vibrant"></app-fluid-aurora>
+    <app-particle-network></app-particle-network>
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
       
@@ -14,12 +15,19 @@
           Available for Full-Time Roles, Android &amp; Product Consulting
         </div>
 
-        <div class="space-y-2">
-          <h2 class="hero-subheadline text-amber-400 tracking-wider font-semibold text-lg uppercase">
-            Hi, I'm Jawaharlal Nehru
+        <div class="space-y-3">
+          <h2 class="hero-subheadline text-amber-400 tracking-wider font-semibold text-lg uppercase flex items-center gap-2">
+            <span>Hi, I'm Jawaharlal Nehru</span>
+            <span class="inline-block w-8 h-[2px] bg-amber-400/60"></span>
           </h2>
           <h1 class="hero-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-100">
-            Full-Stack &amp; Android Engineer &bull; <span class="gradient-text">Product Consultant</span>
+            Full-Stack &amp; Android Engineer &bull;
+            <span class="block mt-2">
+              <span class="rotating-role-badge">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="rotating-role-text gradient-text">{{ rotatingRoles[currentRoleIndex] }}</span>
+              </span>
+            </span>
           </h1>
         </div>
 
@@ -86,7 +94,7 @@
             />
           </div>
 
-          <!-- Floating Badge 1 -->
+          <!-- Floating Badge 1 (Product Counselor) -->
           <div class="floating-badge badge-top-left backdrop-blur-xl bg-slate-900/80 border border-amber-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3" appTilt3d [maxTilt]="10" [scale]="1.06">
             <div class="p-2 rounded-xl bg-amber-500/20 text-amber-400 font-bold text-lg">💡</div>
             <div>
@@ -95,7 +103,7 @@
             </div>
           </div>
 
-          <!-- Floating Badge 2 -->
+          <!-- Floating Badge 2 (Full-Stack Cloud ERP) -->
           <div class="floating-badge badge-bottom-right backdrop-blur-xl bg-slate-900/80 border border-blue-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3" appTilt3d [maxTilt]="10" [scale]="1.06">
             <div class="p-2 rounded-xl bg-blue-500/20 text-blue-400 font-bold text-lg">🚀</div>
             <div>
@@ -104,12 +112,21 @@
             </div>
           </div>
 
-          <!-- Floating Badge 3 -->
+          <!-- Floating Badge 3 (Mobile Development) -->
           <div class="floating-badge badge-bottom-left backdrop-blur-xl bg-slate-900/80 border border-emerald-500/40 p-2.5 rounded-2xl shadow-xl flex items-center gap-2.5" appTilt3d [maxTilt]="10" [scale]="1.06">
             <div class="p-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 font-bold text-base">📱</div>
             <div>
               <div class="text-[10px] text-slate-400 font-medium">Mobile Development</div>
               <div class="text-xs font-bold text-white">Kotlin &amp; Android</div>
+            </div>
+          </div>
+
+          <!-- Floating Badge 4 (Agentic AI & LangGraph) -->
+          <div class="floating-badge badge-top-right backdrop-blur-xl bg-slate-900/80 border border-purple-500/40 p-2.5 rounded-2xl shadow-xl flex items-center gap-2.5" appTilt3d [maxTilt]="10" [scale]="1.06">
+            <div class="p-1.5 rounded-xl bg-purple-500/20 text-purple-400 font-bold text-base">🤖</div>
+            <div>
+              <div class="text-[10px] text-slate-400 font-medium">Agentic AI</div>
+              <div class="text-xs font-bold text-white">LangGraph Systems</div>
             </div>
           </div>
 
