@@ -6,40 +6,9 @@
   font-family: inherit;
 }
 
-/* Ambient glow orbs */
-.ambient-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  pointer-events: none;
+.hero-wrapper {
+  position: relative;
   z-index: 1;
-}
-
-.ambient-glow-1 {
-  top: -80px;
-  left: 10%;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0) 70%);
-  animation: floatOrb 12s ease-in-out infinite alternate;
-}
-
-.ambient-glow-2 {
-  top: 15%;
-  right: 5%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(59, 130, 246, 0) 70%);
-  animation: floatOrb 15s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes floatOrb {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    transform: translate(40px, 30px) scale(1.1);
-  }
 }
 
 .gradient-text {

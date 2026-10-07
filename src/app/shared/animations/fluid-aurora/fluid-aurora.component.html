@@ -1,0 +1,43 @@
+<div #container class="fluid-aurora-root" [class.vibrant-mode]="intensity === 'vibrant'">
+  <!-- Ambient Liquid Mesh Gradient Layers -->
+  <div class="aurora-gradient-mesh">
+    <div class="mesh-layer layer-1"></div>
+    <div class="mesh-layer layer-2"></div>
+    <div class="mesh-layer layer-3"></div>
+  </div>
+
+  <!-- Organic Liquid Blobs with Liquid Morphing -->
+  <div class="liquid-blobs-container">
+    <div class="liquid-blob blob-amber"></div>
+    <div class="liquid-blob blob-emerald"></div>
+    <div class="liquid-blob blob-indigo"></div>
+    <div class="liquid-blob blob-cyan"></div>
+    <div class="liquid-blob blob-violet"></div>
+  </div>
+
+  <!-- Interactive Smooth Mouse Trailing Spotlight -->
+  <div class="cursor-liquid-spotlight"></div>
+
+  <!-- Tech Grid Overlay with Radial Vignette -->
+  @if (showGrid) {
+    <div class="tech-grid-pattern"></div>
+  }
+
+  <!-- SVG Gooey Filter Definition (Hardware Accelerated) -->
+  <svg class="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
+    <defs>
+      <filter id="liquid-filter">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+        <feColorMatrix 
+          in="blur" 
+          mode="matrix" 
+          values="1 0 0 0 0  
+                  0 1 0 0 0  
+                  0 0 1 0 0  
+                  0 0 0 19 -9" 
+          result="liquid" />
+        <feComposite in="SourceGraphic" in2="liquid" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+</div>

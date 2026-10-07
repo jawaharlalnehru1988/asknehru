@@ -2,34 +2,33 @@
 
   <!-- ================= HERO PROFILE SECTION ================= -->
   <section class="hero-wrapper relative overflow-hidden py-16 px-4 sm:px-6 lg:px-8">
-    <div class="ambient-glow ambient-glow-1"></div>
-    <div class="ambient-glow ambient-glow-2"></div>
+    <app-fluid-aurora [showGrid]="true" intensity="subtle"></app-fluid-aurora>
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
       
       <!-- Left Column: Biography & Value Proposition -->
       <div class="lg:col-span-7 flex flex-col items-start text-left space-y-6">
         
-        <div class="status-pill inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/40 backdrop-blur-md text-emerald-300 text-sm font-medium">
+        <div class="status-pill glow-pill inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/40 backdrop-blur-md text-emerald-300 text-sm font-medium" appBorderBeam [beamSize]="140" [duration]="6">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
           Available for Full-Time Roles, Android &amp; Product Consulting
         </div>
 
         <div class="space-y-2">
-          <h2 class="text-amber-400 tracking-wider font-semibold text-lg uppercase">
+          <h2 class="hero-subheadline text-amber-400 tracking-wider font-semibold text-lg uppercase">
             Hi, I'm Jawaharlal Nehru
           </h2>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-100">
+          <h1 class="hero-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-100">
             Full-Stack &amp; Android Engineer &bull; <span class="gradient-text">Product Consultant</span>
           </h1>
         </div>
 
-        <p class="text-slate-300 text-lg sm:text-xl max-w-2xl leading-relaxed">
+        <p class="hero-bio text-slate-300 text-lg sm:text-xl max-w-2xl leading-relaxed">
           With <strong class="text-white font-bold">4+ years of professional experience</strong> in designing scalable web architectures, cloud ERPs, and native Kotlin Android mobile apps, I counsel startups and businesses to build high-performance digital products.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-wrap gap-4 pt-2 w-full sm:w-auto">
+        <div class="cta-btn-group flex flex-wrap gap-4 pt-2 w-full sm:w-auto">
           <button (click)="scrollToShowcase()" class="primary-btn px-6 py-3.5 rounded-xl font-bold text-white shadow-xl flex items-center gap-2 transition-all">
             <span>Explore 10+ Projects</span>
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,11 +54,11 @@
         <!-- Key Metrics Bar -->
         <div class="metrics-grid grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 w-full border-t border-slate-700/60">
           <div class="metric-item">
-            <div class="text-3xl font-extrabold text-amber-400">4+</div>
+            <div class="text-3xl font-extrabold text-amber-400" [appCountUp]="4" suffix="+">4+</div>
             <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Years Experience</div>
           </div>
           <div class="metric-item">
-            <div class="text-3xl font-extrabold text-emerald-400">10+</div>
+            <div class="text-3xl font-extrabold text-emerald-400" [appCountUp]="10" suffix="+">10+</div>
             <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Live Platforms</div>
           </div>
           <div class="metric-item">
@@ -67,7 +66,7 @@
             <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Full-Stack &amp; Kotlin</div>
           </div>
           <div class="metric-item">
-            <div class="text-3xl font-extrabold text-indigo-400">100%</div>
+            <div class="text-3xl font-extrabold text-indigo-400" [appCountUp]="100" suffix="%">100%</div>
             <div class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-1">Cloud Deployed</div>
           </div>
         </div>
@@ -76,7 +75,7 @@
 
       <!-- Right Column: Profile Avatar & Floating Credential Cards -->
       <div class="lg:col-span-5 flex justify-center relative">
-        <div class="avatar-ring-container relative">
+        <div class="avatar-ring-container relative" appTilt3d [maxTilt]="12" [scale]="1.04">
           <div class="avatar-backdrop-glow"></div>
           
           <div class="avatar-frame p-2 rounded-3xl backdrop-blur-xl border border-white/20 shadow-2xl relative z-10">
@@ -88,7 +87,7 @@
           </div>
 
           <!-- Floating Badge 1 -->
-          <div class="floating-badge badge-top-left backdrop-blur-xl bg-slate-900/80 border border-amber-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3">
+          <div class="floating-badge badge-top-left backdrop-blur-xl bg-slate-900/80 border border-amber-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3" appTilt3d [maxTilt]="10" [scale]="1.06">
             <div class="p-2 rounded-xl bg-amber-500/20 text-amber-400 font-bold text-lg">💡</div>
             <div>
               <div class="text-xs text-slate-400 font-medium">Strategic Role</div>
@@ -97,7 +96,7 @@
           </div>
 
           <!-- Floating Badge 2 -->
-          <div class="floating-badge badge-bottom-right backdrop-blur-xl bg-slate-900/80 border border-blue-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3">
+          <div class="floating-badge badge-bottom-right backdrop-blur-xl bg-slate-900/80 border border-blue-500/40 p-3 rounded-2xl shadow-xl flex items-center gap-3" appTilt3d [maxTilt]="10" [scale]="1.06">
             <div class="p-2 rounded-xl bg-blue-500/20 text-blue-400 font-bold text-lg">🚀</div>
             <div>
               <div class="text-xs text-slate-400 font-medium">Architecture</div>
@@ -106,7 +105,7 @@
           </div>
 
           <!-- Floating Badge 3 -->
-          <div class="floating-badge badge-bottom-left backdrop-blur-xl bg-slate-900/80 border border-emerald-500/40 p-2.5 rounded-2xl shadow-xl flex items-center gap-2.5">
+          <div class="floating-badge badge-bottom-left backdrop-blur-xl bg-slate-900/80 border border-emerald-500/40 p-2.5 rounded-2xl shadow-xl flex items-center gap-2.5" appTilt3d [maxTilt]="10" [scale]="1.06">
             <div class="p-1.5 rounded-xl bg-emerald-500/20 text-emerald-400 font-bold text-base">📱</div>
             <div>
               <div class="text-[10px] text-slate-400 font-medium">Mobile Development</div>
@@ -136,8 +135,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       @for (pillar of consultingPillars; track pillar.title) {
-        <div class="pillar-card p-8 rounded-2xl backdrop-blur-md border border-white/10 hover:border-amber-400/40 transition-all group">
-          <div class="flex items-center gap-4 mb-4">
+        <div class="pillar-card p-8 rounded-2xl backdrop-blur-md border border-white/10 hover:border-amber-400/40 transition-all group" appTilt3d [maxTilt]="6" [scale]="1.02" appSpotlight spotlightColor="rgba(245, 158, 11, 0.12)">
+          <div class="flex items-center gap-4 mb-4 relative z-10">
             <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-amber-500/20 to-emerald-500/20 text-amber-400 border border-white/10 font-bold text-xl group-hover:scale-110 transition-transform">
               ✓
             </div>
@@ -150,7 +149,7 @@
               </p>
             </div>
           </div>
-          <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+          <p class="text-slate-300 leading-relaxed text-sm sm:text-base relative z-10">
             {{ pillar.description }}
           </p>
         </div>
@@ -189,7 +188,7 @@
     </div>
 
     <!-- Browser Mockup Window -->
-    <div class="browser-window rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-2xl">
+    <div class="browser-window rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-2xl relative" appSpotlight spotlightColor="rgba(59, 130, 246, 0.12)">
       
       <!-- Top Chrome Bar -->
       <div class="browser-chrome px-4 py-3 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between gap-4">
@@ -380,8 +379,8 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Roadmaps Card -->
-        <a routerLink="/roadmaps" class="hub-card p-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 hover:border-emerald-400 transition-all flex flex-col justify-between group">
-          <div class="space-y-2">
+        <a routerLink="/roadmaps" class="hub-card p-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 hover:border-emerald-400 transition-all flex flex-col justify-between group" appTilt3d [maxTilt]="6" [scale]="1.02" appSpotlight spotlightColor="rgba(16, 185, 129, 0.15)">
+          <div class="space-y-2 relative z-10">
             <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Curated Learning</div>
             <h3 class="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">
               Technical &amp; General Roadmaps &rarr;
@@ -390,15 +389,15 @@
               Explore chapters in Spring Boot, Java Streams, System Design, and Collections. Take topic quizzes and monitor subtopic mastery.
             </p>
           </div>
-          <div class="mt-4 text-emerald-400 font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+          <div class="mt-4 text-emerald-400 font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform relative z-10">
             <span>Browse Roadmaps</span>
             <span>&rarr;</span>
           </div>
         </a>
 
         <!-- Coding Sandbox Card -->
-        <a routerLink="/coding" class="hub-card p-6 rounded-2xl border border-blue-500/30 bg-blue-950/20 hover:border-blue-400 transition-all flex flex-col justify-between group">
-          <div class="space-y-2">
+        <a routerLink="/coding" class="hub-card p-6 rounded-2xl border border-blue-500/30 bg-blue-950/20 hover:border-blue-400 transition-all flex flex-col justify-between group" appTilt3d [maxTilt]="6" [scale]="1.02" appSpotlight spotlightColor="rgba(59, 130, 246, 0.15)">
+          <div class="space-y-2 relative z-10">
             <div class="text-xs font-bold text-blue-400 uppercase tracking-wider">Interactive Practice</div>
             <h3 class="text-xl font-bold text-white group-hover:text-blue-300 transition-colors">
               Coding Interview Sandbox &rarr;
@@ -407,7 +406,7 @@
               Simulate technical interview rounds with output prediction, time complexity puzzles, and AI-driven code evaluation.
             </p>
           </div>
-          <div class="mt-4 text-blue-400 font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+          <div class="mt-4 text-blue-400 font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform relative z-10">
             <span>Launch Simulator</span>
             <span>&rarr;</span>
           </div>

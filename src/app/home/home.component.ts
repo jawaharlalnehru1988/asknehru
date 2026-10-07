@@ -1,8 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ElementRef,
+  NgZone
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import gsap from 'gsap';
+
+import { FluidAuroraComponent } from '../shared/animations/fluid-aurora/fluid-aurora.component';
+import { Tilt3dDirective } from '../shared/animations/tilt-3d.directive';
+import { SpotlightDirective } from '../shared/animations/spotlight.directive';
+import { CountUpDirective } from '../shared/animations/count-up.directive';
+import { BorderBeamDirective } from '../shared/animations/border-beam.directive';
 
 export interface ProjectShowcase {
   id: string;
@@ -23,9 +36,18 @@ export interface ProjectShowcase {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterLink, MatCardModule]
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatCardModule,
+    FluidAuroraComponent,
+    Tilt3dDirective,
+    SpotlightDirective,
+    CountUpDirective,
+    BorderBeamDirective
+  ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   selectedProjectId: string = 'business';
 
   consultingPillars = [
@@ -235,13 +257,58 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private ngZone: NgZone,
+    private hostEl: ElementRef
+  ) {}
 
   ngOnInit(): void {
     // Sanitize iframe URLs
     this.projects.forEach(project => {
       if (project.type === 'iframe' && project.url) {
         project.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(project.url);
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.initHeroEntranceAnimations();
+  }
+
+  private initHeroEntranceAnimations(): void {
+    this.ngZone.runOutsideAngular(() => {
+      const root = this.hostEl.nativeElement;
+      const statusPill = root.querySelector('.status-pill');
+      const heroHeadings = root.querySelectorAll('.hero-headline, .hero-subheadline');
+      const heroBio = root.querySelector('.hero-bio');
+      const ctaButtons = root.querySelectorAll('.cta-btn-group > *');
+      const metricItems = root.querySelectorAll('.metric-item');
+      const avatarFrame = root.querySelector('.avatar-ring-container');
+      const floatingBadges = root.querySelectorAll('.floating-badge');
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.85 } });
+
+      if (statusPill) {
+        tl.from(statusPill, { y: -20, opacity: 0, duration: 0.6 });
+      }
+      if (heroHeadings.length) {
+        tl.from(heroHeadings, { y: 25, opacity: 0, stagger: 0.12 }, '-=0.35');
+      }
+      if (heroBio) {
+        tl.from(heroBio, { y: 20, opacity: 0, duration: 0.65 }, '-=0.35');
+      }
+      if (ctaButtons.length) {
+        tl.from(ctaButtons, { y: 15, opacity: 0, stagger: 0.08, duration: 0.55 }, '-=0.4');
+      }
+      if (metricItems.length) {
+        tl.from(metricItems, { y: 20, opacity: 0, stagger: 0.08, duration: 0.65 }, '-=0.4');
+      }
+      if (avatarFrame) {
+        tl.from(avatarFrame, { scale: 0.9, opacity: 0, duration: 0.9, ease: 'back.out(1.4)' }, '-=0.75');
+      }
+      if (floatingBadges.length) {
+        tl.from(floatingBadges, { scale: 0.65, opacity: 0, stagger: 0.12, duration: 0.75, ease: 'back.out(1.6)' }, '-=0.5');
       }
     });
   }
