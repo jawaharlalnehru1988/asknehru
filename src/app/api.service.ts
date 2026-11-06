@@ -76,6 +76,14 @@ export class ApiService {
     return this.http.post(`${this.authApiUrl}/api/auth/login`, payload);
   }
 
+  googleLogin(payload: { credential?: string; email?: string; name?: string; picture?: string }): Observable<any> {
+    return this.http.post<any>(`${this.authApiUrl}/api/auth/google`, payload);
+  }
+
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.authApiUrl}/api/users`, { headers: this.getAuthHeaders() });
+  }
+
   register(payload: { fullName: string; phoneNumber?: string; email: string; password: string }): Observable<any> {
     return this.http.post(`${this.authApiUrl}/api/auth/register`, payload);
   }
@@ -236,19 +244,38 @@ export class ApiService {
     );
   }
 
-  /** Returns true if the currently logged-in user is the super admin. */
+  /** Check if the given email belongs to a designated super administrator */
+  isAdminEmail(email: string | null | undefined): boolean {
+    if (!email) return false;
+    const normalized = email.trim().toLowerCase();
+    return normalized === 'nehru00123@gmail.com' || normalized === 'jawaharlalnehruelumalai@gmail.com';
+  }
+
+  /** Returns true if the currently logged-in user is a super admin. */
   isSuperAdmin(): boolean {
     if (typeof window === 'undefined' || !window.localStorage) return false;
-    const token = localStorage.getItem('token');
-    if (!token) return false;
-    try {
-      // Decode JWT payload (base64url part between first and second dot)
-      const payload = token.split('.')[1];
-      const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
-      return decoded?.email === 'jawaharlalnehru@gmail.com';
-    } catch {
-      return false;
+    const userStr = localStorage.getItem('user');
+    let email = '';
+    let role = '';
+    if (userStr) {
+      try {
+        const u = JSON.parse(userStr);
+        email = u.email || '';
+        role = u.role || '';
+      } catch (e) {}
     }
+    if (!email) {
+      const token = localStorage.getItem('token');
+      if (token && token.includes('.')) {
+        try {
+          const payload = token.split('.')[1];
+          const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+          email = decoded?.email || '';
+          role = decoded?.role || '';
+        } catch (e) {}
+      }
+    }
+    return this.isAdminEmail(email) || role === 'Super Admin';
   }
   // --- Coding / Interview API Methods ---
   

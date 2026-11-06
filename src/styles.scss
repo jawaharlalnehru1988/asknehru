@@ -200,3 +200,196 @@ html, body {
   60%, 100% { left: 200%; }
 }
 
+/* ============================================================
+   GLOBAL MARKDOWN CODE BLOCK COPY & RUN BUTTONS
+   ============================================================ */
+.code-block-wrapper {
+  position: relative !important;
+  margin: 1.5rem 0 !important;
+
+  pre {
+    margin: 0 !important;
+    padding-top: 2.85rem !important; /* Space for the top header bar */
+  }
+
+  .code-actions {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    z-index: 10;
+  }
+
+  .code-copy-btn, .code-run-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.32rem 0.6rem;
+    font-size: 0.75rem;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1;
+    color: #cbd5e1;
+    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 0.5rem;
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+
+    &:hover {
+      color: #ffffff;
+      background: rgba(51, 65, 85, 0.95);
+      border-color: #3b82f6;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &.copied, &.running {
+      color: #34d399 !important;
+      background: rgba(6, 78, 59, 0.9) !important;
+      border-color: #10b981 !important;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+    }
+
+    svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .code-run-btn {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.35);
+    color: #6ee7b7;
+
+    &:hover {
+      background: rgba(16, 185, 129, 0.3);
+      border-color: #10b981;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    }
+
+    svg {
+      stroke: none;
+      fill: currentColor;
+    }
+  }
+
+  .code-lang-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+/* ============================================================
+   ENGINEERING TOOLS & RESOURCES DROPDOWN MENU
+   ============================================================ */
+.dark-resources-menu.mat-mdc-menu-panel {
+  background: linear-gradient(180deg, #0b1120 0%, #080d1a 100%) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.85), 0 0 25px rgba(56, 189, 248, 0.12) !important;
+  max-width: 400px !important;
+  width: 375px !important;
+  padding: 0.5rem 0 !important;
+  backdrop-filter: blur(20px);
+  max-height: 85vh !important;
+  overflow-y: auto !important;
+
+  .menu-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem 0.35rem 1rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    text-transform: uppercase;
+    user-select: none;
+
+    .section-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      line-height: 1;
+    }
+  }
+
+  .menu-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0.4rem 0.75rem;
+  }
+
+  .mat-mdc-menu-item {
+    height: auto !important;
+    min-height: 52px !important;
+    padding: 0.55rem 1rem !important;
+    line-height: 1.25 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    transition: all 0.15s ease !important;
+
+    &:hover {
+      background: rgba(56, 189, 248, 0.08) !important;
+
+      .item-title {
+        color: #38bdf8 !important;
+      }
+
+      .item-icon {
+        transform: scale(1.12);
+      }
+    }
+
+    .item-icon {
+      margin-right: 0 !important;
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .menu-item-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow: hidden;
+
+      .item-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #f1f5f9;
+        transition: color 0.15s ease;
+      }
+
+      .item-desc {
+        font-size: 0.72rem;
+        color: #94a3b8;
+        white-space: normal;
+        line-height: 1.3;
+      }
+    }
+  }
+}
+

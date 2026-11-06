@@ -28,6 +28,7 @@ import Fuse, { IFuseOptions } from 'fuse.js';
 export class RoadmapsComponent implements OnInit {
   blogArticleData: Project[] = [];
   technicalRoadmaps: Project[] = [];
+  dsaRoadmaps: Project[] = [];
   nonTechnicalRoadmaps: Project[] = [];
   commonRoadmaps: Project[] = [];
   loading: boolean = true;
@@ -43,6 +44,46 @@ export class RoadmapsComponent implements OnInit {
     this.apiService.authState$.subscribe(() => {
       this.loadRoadmaps();
     });
+  }
+
+  isDsa(r: Project): boolean {
+    if (r.category === 'DSA') return true;
+    const name = (r.PName || '').toLowerCase().trim();
+    // Exclude general languages and fullstack/system design courses
+    if (
+      name.includes('system design') ||
+      name.includes('collection framework') ||
+      name.includes('javascript') ||
+      name.includes('spring') ||
+      name.includes('angular') ||
+      name.includes('sql') ||
+      name.includes('kafka') ||
+      name.includes('cloud') ||
+      name.includes('aws') ||
+      name.includes('delivery') ||
+      name.includes('leadership') ||
+      name.includes('couple unity')
+    ) {
+      return false;
+    }
+    return (
+      name.includes('dsa') ||
+      name.includes('data structures') ||
+      name.includes('linear data') ||
+      name.includes('linked list') ||
+      name.includes('stack') ||
+      name.includes('queue') ||
+      name.includes('hashing') ||
+      name.includes('tree') ||
+      name.includes('heap') ||
+      name.includes('graph') ||
+      name.includes('trie') ||
+      name.includes('dynamic programming') ||
+      name.includes('recursion') ||
+      name.includes('string') ||
+      name.includes('sorting') ||
+      name.includes('searching')
+    );
   }
 
   initFuse() {
@@ -74,9 +115,10 @@ export class RoadmapsComponent implements OnInit {
     if (this.fuseInstance) {
       const results = this.fuseInstance.search(trimmed);
       const matched = results.map(r => r.item);
-      this.technicalRoadmaps = matched.filter(r => r.category === 'TECHNICAL');
-      this.nonTechnicalRoadmaps = matched.filter(r => r.category === 'NON_TECHNICAL');
-      this.commonRoadmaps = matched.filter(r => r.category === 'COMMON');
+      this.dsaRoadmaps = matched.filter(r => this.isDsa(r));
+      this.technicalRoadmaps = matched.filter(r => (r.category === 'TECHNICAL' || !r.category) && !this.isDsa(r));
+      this.nonTechnicalRoadmaps = matched.filter(r => r.category === 'NON_TECHNICAL' && !this.isDsa(r));
+      this.commonRoadmaps = matched.filter(r => r.category === 'COMMON' && !this.isDsa(r));
     }
   }
 
@@ -87,32 +129,22 @@ export class RoadmapsComponent implements OnInit {
   }
 
   get searchResultsCount(): number {
-    return this.technicalRoadmaps.length + this.nonTechnicalRoadmaps.length + this.commonRoadmaps.length;
+    return this.technicalRoadmaps.length + this.dsaRoadmaps.length + this.nonTechnicalRoadmaps.length + this.commonRoadmaps.length;
   }
 
   groupRoadmaps() {
     const sorted = [...this.blogArticleData].sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
-    this.technicalRoadmaps = sorted.filter(r => r.category === 'TECHNICAL');
-    this.nonTechnicalRoadmaps = sorted.filter(r => r.category === 'NON_TECHNICAL');
-    this.commonRoadmaps = sorted.filter(r => r.category === 'COMMON');
+    this.dsaRoadmaps = sorted.filter(r => this.isDsa(r));
+    this.technicalRoadmaps = sorted.filter(r => (r.category === 'TECHNICAL' || !r.category) && !this.isDsa(r));
+    this.nonTechnicalRoadmaps = sorted.filter(r => r.category === 'NON_TECHNICAL' && !this.isDsa(r));
+    this.commonRoadmaps = sorted.filter(r => r.category === 'COMMON' && !this.isDsa(r));
   }
 
   loadRoadmaps() {
     this.loading = true;
     this.apiService.getRoadmaps().subscribe({
       next: (roadmaps) => {
-        const token = localStorage.getItem('token');
-        let isSuperAdmin = false;
-        if (token) {
-          try {
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            const email = payload.email || payload.sub;
-            if (email === 'jawaharlalnehru@gmail.com' || payload.role === 'Super Admin') {
-              isSuperAdmin = true;
-            }
-          } catch (e) {}
-        }
-
+        const isSuperAdmin = this.apiService.isSuperAdmin();
         let filteredRoadmaps = roadmaps;
         if (!isSuperAdmin) {
           filteredRoadmaps = roadmaps.filter((r: any) => r.userAssignedRoadmap === true);
@@ -179,6 +211,7 @@ export class RoadmapsComponent implements OnInit {
               };
             });
 
+            const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
             if (token) {
                this.apiService.getUserScores().subscribe({
                  next: (scores) => {

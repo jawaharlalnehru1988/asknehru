@@ -53,7 +53,6 @@ export class Tilt3dDirective implements OnInit, OnDestroy {
 
   private setupElement(): void {
     this.renderer.setStyle(this.el, 'transform-style', 'preserve-3d');
-    this.renderer.setStyle(this.el, 'will-change', 'transform');
     this.renderer.setStyle(
       this.el,
       'transition',
@@ -88,6 +87,7 @@ export class Tilt3dDirective implements OnInit, OnDestroy {
     // Run outside Angular zone so high-frequency pointer moves don't trigger change detection cycles
     this.ngZone.runOutsideAngular(() => {
       this.unlistenEnter = this.renderer.listen(this.el, 'pointerenter', () => {
+        this.renderer.setStyle(this.el, 'will-change', 'transform');
         this.renderer.setStyle(
           this.el,
           'transition',
@@ -114,6 +114,7 @@ export class Tilt3dDirective implements OnInit, OnDestroy {
           cancelAnimationFrame(this.rafId);
           this.rafId = null;
         }
+        this.renderer.removeStyle(this.el, 'will-change');
         this.renderer.setStyle(
           this.el,
           'transition',

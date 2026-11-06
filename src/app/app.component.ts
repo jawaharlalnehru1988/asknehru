@@ -1,8 +1,9 @@
-import { Component, HostListener, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID, NgZone } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { PwaInstallBannerComponent } from './shared/pwa-install-banner/pwa-install-banner.component';
 import { ApiService } from './api.service';
 import { SessionManagerService } from './services/session-manager.service';
 
@@ -11,13 +12,10 @@ import { SessionManagerService } from './services/session-manager.service';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    imports: [ToolbarComponent, RouterOutlet, FooterComponent]
+    imports: [ToolbarComponent, RouterOutlet, FooterComponent, PwaInstallBannerComponent]
 })
 export class AppComponent implements OnInit, OnDestroy {
     title = 'asknehru';
-    private inactivityTimer: any;
-    // 60 minutes for production
-    private readonly INACTIVITY_LIMIT_MS = 3600000;
 
     constructor(
       @Inject(PLATFORM_ID) private platformId: Object,
@@ -26,42 +24,8 @@ export class AppComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-      if (isPlatformBrowser(this.platformId)) {
-        this.resetInactivityTimer();
-      }
+      // SessionManagerService and authInterceptor maintain persistent authentication automatically
     }
 
-    ngOnDestroy() {
-      this.clearInactivityTimer();
-    }
-
-    @HostListener('window:mousemove')
-    @HostListener('window:keydown')
-    @HostListener('window:click')
-    @HostListener('window:scroll')
-    onUserActivity() {
-      this.resetInactivityTimer();
-    }
-
-    private resetInactivityTimer() {
-      this.clearInactivityTimer();
-      if (typeof window !== 'undefined') {
-        this.inactivityTimer = setTimeout(() => {
-          this.handleInactivity();
-        }, this.INACTIVITY_LIMIT_MS);
-      }
-    }
-
-    private clearInactivityTimer() {
-      if (this.inactivityTimer) {
-        clearTimeout(this.inactivityTimer);
-      }
-    }
-
-    private handleInactivity() {
-      if (typeof window !== 'undefined' && window.localStorage && localStorage.getItem('token')) {
-        console.log('User logged out due to inactivity');
-        this.apiService.globalLogout();
-      }
-    }
+    ngOnDestroy() {}
 }

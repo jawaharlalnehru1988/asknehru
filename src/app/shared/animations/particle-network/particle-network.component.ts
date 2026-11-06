@@ -46,10 +46,13 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
   private ctx: CanvasRenderingContext2D | null = null;
   private particles: Particle[] = [];
   private rafId: number | null = null;
+  private isVisible = true;
+  private isRunning = false;
   private mouse = { x: -1000, y: -1000, active: false };
   private unlistenMouseMove?: () => void;
   private unlistenMouseLeave?: () => void;
   private resizeObserver?: ResizeObserver;
+  private intersectionObserver?: IntersectionObserver;
 
   private colors = [
     'rgba(245, 158, 11, ', // Amber
@@ -66,12 +69,11 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.rafId !== null) {
-      cancelAnimationFrame(this.rafId);
-    }
+    this.stopAnimation();
     this.unlistenMouseMove?.();
     this.unlistenMouseLeave?.();
     this.resizeObserver?.disconnect();
+    this.intersectionObserver?.disconnect();
   }
 
   private initCanvas(): void {
@@ -89,8 +91,26 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
       });
       this.resizeObserver.observe(canvas.parentElement || canvas);
 
+      // Intersection Observer to stop RAF loop when scrolled out of view
+      if ('IntersectionObserver' in window) {
+        this.intersectionObserver = new IntersectionObserver(
+          (entries) => {
+            const entry = entries[0];
+            this.isVisible = entry ? entry.isIntersecting : true;
+            if (this.isVisible) {
+              this.startAnimation();
+            } else {
+              this.stopAnimation();
+            }
+          },
+          { rootMargin: '100px' }
+        );
+        this.intersectionObserver.observe(canvas.parentElement || canvas);
+      }
+
       // Mouse tracking
       const onMouseMove = (e: MouseEvent) => {
+        if (!this.isVisible) return;
         const rect = canvas.getBoundingClientRect();
         this.mouse.x = e.clientX - rect.left;
         this.mouse.y = e.clientY - rect.top;
@@ -109,8 +129,22 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
       this.unlistenMouseLeave = () => window.removeEventListener('mouseleave', onMouseLeave);
 
       this.createParticles();
-      this.animate();
+      this.startAnimation();
     });
+  }
+
+  private startAnimation(): void {
+    if (this.isRunning) return;
+    this.isRunning = true;
+    this.rafId = requestAnimationFrame(this.animate);
+  }
+
+  private stopAnimation(): void {
+    this.isRunning = false;
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
   }
 
   private resizeCanvas(): void {
@@ -135,7 +169,8 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
     const width = parseFloat(canvas.style.width) || canvas.width;
     const height = parseFloat(canvas.style.height) || canvas.height;
 
-    const count = Math.min(Math.floor((width * height) / 12000), 75);
+    // Optimized particle count: 42 particles max (down from 75) provides excellent visuals while slashing pair checks by 70%
+    const count = Math.min(Math.floor((width * height) / 16000), 42);
     this.particles = [];
 
     for (let i = 0; i < count; i++) {
@@ -143,9 +178,9 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
       this.particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        radius: Math.random() * 2 + 1.2,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
+        radius: Math.random() * 1.8 + 1.2,
         color: colorPrefix,
         alpha: Math.random() * 0.5 + 0.3
       });
@@ -153,7 +188,7 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
   }
 
   private animate = (): void => {
-    if (!this.ctx) return;
+    if (!this.isRunning || !this.ctx) return;
     const canvas = this.canvasRef.nativeElement;
     const width = parseFloat(canvas.style.width) || canvas.width;
     const height = parseFloat(canvas.style.height) || canvas.height;
@@ -174,12 +209,15 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
       if (p.y < 0) { p.y = 0; p.vy *= -1; }
       else if (p.y > height) { p.y = height; p.vy *= -1; }
 
-      // Draw particle dot with glow
+      // Draw particle dot (soft outer glow + core dot without expensive shadowBlur state switches)
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.radius * 2, 0, Math.PI * 2);
+      this.ctx.fillStyle = `${p.color}${(p.alpha * 0.25).toFixed(2)})`;
+      this.ctx.fill();
+
       this.ctx.beginPath();
       this.ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      this.ctx.fillStyle = `${p.color}${p.alpha})`;
-      this.ctx.shadowBlur = 8;
-      this.ctx.shadowColor = `${p.color}0.8)`;
+      this.ctx.fillStyle = `${p.color}${p.alpha.toFixed(2)})`;
       this.ctx.fill();
 
       // Connect nearby particles
@@ -187,16 +225,17 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
         const p2 = this.particles[j];
         const dx = p.x - p2.x;
         const dy = p.y - p2.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+        const distSq = dx * dx + dy * dy;
 
-        if (dist < 110) {
+        // Use distance squared (110*110 = 12100) to avoid Math.sqrt on every pair
+        if (distSq < 12100) {
+          const dist = Math.sqrt(distSq);
           const lineAlpha = (1 - dist / 110) * 0.22;
           this.ctx.beginPath();
           this.ctx.moveTo(p.x, p.y);
           this.ctx.lineTo(p2.x, p2.y);
-          this.ctx.strokeStyle = `rgba(148, 163, 184, ${lineAlpha})`;
+          this.ctx.strokeStyle = `rgba(148, 163, 184, ${lineAlpha.toFixed(3)})`;
           this.ctx.lineWidth = 0.8;
-          this.ctx.shadowBlur = 0;
           this.ctx.stroke();
         }
       }
@@ -205,20 +244,23 @@ export class ParticleNetworkComponent implements OnInit, OnDestroy {
       if (this.mouse.active) {
         const mdx = p.x - this.mouse.x;
         const mdy = p.y - this.mouse.y;
-        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        const mdistSq = mdx * mdx + mdy * mdy;
 
-        if (mdist < 140) {
+        if (mdistSq < 19600) { // 140*140
+          const mdist = Math.sqrt(mdistSq);
           const mAlpha = (1 - mdist / 140) * 0.5;
           this.ctx.beginPath();
           this.ctx.moveTo(p.x, p.y);
           this.ctx.lineTo(this.mouse.x, this.mouse.y);
-          this.ctx.strokeStyle = `${p.color}${mAlpha})`;
+          this.ctx.strokeStyle = `${p.color}${mAlpha.toFixed(2)})`;
           this.ctx.lineWidth = 1.2;
           this.ctx.stroke();
         }
       }
     }
 
-    this.rafId = requestAnimationFrame(this.animate);
+    if (this.isRunning) {
+      this.rafId = requestAnimationFrame(this.animate);
+    }
   };
 }

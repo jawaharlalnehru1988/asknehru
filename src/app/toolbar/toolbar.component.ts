@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ApiService } from '../api.service';
+import { PwaService } from '../services/pwa.service';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Overlay } from '@angular/cdk/overlay';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -33,6 +34,7 @@ declare const google: any;
   ]
 })
 export class ToolbarComponent implements OnInit {
+  readonly pwaService = inject(PwaService);
   showFiller = false;
 
   loggedInUserData: any;
@@ -150,17 +152,40 @@ export class ToolbarComponent implements OnInit {
     if (!response?.credential) return;
     try {
       const payload = JSON.parse(atob(response.credential.split('.')[1]));
+      const email = payload.email || '';
+      const isAdmin = this.api.isAdminEmail(email);
       const user = {
         name: payload.name || payload.email || 'User',
-        email: payload.email,
+        email: email,
         picture: payload.picture || null,
-        role: payload.email === 'jawaharlalnehru@gmail.com' ? 'Super Admin' : 'User'
+        role: isAdmin ? 'Super Admin' : 'User'
       };
       localStorage.setItem('token', response.credential);
       localStorage.setItem('user', JSON.stringify(user));
       this.userPicture = user.picture;
       this.api.setAuthState(true);
       this.loggedInUser();
+
+      // Sync user with backend so they appear in user list and get official backend token
+      this.api.googleLogin({
+        credential: response.credential,
+        email: user.email,
+        name: user.name,
+        picture: user.picture
+      }).subscribe({
+        next: (res: any) => {
+          if (res?.data?.accessToken) {
+            localStorage.setItem('token', res.data.accessToken);
+            if (res.data.refreshToken) {
+              localStorage.setItem('refreshToken', res.data.refreshToken);
+            }
+          }
+          this.loggedInUser();
+        },
+        error: (err: any) => {
+          console.warn('Backend Google auth sync note:', err);
+        }
+      });
     } catch (e) {
       console.error('Error decoding Google credential', e);
     }
@@ -168,13 +193,11 @@ export class ToolbarComponent implements OnInit {
 
   signInWithGoogle(): void {
     if (typeof google !== 'undefined' && google.accounts?.id) {
-      google.accounts.id.prompt((notification: any) => {
-        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-          this.openLoginDialog();
-        }
-      });
-    } else {
-      this.openLoginDialog();
+      try {
+        google.accounts.id.prompt();
+      } catch (e) {
+        console.warn('Google prompt notice:', e);
+      }
     }
   }
 
@@ -228,7 +251,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   checkIfSuperAdmin(loggedInUserData: any): void {
-    this.isSuperAdmin = !!(loggedInUserData && loggedInUserData.role === "Super Admin");
+    const email = loggedInUserData?.email;
+    this.isSuperAdmin = this.api.isAdminEmail(email) || loggedInUserData?.role === "Super Admin";
   }
 
   getInitials(name: string): string {

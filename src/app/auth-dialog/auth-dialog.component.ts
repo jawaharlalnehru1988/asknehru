@@ -1,38 +1,15 @@
-import { Component, Inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, Inject, OnInit, AfterViewInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { ApiService } from '../api.service';
-
-export type AuthDialogMode = 'login' | 'signup';
+import { environment } from '../../environments/environment';
 
 export interface AuthDialogData {
-  mode: AuthDialogMode;
+  mode?: string;
   message?: string;
 }
 
-export function passwordMatchValidator(control: AbstractControl) {
-  const form = control as FormGroup;
-  const password = form.get('password')?.value;
-  const confirmPassword = form.get('confirmPassword')?.value;
-  if (password !== confirmPassword) {
-    form.get('confirmPassword')?.setErrors({ mismatch: true });
-  } else {
-    const confirmErrors = form.get('confirmPassword')?.errors;
-    if (confirmErrors) {
-      delete confirmErrors['mismatch'];
-      if (Object.keys(confirmErrors).length === 0) {
-        form.get('confirmPassword')?.setErrors(null);
-      } else {
-        form.get('confirmPassword')?.setErrors(confirmErrors);
-      }
-    }
-  }
-  return null;
-}
+declare const google: any;
 
 @Component({
   selector: 'app-auth-dialog',
@@ -41,134 +18,128 @@ export function passwordMatchValidator(control: AbstractControl) {
   styleUrls: ['./auth-dialog.component.scss'],
   imports: [
     MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
-    MatIconModule,
-    ReactiveFormsModule,
   ],
 })
-export class AuthDialogComponent {
-  mode: AuthDialogMode;
+export class AuthDialogComponent implements OnInit, AfterViewInit {
   message?: string;
-  form: FormGroup;
   isLoading = false;
   errorMessage = '';
-  hidePassword = true;
-  hideConfirmPassword = true;
+  googleClientId = environment.googleClientId;
 
   constructor(
     private dialogRef: MatDialogRef<AuthDialogComponent>,
     @Inject(MAT_DIALOG_DATA) data: AuthDialogData,
-    private api: ApiService,
-    private formBuilder: FormBuilder,
+    private api: ApiService
   ) {
-    this.mode = data.mode;
-    this.message = data.message;
-    this.form = this.formBuilder.group({
-      fullName: [''],
-      phoneNumber: [''],
-      email: [''],
-      usernameOrEmail: [''],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['']
-    }, { validators: passwordMatchValidator });
-
-    this.setupValidators();
+    this.message = data?.message;
   }
 
-  toggleMode(): void {
-    this.mode = this.mode === 'login' ? 'signup' : 'login';
-    this.setupValidators();
-    this.errorMessage = '';
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    this.renderGoogleButton();
   }
 
-  setupValidators(): void {
-    this.form.clearValidators();
-    
-    if (this.mode === 'signup') {
-      this.form.setValidators(passwordMatchValidator);
+  renderGoogleButton(): void {
+    if (typeof window === 'undefined') return;
+
+    const tryRender = () => {
+      if (typeof google !== 'undefined' && google.accounts?.id) {
+        try {
+          google.accounts.id.initialize({
+            client_id: this.googleClientId,
+            callback: (response: any) => this.handleGoogleCredential(response),
+            auto_select: false,
+            cancel_on_tap_outside: true
+          });
+
+          const container = document.getElementById('dialog-google-btn');
+          if (container) {
+            google.accounts.id.renderButton(container, {
+              theme: 'filled_black',
+              size: 'large',
+              shape: 'rectangular',
+              text: 'signin_with',
+              logo_alignment: 'left',
+              width: 280
+            });
+          }
+        } catch (e) {
+          console.warn('Google Identity initialization in dialog:', e);
+        }
+      } else {
+        setTimeout(tryRender, 300);
+      }
+    };
+    tryRender();
+  }
+
+  triggerGoogleSignIn(): void {
+    if (typeof google !== 'undefined' && google.accounts?.id) {
+      try {
+        google.accounts.id.prompt();
+      } catch (e) {
+        this.errorMessage = 'Google Identity prompt failed. Please try again.';
+      }
     } else {
-      this.form.setValidators(null);
+      this.errorMessage = 'Google services are currently unavailable. Please check your connection.';
     }
-
-    // Clear all existing validators
-    ['fullName', 'phoneNumber', 'email', 'usernameOrEmail', 'confirmPassword'].forEach(field => {
-      this.form.get(field)?.clearValidators();
-      this.form.get(field)?.updateValueAndValidity();
-    });
-
-    if (this.mode === 'signup') {
-      this.form.get('fullName')?.setValidators([Validators.required, Validators.minLength(3)]);
-      this.form.get('phoneNumber')?.setValidators([Validators.required]);
-      this.form.get('email')?.setValidators([Validators.required, Validators.email]);
-      this.form.get('confirmPassword')?.setValidators([Validators.required]);
-    } else {
-      this.form.get('usernameOrEmail')?.setValidators([Validators.required]);
-    }
-
-    // Trigger validation updates
-    ['fullName', 'phoneNumber', 'email', 'usernameOrEmail', 'confirmPassword'].forEach(field => {
-      this.form.get(field)?.updateValueAndValidity();
-    });
-    this.form.updateValueAndValidity();
   }
 
-  submit(): void {
-    this.errorMessage = '';
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
+  handleGoogleCredential(response: any): void {
+    if (!response?.credential) return;
 
     this.isLoading = true;
-    if (this.mode === 'login') {
-      const payload = {
-        email: this.form.value.usernameOrEmail,
-        password: this.form.value.password,
+    this.errorMessage = '';
+
+    try {
+      const payload = JSON.parse(atob(response.credential.split('.')[1]));
+      const email = payload.email || '';
+      const isAdmin = this.api.isAdminEmail(email);
+      const user = {
+        name: payload.name || payload.email || 'User',
+        email: email,
+        picture: payload.picture || null,
+        role: isAdmin ? 'Super Admin' : 'User'
       };
-      this.api.login(payload).subscribe({
-        next: (res) => {
+
+      localStorage.setItem('token', response.credential);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      // Sync with backend database
+      this.api.googleLogin({
+        credential: response.credential,
+        email: user.email,
+        name: user.name,
+        picture: user.picture
+      }).subscribe({
+        next: (res: any) => {
           this.isLoading = false;
-          this.dialogRef.close({ token: res.data.accessToken, refreshToken: res.data.refreshToken, tokenType: res.data.tokenType });
+          let activeToken = response.credential;
+          let refreshToken = null;
+          if (res?.data?.accessToken) {
+            activeToken = res.data.accessToken;
+            localStorage.setItem('token', activeToken);
+            if (res.data.refreshToken) {
+              refreshToken = res.data.refreshToken;
+              localStorage.setItem('refreshToken', refreshToken);
+            }
+          }
+          this.api.setAuthState(true);
+          this.dialogRef.close({ token: activeToken, refreshToken, user });
         },
-        error: () => {
+        error: (err: any) => {
           this.isLoading = false;
-          this.errorMessage = 'Invalid credentials.';
-        },
+          console.warn('Backend Google auth sync note, continuing with credential:', err);
+          this.api.setAuthState(true);
+          this.dialogRef.close({ token: response.credential, user });
+        }
       });
-      return;
+    } catch (e) {
+      this.isLoading = false;
+      this.errorMessage = 'Failed to decode Google account details.';
     }
-
-    const signupPayload = {
-      fullName: this.form.value.fullName,
-      phoneNumber: this.form.value.phoneNumber,
-      email: this.form.value.email,
-      password: this.form.value.password,
-    };
-
-    this.api.register(signupPayload).subscribe({
-      next: () => {
-        const loginPayload = {
-          email: signupPayload.email,
-          password: signupPayload.password,
-        };
-        this.api.login(loginPayload).subscribe({
-          next: (res) => {
-            this.isLoading = false;
-            this.dialogRef.close({ token: res.data.accessToken, refreshToken: res.data.refreshToken, tokenType: res.data.tokenType });
-          },
-          error: () => {
-            this.isLoading = false;
-            this.errorMessage = 'Signup succeeded, but auto-login failed.';
-          },
-        });
-      },
-      error: (err) => {
-        this.isLoading = false;
-        this.errorMessage = err?.error?.message || 'Signup failed.';
-      },
-    });
   }
 
   close(): void {

@@ -11,6 +11,15 @@
   z-index: 1;
 }
 
+/* Defer rendering of heavy below-the-fold sections to ensure 60-120fps scrolling */
+.capabilities-section,
+.experience-section,
+.showcase-section,
+.ecosystem-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 750px;
+}
+
 .gradient-text {
   background: linear-gradient(90deg, #f59e0b 0%, #10b981 25%, #3b82f6 50%, #8b5cf6 75%, #f59e0b 100%);
   background-size: 300% 100%;
@@ -100,10 +109,11 @@
   inset: -20px;
   border-radius: 2.8rem;
   background: conic-gradient(from 0deg, #f59e0b, #10b981, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
-  filter: blur(30px);
+  filter: blur(20px);
   z-index: 0;
-  opacity: 0.85;
-  animation: spinHalo 7s linear infinite;
+  opacity: 0.8;
+  will-change: transform;
+  animation: spinHalo 8s linear infinite;
 }
 
 @keyframes spinHalo {
@@ -245,7 +255,7 @@
   overflow: hidden;
 }
 
-/* Card Corner Indices (A, K, Q, J and Suit) */
+/* Card Corner Indices (Suit) */
 .card-corner-index {
   position: absolute;
   z-index: 15;
@@ -291,7 +301,7 @@
   background: linear-gradient(165deg, rgba(30, 23, 15, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
   --card-glow-color: rgba(245, 158, 11, 0.4);
 
-  .card-rank, .card-suit { color: #fbbf24; }
+  .card-suit { color: #fbbf24; }
   .card-pillar-tag { border-color: rgba(245, 158, 11, 0.3); color: #fbbf24; background: rgba(245, 158, 11, 0.1); }
   .card-icon-seal { background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.1)); border-color: rgba(245, 158, 11, 0.4); color: #fbbf24; }
   .card-subtitle { color: #f59e0b; }
@@ -303,7 +313,7 @@
   background: linear-gradient(165deg, rgba(15, 23, 42, 0.9) 0%, rgba(10, 18, 36, 0.95) 100%);
   --card-glow-color: rgba(59, 130, 246, 0.4);
 
-  .card-rank, .card-suit { color: #60a5fa; }
+  .card-suit { color: #60a5fa; }
   .card-pillar-tag { border-color: rgba(59, 130, 246, 0.3); color: #60a5fa; background: rgba(59, 130, 246, 0.1); }
   .card-icon-seal { background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(37, 99, 235, 0.1)); border-color: rgba(59, 130, 246, 0.4); color: #60a5fa; }
   .card-subtitle { color: #60a5fa; }
@@ -315,7 +325,7 @@
   background: linear-gradient(165deg, rgba(12, 28, 22, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
   --card-glow-color: rgba(16, 185, 129, 0.4);
 
-  .card-rank, .card-suit { color: #34d399; }
+  .card-suit { color: #34d399; }
   .card-pillar-tag { border-color: rgba(16, 185, 129, 0.3); color: #34d399; background: rgba(16, 185, 129, 0.1); }
   .card-icon-seal { background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.1)); border-color: rgba(16, 185, 129, 0.4); color: #34d399; }
   .card-subtitle { color: #34d399; }
@@ -327,7 +337,7 @@
   background: linear-gradient(165deg, rgba(28, 14, 40, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
   --card-glow-color: rgba(168, 85, 247, 0.4);
 
-  .card-rank, .card-suit { color: #c084fc; }
+  .card-suit { color: #c084fc; }
   .card-pillar-tag { border-color: rgba(168, 85, 247, 0.3); color: #c084fc; background: rgba(168, 85, 247, 0.1); }
   .card-icon-seal { background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(147, 51, 234, 0.1)); border-color: rgba(168, 85, 247, 0.4); color: #c084fc; }
   .card-subtitle { color: #c084fc; }

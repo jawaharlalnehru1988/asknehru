@@ -6,14 +6,12 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class SessionManagerService {
-  private lastActivityTime: number = Date.now();
   private readonly CHECK_INTERVAL_MS = 60000; // Check every 1 minute
-  private readonly REFRESH_THRESHOLD_MS = 300000; // Refresh if < 5 minutes until expiry
-  private readonly ACTIVITY_THRESHOLD_MS = 900000; // 15 minutes of inactivity max
+  private readonly REFRESH_THRESHOLD_MS = 900000; // Refresh proactively if < 15 minutes until expiry
   
   private intervalId: any;
   private isBrowser: boolean;
-  private isRefreshing: boolean = false;
+  private isRefreshing = false;
 
   constructor(
     private apiService: ApiService,
@@ -22,35 +20,29 @@ export class SessionManagerService {
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
     if (this.isBrowser) {
-      this.initActivityTracking();
+      this.initLifecycleTracking();
       this.startSessionCheck();
+      // Also check immediately on app startup
+      setTimeout(() => this.checkSession(), 1000);
     }
   }
 
-  private initActivityTracking() {
+  private initLifecycleTracking(): void {
     this.ngZone.runOutsideAngular(() => {
-      const updateActivity = () => {
-        this.lastActivityTime = Date.now();
-      };
-      
-      let timeout: any;
-      const throttledUpdate = () => {
-        if (!timeout) {
-          timeout = setTimeout(() => {
-            updateActivity();
-            timeout = null;
-          }, 1000);
+      const handleUserResume = () => {
+        // When user switches back to browser tab or mobile app resumes
+        if (document.visibilityState === 'visible') {
+          this.ngZone.run(() => this.checkSession());
         }
       };
 
-      window.addEventListener('mousemove', throttledUpdate);
-      window.addEventListener('keydown', throttledUpdate);
-      window.addEventListener('click', throttledUpdate);
-      window.addEventListener('scroll', throttledUpdate, true);
+      document.addEventListener('visibilitychange', handleUserResume);
+      window.addEventListener('focus', handleUserResume);
+      window.addEventListener('pageshow', handleUserResume);
     });
   }
 
-  private startSessionCheck() {
+  private startSessionCheck(): void {
     this.ngZone.runOutsideAngular(() => {
       this.intervalId = setInterval(() => {
         this.ngZone.run(() => this.checkSession());
@@ -58,31 +50,33 @@ export class SessionManagerService {
     });
   }
 
-  private checkSession() {
+  public checkSession(): void {
     if (this.isRefreshing) return;
 
     const token = localStorage.getItem('token');
     const refreshToken = localStorage.getItem('refreshToken');
 
-    if (!token || !refreshToken) return;
+    // If no tokens exist, user is not logged in
+    if (!token) return;
 
-    const timeSinceLastActivity = Date.now() - this.lastActivityTime;
-    if (timeSinceLastActivity > this.ACTIVITY_THRESHOLD_MS) {
-      // Inactive user, let token naturally expire
-      return;
-    }
+    // If no refresh token exists, we cannot silently refresh
+    if (!refreshToken) return;
 
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
+      const tokenParts = token.split('.');
+      if (tokenParts.length < 2) return;
+
+      const payload = JSON.parse(atob(tokenParts[1]));
       if (payload.exp) {
         const expTimeMs = payload.exp * 1000;
         const timeUntilExp = expTimeMs - Date.now();
 
+        // If access token has expired or is expiring within REFRESH_THRESHOLD_MS, refresh silently
         if (timeUntilExp <= this.REFRESH_THRESHOLD_MS) {
           this.isRefreshing = true;
           this.apiService.refresh({ refreshToken }).subscribe({
             next: (res) => {
-              if (res && res.data && res.data.accessToken) {
+              if (res?.data?.accessToken) {
                 localStorage.setItem('token', res.data.accessToken);
                 if (res.data.refreshToken) {
                   localStorage.setItem('refreshToken', res.data.refreshToken);
@@ -91,21 +85,24 @@ export class SessionManagerService {
               this.isRefreshing = false;
             },
             error: (err) => {
-              console.error('Failed to refresh session proactively:', err);
               this.isRefreshing = false;
-              if (timeUntilExp <= 0) {
-                 this.apiService.globalLogout(); // Force logout if expired and refresh fails
+              // Only log out if backend explicitly rejected refresh token with 401
+              if (err.status === 401) {
+                console.warn('[SessionManager] Refresh token rejected or expired on server. Logging out.');
+                this.apiService.globalLogout();
+              } else {
+                console.warn('[SessionManager] Temporary network issue while refreshing token; will retry on next check.');
               }
             }
           });
         }
       }
     } catch (e) {
-      console.error('Failed to parse token in session manager', e);
+      console.error('[SessionManager] Error parsing token:', e);
     }
   }
 
-  stop() {
+  stop(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }

@@ -1,0 +1,341 @@
+:host {
+  display: block;
+}
+
+/* Custom Mermaid SVG diagram container */
+::ng-deep .mermaid {
+  position: relative !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 2.25rem 1.5rem 1.5rem 1.5rem;
+  background: radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.95), rgba(9, 13, 22, 0.98));
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(96, 165, 250, 0.6) rgba(15, 23, 42, 0.9);
+  transition: all 0.3s ease;
+  cursor: zoom-in;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.9);
+    border-radius: 9999px;
+    margin: 0 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
+    border-radius: 9999px;
+    border: 2px solid rgba(15, 23, 42, 0.9);
+
+    &:hover {
+      background: linear-gradient(90deg, #60a5fa, #818cf8);
+    }
+  }
+
+  &:hover {
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.2);
+
+    .mermaid-expand-floating-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mermaid-expand-floating-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #93c5fd;
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    border-radius: 9999px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    opacity: 0.9;
+    transform: translateY(0);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 20;
+
+    &:hover {
+      opacity: 1;
+      color: #ffffff;
+      background: rgba(30, 58, 138, 0.95);
+      border-color: #60a5fa;
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    svg {
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+  }
+
+  svg {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+
+    overflow: visible;
+
+    /* Subgraph / Cluster background */
+    .cluster rect {
+      fill: #090d16 !important;
+      stroke: #334155 !important;
+      stroke-width: 1.5px !important;
+      rx: 14px !important;
+    }
+
+    .cluster text, .cluster span, .cluster .cluster-label {
+      fill: #60a5fa !important;
+      color: #60a5fa !important;
+      font-weight: 700 !important;
+      font-size: 12px !important;
+      letter-spacing: normal !important;
+      line-height: 1.25 !important;
+      overflow: visible !important;
+    }
+
+    /* Edge labels (e.g. Kafka Event, REST Calls) */
+    .edgeLabel {
+      overflow: visible !important;
+      fill: #38bdf8 !important;
+      color: #38bdf8 !important;
+
+      foreignObject {
+        overflow: visible !important;
+      }
+
+      /* Style the outer container box cleanly with single padding & border */
+      div {
+        background-color: #0b1120 !important;
+        color: #38bdf8 !important;
+        font-weight: 600 !important;
+        font-size: 11px !important;
+        padding: 3px 10px !important;
+        border-radius: 6px !important;
+        border: 1px solid rgba(56, 189, 248, 0.55) !important;
+        white-space: nowrap !important;
+        width: max-content !important;
+        overflow: visible !important;
+        display: inline-block !important;
+        line-height: 1.35 !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7) !important;
+
+        /* Strip duplicate nested borders & padding from inner spans/p */
+        span, p {
+          background: transparent !important;
+          border: none !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          color: inherit !important;
+          font-weight: inherit !important;
+          font-size: inherit !important;
+          line-height: inherit !important;
+          overflow: visible !important;
+        }
+      }
+    }
+
+    .edgeLabel rect {
+      fill: #0b1120 !important;
+      opacity: 1 !important;
+    }
+
+    /* Edge paths & arrows */
+    path.flowchart-link, path.path, line {
+      stroke: #64748b !important;
+      stroke-width: 2px !important;
+    }
+
+    marker path {
+      fill: #64748b !important;
+      stroke: #64748b !important;
+    }
+
+    /* Node label readability & wrapping */
+    .nodeLabel, .label {
+      font-family: inherit !important;
+      font-weight: 600 !important;
+      color: #f8fafc !important;
+      fill: #f8fafc !important;
+      white-space: normal !important;
+      line-height: 1.4 !important;
+      overflow: visible !important;
+    }
+
+    foreignObject {
+      overflow: visible !important;
+
+      div {
+        overflow: visible !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
+      }
+    }
+
+    .node rect, .node circle, .node polygon {
+      stroke-width: 2px !important;
+    }
+  }
+}
+
+/* Custom Callouts inside Markdown */
+::ng-deep blockquote {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  }
+}
+
+/* Table styling enhancements & Responsive Mobile Horizontal Scroll */
+::ng-deep markdown {
+  table {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x pan-y !important;
+    border-radius: 1rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    margin: 2rem 0 !important;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    /* Sleek custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(96, 165, 250, 0.6) rgba(15, 23, 42, 0.9);
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 9999px;
+      margin: 0 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      border-radius: 9999px;
+      border: 2px solid rgba(15, 23, 42, 0.9);
+
+      &:hover {
+        background: linear-gradient(90deg, #60a5fa, #818cf8);
+      }
+    }
+
+    thead {
+      background: rgba(30, 41, 59, 0.95);
+    }
+
+    th {
+      background: rgba(30, 41, 59, 0.95) !important;
+      color: #f8fafc !important;
+      font-weight: 800 !important;
+      font-size: 0.925rem !important;
+      letter-spacing: 0.03em;
+      padding: 1rem 1.25rem !important;
+      white-space: nowrap;
+      border-bottom: 2px solid rgba(59, 130, 246, 0.4) !important;
+      border-right: 1px solid rgba(51, 65, 85, 0.3) !important;
+
+      &:last-child {
+        border-right: none !important;
+      }
+    }
+
+    th:first-child {
+      min-width: 140px;
+    }
+
+    th:nth-child(2) {
+      min-width: 260px;
+    }
+
+    th:nth-child(n+3) {
+      min-width: 260px;
+    }
+
+    tbody tr {
+      transition: background 0.2s ease;
+
+      &:hover td {
+        background: rgba(30, 41, 59, 0.45);
+      }
+    }
+
+    td {
+      padding: 1rem 1.25rem !important;
+      border-top: 1px solid rgba(51, 65, 85, 0.45) !important;
+      border-right: 1px solid rgba(51, 65, 85, 0.2) !important;
+      color: #cbd5e1 !important;
+      font-size: 0.9rem !important;
+      line-height: 1.65;
+      min-width: 200px;
+      vertical-align: top;
+
+      &:last-child {
+        border-right: none !important;
+      }
+
+      code {
+        background: rgba(30, 41, 59, 0.9) !important;
+        color: #f59e0b !important;
+        padding: 0.15rem 0.45rem !important;
+        border-radius: 0.375rem !important;
+        border: 1px solid rgba(245, 158, 11, 0.3) !important;
+        font-size: 0.825rem !important;
+      }
+    }
+  }
+}
+
+/* Code block enhancements */
+::ng-deep pre {
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  padding: 1.25rem !important;
+  background: #0b0f19 !important;
+}
+
+::ng-deep code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}

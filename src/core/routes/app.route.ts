@@ -25,12 +25,24 @@ export const routes: Routes = [
     loadComponent: () => import('../../app/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
   },
   {
+    path: 'project/:id/topic/:subtopicId',
+    loadComponent: () => import('../../app/article-detail/article-detail.component').then(m => m.ArticleDetailComponent)
+  },
+  {
+    path: 'topic/:subtopicId',
+    loadComponent: () => import('../../app/article-detail/article-detail.component').then(m => m.ArticleDetailComponent)
+  },
+  {
     path: 'articles-gallery',
     loadComponent: () => import('../../app/articles-gallery/articles-gallery.component').then(m => m.ArticlesGalleryComponent)
   },
   {
     path: 'dashboard',
     loadComponent: () => import('../../app/dashboard/dashboard.component').then(m => m.DashboardComponent)
+  },
+  {
+    path: 'userlist',
+    loadComponent: () => import('../../app/user-list/user-list.component').then(m => m.UserListComponent)
   },
   {
     path: 'coding',

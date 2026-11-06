@@ -1,10 +1,24 @@
 <mat-toolbar class="dark-toolbar">
-  <a routerLink="/" class="brand-link" aria-label="AskNehru Home">
-    <span class="brand-title">AskNehru</span>
-    <mat-icon class="home-icon">home</mat-icon>
-  </a>
+  <div class="brand-group flex items-center">
+    <!-- Menu Icon Button for Engineering Tools & Resources -->
+    <button mat-icon-button [matMenuTriggerFor]="engineeringMenu" class="resources-menu-trigger" aria-label="Engineering Tools & Resources" title="Engineering Tools & Resources">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <a routerLink="/" class="brand-link" aria-label="AskNehru Home">
+      <span class="brand-title">AskNehru</span>
+      <mat-icon class="home-icon">home</mat-icon>
+    </a>
+  </div>
 
   <span class="example-spacer"></span>
+
+  @if (!pwaService.isInstalled() && (pwaService.canInstall() || pwaService.isIos())) {
+  <button mat-button class="pwa-toolbar-install-btn text-cyan-400 hover:text-white" (click)="pwaService.promptInstall()" aria-label="Install App" title="Install AskNehru App">
+    <mat-icon class="mr-1 text-cyan-400">download</mat-icon>
+    <span class="hide-on-small font-medium">Install App</span>
+  </button>
+  }
 
   @if (isSuperAdmin) {
   <button class="hide-on-small text-slate-300 hover:text-white" mat-button routerLinkActive="active-link" routerLink="/userlist">User's List</button>
@@ -35,7 +49,7 @@
     <!-- Google Identity Services Render Container -->
     <div id="google-btn-container"></div>
 
-    <!-- Fallback styled Google button if not rendered -->
+    <!-- Styled Google button (fallback/primary trigger) -->
     <button (click)="signInWithGoogle()" class="google-auth-btn" id="google-fallback-btn" aria-label="Sign in with Google">
       <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18">
         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -46,10 +60,119 @@
       <span class="hide-on-mobile">Sign in with Google</span>
       <span class="show-on-mobile">Google</span>
     </button>
-
-    <!-- Standard Login & Sign Up Options -->
-    <button [disabled]="!loggedInTrue" mat-button class="auth-btn-login font-semibold" (click)="openLoginDialog()">Login</button>
-    <button [disabled]="signInTrue" mat-button class="auth-btn-signup font-semibold hide-on-small" (click)="openSignupDialog()">Sign Up</button>
   </div>
   }
+
+  <!-- Engineering Tools & Resources Dropdown Menu -->
+  <mat-menu #engineeringMenu="matMenu" class="dark-resources-menu" xPosition="after">
+    <!-- Section 1: Roadmaps -->
+    <div class="menu-header">
+      <mat-icon class="section-icon text-blue-400">alt_route</mat-icon>
+      <span>ROADMAPS &amp; ARCHITECTURES</span>
+    </div>
+
+    <button mat-menu-item routerLink="/roadmaps">
+      <mat-icon class="item-icon text-emerald-400">developer_board</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Technical Roadmaps</span>
+        <span class="item-desc">Spring Boot, Microservices, System Design, Kafka, AWS</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/project/22">
+      <mat-icon class="item-icon text-cyan-400">account_tree</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">DSA Learning with Java</span>
+        <span class="item-desc">Arrays, Trees, Graphs, DP, Cyclic Sort &amp; Algorithms</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/roadmaps">
+      <mat-icon class="item-icon text-amber-400">psychology</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">General &amp; Leadership Roadmaps</span>
+        <span class="item-desc">Business Communication, Public Speaking &amp; Leadership</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/roadmaps">
+      <mat-icon class="item-icon text-indigo-400">explore</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">All Roadmaps Gallery</span>
+        <span class="item-desc">Explore all 35+ structured tracks with quizzes</span>
+      </div>
+    </button>
+
+    <div class="menu-divider"></div>
+
+    <!-- Section 2: Coding Interview Sandbox -->
+    <div class="menu-header">
+      <mat-icon class="section-icon text-purple-400">terminal</mat-icon>
+      <span>CODING INTERVIEW SANDBOX</span>
+    </div>
+
+    <button mat-menu-item routerLink="/coding">
+      <mat-icon class="item-icon text-violet-400">code</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Coding Interview Simulator</span>
+        <span class="item-desc">Interactive real-time interview simulator &amp; problem setup</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/coding/complexity">
+      <mat-icon class="item-icon text-rose-400">speed</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Complexity Analysis Sandbox</span>
+        <span class="item-desc">Time &amp; Space Complexity evaluator and Big-O verification</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/coding/manipulation">
+      <mat-icon class="item-icon text-teal-400">tune</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Code Manipulation Sandbox</span>
+        <span class="item-desc">Hands-on array &amp; string algorithmic transformations</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/coding/hard">
+      <mat-icon class="item-icon text-amber-300">military_tech</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Challenging Coding Problems</span>
+        <span class="item-desc">Hard and advanced problem solving exercises</span>
+      </div>
+    </button>
+
+    <div class="menu-divider"></div>
+
+    <!-- Section 3: Engineering Resources -->
+    <div class="menu-header">
+      <mat-icon class="section-icon text-sky-400">library_books</mat-icon>
+      <span>RESOURCES &amp; WHITEPAPERS</span>
+    </div>
+
+    <button mat-menu-item routerLink="/articles-gallery">
+      <mat-icon class="item-icon text-sky-400">article</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Technical Whitepapers</span>
+        <span class="item-desc">In-depth architectural guides with Mermaid diagrams</span>
+      </div>
+    </button>
+
+    <button mat-menu-item routerLink="/dashboard">
+      <mat-icon class="item-icon text-blue-400">dashboard</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Learning &amp; Score Dashboard</span>
+        <span class="item-desc">Track your roadmap progress and quiz scores</span>
+      </div>
+    </button>
+
+    <a mat-menu-item href="/audio-library/" target="_blank">
+      <mat-icon class="item-icon text-purple-400">headphones</mat-icon>
+      <div class="menu-item-text">
+        <span class="item-title">Audio Learning Library</span>
+        <span class="item-desc">Audio-narrated technical lessons and discussions</span>
+      </div>
+    </a>
+  </mat-menu>
 </mat-toolbar>

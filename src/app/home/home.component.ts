@@ -196,7 +196,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   consultingPillars = [
     {
-      rank: 'A',
       suit: '♠',
       order: '01',
       accent: 'amber',
@@ -208,7 +207,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'I counsel startups and business owners on transforming rough ideas into production-ready software architectures, database schemas, and milestone-driven technical roadmaps.'
     },
     {
-      rank: 'K',
       suit: '♦',
       order: '02',
       accent: 'blue',
@@ -220,7 +218,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Over 4+ years building high-throughput web applications with Angular, React, Next.js, Spring Boot, Node.js, and Python/Django. Clean architecture, automated testing, and scalable microservices.'
     },
     {
-      rank: 'Q',
       suit: '♣',
       order: '03',
       accent: 'emerald',
@@ -232,7 +229,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Capable of engineering native, fluid Android mobile applications using Kotlin, Jetpack Compose, Room database, Coroutines, and cloud data synchronization.'
     },
     {
-      rank: 'J',
       suit: '♥',
       order: '04',
       accent: 'purple',
@@ -449,19 +445,21 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private startRoleRotation(): void {
-    this.roleIntervalId = setInterval(() => {
-      this.currentRoleIndex = (this.currentRoleIndex + 1) % this.rotatingRoles.length;
-      this.ngZone.runOutsideAngular(() => {
+    this.ngZone.runOutsideAngular(() => {
+      this.roleIntervalId = setInterval(() => {
+        this.ngZone.run(() => {
+          this.currentRoleIndex = (this.currentRoleIndex + 1) % this.rotatingRoles.length;
+        });
         const roleEl = this.hostEl.nativeElement.querySelector('.rotating-role-text');
         if (roleEl) {
           gsap.fromTo(
             roleEl,
-            { y: 14, opacity: 0, filter: 'blur(4px)' },
-            { y: 0, opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power2.out' }
+            { y: 12, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.45, ease: 'power2.out' }
           );
         }
-      });
-    }, 2800);
+      }, 3200);
+    });
   }
 
   ngAfterViewInit(): void {

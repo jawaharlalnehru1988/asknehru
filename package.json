@@ -29,6 +29,7 @@
     "gsap": "^3.15.0",
     "jquery": "^3.7.1",
     "marked": "^15.0.12",
+    "mermaid": "^11.12.3",
     "monaco-editor": "^0.55.1",
     "ngx-markdown": "^19.1.1",
     "ngx-monaco-editor-v2": "^21.1.4",

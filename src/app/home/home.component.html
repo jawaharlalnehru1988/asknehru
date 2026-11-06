@@ -168,10 +168,9 @@
             appSpotlight 
             [spotlightColor]="pillar.accentGlow">
             
-            <!-- Card Corner Index Top-Left (Rummy Ace/King/Queen/Jack) -->
+            <!-- Card Corner Index Top-Left (Suit) -->
             <div class="card-corner-index top-left flex flex-col items-center">
-              <span class="card-rank font-black text-2xl leading-none">{{ pillar.rank }}</span>
-              <span class="card-suit text-sm leading-none mt-1">{{ pillar.suit }}</span>
+              <span class="card-suit text-sm leading-none">{{ pillar.suit }}</span>
             </div>
 
             <!-- Card Corner Index Top-Right (Pillar Order Number) -->
@@ -217,8 +216,7 @@
 
             <!-- Card Corner Index Bottom-Right (Inverted) -->
             <div class="card-corner-index bottom-right flex flex-col items-center rotate-180">
-              <span class="card-rank font-black text-2xl leading-none">{{ pillar.rank }}</span>
-              <span class="card-suit text-sm leading-none mt-1">{{ pillar.suit }}</span>
+              <span class="card-suit text-sm leading-none">{{ pillar.suit }}</span>
             </div>
 
           </div>

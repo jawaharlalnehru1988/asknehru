@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Project } from '../home/homejson';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,11 @@ import { AudioPlayerComponent } from '../shared/audio-player/audio-player.compon
 
 import { environment } from '../../environments/environment';
 import { forkJoin } from 'rxjs';
+import mermaid from 'mermaid';
+
+if (typeof window !== 'undefined') {
+    (window as any).mermaid = mermaid;
+}
 
 @Component({
     selector: 'app-project-detail',
@@ -79,7 +84,18 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     autoGenerateRemaining: number = 0;
     autoPlayPending: boolean = false;
 
-    constructor(private route: ActivatedRoute, private apiService: ApiService, private dialog: MatDialog) { }
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private apiService: ApiService,
+        private dialog: MatDialog
+    ) { }
+
+    openTopicArticle(subtopic: any) {
+        const id = this.route.snapshot.paramMap.get('id') || '5';
+        this.saveScrollPosition();
+        this.router.navigate(['/project', id, 'topic', subtopic.id]);
+    }
 
     copyToClipboard(text: string, id: number) {
         navigator.clipboard.writeText(text).then(() => {
@@ -91,6 +107,236 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
             }, 2000);
         }).catch(err => {
             console.error('Failed to copy: ', err);
+        });
+    }
+
+    customMermaidOptions: any = {
+        startOnLoad: false,
+        theme: 'dark',
+        securityLevel: 'loose',
+        fontSize: 13,
+        themeVariables: {
+            darkMode: true,
+            fontSize: '13px',
+            background: '#090d16',
+            mainBkg: '#0f172a',
+            clusterBkg: '#090d16',
+            clusterBorder: '#3b82f6',
+            edgeLabelBackground: '#0b1120',
+            nodeTextColor: '#f8fafc',
+            textColor: '#f8fafc',
+            primaryColor: '#1e3a8a',
+            primaryTextColor: '#f8fafc',
+            primaryBorderColor: '#3b82f6',
+            lineColor: '#60a5fa',
+            secondaryColor: '#064e3b',
+            secondaryTextColor: '#f8fafc',
+            secondaryBorderColor: '#10b981',
+            tertiaryColor: '#4c1d95',
+            tertiaryTextColor: '#f8fafc',
+            tertiaryBorderColor: '#a855f7',
+            actorBkg: '#1e293b',
+            actorBorder: '#60a5fa',
+            actorTextColor: '#ffffff',
+            signalColor: '#60a5fa',
+            signalTextColor: '#ffffff',
+            labelBoxBkgColor: '#0b1120',
+            labelBoxBorderColor: '#38bdf8',
+            labelTextColor: '#38bdf8',
+            fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
+        },
+        flowchart: {
+            htmlLabels: true,
+            useMaxWidth: false,
+            curve: 'basis',
+            padding: 24,
+            nodeSpacing: 50,
+            rankSpacing: 60,
+            wrappingWidth: 260
+        }
+    };
+
+    onMarkdownReady(): void {
+        this.renderMermaidDiagrams();
+        setTimeout(() => {
+            this.enhanceCodeBlocks();
+        }, 120);
+    }
+
+    async renderMermaidDiagrams(): Promise<void> {
+        if (typeof window === 'undefined') return;
+        try {
+            mermaid.initialize(this.customMermaidOptions as any);
+            setTimeout(async () => {
+                try {
+                    const unprocessed = document.querySelectorAll('.mermaid:not([data-processed="true"])');
+                    if (unprocessed.length > 0) {
+                        await mermaid.run({ nodes: Array.from(unprocessed) as HTMLElement[] });
+                    }
+                } catch (e) {
+                    console.debug('Mermaid render run note:', e);
+                } finally {
+                    this.enhanceMermaidDiagrams();
+                }
+            }, 100);
+
+            setTimeout(() => this.enhanceMermaidDiagrams(), 400);
+        } catch (e) {
+            console.error('Mermaid initialization error:', e);
+        }
+    }
+
+    enhanceMermaidDiagrams(): void {
+        if (typeof document === 'undefined') return;
+        const containers = document.querySelectorAll('.mermaid');
+        containers.forEach((container: Element) => {
+            const el = container as HTMLElement;
+            const svg = el.querySelector('svg');
+            if (!svg) return;
+            svg.style.overflow = 'visible';
+            svg.querySelectorAll('foreignObject').forEach(fo => {
+                (fo as SVGElement).style.overflow = 'visible';
+                const div = fo.querySelector('div');
+                if (!div) return;
+                (div as HTMLElement).style.overflow = 'visible';
+            });
+        });
+    }
+
+    enhanceCodeBlocks(): void {
+        if (typeof document === 'undefined') return;
+        const preElements = document.querySelectorAll('.premium-markdown pre:not([data-copy-enhanced="true"])');
+        
+        preElements.forEach((preElement: Element) => {
+            const pre = preElement as HTMLElement;
+            pre.setAttribute('data-copy-enhanced', 'true');
+
+            // Detect language from code class (e.g. language-java)
+            const codeEl = pre.querySelector('code');
+            let lang = 'code';
+            if (codeEl) {
+                const langClass = Array.from(codeEl.classList).find(c => c.startsWith('language-'));
+                if (langClass) {
+                    lang = langClass.replace('language-', '');
+                }
+            }
+
+            // Create wrapper container
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+
+            // Insert wrapper before pre and move pre inside
+            pre.parentNode?.insertBefore(wrapper, pre);
+            wrapper.appendChild(pre);
+
+            // Add language label
+            const label = document.createElement('span');
+            label.className = 'code-lang-label';
+            label.textContent = lang;
+            wrapper.appendChild(label);
+
+            // Actions container for buttons
+            const actionsContainer = document.createElement('div');
+            actionsContainer.className = 'code-actions';
+
+            // Add copy button
+            const copyBtn = document.createElement('button');
+            copyBtn.type = 'button';
+            copyBtn.className = 'code-copy-btn';
+            copyBtn.setAttribute('title', 'Copy code to clipboard');
+            copyBtn.innerHTML = `
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                </svg>
+                <span>Copy</span>
+            `;
+
+            copyBtn.addEventListener('click', () => {
+                const rawText = codeEl ? codeEl.innerText : pre.innerText;
+                navigator.clipboard.writeText(rawText).then(() => {
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = `
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Copied!</span>
+                    `;
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = `
+                            <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                            </svg>
+                            <span>Copy</span>
+                        `;
+                    }, 2200);
+                }).catch(err => {
+                    console.error('Failed to copy code: ', err);
+                });
+            });
+
+            actionsContainer.appendChild(copyBtn);
+
+            // Add Run Code button for executable programming languages
+            const nonExecutable = ['plaintext', 'text', 'console', 'output', 'terminal', 'sh', 'bash', 'json', 'yaml', 'yml', 'xml'];
+            const isExecutable = !nonExecutable.includes(lang.toLowerCase());
+
+            if (isExecutable) {
+                const runBtn = document.createElement('button');
+                runBtn.type = 'button';
+                runBtn.className = 'code-run-btn';
+                runBtn.setAttribute('title', 'Copy code and open in Programiz online compiler');
+                runBtn.innerHTML = `
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span>Run Code</span>
+                `;
+
+                runBtn.addEventListener('click', () => {
+                    const rawText = codeEl ? codeEl.innerText : pre.innerText;
+                    navigator.clipboard.writeText(rawText).catch(err => console.error('Failed to copy code: ', err));
+
+                    runBtn.classList.add('running');
+                    runBtn.innerHTML = `
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Copied! Opening...</span>
+                    `;
+
+                    // Language mapping to Programiz online compilers (defaults to Java)
+                    const l = lang.toLowerCase();
+                    let compilerUrl = 'https://www.programiz.com/java-programming/online-compiler/';
+                    if (l === 'python' || l === 'py') {
+                        compilerUrl = 'https://www.programiz.com/python-programming/online-compiler/';
+                    } else if (l === 'c') {
+                        compilerUrl = 'https://www.programiz.com/c-programming/online-compiler/';
+                    } else if (l === 'cpp' || l === 'c++') {
+                        compilerUrl = 'https://www.programiz.com/cpp-programming/online-compiler/';
+                    } else if (l === 'javascript' || l === 'js') {
+                        compilerUrl = 'https://www.programiz.com/javascript/online-compiler/';
+                    } else if (l === 'sql') {
+                        compilerUrl = 'https://www.programiz.com/sql/online-compiler/';
+                    }
+
+                    window.open(compilerUrl, '_blank');
+
+                    setTimeout(() => {
+                        runBtn.classList.remove('running');
+                        runBtn.innerHTML = `
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <span>Run Code</span>
+                        `;
+                    }, 2500);
+                });
+
+                actionsContainer.appendChild(runBtn);
+            }
+
+            wrapper.appendChild(actionsContainer);
         });
     }
 
@@ -203,8 +449,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
                 if (!localStorage.getItem('token')) {
                     this.dialog.open(AuthDialogComponent, {
                         data: { 
-                            mode: 'login', 
-                            message: 'Please login or sign up to store your score and track your mastery of a subject!' 
+                            message: 'Please sign in with Google to store your score and track your mastery of a subject!' 
                         },
                         width: '420px'
                     });

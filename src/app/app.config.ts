@@ -5,7 +5,8 @@ import { provideMarkdown } from 'ngx-markdown';
 
 import { routes } from '../core/routes/app.route';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from '../core/interceptors/auth.interceptor';
 
 import { provideMonacoEditor } from 'ngx-monaco-editor-v2';
 
@@ -13,7 +14,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideAnimationsAsync(),
     provideMarkdown(),
     provideMonacoEditor(),
