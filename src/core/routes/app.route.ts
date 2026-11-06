@@ -21,12 +21,20 @@ export const routes: Routes = [
     loadComponent: () => import('../../app/roadmaps/roadmaps.component').then((m) => m.RoadmapsComponent)
   },
   {
-    path: 'project/:id',
+    path: 'roadmap/:id',
     loadComponent: () => import('../../app/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
   },
   {
-    path: 'project/:id/topic/:subtopicId',
+    path: 'roadmap/:id/topic/:subtopicId',
     loadComponent: () => import('../../app/article-detail/article-detail.component').then(m => m.ArticleDetailComponent)
+  },
+  {
+    path: 'project/:id',
+    redirectTo: (route) => `/roadmap/${route.params['id']}`
+  },
+  {
+    path: 'project/:id/topic/:subtopicId',
+    redirectTo: (route) => `/roadmap/${route.params['id']}/topic/${route.params['subtopicId']}`
   },
   {
     path: 'topic/:subtopicId',

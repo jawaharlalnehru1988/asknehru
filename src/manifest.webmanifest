@@ -76,7 +76,7 @@
       "name": "DSA Roadmaps",
       "short_name": "Roadmaps",
       "description": "Explore DSA and Architecture Roadmaps",
-      "url": "/project/22",
+      "url": "/roadmap/22",
       "icons": [{ "src": "/assets/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {

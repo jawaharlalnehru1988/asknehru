@@ -38,7 +38,7 @@ export class RoadmapsComponent implements OnInit {
   fuseInstance: Fuse<Project> | null = null;
   isSearching: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.apiService.authState$.subscribe(() => {
@@ -149,102 +149,98 @@ export class RoadmapsComponent implements OnInit {
         if (!isSuperAdmin) {
           filteredRoadmaps = roadmaps.filter((r: any) => r.userAssignedRoadmap === true);
         }
-        
-        // Fetch all conversations and explained subtopics
+
+        // Fetch all MCQ summaries and explained subtopics
         forkJoin({
-          conversations: this.apiService.getConversations(),
+          mcqSummaries: this.apiService.getMcqSummaries(),
           explainedSubtopics: this.apiService.getExplainedSubtopics()
         }).subscribe({
-          next: ({ conversations, explainedSubtopics }) => {
-            this.blogArticleData = filteredRoadmaps.map((roadmap: any) => {
-              let chaptersCount = roadmap.chapters ? roadmap.chapters.length : 0;
-              let subtopicsCount = 0;
-              let roadmapSubtopicIds: number[] = [];
-              let chapterTitles: string[] = [];
-              let subtopicTitles: string[] = [];
-              
-              if (roadmap.chapters) {
-                 roadmap.chapters.forEach((ch: any) => {
-                   if (ch.title) {
-                     chapterTitles.push(ch.title);
-                   }
-                   if (ch.subtopics) {
-                     subtopicsCount += ch.subtopics.length;
-                     ch.subtopics.forEach((sub: any) => {
-                       roadmapSubtopicIds.push(sub.id);
-                       if (sub.title) {
-                         subtopicTitles.push(sub.title);
-                       }
-                     });
-                   }
-                 });
-              }
-              
-              const explainedSubtopicsCount = roadmapSubtopicIds.filter(id => explainedSubtopics.includes(id)).length;
-              
-              const roadmapConversations = conversations.filter((conv: any) => roadmapSubtopicIds.includes(conv.subtopicId));
-              let generatedMcqsCount = 0;
-              roadmapConversations.forEach((conv: any) => {
-                try {
-                  const mcqs = JSON.parse(conv.mcqs || '[]');
-                  generatedMcqsCount += mcqs.length;
-                } catch (e) {
-                  console.error('Error parsing MCQs', e);
-                }
-              });
-              
-              return {
-                id: roadmap.id,
-                PName: roadmap.mainTopic,
-                routerLink: `/project/${roadmap.id}`,
-                PImage: roadmap.imageUrl ? `${environment.apiBaseUrl}${roadmap.imageUrl}` : 'assets/image/default.png',
-                intro: roadmap.intro,
-                syllabus: roadmap.syllabus,
-                chaptersCount,
-                subtopicsCount,
-                chapterTitles,
-                subtopicTitles,
-                explainedSubtopicsCount,
-                generatedMcqsCount,
-                category: roadmap.category || 'TECHNICAL',
-                displayOrder: roadmap.displayOrder !== undefined ? roadmap.displayOrder : 0
-              };
-            });
+            next: ({ mcqSummaries, explainedSubtopics }) => {
+              this.blogArticleData = filteredRoadmaps.map((roadmap: any) => {
+                let chaptersCount = roadmap.chapters ? roadmap.chapters.length : 0;
+                let subtopicsCount = 0;
+                let roadmapSubtopicIds: number[] = [];
+                let chapterTitles: string[] = [];
+                let subtopicTitles: string[] = [];
 
-            const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
-            if (token) {
-               this.apiService.getUserScores().subscribe({
-                 next: (scores) => {
-                    this.blogArticleData.forEach(blog => {
-                       let blogScores = scores.filter((s: any) => s.roadmapId === blog.id);
-                       blog.totalScore = blogScores.reduce((acc: number, s: any) => acc + (s.score || 0), 0);
-                       blog.totalAttemptedQuestions = blogScores.reduce((acc: number, s: any) => acc + (s.totalQuestions || 0), 0);
+                if (roadmap.chapters) {
+                  roadmap.chapters.forEach((ch: any) => {
+                    if (ch.title) {
+                      chapterTitles.push(ch.title);
+                    }
+                    if (ch.subtopics) {
+                      subtopicsCount += ch.subtopics.length;
+                      ch.subtopics.forEach((sub: any) => {
+                        roadmapSubtopicIds.push(sub.id);
+                        if (sub.title) {
+                          subtopicTitles.push(sub.title);
+                        }
+                      });
+                    }
+                  });
+                }
+
+                const explainedSubtopicsCount = roadmapSubtopicIds.filter(id => explainedSubtopics.includes(id)).length;
+
+                let generatedMcqsCount = 0;
+                    mcqSummaries.forEach(s => {
+                      if (roadmapSubtopicIds.includes(s.subtopicId)) {
+                        generatedMcqsCount += s.totalQuestions;
+                      }
                     });
-                    this.groupRoadmaps();
-                    this.initFuse();
-                    this.loading = false;
-                 },
-                 error: (err) => {
-                    console.error('Error fetching scores:', err);
-                    this.groupRoadmaps();
-                    this.initFuse();
-                    this.loading = false;
-                 }
-               });
-            } else {
-               this.blogArticleData.forEach(blog => {
-                 blog.totalScore = undefined;
-                 blog.totalAttemptedQuestions = undefined;
-               });
-               this.groupRoadmaps();
-               this.initFuse();
-               this.loading = false;
-            }
-          },
-          error: (err) => {
-            console.error('Error loading conversations or explained subtopics:', err);
-            this.loading = false;
-          }
+
+                    return {
+                      id: roadmap.id,
+                      PName: roadmap.mainTopic,
+                      routerLink: `/roadmap/${roadmap.id}`,
+                      PImage: roadmap.imageUrl ? `${environment.apiBaseUrl}${roadmap.imageUrl}` : 'assets/image/default.png',
+                      intro: roadmap.intro,
+                      syllabus: roadmap.syllabus,
+                      chaptersCount,
+                      subtopicsCount,
+                      chapterTitles,
+                      subtopicTitles,
+                      explainedSubtopicsCount,
+                      generatedMcqsCount,
+                      category: roadmap.category || 'TECHNICAL',
+                      displayOrder: roadmap.displayOrder !== undefined ? roadmap.displayOrder : 0
+                    };
+                  });
+
+                const token = typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('token') : null;
+                if (token) {
+                  this.apiService.getUserScores().subscribe({
+                    next: (scores) => {
+                      this.blogArticleData.forEach(blog => {
+                        let blogScores = scores.filter((s: any) => s.roadmapId === blog.id);
+                        blog.totalScore = blogScores.reduce((acc: number, s: any) => acc + (s.score || 0), 0);
+                        blog.totalAttemptedQuestions = blogScores.reduce((acc: number, s: any) => acc + (s.totalQuestions || 0), 0);
+                      });
+                      this.groupRoadmaps();
+                      this.initFuse();
+                      this.loading = false;
+                    },
+                    error: (err) => {
+                      console.error('Error fetching scores:', err);
+                      this.groupRoadmaps();
+                      this.initFuse();
+                      this.loading = false;
+                    }
+                  });
+                } else {
+                  this.blogArticleData.forEach(blog => {
+                    blog.totalScore = undefined;
+                    blog.totalAttemptedQuestions = undefined;
+                  });
+                  this.groupRoadmaps();
+                  this.initFuse();
+                  this.loading = false;
+                }
+              },
+                error: (err) => {
+                  console.error('Error loading conversations or explained subtopics:', err);
+                  this.loading = false;
+                }
         });
       },
       error: (err) => {

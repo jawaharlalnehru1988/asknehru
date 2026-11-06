@@ -42,6 +42,6 @@ export class ArticlesGalleryComponent implements OnInit {
   }
 
   openDetails(id: number) {
-    this.router.navigate(['/project', id]);
+    this.router.navigate(['/roadmap', id]);
   }
 }

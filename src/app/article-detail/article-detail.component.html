@@ -15,7 +15,7 @@
       
       <!-- Left: Back Button & Breadcrumbs -->
       <div class="flex items-center gap-3 min-w-0">
-        <a [routerLink]="['/project', projectId]"
+        <a [routerLink]="['/roadmap', projectId]"
           class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700/80 hover:border-blue-500/50 hover:bg-slate-800 text-slate-300 hover:text-white text-xs sm:text-sm font-semibold transition-all shadow-sm group flex-shrink-0">
           <svg class="w-4 h-4 text-blue-400 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -26,7 +26,7 @@
         <!-- Breadcrumbs (hidden on small mobile) -->
         <nav class="hidden md:flex items-center gap-2 text-xs text-slate-400 truncate">
           <span>/</span>
-          <a [routerLink]="['/project', projectId]" class="text-blue-400 font-medium hover:underline hover:text-blue-300 transition-colors cursor-pointer">{{ roadmap?.mainTopic || 'Roadmap' }}</a>
+          <a [routerLink]="['/roadmap', projectId]" class="text-blue-400 font-medium hover:underline hover:text-blue-300 transition-colors cursor-pointer">{{ roadmap?.mainTopic || 'Roadmap' }}</a>
           <span>/</span>
           <span class="truncate max-w-[200px] text-slate-300">{{ currentChapter?.chapterName }}</span>
         </nav>
@@ -104,7 +104,7 @@
         </div>
         <h3 class="text-xl font-bold text-white mb-2">{{ error }}</h3>
         <p class="text-slate-400 text-sm mb-6">Could not retrieve the requested subtopic article.</p>
-        <a [routerLink]="['/project', projectId]" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg shadow-blue-500/20">
+        <a [routerLink]="['/roadmap', projectId]" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg shadow-blue-500/20">
           ← Back to Roadmap
         </a>
       </div>

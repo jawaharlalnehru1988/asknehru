@@ -33,6 +33,7 @@ export class ApiService {
   private roadmapCache = signal<Map<number, any>>(new Map());
   private explainedSubtopicsCache = signal<number[] | null>(null);
   private conversationsCache = signal<any[] | null>(null);
+  private mcqSummariesCache = signal<any[] | null>(null);
 
   constructor(private http: HttpClient) {
 
@@ -160,6 +161,16 @@ export class ApiService {
     }
     return this.http.get<any[]>(`${this.authApiUrl}/api/conversations`).pipe(
       tap(data => this.conversationsCache.set(data))
+    );
+  }
+
+  getMcqSummaries(): Observable<{ subtopicId: number, totalQuestions: number, roadmapId: number }[]> {
+    const cached = this.mcqSummariesCache();
+    if (cached) {
+      return of(cached);
+    }
+    return this.http.get<any[]>(`${this.authApiUrl}/api/conversations/mcq-summaries`).pipe(
+      tap(data => this.mcqSummariesCache.set(data))
     );
   }
 

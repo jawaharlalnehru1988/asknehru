@@ -198,7 +198,7 @@ export class ArticleDetailComponent implements OnInit, OnDestroy {
 
   goToSubtopic(subtopic: any): void {
     if (!subtopic) return;
-    this.router.navigate(['/project', this.projectId, 'topic', subtopic.id]);
+    this.router.navigate(['/roadmap', this.projectId, 'topic', subtopic.id]);
   }
 
   togglePresentationMode(): void {

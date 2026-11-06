@@ -94,7 +94,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     openTopicArticle(subtopic: any) {
         const id = this.route.snapshot.paramMap.get('id') || '5';
         this.saveScrollPosition();
-        this.router.navigate(['/project', id, 'topic', subtopic.id]);
+        this.router.navigate(['/roadmap', id, 'topic', subtopic.id]);
     }
 
     copyToClipboard(text: string, id: number) {
