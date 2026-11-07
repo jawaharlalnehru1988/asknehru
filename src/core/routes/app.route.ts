@@ -49,6 +49,10 @@ export const routes: Routes = [
     loadComponent: () => import('../../app/dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
   {
+    path: 'scoreboard',
+    loadComponent: () => import('../../app/dashboard/dashboard.component').then(m => m.DashboardComponent)
+  },
+  {
     path: 'userlist',
     loadComponent: () => import('../../app/user-list/user-list.component').then(m => m.UserListComponent)
   },

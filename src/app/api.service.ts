@@ -231,13 +231,50 @@ export class ApiService {
     return this.http.post<any>(`${this.authApiUrl}/api/conversations/${subtopicId}/scores`, { score, totalQuestions }, { headers });
   }
 
-  getUserScores(): Observable<any[]> {
+  getUserScores(userId?: number): Observable<any[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': token ? `Bearer ${token}` : '',
       'Content-Type': 'application/json'
     });
-    return this.http.get<any[]>(`${this.authApiUrl}/api/conversations/scores`, { headers });
+    const url = userId ? `${this.authApiUrl}/api/conversations/scores?userId=${userId}` : `${this.authApiUrl}/api/conversations/scores`;
+    return this.http.get<any[]>(url, { headers });
+  }
+
+  getCurrentUser(): { email: string; name: string; picture: string | null; role: string; id?: number } | null {
+    if (typeof window === 'undefined' || !window.localStorage) return null;
+    const userStr = localStorage.getItem('user');
+    let userObj: any = null;
+    if (userStr) {
+      try {
+        userObj = JSON.parse(userStr);
+      } catch (e) {}
+    }
+    const token = localStorage.getItem('token');
+    let email = userObj?.email || '';
+    let name = userObj?.name || '';
+    let picture = userObj?.picture || null;
+    let role = userObj?.role || 'User';
+    let id = userObj?.id;
+
+    if (token && token.includes('.')) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+        if (!email && payload.email) email = payload.email;
+        if (!name && (payload.name || payload.email)) name = payload.name || payload.email;
+        if (!picture && payload.picture) picture = payload.picture;
+        if (!id && payload.sub && !isNaN(+payload.sub)) id = +payload.sub;
+      } catch (e) {}
+    }
+
+    if (!email && !name && !token) return null;
+    return {
+      email,
+      name: name || email || 'User',
+      picture,
+      role: this.isAdminEmail(email) || role === 'Super Admin' ? 'Super Admin' : 'User',
+      id
+    };
   }
 
   uploadSubtopicAudio(conversationId: number, file: File): Observable<any> {

@@ -40,6 +40,8 @@ export class ToolbarComponent implements OnInit {
   loggedInUserData: any;
   logInObj: any;
   isSuperAdmin: boolean = false;
+  userName: string = '';
+  userEmail: string = '';
   initialName!: string;
   userPicture: string | null = null;
   isUserLoggedIn!: boolean;
@@ -217,12 +219,19 @@ export class ToolbarComponent implements OnInit {
     }
     
     let userName = "";
+    let userEmail = "";
+    if (loggedInUserData && loggedInUserData.email) {
+      userEmail = loggedInUserData.email;
+    }
     if (loggedInUserData && loggedInUserData.name && loggedInUserData.name !== 'User') {
       userName = loggedInUserData.name;
     } else if (token) {
       try {
         const payload = JSON.parse(atob(token.split('.')[1]));
         userName = payload.name || payload.email || payload.sub || "User";
+        if (!userEmail && payload.email) {
+          userEmail = payload.email;
+        }
         if (payload.picture) {
           this.userPicture = payload.picture;
         }
@@ -230,6 +239,8 @@ export class ToolbarComponent implements OnInit {
         userName = "User";
       }
     }
+    this.userEmail = userEmail;
+    this.userName = userName;
 
     if (userName) {
       this.initialName = this.getInitials(userName);

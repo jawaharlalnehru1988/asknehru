@@ -868,6 +868,30 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
         }
     }
 
+    get totalChaptersCount(): number {
+        return this.roadmap?.chapters?.length || 0;
+    }
+
+    get totalSubtopicsCount(): number {
+        if (!this.roadmap?.chapters) return 0;
+        return this.roadmap.chapters.reduce((total: number, ch: any) => total + (ch.subtopics?.length || 0), 0);
+    }
+
+    get explainedSubtopicsCount(): number {
+        if (!this.roadmap?.chapters || !this.explainedSubtopicIds) return 0;
+        let count = 0;
+        for (const ch of this.roadmap.chapters) {
+            if (ch.subtopics) {
+                for (const sub of ch.subtopics) {
+                    if (this.explainedSubtopicIds.has(sub.id)) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
     get previousSubtopic(): any {
         if (!this.activeExplanation) return null;
         return this.getPreviousSubtopic(this.activeExplanation.subtopicId);
